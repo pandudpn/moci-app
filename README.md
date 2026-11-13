@@ -12,10 +12,8 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/status-desain%20%26%20prototipe-FFB020" alt="Status: desain & prototipe">
   <img src="https://img.shields.io/badge/Flutter-iOS%20%7C%20Android-1C8CF0" alt="Flutter untuk iOS dan Android">
   <img src="https://img.shields.io/badge/usia-2%E2%80%937%20tahun-26A03B" alt="Usia 2–7 tahun">
-  <img src="https://img.shields.io/badge/iklan-tidak%20ada-F03E7C" alt="Tanpa iklan">
 </p>
 
 > **English summary:** Moci is an ad-free, offline-first learning and play app for children aged 2–7, available in Bahasa Indonesia and English. Kids trace letters and numbers, count, read syllables and sentences, explore animals, fruit, colours, shapes and music, play six mini games, and colour pictures without ever going outside the lines. Everything stays on the device. The design and interactive prototype are done; the Flutter app for iPad, iPhone and Android is in development.
@@ -51,20 +49,20 @@ Prinsip yang dipegang di semua layar:
 
 ## Fitur
 
-| Menu | Isi |
-|---|---|
-| **Kenal Huruf** | 26 huruf A–Z dengan gambar dan contoh kata, bisa dibaca sebagai bunyi (fonik) atau nama huruf, latihan menulis (tracing) dengan panah arah, dan latihan mengucapkan. |
-| **Berhitung** | Angka 1–50 dengan benda untuk dihitung bersama, serta latihan menulis angka 0–9. |
-| **Dunia Hewan** | 42 hewan dalam 5 kelompok, lengkap dengan nama, tiruan suara, dan fakta singkat. |
-| **Buah & Sayur** | 21 buah dan 14 sayur, dengan mode Kenali dan mode Tebak. |
-| **Warna** | 11 warna. Anak menyentuh semua benda yang warnanya diminta. |
-| **Bentuk** | 10 bentuk, termasuk menghitung sisi dan sudutnya, plus mode Cari. |
-| **Main Musik** | Xilofon 8 nada dengan lagu untuk diikuti, serta drum dengan 4 bunyi dan contoh irama. |
-| **Ayo Membaca** | Suku kata (ba-bi-bu-be-bo), menyusun kata dari suku kata, dan membaca kalimat dengan kata yang menyala satu per satu. |
-| **Main Yuk!** | 6 mini game: Cocokkan Gambar, Kartu Memori, Tebak Bayangan, Puzzle, Balon Huruf, Besar & Kecil. |
-| **Mewarnai** | 14 gambar. Warna tidak bisa keluar garis. Ada kuas, isi warna, penghapus, stiker, dan Karyaku untuk menyimpan hasil. |
-| **Hadiah** | Bintang dan stiker setiap kali anak menyelesaikan permainan. |
-| **Untuk orang tua** | Gerbang orang tua, profil anak, ringkasan perkembangan, cara baca huruf, batas waktu harian, dan pengingat istirahat. |
+| Menu                | Isi                                                                                                                                                                  |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Kenal Huruf**     | 26 huruf A–Z dengan gambar dan contoh kata, bisa dibaca sebagai bunyi (fonik) atau nama huruf, latihan menulis (tracing) dengan panah arah, dan latihan mengucapkan. |
+| **Berhitung**       | Angka 1–50 dengan benda untuk dihitung bersama, serta latihan menulis angka 0–9.                                                                                     |
+| **Dunia Hewan**     | 42 hewan dalam 5 kelompok, lengkap dengan nama, tiruan suara, dan fakta singkat.                                                                                     |
+| **Buah & Sayur**    | 21 buah dan 14 sayur, dengan mode Kenali dan mode Tebak.                                                                                                             |
+| **Warna**           | 11 warna. Anak menyentuh semua benda yang warnanya diminta.                                                                                                          |
+| **Bentuk**          | 10 bentuk, termasuk menghitung sisi dan sudutnya, plus mode Cari.                                                                                                    |
+| **Main Musik**      | Xilofon 8 nada dengan lagu untuk diikuti, serta drum dengan 4 bunyi dan contoh irama.                                                                                |
+| **Ayo Membaca**     | Suku kata (ba-bi-bu-be-bo), menyusun kata dari suku kata, dan membaca kalimat dengan kata yang menyala satu per satu.                                                |
+| **Main Yuk!**       | 6 mini game: Cocokkan Gambar, Kartu Memori, Tebak Bayangan, Puzzle, Balon Huruf, Besar & Kecil.                                                                      |
+| **Mewarnai**        | 14 gambar. Warna tidak bisa keluar garis. Ada kuas, isi warna, penghapus, stiker, dan Karyaku untuk menyimpan hasil.                                                 |
+| **Hadiah**          | Bintang dan stiker setiap kali anak menyelesaikan permainan.                                                                                                         |
+| **Untuk orang tua** | Gerbang orang tua, profil anak, ringkasan perkembangan, cara baca huruf, batas waktu harian, dan pengingat istirahat.                                                |
 
 ## Tampilan aplikasi
 
@@ -200,16 +198,16 @@ Semua tangkapan layar diambil dari prototipe interaktif versi tablet (1180 × 82
 
 ## Teknologi
 
-| Bagian | Pilihan |
-|---|---|
-| Framework | Flutter (Dart), satu kode untuk iPad, iPhone, HP Android, dan tablet Android |
-| Ilustrasi | SVG, dirender dengan `flutter_svg` dan di-precompile supaya cepat |
+| Bagian             | Pilihan                                                                                                             |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------- |
+| Framework          | Flutter (Dart), satu kode untuk iPad, iPhone, HP Android, dan tablet Android                                        |
+| Ilustrasi          | SVG, dirender dengan `flutter_svg` dan di-precompile supaya cepat                                                   |
 | Tracing & mewarnai | Kanvas Flutter (`CustomPainter` + clip path). Coretan yang sudah selesai disimpan sebagai gambar diam supaya ringan |
-| Animasi | Animasi bawaan Flutter, tanpa Lottie, Rive, atau video |
-| Suara | File audio pendek terkompresi (`just_audio`). TTS perangkat sebagai cadangan |
-| Penyimpanan | File lokal kecil. Karya anak disimpan sebagai data coretan, bukan foto |
-| Jaringan | Tidak ada. Aplikasi 100% offline |
-| Build & rilis | Xcode atau Codemagic untuk iOS, Gradle untuk Android. TestFlight dan Play internal testing |
+| Animasi            | Animasi bawaan Flutter, tanpa Lottie, Rive, atau video                                                              |
+| Suara              | File audio pendek terkompresi (`just_audio`). TTS perangkat sebagai cadangan                                        |
+| Penyimpanan        | File lokal kecil. Karya anak disimpan sebagai data coretan, bukan foto                                              |
+| Jaringan           | Tidak ada. Aplikasi 100% offline                                                                                    |
+| Build & rilis      | Xcode atau Codemagic untuk iOS, Gradle untuk Android. TestFlight dan Play internal testing                          |
 
 Target: ukuran aplikasi di bawah 30 MB dan animasi 60 fps, termasuk di tablet Android kelas bawah.
 
@@ -249,13 +247,13 @@ flutter run            # pilih simulator iPad/iPhone atau perangkat Android
 
 Semua aset brand final ada di [`docs/brand`](docs/brand), dalam format PNG dan SVG.
 
-| Folder | Isi |
-|---|---|
-| `docs/brand/icon/ios` | Ikon 1024 px versi terang, gelap, dan tinted |
+| Folder                    | Isi                                                                                             |
+| ------------------------- | ----------------------------------------------------------------------------------------------- |
+| `docs/brand/icon/ios`     | Ikon 1024 px versi terang, gelap, dan tinted                                                    |
 | `docs/brand/icon/android` | Layer adaptive icon (foreground, background, monochrome), ikon Play Store 512 px, dan ikon lama |
-| `docs/brand/logo` | Logo bertumpuk dan mendatar (warna, hitam, putih, untuk latar gelap), tulisan Moci, dan maskot |
-| `docs/brand/splash` | Logo untuk splash screen dan ikon splash Android 12+ |
-| `docs/brand/github` | Social preview 1280 × 640, banner README terang & gelap, avatar |
+| `docs/brand/logo`         | Logo bertumpuk dan mendatar (warna, hitam, putih, untuk latar gelap), tulisan Moci, dan maskot  |
+| `docs/brand/splash`       | Logo untuk splash screen dan ikon splash Android 12+                                            |
+| `docs/brand/github`       | Social preview 1280 × 640, banner README terang & gelap, avatar                                 |
 
 - **Ilustrasi** digambar khusus untuk Moci, bukan diambil dari situs lain.
 - **Font:** [Fredoka](https://fonts.google.com/specimen/Fredoka) dan [Nunito](https://fonts.google.com/specimen/Nunito), keduanya berlisensi SIL Open Font License 1.1.
