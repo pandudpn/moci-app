@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../core/prefs/prefs_controller.dart';
 import '../features/beranda/beranda_screen.dart';
 import '../features/berhitung/berhitung_screen.dart';
+import '../features/buah_sayur/buah_screen.dart';
 import '../features/hadiah/hadiah_controller.dart';
 import '../features/hadiah/hebat_screen.dart';
 import '../features/hewan/hewan_screen.dart';
@@ -142,7 +143,15 @@ final routerProvider = Provider<GoRouter>((ref) {
         builder: (context, state) =>
             HewanScreen(awal: state.uri.queryParameters['hewan']),
       ),
-      _soon(Routes.buahSayur, MenuTheme.buahSayur),
+      GoRoute(
+        path: Routes.buahSayur,
+        builder: (context, state) => BuahScreen(
+          mode: state.uri.queryParameters['mode'] == 'kenali'
+              ? BuahMode.kenali
+              : BuahMode.tebak,
+          awal: state.uri.queryParameters['buah'],
+        ),
+      ),
       _soon(Routes.warna, MenuTheme.warna),
       _soon(Routes.bentuk, MenuTheme.bentuk),
       _soon(Routes.musik, MenuTheme.musik),

@@ -942,5 +942,87 @@
         "type": "int"
       }
     }
+  },
+  "buahLearn": "Kenali",
+  "@buahLearn": {
+    "description": "Tab mode Kenali"
+  },
+  "buahGuess": "Tebak",
+  "@buahGuess": {
+    "description": "Tab mode Tebak"
+  },
+  "buahCats": "Kategori",
+  "@buahCats": {
+    "description": "Label kelompok kategori"
+  },
+  "buahCatAll": "Semua",
+  "@buahCatAll": {
+    "description": "Kategori semua"
+  },
+  "buahCatFruit": "Buah",
+  "@buahCatFruit": {
+    "description": "Kategori buah"
+  },
+  "buahCatVeggie": "Sayur",
+  "@buahCatVeggie": {
+    "description": "Kategori sayur"
+  },
+  "buahTagFruit": "BUAH",
+  "@buahTagFruit": {
+    "description": "Tag kartu buah"
+  },
+  "buahTagVeggie": "SAYUR",
+  "@buahTagVeggie": {
+    "description": "Tag kartu sayur"
+  },
+  "buahListen": "Dengarkan pertanyaan",
+  "@buahListen": {
+    "description": "Label tombol dengar pertanyaan"
+  },
+  "buahQuestion": "Mana yang {nama}?",
+  "@buahQuestion": {
+    "description": "Pertanyaan Tebak",
+    "placeholders": {
+      "nama": {
+        "type": "String"
+      }
+    }
+  },
+  "buahQuestionSay": "Mana yang",
+  "@buahQuestionSay": {
+    "description": "narasi"
+  },
+  "buahYesSay": "Betul!",
+  "@buahYesSay": {
+    "description": "narasi"
+  },
+  "buahWrongSay": "Bukan, coba lagi ya!",
+  "@buahWrongSay": {
+    "description": "narasi"
+  },
+  "buahRight": "Betul! Itu {nama}!",
+  "@buahRight": {
+    "description": "Teks bilah selesai",
+    "placeholders": {
+      "nama": {
+        "type": "String"
+      }
+    }
+  },
+  "buahNext": "Lanjut",
+  "@buahNext": {
+    "description": "Tombol soal berikutnya"
+  },
+  "buahProgress": "Pertanyaan {n} dari {total}",
+  "@buahProgress": {
+    "description": "Label semantik kemajuan soal",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
   }
 }

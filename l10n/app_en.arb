@@ -939,5 +939,87 @@
         "type": "int"
       }
     }
+  },
+  "buahLearn": "Learn",
+  "@buahLearn": {
+    "description": "Learn mode tab"
+  },
+  "buahGuess": "Guess",
+  "@buahGuess": {
+    "description": "Guess mode tab"
+  },
+  "buahCats": "Category",
+  "@buahCats": {
+    "description": "Category group label"
+  },
+  "buahCatAll": "All",
+  "@buahCatAll": {
+    "description": "All categories"
+  },
+  "buahCatFruit": "Fruits",
+  "@buahCatFruit": {
+    "description": "Fruit category"
+  },
+  "buahCatVeggie": "Veggies",
+  "@buahCatVeggie": {
+    "description": "Veggie category"
+  },
+  "buahTagFruit": "FRUIT",
+  "@buahTagFruit": {
+    "description": "Fruit card tag"
+  },
+  "buahTagVeggie": "VEGGIE",
+  "@buahTagVeggie": {
+    "description": "Veggie card tag"
+  },
+  "buahListen": "Listen to the question",
+  "@buahListen": {
+    "description": "Listen button label"
+  },
+  "buahQuestion": "Find the {nama}!",
+  "@buahQuestion": {
+    "description": "Guess question",
+    "placeholders": {
+      "nama": {
+        "type": "String"
+      }
+    }
+  },
+  "buahQuestionSay": "Find the",
+  "@buahQuestionSay": {
+    "description": "narasi"
+  },
+  "buahYesSay": "Yes!",
+  "@buahYesSay": {
+    "description": "narasi"
+  },
+  "buahWrongSay": "That's not it. Try again!",
+  "@buahWrongSay": {
+    "description": "narasi"
+  },
+  "buahRight": "Yes! {nama}!",
+  "@buahRight": {
+    "description": "Solved bar text",
+    "placeholders": {
+      "nama": {
+        "type": "String"
+      }
+    }
+  },
+  "buahNext": "Next",
+  "@buahNext": {
+    "description": "Next question button"
+  },
+  "buahProgress": "Question {n} of {total}",
+  "@buahProgress": {
+    "description": "Question progress semantic label",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
   }
 }
