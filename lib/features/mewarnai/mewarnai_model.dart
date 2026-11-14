@@ -1,3 +1,4 @@
+import 'dart:typed_data';
 import 'dart:ui';
 
 /// Ukuran halaman mewarnai dalam unit kanvas.
@@ -209,10 +210,7 @@ final class KaryaData {
       halaman: _teks(map['halaman']),
       isian: isian,
       coretan: coretan,
-      cap: [
-        for (final v in _daftar(map['cap']))
-          if (CapTempel.fromJson(v) case final cap?) cap,
-      ],
+      cap: [for (final v in _daftar(map['cap'])) ?CapTempel.fromJson(v)],
       waktu: DateTime.tryParse(_teks(map['waktu'])),
     );
   }
@@ -255,6 +253,15 @@ final class KaryaData {
     'cap': [for (final c in cap) c.toJson()],
     if (waktu case final w?) 'waktu': w.toIso8601String(),
   };
+}
+
+/// Satu karya tersimpan: isi halaman dan PNG pratinjaunya.
+final class Karya {
+  const Karya({required this.id, required this.data, required this.png});
+
+  final String id;
+  final KaryaData data;
+  final Uint8List png;
 }
 
 /// Satu langkah yang bisa dibatalkan.
