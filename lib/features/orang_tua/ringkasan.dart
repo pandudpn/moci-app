@@ -2,6 +2,9 @@ import '../../core/progress/progress.dart';
 
 /// Modul yang dirangkum di "Minggu ini", berikut jumlah item per modul (D11).
 /// Nama enum = kunci modul di `markItem(modul.name, …)`.
+///
+/// Warna, Bentuk, dan Main Musik sengaja tidak dirangkum: ketiganya hanya
+/// mencatat aktivitas terakhir lewat `setLastActivity`, bukan item.
 enum RingkasanModul {
   huruf(26),
   angka(50),
