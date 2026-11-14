@@ -95,6 +95,7 @@ flutter:
     - assets/content/
     - assets/tracing/
     - assets/coloring/
+    - assets/audio/hewan/
 
   fonts:
     - family: Fredoka
