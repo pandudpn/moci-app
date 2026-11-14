@@ -18,7 +18,10 @@ void main() {
   });
 
   test('kurva C dan Q dihaluskan', () {
-    expect(svgPath('M0 0C0 60 100 60 100 0').getBounds().height, closeTo(45, 2));
+    expect(
+      svgPath('M0 0C0 60 100 60 100 0').getBounds().height,
+      closeTo(45, 2),
+    );
     expect(svgPath('M0 0Q50 100 100 0').getBounds().height, closeTo(50, 2));
   });
 

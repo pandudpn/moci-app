@@ -78,7 +78,13 @@ Path svgPath(String d) {
           final x1 = angka(), y1 = angka();
           final x2 = angka(), y2 = angka();
           final nx = angka(), ny = angka();
-          _kubik(path, Offset(x, y), Offset(x1, y1), Offset(x2, y2), Offset(nx, ny));
+          _kubik(
+            path,
+            Offset(x, y),
+            Offset(x1, y1),
+            Offset(x2, y2),
+            Offset(nx, ny),
+          );
           x = nx;
           y = ny;
         }
@@ -145,13 +151,7 @@ void _kubik(
   _kubik(path, tengah, p123, p23, p3, dalam + 1);
 }
 
-void _kuadrat(
-  Path path,
-  Offset p0,
-  Offset p1,
-  Offset p2, [
-  int dalam = 0,
-]) {
+void _kuadrat(Path path, Offset p0, Offset p1, Offset p2, [int dalam = 0]) {
   if (dalam >= _kedalamanMaks || _jarakGaris(p1, p0, p2) <= _toleransiKurva) {
     path.lineTo(p2.dx, p2.dy);
     return;
@@ -168,8 +168,8 @@ double _jarakGaris(Offset titik, Offset awal, Offset akhir) {
   final dy = akhir.dy - awal.dy;
   final panjang = dx * dx + dy * dy;
   if (panjang == 0) return (titik - awal).distance;
-  final proyeksi = ((titik.dx - awal.dx) * dx + (titik.dy - awal.dy) * dy) /
-      panjang;
+  final proyeksi =
+      ((titik.dx - awal.dx) * dx + (titik.dy - awal.dy) * dy) / panjang;
   final t = proyeksi.clamp(0.0, 1.0);
   return (titik - Offset(awal.dx + dx * t, awal.dy + dy * t)).distance;
 }

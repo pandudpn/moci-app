@@ -6,7 +6,10 @@ import 'package:moci/features/mewarnai/mewarnai_model.dart';
 void main() {
   test('karya kosong tidak punya isi', () {
     expect(KaryaData.kosong('kupu').adaIsi, isFalse);
-    expect(KaryaData.kosong('kupu').copyWith(isian: {1: '#FF4B4B'}).adaIsi, isTrue);
+    expect(
+      KaryaData.kosong('kupu').copyWith(isian: {1: '#FF4B4B'}).adaIsi,
+      isTrue,
+    );
   });
 
   test('karya bolak-balik JSON mempertahankan isian, coretan, dan cap', () {

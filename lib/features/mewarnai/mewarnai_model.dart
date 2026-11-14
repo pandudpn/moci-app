@@ -200,9 +200,9 @@ final class KaryaData {
     for (final e in _peta(map['coretan']).entries) {
       final bagian = int.tryParse(e.key);
       if (bagian == null || bagian < 0) continue;
-      final daftar = [
-        for (final v in _daftar(e.value)) Coretan.fromJson(v),
-      ].where((c) => c.d.isNotEmpty).toList();
+      final daftar = [for (final v in _daftar(e.value)) Coretan.fromJson(v)]
+          .where((c) => c.d.isNotEmpty)
+          .toList();
       if (daftar.isNotEmpty) coretan[bagian] = daftar;
     }
     return KaryaData(
