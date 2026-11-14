@@ -1675,6 +1675,84 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Pilihan bayangan'**
   String get bayanganSemantic;
+
+  /// Judul bilah atas layar Puzzle
+  ///
+  /// In id, this message translates to:
+  /// **'Puzzle'**
+  String get puzzleTitle;
+
+  /// Tombol gambar puzzle baru
+  ///
+  /// In id, this message translates to:
+  /// **'Puzzle lain'**
+  String get puzzleOther;
+
+  /// Label papan puzzle
+  ///
+  /// In id, this message translates to:
+  /// **'Papan puzzle'**
+  String get puzzleBoard;
+
+  /// Petunjuk saat belum ada keping dipilih
+  ///
+  /// In id, this message translates to:
+  /// **'Ketuk potongan, lalu ketuk tempatnya.'**
+  String get puzzleHintPick;
+
+  /// Petunjuk setelah keping dipilih
+  ///
+  /// In id, this message translates to:
+  /// **'Sekarang ketuk tempat yang pas di gambar!'**
+  String get puzzleHintPlace;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Pas!'**
+  String get puzzleFits;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Bukan di situ. Coba tempat lain!'**
+  String get puzzleNo;
+
+  /// Label keping puzzle
+  ///
+  /// In id, this message translates to:
+  /// **'Potongan {n}'**
+  String puzzlePiece(int n);
+
+  /// Label tempat keping di papan
+  ///
+  /// In id, this message translates to:
+  /// **'Tempat {n}'**
+  String puzzleSpot(int n);
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Hore! Gambarnya'**
+  String get puzzleDone;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Ketuk potongan, lalu ketuk tempatnya.'**
+  String get puzzleInst;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Sekarang ketuk tempat yang pas di gambar!'**
+  String get puzzleTipPlace;
+
+  /// Hitungan keping terpasang
+  ///
+  /// In id, this message translates to:
+  /// **'{n} / {m} potongan'**
+  String puzzlePieces(int n, int m);
 }
 
 class _AppLocalizationsDelegate

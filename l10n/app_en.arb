@@ -932,5 +932,75 @@
   "bayanganSemantic": "Shadow choices",
   "@bayanganSemantic": {
     "description": "Label of the shadow choice group"
+  },
+  "puzzleTitle": "Puzzle",
+  "@puzzleTitle": {
+    "description": "Title of the Puzzle screen bar"
+  },
+  "puzzleOther": "New puzzle",
+  "@puzzleOther": {
+    "description": "New puzzle picture button"
+  },
+  "puzzleBoard": "Puzzle board",
+  "@puzzleBoard": {
+    "description": "Label of the puzzle board"
+  },
+  "puzzleHintPick": "Tap a piece, then tap where it goes.",
+  "@puzzleHintPick": {
+    "description": "Hint before a piece is picked"
+  },
+  "puzzleHintPlace": "Now tap the right spot on the picture!",
+  "@puzzleHintPlace": {
+    "description": "Hint after a piece is picked"
+  },
+  "puzzleFits": "It fits!",
+  "@puzzleFits": {
+    "description": "narasi"
+  },
+  "puzzleNo": "Not there. Try another spot!",
+  "@puzzleNo": {
+    "description": "narasi"
+  },
+  "puzzlePiece": "Puzzle piece {n}",
+  "@puzzlePiece": {
+    "description": "Label of a puzzle piece",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "puzzleSpot": "Spot {n}",
+  "@puzzleSpot": {
+    "description": "Label of a spot on the board",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "puzzleDone": "Hooray! It is a",
+  "@puzzleDone": {
+    "description": "narasi"
+  },
+  "puzzleInst": "Tap a piece, then tap where it goes.",
+  "@puzzleInst": {
+    "description": "narasi"
+  },
+  "puzzleTipPlace": "Now tap the right spot on the picture!",
+  "@puzzleTipPlace": {
+    "description": "narasi"
+  },
+  "puzzlePieces": "{n} / {m} pieces",
+  "@puzzlePieces": {
+    "description": "Count of placed pieces",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      },
+      "m": {
+        "type": "int"
+      }
+    }
   }
 }

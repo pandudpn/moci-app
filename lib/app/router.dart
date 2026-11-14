@@ -10,6 +10,7 @@ import '../features/main_yuk/bayangan_screen.dart';
 import '../features/main_yuk/cocokkan_screen.dart';
 import '../features/main_yuk/hub_screen.dart';
 import '../features/main_yuk/memori_screen.dart';
+import '../features/main_yuk/puzzle_screen.dart';
 import '../features/orang_tua/gerbang_screen.dart';
 import '../features/orang_tua/orang_tua_screen.dart';
 import '../features/sambutan/sambutan_screen.dart';
@@ -154,7 +155,10 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: Routes.bayangan,
         builder: (context, state) => const BayanganScreen(),
       ),
-      _soon(Routes.puzzle, MenuTheme.puzzle),
+      GoRoute(
+        path: Routes.puzzle,
+        builder: (context, state) => const PuzzleScreen(),
+      ),
       _soon(Routes.balon, MenuTheme.balon),
       _soon(Routes.besarKecil, MenuTheme.besarKecil),
       _soon(Routes.mewarnai, MenuTheme.mewarnai),

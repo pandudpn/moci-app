@@ -935,5 +935,75 @@
   "bayanganSemantic": "Pilihan bayangan",
   "@bayanganSemantic": {
     "description": "Label kelompok pilihan bayangan"
+  },
+  "puzzleTitle": "Puzzle",
+  "@puzzleTitle": {
+    "description": "Judul bilah atas layar Puzzle"
+  },
+  "puzzleOther": "Puzzle lain",
+  "@puzzleOther": {
+    "description": "Tombol gambar puzzle baru"
+  },
+  "puzzleBoard": "Papan puzzle",
+  "@puzzleBoard": {
+    "description": "Label papan puzzle"
+  },
+  "puzzleHintPick": "Ketuk potongan, lalu ketuk tempatnya.",
+  "@puzzleHintPick": {
+    "description": "Petunjuk saat belum ada keping dipilih"
+  },
+  "puzzleHintPlace": "Sekarang ketuk tempat yang pas di gambar!",
+  "@puzzleHintPlace": {
+    "description": "Petunjuk setelah keping dipilih"
+  },
+  "puzzleFits": "Pas!",
+  "@puzzleFits": {
+    "description": "narasi"
+  },
+  "puzzleNo": "Bukan di situ. Coba tempat lain!",
+  "@puzzleNo": {
+    "description": "narasi"
+  },
+  "puzzlePiece": "Potongan {n}",
+  "@puzzlePiece": {
+    "description": "Label keping puzzle",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "puzzleSpot": "Tempat {n}",
+  "@puzzleSpot": {
+    "description": "Label tempat keping di papan",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "puzzleDone": "Hore! Gambarnya",
+  "@puzzleDone": {
+    "description": "narasi"
+  },
+  "puzzleInst": "Ketuk potongan, lalu ketuk tempatnya.",
+  "@puzzleInst": {
+    "description": "narasi"
+  },
+  "puzzleTipPlace": "Sekarang ketuk tempat yang pas di gambar!",
+  "@puzzleTipPlace": {
+    "description": "narasi"
+  },
+  "puzzlePieces": "{n} / {m} potongan",
+  "@puzzlePieces": {
+    "description": "Hitungan keping terpasang",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      },
+      "m": {
+        "type": "int"
+      }
+    }
   }
 }

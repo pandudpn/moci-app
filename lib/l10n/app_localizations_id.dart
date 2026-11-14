@@ -857,4 +857,49 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get bayanganSemantic => 'Pilihan bayangan';
+
+  @override
+  String get puzzleTitle => 'Puzzle';
+
+  @override
+  String get puzzleOther => 'Puzzle lain';
+
+  @override
+  String get puzzleBoard => 'Papan puzzle';
+
+  @override
+  String get puzzleHintPick => 'Ketuk potongan, lalu ketuk tempatnya.';
+
+  @override
+  String get puzzleHintPlace => 'Sekarang ketuk tempat yang pas di gambar!';
+
+  @override
+  String get puzzleFits => 'Pas!';
+
+  @override
+  String get puzzleNo => 'Bukan di situ. Coba tempat lain!';
+
+  @override
+  String puzzlePiece(int n) {
+    return 'Potongan $n';
+  }
+
+  @override
+  String puzzleSpot(int n) {
+    return 'Tempat $n';
+  }
+
+  @override
+  String get puzzleDone => 'Hore! Gambarnya';
+
+  @override
+  String get puzzleInst => 'Ketuk potongan, lalu ketuk tempatnya.';
+
+  @override
+  String get puzzleTipPlace => 'Sekarang ketuk tempat yang pas di gambar!';
+
+  @override
+  String puzzlePieces(int n, int m) {
+    return '$n / $m potongan';
+  }
 }

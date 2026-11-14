@@ -858,4 +858,49 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get bayanganSemantic => 'Shadow choices';
+
+  @override
+  String get puzzleTitle => 'Puzzle';
+
+  @override
+  String get puzzleOther => 'New puzzle';
+
+  @override
+  String get puzzleBoard => 'Puzzle board';
+
+  @override
+  String get puzzleHintPick => 'Tap a piece, then tap where it goes.';
+
+  @override
+  String get puzzleHintPlace => 'Now tap the right spot on the picture!';
+
+  @override
+  String get puzzleFits => 'It fits!';
+
+  @override
+  String get puzzleNo => 'Not there. Try another spot!';
+
+  @override
+  String puzzlePiece(int n) {
+    return 'Puzzle piece $n';
+  }
+
+  @override
+  String puzzleSpot(int n) {
+    return 'Spot $n';
+  }
+
+  @override
+  String get puzzleDone => 'Hooray! It is a';
+
+  @override
+  String get puzzleInst => 'Tap a piece, then tap where it goes.';
+
+  @override
+  String get puzzleTipPlace => 'Now tap the right spot on the picture!';
+
+  @override
+  String puzzlePieces(int n, int m) {
+    return '$n / $m pieces';
+  }
 }
