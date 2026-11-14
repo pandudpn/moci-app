@@ -12,6 +12,7 @@ import '../features/sambutan/sambutan_screen.dart';
 import '../features/istirahat/habis_screen.dart';
 import '../features/istirahat/istirahat_screen.dart';
 import '../features/segera/coming_soon_screen.dart';
+import '../features/membaca/suku_kata/suku_kata_screen.dart';
 import 'play_timer/play_timer_controller.dart';
 import 'redirect.dart';
 import 'splash/splash_screen.dart';
@@ -120,7 +121,14 @@ final routerProvider = Provider<GoRouter>((ref) {
       _soon(Routes.warna, MenuTheme.warna),
       _soon(Routes.bentuk, MenuTheme.bentuk),
       _soon(Routes.musik, MenuTheme.musik),
-      _soon(Routes.sukuKata, MenuTheme.membaca),
+      GoRoute(
+        path: Routes.sukuKata,
+        // Tab mode berganti tanpa animasi: anak langsung bisa mengetuk, dan
+        // pushReplacement antar tab tidak memantul.
+        pageBuilder: (context, state) => NoTransitionPage(
+          child: SukuKataScreen(awal: state.uri.queryParameters['huruf']),
+        ),
+      ),
       _soon(Routes.susunKata, MenuTheme.membaca),
       _soon(Routes.kalimat, MenuTheme.membaca),
       _soon(Routes.mainYuk, MenuTheme.mainYuk),

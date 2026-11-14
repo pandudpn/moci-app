@@ -569,4 +569,47 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get orangTuaSupport => 'Hubungi kami';
+
+  @override
+  String get membacaTitle => 'Ayo Membaca';
+
+  @override
+  String get membacaModes => 'Mode membaca';
+
+  @override
+  String get membacaSukuKata => 'Suku Kata';
+
+  @override
+  String get membacaSusunKata => 'Susun Kata';
+
+  @override
+  String get membacaKalimat => 'Kalimat';
+
+  @override
+  String get sukuKataPilih => 'Pilih huruf';
+
+  @override
+  String get sukuKataTip => 'Ketuk suku kata untuk mendengarnya!';
+
+  @override
+  String get sukuKataHear => 'Dengar kata';
+
+  @override
+  String get sukuKataReadAll => 'Baca semua';
+
+  @override
+  String get sukuKataExample => 'Contoh kata';
+
+  @override
+  String get sukuKataSayIt => 'Ayo ucapkan!';
+
+  @override
+  String sukuKataLetter(String huruf) {
+    return 'Huruf $huruf';
+  }
+
+  @override
+  String sukuKataSyllable(String suku) {
+    return 'Suku kata $suku';
+  }
 }

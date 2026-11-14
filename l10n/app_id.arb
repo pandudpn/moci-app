@@ -527,5 +527,67 @@
   "orangTuaSupport": "Hubungi kami",
   "@orangTuaSupport": {
     "description": "Tautan surel dukungan"
+  },
+  "membacaTitle": "Ayo Membaca",
+  "@membacaTitle": {
+    "description": "Judul layar Ayo Membaca"
+  },
+  "membacaModes": "Mode membaca",
+  "@membacaModes": {
+    "description": "Label aksesibilitas tiga tab mode membaca"
+  },
+  "membacaSukuKata": "Suku Kata",
+  "@membacaSukuKata": {
+    "description": "Tab Suku Kata"
+  },
+  "membacaSusunKata": "Susun Kata",
+  "@membacaSusunKata": {
+    "description": "Tab Susun Kata"
+  },
+  "membacaKalimat": "Kalimat",
+  "@membacaKalimat": {
+    "description": "Tab Kalimat"
+  },
+  "sukuKataPilih": "Pilih huruf",
+  "@sukuKataPilih": {
+    "description": "Judul kisi konsonan"
+  },
+  "sukuKataTip": "Ketuk suku kata untuk mendengarnya!",
+  "@sukuKataTip": {
+    "description": "narasi"
+  },
+  "sukuKataHear": "Dengar kata",
+  "@sukuKataHear": {
+    "description": "Tombol contoh kata"
+  },
+  "sukuKataReadAll": "Baca semua",
+  "@sukuKataReadAll": {
+    "description": "Tombol membaca lima suku kata"
+  },
+  "sukuKataExample": "Contoh kata",
+  "@sukuKataExample": {
+    "description": "Label contoh kata"
+  },
+  "sukuKataSayIt": "Ayo ucapkan!",
+  "@sukuKataSayIt": {
+    "description": "Label suku tanpa contoh kata"
+  },
+  "sukuKataLetter": "Huruf {huruf}",
+  "@sukuKataLetter": {
+    "description": "Label aksesibilitas tombol konsonan",
+    "placeholders": {
+      "huruf": {
+        "type": "String"
+      }
+    }
+  },
+  "sukuKataSyllable": "Suku kata {suku}",
+  "@sukuKataSyllable": {
+    "description": "Label aksesibilitas kartu suku kata",
+    "placeholders": {
+      "suku": {
+        "type": "String"
+      }
+    }
   }
 }

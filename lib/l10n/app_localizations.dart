@@ -1135,6 +1135,84 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Hubungi kami'**
   String get orangTuaSupport;
+
+  /// Judul layar Ayo Membaca
+  ///
+  /// In id, this message translates to:
+  /// **'Ayo Membaca'**
+  String get membacaTitle;
+
+  /// Label aksesibilitas tiga tab mode membaca
+  ///
+  /// In id, this message translates to:
+  /// **'Mode membaca'**
+  String get membacaModes;
+
+  /// Tab Suku Kata
+  ///
+  /// In id, this message translates to:
+  /// **'Suku Kata'**
+  String get membacaSukuKata;
+
+  /// Tab Susun Kata
+  ///
+  /// In id, this message translates to:
+  /// **'Susun Kata'**
+  String get membacaSusunKata;
+
+  /// Tab Kalimat
+  ///
+  /// In id, this message translates to:
+  /// **'Kalimat'**
+  String get membacaKalimat;
+
+  /// Judul kisi konsonan
+  ///
+  /// In id, this message translates to:
+  /// **'Pilih huruf'**
+  String get sukuKataPilih;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Ketuk suku kata untuk mendengarnya!'**
+  String get sukuKataTip;
+
+  /// Tombol contoh kata
+  ///
+  /// In id, this message translates to:
+  /// **'Dengar kata'**
+  String get sukuKataHear;
+
+  /// Tombol membaca lima suku kata
+  ///
+  /// In id, this message translates to:
+  /// **'Baca semua'**
+  String get sukuKataReadAll;
+
+  /// Label contoh kata
+  ///
+  /// In id, this message translates to:
+  /// **'Contoh kata'**
+  String get sukuKataExample;
+
+  /// Label suku tanpa contoh kata
+  ///
+  /// In id, this message translates to:
+  /// **'Ayo ucapkan!'**
+  String get sukuKataSayIt;
+
+  /// Label aksesibilitas tombol konsonan
+  ///
+  /// In id, this message translates to:
+  /// **'Huruf {huruf}'**
+  String sukuKataLetter(String huruf);
+
+  /// Label aksesibilitas kartu suku kata
+  ///
+  /// In id, this message translates to:
+  /// **'Suku kata {suku}'**
+  String sukuKataSyllable(String suku);
 }
 
 class _AppLocalizationsDelegate

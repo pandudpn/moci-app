@@ -568,4 +568,47 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get orangTuaSupport => 'Contact us';
+
+  @override
+  String get membacaTitle => 'Let\'s Read';
+
+  @override
+  String get membacaModes => 'Reading mode';
+
+  @override
+  String get membacaSukuKata => 'Syllables';
+
+  @override
+  String get membacaSusunKata => 'Build Words';
+
+  @override
+  String get membacaKalimat => 'Sentences';
+
+  @override
+  String get sukuKataPilih => 'Pick a letter';
+
+  @override
+  String get sukuKataTip => 'Tap a syllable to hear it!';
+
+  @override
+  String get sukuKataHear => 'Hear word';
+
+  @override
+  String get sukuKataReadAll => 'Read all';
+
+  @override
+  String get sukuKataExample => 'Example word';
+
+  @override
+  String get sukuKataSayIt => 'Say it out loud!';
+
+  @override
+  String sukuKataLetter(String huruf) {
+    return 'Letter $huruf';
+  }
+
+  @override
+  String sukuKataSyllable(String suku) {
+    return 'Syllable $suku';
+  }
 }
