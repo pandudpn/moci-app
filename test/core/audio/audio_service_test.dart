@@ -151,6 +151,25 @@ void main() {
         expect(engine.released, contains(a));
       },
     );
+
+    test('panggilan yang menyusul selalu menang', () async {
+      const b = 'assets/audio/vo/id/ui_b.m4a';
+      final lama = await svc.narrate(a);
+      // Hentian narasi lama ditahan: panggilan pertama parkir di tengah.
+      final gate = engine.stopGates[lama!] = Completer<void>();
+      final basi = svc.narrate(b);
+      await pumpEventQueue();
+      final baru = await svc.narrate(a);
+      expect(baru, isNotNull);
+      gate.complete();
+      expect(await basi, isNull);
+      await pumpEventQueue();
+      // Yang tersisa hanya narasi terakhir.
+      expect(engine.live.values, [a]);
+      final selesai = svc.narrationFinished(baru!);
+      engine.finish(baru);
+      await selesai;
+    });
   });
 
   group('startMusic dengan pemuatan lambat', () {

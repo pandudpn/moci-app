@@ -49,9 +49,11 @@ final class AudioService {
   }
 
   Future<SoundId?> narrate(String asset) async {
-    await stopNarration();
-    if (!_ready || !_assets.has(asset)) return null;
+    // Token diambil sebelum menunggu: panggilan berikutnya selalu menang.
     final gen = ++_narrationGen;
+    await _haltNarration();
+    if (gen != _narrationGen) return null;
+    if (!_ready || !_assets.has(asset)) return null;
     _duck(true);
     _loading.update(asset, (n) => n + 1, ifAbsent: () => 1);
     final SoundId? id;
@@ -94,6 +96,11 @@ final class AudioService {
 
   Future<void> stopNarration() async {
     _narrationGen++;
+    await _haltNarration();
+  }
+
+  /// Menghentikan narasi yang sedang jalan tanpa menyentuh generasi.
+  Future<void> _haltNarration() async {
     final id = _narrationId;
     final asset = _narrationAsset;
     _clearNarration();

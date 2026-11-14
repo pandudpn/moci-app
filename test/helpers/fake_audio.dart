@@ -20,6 +20,9 @@ final class FakeAudioEngine implements AudioEngine {
   /// Pemuatan aset yang tertahan sampai gerbangnya diselesaikan.
   final gates = <String, Completer<void>>{};
 
+  /// Penghentian suara yang tertahan sampai gerbangnya diselesaikan.
+  final stopGates = <SoundId, Completer<void>>{};
+
   /// Suara yang sedang hidup: id -> aset.
   final live = <SoundId, String>{};
 
@@ -69,6 +72,8 @@ final class FakeAudioEngine implements AudioEngine {
   @override
   Future<void> stop(SoundId id) async {
     stopped.add(id);
+    final gate = stopGates[id];
+    if (gate != null) await gate.future;
     // SoLoud mengirim event selesai juga saat suara dihentikan.
     if (live.remove(id) != null) _finished.add(id);
   }
