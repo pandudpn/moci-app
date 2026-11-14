@@ -29,6 +29,7 @@ class ParentsButton extends StatelessWidget {
       color: _ink,
       shadowColor: _inkShadow,
       depth: compact ? 5 : 6,
+      minTouch: compact ? 56 : 64,
       borderRadius: BorderRadius.circular(999),
       semanticLabel: label,
       onTap: onTap,

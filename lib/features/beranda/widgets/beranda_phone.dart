@@ -33,8 +33,8 @@ class BerandaPhone extends StatelessWidget {
           Positioned(
             left: 44,
             right: 44,
-            top: 10,
-            height: 52,
+            top: 8,
+            height: 56,
             child: Row(
               children: [
                 const BerandaLogo(

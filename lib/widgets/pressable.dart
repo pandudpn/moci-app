@@ -22,6 +22,7 @@ class MociPressable extends ConsumerStatefulWidget {
     this.semanticLabel,
     this.clickSound = true,
     this.cooldown = MociMotion.tapCooldown,
+    this.minTouch,
   });
 
   final Widget child;
@@ -37,6 +38,9 @@ class MociPressable extends ConsumerStatefulWidget {
 
   /// Ketukan dalam rentang ini sejak ketukan yang diterima terakhir diabaikan.
   final Duration cooldown;
+
+  /// Area sentuh minimal (persegi). Tampilan tetap di tengah dan tidak berubah.
+  final double? minTouch;
 
   @override
   ConsumerState<MociPressable> createState() => _MociPressableState();
@@ -112,6 +116,13 @@ class _MociPressableState extends ConsumerState<MociPressable>
       },
     );
     if (!_enabled) box = Opacity(opacity: 0.5, child: box);
+    final min = widget.minTouch;
+    if (min != null) {
+      box = ConstrainedBox(
+        constraints: BoxConstraints(minWidth: min, minHeight: min),
+        child: Center(widthFactor: 1, heightFactor: 1, child: box),
+      );
+    }
     return Semantics(
       button: true,
       enabled: _enabled,

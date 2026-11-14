@@ -75,6 +75,8 @@ Future<void> _tapMenu(WidgetTester t, BerandaMenu m) async {
 }
 
 void main() {
+  _targetTests();
+
   for (final (name, size) in [('tablet', tabletSize), ('HP', phoneSize)]) {
     group('kartu menu ($name)', () {
       for (final m in BerandaMenu.values) {
@@ -271,4 +273,64 @@ void main() {
     await _open(t, env: env);
     expect(env.audio.plays, isEmpty);
   });
+}
+
+void _expectMin(WidgetTester t, Finder f, double min, String what) {
+  final s = t.getSize(f);
+  expect(s.width, greaterThanOrEqualTo(min), reason: '$what lebar');
+  expect(s.height, greaterThanOrEqualTo(min), reason: '$what tinggi');
+}
+
+void _targetTests() {
+  for (final (name, size, min) in [
+    ('tablet', tabletSize, 64.0),
+    ('HP', phoneSize, 56.0),
+  ]) {
+    group('area sentuh ($name)', () {
+      testWidgets('semua target interaktif minimal $min', (t) async {
+        await _open(
+          t,
+          size: size,
+          env: TestEnv(
+            progress: const Progress(lastActivity: LastActivity('/hewan')),
+          ),
+        );
+        for (final key in [
+          'lang-id',
+          'lang-en',
+          'parents-button',
+          'beranda-moci',
+        ]) {
+          _expectMin(t, find.byKey(ValueKey(key)), min, key);
+        }
+        for (final m in BerandaMenu.values) {
+          _expectMin(t, find.byKey(ValueKey('menu-${m.name}')), min, m.name);
+        }
+        _expectMin(t, find.byType(ContinueCard), min, 'lanjutkan');
+      });
+
+      testWidgets('ketukan di luar visual tetapi dalam area minimal', (
+        t,
+      ) async {
+        final router = await _open(t, size: size);
+        final dy = min / 2 - 1;
+        await t.tapAt(
+          t.getCenter(find.byKey(const ValueKey('lang-en'))) + Offset(0, dy),
+        );
+        await t.pump(const Duration(milliseconds: 100));
+        expect(_container(t).read(prefsProvider).lang, AppLang.en);
+        await t.tapAt(
+          t.getCenter(find.byKey(const ValueKey('lang-id'))) + Offset(0, -dy),
+        );
+        await t.pump(const Duration(milliseconds: 100));
+        expect(_container(t).read(prefsProvider).lang, AppLang.id);
+        await t.tapAt(
+          t.getCenter(find.byKey(const ValueKey('parents-button'))) +
+              Offset(0, dy),
+        );
+        await t.pump(const Duration(milliseconds: 100));
+        expect(_top(router).matchedLocation, '/gerbang');
+      });
+    });
+  }
 }
