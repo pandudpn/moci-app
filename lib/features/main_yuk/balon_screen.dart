@@ -20,6 +20,7 @@ import '../../l10n/l10n.dart';
 import '../../widgets/game/game_glyphs.dart';
 import '../../widgets/game/progress_dots.dart';
 import '../../widgets/pressable.dart';
+import '../hadiah/main_lagi.dart';
 import 'balon_game.dart';
 import 'game_scaffold.dart';
 import 'main_yuk_game.dart';
@@ -63,7 +64,7 @@ class BalonScreen extends ConsumerStatefulWidget {
 }
 
 class _BalonScreenState extends ConsumerState<BalonScreen>
-    with TickerProviderStateMixin {
+    with TickerProviderStateMixin, MainLagi<BalonScreen> {
   late BalonGame _game;
   late String _roundId;
   bool _selesai = false;
@@ -184,17 +185,14 @@ class _BalonScreenState extends ConsumerState<BalonScreen>
   }
 
   @override
+  String get ruteMainLagi => Routes.balon;
+
+  @override
+  void mulaiUlang() => setState(_mainBaru);
+
+  @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    // Kembali dari Hebat lewat `go` memakai state layar ini lagi; permainan
-    // sebelumnya sudah selesai dan harus dimulai dari awal.
-    ref.listen(currentPathProvider, (sebelum, sekarang) {
-      if (sebelum == Routes.hebat && sekarang == Routes.balon) {
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          if (mounted) setState(_mainBaru);
-        });
-      }
-    });
     return GameScaffold(
       theme: MenuTheme.balon,
       title: l10n.balonTitle,

@@ -63,6 +63,23 @@ Future<void> _selesaikanKata(WidgetTester t, AppLang lang) async {
   }
 }
 
+/// Lima kata satu level sampai layar Hebat terbuka.
+Future<void> _limaKata(WidgetTester t) async {
+  for (var i = 0; i < 5; i++) {
+    await _selesaikanKata(t, AppLang.id);
+    await t.pump(const Duration(milliseconds: 450));
+    await t.tap(find.byKey(SusunKataScreen.nextKey));
+    if (i == 4) {
+      await t.tap(find.byKey(SusunKataScreen.nextKey), warnIfMissed: false);
+    }
+    await t.pump();
+    await t.pump();
+  }
+  for (var i = 0; i < 10; i++) {
+    await t.pump();
+  }
+}
+
 void main() {
   testWidgets('membuka: level 2, empat keping, dua kotak, dan narasi', (
     t,
@@ -148,19 +165,7 @@ void main() {
   });
   testWidgets('lima kata selesai membuka Hebat sekali', (t) async {
     final router = await pumpApp(t, initialLocation: Routes.susunKata);
-    for (var i = 0; i < 5; i++) {
-      await _selesaikanKata(t, AppLang.id);
-      await t.pump(const Duration(milliseconds: 450));
-      await t.tap(find.byKey(SusunKataScreen.nextKey));
-      if (i == 4) {
-        await t.tap(find.byKey(SusunKataScreen.nextKey), warnIfMissed: false);
-      }
-      await t.pump();
-      await t.pump();
-    }
-    for (var i = 0; i < 10; i++) {
-      await t.pump();
-    }
+    await _limaKata(t);
     expect(
       router.routerDelegate.currentConfiguration.last.matchedLocation,
       Routes.hebat,
@@ -172,6 +177,38 @@ void main() {
     await t.pump(const Duration(milliseconds: 500));
     expect(_progress(t).stars, 3);
   });
+
+  testWidgets('Main lagi dari Hebat memulai ronde pertama', (t) async {
+    final env = TestEnv();
+    await pumpApp(t, env: env, initialLocation: Routes.susunKata);
+    await _limaKata(t);
+    expect(find.text('HEBAT!'), findsOneWidget);
+    await t.tap(find.text('Main lagi'));
+    await t.pump();
+    await t.pump(const Duration(milliseconds: 600));
+    // Transisi keluar Hebat masih berjalan; satu jeda lagi sampai layar ini
+    // kembali terpasang.
+    await t.pump(const Duration(milliseconds: 600));
+    await t.pump();
+    expect(find.text('HEBAT!'), findsNothing);
+    // Keping ronde lama sudah terpakai semua; ronde baru memasang keping baru
+    // dan tombol "Lanjut" belum ada.
+    expect(find.byKey(SusunKataScreen.nextKey), findsNothing);
+    expect(
+      find.descendant(
+        of: find.byKey(SusunKataScreen.slotKey(0)),
+        matching: find.text('?'),
+      ),
+      findsOneWidget,
+    );
+    // Jam palsu tidak ikut maju oleh pump: nomor ronde dihitung dari jam,
+    // jadi ronde kedua harus memakai waktu yang berbeda supaya hadiahnya baru.
+    env.clock.advance(const Duration(seconds: 5));
+    await _limaKata(t);
+    expect(find.text('HEBAT!'), findsOneWidget);
+    expect(_progress(t).stars, 6);
+  });
+
   testWidgets('lanjutkan membuka level terakhir', (t) async {
     await pumpApp(t, initialLocation: '${Routes.susunKata}?level=3');
     expect(find.byKey(SusunKataScreen.slotKey(2)), findsOneWidget);

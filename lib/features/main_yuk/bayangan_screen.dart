@@ -20,6 +20,7 @@ import '../../widgets/game/game_glyphs.dart';
 import '../../widgets/game/progress_dots.dart';
 import '../../widgets/moci_illustration.dart';
 import '../../widgets/pressable.dart';
+import '../hadiah/main_lagi.dart';
 import 'bayangan_game.dart';
 import 'game_scaffold.dart';
 import 'main_yuk_game.dart';
@@ -41,10 +42,27 @@ class BayanganScreen extends ConsumerStatefulWidget {
   ConsumerState<BayanganScreen> createState() => _BayanganScreenState();
 }
 
-class _BayanganScreenState extends ConsumerState<BayanganScreen> {
+class _BayanganScreenState extends ConsumerState<BayanganScreen>
+    with MainLagi<BayanganScreen> {
   late BayanganGame _game;
   late String _roundId;
   bool _selesai = false;
+
+  @override
+  String get ruteMainLagi => Routes.bayangan;
+
+  @override
+  void mulaiUlang() => setState(_mainBaru);
+
+  void _mainBaru() {
+    _game = BayanganGame(
+      katalog: ref.read(katalogProvider),
+      usia: ref.read(prefsProvider).ageLevel,
+      random: ref.read(gameRandomProvider),
+    );
+    _roundId = _nomorRonde();
+    _selesai = false;
+  }
 
   /// Jeda sebelum ronde berikutnya; dibatalkan saat layar ditutup.
   Timer? _lanjutTimer;

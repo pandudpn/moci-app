@@ -21,6 +21,7 @@ import '../../widgets/game/game_glyphs.dart';
 import '../../widgets/moci_illustration.dart';
 import '../../widgets/moci_mascot.dart';
 import '../../widgets/pressable.dart';
+import '../hadiah/main_lagi.dart';
 import 'game_scaffold.dart';
 import 'main_yuk_game.dart';
 import 'puzzle_game.dart';
@@ -47,7 +48,7 @@ class PuzzleScreen extends ConsumerStatefulWidget {
 }
 
 class _PuzzleScreenState extends ConsumerState<PuzzleScreen>
-    with SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin, MainLagi<PuzzleScreen> {
   late PuzzleGame _game;
   late String _roundId;
   bool _selesai = false;
@@ -146,17 +147,14 @@ class _PuzzleScreenState extends ConsumerState<PuzzleScreen>
   }
 
   @override
+  String get ruteMainLagi => Routes.puzzle;
+
+  @override
+  void mulaiUlang() => _puzzleLain();
+
+  @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    // Kembali dari Hebat lewat `go` memakai state layar ini lagi; ronde
-    // sebelumnya sudah selesai dan harus dimulai dari awal.
-    ref.listen(currentPathProvider, (sebelum, sekarang) {
-      if (sebelum == Routes.hebat && sekarang == Routes.puzzle) {
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          if (mounted) _puzzleLain();
-        });
-      }
-    });
     return GameScaffold(
       theme: MenuTheme.puzzle,
       title: l10n.puzzleTitle,

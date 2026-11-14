@@ -116,4 +116,33 @@ void main() {
     expect(find.byType(HebatScreen), findsOneWidget);
     expect(_progress(t).stars, 3);
   });
+
+  testWidgets('Main lagi dari Hebat memulai ronde baru', (t) async {
+    await pumpApp(t, initialLocation: '/main/bayangan');
+    await t.pump(const Duration(milliseconds: 600));
+    for (var i = 0; i < 6; i++) {
+      await t.tap(find.byKey(BayanganScreen.pilihanKey(_target(t))));
+      await t.pump(const Duration(milliseconds: 1600));
+    }
+    await t.pump();
+    await t.pump();
+    expect(find.byType(HebatScreen), findsOneWidget);
+    await t.tap(find.text('Main lagi'));
+    await t.pump();
+    await t.pump(const Duration(milliseconds: 600));
+    // Transisi keluar Hebat masih berjalan; satu jeda lagi sampai layar ini
+    // kembali terpasang.
+    await t.pump(const Duration(milliseconds: 600));
+    await t.pump();
+    expect(find.byType(HebatScreen), findsNothing);
+    expect(t.widget<ProgressDots>(find.byType(ProgressDots)).current, 0);
+    for (var i = 0; i < 6; i++) {
+      await t.tap(find.byKey(BayanganScreen.pilihanKey(_target(t))));
+      await t.pump(const Duration(milliseconds: 1600));
+    }
+    await t.pump();
+    await t.pump();
+    expect(find.byType(HebatScreen), findsOneWidget);
+    expect(_progress(t).stars, 6);
+  });
 }

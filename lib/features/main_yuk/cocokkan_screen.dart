@@ -22,6 +22,7 @@ import '../../widgets/game/game_mode_pill.dart';
 import '../../widgets/moci_illustration.dart';
 import '../../widgets/moci_mascot.dart';
 import '../../widgets/pressable.dart';
+import '../hadiah/main_lagi.dart';
 import 'cocokkan_game.dart';
 import 'game_scaffold.dart';
 import 'main_yuk_game.dart';
@@ -64,7 +65,7 @@ class CocokkanScreen extends ConsumerStatefulWidget {
 }
 
 class _CocokkanScreenState extends ConsumerState<CocokkanScreen>
-    with SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin, MainLagi<CocokkanScreen> {
   MainYukTema _tema = MainYukTema.buah;
   late int _pasangan;
   late CocokkanSesi _sesi;
@@ -286,17 +287,14 @@ class _CocokkanScreenState extends ConsumerState<CocokkanScreen>
   }
 
   @override
+  String get ruteMainLagi => Routes.cocokkan;
+
+  @override
+  void mulaiUlang() => setState(() => _mulaiRonde(tema: _tema));
+
+  @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    // Kembali dari Hebat lewat `go` memakai state layar ini lagi; ronde
-    // sebelumnya sudah selesai dan harus dimulai dari awal.
-    ref.listen(currentPathProvider, (sebelum, sekarang) {
-      if (sebelum == Routes.hebat && sekarang == Routes.cocokkan) {
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          if (mounted) setState(() => _mulaiRonde(tema: _tema));
-        });
-      }
-    });
     return GameScaffold(
       theme: MenuTheme.cocokkan,
       title: l10n.cocokkanTitle,

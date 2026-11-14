@@ -21,6 +21,7 @@ import '../../widgets/game/game_glyphs.dart';
 import '../../widgets/game/progress_dots.dart';
 import '../../widgets/moci_illustration.dart';
 import '../../widgets/pressable.dart';
+import '../hadiah/main_lagi.dart';
 import 'besar_kecil_game.dart';
 import 'game_scaffold.dart';
 import 'main_yuk_game.dart';
@@ -53,7 +54,7 @@ class BesarKecilScreen extends ConsumerStatefulWidget {
 }
 
 class _BesarKecilScreenState extends ConsumerState<BesarKecilScreen>
-    with SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin, MainLagi<BesarKecilScreen> {
   late BesarKecilGame _game;
   late String _roundId;
   bool _selesai = false;
@@ -169,17 +170,14 @@ class _BesarKecilScreenState extends ConsumerState<BesarKecilScreen>
   }
 
   @override
+  String get ruteMainLagi => Routes.besarKecil;
+
+  @override
+  void mulaiUlang() => _mainBaru();
+
+  @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    // Kembali dari Hebat lewat `go` memakai state layar ini lagi; permainan
-    // sebelumnya sudah selesai dan harus dimulai dari awal.
-    ref.listen(currentPathProvider, (sebelum, sekarang) {
-      if (sebelum == Routes.hebat && sekarang == Routes.besarKecil) {
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          if (mounted) _mainBaru();
-        });
-      }
-    });
     return GameScaffold(
       theme: MenuTheme.besarKecil,
       title: l10n.besarKecilTitle,

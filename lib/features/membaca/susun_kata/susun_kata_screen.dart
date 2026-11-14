@@ -24,6 +24,7 @@ import '../../../widgets/moci_illustration.dart';
 import '../../../widgets/moci_mascot.dart';
 import '../../../widgets/pressable.dart';
 import '../../hadiah/hadiah_controller.dart';
+import '../../hadiah/main_lagi.dart';
 import '../membaca_providers.dart';
 import '../susun_kata/susun_kata_game.dart';
 import '../susun_kata/susun_tile.dart';
@@ -53,7 +54,8 @@ class SusunKataScreen extends ConsumerStatefulWidget {
   ConsumerState<SusunKataScreen> createState() => _SusunKataScreenState();
 }
 
-class _SusunKataScreenState extends ConsumerState<SusunKataScreen> {
+class _SusunKataScreenState extends ConsumerState<SusunKataScreen>
+    with MainLagi<SusunKataScreen> {
   late final Katalog _katalog;
   late final Narrator _narrator;
   late SusunKataGame _game;
@@ -233,7 +235,16 @@ class _SusunKataScreenState extends ConsumerState<SusunKataScreen> {
     _baca([_kataLine()]);
   }
 
-  void _gantiBahasa(AppLang lang) {
+  @override
+  String get ruteMainLagi => Routes.susunKata;
+
+  @override
+  void mulaiUlang() => _rondePertama(ref.read(prefsProvider).lang);
+
+  void _gantiBahasa(AppLang lang) => _rondePertama(lang);
+
+  /// Ronde pertama level yang sedang dipakai; bahasa bisa berganti.
+  void _rondePertama(AppLang lang) {
     _timerGen++;
     setState(() {
       _rondeGen++;

@@ -29,6 +29,7 @@ import '../../widgets/moci_mascot.dart';
 import '../../widgets/moci_top_bar.dart';
 import '../../widgets/pressable.dart';
 import '../hadiah/hadiah_controller.dart';
+import '../hadiah/main_lagi.dart';
 import 'bentuk_game.dart';
 import 'bentuk_shape.dart';
 
@@ -65,13 +66,22 @@ class BentukScreen extends ConsumerStatefulWidget {
 }
 
 class _BentukScreenState extends ConsumerState<BentukScreen>
-    with TickerProviderStateMixin {
+    with TickerProviderStateMixin, MainLagi<BentukScreen> {
   static const _accent = Color(0xFF5C7CFA);
   static const _accentDark = Color(0xFF3B5BDB);
   static const _soft = Color(0xFFEEF1FF);
   static const _border = Color(0xFFC5CEF7);
   static const _fact = Color(0xFF5B5480);
   static const _selesaiTunda = Duration(milliseconds: 1200);
+
+  /// Hanya mode Cari yang membuka Hebat; mode Kenali tidak memutar ronde.
+  @override
+  void mulaiUlang() {
+    if (_mode == BentukMode.cari) _mainLagi();
+  }
+
+  @override
+  String get ruteMainLagi => Routes.bentuk;
 
   late BentukMode _mode;
   late String _id;
@@ -364,7 +374,7 @@ class _BentukScreenState extends ConsumerState<BentukScreen>
     if (!mounted) return;
     context.push(
       Routes.hebat,
-      extra: HebatArgs(award: award, replayRoute: Routes.bentuk),
+      extra: HebatArgs(award: award, replayRoute: '${Routes.bentuk}?mode=cari'),
     );
   }
 

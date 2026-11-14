@@ -6,6 +6,7 @@ import 'package:moci/app/moci_app.dart';
 import 'package:moci/core/prefs/app_prefs.dart';
 import 'package:moci/core/progress/progress_controller.dart';
 import 'package:moci/features/bentuk/bentuk_screen.dart';
+import 'package:moci/features/hadiah/hebat_screen.dart';
 import 'package:moci/features/bentuk/bentuk_shape.dart';
 
 import '../../helpers/harness.dart';
@@ -127,6 +128,40 @@ void main() {
     await t.pump();
     expect(find.text('Hebat! Semua bentuk ketemu!'), findsNothing);
     expect(find.byKey(BentukScreen.questionKey), findsOneWidget);
+  });
+
+  testWidgets('Main lagi dari Hebat memulai ronde baru mode Cari', (t) async {
+    final env = TestEnv();
+    await _open(t, env: env);
+    for (var i = 0; i < 6; i++) {
+      await _jawabBenar(t, env);
+    }
+    await t.tap(find.byKey(BentukScreen.prizeKey));
+    await t.pump();
+    await t.runAsync(() => Future<void>.delayed(Duration.zero));
+    await t.pump();
+    expect(find.text('Kamu dapat 3 bintang!'), findsOneWidget);
+    // Tombol Hebat muncul setelah animasi kartu selesai.
+    await t.pump(const Duration(milliseconds: 1600));
+    await t.tap(
+      find.descendant(
+        of: find.byType(HebatScreen),
+        matching: find.text('Main lagi'),
+      ),
+    );
+    await t.pump();
+    await t.pump(const Duration(milliseconds: 600));
+    // Transisi keluar Hebat masih berjalan; satu jeda lagi sampai layar ini
+    // kembali terpasang.
+    await t.pump(const Duration(milliseconds: 600));
+    await t.pump();
+    // Kembali ke soal, bukan panel selesai; query mode ikut di replayRoute.
+    expect(find.text('Hebat! Semua bentuk ketemu!'), findsNothing);
+    expect(find.byKey(BentukScreen.questionKey), findsOneWidget);
+    for (var i = 0; i < 6; i++) {
+      await _jawabBenar(t, env);
+    }
+    expect(find.text('Hebat! Semua bentuk ketemu!'), findsOneWidget);
   });
 
   testWidgets('pilihan mengikuti level usia', (t) async {

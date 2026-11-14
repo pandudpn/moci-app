@@ -19,6 +19,7 @@ import '../../widgets/game/game_glyphs.dart';
 import '../../widgets/game/game_mode_pill.dart';
 import '../../widgets/moci_illustration.dart';
 import '../../widgets/pressable.dart';
+import '../hadiah/main_lagi.dart';
 import 'game_scaffold.dart';
 import 'main_yuk_game.dart';
 import 'memori_game.dart';
@@ -47,7 +48,8 @@ class MemoriScreen extends ConsumerStatefulWidget {
   ConsumerState<MemoriScreen> createState() => _MemoriScreenState();
 }
 
-class _MemoriScreenState extends ConsumerState<MemoriScreen> {
+class _MemoriScreenState extends ConsumerState<MemoriScreen>
+    with MainLagi<MemoriScreen> {
   MainYukTema _tema = MainYukTema.hewan;
   late int _pasangan;
   late MemoriSesi _sesi;
@@ -194,17 +196,14 @@ class _MemoriScreenState extends ConsumerState<MemoriScreen> {
   }
 
   @override
+  String get ruteMainLagi => Routes.memori;
+
+  @override
+  void mulaiUlang() => setState(() => _mulaiRonde(tema: _tema));
+
+  @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    // Kembali dari Hebat lewat `go` memakai state layar ini lagi; ronde
-    // sebelumnya sudah selesai dan harus dimulai dari awal.
-    ref.listen(currentPathProvider, (sebelum, sekarang) {
-      if (sebelum == Routes.hebat && sekarang == Routes.memori) {
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          if (mounted) setState(() => _mulaiRonde(tema: _tema));
-        });
-      }
-    });
     return GameScaffold(
       theme: MenuTheme.memori,
       title: l10n.memoriTitle,
