@@ -52,6 +52,9 @@ class _SambutanScreenState extends ConsumerState<SambutanScreen> {
   final _fieldKey = GlobalKey();
   AgeLevel _age = AgeLevel.pemula;
 
+  /// Sedang menyimpan: ketukan lain diabaikan supaya tidak tersimpan dua kali.
+  bool _saving = false;
+
   @override
   void initState() {
     super.initState();
@@ -73,6 +76,7 @@ class _SambutanScreenState extends ConsumerState<SambutanScreen> {
   }
 
   void _pickLang(AppLang lang) {
+    if (_saving) return;
     ref.read(prefsProvider.notifier).setLang(lang);
     final l10n = context.l10n;
     switch (lang) {
@@ -95,11 +99,24 @@ class _SambutanScreenState extends ConsumerState<SambutanScreen> {
   }
 
   Future<void> _start() async {
+    if (_saving) return;
+    _saving = true;
     final lang = ref.read(prefsProvider).lang;
     final text = context.l10n.sambutanStart;
     final prefs = ref.read(prefsProvider.notifier);
     _say('sambutanStart', text, lang);
-    await prefs.completeOnboarding(lang: lang, childName: _trimmed, age: _age);
+    try {
+      await prefs.completeOnboarding(
+        lang: lang,
+        childName: _trimmed,
+        age: _age,
+      );
+    } catch (e) {
+      // Gagal menyimpan: tetap di layar ini, jangan pindah dengan data kosong.
+      debugPrint('sambutan: gagal menyimpan pengaturan: $e');
+      _saving = false;
+      return;
+    }
     // Refresh router bisa sudah mengalihkan ke Beranda dan melepas layar ini.
     if (!mounted) return;
     context.go(Routes.beranda);
@@ -130,60 +147,65 @@ class _SambutanScreenState extends ConsumerState<SambutanScreen> {
 
     return Material(
       type: MaterialType.transparency,
-      child: Transform.translate(
-        offset: Offset(0, -shift),
-        child: SizedBox(
-          key: _rootKey,
-          width: 1180,
-          height: _stageHeight,
-          child: Stack(
-            clipBehavior: Clip.none,
-            children: [
-              const SambutanScenery(),
-              Positioned(
-                left: 70,
-                top: 56,
-                child: SambutanLogo(tag: l10n.sambutanTag),
-              ),
-              Positioned(left: 290, top: 232, child: _Bubble(text: hello)),
-              Positioned(
-                left: 96,
-                top: 280,
-                width: 290,
-                height: 290,
-                child: Semantics(
-                  button: true,
-                  label: 'Moci',
-                  excludeSemantics: true,
-                  child: MociMascot(
-                    pose: MociPose.senang,
-                    size: 290,
-                    onTap: _tapMoci,
+      child: GestureDetector(
+        // Ketukan di luar kolom nama melepas fokus; keyboard ikut turun.
+        behavior: HitTestBehavior.opaque,
+        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+        child: Transform.translate(
+          offset: Offset(0, -shift),
+          child: SizedBox(
+            key: _rootKey,
+            width: 1180,
+            height: _stageHeight,
+            child: Stack(
+              clipBehavior: Clip.none,
+              children: [
+                const SambutanScenery(),
+                Positioned(
+                  left: 70,
+                  top: 56,
+                  child: SambutanLogo(tag: l10n.sambutanTag),
+                ),
+                Positioned(left: 290, top: 232, child: _Bubble(text: hello)),
+                Positioned(
+                  left: 96,
+                  top: 280,
+                  width: 290,
+                  height: 290,
+                  child: Semantics(
+                    button: true,
+                    label: 'Moci',
+                    excludeSemantics: true,
+                    child: MociMascot(
+                      pose: MociPose.senang,
+                      size: 290,
+                      onTap: _tapMoci,
+                    ),
                   ),
                 ),
-              ),
-              Positioned(
-                left: 50,
-                top: 716,
-                width: 430,
-                child: Wrap(
-                  spacing: 10,
-                  runSpacing: 10,
-                  children: [
-                    SambutanBadge(text: l10n.sambutanBadge1),
-                    SambutanBadge(text: l10n.sambutanBadge2),
-                    SambutanBadge(text: l10n.sambutanBadge3),
-                  ],
+                Positioned(
+                  left: 50,
+                  top: 716,
+                  width: 430,
+                  child: Wrap(
+                    spacing: 10,
+                    runSpacing: 10,
+                    children: [
+                      SambutanBadge(text: l10n.sambutanBadge1),
+                      SambutanBadge(text: l10n.sambutanBadge2),
+                      SambutanBadge(text: l10n.sambutanBadge3),
+                    ],
+                  ),
                 ),
-              ),
-              Positioned(
-                left: 520,
-                top: 50,
-                width: 620,
-                height: 736,
-                child: _card(l10n, lang),
-              ),
-            ],
+                Positioned(
+                  left: 520,
+                  top: 50,
+                  width: 620,
+                  height: 736,
+                  child: _card(l10n, lang),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -201,7 +223,7 @@ class _SambutanScreenState extends ConsumerState<SambutanScreen> {
         color: MociColors.white,
         borderRadius: BorderRadius.circular(48),
         boxShadow: const [
-          BoxShadow(color: Color(0xFF8EC5EE), offset: Offset(0, 14)),
+          BoxShadow(color: MociColors.cardShadow, offset: Offset(0, 14)),
           BoxShadow(
             color: Color(0x2E2B2350),
             offset: Offset(0, 30),
