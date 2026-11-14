@@ -42,6 +42,7 @@ dependencies:
   shared_preferences: ^2.5.6
   path_provider: ^2.1.6
   flutter_soloud: ^5.3.0
+  vector_graphics: ^1.3.1
 
 dev_dependencies:
   flutter_test:
@@ -54,6 +55,7 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^6.0.0
   shared_preferences_platform_interface: ^2.4.2
+  vector_graphics_compiler: ^1.3.6
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -77,6 +79,13 @@ flutter:
 
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/to/asset-from-package
+
+  # Ilustrasi SVG dikompilasi ke vector_graphics saat build (transformer).
+  # Deklarasi folder dipakai karena tes dekode ilustrasi lulus dengannya.
+  assets:
+    - path: assets/illustrations/
+      transformers:
+        - package: vector_graphics_compiler
 
   fonts:
     - family: Fredoka

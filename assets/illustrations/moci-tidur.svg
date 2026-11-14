@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240">
+<defs><clipPath id="isBody"><path d="M120 52C178 52 212 104 212 152C212 196 172 218 120 218C68 218 28 196 28 152C28 104 62 52 120 52Z"/></clipPath></defs>
+<ellipse cx="44" cy="176" rx="16" ry="26" transform="rotate(60 44 176)" fill="#F5B700"/>
+<ellipse cx="196" cy="176" rx="16" ry="26" transform="rotate(-60 196 176)" fill="#F5B700"/>
+<path d="M120 52C178 52 212 104 212 152C212 196 172 218 120 218C68 218 28 196 28 152C28 104 62 52 120 52Z" fill="#FFD43B"/>
+<g clip-path="url(#isBody)"><ellipse cx="160" cy="204" rx="112" ry="58" fill="#F5B700" opacity=".45"/></g>
+<ellipse cx="120" cy="174" rx="52" ry="36" fill="#FFF1B0"/>
+<ellipse cx="78" cy="92" rx="16" ry="9" transform="rotate(-35 78 92)" fill="#FFFFFF" opacity=".75"/>
+<path d="M120 54C120 44 118 36 112 30" stroke="#2F9E44" stroke-width="5" stroke-linecap="round" fill="none"/>
+<path d="M114 34C100 18 78 20 72 30C84 42 104 44 114 34Z" fill="#51CF66"/>
+<path d="M112 32C114 12 134 2 144 8C142 26 126 36 112 32Z" fill="#69DB7C"/>
+<path d="M83 124Q94 133 105 124" stroke="#2B2350" stroke-width="6" stroke-linecap="round" fill="none"/>
+<path d="M135 124Q146 133 157 124" stroke="#2B2350" stroke-width="6" stroke-linecap="round" fill="none"/>
+<ellipse cx="72" cy="146" rx="13" ry="8" fill="#FF8FA3" opacity=".8"/>
+<ellipse cx="168" cy="146" rx="13" ry="8" fill="#FF8FA3" opacity=".8"/>
+<path d="M110 142C115 137 125 137 130 142C127 149 113 149 110 142Z" fill="#FF8A3D"/>
+</svg>
