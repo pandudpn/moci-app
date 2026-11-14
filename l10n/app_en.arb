@@ -1002,5 +1002,38 @@
         "type": "int"
       }
     }
+  },
+  "balonTitle": "Letter Balloons",
+  "balonAsk": "Pop the letter",
+  "balonProgress": "Progress",
+  "balonYes": "Pop! That is",
+  "balonNo": "Oops, that is",
+  "balonInst": "Pop the balloon with the letter Moci says.",
+  "balonLabel": "Balloon {huruf}",
+  "@balonTitle": {
+    "description": "Title of the Letter Balloons screen bar"
+  },
+  "@balonAsk": {
+    "description": "narasi"
+  },
+  "@balonProgress": {
+    "description": "Label of the five-round progress pill"
+  },
+  "@balonYes": {
+    "description": "narasi"
+  },
+  "@balonNo": {
+    "description": "narasi"
+  },
+  "@balonInst": {
+    "description": "narasi"
+  },
+  "@balonLabel": {
+    "description": "Label of a balloon holding one letter",
+    "placeholders": {
+      "huruf": {
+        "type": "String"
+      }
+    }
   }
 }

@@ -902,4 +902,28 @@ class AppLocalizationsId extends AppLocalizations {
   String puzzlePieces(int n, int m) {
     return '$n / $m potongan';
   }
+
+  @override
+  String get balonTitle => 'Balon Huruf';
+
+  @override
+  String get balonAsk => 'Pecahkan balon huruf';
+
+  @override
+  String get balonProgress => 'Kemajuan';
+
+  @override
+  String get balonYes => 'Dor! Itu huruf';
+
+  @override
+  String get balonNo => 'Ups, itu huruf';
+
+  @override
+  String get balonInst =>
+      'Pecahkan balon yang hurufnya sama dengan yang disebut Moci.';
+
+  @override
+  String balonLabel(String huruf) {
+    return 'Balon huruf $huruf';
+  }
 }

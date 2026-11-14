@@ -1005,5 +1005,38 @@
         "type": "int"
       }
     }
+  },
+  "balonTitle": "Balon Huruf",
+  "balonAsk": "Pecahkan balon huruf",
+  "balonProgress": "Kemajuan",
+  "balonYes": "Dor! Itu huruf",
+  "balonNo": "Ups, itu huruf",
+  "balonInst": "Pecahkan balon yang hurufnya sama dengan yang disebut Moci.",
+  "balonLabel": "Balon huruf {huruf}",
+  "@balonTitle": {
+    "description": "Judul bilah atas layar Balon Huruf"
+  },
+  "@balonAsk": {
+    "description": "narasi"
+  },
+  "@balonProgress": {
+    "description": "Label pil kemajuan lima ronde"
+  },
+  "@balonYes": {
+    "description": "narasi"
+  },
+  "@balonNo": {
+    "description": "narasi"
+  },
+  "@balonInst": {
+    "description": "narasi"
+  },
+  "@balonLabel": {
+    "description": "Label balon berisi satu huruf",
+    "placeholders": {
+      "huruf": {
+        "type": "String"
+      }
+    }
   }
 }

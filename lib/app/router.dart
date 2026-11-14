@@ -6,6 +6,7 @@ import '../core/prefs/prefs_controller.dart';
 import '../features/beranda/beranda_screen.dart';
 import '../features/hadiah/hadiah_controller.dart';
 import '../features/hadiah/hebat_screen.dart';
+import '../features/main_yuk/balon_screen.dart';
 import '../features/main_yuk/bayangan_screen.dart';
 import '../features/main_yuk/cocokkan_screen.dart';
 import '../features/main_yuk/hub_screen.dart';
@@ -159,7 +160,10 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: Routes.puzzle,
         builder: (context, state) => const PuzzleScreen(),
       ),
-      _soon(Routes.balon, MenuTheme.balon),
+      GoRoute(
+        path: Routes.balon,
+        builder: (context, state) => const BalonScreen(),
+      ),
       _soon(Routes.besarKecil, MenuTheme.besarKecil),
       _soon(Routes.mewarnai, MenuTheme.mewarnai),
       _soon(Routes.mewarnaiHalaman, MenuTheme.mewarnai),

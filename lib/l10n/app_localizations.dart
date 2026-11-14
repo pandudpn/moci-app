@@ -1753,6 +1753,48 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'{n} / {m} potongan'**
   String puzzlePieces(int n, int m);
+
+  /// Judul bilah atas layar Balon Huruf
+  ///
+  /// In id, this message translates to:
+  /// **'Balon Huruf'**
+  String get balonTitle;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Pecahkan balon huruf'**
+  String get balonAsk;
+
+  /// Label pil kemajuan lima ronde
+  ///
+  /// In id, this message translates to:
+  /// **'Kemajuan'**
+  String get balonProgress;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Dor! Itu huruf'**
+  String get balonYes;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Ups, itu huruf'**
+  String get balonNo;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Pecahkan balon yang hurufnya sama dengan yang disebut Moci.'**
+  String get balonInst;
+
+  /// Label balon berisi satu huruf
+  ///
+  /// In id, this message translates to:
+  /// **'Balon huruf {huruf}'**
+  String balonLabel(String huruf);
 }
 
 class _AppLocalizationsDelegate

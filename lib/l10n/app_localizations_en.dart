@@ -903,4 +903,27 @@ class AppLocalizationsEn extends AppLocalizations {
   String puzzlePieces(int n, int m) {
     return '$n / $m pieces';
   }
+
+  @override
+  String get balonTitle => 'Letter Balloons';
+
+  @override
+  String get balonAsk => 'Pop the letter';
+
+  @override
+  String get balonProgress => 'Progress';
+
+  @override
+  String get balonYes => 'Pop! That is';
+
+  @override
+  String get balonNo => 'Oops, that is';
+
+  @override
+  String get balonInst => 'Pop the balloon with the letter Moci says.';
+
+  @override
+  String balonLabel(String huruf) {
+    return 'Balloon $huruf';
+  }
 }
