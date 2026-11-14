@@ -58,7 +58,7 @@ Semua perintah Flutter lewat FVM.
 - Setiap layar dibungkus `MociStage` dari `lib/app/layout/moci_stage.dart`, dengan satu `MenuTheme`.
 - Aturan permainan ditulis di `*_game.dart` sebagai Dart murni, tanpa widget, dengan `Random` yang bisa diberi seed lewat provider.
 - Teks UI diambil dari ARB `l10n/app_id.arb` dan `l10n/app_en.arb`, dengan kunci `<layar><KunciT>`, dan disalin persis dari prototipe.
-- Kalimat yang dibacakan ditandai `"description": "narasi"` di ARB. Rekaman narasi ada di `assets/audio/vo/<bahasa>/<jenis>_<id>.m4a`.
+- Kalimat yang dibacakan ditandai `"description": "narasi"` di ARB. Rekaman narasi ada di `assets/audio/vo/<bahasa>/<jenis>_<id>.m4a`; foldernya sudah dideklarasikan di `pubspec.yaml` (Flutter tidak menurunkan folder, jadi folder audio baru harus ditambahkan sendiri).
 
 ## 5. Aturan tes
 

@@ -98,6 +98,8 @@ flutter:
     - assets/coloring/
     - assets/audio/hewan/
     - assets/audio/instrumen/
+    # Rekaman narasi; folder diisi belakangan tanpa ubah pubspec.
+    - assets/audio/vo/
 
   fonts:
     - family: Fredoka
