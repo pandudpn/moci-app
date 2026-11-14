@@ -46,7 +46,9 @@ class HadiahController {
     required String gameId,
     required String roundId,
   }) async {
-    final prior = _results[roundId];
+    // Kunci per game: dua game boleh memakai nomor ronde yang sama.
+    final key = '$gameId/$roundId';
+    final prior = _results[key];
     if (prior != null) return prior;
 
     final progress = _ref.read(progressProvider.notifier);
@@ -61,7 +63,7 @@ class HadiahController {
     final result = AwardResult(stars: starsPerRound, sticker: sticker);
     // Dicatat sebelum menunggu penyimpanan: state sudah berubah serempak
     // di sini, jadi panggilan berikutnya tidak boleh memberi hadiah lagi.
-    _results[roundId] = result;
+    _results[key] = result;
 
     final saves = [
       progress.addStars(starsPerRound),

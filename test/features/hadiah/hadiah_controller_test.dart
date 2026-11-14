@@ -167,6 +167,16 @@ void main() {
       expect(c.read(progressProvider).stars, 6);
       expect(c.read(progressProvider).stickers, hasLength(2));
     });
+    test('roundId sama di game berbeda: dua hadiah', () async {
+      final c = _container();
+      final ctrl = c.read(hadiahProvider);
+      final a = await ctrl.finishGame(gameId: 'hewan', roundId: '1');
+      final b = await ctrl.finishGame(gameId: 'angka', roundId: '1');
+      expect(a.stars, 3);
+      expect(b.stars, 3);
+      expect(c.read(progressProvider).stars, 6);
+      expect(c.read(progressProvider).stickers, hasLength(2));
+    });
 
     test(
       'stiker dipilih dari yang belum dimiliki lewat Random suntikan',
