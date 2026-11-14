@@ -1,6 +1,8 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:moci/core/progress/progress_repository.dart';
 import 'package:moci/core/storage/json_store.dart';
 
 void main() {
@@ -66,5 +68,23 @@ void main() {
   });
   test('list folder yang tidak ada kosong', () async {
     expect(await store.list('draf'), isEmpty);
+  });
+  test('utf-8 terpotong: baca null dan byte asli dikarantina', () async {
+    final bytes = [...utf8.encode('{"versi": 1, "nama": "Ba'), 0xC3];
+    final asli = File('${dir.path}/progress.json')..writeAsBytesSync(bytes);
+    expect(asli.readAsBytesSync(), bytes);
+    expect(await store.read('progress.json'), isNull);
+    final karantina = dir.listSync().whereType<File>().where(
+      (f) => f.path.contains('progress.json.rusak-'),
+    );
+    expect(karantina, hasLength(1));
+    expect(karantina.single.readAsBytesSync(), bytes);
+  });
+  test('utf-8 terpotong: progres bawaan, bukan galat', () async {
+    File('${dir.path}/progress.json')
+        .writeAsBytesSync([...utf8.encode('{"versi": 1, "bin'), 0xE2, 0x9C]);
+    final progres = await ProgressRepository(store).load();
+    expect(progres.stars, 0);
+    expect(progres.harian, isEmpty);
   });
 }

@@ -28,6 +28,9 @@ final class FileJsonStore implements JsonStore {
       }
     } on FormatException {
       // jatuh ke karantina di bawah
+    } on FileSystemException {
+      // Byte tidak valid UTF-8 (tulisan terpotong) atau galat I/O.
+      // jatuh ke karantina di bawah
     }
     await _quarantine(file);
     return null;
