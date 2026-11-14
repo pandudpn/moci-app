@@ -1155,5 +1155,58 @@
         "type": "String"
       }
     }
+  },
+  "bentukQuestion": "Where is the {nama}?",
+  "@bentukQuestion": {
+    "description": "Find mode question",
+    "placeholders": {
+      "nama": {
+        "type": "String"
+      }
+    }
+  },
+  "bentukQuestionSay": "Where is the",
+  "@bentukQuestionSay": {
+    "description": "narasi"
+  },
+  "bentukYesSay": "Yes! That is the",
+  "@bentukYesSay": {
+    "description": "narasi"
+  },
+  "bentukNoSay": "No, that is the",
+  "@bentukNoSay": {
+    "description": "narasi"
+  },
+  "bentukTryAgain": "Try again!",
+  "@bentukTryAgain": {
+    "description": "narasi"
+  },
+  "bentukDone": "Great job! You found them all!",
+  "@bentukDone": {
+    "description": "narasi"
+  },
+  "bentukAgain": "Play again",
+  "@bentukAgain": {
+    "description": "Find mode play again button"
+  },
+  "bentukPrize": "Get a prize",
+  "@bentukPrize": {
+    "description": "Find mode prize button"
+  },
+  "bentukProgress": "Progress {n} of {total}",
+  "@bentukProgress": {
+    "description": "Six round progress label",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "bentukListen": "Listen to the question",
+  "@bentukListen": {
+    "description": "Find mode listen button"
   }
 }

@@ -981,4 +981,38 @@ class AppLocalizationsId extends AppLocalizations {
   String bentukShapeLabel(String nama) {
     return 'Bentuk $nama';
   }
+
+  @override
+  String bentukQuestion(String nama) {
+    return 'Mana $nama?';
+  }
+
+  @override
+  String get bentukQuestionSay => 'Mana';
+
+  @override
+  String get bentukYesSay => 'Betul! Itu';
+
+  @override
+  String get bentukNoSay => 'Bukan, itu';
+
+  @override
+  String get bentukTryAgain => 'Coba lagi!';
+
+  @override
+  String get bentukDone => 'Hebat! Semua bentuk ketemu!';
+
+  @override
+  String get bentukAgain => 'Main lagi';
+
+  @override
+  String get bentukPrize => 'Ambil hadiah';
+
+  @override
+  String bentukProgress(int n, int total) {
+    return 'Kemajuan $n dari $total';
+  }
+
+  @override
+  String get bentukListen => 'Dengarkan pertanyaan';
 }

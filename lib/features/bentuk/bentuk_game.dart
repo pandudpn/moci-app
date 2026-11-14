@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import '../../core/content/katalog.dart';
+import '../../core/lang.dart';
 import '../../core/prefs/app_prefs.dart';
 
 const bentukRonde = 6;
@@ -16,6 +19,60 @@ int bentukPilihan(AgeLevel level) => switch (level) {
   AgeLevel.penjelajah => 4,
   AgeLevel.pembaca => 6,
 };
+
+/// Satu ronde Cari: target, pilihan, dan warna tiap pilihan (indeks katalog).
+final class BentukRonde {
+  const BentukRonde({
+    required this.target,
+    required this.opsi,
+    required this.warna,
+  });
+
+  final int target;
+  final List<int> opsi;
+  final List<({String warna, String gelap})> warna;
+}
+
+/// Ronde acak dari pool level usia; [target] memaksa target ronde pertama,
+/// [hindari] mencegah bentuk yang baru saja ditanyakan terulang.
+BentukRonde buatBentukRonde(
+  Katalog katalog, {
+  required AgeLevel level,
+  required Random random,
+  int? hindari,
+  int? target,
+}) {
+  final pool = bentukPool(level);
+  final jumlah = bentukPilihan(level);
+  var dipilih = target != null && pool.contains(target) ? target : null;
+  if (dipilih == null) {
+    final calon = [
+      for (final i in pool)
+        if (i != hindari) i,
+    ];
+    final dari = calon.isEmpty ? pool : calon;
+    dipilih = dari[random.nextInt(dari.length)];
+  }
+  final pengecoh = [
+    for (final i in pool)
+      if (i != dipilih) i,
+  ]..shuffle(random);
+  final opsi = [dipilih, ...pengecoh.take(jumlah - 1)]..shuffle(random);
+  final warna = [
+    for (final b in katalog.bentuk) (warna: b.warna, gelap: b.gelap),
+  ]..shuffle(random);
+  return BentukRonde(
+    target: dipilih,
+    opsi: opsi,
+    warna: warna.take(opsi.length).toList(),
+  );
+}
+
+/// Pertanyaan Cari dengan nama huruf kecil, seperti prototipe.
+String pertanyaanBentuk(BentukEntry target, AppLang lang) {
+  final nama = target.nama.of(lang).toLowerCase();
+  return lang == AppLang.en ? 'Where is the $nama?' : 'Mana $nama?';
+}
 
 final class BentukChip {
   const BentukChip({required this.key, this.jumlah});

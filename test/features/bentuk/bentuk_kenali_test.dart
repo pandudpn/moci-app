@@ -37,18 +37,10 @@ void main() {
   });
 
   testWidgets('kisi mengikuti level usia', (t) async {
-    await _open(
-      t,
-      env: envUsia(AgeLevel.penjelajah),
-      lokasi: '/bentuk',
-    );
+    await _open(t, env: envUsia(AgeLevel.penjelajah), lokasi: '/bentuk');
     expect(find.byKey(BentukScreen.shapeKey('segilima')), findsNothing);
     expect(find.byKey(BentukScreen.shapeKey('belahketupat')), findsOneWidget);
-    await _open(
-      t,
-      env: envUsia(AgeLevel.pembaca),
-      lokasi: '/bentuk',
-    );
+    await _open(t, env: envUsia(AgeLevel.pembaca), lokasi: '/bentuk');
     expect(find.byKey(BentukScreen.shapeKey('segilima')), findsOneWidget);
     expect(find.byKey(BentukScreen.shapeKey('segienam')), findsOneWidget);
   });

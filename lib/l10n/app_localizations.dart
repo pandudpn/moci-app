@@ -1855,6 +1855,66 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Bentuk {nama}'**
   String bentukShapeLabel(String nama);
+
+  /// Soal mode Cari
+  ///
+  /// In id, this message translates to:
+  /// **'Mana {nama}?'**
+  String bentukQuestion(String nama);
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Mana'**
+  String get bentukQuestionSay;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Betul! Itu'**
+  String get bentukYesSay;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Bukan, itu'**
+  String get bentukNoSay;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Coba lagi!'**
+  String get bentukTryAgain;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Hebat! Semua bentuk ketemu!'**
+  String get bentukDone;
+
+  /// Tombol main lagi mode Cari
+  ///
+  /// In id, this message translates to:
+  /// **'Main lagi'**
+  String get bentukAgain;
+
+  /// Tombol ambil hadiah mode Cari
+  ///
+  /// In id, this message translates to:
+  /// **'Ambil hadiah'**
+  String get bentukPrize;
+
+  /// Label kemajuan enam ronde
+  ///
+  /// In id, this message translates to:
+  /// **'Kemajuan {n} dari {total}'**
+  String bentukProgress(int n, int total);
+
+  /// Tombol dengar soal mode Cari
+  ///
+  /// In id, this message translates to:
+  /// **'Dengarkan pertanyaan'**
+  String get bentukListen;
 }
 
 class _AppLocalizationsDelegate

@@ -1158,5 +1158,58 @@
         "type": "String"
       }
     }
+  },
+  "bentukQuestion": "Mana {nama}?",
+  "@bentukQuestion": {
+    "description": "Soal mode Cari",
+    "placeholders": {
+      "nama": {
+        "type": "String"
+      }
+    }
+  },
+  "bentukQuestionSay": "Mana",
+  "@bentukQuestionSay": {
+    "description": "narasi"
+  },
+  "bentukYesSay": "Betul! Itu",
+  "@bentukYesSay": {
+    "description": "narasi"
+  },
+  "bentukNoSay": "Bukan, itu",
+  "@bentukNoSay": {
+    "description": "narasi"
+  },
+  "bentukTryAgain": "Coba lagi!",
+  "@bentukTryAgain": {
+    "description": "narasi"
+  },
+  "bentukDone": "Hebat! Semua bentuk ketemu!",
+  "@bentukDone": {
+    "description": "narasi"
+  },
+  "bentukAgain": "Main lagi",
+  "@bentukAgain": {
+    "description": "Tombol main lagi mode Cari"
+  },
+  "bentukPrize": "Ambil hadiah",
+  "@bentukPrize": {
+    "description": "Tombol ambil hadiah mode Cari"
+  },
+  "bentukProgress": "Kemajuan {n} dari {total}",
+  "@bentukProgress": {
+    "description": "Label kemajuan enam ronde",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "bentukListen": "Dengarkan pertanyaan",
+  "@bentukListen": {
+    "description": "Tombol dengar soal mode Cari"
   }
 }

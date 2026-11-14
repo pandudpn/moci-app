@@ -980,4 +980,38 @@ class AppLocalizationsEn extends AppLocalizations {
   String bentukShapeLabel(String nama) {
     return 'Shape $nama';
   }
+
+  @override
+  String bentukQuestion(String nama) {
+    return 'Where is the $nama?';
+  }
+
+  @override
+  String get bentukQuestionSay => 'Where is the';
+
+  @override
+  String get bentukYesSay => 'Yes! That is the';
+
+  @override
+  String get bentukNoSay => 'No, that is the';
+
+  @override
+  String get bentukTryAgain => 'Try again!';
+
+  @override
+  String get bentukDone => 'Great job! You found them all!';
+
+  @override
+  String get bentukAgain => 'Play again';
+
+  @override
+  String get bentukPrize => 'Get a prize';
+
+  @override
+  String bentukProgress(int n, int total) {
+    return 'Progress $n of $total';
+  }
+
+  @override
+  String get bentukListen => 'Listen to the question';
 }

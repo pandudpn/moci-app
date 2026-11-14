@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../app/layout/moci_stage.dart';
 import '../../app/routes.dart';
@@ -11,18 +12,23 @@ import '../../app/theme/moci_colors.dart';
 import '../../app/theme/moci_text.dart';
 import '../../core/audio/audio_providers.dart';
 import '../../core/audio/narrator.dart';
+import '../../core/audio/sfx.dart';
 import '../../core/content/angka_kata.dart';
 import '../../core/content/content_repository.dart';
 import '../../core/content/katalog.dart';
 import '../../core/lang.dart';
+import '../../core/prefs/app_prefs.dart';
 import '../../core/prefs/prefs_controller.dart';
 import '../../core/progress/progress_controller.dart';
 import '../../l10n/l10n.dart';
 import '../../widgets/game/game_glyphs.dart';
 import '../../widgets/game/game_mode_pill.dart';
+import '../../widgets/game/progress_dots.dart';
 import '../../widgets/moci_back_button.dart';
+import '../../widgets/moci_mascot.dart';
 import '../../widgets/moci_top_bar.dart';
 import '../../widgets/pressable.dart';
+import '../hadiah/hadiah_controller.dart';
 import 'bentuk_game.dart';
 import 'bentuk_shape.dart';
 
@@ -38,6 +44,9 @@ class BentukScreen extends ConsumerStatefulWidget {
   static const hearKey = ValueKey<String>('bentuk-hear');
   static const countKey = ValueKey<String>('bentuk-count');
   static const questionKey = ValueKey<String>('bentuk-question');
+  static const listenKey = ValueKey<String>('bentuk-listen');
+  static const againKey = ValueKey<String>('bentuk-again');
+  static const prizeKey = ValueKey<String>('bentuk-prize');
 
   static ValueKey<int> markKey(int i) => ValueKey<int>(i);
 
@@ -45,6 +54,7 @@ class BentukScreen extends ConsumerStatefulWidget {
 
   static ValueKey<String> checkKey(String id) => ValueKey('bentuk-check-$id');
 
+  static ValueKey<String> optionKey(String id) => ValueKey('bentuk-option-$id');
   final BentukMode mode;
 
   /// Bentuk pertama saat layar dibuka; nilai di luar pool diabaikan.
@@ -55,18 +65,34 @@ class BentukScreen extends ConsumerStatefulWidget {
 }
 
 class _BentukScreenState extends ConsumerState<BentukScreen>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   static const _accent = Color(0xFF5C7CFA);
   static const _accentDark = Color(0xFF3B5BDB);
   static const _soft = Color(0xFFEEF1FF);
   static const _border = Color(0xFFC5CEF7);
   static const _fact = Color(0xFF5B5480);
+  static const _selesaiTunda = Duration(milliseconds: 1200);
 
   late BentukMode _mode;
   late String _id;
   int _cetak = 0;
   Timer? _timer;
 
+  // Mode Cari.
+  late BentukRonde _ronde;
+  late int _seed;
+  int _skor = 0;
+  int? _salah;
+  bool _terkunci = false;
+  bool _selesai = false;
+  bool _menunggu = false;
+  Future<AwardResult>? _hadiah;
+  Timer? _lanjut;
+
+  late final AnimationController _goyang = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 400),
+  );
   late final AnimationController _pop = AnimationController(
     vsync: this,
     duration: const Duration(milliseconds: 450),
@@ -81,16 +107,30 @@ class _BentukScreenState extends ConsumerState<BentukScreen>
 
   AppLang get _lang => ref.read(prefsProvider).lang;
 
+  AgeLevel get _level => ref.read(prefsProvider).ageLevel;
+
+  Random get _random => ref.read(bentukRandomProvider);
+
   List<BentukEntry> get _pool {
     final semua = _katalog.bentuk;
     return [
-      for (final i in bentukPool(ref.read(prefsProvider).ageLevel))
+      for (final i in bentukPool(_level))
         if (i < semua.length) semua[i],
     ];
   }
 
-  BentukEntry get _bentuk =>
-      _katalog.bentuk.firstWhere((b) => b.id == _id, orElse: () => _katalog.bentuk.first);
+  BentukEntry get _bentuk => _katalog.bentuk.firstWhere(
+    (b) => b.id == _id,
+    orElse: () => _katalog.bentuk.first,
+  );
+
+  /// Indeks `?bentuk=` kalau ada di pool level usia; selain itu null.
+  int? get _awalRonde {
+    final awal = widget.awal;
+    if (awal == null) return null;
+    final i = _katalog.bentuk.indexWhere((b) => b.id == awal);
+    return i >= 0 && bentukPool(_level).contains(i) ? i : null;
+  }
 
   bool get _bisaHitung => _bentuk.sudutTitik.isNotEmpty;
 
@@ -103,41 +143,48 @@ class _BentukScreenState extends ConsumerState<BentukScreen>
     _id = pool.any((b) => b.id == awal)
         ? awal!
         : (pool.isEmpty ? _katalog.bentuk.first.id : pool.first.id);
+    _seed = _random.nextInt(1 << 31);
+    _ronde = buatBentukRonde(
+      _katalog,
+      level: _level,
+      random: _random,
+      target: _awalRonde,
+    );
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
-      _catat();
-      _sayNama();
+      if (_mode == BentukMode.cari) {
+        _tanya();
+      } else {
+        _catat();
+        _sayNama();
+      }
     });
   }
 
   @override
   void dispose() {
     _timer?.cancel();
+    _lanjut?.cancel();
     _pop.dispose();
+    _goyang.dispose();
     super.dispose();
   }
 
-  void _catat() => ref
-      .read(progressProvider.notifier)
-      .setLastActivity(Routes.bentuk, {'bentuk': _id, 'mode': _mode.name});
+  void _catat() {
+    final id = _mode == BentukMode.cari
+        ? _katalog.bentuk[_ronde.target].id
+        : _id;
+    ref.read(progressProvider.notifier).setLastActivity(Routes.bentuk, {
+      'bentuk': id,
+      'mode': _mode.name,
+    });
+  }
 
   void _say(List<NarrationLine> lines) =>
       ref.read(narratorProvider).sayAll(lines, _lang);
 
   void _sayNama() => _say([
-    NarrationLine(
-      jenis: 'bentuk',
-      id: _id,
-      text: _bentuk.nama.of(_lang),
-    ),
-  ]);
-
-  void _sayFakta() => _say([
-    NarrationLine(
-      jenis: 'fakta',
-      id: _id,
-      text: _bentuk.fakta.of(_lang),
-    ),
+    NarrationLine(jenis: 'bentuk', id: _id, text: _bentuk.nama.of(_lang)),
   ]);
 
   void _pilih(BentukEntry b) {
@@ -157,8 +204,31 @@ class _BentukScreenState extends ConsumerState<BentukScreen>
 
   void _pilihMode(BentukMode m) {
     if (m == _mode) return;
-    setState(() => _mode = m);
-    _catat();
+    _timer?.cancel();
+    _lanjut?.cancel();
+    setState(() {
+      _mode = m;
+      if (m == BentukMode.cari) {
+        _seed = _random.nextInt(1 << 31);
+        _skor = 0;
+        _salah = null;
+        _terkunci = false;
+        _selesai = false;
+        _menunggu = false;
+        _hadiah = null;
+        _ronde = buatBentukRonde(
+          _katalog,
+          level: _level,
+          random: _random,
+          target: _awalRonde,
+        );
+      }
+    });
+    if (m == BentukMode.cari) {
+      _tanya();
+    } else {
+      _catat();
+    }
   }
 
   void _hitung() {
@@ -176,14 +246,141 @@ class _BentukScreenState extends ConsumerState<BentukScreen>
       _say([
         NarrationLine(jenis: 'angka', id: '$n', text: angkaKata(n, _lang)),
         if (selesai)
-          NarrationLine(
-            jenis: 'fakta',
-            id: _id,
-            text: bentuk.fakta.of(_lang),
-          ),
+          NarrationLine(jenis: 'fakta', id: _id, text: bentuk.fakta.of(_lang)),
       ]);
       if (selesai) t.cancel();
     });
+  }
+
+  /// Soal Cari: pengantar lalu nama target (dua klip narasi).
+  void _tanya() {
+    final target = _katalog.bentuk[_ronde.target];
+    _catat();
+    _say([
+      NarrationLine(
+        jenis: 'ui',
+        id: 'bentukQuestionSay',
+        text: context.l10n.bentukQuestionSay,
+      ),
+      NarrationLine(
+        jenis: 'bentuk',
+        id: target.id,
+        text: target.nama.of(_lang),
+      ),
+    ]);
+  }
+
+  void _jawab(int i) {
+    if (_selesai || _terkunci) return;
+    final indeks = _ronde.opsi[i];
+    final bentuk = _katalog.bentuk[indeks];
+    if (indeks == _ronde.target) {
+      _lanjut?.cancel();
+      setState(() {
+        _terkunci = true;
+        _salah = null;
+        _skor += 1;
+        _selesai = _skor >= bentukRonde;
+      });
+      ref.read(audioServiceProvider).playSfx(Sfx.benar);
+      if (_selesai) {
+        _selesaiRonde();
+        return;
+      }
+      _say([
+        NarrationLine(
+          jenis: 'ui',
+          id: 'bentukYesSay',
+          text: context.l10n.bentukYesSay,
+        ),
+        NarrationLine(
+          jenis: 'bentuk',
+          id: bentuk.id,
+          text: bentuk.nama.of(_lang),
+        ),
+      ]);
+      _lanjut = Timer(_selesaiTunda, () {
+        if (!mounted) return;
+        _rondeBerikut();
+      });
+      return;
+    }
+    setState(() => _salah = i);
+    _goyang.forward(from: 0);
+    ref.read(audioServiceProvider).playSfx(Sfx.salahLembut);
+    _say([
+      NarrationLine(
+        jenis: 'ui',
+        id: 'bentukNoSay',
+        text: context.l10n.bentukNoSay,
+      ),
+      NarrationLine(
+        jenis: 'bentuk',
+        id: bentuk.id,
+        text: bentuk.nama.of(_lang),
+      ),
+      NarrationLine(
+        jenis: 'ui',
+        id: 'bentukTryAgain',
+        text: context.l10n.bentukTryAgain,
+      ),
+    ]);
+  }
+
+  void _rondeBerikut() {
+    final sebelumnya = _ronde.target;
+    setState(() {
+      _ronde = buatBentukRonde(
+        _katalog,
+        level: _level,
+        random: _random,
+        hindari: sebelumnya,
+      );
+      _terkunci = false;
+      _salah = null;
+    });
+    _tanya();
+  }
+
+  void _selesaiRonde() {
+    _hadiah = ref
+        .read(hadiahProvider)
+        .finishGame(gameId: 'bentuk', roundId: '$_seed/$bentukRonde');
+    ref.read(audioServiceProvider).playSfx(Sfx.sorak);
+    _say([
+      NarrationLine(
+        jenis: 'ui',
+        id: 'bentukDone',
+        text: context.l10n.bentukDone,
+      ),
+    ]);
+  }
+
+  Future<void> _ambilHadiah() async {
+    final hadiah = _hadiah;
+    if (hadiah == null || _menunggu) return;
+    setState(() => _menunggu = true);
+    final award = await hadiah;
+    if (!mounted) return;
+    context.push(
+      Routes.hebat,
+      extra: HebatArgs(award: award, replayRoute: Routes.bentuk),
+    );
+  }
+
+  void _mainLagi() {
+    _lanjut?.cancel();
+    setState(() {
+      _seed = _random.nextInt(1 << 31);
+      _skor = 0;
+      _salah = null;
+      _terkunci = false;
+      _selesai = false;
+      _menunggu = false;
+      _hadiah = null;
+      _ronde = buatBentukRonde(_katalog, level: _level, random: _random);
+    });
+    _tanya();
   }
 
   @override
@@ -220,9 +417,294 @@ class _BentukScreenState extends ConsumerState<BentukScreen>
             ],
           ),
         ),
-        Positioned(left: 40, top: 122, child: _kartuKiri(l10n)),
-        Positioned(left: 720, top: 122, child: _kisi(l10n)),
+        if (_mode == BentukMode.cari) ...[
+          Positioned(left: 40, top: 120, child: _soalBar(l10n)),
+          Positioned(left: 40, top: 236, child: _papan(l10n)),
+        ] else ...[
+          Positioned(left: 40, top: 122, child: _kartuKiri(l10n)),
+          Positioned(left: 720, top: 122, child: _kisi(l10n)),
+        ],
       ],
+    );
+  }
+
+  Widget _soalBar(AppLocalizations l10n) {
+    final target = _katalog.bentuk[_ronde.target];
+    final nama = target.nama.of(_lang).toLowerCase();
+    return Container(
+      width: 1100,
+      height: 92,
+      padding: const EdgeInsets.fromLTRB(14, 0, 22, 0),
+      decoration: const BoxDecoration(
+        color: MociColors.white,
+        borderRadius: BorderRadius.all(Radius.circular(30)),
+        boxShadow: [BoxShadow(color: _border, offset: Offset(0, 8))],
+      ),
+      child: Row(
+        children: [
+          MociPressable(
+            key: BentukScreen.listenKey,
+            onTap: _tanya,
+            color: _accent,
+            shadowColor: _accentDark,
+            depth: 5,
+            borderRadius: const BorderRadius.all(Radius.circular(32)),
+            semanticLabel: l10n.bentukListen,
+            child: const SizedBox(
+              width: 64,
+              height: 64,
+              child: Center(
+                child: GameGlyph(
+                  GameGlyphKind.listen,
+                  size: 32,
+                  color: MociColors.white,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(width: 16),
+          Expanded(
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  l10n.bentukQuestion(nama),
+                  key: BentukScreen.questionKey,
+                  maxLines: 1,
+                  style: const TextStyle(
+                    fontFamily: MociFonts.fredoka,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 40,
+                    color: MociColors.ink,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(width: 16),
+          ProgressDots(
+            count: bentukRonde,
+            current: _skor,
+            dotSize: 16,
+            activeWidth: 34,
+            semanticLabel: l10n.bentukProgress(_skor, bentukRonde),
+            activeColor: _accent,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _papan(AppLocalizations l10n) {
+    final jumlah = _ronde.opsi.length;
+    final ukuran = switch (jumlah) {
+      6 => 168.0,
+      4 => 196.0,
+      _ => 220.0,
+    };
+    final slot = switch (jumlah) {
+      6 => const [
+        (183.0, 137.0),
+        (550.0, 137.0),
+        (917.0, 137.0),
+        (183.0, 411.0),
+        (550.0, 411.0),
+        (917.0, 411.0),
+      ],
+      4 => const [
+        (150.0, 274.0),
+        (417.0, 274.0),
+        (683.0, 274.0),
+        (950.0, 274.0),
+      ],
+      _ => const [(200.0, 274.0), (550.0, 274.0), (900.0, 274.0)],
+    };
+    return SizedBox(
+      width: 1100,
+      height: 548,
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          Positioned.fill(
+            child: DecoratedBox(
+              decoration: const BoxDecoration(
+                color: MociColors.white,
+                borderRadius: BorderRadius.all(Radius.circular(44)),
+                boxShadow: [
+                  BoxShadow(color: _border, offset: Offset(0, 12)),
+                  BoxShadow(
+                    color: Color(0x142B2350),
+                    offset: Offset(0, 24),
+                    blurRadius: 40,
+                  ),
+                ],
+              ),
+            ),
+          ),
+          for (var i = 0; i < jumlah; i++) _opsi(i, ukuran, slot[i], l10n),
+          if (_selesai) Positioned.fill(child: _selesaiPanel(l10n)),
+        ],
+      ),
+    );
+  }
+
+  Widget _opsi(
+    int i,
+    double ukuran,
+    (double, double) slot,
+    AppLocalizations l10n,
+  ) {
+    final indeks = _ronde.opsi[i];
+    final bentuk = _katalog.bentuk[indeks];
+    final warna = _ronde.warna[i];
+    final benar = _terkunci && indeks == _ronde.target;
+    final salah = _salah == i;
+    // Geser kecil tetap, seperti slot prototipe yang tidak pernah rapi.
+    final jx = ((_ronde.target * 7 + i * 13) % 31) - 15;
+    final jy = ((_ronde.target * 5 + i * 11) % 31) - 15;
+    Widget isi = SizedBox(
+      width: ukuran,
+      height: ukuran,
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          BentukShape(
+            bentuk: bentuk,
+            size: ukuran,
+            shadow: true,
+            warna: salah ? MociColors.wrong : _hex(warna.warna),
+            gelap: salah ? const Color(0xFFB32338) : _hex(warna.gelap),
+          ),
+          if (benar) Positioned(right: -6, top: -6, child: _lencana(bentuk.id)),
+        ],
+      ),
+    );
+    if (salah) {
+      isi = AnimatedBuilder(
+        animation: _goyang,
+        child: isi,
+        builder: (context, child) {
+          final t = _goyang.value;
+          return Transform.translate(
+            offset: Offset(sin(t * pi * 6) * 10 * (1 - t), 0),
+            child: child,
+          );
+        },
+      );
+    }
+    return Positioned(
+      left: slot.$1 - ukuran / 2 + jx,
+      top: slot.$2 - ukuran / 2 + jy,
+      child: MociPressable(
+        key: BentukScreen.optionKey(bentuk.id),
+        onTap: () => _jawab(i),
+        color: const Color(0x00000000),
+        shadowColor: const Color(0x00000000),
+        depth: 0,
+        borderRadius: const BorderRadius.all(Radius.circular(28)),
+        semanticLabel: l10n.bentukShapeLabel(bentuk.nama.of(_lang)),
+        child: isi,
+      ),
+    );
+  }
+
+  Widget _lencana(String id) => Container(
+    key: BentukScreen.checkKey(id),
+    width: 56,
+    height: 56,
+    decoration: BoxDecoration(
+      color: MociColors.correct,
+      shape: BoxShape.circle,
+      border: Border.all(color: MociColors.white, width: 4),
+    ),
+    child: const Center(
+      child: GameGlyph(GameGlyphKind.check, size: 30, color: MociColors.white),
+    ),
+  );
+
+  Widget _selesaiPanel(AppLocalizations l10n) {
+    return Container(
+      decoration: BoxDecoration(
+        color: const Color(0xF0FFFFFF),
+        borderRadius: BorderRadius.circular(44),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const MociMascot(size: 200, idle: false),
+          const SizedBox(height: 12),
+          Text(
+            l10n.bentukDone,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontFamily: MociFonts.fredoka,
+              fontWeight: FontWeight.w700,
+              fontSize: 44,
+              color: MociColors.ink,
+            ),
+          ),
+          const SizedBox(height: 22),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              MociPressable(
+                key: BentukScreen.againKey,
+                onTap: _mainLagi,
+                color: MociColors.white,
+                shadowColor: _border,
+                depth: 7,
+                borderRadius: const BorderRadius.all(Radius.circular(999)),
+                semanticLabel: l10n.bentukAgain,
+                child: Container(
+                  height: 70,
+                  padding: const EdgeInsets.symmetric(horizontal: 30),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(999),
+                    border: Border.all(color: _border, width: 3),
+                  ),
+                  child: Center(
+                    child: Text(
+                      l10n.bentukAgain,
+                      style: const TextStyle(
+                        fontFamily: MociFonts.fredoka,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 24,
+                        color: MociColors.ink,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(width: 16),
+              MociPressable(
+                key: BentukScreen.prizeKey,
+                onTap: _menunggu ? null : _ambilHadiah,
+                color: MociColors.correct,
+                shadowColor: MociColors.correctShadow,
+                depth: 7,
+                borderRadius: const BorderRadius.all(Radius.circular(999)),
+                semanticLabel: l10n.bentukPrize,
+                child: Container(
+                  height: 70,
+                  padding: const EdgeInsets.symmetric(horizontal: 30),
+                  child: Center(
+                    child: Text(
+                      l10n.bentukPrize,
+                      style: const TextStyle(
+                        fontFamily: MociFonts.fredoka,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 24,
+                        color: MociColors.white,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 
@@ -236,9 +718,7 @@ class _BentukScreenState extends ConsumerState<BentukScreen>
       decoration: BoxDecoration(
         color: MociColors.white,
         borderRadius: BorderRadius.circular(48),
-        boxShadow: const [
-          BoxShadow(color: _border, offset: Offset(0, 14)),
-        ],
+        boxShadow: const [BoxShadow(color: _border, offset: Offset(0, 14))],
       ),
       child: Stack(
         clipBehavior: Clip.none,
@@ -352,11 +832,7 @@ class _BentukScreenState extends ConsumerState<BentukScreen>
                 MociPressable(
                   key: BentukScreen.hearKey,
                   onTap: () => _say([
-                    NarrationLine(
-                      jenis: 'bentuk',
-                      id: _id,
-                      text: nama,
-                    ),
+                    NarrationLine(jenis: 'bentuk', id: _id, text: nama),
                     NarrationLine(
                       jenis: 'fakta',
                       id: _id,
@@ -512,10 +988,7 @@ class _BentukScreenState extends ConsumerState<BentukScreen>
         padding: const EdgeInsets.symmetric(horizontal: 12),
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(28)),
-          border: Border.all(
-            color: aktif ? _accent : _border,
-            width: 5,
-          ),
+          border: Border.all(color: aktif ? _accent : _border, width: 5),
         ),
         child: Row(
           children: [

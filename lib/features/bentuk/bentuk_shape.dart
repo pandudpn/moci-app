@@ -5,9 +5,10 @@ import '../../core/content/katalog.dart';
 /// Membaca atribut `d` SVG absolut: M, L, H, V, C, A, dan Z.
 Path pathDariSvg(String d) {
   final path = Path();
-  final token = RegExp(
-    r'[A-Za-z]|-?\d*\.?\d+(?:[eE][-+]?\d+)?',
-  ).allMatches(d).map((m) => m.group(0)!).toList();
+  final token = RegExp(r'[A-Za-z]|-?\d*\.?\d+(?:[eE][-+]?\d+)?')
+      .allMatches(d)
+      .map((m) => m.group(0)!)
+      .toList();
   var i = 0;
   var cmd = '';
   var cur = Offset.zero;
@@ -65,48 +66,55 @@ Path pathDariSvg(String d) {
   return path;
 }
 
-/// Bentuk katalog dengan bayangan, garis tebal, dan wajah Moci.
+/// Bentuk katalog dengan bayangan, garis tebal, dan wajah Moci. [warna] dan
+/// [gelap] mengganti warna katalog (dipakai opsi mode Cari).
 class BentukShape extends StatelessWidget {
   const BentukShape({
     super.key,
     required this.bentuk,
     required this.size,
     this.shadow = false,
+    this.warna,
+    this.gelap,
   });
 
   final BentukEntry bentuk;
   final double size;
   final bool shadow;
+  final Color? warna;
+  final Color? gelap;
 
   @override
   Widget build(BuildContext context) => SizedBox(
     width: size,
     height: size,
-    child: CustomPaint(painter: _BentukPainter(bentuk, shadow)),
+    child: CustomPaint(painter: _BentukPainter(bentuk, shadow, warna, gelap)),
   );
 }
 
 class _BentukPainter extends CustomPainter {
-  const _BentukPainter(this.bentuk, this.shadow);
+  const _BentukPainter(this.bentuk, this.shadow, this.warna, this.gelap);
 
   final BentukEntry bentuk;
   final bool shadow;
+  final Color? warna;
+  final Color? gelap;
 
   @override
   void paint(Canvas canvas, Size size) {
     canvas.save();
     canvas.scale(size.width / 200, size.height / 200);
     final path = pathDariSvg(bentuk.path);
-    final isi = _hex(bentuk.warna);
-    final gelap = _hex(bentuk.gelap);
+    final isi = warna ?? _hex(bentuk.warna);
+    final redup = gelap ?? _hex(bentuk.gelap);
     if (shadow) {
       canvas.save();
       canvas.translate(0, 9);
-      canvas.drawPath(path, Paint()..color = gelap);
+      canvas.drawPath(path, Paint()..color = redup);
       canvas.drawPath(
         path,
         Paint()
-          ..color = gelap
+          ..color = redup
           ..style = PaintingStyle.stroke
           ..strokeWidth = 14
           ..strokeJoin = StrokeJoin.round,
@@ -163,7 +171,10 @@ class _BentukPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(_BentukPainter old) =>
-      old.bentuk != bentuk || old.shadow != shadow;
+      old.bentuk != bentuk ||
+      old.shadow != shadow ||
+      old.warna != warna ||
+      old.gelap != gelap;
 }
 
 Color _hex(String value) =>
