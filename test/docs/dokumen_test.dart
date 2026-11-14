@@ -46,7 +46,13 @@ List<String> pathRepoDi(String markdown) {
 }
 
 /// Dokumen root yang setiap path-nya harus ada di repo.
-const _dokumenRoot = ['AGENTS.md', 'CONTRIBUTING.md'];
+const _dokumenRoot = [
+  'AGENTS.md',
+  'ARCHITECTURE.md',
+  'CONTRIBUTING.md',
+  'DESIGN.md',
+  'SYSTEM_DESIGN.md',
+];
 
 void tesPathDokumenRoot() {
   for (final dokumen in _dokumenRoot) {
@@ -61,6 +67,19 @@ void tesPathDokumenRoot() {
           reason: '$dokumen: $p',
         );
       }
+    });
+  }
+}
+
+void tesTautanDocs() {
+  for (final dokumen in _dokumenRoot) {
+    test('$dokumen menautkan sumber di docs/', () {
+      final paths = pathRepoDi(File(dokumen).readAsStringSync());
+      expect(
+        paths.where((p) => p.startsWith('docs/') && p.endsWith('.md')),
+        isNotEmpty,
+        reason: dokumen,
+      );
     });
   }
 }
@@ -154,6 +173,8 @@ void main() {
   });
 
   group('path dokumen root', tesPathDokumenRoot);
+
+  group('tautan sumber', tesTautanDocs);
 
   group('.gitignore', tesGitignore);
 }
