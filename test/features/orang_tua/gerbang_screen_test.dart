@@ -317,4 +317,47 @@ void main() {
       expect(checked, 4); // Batal, bantuan, Ganti soal, Masuk
     });
   }
+
+  testWidgets('lanjut di luar daftar rute jatuh ke Beranda', (t) async {
+    final router = await _open(
+      t,
+      location: Routes.gerbangLanjut('https://jahat.example/orang-tua'),
+    );
+    final (q, _) = _questions();
+    await _type(t, q.answer);
+    await t.pump(const Duration(milliseconds: 600));
+    await t.tap(find.text('Masuk'));
+    await _settle(t);
+    expect(_topPath(router), '/');
+    expect(_container(t).read(parentAccessProvider), true);
+  });
+
+  testWidgets('skala teks sistem 1,3 muat tanpa melimpah', (t) async {
+    t.platformDispatcher.textScaleFactorTestValue = 1.3;
+    addTearDown(t.platformDispatcher.clearAllTestValues);
+    await _open(t);
+    expect(t.takeException(), isNull);
+
+    final (q, _) = _questions();
+    await _type(t, q.answer);
+    await t.pump(const Duration(milliseconds: 600));
+    expect(t.takeException(), isNull);
+
+    // Batas 1,3× benar-benar berlaku, bukan dinolkan seperti panggung biasa.
+    expect(
+      MediaQuery.textScalerOf(t.element(find.text('Ganti soal'))).scale(10),
+      closeTo(13, 1e-6),
+    );
+
+    // Panel putih berukuran 846×590 mulai dari (300,118) di panggung
+    // 1180×820; layar tes tablet memakai skala 1:1.
+    const panelBawah = 118.0 + 590.0;
+    for (final label in ['Benar! Silakan masuk.', 'Ganti soal', 'Masuk']) {
+      expect(
+        t.getRect(find.text(label)).bottom,
+        lessThanOrEqualTo(panelBawah),
+        reason: label,
+      );
+    }
+  });
 }

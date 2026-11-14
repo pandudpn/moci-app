@@ -158,11 +158,17 @@ class _GerbangScreenState extends ConsumerState<GerbangScreen>
   void _enter() {
     ref.read(parentAccessProvider.notifier).grant();
     final lanjut = widget.lanjut;
-    if (lanjut != null) {
-      context.pushReplacement(lanjut);
-    } else {
+    if (lanjut == null) {
       context.pop(true);
+      return;
     }
+    final tujuan = tujuanLanjut(lanjut);
+    if (tujuan == null) {
+      // Tujuan tak dikenal (tautan luar, salah ketik): jangan dibuka.
+      context.go(Routes.beranda);
+      return;
+    }
+    context.pushReplacement(tujuan);
   }
 
   void _cancel() {
@@ -187,7 +193,12 @@ class _GerbangScreenState extends ConsumerState<GerbangScreen>
       onPopInvokedWithResult: (didPop, _) {
         if (!didPop) _cancel();
       },
-      child: MociStage(theme: MenuTheme.gerbang, tablet: _stage),
+      child: MociStage(
+        theme: MenuTheme.gerbang,
+        // Sama dengan area orang tua: teks sistem boleh membesar sampai 1,3×.
+        textScaleCap: 1.3,
+        tablet: _stage,
+      ),
     );
   }
 
