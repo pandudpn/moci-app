@@ -1014,4 +1014,63 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get bentukListen => 'Listen to the question';
+
+  @override
+  String get musikXylophone => 'Xylophone';
+
+  @override
+  String get musikDrum => 'Drums';
+
+  @override
+  String get musikModes => 'Instrument';
+
+  @override
+  String get musikSongLabel => 'SONG';
+
+  @override
+  String get musikSongsLabel => 'Pick a song';
+
+  @override
+  String get musikStop => 'Stop';
+
+  @override
+  String get musikFollow => 'Play along';
+
+  @override
+  String musikFollowingCount(int posisi, int total) {
+    return 'Playing along · $posisi / $total';
+  }
+
+  @override
+  String get musikSongDone => 'Wonderful! You played the whole song!';
+
+  @override
+  String get musikBeat => 'Play a rhythm';
+
+  @override
+  String get musikDrumHint =>
+      'Tap the drums! Or play a rhythm, then clap along with Moci.';
+
+  @override
+  String musikNote(String sol, int nomor) {
+    return 'Note $sol $nomor';
+  }
+
+  @override
+  String get musikPadDrum => 'Drum';
+
+  @override
+  String get musikPadClap => 'Clap';
+
+  @override
+  String get musikPadCymbal => 'Cymbal';
+
+  @override
+  String get musikPadShaker => 'Shaker';
+
+  @override
+  String get musikTwinkle => 'Twinkle Twinkle';
+
+  @override
+  String get musikMary => 'Mary Had a Little Lamb';
 }

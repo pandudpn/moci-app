@@ -13,6 +13,7 @@ import '../features/hewan/hewan_screen.dart';
 import '../features/huruf/huruf_screen.dart';
 import '../features/orang_tua/gerbang_screen.dart';
 import '../features/orang_tua/orang_tua_screen.dart';
+import '../features/musik/musik_screen.dart';
 import '../features/sambutan/sambutan_screen.dart';
 import '../features/istirahat/habis_screen.dart';
 import '../features/istirahat/istirahat_screen.dart';
@@ -168,7 +169,13 @@ final routerProvider = Provider<GoRouter>((ref) {
           awal: state.uri.queryParameters['bentuk'],
         ),
       ),
-      _soon(Routes.musik, MenuTheme.musik),
+      GoRoute(
+        path: Routes.musik,
+        builder: (context, state) => MusikScreen(
+          awal: state.uri.queryParameters['alat'],
+          awalLagu: state.uri.queryParameters['lagu'],
+        ),
+      ),
       _soon(Routes.sukuKata, MenuTheme.membaca),
       _soon(Routes.susunKata, MenuTheme.membaca),
       _soon(Routes.kalimat, MenuTheme.membaca),

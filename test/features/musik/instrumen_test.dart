@@ -55,7 +55,10 @@ void main() {
   });
 
   test('folder audio dideklarasikan di pubspec', () {
-    expect(File('pubspec.yaml').readAsStringSync(), contains('- assets/audio/'));
+    expect(
+      File('pubspec.yaml').readAsStringSync(),
+      contains('- assets/audio/'),
+    );
   });
 
   test('frekuensi nada mengikuti prototipe', () {

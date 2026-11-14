@@ -1208,5 +1208,93 @@
   "bentukListen": "Listen to the question",
   "@bentukListen": {
     "description": "Find mode listen button"
+  },
+  "musikXylophone": "Xylophone",
+  "@musikXylophone": {
+    "description": "Xylophone mode tab"
+  },
+  "musikDrum": "Drums",
+  "@musikDrum": {
+    "description": "Drum mode tab"
+  },
+  "musikModes": "Instrument",
+  "@musikModes": {
+    "description": "Instrument pill semantic label"
+  },
+  "musikSongLabel": "SONG",
+  "@musikSongLabel": {
+    "description": "Song bar label"
+  },
+  "musikSongsLabel": "Pick a song",
+  "@musikSongsLabel": {
+    "description": "Song list semantic label"
+  },
+  "musikStop": "Stop",
+  "@musikStop": {
+    "description": "Stop playing the song or rhythm"
+  },
+  "musikFollow": "Play along",
+  "@musikFollow": {
+    "description": "Play along button"
+  },
+  "musikFollowingCount": "Playing along · {posisi} / {total}",
+  "@musikFollowingCount": {
+    "description": "Play along position label",
+    "placeholders": {
+      "posisi": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "musikSongDone": "Wonderful! You played the whole song!",
+  "@musikSongDone": {
+    "description": "narasi"
+  },
+  "musikBeat": "Play a rhythm",
+  "@musikBeat": {
+    "description": "Play the drum rhythm button"
+  },
+  "musikDrumHint": "Tap the drums! Or play a rhythm, then clap along with Moci.",
+  "@musikDrumHint": {
+    "description": "Drum mode hint"
+  },
+  "musikNote": "Note {sol} {nomor}",
+  "@musikNote": {
+    "description": "Xylophone bar semantic label",
+    "placeholders": {
+      "sol": {
+        "type": "String"
+      },
+      "nomor": {
+        "type": "int"
+      }
+    }
+  },
+  "musikPadDrum": "Drum",
+  "@musikPadDrum": {
+    "description": "Drum pad name"
+  },
+  "musikPadClap": "Clap",
+  "@musikPadClap": {
+    "description": "Clap pad name"
+  },
+  "musikPadCymbal": "Cymbal",
+  "@musikPadCymbal": {
+    "description": "Cymbal pad name"
+  },
+  "musikPadShaker": "Shaker",
+  "@musikPadShaker": {
+    "description": "Shaker pad name"
+  },
+  "musikTwinkle": "Twinkle Twinkle",
+  "@musikTwinkle": {
+    "description": "First song title"
+  },
+  "musikMary": "Mary Had a Little Lamb",
+  "@musikMary": {
+    "description": "Second song title"
   }
 }

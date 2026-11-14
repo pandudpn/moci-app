@@ -1211,5 +1211,93 @@
   "bentukListen": "Dengarkan pertanyaan",
   "@bentukListen": {
     "description": "Tombol dengar soal mode Cari"
+  },
+  "musikXylophone": "Xilofon",
+  "@musikXylophone": {
+    "description": "Tab mode xilofon"
+  },
+  "musikDrum": "Drum",
+  "@musikDrum": {
+    "description": "Tab mode drum"
+  },
+  "musikModes": "Alat musik",
+  "@musikModes": {
+    "description": "Label semantik pil alat musik"
+  },
+  "musikSongLabel": "LAGU",
+  "@musikSongLabel": {
+    "description": "Label bilah lagu"
+  },
+  "musikSongsLabel": "Pilih lagu",
+  "@musikSongsLabel": {
+    "description": "Label semantik daftar lagu"
+  },
+  "musikStop": "Berhenti",
+  "@musikStop": {
+    "description": "Tombol berhenti memainkan lagu atau irama"
+  },
+  "musikFollow": "Ikuti",
+  "@musikFollow": {
+    "description": "Tombol ikuti lagu"
+  },
+  "musikFollowingCount": "Mengikuti · {posisi} / {total}",
+  "@musikFollowingCount": {
+    "description": "Label posisi mengikuti lagu",
+    "placeholders": {
+      "posisi": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "musikSongDone": "Hebat! Kamu memainkan satu lagu!",
+  "@musikSongDone": {
+    "description": "narasi"
+  },
+  "musikBeat": "Mainkan irama",
+  "@musikBeat": {
+    "description": "Tombol mainkan irama drum"
+  },
+  "musikDrumHint": "Ketuk drumnya! Atau mainkan irama, lalu ikut menepuk bersama Moci.",
+  "@musikDrumHint": {
+    "description": "Petunjuk mode drum"
+  },
+  "musikNote": "Nada {sol} {nomor}",
+  "@musikNote": {
+    "description": "Label semantik batang xilofon",
+    "placeholders": {
+      "sol": {
+        "type": "String"
+      },
+      "nomor": {
+        "type": "int"
+      }
+    }
+  },
+  "musikPadDrum": "Drum",
+  "@musikPadDrum": {
+    "description": "Nama pad drum"
+  },
+  "musikPadClap": "Tepuk",
+  "@musikPadClap": {
+    "description": "Nama pad tepuk"
+  },
+  "musikPadCymbal": "Simbal",
+  "@musikPadCymbal": {
+    "description": "Nama pad simbal"
+  },
+  "musikPadShaker": "Kerincing",
+  "@musikPadShaker": {
+    "description": "Nama pad kerincing"
+  },
+  "musikTwinkle": "Twinkle Twinkle",
+  "@musikTwinkle": {
+    "description": "Judul lagu pertama"
+  },
+  "musikMary": "Mary Had a Little Lamb",
+  "@musikMary": {
+    "description": "Judul lagu kedua"
   }
 }

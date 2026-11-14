@@ -1915,6 +1915,114 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Dengarkan pertanyaan'**
   String get bentukListen;
+
+  /// Tab mode xilofon
+  ///
+  /// In id, this message translates to:
+  /// **'Xilofon'**
+  String get musikXylophone;
+
+  /// Tab mode drum
+  ///
+  /// In id, this message translates to:
+  /// **'Drum'**
+  String get musikDrum;
+
+  /// Label semantik pil alat musik
+  ///
+  /// In id, this message translates to:
+  /// **'Alat musik'**
+  String get musikModes;
+
+  /// Label bilah lagu
+  ///
+  /// In id, this message translates to:
+  /// **'LAGU'**
+  String get musikSongLabel;
+
+  /// Label semantik daftar lagu
+  ///
+  /// In id, this message translates to:
+  /// **'Pilih lagu'**
+  String get musikSongsLabel;
+
+  /// Tombol berhenti memainkan lagu atau irama
+  ///
+  /// In id, this message translates to:
+  /// **'Berhenti'**
+  String get musikStop;
+
+  /// Tombol ikuti lagu
+  ///
+  /// In id, this message translates to:
+  /// **'Ikuti'**
+  String get musikFollow;
+
+  /// Label posisi mengikuti lagu
+  ///
+  /// In id, this message translates to:
+  /// **'Mengikuti · {posisi} / {total}'**
+  String musikFollowingCount(int posisi, int total);
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Hebat! Kamu memainkan satu lagu!'**
+  String get musikSongDone;
+
+  /// Tombol mainkan irama drum
+  ///
+  /// In id, this message translates to:
+  /// **'Mainkan irama'**
+  String get musikBeat;
+
+  /// Petunjuk mode drum
+  ///
+  /// In id, this message translates to:
+  /// **'Ketuk drumnya! Atau mainkan irama, lalu ikut menepuk bersama Moci.'**
+  String get musikDrumHint;
+
+  /// Label semantik batang xilofon
+  ///
+  /// In id, this message translates to:
+  /// **'Nada {sol} {nomor}'**
+  String musikNote(String sol, int nomor);
+
+  /// Nama pad drum
+  ///
+  /// In id, this message translates to:
+  /// **'Drum'**
+  String get musikPadDrum;
+
+  /// Nama pad tepuk
+  ///
+  /// In id, this message translates to:
+  /// **'Tepuk'**
+  String get musikPadClap;
+
+  /// Nama pad simbal
+  ///
+  /// In id, this message translates to:
+  /// **'Simbal'**
+  String get musikPadCymbal;
+
+  /// Nama pad kerincing
+  ///
+  /// In id, this message translates to:
+  /// **'Kerincing'**
+  String get musikPadShaker;
+
+  /// Judul lagu pertama
+  ///
+  /// In id, this message translates to:
+  /// **'Twinkle Twinkle'**
+  String get musikTwinkle;
+
+  /// Judul lagu kedua
+  ///
+  /// In id, this message translates to:
+  /// **'Mary Had a Little Lamb'**
+  String get musikMary;
 }
 
 class _AppLocalizationsDelegate
