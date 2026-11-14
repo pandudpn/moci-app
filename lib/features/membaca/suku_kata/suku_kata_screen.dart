@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -61,6 +63,9 @@ class _SukuKataScreenState extends ConsumerState<SukuKataScreen> {
   /// Penghitung generasi: ketukan baru menghentikan urutan lama.
   int _urutan = 0;
 
+  /// Jeda tip saat layar dibuka dari menu yang sudah membacakan judulnya.
+  Timer? _tipTimer;
+
   @override
   void initState() {
     super.initState();
@@ -73,15 +78,27 @@ class _SukuKataScreenState extends ConsumerState<SukuKataScreen> {
       if (!mounted) return;
       final l10n = context.l10n;
       _catat();
-      _baca([
-        NarrationLine(jenis: 'ui', id: 'sukuKataTip', text: l10n.sukuKataTip),
-      ]);
+      void ucapTip() {
+        if (!mounted) return;
+        _baca([
+          NarrationLine(jenis: 'ui', id: 'sukuKataTip', text: l10n.sukuKataTip),
+        ]);
+      }
+
+      // Dari Beranda, judul menu baru saja dibacakan; beri jeda supaya tip
+      // tidak memotongnya. Dibuka langsung (Lanjutkan, tautan) tetap langsung.
+      if (Navigator.of(context).canPop()) {
+        _tipTimer = Timer(const Duration(milliseconds: 1200), ucapTip);
+      } else {
+        ucapTip();
+      }
     });
   }
 
   @override
   void dispose() {
     _urutan++;
+    _tipTimer?.cancel();
     _narrator.stop();
     super.dispose();
   }
@@ -93,12 +110,14 @@ class _SukuKataScreenState extends ConsumerState<SukuKataScreen> {
   }
 
   Future<void> _baca(List<NarrationLine> baris) {
+    _tipTimer?.cancel();
     _urutan++;
     return _narrator.sayAll(baris, ref.read(prefsProvider).lang);
   }
 
   /// Membacakan kelima suku baris ini sambil menyorot kartunya.
   Future<void> _bacaBaris() async {
+    _tipTimer?.cancel();
     final gen = ++_urutan;
     final lang = ref.read(prefsProvider).lang;
     final baris = barisKonsonan(_info, _konsonan, lang);
