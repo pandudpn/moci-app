@@ -32,13 +32,17 @@ String _targetDariSoal(WidgetTester t) {
   return nama[0].toUpperCase() + nama.substring(1);
 }
 
-Future<void> _jawabBenar(WidgetTester t) async {
+Future<void> _jawabBenar(WidgetTester t, TestEnv env) async {
   final nama = _targetDariSoal(t);
   final bentuk = katalogUji().bentuk.firstWhere(
     (b) => b.nama.id == nama || b.nama.en == nama,
   );
+  // Jam palsu tidak ikut maju oleh pump: lewati cooldown tekan 400 ms bila
+  // kunci opsi yang sama dipakai lagi di ronde berikutnya.
+  env.clock.advance(const Duration(seconds: 1));
   await t.tap(find.byKey(BentukScreen.optionKey(bentuk.id)));
   await t.pump(const Duration(milliseconds: 1300));
+  await t.pump();
 }
 
 void main() {
@@ -74,7 +78,7 @@ void main() {
     );
     await t.pump(const Duration(milliseconds: 600));
     for (var i = 0; i < 6; i++) {
-      await _jawabBenar(t);
+      await _jawabBenar(t, env);
     }
     expect(find.text('Hebat! Semua bentuk ketemu!'), findsOneWidget);
     await t.tap(find.byKey(BentukScreen.prizeKey));
@@ -98,7 +102,7 @@ void main() {
     );
     await t.pump(const Duration(milliseconds: 600));
     for (var i = 0; i < 6; i++) {
-      await _jawabBenar(t);
+      await _jawabBenar(t, env);
     }
     await t.tap(find.byKey(BentukScreen.prizeKey));
     await t.pump(const Duration(milliseconds: 500));
@@ -114,9 +118,10 @@ void main() {
   });
 
   testWidgets('main lagi mengosongkan kemajuan', (t) async {
-    await _open(t);
+    final env = TestEnv();
+    await _open(t, env: env);
     for (var i = 0; i < 6; i++) {
-      await _jawabBenar(t);
+      await _jawabBenar(t, env);
     }
     await t.tap(find.byKey(BentukScreen.againKey));
     await t.pump();

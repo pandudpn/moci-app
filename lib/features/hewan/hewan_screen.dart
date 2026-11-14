@@ -115,17 +115,13 @@ class _HewanScreenState extends ConsumerState<HewanScreen>
     progress.markItem('hewan', 'dilihat', _id);
   }
 
-  void _sayNama() => ref
-      .read(narratorProvider)
-      .sayAll([
-        NarrationLine(jenis: 'nama', id: _id, text: _item.nama.of(_lang)),
-      ], _lang);
+  void _sayNama() => ref.read(narratorProvider).sayAll([
+    NarrationLine(jenis: 'nama', id: _id, text: _item.nama.of(_lang)),
+  ], _lang);
 
-  void _sayFakta() => ref
-      .read(narratorProvider)
-      .sayAll([
-        NarrationLine(jenis: 'fakta', id: _id, text: faktaHewan(_item, _lang)),
-      ], _lang);
+  void _sayFakta() => ref.read(narratorProvider).sayAll([
+    NarrationLine(jenis: 'fakta', id: _id, text: faktaHewan(_item, _lang)),
+  ], _lang);
 
   /// Berkas rekaman diputar apa adanya kalau ada; tanpa berkas, tiruan bunyi
   /// katalog dibacakan TTS.
@@ -135,11 +131,9 @@ class _HewanScreenState extends ConsumerState<HewanScreen>
       ref.read(audioServiceProvider).narrate(path);
       return;
     }
-    ref
-        .read(narratorProvider)
-        .sayAll([
-          NarrationLine(jenis: 'bunyi', id: _id, text: bunyiHewan(_item, _lang)),
-        ], _lang);
+    ref.read(narratorProvider).sayAll([
+      NarrationLine(jenis: 'bunyi', id: _id, text: bunyiHewan(_item, _lang)),
+    ], _lang);
   }
 
   void _ketukGambar() {
@@ -215,8 +209,8 @@ class _HewanScreenState extends ConsumerState<HewanScreen>
             runSpacing: 8,
             children: [
               _groupPill(l10n.hewanGroupAll, null, null),
-              for (final k in HewanKelompok.values) _groupPill(_label(k, l10n), k,
-                  HewanScreen.groupKey(k)),
+              for (final k in HewanKelompok.values)
+                _groupPill(_label(k, l10n), k, HewanScreen.groupKey(k)),
             ],
           ),
         ),
@@ -261,13 +255,7 @@ class _HewanScreenState extends ConsumerState<HewanScreen>
         ),
         Positioned(left: 400, top: 520, width: 400, child: _nameBoard(nama)),
         Positioned(left: 888, top: 268, width: 256, child: _controls(l10n)),
-        Positioned(
-          left: 0,
-          top: 636,
-          right: 0,
-          height: 168,
-          child: _rail(),
-        ),
+        Positioned(left: 0, top: 636, right: 0, height: 168, child: _rail()),
       ],
     );
   }
@@ -423,7 +411,10 @@ class _HewanScreenState extends ConsumerState<HewanScreen>
               color: MociColors.white,
               borderRadius: BorderRadius.circular(36),
               boxShadow: const [
-                BoxShadow(color: MociColors.neutralShadow, offset: Offset(0, 8)),
+                BoxShadow(
+                  color: MociColors.neutralShadow,
+                  offset: Offset(0, 8),
+                ),
               ],
             ),
             child: FittedBox(

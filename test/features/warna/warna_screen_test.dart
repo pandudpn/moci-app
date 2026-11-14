@@ -19,7 +19,11 @@ WarnaSet _setMerah() => buatWarnaSet(katalogUji(), 'merah', Random(7));
 TestEnv _env() =>
     TestEnv(extraOverrides: [warnaRandomProvider.overrideWithValue(Random(7))]);
 
-Future<void> _open(WidgetTester t, {TestEnv? env, String lokasi = '/warna'}) async {
+Future<void> _open(
+  WidgetTester t, {
+  TestEnv? env,
+  String lokasi = '/warna',
+}) async {
   await pumpApp(t, env: env, initialLocation: lokasi);
   await t.pump(const Duration(milliseconds: 600));
 }
@@ -92,9 +96,7 @@ void main() {
     expect(find.textContaining('0 / '), findsOneWidget);
   });
 
-  testWidgets('gambar baru mengosongkan hitungan tanpa ganti warna', (
-    t,
-  ) async {
+  testWidgets('gambar baru mengosongkan hitungan tanpa ganti warna', (t) async {
     final env = _env();
     await _open(t, env: env);
     await t.tap(find.byKey(WarnaScreen.newSetKey));

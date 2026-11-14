@@ -58,14 +58,15 @@ class _WarnaScreenState extends ConsumerState<WarnaScreen>
   late WarnaSet _set;
   final _ditemukan = <String>{};
   String? _salah;
-  late final AnimationController _goyang = AnimationController(
-    vsync: this,
-    duration: const Duration(milliseconds: 450),
-  )..addStatusListener((s) {
-      if (s == AnimationStatus.completed && mounted) {
-        setState(() => _salah = null);
-      }
-    });
+  late final AnimationController _goyang =
+      AnimationController(
+        vsync: this,
+        duration: const Duration(milliseconds: 450),
+      )..addStatusListener((s) {
+        if (s == AnimationStatus.completed && mounted) {
+          setState(() => _salah = null);
+        }
+      });
 
   static final _goyangX = TweenSequence<double>([
     TweenSequenceItem(tween: Tween(begin: 0.0, end: -12.0), weight: 1),
@@ -80,8 +81,10 @@ class _WarnaScreenState extends ConsumerState<WarnaScreen>
 
   AppLang get _lang => ref.read(prefsProvider).lang;
 
-  WarnaEntry get _entry =>
-      _katalog.warna.firstWhere((w) => w.id == _warna, orElse: () => _katalog.warna.first);
+  WarnaEntry get _entry => _katalog.warna.firstWhere(
+    (w) => w.id == _warna,
+    orElse: () => _katalog.warna.first,
+  );
 
   String get _nama => _entry.nama.of(_lang);
 
@@ -105,16 +108,13 @@ class _WarnaScreenState extends ConsumerState<WarnaScreen>
     super.dispose();
   }
 
-  void _catat() =>
-      ref.read(progressProvider.notifier).setLastActivity(Routes.warna, {
-        'warna': _warna,
-      });
-
-  NarrationLine _lineWarna() => NarrationLine(
-    jenis: 'warna',
-    id: _warna,
-    text: _nama.toLowerCase(),
+  void _catat() => ref.read(progressProvider.notifier).setLastActivity(
+    Routes.warna,
+    {'warna': _warna},
   );
+
+  NarrationLine _lineWarna() =>
+      NarrationLine(jenis: 'warna', id: _warna, text: _nama.toLowerCase());
 
   void _say(List<NarrationLine> lines) =>
       ref.read(narratorProvider).sayAll(lines, _lang);
@@ -257,9 +257,7 @@ class _WarnaScreenState extends ConsumerState<WarnaScreen>
       decoration: BoxDecoration(
         color: MociColors.white,
         borderRadius: BorderRadius.circular(40),
-        boxShadow: const [
-          BoxShadow(color: _softShadow, offset: Offset(0, 12)),
-        ],
+        boxShadow: const [BoxShadow(color: _softShadow, offset: Offset(0, 12))],
       ),
       child: Stack(
         clipBehavior: Clip.none,
@@ -354,9 +352,7 @@ class _WarnaScreenState extends ConsumerState<WarnaScreen>
             child: Wrap(
               spacing: 12,
               runSpacing: 16,
-              children: [
-                for (final w in _katalog.warna) _chip(w, l10n),
-              ],
+              children: [for (final w in _katalog.warna) _chip(w, l10n)],
             ),
           ),
         ],
@@ -398,9 +394,7 @@ class _WarnaScreenState extends ConsumerState<WarnaScreen>
       decoration: BoxDecoration(
         color: MociColors.white,
         borderRadius: BorderRadius.circular(40),
-        boxShadow: const [
-          BoxShadow(color: _softShadow, offset: Offset(0, 12)),
-        ],
+        boxShadow: const [BoxShadow(color: _softShadow, offset: Offset(0, 12))],
       ),
       child: Stack(
         children: [
@@ -431,7 +425,10 @@ class _WarnaScreenState extends ConsumerState<WarnaScreen>
                           decoration: BoxDecoration(
                             color: _hex(_entry.hex),
                             borderRadius: BorderRadius.circular(12),
-                            border: Border.all(color: _hex(_entry.garis), width: 2),
+                            border: Border.all(
+                              color: _hex(_entry.garis),
+                              width: 2,
+                            ),
                           ),
                           child: Text(
                             nama.toUpperCase(),
@@ -486,11 +483,7 @@ class _WarnaScreenState extends ConsumerState<WarnaScreen>
           ),
           Positioned(left: 34, top: 104, child: _kisi(l10n)),
           if (_ditemukan.length == _set.total)
-            Positioned(
-              left: 70,
-              bottom: 22,
-              child: _bilah(l10n, nama),
-            ),
+            Positioned(left: 70, bottom: 22, child: _bilah(l10n, nama)),
         ],
       ),
     );
@@ -716,7 +709,11 @@ class _SwatchPainter extends CustomPainter {
       ..close();
     canvas.drawPath(path, isi);
     canvas.drawPath(path, tepi);
-    for (final (x, y, r) in [(182.0, 34.0, 8.0), (24.0, 164.0, 10.0), (172.0, 172.0, 6.0)]) {
+    for (final (x, y, r) in [
+      (182.0, 34.0, 8.0),
+      (24.0, 164.0, 10.0),
+      (172.0, 172.0, 6.0),
+    ]) {
       canvas.drawCircle(Offset(x, y), r, isi);
       canvas.drawCircle(Offset(x, y), r, tepi);
     }
@@ -728,7 +725,8 @@ class _SwatchPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(_SwatchPainter old) => old.fill != fill || old.line != line;
+  bool shouldRepaint(_SwatchPainter old) =>
+      old.fill != fill || old.line != line;
 }
 
 class _BalonPainter extends CustomPainter {
@@ -785,9 +783,16 @@ class _BintangPainter extends CustomPainter {
     canvas.save();
     canvas.scale(size.width / 100, size.height / 100);
     const titik = [
-      (50.0, 6.0), (63.0, 33.0), (93.0, 37.0), (71.0, 58.0),
-      (76.0, 88.0), (50.0, 74.0), (24.0, 88.0), (29.0, 58.0),
-      (7.0, 37.0), (37.0, 33.0),
+      (50.0, 6.0),
+      (63.0, 33.0),
+      (93.0, 37.0),
+      (71.0, 58.0),
+      (76.0, 88.0),
+      (50.0, 74.0),
+      (24.0, 88.0),
+      (29.0, 58.0),
+      (7.0, 37.0),
+      (37.0, 33.0),
     ];
     final path = Path()..moveTo(titik.first.$1, titik.first.$2);
     for (final t in titik.skip(1)) {
@@ -811,7 +816,8 @@ class _BintangPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(_BintangPainter old) => old.fill != fill || old.line != line;
+  bool shouldRepaint(_BintangPainter old) =>
+      old.fill != fill || old.line != line;
 }
 
 class _HatiPainter extends CustomPainter {

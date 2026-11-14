@@ -38,8 +38,7 @@ final buahRandomProvider = Provider<Random>((_) => Random());
 class BuahScreen extends ConsumerStatefulWidget {
   const BuahScreen({super.key, this.mode = BuahMode.tebak, this.awal});
 
-  static ValueKey<int> questionKey(int nomor) =>
-      ValueKey<int>(nomor);
+  static ValueKey<int> questionKey(int nomor) => ValueKey<int>(nomor);
   static const nextKey = ValueKey<String>('buah-next');
 
   static ValueKey<String> optionKey(String id) => ValueKey('buah-option-$id');
@@ -94,9 +93,10 @@ class _BuahScreenState extends ConsumerState<BuahScreen> {
     });
   }
 
-  void _catat(String id) => ref
-      .read(progressProvider.notifier)
-      .setLastActivity(Routes.buahSayur, {'buah': id, 'mode': _mode.name});
+  void _catat(String id) => ref.read(progressProvider.notifier).setLastActivity(
+    Routes.buahSayur,
+    {'buah': id, 'mode': _mode.name},
+  );
 
   void _say(List<NarrationLine> lines) =>
       ref.read(narratorProvider).sayAll(lines, _lang);
@@ -163,11 +163,7 @@ class _BuahScreenState extends ConsumerState<BuahScreen> {
       _qn = 1;
       _benar = false;
       _salahId = null;
-      _soal = buatBuahSoal(
-        _katalog,
-        kategori: _kategoriSoal,
-        random: _random,
-      );
+      _soal = buatBuahSoal(_katalog, kategori: _kategoriSoal, random: _random);
     });
     if (_mode == BuahMode.tebak) {
       _tanya();
@@ -205,11 +201,7 @@ class _BuahScreenState extends ConsumerState<BuahScreen> {
     setState(() => _salahId = pilih.id);
     ref.read(audioServiceProvider).playSfx(Sfx.salahLembut);
     _say([
-      NarrationLine(
-        jenis: 'nama',
-        id: pilih.id,
-        text: namaBuah(pilih, _lang),
-      ),
+      NarrationLine(jenis: 'nama', id: pilih.id, text: namaBuah(pilih, _lang)),
       NarrationLine(
         jenis: 'ui',
         id: 'buahWrongSay',
@@ -275,11 +267,7 @@ class _BuahScreenState extends ConsumerState<BuahScreen> {
         top: 118,
         child: const MociMascot(size: 168, idle: false),
       ),
-      Positioned(
-        left: 294,
-        top: 134,
-        child: _question(l10n, nama),
-      ),
+      Positioned(left: 294, top: 134, child: _question(l10n, nama)),
       Positioned(
         left: 270,
         top: 178,
@@ -313,8 +301,7 @@ class _BuahScreenState extends ConsumerState<BuahScreen> {
         ),
       ),
       Positioned(left: 90, top: 296, child: _options()),
-      if (_benar)
-        Positioned(left: 290, top: 690, child: _finished(l10n, nama)),
+      if (_benar) Positioned(left: 290, top: 690, child: _finished(l10n, nama)),
     ];
   }
 
@@ -387,9 +374,7 @@ class _BuahScreenState extends ConsumerState<BuahScreen> {
             child: const SizedBox(
               width: 72,
               height: 72,
-              child: Center(
-                child: GameGlyph(GameGlyphKind.listen, size: 38),
-              ),
+              child: Center(child: GameGlyph(GameGlyphKind.listen, size: 38)),
             ),
           ),
         ],
@@ -593,9 +578,7 @@ class _BuahScreenState extends ConsumerState<BuahScreen> {
               child: Wrap(
                 spacing: 18,
                 runSpacing: 18,
-                children: [
-                  for (final e in item) _kartu(e, lebar, l10n),
-                ],
+                children: [for (final e in item) _kartu(e, lebar, l10n)],
               ),
             );
           },
@@ -621,10 +604,7 @@ class _BuahScreenState extends ConsumerState<BuahScreen> {
         height: 196,
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(30)),
-          border: Border.all(
-            color: buah ? _fruitTag : _veggieTag,
-            width: 6,
-          ),
+          border: Border.all(color: buah ? _fruitTag : _veggieTag, width: 6),
         ),
         child: Stack(
           children: [
@@ -638,7 +618,10 @@ class _BuahScreenState extends ConsumerState<BuahScreen> {
               left: 12,
               top: 10,
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 2,
+                ),
                 decoration: BoxDecoration(
                   color: buah ? _fruitTag : _veggieTag,
                   borderRadius: BorderRadius.circular(999),

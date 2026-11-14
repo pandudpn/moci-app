@@ -11,7 +11,8 @@ const _laju = 24000;
 const _duaPi = 2 * pi;
 
 void main() {
-  final folder = Directory('assets/audio/instrumen')..createSync(recursive: true);
+  final folder = Directory('assets/audio/instrumen')
+    ..createSync(recursive: true);
   for (var i = 0; i < nadaXilo.length; i++) {
     _tulis(nadaXilo[i], _xilo(frekuensiXilo[i]));
   }
@@ -90,9 +91,7 @@ Float64List _kerincing() {
   final out = Float64List(n);
   for (var i = 0; i < n; i++) {
     final t = i / _laju;
-    final env = t < 0.03
-        ? 0.45 * (t / 0.03)
-        : 0.45 * exp(-(t - 0.03) / 0.05);
+    final env = t < 0.03 ? 0.45 * (t / 0.03) : 0.45 * exp(-(t - 0.03) / 0.05);
     out[i] = env * derau[i];
   }
   return out;

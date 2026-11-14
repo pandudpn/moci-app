@@ -48,19 +48,27 @@ Panah berarti bergantung. Aturan arahnya:
 | `lib/features/hadiah/` | Hebat, katalog 30 stiker, hadiah ronde |
 | `lib/features/istirahat/` | Istirahat dan Waktu Habis |
 | `lib/features/orang_tua/` | Gerbang, Area Orang Tua, ringkasan, widget pengaturan |
+| `lib/features/hewan/` | Dunia Hewan: 42 hewan, lima kelompok, fakta, suara asli atau tiruan TTS |
+| `lib/features/buah_sayur/` | Buah & Sayur: Kenali 35 kartu dan Tebak tiga pilihan berputar |
+| `lib/features/warna/` | Warna: set 12 kartu, 11 chip warna, gambar baru dan warna lain |
+| `lib/features/bentuk/` | Bentuk: Kenali dengan level usia dan hitung sudut, Cari enam ronde |
+| `lib/features/musik/` | Main Musik: xilofon, drum, `MusikAudio`, aturan lagu dan irama |
 | `lib/features/segera/` | `ComingSoonScreen` untuk rute yang layarnya belum dibangun |
 | `assets/content/katalog.json` | Katalog isi, sumber kebenaran |
 | `assets/tracing/` | `huruf.json` dan `angka.json` |
 | `assets/coloring/` | `pages.json`, `cap.json`, `krayon.json` |
 | `assets/illustrations/` | 111 SVG, dikompilasi `vector_graphics_compiler` saat build |
 | `assets/fonts/` | Fredoka dan Nunito, plus lisensi OFL |
-| `assets/audio/` | `LICENSES.csv`; rekaman masuk di Rencana 09 |
+| `assets/audio/` | `LICENSES.csv` untuk suara hewan dan instrumen; rekaman narasi `vo/` masuk di Rencana 09 |
+| `assets/audio/hewan/` | 42 suara hewan CC0 dari Freesound, dicatat di `assets/audio/LICENSES.csv` |
+| `assets/audio/instrumen/` | 12 WAV mono 16-bit 24 kHz hasil sintesis offline, lisensi `Milik sendiri` |
 | `l10n/app_id.arb`, `l10n/app_en.arb` | Sumber teks UI; keluaran gen-l10n ada di `lib/l10n/` |
 | `tool/validate_content.dart` | Validator isi, juga dipakai CI |
 | `tool/konten/` | Parser literal JS, ekspor prototipe sekali, aturan validasi |
 | `tool/fonts/build_fonts.sh` | Membangun ulang font subset Latin |
+| `tool/buat_instrumen.dart` | Generator 12 WAV xilofon dan drum; hasilnya di-commit, tidak dijalankan saat aplikasi berjalan |
 | `test/` | Tes unit dan widget, golden hanya tiga layar |
-| `integration_test/app_test.dart` | Tiga skenario di perangkat |
+| `integration_test/app_test.dart` | Empat skenario di perangkat |
 | `.github/workflows/ci.yml` | Job tes di Linux dan job golden di macOS |
 
 ## 3. Provider dan pemiliknya
@@ -90,6 +98,8 @@ Panah berarti bergantung. Aturan arahnya:
 | `playTimerProvider` | `lib/app/play_timer/play_timer_controller.dart` | `PlayTimerState` dan penyimpanan berkala. |
 | `hadiahProvider`, `hadiahRandomProvider` | `lib/features/hadiah/hadiah_controller.dart` | Hadiah ronde dan sumber acak pemilih stiker. |
 | `gateRandomProvider` | `lib/features/orang_tua/gerbang_screen.dart` | Sumber acak soal Gerbang. |
+| `warnaRandomProvider`, `buahRandomProvider`, `bentukRandomProvider` | `lib/features/warna/warna_screen.dart`, `lib/features/buah_sayur/buah_screen.dart`, `lib/features/bentuk/bentuk_screen.dart` | Sumber acak layar; tes menggantinya supaya urutan kartu dan soal tetap. |
+| `musikAudioProvider` | `lib/features/musik/musik_audio.dart` | `MusikAudio`: memuat 12 WAV dan memutar nada sebagai efek, mengikuti sakelar Efek suara. |
 
 ## 4. Rute dan redirect
 
@@ -98,9 +108,11 @@ Panah berarti bergantung. Aturan arahnya:
 | `/splash` | `SplashScreen` |
 | `/sambutan` | `SambutanScreen` |
 | `/` | `BerandaScreen` |
-| `/huruf`, `/huruf/tulis`, `/huruf/ucapkan` | `ComingSoonScreen` |
-| `/angka`, `/angka/tulis` | `ComingSoonScreen` |
-| `/hewan`, `/buah-sayur`, `/warna`, `/bentuk`, `/musik` | `ComingSoonScreen` |
+| `/huruf` | `HurufScreen` |
+| `/huruf/tulis` | `TulisScreen` mode huruf |
+| `/huruf/ucapkan` | `ComingSoonScreen` |
+| `/angka`, `/angka/tulis` | `BerhitungScreen` dan `TulisScreen` mode angka |
+| `/hewan`, `/buah-sayur`, `/warna`, `/bentuk`, `/musik` | `HewanScreen`, `BuahScreen`, `WarnaScreen`, `BentukScreen`, `MusikScreen` |
 | `/membaca/suku-kata`, `/membaca/susun-kata`, `/membaca/kalimat` | `ComingSoonScreen` |
 | `/main`, `/main/cocokkan`, `/main/memori`, `/main/bayangan`, `/main/puzzle`, `/main/balon`, `/main/besar-kecil` | `ComingSoonScreen` |
 | `/mewarnai`, `/mewarnai/:halaman`, `/karyaku` | `ComingSoonScreen` |
@@ -127,6 +139,8 @@ Redirect `/hebat` yang tidak membawa `HebatArgs` kembali ke Beranda. `PopScope(c
 
 **Audio menyala belakangan.** `MociApp` membaca `audioBootProvider` di `addPostFrameCallback`, supaya Splash tampil tanpa menunggu mesin audio. Urutannya: kategori sesi playback, `AudioEngine.init`, lalu `preloadSfx`.
 
+**Alat musik dan suara hewan.** Dua belas WAV mono 16-bit 24 kHz di `assets/audio/instrumen/` dibuat `tool/buat_instrumen.dart` dan dicatat `Milik sendiri`: tidak ada sampel pihak ketiga dan tidak ada sintesis saat aplikasi berjalan. `MusikAudio` memuat semuanya sekali lewat `AudioEngine` lalu memutar nada dengan volume efek 0,7; nada tidak menghentikan narasi. Suara hewan memakai `assets/audio/hewan/<id>.m4a` (42 berkas CC0). Layar hanya memutar berkas yang ada di `AssetCatalog`; kalau tidak ada, tiruan bunyi dari katalog dibacakan TTS dan layar tidak pernah menebak path.
+
 **Router.** `routerProvider` menyegarkan diri saat `prefsProvider.onboarded` berubah. `limitReachedProvider` juga menyegarkan router, kecuali `parentAccessProvider` sedang terbuka: mengubah batas di Area Orang Tua tidak boleh mengusir orang tua. `currentPathProvider` disalin dari `matchedLocation` milik kecocokan terakhir setiap delegasi router memberi kabar.
 
 **Bahasa.** `prefsProvider.lang` menjadi `MaterialApp.locale`. Ganti bahasa tidak memulai ulang aplikasi; semua teks datang dari `AppLocalizations`.
@@ -143,10 +157,11 @@ Redirect `/hebat` yang tidak membawa `HebatArgs` kembali ke Beranda. `PopScope(c
 | `test/helpers/fake_audio.dart` | `FakeAudioEngine` dan `FakeDeviceTts` |
 | `test/helpers/fake_clock.dart` | `FakeClock` |
 | `test/helpers/contrast.dart` | `contrastRatio` untuk tes kontras |
+| `test/helpers/katalog.dart` | `katalogUji()` dan `envUsia(AgeLevel)`; tingkat usia ditulis ke kunci `moci.usia` |
 | `test/flutter_test_config.dart` | Memuat Fredoka dan Nunito untuk semua tes |
 | `dart_test.yaml` | Mendeklarasikan tag `golden` |
 
-`TestEnv` mengisi `MemoryKeyValueStore`, `MemoryJsonStore`, `FakeClock`, `FakeAudioEngine`, `FakeDeviceTts`, katalog aset kosong, dan katalog isi dari `assets/content/katalog.json` yang dibaca sekali per proses. `pumpScreen` memasang satu layar dengan tema, l10n, dan penyimpanan palsu. `pumpApp` memasang `MociApp` utuh dan mengembalikan routernya.
+`TestEnv` mengisi `MemoryKeyValueStore`, `MemoryJsonStore`, `FakeClock`, `FakeAudioEngine`, `FakeDeviceTts`, katalog aset kosong, dan katalog isi dari `assets/content/katalog.json` yang dibaca sekali per proses. Tingkat usia tidak punya parameter sendiri: `envUsia(AgeLevel)` menulis `moci.usia` ke penyimpanan sebelum `TestEnv` dipasang. `pumpScreen` memasang satu layar dengan tema, l10n, dan penyimpanan palsu. `pumpApp` memasang `MociApp` utuh dan mengembalikan routernya. Jam palsu tidak ikut maju oleh `t.pump`, jadi tes yang mengetuk widget yang sama dua kali memajukan `FakeClock` lebih dulu (jeda ketuk `MociPressable` 400 ms).
 
 Golden hanya untuk Beranda, Hebat, dan Area Orang Tua: `test/features/beranda/beranda_golden_test.dart`, `test/features/hadiah/hebat_golden_test.dart`, dan `test/features/orang_tua/orang_tua_golden_test.dart`. Integration test di `integration_test/app_test.dart` memakai `runMoci(overrides:)` dan tidak memakai `pumpAndSettle`.
 

@@ -121,7 +121,23 @@ Bayangan selalu padat tanpa blur, bergeser lurus ke bawah, dan tidak memakan tem
 | `NumberKeypad` | Papan angka Gerbang. Tombol 96 × 84 dengan jarak 14, tanpa jeda ketuk supaya hapus dua kali berurutan tetap diterima. |
 | `StarCounter` | Pil bintang dan jumlahnya. Tinggi 64 di tablet, 48 dalam mode `compact` untuk HP. |
 
-Komponen permainan bersama, seperti pil mode dan kartu jawaban, belum ada. Rencana 03 menambahkannya saat layar pertama memakainya.
+Komponen permainan bersama ada di `lib/widgets/game/`: `GameModePill` (pil mode), `AnswerCard` (kartu pilihan jawaban), `ProgressDots` (kemajuan enam ronde), dan `GameGlyph` (ikon garis: dengar, centang, putar, berikutnya, hitung, bintang).
+
+### Tata letak lima menu
+
+Semua layar memakai panggung tablet 1180 × 820, bilah atas `MociTopBar` dengan tombol kembali, dan `GameModePill` bila punya dua mode.
+
+| Layar | Tata letak |
+| --- | --- |
+| Dunia Hewan | Kartu besar di kiri berisi ilustrasi, nama, fakta, tombol "Dengar suara", dan pil lima kelompok; rail kanan memuat 42 hewan dalam dua kolom |
+| Buah & Sayur | Kenali: kisi enam kolom berisi 35 kartu. Tebak: gelembung soal dengan nama berwarna, tiga `AnswerCard`, dan `ProgressDots` enam soal |
+| Warna | Set 12 kartu per warna: sampai empat gambar bertanda warna itu dan sisanya warna lain, plus 11 chip warna dan tombol "Gambar baru" serta "Warna lain" |
+| Bentuk | Kenali: kartu kiri 640 × 668 dengan tanda sudut 48 pt dan kisi kanan dua kolom. Cari: bilah soal 1100 × 92, papan 1100 × 548, opsi 3/4/6 pilihan dengan lencana centang 56 pt |
+| Main Musik | Xilofon: bilah lagu 1100 × 88, papan 1100 × 562 dengan dua rel dan delapan batang 100 pt. Drum: empat pad 240 × 300, tombol "Mainkan irama" 72 pt, dan teks petunjuk |
+
+Aturan level usia Bentuk: 2–3 tahun 5 bentuk dan 3 pilihan, 4–5 tahun 8 bentuk dan 4 pilihan, 6–7 tahun 10 bentuk dan 6 pilihan. Jumlah pilihan selalu memuat target dan tidak pernah melebihi isi pool.
+
+Hanya Bentuk Cari yang berakhir: enam ronde, lalu `finishGame(gameId: 'bentuk', …)` dan layar Hebat. Buah Tebak, Warna, dan Main Musik berputar tanpa akhir. Main Musik tidak memberi hadiah; setelah satu lagu selesai ia menampilkan pil "Hebat! Kamu memainkan satu lagu!" selama 3,5 detik lalu kembali ke keadaan bebas.
 
 ## 3. Panggung tablet dan HP
 

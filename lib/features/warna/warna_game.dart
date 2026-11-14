@@ -36,7 +36,12 @@ WarnaSet buatWarnaSet(Katalog katalog, String warna, Random random) {
   final kartu = <WarnaKartu>[];
   final terpakai = <String>{};
 
-  void tambah(String id, {String? gambarId, WarnaBentuk? bentuk, required String w}) {
+  void tambah(
+    String id, {
+    String? gambarId,
+    WarnaBentuk? bentuk,
+    required String w,
+  }) {
     var unik = id;
     var n = 2;
     while (!terpakai.add(unik)) {

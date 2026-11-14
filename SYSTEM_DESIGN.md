@@ -63,6 +63,7 @@ Aturan penyimpanan:
 - Berkas yang tidak bisa dibaca dipindah ke `<berkas>.rusak-<milidetik>` dan dianggap kosong. `list` melewati `.tmp` dan `.rusak-`.
 - `waktuBermain` dan `harian` disimpan untuk 7 hari terakhir. Pemangkasan terjadi setiap kali progres berubah.
 - `perkembangan` tidak dipangkas; ini data jangka panjang yang dipakai ringkasan Area Orang Tua.
+- `perkembangan` hanya diisi `markItem` untuk modul `hewan` (42 isi) dan `buahSayur` (35 isi). Warna, Bentuk, dan Main Musik hanya mencatat `kegiatanTerakhir`, karena modulnya tidak ada di ringkasan Minggu ini.
 - `karya/` dan `draf/` belum ada di kode. Rencana 07 menambahkan maksimal 12 karya, satu draf per halaman, dan batas 200 KB per berkas (maksimal 6 MB untuk semua).
 - Hapus semua data di Area Orang Tua menjalankan `jsonStore.deleteAll`, `progress.reset`, dan `prefs.resetAll`, membuang pengatur waktu dari memori, mencabut akses orang tua, lalu membuka Sambutan lagi.
 
@@ -93,6 +94,8 @@ Aturan yang sudah berlaku di kode:
 - Musik latar memakai `AudioService.musicAsset`: berkas OGG di `assets/audio/`, diputar berulang. Berkasnya belum ada, jadi pemutaran musik saat ini tidak menghasilkan suara.
 - Sesi iOS memakai kategori playback lewat kanal `moci/audio_session`, supaya suara tetap terdengar saat sakelar senyap menyala. Pelaksana native-nya ada di `ios/Runner/MociChannels.swift`.
 - TTS perangkat dipakai di semua mode build. Ia memakai kanal `moci/tts`, dan manifest utama menambahkan blok `<queries>` untuk `TTS_SERVICE` (Android 11+).
+- Alat musik Main Musik memakai 12 WAV mono 16-bit 24 kHz di `assets/audio/instrumen/`, dibuat `tool/buat_instrumen.dart` dan dicatat `Milik sendiri`. Tidak ada sintesis saat aplikasi berjalan; `MusikAudio` memuat semuanya sekali setelah frame pertama, lalu memutar nada langsung lewat `AudioEngine` dengan volume efek 0,7 dan mengikuti sakelar Efek suara. Latensi main di perangkat ditargetkan di bawah 50 ms.
+- Suara hewan memakai `assets/audio/hewan/<id>.m4a` (42 berkas CC0). Kalau aset tidak ada di `AssetCatalog`, "Dengar suara" membacakan tiruan bunyi dari katalog lewat TTS; layar tidak pernah memutar path yang tidak ada.
 
 ## 5. Mikrofon (Rencana 03)
 
@@ -156,7 +159,7 @@ Kalau sistem mengabaikan kunci orientasi, panggung tetap aman karena isi selalu 
 | Memori | Di bawah 200 MB | Uji perangkat |
 | Kontras | Teks minimal 4,5 : 1 | `test/app/theme/contrast_test.dart` |
 
-Ukuran sekarang: ilustrasi 452 KB, font 320 KB, dan belum ada berkas audio.
+Ukuran sekarang: ilustrasi 452 KB, font 320 KB, dan audio 1,9 MB (42 suara hewan CC0 dan 12 instrumen `Milik sendiri`).
 
 ## 9. CI dan rilis
 
@@ -166,3 +169,9 @@ Ukuran sekarang: ilustrasi 452 KB, font 320 KB, dan belum ada berkas audio.
 - `golden` di macOS: `flutter pub get` dan `flutter test --tags golden`.
 
 Belum ada workflow tag rilis. Rencana 10 menambahkan build TestFlight dan Play internal testing, signing, kebijakan privasi publik, serta pengisian `AppConfig.privacyPolicyUrl` dan `AppConfig.supportEmail`. Selama keduanya `null`, tautan terkait tidak tampil di Area Orang Tua.
+
+## 10. Menu dan permainan berakhir
+
+- Lima menu Rencana 04 sudah memakai layarnya sendiri: `/hewan`, `/buah-sayur`, `/warna`, `/bentuk`, dan `/musik` tidak lagi `ComingSoonScreen`. Setiap layar menerima parameter awal dari query (`hewan`, `buah` dan `mode`, `warna`, `bentuk` dan `mode`, `alat` dan `lagu`), mencatat `setLastActivity` saat dibuka dan saat pilihan berganti, dan mengabaikan nilai yang tidak dikenal.
+- Hanya Bentuk Cari yang berakhir. Ronde keenam memanggil `finishGame(gameId: 'bentuk', roundId: '<seed>/6')` lalu membuka `/hebat` dengan `HebatArgs`; `roundId` memakai seed per main, jadi "Ambil hadiah" dua kali tetap satu hadiah dan main berikutnya tetap bisa mendapat hadiah.
+- Buah Tebak, Warna, dan Main Musik berputar tanpa akhir. Main Musik tidak memberi bintang atau stiker: satu lagu selesai ditandai pil dan narasi "Hebat! Kamu memainkan satu lagu!", lalu kembali ke keadaan bebas.
