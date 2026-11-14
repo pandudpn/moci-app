@@ -134,6 +134,10 @@ class MenuThemeScope extends InheritedWidget {
 
   final MenuTheme theme;
 
+  /// `null` di luar panggung, misalnya di rute dialog.
+  static MenuTheme? maybeOf(BuildContext context) =>
+      context.dependOnInheritedWidgetOfExactType<MenuThemeScope>()?.theme;
+
   static MenuTheme of(BuildContext context) {
     final scope = context.dependOnInheritedWidgetOfExactType<MenuThemeScope>();
     assert(

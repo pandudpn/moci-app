@@ -79,7 +79,10 @@ class _MociPressableState extends ConsumerState<MociPressable>
 
   @override
   Widget build(BuildContext context) {
-    final shadow = widget.shadowColor ?? MenuThemeScope.of(context).shadow;
+    final shadow =
+        widget.shadowColor ??
+        MenuThemeScope.maybeOf(context)?.shadow ??
+        MociColors.neutralShadow;
     Widget box = DecoratedBox(
       decoration: BoxDecoration(
         color: widget.color,

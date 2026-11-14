@@ -1,5 +1,3 @@
-import 'dart:math' as math;
-
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -22,7 +20,9 @@ class StarCounter extends ConsumerWidget {
         borderRadius: BorderRadius.circular(MociSize.topPillHeight / 2),
         boxShadow: [
           BoxShadow(
-            color: MenuThemeScope.of(context).shadow,
+            color:
+                MenuThemeScope.maybeOf(context)?.shadow ??
+                MociColors.neutralShadow,
             offset: const Offset(0, MociSize.topShadow),
             blurRadius: 0,
           ),
@@ -46,29 +46,42 @@ class StarCounter extends ConsumerWidget {
   }
 }
 
+/// Path bintang prototipe (viewBox 40 x 40) diskalakan ke [size].
+@visibleForTesting
+Path starPath(Size size) {
+  const pts = [
+    (20.0, 3.0),
+    (25.2, 13.6),
+    (36.9, 15.3),
+    (28.4, 23.5),
+    (30.4, 35.1),
+    (20.0, 29.6),
+    (9.6, 35.1),
+    (11.6, 23.5),
+    (3.1, 15.3),
+    (14.8, 13.6),
+  ];
+  final k = size.width / 40;
+  final path = Path()..moveTo(pts[0].$1 * k, pts[0].$2 * k);
+  for (final p in pts.skip(1)) {
+    path.lineTo(p.$1 * k, p.$2 * k);
+  }
+  return path..close();
+}
+
 class _StarPainter extends CustomPainter {
   const _StarPainter();
 
   @override
   void paint(Canvas canvas, Size size) {
-    final c = size.center(Offset.zero);
-    final outer = size.width / 2 - 2;
-    final inner = outer * 0.5;
-    final path = Path();
-    for (var i = 0; i < 10; i++) {
-      final r = i.isEven ? outer : inner;
-      final a = -math.pi / 2 + i * math.pi / 5;
-      final p = Offset(c.dx + r * math.cos(a), c.dy + r * math.sin(a));
-      i == 0 ? path.moveTo(p.dx, p.dy) : path.lineTo(p.dx, p.dy);
-    }
-    path.close();
+    final path = starPath(size);
     canvas.drawPath(path, Paint()..color = MociColors.starFill);
     canvas.drawPath(
       path,
       Paint()
         ..style = PaintingStyle.stroke
         ..color = MociColors.starStroke
-        ..strokeWidth = 3
+        ..strokeWidth = 2 * size.width / 40
         ..strokeJoin = StrokeJoin.round,
     );
   }
