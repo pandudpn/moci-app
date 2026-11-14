@@ -123,7 +123,7 @@ final class TracingSession {
   bool mulai(Offset p) {
     final s = _stroke;
     if (s == null || s.points.isEmpty || _selesai) return false;
-    _aktif = (s.points.first.offset - p).distance <= radiusMulai;
+    _aktif = (pandu - p).distance <= radiusMulai;
     return _aktif;
   }
 

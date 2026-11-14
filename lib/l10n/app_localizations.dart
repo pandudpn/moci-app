@@ -1357,6 +1357,30 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Hebat! Kamu bisa menulis angka'**
   String get tulisSayDoneAngka;
+
+  /// Judul bilah atas layar angka
+  ///
+  /// In id, this message translates to:
+  /// **'Angka'**
+  String get angkaTitle;
+
+  /// Pil mode berhitung
+  ///
+  /// In id, this message translates to:
+  /// **'Berhitung'**
+  String get angkaCount;
+
+  /// Satuan angka di judul
+  ///
+  /// In id, this message translates to:
+  /// **'angka'**
+  String get tulisUnitAngka;
+
+  /// Subjudul kartu Lanjutkan untuk Tulis Angka
+  ///
+  /// In id, this message translates to:
+  /// **'Tulis angka {angka}'**
+  String berandaContinueTulisAngka(String angka);
 }
 
 class _AppLocalizationsDelegate

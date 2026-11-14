@@ -119,7 +119,13 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
       _soon(Routes.hurufUcapkan, MenuTheme.ucapkan),
       _soon(Routes.angka, MenuTheme.berhitung),
-      _soon(Routes.angkaTulis, MenuTheme.berhitung),
+      GoRoute(
+        path: Routes.angkaTulis,
+        builder: (context, state) => TulisScreen(
+          mode: TulisMode.angka,
+          awal: state.uri.queryParameters['angka'],
+        ),
+      ),
       _soon(Routes.hewan, MenuTheme.hewan),
       _soon(Routes.buahSayur, MenuTheme.buahSayur),
       _soon(Routes.warna, MenuTheme.warna),

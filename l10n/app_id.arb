@@ -708,5 +708,26 @@
   "tulisSayDoneAngka": "Hebat! Kamu bisa menulis angka",
   "@tulisSayDoneAngka": {
     "description": "narasi"
+  },
+  "angkaTitle": "Angka",
+  "@angkaTitle": {
+    "description": "Judul bilah atas layar angka"
+  },
+  "angkaCount": "Berhitung",
+  "@angkaCount": {
+    "description": "Pil mode berhitung"
+  },
+  "tulisUnitAngka": "angka",
+  "@tulisUnitAngka": {
+    "description": "Satuan angka di judul"
+  },
+  "berandaContinueTulisAngka": "Tulis angka {angka}",
+  "@berandaContinueTulisAngka": {
+    "description": "Subjudul kartu Lanjutkan untuk Tulis Angka",
+    "placeholders": {
+      "angka": {
+        "type": "String"
+      }
+    }
   }
 }

@@ -19,6 +19,12 @@ final Map<String, ContinueLabelBuilder> continueLabels = {
         ? l10n.menuHurufTitle
         : l10n.berandaContinueTulisHuruf(huruf);
   },
+  Routes.angkaTulis: (l10n, params) {
+    final angka = params['angka'];
+    return angka == null || angka.isEmpty
+        ? l10n.menuAngkaTitle
+        : l10n.berandaContinueTulisAngka(angka);
+  },
 };
 
 /// Subjudul untuk [activity], atau `null` bila rutenya bukan bagian menu mana

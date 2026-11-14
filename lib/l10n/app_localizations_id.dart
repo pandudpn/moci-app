@@ -692,4 +692,18 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get tulisSayDoneAngka => 'Hebat! Kamu bisa menulis angka';
+
+  @override
+  String get angkaTitle => 'Angka';
+
+  @override
+  String get angkaCount => 'Berhitung';
+
+  @override
+  String get tulisUnitAngka => 'angka';
+
+  @override
+  String berandaContinueTulisAngka(String angka) {
+    return 'Tulis angka $angka';
+  }
 }

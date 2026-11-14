@@ -33,6 +33,7 @@ class TulisScreen extends ConsumerStatefulWidget {
   const TulisScreen({super.key, this.mode = TulisMode.huruf, this.awal});
 
   static ValueKey<String> keyKey(String k) => ValueKey('tulis-key-$k');
+  static ValueKey<String> starKey(String k) => ValueKey('tulis-star-$k');
 
   final TulisMode mode;
 
@@ -44,10 +45,8 @@ class TulisScreen extends ConsumerStatefulWidget {
 }
 
 class _TulisScreenState extends ConsumerState<TulisScreen> {
-  static const _accent = Color(0xFFE8384F);
-  static const _accentShadow = Color(0xFFB82A3E);
-  static const _soft = Color(0xFFFFF1EC);
-  static const _softShadow = Color(0xFFF3C2B3);
+  static const _accentHuruf = Color(0xFFE8384F);
+  static const _accentAngka = Color(0xFF1C7ED6);
   static const _boardScale = 540 / 520;
 
   late final TulisKeySpec _spec;
@@ -61,11 +60,25 @@ class _TulisScreenState extends ConsumerState<TulisScreen> {
 
   String get _modul => _angka ? 'angka' : 'huruf';
 
+  Color get _accent => _angka ? _accentAngka : _accentHuruf;
+
+  Color get _accentShadow =>
+      _angka ? const Color(0xFF1565B0) : const Color(0xFFB82A3E);
+
+  Color get _soft => _angka ? const Color(0xFFEAF4FF) : const Color(0xFFFFF1EC);
+
+  Color get _softShadow =>
+      _angka ? const Color(0xFFBBD9F7) : const Color(0xFFF3C2B3);
+
   @override
   void initState() {
     super.initState();
     _spec = TulisKeySpec.of(widget.mode);
-    _k = _spec.keys.contains(widget.awal) ? widget.awal! : _spec.keys.first;
+    _k = _spec.keys.contains(widget.awal)
+        ? widget.awal!
+        : _angka
+        ? '2'
+        : _spec.keys.first;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
       _catatAktivitas();
@@ -74,8 +87,9 @@ class _TulisScreenState extends ConsumerState<TulisScreen> {
   }
 
   void _catatAktivitas() {
-    ref.read(progressProvider.notifier).setLastActivity(Routes.hurufTulis, {
-      'huruf': _k,
+    final route = _angka ? Routes.angkaTulis : Routes.hurufTulis;
+    ref.read(progressProvider.notifier).setLastActivity(route, {
+      _angka ? 'angka' : 'huruf': _k,
     });
   }
 
@@ -209,7 +223,7 @@ class _TulisScreenState extends ConsumerState<TulisScreen> {
           right: 0,
           child: MociTopBar(
             leading: const MociBackButton(),
-            title: _angka ? l10n.menuAngkaTitle : l10n.hurufTitle,
+            title: _angka ? l10n.angkaTitle : l10n.hurufTitle,
             trailing: [
               RouteModePill(
                 tabs: _tabs(l10n),
@@ -274,7 +288,10 @@ class _TulisScreenState extends ConsumerState<TulisScreen> {
                     children: [
                       Expanded(
                         child: Text(
-                          '${l10n.tulisWriteVerb} $_k',
+                          _angka
+                              ? '${l10n.tulisWriteVerb} '
+                                    '${l10n.tulisUnitAngka} $_k'
+                              : '${l10n.tulisWriteVerb} $_k',
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: MociText.title.copyWith(
@@ -365,9 +382,7 @@ class _TulisScreenState extends ConsumerState<TulisScreen> {
                   right: 30,
                   top: 462,
                   height: 3,
-                  child: const DecoratedBox(
-                    decoration: BoxDecoration(color: _soft),
-                  ),
+                  child: DecoratedBox(decoration: BoxDecoration(color: _soft)),
                 ),
                 Positioned(
                   left: 28,
@@ -403,7 +418,7 @@ class _TulisScreenState extends ConsumerState<TulisScreen> {
     if (_angka) {
       return [
         (
-          label: l10n.menuAngkaTitle,
+          label: l10n.angkaCount,
           route: Routes.angka,
           icon: const GameGlyph(GameGlyphKind.count),
         ),
@@ -515,10 +530,11 @@ class _TulisScreenState extends ConsumerState<TulisScreen> {
             ),
           ),
           if (done)
-            const Positioned(
+            Positioned(
+              key: TulisScreen.starKey(k),
               right: -4,
               top: -6,
-              child: GameGlyph(GameGlyphKind.star, size: 18),
+              child: const GameGlyph(GameGlyphKind.star, size: 18),
             ),
         ],
       ),
@@ -560,13 +576,13 @@ class _TulisScreenState extends ConsumerState<TulisScreen> {
     required GameGlyphKind icon,
     required String label,
     required VoidCallback onTap,
-    Color color = _soft,
-    Color shadowColor = _softShadow,
+    Color? color,
+    Color? shadowColor,
   }) {
     return MociPressable(
       onTap: onTap,
-      color: color,
-      shadowColor: shadowColor,
+      color: color ?? _soft,
+      shadowColor: shadowColor ?? _softShadow,
       depth: 5,
       borderRadius: const BorderRadius.all(Radius.circular(30)),
       semanticLabel: label,

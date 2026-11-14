@@ -705,5 +705,26 @@
   "tulisSayDoneAngka": "Great job! You wrote the number",
   "@tulisSayDoneAngka": {
     "description": "narasi"
+  },
+  "angkaTitle": "Numbers",
+  "@angkaTitle": {
+    "description": "Judul bilah atas layar angka"
+  },
+  "angkaCount": "Count",
+  "@angkaCount": {
+    "description": "Pil mode berhitung"
+  },
+  "tulisUnitAngka": "the number",
+  "@tulisUnitAngka": {
+    "description": "Satuan angka di judul"
+  },
+  "berandaContinueTulisAngka": "Write the number {angka}",
+  "@berandaContinueTulisAngka": {
+    "description": "Subjudul kartu lanjutkan untuk Tulis Angka",
+    "placeholders": {
+      "angka": {
+        "type": "String"
+      }
+    }
   }
 }
