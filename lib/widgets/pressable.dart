@@ -62,6 +62,14 @@ class _MociPressableState extends ConsumerState<MociPressable>
     super.dispose();
   }
 
+  @override
+  void didUpdateWidget(MociPressable old) {
+    super.didUpdateWidget(old);
+    // Dimatikan di tengah tekanan (mis. penyimpanan mulai): tekanan dilepas,
+    // kalau tidak kotak tertinggal mengecil sampai disentuh lagi.
+    if (old.onTap != null && widget.onTap == null) _press.reverse();
+  }
+
   void _down(PointerDownEvent _) {
     if (_enabled) _press.forward();
   }

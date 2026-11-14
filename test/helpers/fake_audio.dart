@@ -31,6 +31,9 @@ final class FakeAudioEngine implements AudioEngine {
   /// Aset yang sengaja gagal dimuat (play mengembalikan null).
   final failing = <String>{};
 
+  /// play melempar galat, seperti mesin yang mati di tengah jalan.
+  bool gagalPlay = false;
+
   int _next = 1;
   final _finished = StreamController<SoundId>.broadcast();
 
@@ -61,6 +64,7 @@ final class FakeAudioEngine implements AudioEngine {
   }) async {
     final gate = gates[asset];
     if (gate != null) await gate.future;
+    if (gagalPlay) throw StateError('mesin audio gagal');
     if (failing.contains(asset)) return null;
     final id = _next++;
     plays.add((asset: asset, volume: volume, loop: loop, id: id));

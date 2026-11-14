@@ -60,4 +60,16 @@ void main() {
     await tester.pump();
     expect(tester.hasRunningAnimations, isFalse);
   });
+
+  testWidgets('gambar maskot punya lapisan repaint sendiri', (tester) async {
+    await tester.pumpWidget(_host(const MociMascot()));
+    await tester.pump(const Duration(milliseconds: 100));
+    expect(
+      find.descendant(
+        of: find.byType(MociMascot),
+        matching: find.byType(RepaintBoundary),
+      ),
+      findsWidgets,
+    );
+  });
 }

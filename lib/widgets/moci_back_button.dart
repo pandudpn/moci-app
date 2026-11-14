@@ -32,6 +32,8 @@ class MociBackButton extends StatelessWidget {
       semanticLabel: semanticLabel ?? context.l10n.commonBack,
       depth: MociSize.backShadow,
       borderRadius: BorderRadius.circular(MociSize.backRadius),
+      // Sama dengan tombol lain; tampilan 76 tetap lebih besar.
+      minTouch: MociSize.minTouchTablet,
       onTap: onTap ?? () => _defaultAction(context),
       child: const SizedBox(
         width: MociSize.backButton,

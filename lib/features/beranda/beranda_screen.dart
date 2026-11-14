@@ -36,10 +36,18 @@ class _BerandaScreenState extends ConsumerState<BerandaScreen> {
     // diam bila mesin belum siap atau berkasnya belum ada.
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
-      if (ref.read(prefsProvider).music) {
-        ref.read(audioServiceProvider).startMusic();
-      }
+      if (ref.read(prefsProvider).music) _startMusic();
     });
+  }
+
+  /// Musik latar tidak wajib tampil: gagal sekali cukup dicatat, layar tetap
+  /// jalan.
+  Future<void> _startMusic() async {
+    try {
+      await ref.read(audioServiceProvider).startMusic();
+    } catch (e) {
+      debugPrint('beranda: musik latar gagal dimulai: $e');
+    }
   }
 
   void _say(String id, String text, AppLang lang) {

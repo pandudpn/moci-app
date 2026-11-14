@@ -28,7 +28,14 @@ class MociTopBar extends StatelessWidget {
       child: Row(
         children: [
           if (leading != null) ...[leading!, const SizedBox(width: 18)],
-          Expanded(child: Text(title, style: MociText.title, maxLines: 1)),
+          Expanded(
+            child: Text(
+              title,
+              style: MociText.title,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
           for (final w in trailing) ...[const SizedBox(width: 18), w],
         ],
       ),

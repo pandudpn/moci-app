@@ -106,13 +106,18 @@ class _OrangTuaScreenState extends ConsumerState<OrangTuaScreen> {
           color: MociColors.correct,
           shadowColor: MociColors.correctShadow,
           textColor: MociColors.white,
-          onTap: () {
-            prefs.setChildName(_nameController.text);
-            _closeDialog();
-          },
+          onTap: () => _saveName(prefs),
         ),
       ],
     );
+  }
+
+  /// Nama ditulis dulu, baru dialog ditutup: penulisan yang lambat tidak
+  /// membuat orang tua melihat nama lama sesudah menekan Simpan.
+  Future<void> _saveName(PrefsController prefs) async {
+    await prefs.setChildName(_nameController.text);
+    if (!mounted) return;
+    _closeDialog();
   }
 
   MociDialogButton _cancelButton(AppLocalizations l10n) => MociDialogButton(

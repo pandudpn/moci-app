@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
+import 'package:moci/app/theme/moci_metrics.dart';
 import 'package:moci/core/audio/audio_service.dart';
 import 'package:moci/core/audio/sfx.dart';
 import 'package:moci/core/lang.dart';
@@ -322,6 +323,27 @@ void main() {
     env.store.setBool('moci.musik', false);
     await _open(t, env: env);
     expect(env.audio.plays, isEmpty);
+  });
+
+  testWidgets('musik gagal dimulai: tidak melempar, dicatat', (t) async {
+    final env = TestEnv(assets: {AudioService.musicAsset});
+    env.audio.gagalPlay = true;
+    final logs = <String>[];
+    final lama = debugPrint;
+    debugPrint = (String? m, {int? wrapWidth}) {
+      if (m != null) logs.add(m);
+    };
+    addTearDown(() => debugPrint = lama);
+    await _open(t, env: env);
+    await t.pump();
+    expect(t.takeException(), isNull);
+    expect(logs.where((l) => l.contains('musik latar')), isNotEmpty);
+  });
+
+  testWidgets('tombol Orang Tua tablet: tepi kanan 32 pt', (t) async {
+    await _open(t);
+    final r = t.getRect(find.byKey(const ValueKey('parents-button')));
+    expect(r.right, tabletSize.width - MociSize.edgeTablet);
   });
 }
 

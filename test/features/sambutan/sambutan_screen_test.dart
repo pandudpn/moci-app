@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
@@ -5,6 +7,8 @@ import 'package:material_ui/material_ui.dart';
 import 'package:moci/core/lang.dart';
 import 'package:moci/core/prefs/app_prefs.dart';
 import 'package:moci/core/prefs/prefs_controller.dart';
+import 'package:moci/core/storage/key_value_store.dart';
+import 'package:moci/features/sambutan/sambutan_screen.dart';
 
 import '../../helpers/harness.dart';
 
@@ -151,5 +155,61 @@ void main() {
       expect(r.top, greaterThan(400));
       expect(r.bottom, lessThan(560));
     });
+  });
+
+  // Tanpa router: penulisan yang tertahan tidak boleh mengalihkan layar
+  // selagi diuji, dan `context.go` sesudahnya memang tidak dipanggil.
+  testWidgets('selagi menyimpan: ketukan kedua dan ganti bahasa diabaikan', (
+    t,
+  ) async {
+    final gate = GatedKeyValueStore(MemoryKeyValueStore());
+    final env = TestEnv(onboarded: false, store: gate);
+    await pumpScreen(t, const SambutanScreen(), env: env);
+    await t.pump(const Duration(milliseconds: 500));
+    gate.tulis.clear(); // hitungan mulai dari sini, tanpa 3 tulisan benih
+    gate.gerbang = Completer<void>();
+    env.clock.advance(const Duration(seconds: 1));
+    await t.tap(find.text('Ayo Mulai!'));
+    await t.pump();
+    expect(gate.total, 1, reason: 'penulisan pertama sudah berjalan');
+
+    // Jeda tombol sudah lewat: yang menahan ketukan kedua adalah penjaga.
+    env.clock.advance(const Duration(seconds: 1));
+    await t.tap(find.text('Ayo Mulai!'));
+    await t.pump();
+    expect(gate.total, 1, reason: 'hanya sekali simpan');
+
+    await t.tap(find.text('English'));
+    await t.pump();
+    expect(
+      find.text('Ayo Mulai!'),
+      findsOneWidget,
+      reason: 'bahasa tidak berganti selagi menyimpan',
+    );
+  });
+
+  testWidgets('gagal menyimpan: tidak melempar dan tetap di layar', (t) async {
+    final gate = GatedKeyValueStore(MemoryKeyValueStore());
+    final env = TestEnv(onboarded: false, store: gate);
+    gate.gagal = true;
+    await pumpScreen(t, const SambutanScreen(), env: env);
+    await t.pump(const Duration(milliseconds: 500));
+    expect(find.text('Ayo Mulai!'), findsOneWidget);
+    await t.tap(find.text('Ayo Mulai!'));
+    await t.pump();
+    await t.pump(const Duration(milliseconds: 100));
+    expect(t.takeException(), isNull);
+    expect(find.text('Ayo Mulai!'), findsOneWidget);
+  });
+
+  testWidgets('ketukan di luar kolom nama melepas fokus', (t) async {
+    await _open(t);
+    await t.enterText(find.byType(TextField), 'Raka');
+    await t.pump();
+    final focus = t.widget<EditableText>(find.byType(EditableText)).focusNode;
+    expect(focus.hasFocus, isTrue);
+    await t.tapAt(const Offset(20, 20));
+    await t.pump();
+    expect(focus.hasFocus, isFalse);
   });
 }

@@ -76,4 +76,45 @@ void main() {
     expect(opacityOf('M'), 1);
     expect(opacityOf('i'), lessThan(1));
   });
+
+  group('gerak dikurangi', () {
+    void still(WidgetTester t, bool on) =>
+        t.platformDispatcher.accessibilityFeaturesTestValue = on
+        ? const FakeAccessibilityFeatures(disableAnimations: true)
+        : const FakeAccessibilityFeatures();
+
+    double opacityOf(WidgetTester t, String c) => t
+        .widget<Opacity>(
+          find.ancestor(
+            of: find.byKey(ValueKey('splash-letter-$c')),
+            matching: find.byType(Opacity),
+          ),
+        )
+        .opacity;
+
+    testWidgets('adegan diam memakai frame akhir', (t) async {
+      still(t, true);
+      addTearDown(t.platformDispatcher.clearAccessibilityFeaturesTestValue);
+      await pumpApp(t, initialLocation: '/splash');
+      await t.pump(const Duration(milliseconds: 300));
+      for (final c in ['M', 'o', 'c', 'i']) {
+        expect(opacityOf(t, c), 1, reason: 'huruf $c');
+      }
+      await t.pump(const Duration(milliseconds: 300));
+      expect(opacityOf(t, 'i'), 1, reason: 'tidak ada gerak');
+    });
+
+    testWidgets('gerak dinyalakan lagi: adegan lanjut, tidak beku', (t) async {
+      await pumpApp(t, initialLocation: '/splash');
+      await t.pump(const Duration(milliseconds: 200));
+      still(t, true);
+      addTearDown(t.platformDispatcher.clearAccessibilityFeaturesTestValue);
+      await t.pump();
+      expect(opacityOf(t, 'M'), 1, reason: 'frame diam');
+      still(t, false);
+      await t.pump();
+      await t.pump(const Duration(milliseconds: 1500));
+      expect(opacityOf(t, 'M'), 1, reason: 'animasi lanjut dari awal');
+    });
+  });
 }

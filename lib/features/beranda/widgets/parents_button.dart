@@ -4,7 +4,6 @@ import '../../../app/theme/moci_colors.dart';
 import '../../../app/theme/moci_text.dart';
 import '../../../widgets/pressable.dart';
 
-const _ink = Color(0xFF2B2350);
 const _inkShadow = Color(0xFF16112F);
 
 /// Pil gelap "Orang Tua" bergembok. Pembukaannya lewat gerbang.
@@ -26,7 +25,7 @@ class ParentsButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final height = compact ? 48.0 : 64.0;
     return MociPressable(
-      color: _ink,
+      color: MociColors.ink,
       shadowColor: _inkShadow,
       depth: compact ? 5 : 6,
       minTouch: compact ? 56 : 64,
