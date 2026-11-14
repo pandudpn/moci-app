@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:moci/core/lang.dart';
+import 'package:moci/core/speech/mic_level_meter.dart';
 import 'package:moci/core/speech/speech_engine.dart';
 
 /// Pengenal ucapan palsu: hasil giliran dan status diatur tes.
@@ -45,6 +46,29 @@ final class FakeSpeechEngine implements SpeechEngine {
     final g = gate;
     if (g != null) await g.future;
     return turn;
+  }
+
+  @override
+  Future<void> stop() async => stopCount++;
+}
+
+/// Pengukur level suara palsu: hasil giliran diatur tes.
+final class FakeMicLevelMeter implements MicLevelMeter {
+  bool hasil = false;
+  bool availableValue = true;
+
+  int listenCount = 0;
+  int stopCount = 0;
+  final limits = <Duration>[];
+
+  @override
+  Future<bool> get available async => availableValue;
+
+  @override
+  Future<bool> listen({required Duration batas}) async {
+    listenCount++;
+    limits.add(batas);
+    return hasil;
   }
 
   @override

@@ -23,6 +23,7 @@ import 'package:moci/core/prefs/prefs_controller.dart';
 import 'package:moci/core/progress/progress.dart';
 import 'package:moci/core/progress/progress_controller.dart';
 import 'package:moci/core/providers.dart';
+import 'package:moci/core/speech/method_channel_mic_level_meter.dart';
 import 'package:moci/core/speech/speech_to_text_engine.dart';
 import 'package:moci/core/storage/json_store.dart';
 import 'package:moci/core/storage/key_value_store.dart';
@@ -191,6 +192,7 @@ final class TestEnv {
   final audio = FakeAudioEngine();
   final tts = FakeDeviceTts();
   final speech = FakeSpeechEngine();
+  final meter = FakeMicLevelMeter();
   final FakeClock clock;
   final ticks = StreamController<void>.broadcast();
 
@@ -208,6 +210,7 @@ final class TestEnv {
     deviceTtsProvider.overrideWithValue(tts),
     audioSessionProvider.overrideWithValue(_NoopAudioSession()),
     speechEngineProvider.overrideWithValue(speech),
+    micLevelMeterProvider.overrideWithValue(meter),
     playTimerTicksProvider.overrideWithValue(ticks.stream),
     ...extraOverrides,
   ];
