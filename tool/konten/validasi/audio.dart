@@ -5,9 +5,11 @@ import 'package:moci/core/content/katalog.dart';
 import 'laporan.dart';
 import 'struktur.dart';
 
-/// Folder audio dari luar yang wajib tercatat di `LICENSES.csv`.
-/// Rekaman narasi sendiri (`vo/`) dikecualikan.
-const folderAudioEksternal = ['hewan', 'sfx', 'musik', 'instrumen'];
+/// Folder rekaman narasi sendiri; berkas di dalamnya tidak butuh baris lisensi.
+const folderAudioSendiri = ['vo'];
+
+/// Ekstensi berkas audio yang wajib punya baris lisensi.
+const ekstensiAudio = {'.m4a', '.mp3', '.wav', '.ogg', '.aac', '.flac', '.caf'};
 
 /// Lisensi yang boleh dipakai. Keputusan 14 November 2026: sumber suara
 /// Freesound CC0 dan rekaman sendiri, tanpa Pixabay dan tanpa CC BY.
@@ -28,18 +30,16 @@ void validasiAudio(
   _anggaran(laporan, audio, batasByte);
 }
 
-/// Setiap berkas di folder eksternal punya baris lisensi yang sah.
+/// Setiap berkas audio selain rekaman sendiri punya baris lisensi yang sah.
 ///
 /// Aturan ini galat di semua mode: berkas yang lisensinya tidak jelas tidak
 /// boleh ikut terpasang, sekalipun aplikasinya masih dalam pengembangan.
 void _lisensi(Laporan laporan, Directory audio) {
   final berkas = <String>[
-    for (final folder in folderAudioEksternal)
-      if (Directory('${audio.path}/$folder').existsSync())
-        for (final entri in Directory(
-          '${audio.path}/$folder',
-        ).listSync(recursive: true))
-          if (entri is File) _relatif(audio, entri.path),
+    if (audio.existsSync())
+      for (final entri in audio.listSync(recursive: true))
+        if (entri is File && _butuhLisensi(_relatif(audio, entri.path)))
+          _relatif(audio, entri.path),
   ]..sort();
   final lisensi = _bacaLisensi(File('${audio.path}/LICENSES.csv'));
 
@@ -72,6 +72,13 @@ String _relatif(Directory audio, String path) {
   final awalan = audio.path.endsWith('/') ? audio.path : '${audio.path}/';
   final nama = path.startsWith(awalan) ? path.substring(awalan.length) : path;
   return nama.replaceAll(r'\', '/');
+}
+
+/// Berkas audio di luar folder rekaman sendiri wajib tercatat lisensinya.
+bool _butuhLisensi(String relatif) {
+  if (!ekstensiAudio.any(relatif.toLowerCase().endsWith)) return false;
+  final bagian = relatif.split('/');
+  return !(bagian.length > 1 && folderAudioSendiri.contains(bagian.first));
 }
 
 /// Peta nama berkas → daftar lisensi dari `LICENSES.csv`.

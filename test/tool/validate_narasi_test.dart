@@ -142,6 +142,18 @@ void main() {
       expect(laporan.adaGalat, isTrue);
     },
   );
+  test('audio di folder baru tetap wajib berlisensi', () async {
+    final root = siapkan(
+      rusak: (r) => _tulis(r, 'assets/audio/unduhan/beep.WAV', ''),
+    );
+    addTearDown(() => root.deleteSync(recursive: true));
+    final laporan = await validasiKonten(root: root);
+    expect(
+      _galat(laporan, 'lisensi_audio_lengkap').join(),
+      contains('unduhan/beep.WAV'),
+    );
+    expect(laporan.adaGalat, isTrue);
+  });
 
   test('baris CC0 dan Milik sendiri meloloskan lisensi', () async {
     final root = siapkan(
