@@ -2,8 +2,10 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:moci/app/layout/moci_stage.dart';
 import 'package:moci/app/theme/menu_theme.dart';
+import 'package:moci/app/theme/moci_metrics.dart';
 import 'package:moci/core/lang.dart';
 import 'package:moci/widgets/moci_back_button.dart';
+import 'package:moci/widgets/pressable.dart';
 
 import '../helpers/harness.dart';
 
@@ -40,5 +42,12 @@ void main() {
     await tester.tap(find.byType(MociBackButton));
     await tester.pump();
     expect(n, 1);
+  });
+  testWidgets('area sentuh minimal sama dengan tombol lain', (tester) async {
+    await pumpScreen(tester, _host);
+    final p = tester.widget<MociPressable>(find.byType(MociPressable));
+    expect(p.minTouch, MociSize.minTouchTablet);
+    // Tampilan tetap 76 x 76: area sentuh 64 tidak mengubah ukuran.
+    expect(tester.getSize(find.byType(MociBackButton)), const Size(76, 76));
   });
 }
