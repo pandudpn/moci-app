@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 import '../../../app/theme/moci_colors.dart';
+import '../../../app/theme/moci_metrics.dart';
 import '../../../app/theme/moci_text.dart';
 import '../../../l10n/l10n.dart';
 import '../../../widgets/moci_mascot.dart';
@@ -57,7 +58,8 @@ class BerandaTablet extends StatelessWidget {
             ),
           ),
           Positioned(
-            right: 30,
+            // Margin tepi kanan sama dengan bilah atas (32 pt).
+            right: MociSize.edgeTablet,
             top: 26,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
