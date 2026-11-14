@@ -160,4 +160,51 @@ void main() {
     expect(p.dailyLimitMinutes, 45);
     expect(s.getString('moci.usia'), '4-5');
   });
+
+  test('nama hanya spasi jadi kosong', () async {
+    final s = MemoryKeyValueStore();
+    final c = make(s, const Locale('id'));
+    await c.read(prefsProvider.notifier).setChildName('   \t ');
+    expect(c.read(prefsProvider).childName, '');
+    expect(s.getString('moci.nama'), '');
+  });
+
+  test('spasi di ujung hasil potongan dibuang', () async {
+    final s = MemoryKeyValueStore();
+    final c = make(s, const Locale('id'));
+    await c.read(prefsProvider.notifier).setChildName('${'a' * 19}   b');
+    expect(s.getString('moci.nama'), 'a' * 19);
+    expect(c.read(prefsProvider).childName, 'a' * 19);
+  });
+
+  test('resetAll mereset bidang selain nama', () async {
+    final s = MemoryKeyValueStore();
+    final c = make(s, const Locale('en'));
+    final n = c.read(prefsProvider.notifier);
+    await n.completeOnboarding(
+      lang: AppLang.id,
+      childName: 'Ana',
+      age: AgeLevel.penjelajah,
+    );
+    await n.setMusic(false);
+    await n.setSfx(false);
+    await n.setRestReminder(false);
+    await n.setDailyLimit(45);
+    await n.setLetterMode(LetterMode.nama);
+
+    await n.resetAll();
+
+    final p = c.read(prefsProvider);
+    expect(p.lang, AppLang.en); // bawaan perangkat
+    expect(p.ageLevel, AgeLevel.pemula);
+    expect(p.letterMode, LetterMode.fonik);
+    expect(p.dailyLimitMinutes, 30);
+    expect(
+      [p.music, p.sfx, p.restReminder, p.onboarded],
+      [true, true, true, false],
+    );
+    expect(p.childName, '');
+    expect(s.getBool('moci.musik'), isNull);
+    expect(s.getInt('moci.batasMenit'), isNull);
+  });
 }

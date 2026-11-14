@@ -75,11 +75,13 @@ final class PrefsController extends Notifier<AppPrefs> {
   }
 
   static String _trimName(String name) {
-    final t = name.trim();
-    final chars = t.characters;
-    if (chars.length <= _maxNameLength) return t;
-    // Potong di batas kluster supaya emoji tidak jadi surrogate tunggal.
-    return chars.take(_maxNameLength).toString().trimRight();
+    var t = name.trim();
+    if (t.characters.length > _maxNameLength) {
+      // Potong di batas kluster supaya emoji tidak jadi surrogate tunggal.
+      t = t.characters.take(_maxNameLength).toString();
+    }
+    // Potongan bisa menyisakan spasi di ujung; rapikan sekali lagi.
+    return t.trim();
   }
 
   Future<void> setLang(AppLang lang) {
@@ -136,17 +138,19 @@ final class PrefsController extends Notifier<AppPrefs> {
     required AgeLevel age,
   }) async {
     final clean = _trimName(childName);
+    final store = _store;
+    await store.setString(_kLang, lang.name);
+    await store.setString(_kName, clean);
+    await store.setString(_kAge, _ageCodes[age]!);
+    await store.setBool(_kOnboarded, true);
+    // State menyusul setelah tersimpan: gagal simpan tidak boleh membuat
+    // aplikasi pindah layar seolah sambutan sudah selesai.
     state = state.copyWith(
       lang: lang,
       childName: clean,
       ageLevel: age,
       onboarded: true,
     );
-    final store = _store;
-    await store.setString(_kLang, lang.name);
-    await store.setString(_kName, clean);
-    await store.setString(_kAge, _ageCodes[age]!);
-    await store.setBool(_kOnboarded, true);
   }
 
   Future<void> resetAll() async {
