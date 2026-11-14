@@ -15,6 +15,9 @@ import '../features/istirahat/habis_screen.dart';
 import '../features/istirahat/istirahat_screen.dart';
 import '../features/segera/coming_soon_screen.dart';
 import '../features/tulis/tulis_screen.dart';
+import '../features/membaca/suku_kata/suku_kata_screen.dart';
+import '../features/membaca/susun_kata/susun_kata_screen.dart';
+import '../features/membaca/kalimat/kalimat_screen.dart';
 import 'play_timer/play_timer_controller.dart';
 import 'redirect.dart';
 import 'splash/splash_screen.dart';
@@ -141,9 +144,21 @@ final routerProvider = Provider<GoRouter>((ref) {
       _soon(Routes.warna, MenuTheme.warna),
       _soon(Routes.bentuk, MenuTheme.bentuk),
       _soon(Routes.musik, MenuTheme.musik),
-      _soon(Routes.sukuKata, MenuTheme.membaca),
-      _soon(Routes.susunKata, MenuTheme.membaca),
-      _soon(Routes.kalimat, MenuTheme.membaca),
+      GoRoute(
+        path: Routes.sukuKata,
+        builder: (context, state) =>
+            SukuKataScreen(awal: state.uri.queryParameters['huruf']),
+      ),
+      GoRoute(
+        path: Routes.susunKata,
+        builder: (context, state) =>
+            SusunKataScreen(awal: state.uri.queryParameters['level']),
+      ),
+      GoRoute(
+        path: Routes.kalimat,
+        builder: (context, state) =>
+            KalimatScreen(awal: state.uri.queryParameters['kalimat']),
+      ),
       _soon(Routes.mainYuk, MenuTheme.mainYuk),
       _soon(Routes.cocokkan, MenuTheme.cocokkan),
       _soon(Routes.memori, MenuTheme.memori),

@@ -797,4 +797,127 @@ class AppLocalizationsId extends AppLocalizations {
   String berandaContinueAngka(String angka) {
     return 'Angka $angka';
   }
+
+  @override
+  String get membacaTitle => 'Ayo Membaca';
+
+  @override
+  String get membacaModes => 'Mode membaca';
+
+  @override
+  String get membacaSukuKata => 'Suku Kata';
+
+  @override
+  String get membacaSusunKata => 'Susun Kata';
+
+  @override
+  String get membacaKalimat => 'Kalimat';
+
+  @override
+  String get sukuKataPilih => 'Pilih huruf';
+
+  @override
+  String get sukuKataTip => 'Ketuk suku kata untuk mendengarnya!';
+
+  @override
+  String get sukuKataHear => 'Dengar kata';
+
+  @override
+  String get sukuKataReadAll => 'Baca semua';
+
+  @override
+  String get sukuKataExample => 'Contoh kata';
+
+  @override
+  String get sukuKataSayIt => 'Ayo ucapkan!';
+
+  @override
+  String sukuKataLetter(String huruf) {
+    return 'Huruf $huruf';
+  }
+
+  @override
+  String sukuKataSyllable(String suku) {
+    return 'Suku kata $suku';
+  }
+
+  @override
+  String get susunKataLevel => 'Level';
+
+  @override
+  String get susunKataLevel2 => '2 suku kata';
+
+  @override
+  String get susunKataLevel3 => '3 suku kata';
+
+  @override
+  String get susunKataHear => 'Dengar katanya';
+
+  @override
+  String get susunKataIns => 'Ketuk suku kata secara berurutan';
+
+  @override
+  String get susunKataNext => 'Lanjut';
+
+  @override
+  String get susunKataHintStart => 'Dengarkan, lalu ketuk suku kata pertama!';
+
+  @override
+  String get susunKataHintMore => 'Bagus! Sekarang suku kata berikutnya.';
+
+  @override
+  String get susunKataTryAgain => 'Ups, belum tepat. Coba lagi!';
+
+  @override
+  String susunKataSlot(int nomor) {
+    return 'Kotak $nomor';
+  }
+
+  @override
+  String get susunKataEmpty => 'kosong';
+
+  @override
+  String get susunKataYes => 'Betul!';
+
+  @override
+  String susunKataTile(String suku) {
+    return 'Suku kata $suku';
+  }
+
+  @override
+  String get susunKataProgress => 'Kemajuan';
+
+  @override
+  String get kalimatIns => 'Ketuk kata untuk mendengarnya';
+
+  @override
+  String get kalimatRead => 'Baca bersama';
+
+  @override
+  String get kalimatPrev => 'Kalimat sebelumnya';
+
+  @override
+  String get kalimatNext => 'Kalimat berikutnya';
+
+  @override
+  String get kalimatWhich => 'Gambar mana yang cocok?';
+
+  @override
+  String get kalimatReadMode => 'Baca';
+
+  @override
+  String get kalimatQuizMode => 'Tebak gambar';
+
+  @override
+  String get kalimatReadTip =>
+      'Ketuk \"Baca bersama\" lalu ikuti kata yang menyala!';
+
+  @override
+  String get kalimatYes => 'Betul! Pintar sekali!';
+
+  @override
+  String get kalimatNo => 'Bukan yang itu. Coba lagi!';
+
+  @override
+  String get kalimatPicture => 'Gambar kalimat';
 }

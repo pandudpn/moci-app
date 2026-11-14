@@ -796,4 +796,127 @@ class AppLocalizationsEn extends AppLocalizations {
   String berandaContinueAngka(String angka) {
     return 'Number $angka';
   }
+
+  @override
+  String get membacaTitle => 'Let\'s Read';
+
+  @override
+  String get membacaModes => 'Reading mode';
+
+  @override
+  String get membacaSukuKata => 'Syllables';
+
+  @override
+  String get membacaSusunKata => 'Build Words';
+
+  @override
+  String get membacaKalimat => 'Sentences';
+
+  @override
+  String get sukuKataPilih => 'Pick a letter';
+
+  @override
+  String get sukuKataTip => 'Tap a syllable to hear it!';
+
+  @override
+  String get sukuKataHear => 'Hear word';
+
+  @override
+  String get sukuKataReadAll => 'Read all';
+
+  @override
+  String get sukuKataExample => 'Example word';
+
+  @override
+  String get sukuKataSayIt => 'Say it out loud!';
+
+  @override
+  String sukuKataLetter(String huruf) {
+    return 'Letter $huruf';
+  }
+
+  @override
+  String sukuKataSyllable(String suku) {
+    return 'Syllable $suku';
+  }
+
+  @override
+  String get susunKataLevel => 'Level';
+
+  @override
+  String get susunKataLevel2 => '2 parts';
+
+  @override
+  String get susunKataLevel3 => '3 parts';
+
+  @override
+  String get susunKataHear => 'Hear the word';
+
+  @override
+  String get susunKataIns => 'Tap the parts in order to build the word';
+
+  @override
+  String get susunKataNext => 'Next';
+
+  @override
+  String get susunKataHintStart => 'Listen, then tap the first part!';
+
+  @override
+  String get susunKataHintMore => 'Good! Now the next part.';
+
+  @override
+  String get susunKataTryAgain => 'Oops, not quite. Try again!';
+
+  @override
+  String susunKataSlot(int nomor) {
+    return 'Part $nomor';
+  }
+
+  @override
+  String get susunKataEmpty => 'empty';
+
+  @override
+  String get susunKataYes => 'Yes!';
+
+  @override
+  String susunKataTile(String suku) {
+    return 'Part $suku';
+  }
+
+  @override
+  String get susunKataProgress => 'Progress';
+
+  @override
+  String get kalimatIns => 'Tap a word to hear it';
+
+  @override
+  String get kalimatRead => 'Read with me';
+
+  @override
+  String get kalimatPrev => 'Previous sentence';
+
+  @override
+  String get kalimatNext => 'Next sentence';
+
+  @override
+  String get kalimatWhich => 'Which picture matches?';
+
+  @override
+  String get kalimatReadMode => 'Read';
+
+  @override
+  String get kalimatQuizMode => 'Guess the picture';
+
+  @override
+  String get kalimatReadTip =>
+      'Tap \"Read with me\" and follow the words as they light up!';
+
+  @override
+  String get kalimatYes => 'Yes! That is right!';
+
+  @override
+  String get kalimatNo => 'Not that one. Try again!';
+
+  @override
+  String get kalimatPicture => 'Sentence picture';
 }

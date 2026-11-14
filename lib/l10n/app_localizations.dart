@@ -1531,6 +1531,234 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Angka {angka}'**
   String berandaContinueAngka(String angka);
+
+  /// Judul layar Ayo Membaca
+  ///
+  /// In id, this message translates to:
+  /// **'Ayo Membaca'**
+  String get membacaTitle;
+
+  /// Label aksesibilitas tiga tab mode membaca
+  ///
+  /// In id, this message translates to:
+  /// **'Mode membaca'**
+  String get membacaModes;
+
+  /// Tab Suku Kata
+  ///
+  /// In id, this message translates to:
+  /// **'Suku Kata'**
+  String get membacaSukuKata;
+
+  /// Tab Susun Kata
+  ///
+  /// In id, this message translates to:
+  /// **'Susun Kata'**
+  String get membacaSusunKata;
+
+  /// Tab Kalimat
+  ///
+  /// In id, this message translates to:
+  /// **'Kalimat'**
+  String get membacaKalimat;
+
+  /// Judul kisi konsonan
+  ///
+  /// In id, this message translates to:
+  /// **'Pilih huruf'**
+  String get sukuKataPilih;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Ketuk suku kata untuk mendengarnya!'**
+  String get sukuKataTip;
+
+  /// Tombol contoh kata
+  ///
+  /// In id, this message translates to:
+  /// **'Dengar kata'**
+  String get sukuKataHear;
+
+  /// Tombol membaca lima suku kata
+  ///
+  /// In id, this message translates to:
+  /// **'Baca semua'**
+  String get sukuKataReadAll;
+
+  /// Label contoh kata
+  ///
+  /// In id, this message translates to:
+  /// **'Contoh kata'**
+  String get sukuKataExample;
+
+  /// Label suku tanpa contoh kata
+  ///
+  /// In id, this message translates to:
+  /// **'Ayo ucapkan!'**
+  String get sukuKataSayIt;
+
+  /// Label aksesibilitas tombol konsonan
+  ///
+  /// In id, this message translates to:
+  /// **'Huruf {huruf}'**
+  String sukuKataLetter(String huruf);
+
+  /// Label aksesibilitas kartu suku kata
+  ///
+  /// In id, this message translates to:
+  /// **'Suku kata {suku}'**
+  String sukuKataSyllable(String suku);
+
+  /// Label pilihan level
+  ///
+  /// In id, this message translates to:
+  /// **'Level'**
+  String get susunKataLevel;
+
+  /// Pil level dua suku kata
+  ///
+  /// In id, this message translates to:
+  /// **'2 suku kata'**
+  String get susunKataLevel2;
+
+  /// Pil level tiga suku kata
+  ///
+  /// In id, this message translates to:
+  /// **'3 suku kata'**
+  String get susunKataLevel3;
+
+  /// Tombol mendengar kata
+  ///
+  /// In id, this message translates to:
+  /// **'Dengar katanya'**
+  String get susunKataHear;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Ketuk suku kata secara berurutan'**
+  String get susunKataIns;
+
+  /// Tombol ronde berikutnya
+  ///
+  /// In id, this message translates to:
+  /// **'Lanjut'**
+  String get susunKataNext;
+
+  /// Petunjuk saat kotak masih kosong
+  ///
+  /// In id, this message translates to:
+  /// **'Dengarkan, lalu ketuk suku kata pertama!'**
+  String get susunKataHintStart;
+
+  /// Petunjuk setelah satu kotak terisi
+  ///
+  /// In id, this message translates to:
+  /// **'Bagus! Sekarang suku kata berikutnya.'**
+  String get susunKataHintMore;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Ups, belum tepat. Coba lagi!'**
+  String get susunKataTryAgain;
+
+  /// Label aksesibilitas kotak susun
+  ///
+  /// In id, this message translates to:
+  /// **'Kotak {nomor}'**
+  String susunKataSlot(int nomor);
+
+  /// Keterangan kotak kosong
+  ///
+  /// In id, this message translates to:
+  /// **'kosong'**
+  String get susunKataEmpty;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Betul!'**
+  String get susunKataYes;
+
+  /// Label aksesibilitas keping suku kata
+  ///
+  /// In id, this message translates to:
+  /// **'Suku kata {suku}'**
+  String susunKataTile(String suku);
+
+  /// Label aksesibilitas titik kemajuan
+  ///
+  /// In id, this message translates to:
+  /// **'Kemajuan'**
+  String get susunKataProgress;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Ketuk kata untuk mendengarnya'**
+  String get kalimatIns;
+
+  /// Tombol karaoke kalimat
+  ///
+  /// In id, this message translates to:
+  /// **'Baca bersama'**
+  String get kalimatRead;
+
+  /// Tombol kalimat sebelumnya
+  ///
+  /// In id, this message translates to:
+  /// **'Kalimat sebelumnya'**
+  String get kalimatPrev;
+
+  /// Tombol kalimat berikutnya
+  ///
+  /// In id, this message translates to:
+  /// **'Kalimat berikutnya'**
+  String get kalimatNext;
+
+  /// Pertanyaan mode tebak gambar
+  ///
+  /// In id, this message translates to:
+  /// **'Gambar mana yang cocok?'**
+  String get kalimatWhich;
+
+  /// Pil mode baca
+  ///
+  /// In id, this message translates to:
+  /// **'Baca'**
+  String get kalimatReadMode;
+
+  /// Pil mode tebak gambar
+  ///
+  /// In id, this message translates to:
+  /// **'Tebak gambar'**
+  String get kalimatQuizMode;
+
+  /// Gelembung petunjuk karaoke
+  ///
+  /// In id, this message translates to:
+  /// **'Ketuk \"Baca bersama\" lalu ikuti kata yang menyala!'**
+  String get kalimatReadTip;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Betul! Pintar sekali!'**
+  String get kalimatYes;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Bukan yang itu. Coba lagi!'**
+  String get kalimatNo;
+
+  /// Label aksesibilitas gambar kalimat
+  ///
+  /// In id, this message translates to:
+  /// **'Gambar kalimat'**
+  String get kalimatPicture;
 }
 
 class _AppLocalizationsDelegate

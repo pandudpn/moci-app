@@ -875,5 +875,177 @@
         "type": "String"
       }
     }
+  },
+  "membacaTitle": "Let's Read",
+  "@membacaTitle": {
+    "description": "Judul layar Ayo Membaca"
+  },
+  "membacaModes": "Reading mode",
+  "@membacaModes": {
+    "description": "Label aksesibilitas tiga tab mode membaca"
+  },
+  "membacaSukuKata": "Syllables",
+  "@membacaSukuKata": {
+    "description": "Tab Suku Kata"
+  },
+  "membacaSusunKata": "Build Words",
+  "@membacaSusunKata": {
+    "description": "Tab Susun Kata"
+  },
+  "membacaKalimat": "Sentences",
+  "@membacaKalimat": {
+    "description": "Tab Kalimat"
+  },
+  "sukuKataPilih": "Pick a letter",
+  "@sukuKataPilih": {
+    "description": "Judul kisi konsonan"
+  },
+  "sukuKataTip": "Tap a syllable to hear it!",
+  "@sukuKataTip": {
+    "description": "narasi"
+  },
+  "sukuKataHear": "Hear word",
+  "@sukuKataHear": {
+    "description": "Tombol contoh kata"
+  },
+  "sukuKataReadAll": "Read all",
+  "@sukuKataReadAll": {
+    "description": "Tombol membaca lima suku kata"
+  },
+  "sukuKataExample": "Example word",
+  "@sukuKataExample": {
+    "description": "Label contoh kata"
+  },
+  "sukuKataSayIt": "Say it out loud!",
+  "@sukuKataSayIt": {
+    "description": "Label suku tanpa contoh kata"
+  },
+  "sukuKataLetter": "Letter {huruf}",
+  "@sukuKataLetter": {
+    "description": "Label aksesibilitas tombol konsonan",
+    "placeholders": {
+      "huruf": {
+        "type": "String"
+      }
+    }
+  },
+  "sukuKataSyllable": "Syllable {suku}",
+  "@sukuKataSyllable": {
+    "description": "Label aksesibilitas kartu suku kata",
+    "placeholders": {
+      "suku": {
+        "type": "String"
+      }
+    }
+  },
+  "susunKataLevel": "Level",
+  "@susunKataLevel": {
+    "description": "Label pilihan level"
+  },
+  "susunKataLevel2": "2 parts",
+  "@susunKataLevel2": {
+    "description": "Pil level dua suku kata"
+  },
+  "susunKataLevel3": "3 parts",
+  "@susunKataLevel3": {
+    "description": "Pil level tiga suku kata"
+  },
+  "susunKataHear": "Hear the word",
+  "@susunKataHear": {
+    "description": "Tombol mendengar kata"
+  },
+  "susunKataIns": "Tap the parts in order to build the word",
+  "@susunKataIns": {
+    "description": "narasi"
+  },
+  "susunKataNext": "Next",
+  "@susunKataNext": {
+    "description": "Tombol ronde berikutnya"
+  },
+  "susunKataHintStart": "Listen, then tap the first part!",
+  "@susunKataHintStart": {
+    "description": "Petunjuk saat kotak masih kosong"
+  },
+  "susunKataHintMore": "Good! Now the next part.",
+  "@susunKataHintMore": {
+    "description": "Petunjuk setelah satu kotak terisi"
+  },
+  "susunKataTryAgain": "Oops, not quite. Try again!",
+  "@susunKataTryAgain": {
+    "description": "narasi"
+  },
+  "susunKataSlot": "Part {nomor}",
+  "@susunKataSlot": {
+    "description": "Label aksesibilitas kotak susun",
+    "placeholders": {
+      "nomor": {
+        "type": "int"
+      }
+    }
+  },
+  "susunKataEmpty": "empty",
+  "@susunKataEmpty": {
+    "description": "Keterangan kotak kosong"
+  },
+  "susunKataYes": "Yes!",
+  "@susunKataYes": {
+    "description": "narasi"
+  },
+  "susunKataTile": "Part {suku}",
+  "@susunKataTile": {
+    "description": "Label aksesibilitas keping suku kata",
+    "placeholders": {
+      "suku": {
+        "type": "String"
+      }
+    }
+  },
+  "susunKataProgress": "Progress",
+  "@susunKataProgress": {
+    "description": "Label aksesibilitas titik kemajuan"
+  },
+  "kalimatIns": "Tap a word to hear it",
+  "@kalimatIns": {
+    "description": "narasi"
+  },
+  "kalimatRead": "Read with me",
+  "@kalimatRead": {
+    "description": "Tombol karaoke kalimat"
+  },
+  "kalimatPrev": "Previous sentence",
+  "@kalimatPrev": {
+    "description": "Tombol kalimat sebelumnya"
+  },
+  "kalimatNext": "Next sentence",
+  "@kalimatNext": {
+    "description": "Tombol kalimat berikutnya"
+  },
+  "kalimatWhich": "Which picture matches?",
+  "@kalimatWhich": {
+    "description": "Pertanyaan mode tebak gambar"
+  },
+  "kalimatReadMode": "Read",
+  "@kalimatReadMode": {
+    "description": "Pil mode baca"
+  },
+  "kalimatQuizMode": "Guess the picture",
+  "@kalimatQuizMode": {
+    "description": "Pil mode tebak gambar"
+  },
+  "kalimatReadTip": "Tap \"Read with me\" and follow the words as they light up!",
+  "@kalimatReadTip": {
+    "description": "Gelembung petunjuk karaoke"
+  },
+  "kalimatYes": "Yes! That is right!",
+  "@kalimatYes": {
+    "description": "narasi"
+  },
+  "kalimatNo": "Not that one. Try again!",
+  "@kalimatNo": {
+    "description": "narasi"
+  },
+  "kalimatPicture": "Sentence picture",
+  "@kalimatPicture": {
+    "description": "Label aksesibilitas gambar kalimat"
   }
 }
