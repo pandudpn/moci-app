@@ -8,6 +8,7 @@ import '../features/hadiah/hadiah_controller.dart';
 import '../features/hadiah/hebat_screen.dart';
 import '../features/main_yuk/cocokkan_screen.dart';
 import '../features/main_yuk/hub_screen.dart';
+import '../features/main_yuk/memori_screen.dart';
 import '../features/orang_tua/gerbang_screen.dart';
 import '../features/orang_tua/orang_tua_screen.dart';
 import '../features/sambutan/sambutan_screen.dart';
@@ -144,7 +145,10 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: Routes.cocokkan,
         builder: (context, state) => const CocokkanScreen(),
       ),
-      _soon(Routes.memori, MenuTheme.memori),
+      GoRoute(
+        path: Routes.memori,
+        builder: (context, state) => const MemoriScreen(),
+      ),
       _soon(Routes.bayangan, MenuTheme.bayangan),
       _soon(Routes.puzzle, MenuTheme.puzzle),
       _soon(Routes.balon, MenuTheme.balon),

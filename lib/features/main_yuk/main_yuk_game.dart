@@ -65,6 +65,10 @@ enum MainYukTema {
 
   static const pilihan = [acak, buah, hewan, sayur, kendaraan, benda];
 
+  /// Kunci ARB label tema, sekaligus id narasinya.
+  String get labelKey =>
+      'mainYukTema${name[0].toUpperCase()}${name.substring(1)}';
+
   String label(AppLocalizations l10n) => switch (this) {
     acak => l10n.mainYukTemaAcak,
     buah => l10n.mainYukTemaBuah,

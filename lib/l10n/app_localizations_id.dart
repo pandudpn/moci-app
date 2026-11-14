@@ -815,4 +815,22 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get cocokkanTipDone => 'Horee!';
+
+  @override
+  String get memoriTitle => 'Kartu Memori';
+
+  @override
+  String get memoriRestart => 'Main baru';
+
+  @override
+  String get memoriTema => 'Tema';
+
+  @override
+  String get memoriPair => 'Sepasang!';
+
+  @override
+  String get memoriHidden => 'Kartu tertutup';
+
+  @override
+  String get memoriInst => 'Buka dua kartu dan cari pasangannya.';
 }

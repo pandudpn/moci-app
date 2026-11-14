@@ -876,5 +876,29 @@
   "cocokkanTipDone": "Hooray!",
   "@cocokkanTipDone": {
     "description": "Seruan saat semua pasangan cocok"
+  },
+  "memoriTitle": "Memory Cards",
+  "@memoriTitle": {
+    "description": "Title of the Memory Cards screen bar"
+  },
+  "memoriRestart": "New game",
+  "@memoriRestart": {
+    "description": "New round button for Memory Cards"
+  },
+  "memoriTema": "Theme",
+  "@memoriTema": {
+    "description": "Theme row label on Memory Cards"
+  },
+  "memoriPair": "A pair!",
+  "@memoriPair": {
+    "description": "narasi"
+  },
+  "memoriHidden": "Hidden card",
+  "@memoriHidden": {
+    "description": "Label of a card that is not open"
+  },
+  "memoriInst": "Open two cards and find the pair.",
+  "@memoriInst": {
+    "description": "narasi"
   }
 }

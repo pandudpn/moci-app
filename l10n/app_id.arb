@@ -879,5 +879,29 @@
   "cocokkanTipDone": "Horee!",
   "@cocokkanTipDone": {
     "description": "Seruan saat semua pasangan cocok"
+  },
+  "memoriTitle": "Kartu Memori",
+  "@memoriTitle": {
+    "description": "Judul bilah atas layar Kartu Memori"
+  },
+  "memoriRestart": "Main baru",
+  "@memoriRestart": {
+    "description": "Tombol ronde baru Kartu Memori"
+  },
+  "memoriTema": "Tema",
+  "@memoriTema": {
+    "description": "Label baris tema Kartu Memori"
+  },
+  "memoriPair": "Sepasang!",
+  "@memoriPair": {
+    "description": "narasi"
+  },
+  "memoriHidden": "Kartu tertutup",
+  "@memoriHidden": {
+    "description": "Label kartu yang belum dibuka"
+  },
+  "memoriInst": "Buka dua kartu dan cari pasangannya.",
+  "@memoriInst": {
+    "description": "narasi"
   }
 }

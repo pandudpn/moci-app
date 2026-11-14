@@ -1591,6 +1591,42 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Horee!'**
   String get cocokkanTipDone;
+
+  /// Judul bilah atas layar Kartu Memori
+  ///
+  /// In id, this message translates to:
+  /// **'Kartu Memori'**
+  String get memoriTitle;
+
+  /// Tombol ronde baru Kartu Memori
+  ///
+  /// In id, this message translates to:
+  /// **'Main baru'**
+  String get memoriRestart;
+
+  /// Label baris tema Kartu Memori
+  ///
+  /// In id, this message translates to:
+  /// **'Tema'**
+  String get memoriTema;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Sepasang!'**
+  String get memoriPair;
+
+  /// Label kartu yang belum dibuka
+  ///
+  /// In id, this message translates to:
+  /// **'Kartu tertutup'**
+  String get memoriHidden;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Buka dua kartu dan cari pasangannya.'**
+  String get memoriInst;
 }
 
 class _AppLocalizationsDelegate

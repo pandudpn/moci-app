@@ -816,4 +816,22 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get cocokkanTipDone => 'Hooray!';
+
+  @override
+  String get memoriTitle => 'Memory Cards';
+
+  @override
+  String get memoriRestart => 'New game';
+
+  @override
+  String get memoriTema => 'Theme';
+
+  @override
+  String get memoriPair => 'A pair!';
+
+  @override
+  String get memoriHidden => 'Hidden card';
+
+  @override
+  String get memoriInst => 'Open two cards and find the pair.';
 }

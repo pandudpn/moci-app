@@ -34,7 +34,8 @@ void main() {
     await t.tap(find.byKey(HubScreen.cardKey(MainYukGame.memori)));
     await t.pump();
     await t.pump();
-    expect(env.tts.spoken.single.$1, 'Kartu Memori');
+    // Layar tujuan ikut membacakan petunjuknya, jadi judul kartu yang pertama.
+    expect(env.tts.spoken.first.$1, 'Kartu Memori');
     expect(
       router.routerDelegate.currentConfiguration.last.matchedLocation,
       '/main/memori',
