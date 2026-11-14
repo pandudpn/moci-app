@@ -1213,6 +1213,90 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Suku kata {suku}'**
   String sukuKataSyllable(String suku);
+
+  /// Label pilihan level
+  ///
+  /// In id, this message translates to:
+  /// **'Level'**
+  String get susunKataLevel;
+
+  /// Pil level dua suku kata
+  ///
+  /// In id, this message translates to:
+  /// **'2 suku kata'**
+  String get susunKataLevel2;
+
+  /// Pil level tiga suku kata
+  ///
+  /// In id, this message translates to:
+  /// **'3 suku kata'**
+  String get susunKataLevel3;
+
+  /// Tombol mendengar kata
+  ///
+  /// In id, this message translates to:
+  /// **'Dengar katanya'**
+  String get susunKataHear;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Ketuk suku kata secara berurutan'**
+  String get susunKataIns;
+
+  /// Tombol ronde berikutnya
+  ///
+  /// In id, this message translates to:
+  /// **'Lanjut'**
+  String get susunKataNext;
+
+  /// Petunjuk saat kotak masih kosong
+  ///
+  /// In id, this message translates to:
+  /// **'Dengarkan, lalu ketuk suku kata pertama!'**
+  String get susunKataHintStart;
+
+  /// Petunjuk setelah satu kotak terisi
+  ///
+  /// In id, this message translates to:
+  /// **'Bagus! Sekarang suku kata berikutnya.'**
+  String get susunKataHintMore;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Ups, belum tepat. Coba lagi!'**
+  String get susunKataTryAgain;
+
+  /// Label aksesibilitas kotak susun
+  ///
+  /// In id, this message translates to:
+  /// **'Kotak {nomor}'**
+  String susunKataSlot(int nomor);
+
+  /// Keterangan kotak kosong
+  ///
+  /// In id, this message translates to:
+  /// **'kosong'**
+  String get susunKataEmpty;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Betul!'**
+  String get susunKataYes;
+
+  /// Label aksesibilitas keping suku kata
+  ///
+  /// In id, this message translates to:
+  /// **'Suku kata {suku}'**
+  String susunKataTile(String suku);
+
+  /// Label aksesibilitas titik kemajuan
+  ///
+  /// In id, this message translates to:
+  /// **'Kemajuan'**
+  String get susunKataProgress;
 }
 
 class _AppLocalizationsDelegate

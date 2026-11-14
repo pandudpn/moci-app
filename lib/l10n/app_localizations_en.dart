@@ -611,4 +611,50 @@ class AppLocalizationsEn extends AppLocalizations {
   String sukuKataSyllable(String suku) {
     return 'Syllable $suku';
   }
+
+  @override
+  String get susunKataLevel => 'Level';
+
+  @override
+  String get susunKataLevel2 => '2 parts';
+
+  @override
+  String get susunKataLevel3 => '3 parts';
+
+  @override
+  String get susunKataHear => 'Hear the word';
+
+  @override
+  String get susunKataIns => 'Tap the parts in order to build the word';
+
+  @override
+  String get susunKataNext => 'Next';
+
+  @override
+  String get susunKataHintStart => 'Listen, then tap the first part!';
+
+  @override
+  String get susunKataHintMore => 'Good! Now the next part.';
+
+  @override
+  String get susunKataTryAgain => 'Oops, not quite. Try again!';
+
+  @override
+  String susunKataSlot(int nomor) {
+    return 'Part $nomor';
+  }
+
+  @override
+  String get susunKataEmpty => 'empty';
+
+  @override
+  String get susunKataYes => 'Yes!';
+
+  @override
+  String susunKataTile(String suku) {
+    return 'Part $suku';
+  }
+
+  @override
+  String get susunKataProgress => 'Progress';
 }

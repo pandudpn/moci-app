@@ -586,5 +586,71 @@
         "type": "String"
       }
     }
+  },
+  "susunKataLevel": "Level",
+  "@susunKataLevel": {
+    "description": "Label pilihan level"
+  },
+  "susunKataLevel2": "2 parts",
+  "@susunKataLevel2": {
+    "description": "Pil level dua suku kata"
+  },
+  "susunKataLevel3": "3 parts",
+  "@susunKataLevel3": {
+    "description": "Pil level tiga suku kata"
+  },
+  "susunKataHear": "Hear the word",
+  "@susunKataHear": {
+    "description": "Tombol mendengar kata"
+  },
+  "susunKataIns": "Tap the parts in order to build the word",
+  "@susunKataIns": {
+    "description": "narasi"
+  },
+  "susunKataNext": "Next",
+  "@susunKataNext": {
+    "description": "Tombol ronde berikutnya"
+  },
+  "susunKataHintStart": "Listen, then tap the first part!",
+  "@susunKataHintStart": {
+    "description": "Petunjuk saat kotak masih kosong"
+  },
+  "susunKataHintMore": "Good! Now the next part.",
+  "@susunKataHintMore": {
+    "description": "Petunjuk setelah satu kotak terisi"
+  },
+  "susunKataTryAgain": "Oops, not quite. Try again!",
+  "@susunKataTryAgain": {
+    "description": "narasi"
+  },
+  "susunKataSlot": "Part {nomor}",
+  "@susunKataSlot": {
+    "description": "Label aksesibilitas kotak susun",
+    "placeholders": {
+      "nomor": {
+        "type": "int"
+      }
+    }
+  },
+  "susunKataEmpty": "empty",
+  "@susunKataEmpty": {
+    "description": "Keterangan kotak kosong"
+  },
+  "susunKataYes": "Yes!",
+  "@susunKataYes": {
+    "description": "narasi"
+  },
+  "susunKataTile": "Part {suku}",
+  "@susunKataTile": {
+    "description": "Label aksesibilitas keping suku kata",
+    "placeholders": {
+      "suku": {
+        "type": "String"
+      }
+    }
+  },
+  "susunKataProgress": "Progress",
+  "@susunKataProgress": {
+    "description": "Label aksesibilitas titik kemajuan"
   }
 }

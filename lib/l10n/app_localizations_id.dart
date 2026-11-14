@@ -612,4 +612,50 @@ class AppLocalizationsId extends AppLocalizations {
   String sukuKataSyllable(String suku) {
     return 'Suku kata $suku';
   }
+
+  @override
+  String get susunKataLevel => 'Level';
+
+  @override
+  String get susunKataLevel2 => '2 suku kata';
+
+  @override
+  String get susunKataLevel3 => '3 suku kata';
+
+  @override
+  String get susunKataHear => 'Dengar katanya';
+
+  @override
+  String get susunKataIns => 'Ketuk suku kata secara berurutan';
+
+  @override
+  String get susunKataNext => 'Lanjut';
+
+  @override
+  String get susunKataHintStart => 'Dengarkan, lalu ketuk suku kata pertama!';
+
+  @override
+  String get susunKataHintMore => 'Bagus! Sekarang suku kata berikutnya.';
+
+  @override
+  String get susunKataTryAgain => 'Ups, belum tepat. Coba lagi!';
+
+  @override
+  String susunKataSlot(int nomor) {
+    return 'Kotak $nomor';
+  }
+
+  @override
+  String get susunKataEmpty => 'kosong';
+
+  @override
+  String get susunKataYes => 'Betul!';
+
+  @override
+  String susunKataTile(String suku) {
+    return 'Suku kata $suku';
+  }
+
+  @override
+  String get susunKataProgress => 'Kemajuan';
 }

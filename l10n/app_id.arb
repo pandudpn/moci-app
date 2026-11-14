@@ -589,5 +589,71 @@
         "type": "String"
       }
     }
+  },
+  "susunKataLevel": "Level",
+  "@susunKataLevel": {
+    "description": "Label pilihan level"
+  },
+  "susunKataLevel2": "2 suku kata",
+  "@susunKataLevel2": {
+    "description": "Pil level dua suku kata"
+  },
+  "susunKataLevel3": "3 suku kata",
+  "@susunKataLevel3": {
+    "description": "Pil level tiga suku kata"
+  },
+  "susunKataHear": "Dengar katanya",
+  "@susunKataHear": {
+    "description": "Tombol mendengar kata"
+  },
+  "susunKataIns": "Ketuk suku kata secara berurutan",
+  "@susunKataIns": {
+    "description": "narasi"
+  },
+  "susunKataNext": "Lanjut",
+  "@susunKataNext": {
+    "description": "Tombol ronde berikutnya"
+  },
+  "susunKataHintStart": "Dengarkan, lalu ketuk suku kata pertama!",
+  "@susunKataHintStart": {
+    "description": "Petunjuk saat kotak masih kosong"
+  },
+  "susunKataHintMore": "Bagus! Sekarang suku kata berikutnya.",
+  "@susunKataHintMore": {
+    "description": "Petunjuk setelah satu kotak terisi"
+  },
+  "susunKataTryAgain": "Ups, belum tepat. Coba lagi!",
+  "@susunKataTryAgain": {
+    "description": "narasi"
+  },
+  "susunKataSlot": "Kotak {nomor}",
+  "@susunKataSlot": {
+    "description": "Label aksesibilitas kotak susun",
+    "placeholders": {
+      "nomor": {
+        "type": "int"
+      }
+    }
+  },
+  "susunKataEmpty": "kosong",
+  "@susunKataEmpty": {
+    "description": "Keterangan kotak kosong"
+  },
+  "susunKataYes": "Betul!",
+  "@susunKataYes": {
+    "description": "narasi"
+  },
+  "susunKataTile": "Suku kata {suku}",
+  "@susunKataTile": {
+    "description": "Label aksesibilitas keping suku kata",
+    "placeholders": {
+      "suku": {
+        "type": "String"
+      }
+    }
+  },
+  "susunKataProgress": "Kemajuan",
+  "@susunKataProgress": {
+    "description": "Label aksesibilitas titik kemajuan"
   }
 }

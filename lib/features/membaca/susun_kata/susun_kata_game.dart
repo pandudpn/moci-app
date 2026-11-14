@@ -52,6 +52,7 @@ final class SusunKataGame {
     required Random random,
     int level = 2,
   }) : _kata = List.unmodifiable(kata),
+       // ignore: prefer_initializing_formals
        _random = random,
        _level = level {
     _pastikanLevel(level);

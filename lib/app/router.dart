@@ -13,6 +13,7 @@ import '../features/istirahat/habis_screen.dart';
 import '../features/istirahat/istirahat_screen.dart';
 import '../features/segera/coming_soon_screen.dart';
 import '../features/membaca/suku_kata/suku_kata_screen.dart';
+import '../features/membaca/susun_kata/susun_kata_screen.dart';
 import 'play_timer/play_timer_controller.dart';
 import 'redirect.dart';
 import 'splash/splash_screen.dart';
@@ -129,7 +130,12 @@ final routerProvider = Provider<GoRouter>((ref) {
           child: SukuKataScreen(awal: state.uri.queryParameters['huruf']),
         ),
       ),
-      _soon(Routes.susunKata, MenuTheme.membaca),
+      GoRoute(
+        path: Routes.susunKata,
+        pageBuilder: (context, state) => NoTransitionPage(
+          child: SusunKataScreen(awal: state.uri.queryParameters['level']),
+        ),
+      ),
       _soon(Routes.kalimat, MenuTheme.membaca),
       _soon(Routes.mainYuk, MenuTheme.mainYuk),
       _soon(Routes.cocokkan, MenuTheme.cocokkan),
