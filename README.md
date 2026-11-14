@@ -16,7 +16,7 @@
   <img src="https://img.shields.io/badge/usia-2%E2%80%937%20tahun-26A03B" alt="Usia 2–7 tahun">
 </p>
 
-> **English summary:** Moci is an ad-free, offline-first learning and play app for children aged 2–7, available in Bahasa Indonesia and English. Kids trace letters and numbers, count, read syllables and sentences, explore animals, fruit, colours, shapes and music, play six mini games, and colour pictures without ever going outside the lines. Everything stays on the device. The design and interactive prototype are done; the Flutter app for iPad, iPhone and Android is in development.
+> **English summary:** Moci is an ad-free, offline-first learning and play app for children aged 2–7, available in Bahasa Indonesia and English. Kids trace letters and numbers, count, read syllables and sentences, explore animals, fruit, colours, shapes and music, play six mini games, and colour pictures without ever going outside the lines. Everything stays on the device. The design, the interactive prototype, and the Flutter foundation (shell, navigation, local storage, audio, two languages) are done. The content pipeline is complete, and the menus are being built one at a time.
 
 ---
 
@@ -29,6 +29,7 @@
 - [Teknologi](#teknologi)
 - [Struktur repo](#struktur-repo)
 - [Menjalankan aplikasi](#menjalankan-aplikasi)
+- [Dokumentasi](#dokumentasi)
 - [Brand & aset](#brand--aset)
 - [Roadmap](#roadmap)
 - [Lisensi](#lisensi)
@@ -66,7 +67,7 @@ Prinsip yang dipegang di semua layar:
 
 ## Tampilan aplikasi
 
-Semua tangkapan layar diambil dari prototipe interaktif versi tablet (1180 × 820).
+Semua tangkapan layar diambil dari prototipe interaktif versi tablet (1180 × 820), bukan dari aplikasi Flutter yang sedang dibangun.
 
 ### Mulai
 
@@ -198,50 +199,74 @@ Semua tangkapan layar diambil dari prototipe interaktif versi tablet (1180 × 82
 
 ## Teknologi
 
-| Bagian             | Pilihan                                                                                                             |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------- |
-| Framework          | Flutter (Dart), satu kode untuk iPad, iPhone, HP Android, dan tablet Android                                        |
-| Ilustrasi          | SVG, dirender dengan `flutter_svg` dan di-precompile supaya cepat                                                   |
-| Tracing & mewarnai | Kanvas Flutter (`CustomPainter` + clip path). Coretan yang sudah selesai disimpan sebagai gambar diam supaya ringan |
-| Animasi            | Animasi bawaan Flutter, tanpa Lottie, Rive, atau video                                                              |
-| Suara              | File audio pendek terkompresi (`just_audio`). TTS perangkat sebagai cadangan                                        |
-| Penyimpanan        | File lokal kecil. Karya anak disimpan sebagai data coretan, bukan foto                                              |
-| Jaringan           | Tidak ada. Aplikasi 100% offline                                                                                    |
-| Build & rilis      | Xcode atau Codemagic untuk iOS, Gradle untuk Android. TestFlight dan Play internal testing                          |
+| Bagian             | Pilihan                                                                                                              |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------- |
+| Framework          | Flutter 3.50 dengan FVM, satu kode untuk iPad, iPhone, HP Android, dan tablet Android                                |
+| Material           | `material_ui`, karena `package:flutter/material.dart` deprecated di Flutter 3.50                                     |
+| Navigasi           | `go_router`, dengan redirect terpusat untuk Sambutan, Gerbang, dan batas waktu                                       |
+| State              | `flutter_riverpod`                                                                                                   |
+| Ilustrasi          | SVG, dirender `vector_graphics` dan dikompilasi saat build                                                           |
+| Tracing & mewarnai | Kanvas Flutter (`CustomPainter` + clip path). Coretan disimpan sebagai data, bukan foto                               |
+| Animasi            | Animasi bawaan Flutter, tanpa Lottie, Rive, atau video                                                               |
+| Suara              | `flutter_soloud`. TTS perangkat hanya untuk build debug dan profile                                                  |
+| Teks               | gen-l10n dari `l10n/app_id.arb` dan `l10n/app_en.arb`                                                                |
+| Penyimpanan        | `shared_preferences` untuk pengaturan, berkas JSON di folder aplikasi untuk progres dan karya                        |
+| Jaringan           | Tidak ada di build rilis. Semua isi ikut di bundel                                                                    |
+| Pemeriksaan        | Analyze, cek format, validator isi, dan tes tanpa golden di Linux; golden di macOS. Semuanya lewat GitHub Actions      |
+| Build & rilis      | Xcode untuk iOS, Gradle untuk Android. TestFlight dan Play internal testing direncanakan                             |
 
 Target: ukuran aplikasi di bawah 30 MB dan animasi 60 fps, termasuk di tablet Android kelas bawah.
 
-## Struktur repo
-
-Rencana struktur saat kode Flutter mulai ditulis:
+Struktur repo saat ini:
 
 ```
 moci-app/
 ├── lib/
-│   ├── app/            # shell aplikasi, navigasi, tema
-│   ├── features/       # satu folder per menu (huruf, angka, hewan, mewarnai, ...)
-│   ├── widgets/        # komponen bersama (tombol, kartu, maskot)
-│   └── data/           # pemuat konten JSON & penyimpanan lokal
+│   ├── app/            # shell, router, tema, panggung layout, pengatur waktu
+│   ├── core/           # model isi, penyimpanan, audio, pengaturan, progres
+│   ├── features/       # layar per menu
+│   ├── l10n/           # keluaran gen-l10n
+│   └── widgets/        # komponen bersama: tombol, maskot, dialog, papan angka
 ├── assets/
-│   ├── illustrations/  # SVG hewan, buah, sayur, benda, kendaraan
-│   ├── coloring/       # data halaman mewarnai (JSON)
-│   ├── tracing/        # jalur huruf & angka (JSON)
-│   ├── content/        # katalog kata, kalimat, fakta (JSON)
-│   └── audio/          # narasi & suara hewan
-├── docs/
-│   ├── brand/          # ikon, logo, splash, aset GitHub (PNG + SVG)
-│   └── screenshots/    # tangkapan layar untuk README
-└── README.md
+│   ├── content/        # katalog isi
+│   ├── tracing/        # jalur huruf & angka
+│   ├── coloring/       # halaman mewarnai, stiker, krayon
+│   ├── illustrations/  # 111 SVG
+│   ├── fonts/          # Fredoka, Nunito, lisensi OFL
+│   └── audio/          # rekaman narasi, efek, musik, LICENSES.csv
+├── tool/               # validator isi, ekspor prototipe, build font
+├── test/               # tes unit, widget, golden
+├── integration_test/   # tiga skenario di perangkat
+├── l10n/               # app_id.arb, app_en.arb
+├── docs/               # salinan spec, rencana, prototipe, brand, tangkapan layar
+└── AGENTS.md           # instruksi kerja untuk manusia dan agen
 ```
 
 ## Menjalankan aplikasi
 
-> Kode Flutter belum ada di repo ini. Langkah di bawah berlaku setelah proyek Flutter dibuat.
+Versi Flutter dikunci di `.fvmrc`, jadi semua perintah memakai FVM:
 
 ```bash
-flutter pub get
-flutter run            # pilih simulator iPad/iPhone atau perangkat Android
+fvm install
+fvm flutter pub get
+fvm flutter run -d <perangkat>
 ```
+
+Id perangkat dilihat dengan `fvm flutter devices`. Perintah pemeriksaan, tes golden, validator isi, dan integration test ada di [AGENTS.md](AGENTS.md) dan [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Dokumentasi
+
+| Dokumen | Isi |
+| --- | --- |
+| [AGENTS.md](AGENTS.md) | Instruksi kerja untuk manusia dan agen: perintah, aturan kode, aturan tes |
+| [ARCHITECTURE.md](ARCHITECTURE.md) | Lapisan kode, provider, rute, aliran state, harness tes |
+| [SYSTEM_DESIGN.md](SYSTEM_DESIGN.md) | Data tersimpan, pengatur waktu, audio, pipeline konten, platform, CI |
+| [DESIGN.md](DESIGN.md) | Token, komponen, panggung tablet dan HP, gerak, aksesibilitas |
+| [CONTRIBUTING.md](CONTRIBUTING.md) | Alur kerja, gaya commit, checklist PR |
+| [docs/README.md](docs/README.md) | Ringkasan proyek, keputusan, dan peta dokumentasi |
+| [docs/superpowers/plans/](docs/superpowers/plans/) | Rencana implementasi dan roadmap |
+
+Salinan spec ada di [`docs/PRD.md`](docs/PRD.md), [`docs/TECH-SPEC.md`](docs/TECH-SPEC.md), [`docs/DESIGN-SYSTEM.md`](docs/DESIGN-SYSTEM.md), [`docs/CONTENT-ASSETS.md`](docs/CONTENT-ASSETS.md), dan [`docs/PRIVACY-RELEASE.md`](docs/PRIVACY-RELEASE.md).
 
 ## Brand & aset
 
@@ -265,13 +290,15 @@ Semua aset brand final ada di [`docs/brand`](docs/brand), dalam format PNG dan S
 - [x] Ikon, logo, splash screen, dan aset GitHub
 - [ ] Tata letak versi HP untuk semua layar
 - [ ] Rekaman narasi Bahasa Indonesia & English
-- [ ] Suara hewan asli (berlisensi CC0 atau Pixabay)
+- [ ] Suara hewan asli (CC0 dari Freesound atau rekaman sendiri)
 - [ ] Pengenalan suara on-device untuk layar Ucapkan
-- [ ] Aplikasi Flutter: shell, navigasi, penyimpanan lokal
+- [x] Aplikasi Flutter: shell, navigasi, penyimpanan lokal
 - [ ] Porting semua menu ke Flutter
 - [ ] Uji di perangkat (iPad, iPhone, HP dan tablet Android)
 - [ ] Rilis TestFlight dan Play internal testing, lalu App Store dan Play Store
 
 ## Lisensi
 
-Belum ditentukan. Sampai ada keputusan, seluruh kode, ilustrasi, dan aset brand di repo ini dilindungi hak cipta (all rights reserved).
+Seluruh kode, ilustrasi, suara, teks, dan aset brand Moci dilindungi hak cipta pemilik. Teks lengkapnya ada di [`LICENSE`](LICENSE).
+
+Lisensi pihak ketiga berlaku di atasnya: font Fredoka dan Nunito memakai SIL Open Font License 1.1, audio memakai CC0 atau ditandai `Milik sendiri` di `assets/audio/LICENSES.csv`, dan setiap paket Dart atau Flutter memakai lisensinya masing-masing.

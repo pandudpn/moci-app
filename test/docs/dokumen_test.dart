@@ -51,6 +51,7 @@ const _dokumenRoot = [
   'ARCHITECTURE.md',
   'CONTRIBUTING.md',
   'DESIGN.md',
+  'README.md',
   'SYSTEM_DESIGN.md',
 ];
 
@@ -169,6 +170,24 @@ void main() {
           .toList();
       expect(lines, contains('@AGENTS.md'));
       expect(lines.length, lessThanOrEqualTo(2));
+    });
+  });
+
+  group('README.md', () {
+    test('menautkan AGENTS.md dan LICENSE', () {
+      final s = File('README.md').readAsStringSync();
+      expect(s, contains('AGENTS.md'));
+      expect(s, contains('LICENSE'));
+    });
+
+    test('tidak lagi menyebut kode Flutter belum ada', () {
+      final s = File('README.md').readAsStringSync();
+      expect(s, isNot(contains('Kode Flutter belum ada')));
+    });
+
+    test('mencantumkan status aplikasi Flutter sebagai selesai', () {
+      final s = File('README.md').readAsStringSync();
+      expect(s, contains('- [x] Aplikasi Flutter: shell, navigasi'));
     });
   });
 

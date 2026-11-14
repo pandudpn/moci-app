@@ -1,6 +1,6 @@
 # Moci v1 — Roadmap Implementasi
 
-Moci v1 dibangun lewat 10 rencana berurutan. Rencana 01 (Fondasi) dan 02 (Konten) sudah ditulis lengkap dan siap dieksekusi. Rencana lain ditulis saat gilirannya tiba, supaya bisa memakai nama dan antarmuka yang benar-benar dihasilkan rencana sebelumnya. Dokumen ini memetakan isi, urutan, dan ketergantungan semua rencana, beserta keputusan yang masih perlu kamu ambil.
+Moci v1 dibangun lewat 10 rencana berurutan. Rencana 01 (Fondasi) dan 02 (Konten) sudah selesai dieksekusi; lihat git log branch `feat/moci-v1`. Rencana lain ditulis saat gilirannya tiba, supaya bisa memakai nama dan antarmuka yang benar-benar dihasilkan rencana sebelumnya. Dokumen ini memetakan isi, urutan, dan ketergantungan semua rencana, beserta keputusan yang masih perlu kamu ambil.
 
 **Sumber:**
 - Spec: [Dokumentasi Moci](https://claude.ai/artifact/VKF6SyozUj7ZBBCFEQ9e8H), tab Ringkasan, PRD, Spesifikasi Teknis, Sistem Desain, Konten & Aset, dan Privasi & Rilis.
@@ -27,8 +27,8 @@ flowchart LR
 
 | # | Rencana | Isi | Butuh | Berkas |
 | --- | --- | --- | --- | --- |
-| 01 | Fondasi | Proyek Flutter 3.50, tema, panggung layout, penyimpanan, audio, dua bahasa, router, splash, Sambutan, Beranda tablet dan HP, Gerbang, Area Orang Tua, pengatur waktu, Hebat, CI | — | `2026-11-14-moci-01-fondasi.md` (siap) |
-| 02 | Konten | Ekspor data prototipe ke `assets/content/katalog.json`, `assets/tracing/`, dan `assets/coloring/`. Ekspor 110 SVG. Model konten Dart murni dan pemuatnya. `tool/validate_content.dart` (dengan `--naskah` dan `--rilis`), `assets/audio/LICENSES.csv`, dan langkah CI | 01 Task 1, 5, 10 | `2026-11-14-moci-02-konten.md` (siap) |
+| 01 | Fondasi | Proyek Flutter 3.50, tema, panggung layout, penyimpanan, audio, dua bahasa, router, splash, Sambutan, Beranda tablet dan HP, Gerbang, Area Orang Tua, pengatur waktu, Hebat, CI | — | `2026-11-14-moci-01-fondasi.md` (selesai; lihat git log branch `feat/moci-v1`) |
+| 02 | Konten | Ekspor data prototipe ke `assets/content/katalog.json`, `assets/tracing/`, dan `assets/coloring/`. Ekspor 110 SVG. Model konten Dart murni dan pemuatnya. `tool/validate_content.dart` (dengan `--naskah` dan `--rilis`), `assets/audio/LICENSES.csv`, dan langkah CI | 01 Task 1, 5, 10 | `2026-11-14-moci-02-konten.md` (selesai; lihat git log branch `feat/moci-v1`) |
 | 03 | Huruf & Angka | Kenal Huruf (fonik atau nama huruf), mesin tracing, Tulis Huruf dan Tulis Angka, Ucapkan (mikrofon di perangkat), Berhitung 1–50 | 01, 02 | belum ditulis |
 | 04 | Dunia Sekitar | Dunia Hewan (42 hewan, 5 kelompok), Buah & Sayur (Kenali dan Tebak), Warna (11), Bentuk (Kenali, dan Cari yang berakhir di Hebat), Main Musik (xilofon dan drum) | 01, 02 | belum ditulis |
 | 05 | Ayo Membaca | Suku Kata (18 × 5), Susun Kata (71 ID dan 33 EN, level 2 dan 3 suku kata), Kalimat (18 kalimat, efek karaoke) | 01, 02 | belum ditulis |
@@ -38,7 +38,7 @@ flowchart LR
 | 09 | Audio produksi | Sekitar 1.200 klip narasi, naskah CSV, pipeline ffmpeg (suara hewan, efek, alat musik), musik latar, validasi rilis tanpa TTS | 02, rekaman | belum ditulis |
 | 10 | Rilis | CI tag `v*` ke TestFlight dan Play internal testing, signing, kebijakan privasi publik, URL di `AppConfig`, listing dan screenshot, checklist store, PP Tunas | semua | belum ditulis |
 
-Dokumentasi repo (`AGENTS.md`, `CLAUDE.md`, `ARCHITECTURE.md`, `SYSTEM_DESIGN.md`, `DESIGN.md`, `CONTRIBUTING.md`, `LICENSE`, `.gitignore`, `README.md`, dan salinan spec di `docs/`) punya rencana sendiri di `2026-11-14-moci-dokumentasi-repo.md`. Rencana itu dijalankan setelah 01 dan 02.
+Dokumentasi repo (`AGENTS.md`, `CLAUDE.md`, `ARCHITECTURE.md`, `SYSTEM_DESIGN.md`, `DESIGN.md`, `CONTRIBUTING.md`, `LICENSE`, `.gitignore`, `README.md`, dan salinan spec di `docs/`) punya rencana sendiri di `2026-11-14-moci-dokumentasi-repo.md`. Rencana itu dijalankan setelah 01 dan 02, dan selesai di branch `feat/moci-v1`.
 
 **Yang bisa berjalan paralel:**
 - **Rencana 02** bisa mulai setelah Task 1, 5, dan 10 Rencana 01 selesai, lalu berjalan bersamaan dengan sisa Rencana 01.
