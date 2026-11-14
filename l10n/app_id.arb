@@ -1050,5 +1050,202 @@
   "kalimatPicture": "Gambar kalimat",
   "@kalimatPicture": {
     "description": "Label aksesibilitas gambar kalimat"
+  },
+  "mewarnaiFilter": "Jenis gambar",
+  "@mewarnaiFilter": {
+    "description": "Label semantik grup saring galeri"
+  },
+  "mewarnaiTabSemua": "Semua",
+  "@mewarnaiTabSemua": {
+    "description": "Pil saring semua gambar"
+  },
+  "mewarnaiTabHewan": "Hewan",
+  "@mewarnaiTabHewan": {
+    "description": "Pil saring gambar hewan"
+  },
+  "mewarnaiTabBenda": "Benda & Alam",
+  "@mewarnaiTabBenda": {
+    "description": "Pil saring gambar benda dan alam"
+  },
+  "mewarnaiHintPick": "Pilih gambar yang mau kamu warnai!",
+  "@mewarnaiHintPick": {
+    "description": "Petunjuk di bawah galeri"
+  },
+  "mewarnaiOpenPage": "Warnai gambar: {nama}",
+  "@mewarnaiOpenPage": {
+    "description": "Label semantik kartu halaman",
+    "placeholders": {
+      "nama": {
+        "type": "String"
+      }
+    }
+  },
+  "mewarnaiContinue": "Lanjutkan",
+  "@mewarnaiContinue": {
+    "description": "Lencana halaman yang drafnya berisi"
+  },
+  "mewarnaiKaryaku": "Karyaku",
+  "@mewarnaiKaryaku": {
+    "description": "Nama kartu dan judul layar Karyaku"
+  },
+  "mewarnaiKaryaCount": "{count, plural, =0{Belum ada karya} =1{1 karya} other{{count} karya}}",
+  "@mewarnaiKaryaCount": {
+    "description": "Jumlah karya di kartu Karyaku",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "mewarnaiOpenKaryaku": "Buka Karyaku, {count} karya",
+  "@mewarnaiOpenKaryaku": {
+    "description": "Label semantik kartu Karyaku",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "mewarnaiBackGaleri": "Kembali ke galeri",
+  "@mewarnaiBackGaleri": {
+    "description": "Tombol kembali dari kanvas"
+  },
+  "mewarnaiChangePage": "Gambar",
+  "@mewarnaiChangePage": {
+    "description": "Tombol buka pemilih gambar"
+  },
+  "mewarnaiUndo": "Batal",
+  "@mewarnaiUndo": {
+    "description": "Tombol batal langkah terakhir"
+  },
+  "mewarnaiClear": "Mulai lagi",
+  "@mewarnaiClear": {
+    "description": "Tombol mengosongkan halaman"
+  },
+  "mewarnaiSave": "Simpan",
+  "@mewarnaiSave": {
+    "description": "Tombol menyimpan karya"
+  },
+  "mewarnaiTools": "Alat",
+  "@mewarnaiTools": {
+    "description": "Label grup alat di panel"
+  },
+  "mewarnaiToolBrush": "Kuas",
+  "@mewarnaiToolBrush": {
+    "description": "Nama alat kuas"
+  },
+  "mewarnaiToolFill": "Isi",
+  "@mewarnaiToolFill": {
+    "description": "Nama alat isi"
+  },
+  "mewarnaiToolErase": "Hapus",
+  "@mewarnaiToolErase": {
+    "description": "Nama alat hapus"
+  },
+  "mewarnaiToolCap": "Stiker",
+  "@mewarnaiToolCap": {
+    "description": "Nama alat stiker"
+  },
+  "mewarnaiBrushSize": "Ukuran kuas",
+  "@mewarnaiBrushSize": {
+    "description": "Label grup ukuran kuas"
+  },
+  "mewarnaiBrushSmall": "Kuas kecil",
+  "@mewarnaiBrushSmall": {
+    "description": "Ukuran kuas kecil"
+  },
+  "mewarnaiBrushMedium": "Kuas sedang",
+  "@mewarnaiBrushMedium": {
+    "description": "Ukuran kuas sedang"
+  },
+  "mewarnaiBrushBig": "Kuas besar",
+  "@mewarnaiBrushBig": {
+    "description": "Ukuran kuas besar"
+  },
+  "mewarnaiCrayons": "Krayon",
+  "@mewarnaiCrayons": {
+    "description": "Label grup krayon"
+  },
+  "mewarnaiCaps": "Stiker",
+  "@mewarnaiCaps": {
+    "description": "Label grup stiker"
+  },
+  "mewarnaiHintBrush": "Warnai di dalam bagian gambar. Krayonnya tidak akan keluar garis!",
+  "@mewarnaiHintBrush": {
+    "description": "narasi"
+  },
+  "mewarnaiHintFill": "Ketuk satu bagian untuk mengisinya dengan warna.",
+  "@mewarnaiHintFill": {
+    "description": "narasi"
+  },
+  "mewarnaiHintErase": "Gosok untuk menghapus warna.",
+  "@mewarnaiHintErase": {
+    "description": "narasi"
+  },
+  "mewarnaiHintCap": "Ketuk gambar untuk menempel stiker.",
+  "@mewarnaiHintCap": {
+    "description": "narasi"
+  },
+  "mewarnaiCanvasLabel": "Gambar untuk diwarnai: {nama}",
+  "@mewarnaiCanvasLabel": {
+    "description": "Label semantik kanvas",
+    "placeholders": {
+      "nama": {
+        "type": "String"
+      }
+    }
+  },
+  "mewarnaiSayClear": "Ayo mulai dari awal!",
+  "@mewarnaiSayClear": {
+    "description": "narasi"
+  },
+  "mewarnaiSaved": "Tersimpan di Karyaku!",
+  "@mewarnaiSaved": {
+    "description": "Toast setelah karya tersimpan"
+  },
+  "mewarnaiSaySaved": "Tersimpan! Bagus sekali!",
+  "@mewarnaiSaySaved": {
+    "description": "narasi"
+  },
+  "mewarnaiPickPage": "Pilih gambar",
+  "@mewarnaiPickPage": {
+    "description": "Judul pemilih gambar"
+  },
+  "mewarnaiClose": "Tutup",
+  "@mewarnaiClose": {
+    "description": "Tombol menutup dialog"
+  },
+  "mewarnaiKaryakuHint": "Ketuk gambar untuk melihatnya lebih besar.",
+  "@mewarnaiKaryakuHint": {
+    "description": "Petunjuk di atas kisi Karyaku"
+  },
+  "mewarnaiKaryakuEmpty": "Belum ada karya",
+  "@mewarnaiKaryakuEmpty": {
+    "description": "Judul Karyaku saat kosong"
+  },
+  "mewarnaiKaryakuEmptyHint": "Yuk mewarnai dulu! Tekan Simpan, nanti gambarmu muncul di sini.",
+  "@mewarnaiKaryakuEmptyHint": {
+    "description": "Ajakan mewarnai saat Karyaku kosong"
+  },
+  "mewarnaiColorAgain": "Warnai lagi",
+  "@mewarnaiColorAgain": {
+    "description": "Tombol membuka kanvas dengan isi karya"
+  },
+  "mewarnaiDelete": "Hapus",
+  "@mewarnaiDelete": {
+    "description": "Tombol menghapus karya"
+  },
+  "mewarnaiDeleteConfirm": "Yakin hapus?",
+  "@mewarnaiDeleteConfirm": {
+    "description": "Konfirmasi hapus karya"
+  },
+  "mewarnaiViewArt": "Lihat karya: {nama}",
+  "@mewarnaiViewArt": {
+    "description": "Label semantik kartu karya",
+    "placeholders": {
+      "nama": {
+        "type": "String"
+      }
+    }
   }
 }

@@ -919,4 +919,152 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get kalimatPicture => 'Sentence picture';
+
+  @override
+  String get mewarnaiFilter => 'Picture type';
+
+  @override
+  String get mewarnaiTabSemua => 'All';
+
+  @override
+  String get mewarnaiTabHewan => 'Animals';
+
+  @override
+  String get mewarnaiTabBenda => 'Things & Nature';
+
+  @override
+  String get mewarnaiHintPick => 'Pick a picture to color!';
+
+  @override
+  String mewarnaiOpenPage(String nama) {
+    return 'Color the picture: $nama';
+  }
+
+  @override
+  String get mewarnaiContinue => 'Continue';
+
+  @override
+  String get mewarnaiKaryaku => 'My Artwork';
+
+  @override
+  String mewarnaiKaryaCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count artworks',
+      one: '1 artwork',
+      zero: 'No artwork yet',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String mewarnaiOpenKaryaku(int count) {
+    return 'Open My Artwork, $count artworks';
+  }
+
+  @override
+  String get mewarnaiBackGaleri => 'Back to pictures';
+
+  @override
+  String get mewarnaiChangePage => 'Pictures';
+
+  @override
+  String get mewarnaiUndo => 'Undo';
+
+  @override
+  String get mewarnaiClear => 'Start over';
+
+  @override
+  String get mewarnaiSave => 'Save';
+
+  @override
+  String get mewarnaiTools => 'Tools';
+
+  @override
+  String get mewarnaiToolBrush => 'Brush';
+
+  @override
+  String get mewarnaiToolFill => 'Fill';
+
+  @override
+  String get mewarnaiToolErase => 'Eraser';
+
+  @override
+  String get mewarnaiToolCap => 'Sticker';
+
+  @override
+  String get mewarnaiBrushSize => 'Brush size';
+
+  @override
+  String get mewarnaiBrushSmall => 'Small brush';
+
+  @override
+  String get mewarnaiBrushMedium => 'Medium brush';
+
+  @override
+  String get mewarnaiBrushBig => 'Big brush';
+
+  @override
+  String get mewarnaiCrayons => 'Crayons';
+
+  @override
+  String get mewarnaiCaps => 'Stickers';
+
+  @override
+  String get mewarnaiHintBrush =>
+      'Color inside a shape. Your crayon will not go outside the line!';
+
+  @override
+  String get mewarnaiHintFill => 'Tap a shape to fill it with one color.';
+
+  @override
+  String get mewarnaiHintErase => 'Rub to erase the color.';
+
+  @override
+  String get mewarnaiHintCap => 'Tap the picture to put a sticker.';
+
+  @override
+  String mewarnaiCanvasLabel(String nama) {
+    return 'Picture to color: $nama';
+  }
+
+  @override
+  String get mewarnaiSayClear => 'Let\'s start over!';
+
+  @override
+  String get mewarnaiSaved => 'Saved to My Artwork!';
+
+  @override
+  String get mewarnaiSaySaved => 'Saved! Beautiful work!';
+
+  @override
+  String get mewarnaiPickPage => 'Pick a picture';
+
+  @override
+  String get mewarnaiClose => 'Close';
+
+  @override
+  String get mewarnaiKaryakuHint => 'Tap a picture to see it bigger.';
+
+  @override
+  String get mewarnaiKaryakuEmpty => 'No artwork yet';
+
+  @override
+  String get mewarnaiKaryakuEmptyHint =>
+      'Let\'s color something! Tap Save and your picture will show up here.';
+
+  @override
+  String get mewarnaiColorAgain => 'Color again';
+
+  @override
+  String get mewarnaiDelete => 'Delete';
+
+  @override
+  String get mewarnaiDeleteConfirm => 'Delete for sure?';
+
+  @override
+  String mewarnaiViewArt(String nama) {
+    return 'See artwork: $nama';
+  }
 }

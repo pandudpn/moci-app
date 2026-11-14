@@ -13,6 +13,9 @@ import '../features/orang_tua/orang_tua_screen.dart';
 import '../features/sambutan/sambutan_screen.dart';
 import '../features/istirahat/habis_screen.dart';
 import '../features/istirahat/istirahat_screen.dart';
+import '../features/mewarnai/galeri_screen.dart';
+import '../features/mewarnai/kanvas_screen.dart';
+import '../features/mewarnai/karyaku_screen.dart';
 import '../features/segera/coming_soon_screen.dart';
 import '../features/tulis/tulis_screen.dart';
 import '../features/membaca/suku_kata/suku_kata_screen.dart';
@@ -166,9 +169,21 @@ final routerProvider = Provider<GoRouter>((ref) {
       _soon(Routes.puzzle, MenuTheme.puzzle),
       _soon(Routes.balon, MenuTheme.balon),
       _soon(Routes.besarKecil, MenuTheme.besarKecil),
-      _soon(Routes.mewarnai, MenuTheme.mewarnai),
-      _soon(Routes.mewarnaiHalaman, MenuTheme.mewarnai),
-      _soon(Routes.karyaku, MenuTheme.karyaku),
+      GoRoute(
+        path: Routes.mewarnai,
+        builder: (context, state) => const GaleriScreen(),
+      ),
+      GoRoute(
+        path: Routes.mewarnaiHalaman,
+        builder: (context, state) => KanvasScreen(
+          key: ValueKey(state.pathParameters['halaman']),
+          halaman: state.pathParameters['halaman']!,
+        ),
+      ),
+      GoRoute(
+        path: Routes.karyaku,
+        builder: (context, state) => const KaryakuScreen(),
+      ),
       GoRoute(
         path: Routes.hebat,
         // Tanpa HebatArgs (pemulihan dingin, tautan salah): kembali ke Beranda.
