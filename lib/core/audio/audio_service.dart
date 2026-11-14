@@ -25,12 +25,18 @@ final class AudioService {
   bool _musicRequested = false;
 
   SoundId? _musicId;
-  bool _musicStarting = false;
+  int _musicGen = 0;
+  int? _musicStartingGen;
+  bool _ducked = false;
 
   SoundId? _narrationId;
   String? _narrationAsset;
   Completer<void>? _narrationDone;
   int _narrationGen = 0;
+
+  /// Jumlah panggilan [narrate] yang sedang memuat, per aset. Aset yang
+  /// dipakai bersama tidak boleh dilepas selama masih ada yang memakainya.
+  final _loading = <String, int>{};
 
   bool get _ready => _engine.isReady;
 
@@ -47,24 +53,39 @@ final class AudioService {
     if (!_ready || !_assets.has(asset)) return null;
     final gen = ++_narrationGen;
     _duck(true);
-    final id = await _engine.play(asset, volume: narrationVolume);
+    _loading.update(asset, (n) => n + 1, ifAbsent: () => 1);
+    final SoundId? id;
+    try {
+      id = await _engine.play(asset, volume: narrationVolume);
+    } finally {
+      _loading.update(asset, (n) => n - 1);
+    }
     if (gen != _narrationGen) {
-      // Narasi lain mengambil alih selagi memuat.
+      // Narasi lain mengambil alih selagi memuat. Hentikan hanya suara ini;
+      // sumbernya mungkin dipakai narasi yang lebih baru.
       if (id != null) {
         await _engine.stop(id);
-        await _engine.release(asset);
+        await _releaseIfUnused(asset);
       }
       return null;
     }
     if (id == null) {
       _duck(false);
-      await _engine.release(asset);
+      await _releaseIfUnused(asset);
       return null;
     }
     _narrationId = id;
     _narrationAsset = asset;
     _narrationDone = Completer<void>();
     return id;
+  }
+
+  Future<void> _releaseIfUnused(String asset) {
+    if ((_loading[asset] ?? 0) > 0 || _narrationAsset == asset) {
+      return Future.value();
+    }
+    _loading.remove(asset);
+    return _engine.release(asset);
   }
 
   /// Selesai saat narasi [id] selesai atau dihentikan.
@@ -77,7 +98,7 @@ final class AudioService {
     final asset = _narrationAsset;
     _clearNarration();
     if (id != null) await _engine.stop(id);
-    if (asset != null) await _engine.release(asset);
+    if (asset != null) await _releaseIfUnused(asset);
   }
 
   Future<void> playSfx(Sfx s) async {
@@ -90,30 +111,35 @@ final class AudioService {
     if (!_musicOn ||
         !_ready ||
         _musicId != null ||
-        _musicStarting ||
+        _musicStartingGen == _musicGen ||
         !_assets.has(musicAsset)) {
       return;
     }
-    _musicStarting = true;
+    final gen = _musicGen;
+    _musicStartingGen = gen;
     try {
       final id = await _engine.play(
         musicAsset,
-        volume: _narrationId != null ? musicDuckedVolume : musicVolume,
+        volume: _ducked ? musicDuckedVolume : musicVolume,
         loop: true,
       );
       if (id == null) return;
-      if (!_musicOn || !_musicRequested) {
+      if (gen != _musicGen || !_musicOn || !_musicRequested) {
+        // Dihentikan selagi memuat (latar belakang, sakelar, stopMusic).
         await _engine.stop(id);
         return;
       }
       _musicId = id;
+      // Status narasi bisa berubah selama memuat.
+      await _engine.setVolume(id, _ducked ? musicDuckedVolume : musicVolume);
     } finally {
-      _musicStarting = false;
+      if (_musicStartingGen == gen) _musicStartingGen = null;
     }
   }
 
   Future<void> stopMusic() async {
     _musicRequested = false;
+    _musicGen++;
     final id = _musicId;
     _musicId = null;
     if (id != null) await _engine.stop(id);
@@ -124,6 +150,7 @@ final class AudioService {
     _musicOn = music;
     _sfxOn = sfx;
     if (!music) {
+      _musicGen++;
       final id = _musicId;
       _musicId = null;
       if (id != null) unawaited(_engine.stop(id));
@@ -136,9 +163,10 @@ final class AudioService {
     _narrationGen++;
     final asset = _narrationAsset;
     _clearNarration();
+    _musicGen++;
     _musicId = null;
     await _engine.stopAll();
-    if (asset != null) await _engine.release(asset);
+    if (asset != null) await _releaseIfUnused(asset);
   }
 
   Future<void> dispose() => _sub.cancel();
@@ -153,6 +181,7 @@ final class AudioService {
   }
 
   void _duck(bool ducked) {
+    _ducked = ducked;
     final id = _musicId;
     if (id == null) return;
     unawaited(_engine.setVolume(id, ducked ? musicDuckedVolume : musicVolume));
@@ -162,7 +191,7 @@ final class AudioService {
     if (id == _narrationId) {
       final asset = _narrationAsset;
       _clearNarration();
-      if (asset != null) unawaited(_engine.release(asset));
+      if (asset != null) unawaited(_releaseIfUnused(asset));
     } else if (id == _musicId) {
       _musicId = null;
     }

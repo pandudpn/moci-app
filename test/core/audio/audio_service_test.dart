@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:moci/core/audio/asset_catalog.dart';
 import 'package:moci/core/audio/audio_service.dart';
@@ -120,5 +122,98 @@ void main() {
     await svc.stopAll();
     await svc.startMusic();
     expect(engine.plays.last.volume, 0.25);
+  });
+
+  group('narasi tumpang-tindih', () {
+    const a = 'assets/audio/vo/id/ui_a.m4a';
+
+    test(
+      'narasi aset sama yang menyusul tidak dimatikan oleh yang basi',
+      () async {
+        await svc.startMusic();
+        final music = engine.plays.single;
+        final gate = engine.gates[a] = Completer<void>();
+        final first = svc.narrate(a);
+        await pumpEventQueue();
+        final second = svc.narrate(a);
+        await pumpEventQueue();
+        gate.complete();
+        expect(await first, isNull);
+        final id = await second;
+        expect(id, isNotNull);
+        expect(engine.isLive(id!), isTrue);
+        expect(engine.volumes[music.id], 0.10);
+        final done = svc.narrationFinished(id);
+        engine.finish(id);
+        await done;
+        await pumpEventQueue();
+        expect(engine.volumes[music.id], 0.25);
+        expect(engine.released, contains(a));
+      },
+    );
+  });
+
+  group('startMusic dengan pemuatan lambat', () {
+    late Completer<void> gate;
+    setUp(() => gate = engine.gates[AudioService.musicAsset] = Completer());
+
+    test('stopAll saat memuat: musik tidak menyala setelahnya', () async {
+      final start = svc.startMusic();
+      await pumpEventQueue();
+      await svc.stopAll();
+      gate.complete();
+      await start;
+      await pumpEventQueue();
+      expect(engine.live, isEmpty);
+    });
+
+    test(
+      'stopAll lalu startMusic selagi muatan pertama jalan: musik menyala',
+      () async {
+        final first = svc.startMusic();
+        await pumpEventQueue();
+        await svc.stopAll();
+        final second = svc.startMusic();
+        await pumpEventQueue();
+        gate.complete();
+        await Future.wait([first, second]);
+        await pumpEventQueue();
+        expect(engine.live.values, [AudioService.musicAsset]);
+      },
+    );
+
+    test('narasi mulai selama memuat: musik 0,10', () async {
+      final start = svc.startMusic();
+      await pumpEventQueue();
+      await svc.narrate('assets/audio/vo/id/ui_a.m4a');
+      gate.complete();
+      await start;
+      await pumpEventQueue();
+      final music = engine.plays.firstWhere((p) => p.loop);
+      expect(engine.volumes[music.id], 0.10);
+    });
+
+    test('narasi selesai selama memuat: musik 0,25', () async {
+      final n = await svc.narrate('assets/audio/vo/id/ui_a.m4a');
+      final start = svc.startMusic();
+      await pumpEventQueue();
+      engine.finish(n!);
+      await pumpEventQueue();
+      gate.complete();
+      await start;
+      await pumpEventQueue();
+      final music = engine.plays.firstWhere((p) => p.loop);
+      expect(engine.volumes[music.id], 0.25);
+    });
+
+    test('stopMusic saat memuat: musik tidak menyala', () async {
+      final start = svc.startMusic();
+      await pumpEventQueue();
+      await svc.stopMusic();
+      gate.complete();
+      await start;
+      await pumpEventQueue();
+      expect(engine.live, isEmpty);
+    });
   });
 }

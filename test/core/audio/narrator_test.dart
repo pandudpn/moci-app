@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:moci/core/audio/asset_catalog.dart';
 import 'package:moci/core/audio/audio_service.dart';
@@ -83,4 +85,22 @@ void main() {
     await build({}).sayAll([_kucing, _anjing], AppLang.en);
     expect(tts.spoken, [('Cat', AppLang.en), ('Dog', AppLang.en)]);
   });
+
+  test(
+    'sayAll tumpang-tindih pada rekaman sama: yang baru tetap bunyi',
+    () async {
+      final n = build({_kucingPath});
+      final gate = engine.gates[_kucingPath] = Completer<void>();
+      final f1 = n.sayAll([_kucing], AppLang.en);
+      await pumpEventQueue();
+      final f2 = n.sayAll([_kucing], AppLang.en);
+      await pumpEventQueue();
+      gate.complete();
+      await f1;
+      await pumpEventQueue();
+      expect(engine.live.values, [_kucingPath]);
+      engine.finish(engine.live.keys.single);
+      await f2;
+    },
+  );
 }

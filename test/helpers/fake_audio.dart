@@ -17,6 +17,14 @@ final class FakeAudioEngine implements AudioEngine {
   int initCount = 0;
   bool ready = true;
 
+  /// Pemuatan aset yang tertahan sampai gerbangnya diselesaikan.
+  final gates = <String, Completer<void>>{};
+
+  /// Suara yang sedang hidup: id -> aset.
+  final live = <SoundId, String>{};
+
+  bool isLive(SoundId id) => live.containsKey(id);
+
   /// Aset yang sengaja gagal dimuat (play mengembalikan null).
   final failing = <String>{};
 
@@ -36,7 +44,11 @@ final class FakeAudioEngine implements AudioEngine {
   Future<void> preload(String asset) async => preloaded.add(asset);
 
   @override
-  Future<void> release(String asset) async => released.add(asset);
+  Future<void> release(String asset) async {
+    released.add(asset);
+    // Seperti disposeSource: semua suara aset ini mati, tanpa event ke Dart.
+    live.removeWhere((_, a) => a == asset);
+  }
 
   @override
   Future<SoundId?> play(
@@ -44,27 +56,42 @@ final class FakeAudioEngine implements AudioEngine {
     required double volume,
     bool loop = false,
   }) async {
+    final gate = gates[asset];
+    if (gate != null) await gate.future;
     if (failing.contains(asset)) return null;
     final id = _next++;
     plays.add((asset: asset, volume: volume, loop: loop, id: id));
     volumes[id] = volume;
+    live[id] = asset;
     return id;
   }
 
   @override
-  Future<void> stop(SoundId id) async => stopped.add(id);
+  Future<void> stop(SoundId id) async {
+    stopped.add(id);
+    // SoLoud mengirim event selesai juga saat suara dihentikan.
+    if (live.remove(id) != null) _finished.add(id);
+  }
 
   @override
   Future<void> setVolume(SoundId id, double volume) async =>
       volumes[id] = volume;
 
   @override
-  Future<void> stopAll() async => stopAllCount++;
+  Future<void> stopAll() async {
+    stopAllCount++;
+    final ids = live.keys.toList();
+    live.clear();
+    ids.forEach(_finished.add);
+  }
 
   @override
   Stream<SoundId> get onFinished => _finished.stream;
 
-  void finish(SoundId id) => _finished.add(id);
+  void finish(SoundId id) {
+    live.remove(id);
+    _finished.add(id);
+  }
 }
 
 final class FakeDevTts implements DevTts {
