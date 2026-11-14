@@ -2149,6 +2149,486 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Lihat karya: {nama}'**
   String mewarnaiViewArt(String nama);
+
+  /// Subjudul hub Main Yuk
+  ///
+  /// In id, this message translates to:
+  /// **'Pilih permainan'**
+  String get mainYukSub;
+
+  /// Lencana usia minimum permainan
+  ///
+  /// In id, this message translates to:
+  /// **'Usia 2+'**
+  String get mainYukAge2;
+
+  /// Lencana usia minimum permainan
+  ///
+  /// In id, this message translates to:
+  /// **'Usia 3+'**
+  String get mainYukAge3;
+
+  /// Lencana usia minimum permainan
+  ///
+  /// In id, this message translates to:
+  /// **'Usia 4+'**
+  String get mainYukAge4;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Cocokkan Gambar'**
+  String get mainYukCocokkanHub;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Kartu Memori'**
+  String get mainYukMemoriHub;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Tebak Bayangan'**
+  String get mainYukBayanganHub;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Puzzle'**
+  String get mainYukPuzzleHub;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Balon Huruf'**
+  String get mainYukBalonHub;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Besar & Kecil'**
+  String get mainYukBesarKecilHub;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Acak!'**
+  String get mainYukTemaAcak;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Buah'**
+  String get mainYukTemaBuah;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Hewan'**
+  String get mainYukTemaHewan;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Sayur'**
+  String get mainYukTemaSayur;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Kendaraan'**
+  String get mainYukTemaKendaraan;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Mainan & Benda'**
+  String get mainYukTemaBenda;
+
+  /// Jumlah pasangan permainan
+  ///
+  /// In id, this message translates to:
+  /// **'{n} pasang'**
+  String mainYukPairs(int n);
+
+  /// Jumlah langkah permainan
+  ///
+  /// In id, this message translates to:
+  /// **'Langkah: {n}'**
+  String mainYukMoves(int n);
+
+  /// Label pil level kesulitan
+  ///
+  /// In id, this message translates to:
+  /// **'Level'**
+  String get gameLevel;
+
+  /// Judul bilah atas layar Cocokkan
+  ///
+  /// In id, this message translates to:
+  /// **'Cocokkan!'**
+  String get cocokkanTitle;
+
+  /// Label kolom tema
+  ///
+  /// In id, this message translates to:
+  /// **'Tema'**
+  String get cocokkanTema;
+
+  /// Tombol gambar baru
+  ///
+  /// In id, this message translates to:
+  /// **'Gambar baru'**
+  String get cocokkanShuffle;
+
+  /// Tombol dengar petunjuk
+  ///
+  /// In id, this message translates to:
+  /// **'Dengarkan petunjuk'**
+  String get cocokkanHear;
+
+  /// Petunjuk singkat di papan
+  ///
+  /// In id, this message translates to:
+  /// **'Tarik garis atau ketuk dua gambar yang sama'**
+  String get cocokkanIns;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Tarik garis dari gambar ke gambar yang sama.'**
+  String get cocokkanInst;
+
+  /// Judul tema buah
+  ///
+  /// In id, this message translates to:
+  /// **'Cocokkan Buah yang Sama'**
+  String get cocokkanHeadBuah;
+
+  /// Judul tema hewan
+  ///
+  /// In id, this message translates to:
+  /// **'Cocokkan Hewan yang Sama'**
+  String get cocokkanHeadHewan;
+
+  /// Judul tema sayur
+  ///
+  /// In id, this message translates to:
+  /// **'Cocokkan Sayur yang Sama'**
+  String get cocokkanHeadSayur;
+
+  /// Judul tema kendaraan
+  ///
+  /// In id, this message translates to:
+  /// **'Cocokkan Kendaraan yang Sama'**
+  String get cocokkanHeadKendaraan;
+
+  /// Judul tema mainan dan benda
+  ///
+  /// In id, this message translates to:
+  /// **'Cocokkan Mainan & Benda yang Sama'**
+  String get cocokkanHeadBenda;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Cocok!'**
+  String get cocokkanMatch;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Ups, coba lagi ya!'**
+  String get cocokkanRetry;
+
+  /// Petunjuk saat pasangan salah
+  ///
+  /// In id, this message translates to:
+  /// **'Pilih satu gambar!'**
+  String get cocokkanTipPick;
+
+  /// Petunjuk setelah memilih satu gambar
+  ///
+  /// In id, this message translates to:
+  /// **'Sekarang cari yang sama!'**
+  String get cocokkanTipNext;
+
+  /// Seruan saat semua pasangan cocok
+  ///
+  /// In id, this message translates to:
+  /// **'Horee!'**
+  String get cocokkanTipDone;
+
+  /// Judul bilah atas layar Kartu Memori
+  ///
+  /// In id, this message translates to:
+  /// **'Kartu Memori'**
+  String get memoriTitle;
+
+  /// Tombol ronde baru Kartu Memori
+  ///
+  /// In id, this message translates to:
+  /// **'Main baru'**
+  String get memoriRestart;
+
+  /// Label baris tema Kartu Memori
+  ///
+  /// In id, this message translates to:
+  /// **'Tema'**
+  String get memoriTema;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Sepasang!'**
+  String get memoriPair;
+
+  /// Label kartu yang belum dibuka
+  ///
+  /// In id, this message translates to:
+  /// **'Kartu tertutup'**
+  String get memoriHidden;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Buka dua kartu dan cari pasangannya.'**
+  String get memoriInst;
+
+  /// Judul bilah atas layar Tebak Bayangan
+  ///
+  /// In id, this message translates to:
+  /// **'Tebak Bayangan'**
+  String get bayanganTitle;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Bayangan siapa ini?'**
+  String get bayanganAsk;
+
+  /// Label bayangan yang belum terbuka
+  ///
+  /// In id, this message translates to:
+  /// **'Bayangan misteri'**
+  String get bayanganShadow;
+
+  /// Label pil kemajuan enam ronde
+  ///
+  /// In id, this message translates to:
+  /// **'Kemajuan'**
+  String get bayanganProgress;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Betul! Itu'**
+  String get bayanganYes;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Bukan yang itu, itu'**
+  String get bayanganNo;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Ketuk gambar yang bayangannya sama.'**
+  String get bayanganInst;
+
+  /// Label kelompok pilihan bayangan
+  ///
+  /// In id, this message translates to:
+  /// **'Pilihan bayangan'**
+  String get bayanganSemantic;
+
+  /// Judul bilah atas layar Puzzle
+  ///
+  /// In id, this message translates to:
+  /// **'Puzzle'**
+  String get puzzleTitle;
+
+  /// Tombol gambar puzzle baru
+  ///
+  /// In id, this message translates to:
+  /// **'Puzzle lain'**
+  String get puzzleOther;
+
+  /// Label papan puzzle
+  ///
+  /// In id, this message translates to:
+  /// **'Papan puzzle'**
+  String get puzzleBoard;
+
+  /// Petunjuk saat belum ada keping dipilih
+  ///
+  /// In id, this message translates to:
+  /// **'Ketuk potongan, lalu ketuk tempatnya.'**
+  String get puzzleHintPick;
+
+  /// Petunjuk setelah keping dipilih
+  ///
+  /// In id, this message translates to:
+  /// **'Sekarang ketuk tempat yang pas di gambar!'**
+  String get puzzleHintPlace;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Pas!'**
+  String get puzzleFits;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Bukan di situ. Coba tempat lain!'**
+  String get puzzleNo;
+
+  /// Label keping puzzle
+  ///
+  /// In id, this message translates to:
+  /// **'Potongan {n}'**
+  String puzzlePiece(int n);
+
+  /// Label tempat keping di papan
+  ///
+  /// In id, this message translates to:
+  /// **'Tempat {n}'**
+  String puzzleSpot(int n);
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Hore! Gambarnya'**
+  String get puzzleDone;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Ketuk potongan, lalu ketuk tempatnya.'**
+  String get puzzleInst;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Sekarang ketuk tempat yang pas di gambar!'**
+  String get puzzleTipPlace;
+
+  /// Hitungan keping terpasang
+  ///
+  /// In id, this message translates to:
+  /// **'{n} / {m} potongan'**
+  String puzzlePieces(int n, int m);
+
+  /// Judul bilah atas layar Balon Huruf
+  ///
+  /// In id, this message translates to:
+  /// **'Balon Huruf'**
+  String get balonTitle;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Pecahkan balon huruf'**
+  String get balonAsk;
+
+  /// Label pil kemajuan lima ronde
+  ///
+  /// In id, this message translates to:
+  /// **'Kemajuan'**
+  String get balonProgress;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Dor! Itu huruf'**
+  String get balonYes;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Ups, itu huruf'**
+  String get balonNo;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Pecahkan balon yang hurufnya sama dengan yang disebut Moci.'**
+  String get balonInst;
+
+  /// Label balon berisi satu huruf
+  ///
+  /// In id, this message translates to:
+  /// **'Balon huruf {huruf}'**
+  String balonLabel(String huruf);
+
+  /// Judul bilah atas layar Besar & Kecil
+  ///
+  /// In id, this message translates to:
+  /// **'Besar & Kecil'**
+  String get besarKecilTitle;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Mana yang paling'**
+  String get besarKecilWhich;
+
+  /// Kata tanya paling besar
+  ///
+  /// In id, this message translates to:
+  /// **'BESAR'**
+  String get besarKecilBig;
+
+  /// Kata tanya paling kecil
+  ///
+  /// In id, this message translates to:
+  /// **'KECIL'**
+  String get besarKecilSmall;
+
+  /// Label pil kemajuan enam ronde
+  ///
+  /// In id, this message translates to:
+  /// **'Kemajuan'**
+  String get besarKecilProgress;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Betul! Itu yang paling'**
+  String get besarKecilYes;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Coba lihat lagi!'**
+  String get besarKecilNo;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'besar'**
+  String get besarKecilBigSay;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'kecil'**
+  String get besarKecilSmallSay;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Ketuk gambar yang paling besar atau paling kecil.'**
+  String get besarKecilInst;
+
+  /// Label gambar dengan nama dan ukurannya
+  ///
+  /// In id, this message translates to:
+  /// **'{nama}, ukuran {n}'**
+  String besarKecilLabel(String nama, int n);
 }
 
 class _AppLocalizationsDelegate

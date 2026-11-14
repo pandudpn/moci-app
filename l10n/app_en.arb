@@ -1347,5 +1347,366 @@
         "type": "String"
       }
     }
+  },
+  "mainYukSub": "Pick a game",
+  "@mainYukSub": {
+    "description": "Subjudul hub Main Yuk"
+  },
+  "mainYukAge2": "Ages 2+",
+  "@mainYukAge2": {
+    "description": "Lencana usia minimum permainan"
+  },
+  "mainYukAge3": "Ages 3+",
+  "@mainYukAge3": {
+    "description": "Lencana usia minimum permainan"
+  },
+  "mainYukAge4": "Ages 4+",
+  "@mainYukAge4": {
+    "description": "Lencana usia minimum permainan"
+  },
+  "mainYukCocokkanHub": "Match Pictures",
+  "@mainYukCocokkanHub": {
+    "description": "narasi"
+  },
+  "mainYukMemoriHub": "Memory Cards",
+  "@mainYukMemoriHub": {
+    "description": "narasi"
+  },
+  "mainYukBayanganHub": "Shadow Match",
+  "@mainYukBayanganHub": {
+    "description": "narasi"
+  },
+  "mainYukPuzzleHub": "Jigsaw Puzzle",
+  "@mainYukPuzzleHub": {
+    "description": "narasi"
+  },
+  "mainYukBalonHub": "Letter Balloons",
+  "@mainYukBalonHub": {
+    "description": "narasi"
+  },
+  "mainYukBesarKecilHub": "Big & Small",
+  "@mainYukBesarKecilHub": {
+    "description": "narasi"
+  },
+  "mainYukTemaAcak": "Surprise!",
+  "@mainYukTemaAcak": {
+    "description": "narasi"
+  },
+  "mainYukTemaBuah": "Fruits",
+  "@mainYukTemaBuah": {
+    "description": "narasi"
+  },
+  "mainYukTemaHewan": "Animals",
+  "@mainYukTemaHewan": {
+    "description": "narasi"
+  },
+  "mainYukTemaSayur": "Veggies",
+  "@mainYukTemaSayur": {
+    "description": "narasi"
+  },
+  "mainYukTemaKendaraan": "Vehicles",
+  "@mainYukTemaKendaraan": {
+    "description": "narasi"
+  },
+  "mainYukTemaBenda": "Toys & Things",
+  "@mainYukTemaBenda": {
+    "description": "narasi"
+  },
+  "mainYukPairs": "{n} pairs",
+  "@mainYukPairs": {
+    "description": "Jumlah pasangan permainan",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "mainYukMoves": "Moves: {n}",
+  "@mainYukMoves": {
+    "description": "Jumlah langkah permainan",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "gameLevel": "Level",
+  "@gameLevel": {
+    "description": "Label pil level kesulitan"
+  },
+  "cocokkanTitle": "Match It!",
+  "@cocokkanTitle": {
+    "description": "Judul bilah atas layar Cocokkan"
+  },
+  "cocokkanTema": "Theme",
+  "@cocokkanTema": {
+    "description": "Label kolom tema"
+  },
+  "cocokkanShuffle": "New pictures",
+  "@cocokkanShuffle": {
+    "description": "Tombol gambar baru"
+  },
+  "cocokkanHear": "Listen to the instructions",
+  "@cocokkanHear": {
+    "description": "Tombol dengar petunjuk"
+  },
+  "cocokkanIns": "Draw a line, or tap two pictures that are the same",
+  "@cocokkanIns": {
+    "description": "Petunjuk singkat di papan"
+  },
+  "cocokkanInst": "Draw a line from a picture to the one that is the same.",
+  "@cocokkanInst": {
+    "description": "narasi"
+  },
+  "cocokkanHeadBuah": "Match the same fruits",
+  "@cocokkanHeadBuah": {
+    "description": "Judul tema buah"
+  },
+  "cocokkanHeadHewan": "Match the same animals",
+  "@cocokkanHeadHewan": {
+    "description": "Judul tema hewan"
+  },
+  "cocokkanHeadSayur": "Match the same veggies",
+  "@cocokkanHeadSayur": {
+    "description": "Judul tema sayur"
+  },
+  "cocokkanHeadKendaraan": "Match the same vehicles",
+  "@cocokkanHeadKendaraan": {
+    "description": "Judul tema kendaraan"
+  },
+  "cocokkanHeadBenda": "Match the same toys & things",
+  "@cocokkanHeadBenda": {
+    "description": "Judul tema mainan dan benda"
+  },
+  "cocokkanMatch": "Match!",
+  "@cocokkanMatch": {
+    "description": "narasi"
+  },
+  "cocokkanRetry": "Oops, try again!",
+  "@cocokkanRetry": {
+    "description": "narasi"
+  },
+  "cocokkanTipPick": "Pick a picture!",
+  "@cocokkanTipPick": {
+    "description": "Petunjuk saat pasangan salah"
+  },
+  "cocokkanTipNext": "Now find the same one!",
+  "@cocokkanTipNext": {
+    "description": "Petunjuk setelah memilih satu gambar"
+  },
+  "cocokkanTipDone": "Hooray!",
+  "@cocokkanTipDone": {
+    "description": "Seruan saat semua pasangan cocok"
+  },
+  "memoriTitle": "Memory Cards",
+  "@memoriTitle": {
+    "description": "Title of the Memory Cards screen bar"
+  },
+  "memoriRestart": "New game",
+  "@memoriRestart": {
+    "description": "New round button for Memory Cards"
+  },
+  "memoriTema": "Theme",
+  "@memoriTema": {
+    "description": "Theme row label on Memory Cards"
+  },
+  "memoriPair": "A pair!",
+  "@memoriPair": {
+    "description": "narasi"
+  },
+  "memoriHidden": "Hidden card",
+  "@memoriHidden": {
+    "description": "Label of a card that is not open"
+  },
+  "memoriInst": "Open two cards and find the pair.",
+  "@memoriInst": {
+    "description": "narasi"
+  },
+  "bayanganTitle": "Shadow Match",
+  "@bayanganTitle": {
+    "description": "Title of the Shadow Match screen bar"
+  },
+  "bayanganAsk": "Whose shadow is this?",
+  "@bayanganAsk": {
+    "description": "narasi"
+  },
+  "bayanganShadow": "A mystery shadow",
+  "@bayanganShadow": {
+    "description": "Label of the shadow before it is revealed"
+  },
+  "bayanganProgress": "Progress",
+  "@bayanganProgress": {
+    "description": "Label of the six-round progress pill"
+  },
+  "bayanganYes": "Yes! It is the",
+  "@bayanganYes": {
+    "description": "narasi"
+  },
+  "bayanganNo": "Not that one, that is the",
+  "@bayanganNo": {
+    "description": "narasi"
+  },
+  "bayanganInst": "Tap the picture that matches the shadow.",
+  "@bayanganInst": {
+    "description": "narasi"
+  },
+  "bayanganSemantic": "Shadow choices",
+  "@bayanganSemantic": {
+    "description": "Label of the shadow choice group"
+  },
+  "puzzleTitle": "Puzzle",
+  "@puzzleTitle": {
+    "description": "Title of the Puzzle screen bar"
+  },
+  "puzzleOther": "New puzzle",
+  "@puzzleOther": {
+    "description": "New puzzle picture button"
+  },
+  "puzzleBoard": "Puzzle board",
+  "@puzzleBoard": {
+    "description": "Label of the puzzle board"
+  },
+  "puzzleHintPick": "Tap a piece, then tap where it goes.",
+  "@puzzleHintPick": {
+    "description": "Hint before a piece is picked"
+  },
+  "puzzleHintPlace": "Now tap the right spot on the picture!",
+  "@puzzleHintPlace": {
+    "description": "Hint after a piece is picked"
+  },
+  "puzzleFits": "It fits!",
+  "@puzzleFits": {
+    "description": "narasi"
+  },
+  "puzzleNo": "Not there. Try another spot!",
+  "@puzzleNo": {
+    "description": "narasi"
+  },
+  "puzzlePiece": "Puzzle piece {n}",
+  "@puzzlePiece": {
+    "description": "Label of a puzzle piece",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "puzzleSpot": "Spot {n}",
+  "@puzzleSpot": {
+    "description": "Label of a spot on the board",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "puzzleDone": "Hooray! It is a",
+  "@puzzleDone": {
+    "description": "narasi"
+  },
+  "puzzleInst": "Tap a piece, then tap where it goes.",
+  "@puzzleInst": {
+    "description": "narasi"
+  },
+  "puzzleTipPlace": "Now tap the right spot on the picture!",
+  "@puzzleTipPlace": {
+    "description": "narasi"
+  },
+  "puzzlePieces": "{n} / {m} pieces",
+  "@puzzlePieces": {
+    "description": "Count of placed pieces",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      },
+      "m": {
+        "type": "int"
+      }
+    }
+  },
+  "balonTitle": "Letter Balloons",
+  "balonAsk": "Pop the letter",
+  "balonProgress": "Progress",
+  "balonYes": "Pop! That is",
+  "balonNo": "Oops, that is",
+  "balonInst": "Pop the balloon with the letter Moci says.",
+  "balonLabel": "Balloon {huruf}",
+  "@balonTitle": {
+    "description": "Title of the Letter Balloons screen bar"
+  },
+  "@balonAsk": {
+    "description": "narasi"
+  },
+  "@balonProgress": {
+    "description": "Label of the five-round progress pill"
+  },
+  "@balonYes": {
+    "description": "narasi"
+  },
+  "@balonNo": {
+    "description": "narasi"
+  },
+  "@balonInst": {
+    "description": "narasi"
+  },
+  "@balonLabel": {
+    "description": "Label of a balloon holding one letter",
+    "placeholders": {
+      "huruf": {
+        "type": "String"
+      }
+    }
+  },
+  "besarKecilTitle": "Big & Small",
+  "besarKecilWhich": "Which one is the",
+  "besarKecilBig": "BIGGEST",
+  "besarKecilSmall": "SMALLEST",
+  "besarKecilProgress": "Progress",
+  "besarKecilYes": "Yes! That is the",
+  "besarKecilNo": "Look again!",
+  "besarKecilBigSay": "biggest",
+  "besarKecilSmallSay": "smallest",
+  "besarKecilInst": "Tap the biggest or the smallest picture.",
+  "besarKecilLabel": "{nama}, size {n}",
+  "@besarKecilTitle": {
+    "description": "Title of the Big & Small screen bar"
+  },
+  "@besarKecilWhich": {
+    "description": "narasi"
+  },
+  "@besarKecilBig": {
+    "description": "Biggest question word"
+  },
+  "@besarKecilSmall": {
+    "description": "Smallest question word"
+  },
+  "@besarKecilProgress": {
+    "description": "Label of the six-round progress pill"
+  },
+  "@besarKecilYes": {
+    "description": "narasi"
+  },
+  "@besarKecilNo": {
+    "description": "narasi"
+  },
+  "@besarKecilBigSay": {
+    "description": "narasi"
+  },
+  "@besarKecilSmallSay": {
+    "description": "narasi"
+  },
+  "@besarKecilInst": {
+    "description": "narasi"
+  },
+  "@besarKecilLabel": {
+    "description": "Label of a picture with its name and size",
+    "placeholders": {
+      "nama": {
+        "type": "String"
+      },
+      "n": {
+        "type": "int"
+      }
+    }
   }
 }

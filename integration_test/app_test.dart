@@ -32,6 +32,7 @@ import 'package:moci/core/audio/audio_session.dart';
 import 'package:moci/core/lang.dart';
 import 'package:moci/core/prefs/app_prefs.dart';
 import 'package:moci/core/prefs/prefs_controller.dart';
+import 'package:moci/core/progress/progress_controller.dart';
 import 'package:moci/core/providers.dart';
 import 'package:moci/features/huruf/huruf_screen.dart';
 import 'package:moci/features/orang_tua/gerbang_screen.dart';
@@ -462,5 +463,45 @@ void main() {
     await _screen(t, find.byType(TracingBoard));
     expect(_lastPath(t), '/huruf/tulis');
     expect(find.text('Tulis A'), findsOneWidget);
+  }, timeout: const Timeout(Duration(minutes: 3)));
+
+  testWidgets('permainan: puzzle, hadiah, lalu kembali ke Beranda', (t) async {
+    await _prepareDevice(lang: AppLang.en, childName: 'Raka', onboarded: true);
+    final app = _Launch();
+    addTearDown(app.dispose);
+    await app.run(t);
+    await _screen(t, find.text('Hi, Raka!'));
+    expect(_stack(t), ['/']);
+
+    // Beranda → hub.
+    await _tap(t, find.text("Let's Play!"));
+    await _screen(t, find.text('Pick a game'));
+    expect(_lastPath(t), '/main');
+
+    // Hub → Puzzle (papan 2 × 2 untuk pemula).
+    await _tap(t, find.text('Jigsaw Puzzle'));
+    await _screen(t, find.text('Puzzle'));
+    expect(_lastPath(t), '/main/puzzle');
+    expect(find.text('0 / 4 pieces'), findsOneWidget);
+
+    // Empat keping: ketuk keping, lalu tempatnya.
+    for (var i = 1; i <= 4; i++) {
+      await _tap(t, find.bySemanticsLabel('Puzzle piece $i'));
+      await t.pump(const Duration(milliseconds: 450));
+      await _tap(t, find.bySemanticsLabel('Spot $i'));
+      await t.pump(const Duration(milliseconds: 450));
+    }
+
+    // Ronde selesai: hadiah disimpan sebelum Hebat tampil. Pita Hebat
+    // menampilkan judul dalam huruf besar.
+    await _screen(t, find.text('GREAT JOB!'));
+    expect(_lastPath(t), '/hebat');
+    expect(_container(t).read(progressProvider).stars, 3);
+    expect(_container(t).read(progressProvider).stickers, hasLength(1));
+
+    // Tombol Lanjut kembali ke Beranda, bukan ke papan yang sudah selesai.
+    await _tap(t, find.text('Continue'));
+    await _pumpUntil(t, find.text('Hi, Raka!'));
+    expect(_stack(t), ['/']);
   }, timeout: const Timeout(Duration(minutes: 3)));
 }

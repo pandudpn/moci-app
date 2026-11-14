@@ -1145,4 +1145,260 @@ class AppLocalizationsId extends AppLocalizations {
   String mewarnaiViewArt(String nama) {
     return 'Lihat karya: $nama';
   }
+
+  @override
+  String get mainYukSub => 'Pilih permainan';
+
+  @override
+  String get mainYukAge2 => 'Usia 2+';
+
+  @override
+  String get mainYukAge3 => 'Usia 3+';
+
+  @override
+  String get mainYukAge4 => 'Usia 4+';
+
+  @override
+  String get mainYukCocokkanHub => 'Cocokkan Gambar';
+
+  @override
+  String get mainYukMemoriHub => 'Kartu Memori';
+
+  @override
+  String get mainYukBayanganHub => 'Tebak Bayangan';
+
+  @override
+  String get mainYukPuzzleHub => 'Puzzle';
+
+  @override
+  String get mainYukBalonHub => 'Balon Huruf';
+
+  @override
+  String get mainYukBesarKecilHub => 'Besar & Kecil';
+
+  @override
+  String get mainYukTemaAcak => 'Acak!';
+
+  @override
+  String get mainYukTemaBuah => 'Buah';
+
+  @override
+  String get mainYukTemaHewan => 'Hewan';
+
+  @override
+  String get mainYukTemaSayur => 'Sayur';
+
+  @override
+  String get mainYukTemaKendaraan => 'Kendaraan';
+
+  @override
+  String get mainYukTemaBenda => 'Mainan & Benda';
+
+  @override
+  String mainYukPairs(int n) {
+    return '$n pasang';
+  }
+
+  @override
+  String mainYukMoves(int n) {
+    return 'Langkah: $n';
+  }
+
+  @override
+  String get gameLevel => 'Level';
+
+  @override
+  String get cocokkanTitle => 'Cocokkan!';
+
+  @override
+  String get cocokkanTema => 'Tema';
+
+  @override
+  String get cocokkanShuffle => 'Gambar baru';
+
+  @override
+  String get cocokkanHear => 'Dengarkan petunjuk';
+
+  @override
+  String get cocokkanIns => 'Tarik garis atau ketuk dua gambar yang sama';
+
+  @override
+  String get cocokkanInst => 'Tarik garis dari gambar ke gambar yang sama.';
+
+  @override
+  String get cocokkanHeadBuah => 'Cocokkan Buah yang Sama';
+
+  @override
+  String get cocokkanHeadHewan => 'Cocokkan Hewan yang Sama';
+
+  @override
+  String get cocokkanHeadSayur => 'Cocokkan Sayur yang Sama';
+
+  @override
+  String get cocokkanHeadKendaraan => 'Cocokkan Kendaraan yang Sama';
+
+  @override
+  String get cocokkanHeadBenda => 'Cocokkan Mainan & Benda yang Sama';
+
+  @override
+  String get cocokkanMatch => 'Cocok!';
+
+  @override
+  String get cocokkanRetry => 'Ups, coba lagi ya!';
+
+  @override
+  String get cocokkanTipPick => 'Pilih satu gambar!';
+
+  @override
+  String get cocokkanTipNext => 'Sekarang cari yang sama!';
+
+  @override
+  String get cocokkanTipDone => 'Horee!';
+
+  @override
+  String get memoriTitle => 'Kartu Memori';
+
+  @override
+  String get memoriRestart => 'Main baru';
+
+  @override
+  String get memoriTema => 'Tema';
+
+  @override
+  String get memoriPair => 'Sepasang!';
+
+  @override
+  String get memoriHidden => 'Kartu tertutup';
+
+  @override
+  String get memoriInst => 'Buka dua kartu dan cari pasangannya.';
+
+  @override
+  String get bayanganTitle => 'Tebak Bayangan';
+
+  @override
+  String get bayanganAsk => 'Bayangan siapa ini?';
+
+  @override
+  String get bayanganShadow => 'Bayangan misteri';
+
+  @override
+  String get bayanganProgress => 'Kemajuan';
+
+  @override
+  String get bayanganYes => 'Betul! Itu';
+
+  @override
+  String get bayanganNo => 'Bukan yang itu, itu';
+
+  @override
+  String get bayanganInst => 'Ketuk gambar yang bayangannya sama.';
+
+  @override
+  String get bayanganSemantic => 'Pilihan bayangan';
+
+  @override
+  String get puzzleTitle => 'Puzzle';
+
+  @override
+  String get puzzleOther => 'Puzzle lain';
+
+  @override
+  String get puzzleBoard => 'Papan puzzle';
+
+  @override
+  String get puzzleHintPick => 'Ketuk potongan, lalu ketuk tempatnya.';
+
+  @override
+  String get puzzleHintPlace => 'Sekarang ketuk tempat yang pas di gambar!';
+
+  @override
+  String get puzzleFits => 'Pas!';
+
+  @override
+  String get puzzleNo => 'Bukan di situ. Coba tempat lain!';
+
+  @override
+  String puzzlePiece(int n) {
+    return 'Potongan $n';
+  }
+
+  @override
+  String puzzleSpot(int n) {
+    return 'Tempat $n';
+  }
+
+  @override
+  String get puzzleDone => 'Hore! Gambarnya';
+
+  @override
+  String get puzzleInst => 'Ketuk potongan, lalu ketuk tempatnya.';
+
+  @override
+  String get puzzleTipPlace => 'Sekarang ketuk tempat yang pas di gambar!';
+
+  @override
+  String puzzlePieces(int n, int m) {
+    return '$n / $m potongan';
+  }
+
+  @override
+  String get balonTitle => 'Balon Huruf';
+
+  @override
+  String get balonAsk => 'Pecahkan balon huruf';
+
+  @override
+  String get balonProgress => 'Kemajuan';
+
+  @override
+  String get balonYes => 'Dor! Itu huruf';
+
+  @override
+  String get balonNo => 'Ups, itu huruf';
+
+  @override
+  String get balonInst =>
+      'Pecahkan balon yang hurufnya sama dengan yang disebut Moci.';
+
+  @override
+  String balonLabel(String huruf) {
+    return 'Balon huruf $huruf';
+  }
+
+  @override
+  String get besarKecilTitle => 'Besar & Kecil';
+
+  @override
+  String get besarKecilWhich => 'Mana yang paling';
+
+  @override
+  String get besarKecilBig => 'BESAR';
+
+  @override
+  String get besarKecilSmall => 'KECIL';
+
+  @override
+  String get besarKecilProgress => 'Kemajuan';
+
+  @override
+  String get besarKecilYes => 'Betul! Itu yang paling';
+
+  @override
+  String get besarKecilNo => 'Coba lihat lagi!';
+
+  @override
+  String get besarKecilBigSay => 'besar';
+
+  @override
+  String get besarKecilSmallSay => 'kecil';
+
+  @override
+  String get besarKecilInst =>
+      'Ketuk gambar yang paling besar atau paling kecil.';
+
+  @override
+  String besarKecilLabel(String nama, int n) {
+    return '$nama, ukuran $n';
+  }
 }

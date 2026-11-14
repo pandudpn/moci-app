@@ -1350,5 +1350,366 @@
         "type": "String"
       }
     }
+  },
+  "mainYukSub": "Pilih permainan",
+  "@mainYukSub": {
+    "description": "Subjudul hub Main Yuk"
+  },
+  "mainYukAge2": "Usia 2+",
+  "@mainYukAge2": {
+    "description": "Lencana usia minimum permainan"
+  },
+  "mainYukAge3": "Usia 3+",
+  "@mainYukAge3": {
+    "description": "Lencana usia minimum permainan"
+  },
+  "mainYukAge4": "Usia 4+",
+  "@mainYukAge4": {
+    "description": "Lencana usia minimum permainan"
+  },
+  "mainYukCocokkanHub": "Cocokkan Gambar",
+  "@mainYukCocokkanHub": {
+    "description": "narasi"
+  },
+  "mainYukMemoriHub": "Kartu Memori",
+  "@mainYukMemoriHub": {
+    "description": "narasi"
+  },
+  "mainYukBayanganHub": "Tebak Bayangan",
+  "@mainYukBayanganHub": {
+    "description": "narasi"
+  },
+  "mainYukPuzzleHub": "Puzzle",
+  "@mainYukPuzzleHub": {
+    "description": "narasi"
+  },
+  "mainYukBalonHub": "Balon Huruf",
+  "@mainYukBalonHub": {
+    "description": "narasi"
+  },
+  "mainYukBesarKecilHub": "Besar & Kecil",
+  "@mainYukBesarKecilHub": {
+    "description": "narasi"
+  },
+  "mainYukTemaAcak": "Acak!",
+  "@mainYukTemaAcak": {
+    "description": "narasi"
+  },
+  "mainYukTemaBuah": "Buah",
+  "@mainYukTemaBuah": {
+    "description": "narasi"
+  },
+  "mainYukTemaHewan": "Hewan",
+  "@mainYukTemaHewan": {
+    "description": "narasi"
+  },
+  "mainYukTemaSayur": "Sayur",
+  "@mainYukTemaSayur": {
+    "description": "narasi"
+  },
+  "mainYukTemaKendaraan": "Kendaraan",
+  "@mainYukTemaKendaraan": {
+    "description": "narasi"
+  },
+  "mainYukTemaBenda": "Mainan & Benda",
+  "@mainYukTemaBenda": {
+    "description": "narasi"
+  },
+  "mainYukPairs": "{n} pasang",
+  "@mainYukPairs": {
+    "description": "Jumlah pasangan permainan",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "mainYukMoves": "Langkah: {n}",
+  "@mainYukMoves": {
+    "description": "Jumlah langkah permainan",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "gameLevel": "Level",
+  "@gameLevel": {
+    "description": "Label pil level kesulitan"
+  },
+  "cocokkanTitle": "Cocokkan!",
+  "@cocokkanTitle": {
+    "description": "Judul bilah atas layar Cocokkan"
+  },
+  "cocokkanTema": "Tema",
+  "@cocokkanTema": {
+    "description": "Label kolom tema"
+  },
+  "cocokkanShuffle": "Gambar baru",
+  "@cocokkanShuffle": {
+    "description": "Tombol gambar baru"
+  },
+  "cocokkanHear": "Dengarkan petunjuk",
+  "@cocokkanHear": {
+    "description": "Tombol dengar petunjuk"
+  },
+  "cocokkanIns": "Tarik garis atau ketuk dua gambar yang sama",
+  "@cocokkanIns": {
+    "description": "Petunjuk singkat di papan"
+  },
+  "cocokkanInst": "Tarik garis dari gambar ke gambar yang sama.",
+  "@cocokkanInst": {
+    "description": "narasi"
+  },
+  "cocokkanHeadBuah": "Cocokkan Buah yang Sama",
+  "@cocokkanHeadBuah": {
+    "description": "Judul tema buah"
+  },
+  "cocokkanHeadHewan": "Cocokkan Hewan yang Sama",
+  "@cocokkanHeadHewan": {
+    "description": "Judul tema hewan"
+  },
+  "cocokkanHeadSayur": "Cocokkan Sayur yang Sama",
+  "@cocokkanHeadSayur": {
+    "description": "Judul tema sayur"
+  },
+  "cocokkanHeadKendaraan": "Cocokkan Kendaraan yang Sama",
+  "@cocokkanHeadKendaraan": {
+    "description": "Judul tema kendaraan"
+  },
+  "cocokkanHeadBenda": "Cocokkan Mainan & Benda yang Sama",
+  "@cocokkanHeadBenda": {
+    "description": "Judul tema mainan dan benda"
+  },
+  "cocokkanMatch": "Cocok!",
+  "@cocokkanMatch": {
+    "description": "narasi"
+  },
+  "cocokkanRetry": "Ups, coba lagi ya!",
+  "@cocokkanRetry": {
+    "description": "narasi"
+  },
+  "cocokkanTipPick": "Pilih satu gambar!",
+  "@cocokkanTipPick": {
+    "description": "Petunjuk saat pasangan salah"
+  },
+  "cocokkanTipNext": "Sekarang cari yang sama!",
+  "@cocokkanTipNext": {
+    "description": "Petunjuk setelah memilih satu gambar"
+  },
+  "cocokkanTipDone": "Horee!",
+  "@cocokkanTipDone": {
+    "description": "Seruan saat semua pasangan cocok"
+  },
+  "memoriTitle": "Kartu Memori",
+  "@memoriTitle": {
+    "description": "Judul bilah atas layar Kartu Memori"
+  },
+  "memoriRestart": "Main baru",
+  "@memoriRestart": {
+    "description": "Tombol ronde baru Kartu Memori"
+  },
+  "memoriTema": "Tema",
+  "@memoriTema": {
+    "description": "Label baris tema Kartu Memori"
+  },
+  "memoriPair": "Sepasang!",
+  "@memoriPair": {
+    "description": "narasi"
+  },
+  "memoriHidden": "Kartu tertutup",
+  "@memoriHidden": {
+    "description": "Label kartu yang belum dibuka"
+  },
+  "memoriInst": "Buka dua kartu dan cari pasangannya.",
+  "@memoriInst": {
+    "description": "narasi"
+  },
+  "bayanganTitle": "Tebak Bayangan",
+  "@bayanganTitle": {
+    "description": "Judul bilah atas layar Tebak Bayangan"
+  },
+  "bayanganAsk": "Bayangan siapa ini?",
+  "@bayanganAsk": {
+    "description": "narasi"
+  },
+  "bayanganShadow": "Bayangan misteri",
+  "@bayanganShadow": {
+    "description": "Label bayangan yang belum terbuka"
+  },
+  "bayanganProgress": "Kemajuan",
+  "@bayanganProgress": {
+    "description": "Label pil kemajuan enam ronde"
+  },
+  "bayanganYes": "Betul! Itu",
+  "@bayanganYes": {
+    "description": "narasi"
+  },
+  "bayanganNo": "Bukan yang itu, itu",
+  "@bayanganNo": {
+    "description": "narasi"
+  },
+  "bayanganInst": "Ketuk gambar yang bayangannya sama.",
+  "@bayanganInst": {
+    "description": "narasi"
+  },
+  "bayanganSemantic": "Pilihan bayangan",
+  "@bayanganSemantic": {
+    "description": "Label kelompok pilihan bayangan"
+  },
+  "puzzleTitle": "Puzzle",
+  "@puzzleTitle": {
+    "description": "Judul bilah atas layar Puzzle"
+  },
+  "puzzleOther": "Puzzle lain",
+  "@puzzleOther": {
+    "description": "Tombol gambar puzzle baru"
+  },
+  "puzzleBoard": "Papan puzzle",
+  "@puzzleBoard": {
+    "description": "Label papan puzzle"
+  },
+  "puzzleHintPick": "Ketuk potongan, lalu ketuk tempatnya.",
+  "@puzzleHintPick": {
+    "description": "Petunjuk saat belum ada keping dipilih"
+  },
+  "puzzleHintPlace": "Sekarang ketuk tempat yang pas di gambar!",
+  "@puzzleHintPlace": {
+    "description": "Petunjuk setelah keping dipilih"
+  },
+  "puzzleFits": "Pas!",
+  "@puzzleFits": {
+    "description": "narasi"
+  },
+  "puzzleNo": "Bukan di situ. Coba tempat lain!",
+  "@puzzleNo": {
+    "description": "narasi"
+  },
+  "puzzlePiece": "Potongan {n}",
+  "@puzzlePiece": {
+    "description": "Label keping puzzle",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "puzzleSpot": "Tempat {n}",
+  "@puzzleSpot": {
+    "description": "Label tempat keping di papan",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "puzzleDone": "Hore! Gambarnya",
+  "@puzzleDone": {
+    "description": "narasi"
+  },
+  "puzzleInst": "Ketuk potongan, lalu ketuk tempatnya.",
+  "@puzzleInst": {
+    "description": "narasi"
+  },
+  "puzzleTipPlace": "Sekarang ketuk tempat yang pas di gambar!",
+  "@puzzleTipPlace": {
+    "description": "narasi"
+  },
+  "puzzlePieces": "{n} / {m} potongan",
+  "@puzzlePieces": {
+    "description": "Hitungan keping terpasang",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      },
+      "m": {
+        "type": "int"
+      }
+    }
+  },
+  "balonTitle": "Balon Huruf",
+  "balonAsk": "Pecahkan balon huruf",
+  "balonProgress": "Kemajuan",
+  "balonYes": "Dor! Itu huruf",
+  "balonNo": "Ups, itu huruf",
+  "balonInst": "Pecahkan balon yang hurufnya sama dengan yang disebut Moci.",
+  "balonLabel": "Balon huruf {huruf}",
+  "@balonTitle": {
+    "description": "Judul bilah atas layar Balon Huruf"
+  },
+  "@balonAsk": {
+    "description": "narasi"
+  },
+  "@balonProgress": {
+    "description": "Label pil kemajuan lima ronde"
+  },
+  "@balonYes": {
+    "description": "narasi"
+  },
+  "@balonNo": {
+    "description": "narasi"
+  },
+  "@balonInst": {
+    "description": "narasi"
+  },
+  "@balonLabel": {
+    "description": "Label balon berisi satu huruf",
+    "placeholders": {
+      "huruf": {
+        "type": "String"
+      }
+    }
+  },
+  "besarKecilTitle": "Besar & Kecil",
+  "besarKecilWhich": "Mana yang paling",
+  "besarKecilBig": "BESAR",
+  "besarKecilSmall": "KECIL",
+  "besarKecilProgress": "Kemajuan",
+  "besarKecilYes": "Betul! Itu yang paling",
+  "besarKecilNo": "Coba lihat lagi!",
+  "besarKecilBigSay": "besar",
+  "besarKecilSmallSay": "kecil",
+  "besarKecilInst": "Ketuk gambar yang paling besar atau paling kecil.",
+  "besarKecilLabel": "{nama}, ukuran {n}",
+  "@besarKecilTitle": {
+    "description": "Judul bilah atas layar Besar & Kecil"
+  },
+  "@besarKecilWhich": {
+    "description": "narasi"
+  },
+  "@besarKecilBig": {
+    "description": "Kata tanya paling besar"
+  },
+  "@besarKecilSmall": {
+    "description": "Kata tanya paling kecil"
+  },
+  "@besarKecilProgress": {
+    "description": "Label pil kemajuan enam ronde"
+  },
+  "@besarKecilYes": {
+    "description": "narasi"
+  },
+  "@besarKecilNo": {
+    "description": "narasi"
+  },
+  "@besarKecilBigSay": {
+    "description": "narasi"
+  },
+  "@besarKecilSmallSay": {
+    "description": "narasi"
+  },
+  "@besarKecilInst": {
+    "description": "narasi"
+  },
+  "@besarKecilLabel": {
+    "description": "Label gambar dengan nama dan ukurannya",
+    "placeholders": {
+      "nama": {
+        "type": "String"
+      },
+      "n": {
+        "type": "int"
+      }
+    }
   }
 }

@@ -8,6 +8,13 @@ import '../features/berhitung/berhitung_screen.dart';
 import '../features/hadiah/hadiah_controller.dart';
 import '../features/hadiah/hebat_screen.dart';
 import '../features/huruf/huruf_screen.dart';
+import '../features/main_yuk/balon_screen.dart';
+import '../features/main_yuk/bayangan_screen.dart';
+import '../features/main_yuk/besar_kecil_screen.dart';
+import '../features/main_yuk/cocokkan_screen.dart';
+import '../features/main_yuk/hub_screen.dart';
+import '../features/main_yuk/memori_screen.dart';
+import '../features/main_yuk/puzzle_screen.dart';
 import '../features/orang_tua/gerbang_screen.dart';
 import '../features/orang_tua/orang_tua_screen.dart';
 import '../features/sambutan/sambutan_screen.dart';
@@ -167,13 +174,34 @@ final routerProvider = Provider<GoRouter>((ref) {
         builder: (context, state) =>
             KalimatScreen(awal: state.uri.queryParameters['kalimat']),
       ),
-      _soon(Routes.mainYuk, MenuTheme.mainYuk),
-      _soon(Routes.cocokkan, MenuTheme.cocokkan),
-      _soon(Routes.memori, MenuTheme.memori),
-      _soon(Routes.bayangan, MenuTheme.bayangan),
-      _soon(Routes.puzzle, MenuTheme.puzzle),
-      _soon(Routes.balon, MenuTheme.balon),
-      _soon(Routes.besarKecil, MenuTheme.besarKecil),
+      GoRoute(
+        path: Routes.mainYuk,
+        builder: (context, state) => const HubScreen(),
+      ),
+      GoRoute(
+        path: Routes.cocokkan,
+        builder: (context, state) => const CocokkanScreen(),
+      ),
+      GoRoute(
+        path: Routes.memori,
+        builder: (context, state) => const MemoriScreen(),
+      ),
+      GoRoute(
+        path: Routes.bayangan,
+        builder: (context, state) => const BayanganScreen(),
+      ),
+      GoRoute(
+        path: Routes.puzzle,
+        builder: (context, state) => const PuzzleScreen(),
+      ),
+      GoRoute(
+        path: Routes.balon,
+        builder: (context, state) => const BalonScreen(),
+      ),
+      GoRoute(
+        path: Routes.besarKecil,
+        builder: (context, state) => const BesarKecilScreen(),
+      ),
       GoRoute(
         path: Routes.mewarnai,
         builder: (context, state) => const GaleriScreen(),
