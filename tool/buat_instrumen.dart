@@ -92,7 +92,7 @@ Float64List _kerincing() {
     final t = i / _laju;
     final env = t < 0.03
         ? 0.45 * (t / 0.03)
-        : 0.45 * exp(-t / 0.05);
+        : 0.45 * exp(-(t - 0.03) / 0.05);
     out[i] = env * derau[i];
   }
   return out;
