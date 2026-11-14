@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:moci/core/progress/progress.dart';
 import 'package:moci/core/progress/progress_controller.dart';
 import 'package:moci/core/progress/progress_repository.dart';
 import 'package:moci/core/providers.dart';
@@ -102,11 +103,67 @@ void main() {
     expect(keys.length, 7);
   });
 
-  test('harian lama dibuang saat simpan', () async {
-    await ctrl().addStars(1);
-    clock.current = DateTime(2026, 11, 22, 9);
-    await ctrl().addStars(1);
-    expect(container.read(progressProvider).harian.keys, ['2026-11-22']);
+  test('jam melompat maju tidak menghapus riwayat', () async {
+    final seed = Progress(
+      stars: 12,
+      playSeconds: {'2026-11-12': 600, '2026-11-13': 700, '2026-11-14': 800},
+      harian: {
+        '2026-11-12': const DayStats(stars: 3, stickers: 1, karya: 1),
+        '2026-11-13': const DayStats(stars: 4, stickers: 1),
+        '2026-11-14': const DayStats(stars: 5, stickers: 1, karya: 2),
+      },
+    );
+    await store.write(ProgressRepository.path, seed.toJson());
+    final c = ProviderContainer(
+      overrides: [
+        jsonStoreProvider.overrideWithValue(store),
+        clockProvider.overrideWithValue(clock),
+        initialProgressProvider.overrideWithValue(
+          await ProgressRepository(store).load(),
+        ),
+      ],
+    );
+    addTearDown(c.dispose);
+    clock.current = DateTime(2026, 12, 14, 9);
+
+    await c.read(progressProvider.notifier).addStars(3);
+
+    const lama = ['2026-11-12', '2026-11-13', '2026-11-14'];
+    final s = c.read(progressProvider);
+    expect(s.playSeconds.keys, containsAll(lama));
+    expect(s.playSeconds['2026-11-14'], 800);
+    expect(s.harian.keys, containsAll(lama));
+    expect(s.harian['2026-11-14']!.karya, 2);
+    final disk = (await store.read(ProgressRepository.path))!;
+    expect((disk['waktuBermain']! as Map).keys, containsAll(lama));
+    expect((disk['harian']! as Map).keys, containsAll(lama));
+  });
+
+  test('tiap peta tanggal menyimpan 7 kunci terbaru', () async {
+    String t(int d) => '2026-10-${d.toString().padLeft(2, '0')}';
+    final seed = Progress(
+      playSeconds: {for (var d = 1; d <= 10; d++) t(d): d * 10},
+      harian: {for (var d = 1; d <= 10; d++) t(d): const DayStats(stars: 1)},
+    );
+    final c = ProviderContainer(
+      overrides: [
+        jsonStoreProvider.overrideWithValue(store),
+        clockProvider.overrideWithValue(clock),
+        initialProgressProvider.overrideWithValue(seed),
+      ],
+    );
+    addTearDown(c.dispose);
+
+    await c.read(progressProvider.notifier).addStars(1);
+
+    final s = c.read(progressProvider);
+    expect(s.playSeconds.keys.toList()..sort(), [
+      for (var d = 4; d <= 10; d++) t(d),
+    ]);
+    expect(s.harian.keys.toList()..sort(), [
+      for (var d = 5; d <= 10; d++) t(d),
+      '2026-11-14',
+    ]);
   });
 
   test('dua mutasi cepat tidak saling tumpang', () async {

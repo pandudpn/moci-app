@@ -22,20 +22,22 @@ class ProgressController extends Notifier<Progress> {
 
   String get _today => dateKey(ref.read(clockProvider).now());
 
+  /// Menyimpan 7 tanggal terbaru per peta. Riwayat tidak dibuang karena jam
+  /// saja: lompatan jam ke depan tidak boleh menghapus data anak.
   Progress _prune(Progress p) {
-    final limit = dateKey(
-      ref.read(clockProvider).now().subtract(const Duration(days: 6)),
-    );
-    bool keep(String k) => k.compareTo(limit) >= 0;
+    Map<String, V> simpan7<V>(Map<String, V> m) {
+      if (m.length <= 7) return m;
+      final kunci = m.keys.toList()..sort();
+      final ambil = kunci.sublist(kunci.length - 7).toSet();
+      return {
+        for (final e in m.entries)
+          if (ambil.contains(e.key)) e.key: e.value,
+      };
+    }
+
     return p.copyWith(
-      playSeconds: {
-        for (final e in p.playSeconds.entries)
-          if (keep(e.key)) e.key: e.value,
-      },
-      harian: {
-        for (final e in p.harian.entries)
-          if (keep(e.key)) e.key: e.value,
-      },
+      playSeconds: simpan7(p.playSeconds),
+      harian: simpan7(p.harian),
     );
   }
 
