@@ -1,13 +1,14 @@
 import 'package:flutter/widgets.dart';
+import 'package:go_router/go_router.dart';
 
+import '../app/routes.dart';
 import '../app/theme/moci_colors.dart';
 import '../app/theme/moci_metrics.dart';
 import '../l10n/l10n.dart';
 import 'pressable.dart';
 
-/// Tujuan "pulang" saat tidak ada rute untuk di-pop. Satu tempat supaya
-/// Task 11 cukup menggantinya dengan `context.go(Routes.beranda)`.
-void _goHome(BuildContext context) {}
+/// Tujuan "pulang" saat tidak ada rute untuk di-pop.
+void _goHome(BuildContext context) => context.go(Routes.beranda);
 
 /// Tombol kembali: selalu kiri atas, ukuran dan posisi sama di semua layar.
 class MociBackButton extends StatelessWidget {

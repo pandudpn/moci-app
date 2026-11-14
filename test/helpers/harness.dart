@@ -3,7 +3,10 @@ import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/misc.dart' show Override;
 import 'package:flutter_test/flutter_test.dart';
+import 'package:go_router/go_router.dart';
 import 'package:material_ui/material_ui.dart';
+import 'package:moci/app/moci_app.dart';
+import 'package:moci/app/router.dart';
 import 'package:moci/app/theme/moci_theme.dart';
 import 'package:moci/core/audio/asset_catalog.dart';
 import 'package:moci/core/audio/audio_providers.dart';
@@ -117,4 +120,28 @@ Future<void> pumpScreen(
       ),
     ),
   );
+}
+
+/// Memasang aplikasi utuh (`MociApp`) dan mengembalikan routernya.
+Future<GoRouter> pumpApp(
+  WidgetTester t, {
+  TestEnv? env,
+  Size size = tabletSize,
+  String? initialLocation,
+}) async {
+  final e = env ?? TestEnv();
+  addTearDown(e.ticks.close);
+  useScreen(t, size);
+  await t.pumpWidget(
+    ProviderScope(overrides: e.overrides, child: const MociApp()),
+  );
+  await t.pump();
+  final router = ProviderScope.containerOf(t.element(find.byType(MociApp)))
+      .read(routerProvider);
+  if (initialLocation != null) {
+    router.go(initialLocation);
+    await t.pump();
+    await t.pump();
+  }
+  return router;
 }

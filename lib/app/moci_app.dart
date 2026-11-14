@@ -4,6 +4,7 @@ import 'package:material_ui/material_ui.dart';
 import '../core/audio/audio_providers.dart';
 import '../core/prefs/prefs_controller.dart';
 import '../l10n/l10n.dart';
+import 'router.dart';
 import 'theme/moci_theme.dart';
 
 class MociApp extends ConsumerStatefulWidget {
@@ -54,7 +55,7 @@ class _MociAppState extends ConsumerState<MociApp> {
   @override
   Widget build(BuildContext context) {
     final lang = ref.watch(prefsProvider.select((p) => p.lang));
-    return MaterialApp(
+    return MaterialApp.router(
       onGenerateTitle: (c) => c.l10n.appTitle,
       debugShowCheckedModeBanner: false,
       theme: mociTheme(),
@@ -64,7 +65,7 @@ class _MociAppState extends ConsumerState<MociApp> {
         AppLocalizations.delegate,
         ...GlobalMaterialLocalizations.delegates,
       ],
-      home: const SizedBox.shrink(),
+      routerConfig: ref.watch(routerProvider),
     );
   }
 }
