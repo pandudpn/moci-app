@@ -51,20 +51,19 @@ final class AppPrefs {
     bool? sfx,
     bool? restReminder,
     bool? onboarded,
-  }) =>
-      AppPrefs(
-        lang: lang ?? this.lang,
-        childName: childName ?? this.childName,
-        ageLevel: ageLevel ?? this.ageLevel,
-        letterMode: letterMode ?? this.letterMode,
-        dailyLimitMinutes: identical(dailyLimitMinutes, _keep)
-            ? this.dailyLimitMinutes
-            : dailyLimitMinutes as int?,
-        music: music ?? this.music,
-        sfx: sfx ?? this.sfx,
-        restReminder: restReminder ?? this.restReminder,
-        onboarded: onboarded ?? this.onboarded,
-      );
+  }) => AppPrefs(
+    lang: lang ?? this.lang,
+    childName: childName ?? this.childName,
+    ageLevel: ageLevel ?? this.ageLevel,
+    letterMode: letterMode ?? this.letterMode,
+    dailyLimitMinutes: identical(dailyLimitMinutes, _keep)
+        ? this.dailyLimitMinutes
+        : dailyLimitMinutes as int?,
+    music: music ?? this.music,
+    sfx: sfx ?? this.sfx,
+    restReminder: restReminder ?? this.restReminder,
+    onboarded: onboarded ?? this.onboarded,
+  );
 
   @override
   bool operator ==(Object other) =>
@@ -80,6 +79,15 @@ final class AppPrefs {
       other.onboarded == onboarded;
 
   @override
-  int get hashCode => Object.hash(lang, childName, ageLevel, letterMode,
-      dailyLimitMinutes, music, sfx, restReminder, onboarded);
+  int get hashCode => Object.hash(
+    lang,
+    childName,
+    ageLevel,
+    letterMode,
+    dailyLimitMinutes,
+    music,
+    sfx,
+    restReminder,
+    onboarded,
+  );
 }

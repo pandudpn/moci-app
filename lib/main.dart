@@ -6,6 +6,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/misc.dart' show Override;
 
 import 'app/moci_app.dart';
+import 'core/progress/progress_controller.dart';
+import 'core/progress/progress_repository.dart';
 import 'core/providers.dart';
 import 'core/storage/app_files.dart';
 import 'core/storage/backup_exclusion.dart';
@@ -35,11 +37,14 @@ Future<void> runMoci({List<Override> overrides = const []}) async {
   ]);
   final keyValueStore = await SharedPrefsKeyValueStore.open();
   final dir = await AppFiles.open(const MethodChannelBackupExclusion());
+  final jsonStore = FileJsonStore(dir);
+  final progress = await ProgressRepository(jsonStore).load();
   runApp(
     ProviderScope(
       overrides: [
         keyValueStoreProvider.overrideWithValue(keyValueStore),
-        jsonStoreProvider.overrideWithValue(FileJsonStore(dir)),
+        jsonStoreProvider.overrideWithValue(jsonStore),
+        initialProgressProvider.overrideWithValue(progress),
         ...overrides,
       ],
       child: const MociApp(),

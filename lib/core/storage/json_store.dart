@@ -100,11 +100,16 @@ final class MemoryJsonStore implements JsonStore {
   @override
   Future<List<String>> list(String dir) async {
     final prefix = '$dir/';
-    final names = _files.keys
-        .where((k) => k.startsWith(prefix) && !k.substring(prefix.length).contains('/'))
-        .map((k) => k.substring(prefix.length))
-        .toList()
-      ..sort();
+    final names =
+        _files.keys
+            .where(
+              (k) =>
+                  k.startsWith(prefix) &&
+                  !k.substring(prefix.length).contains('/'),
+            )
+            .map((k) => k.substring(prefix.length))
+            .toList()
+          ..sort();
     return names;
   }
 

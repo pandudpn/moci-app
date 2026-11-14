@@ -7,11 +7,13 @@ import '../providers.dart';
 import '../storage/key_value_store.dart';
 import 'app_prefs.dart';
 
-final deviceLocaleProvider =
-    Provider<Locale>((_) => PlatformDispatcher.instance.locale);
+final deviceLocaleProvider = Provider<Locale>(
+  (_) => PlatformDispatcher.instance.locale,
+);
 
-final prefsProvider =
-    NotifierProvider<PrefsController, AppPrefs>(PrefsController.new);
+final prefsProvider = NotifierProvider<PrefsController, AppPrefs>(
+  PrefsController.new,
+);
 
 const _kLang = 'moci.bahasa';
 const _kName = 'moci.nama';
@@ -39,21 +41,24 @@ final class PrefsController extends Notifier<AppPrefs> {
     final store = ref.watch(keyValueStoreProvider);
     final defaultLang = defaultLangFor(ref.watch(deviceLocaleProvider));
 
-    final lang = AppLang.values.asNameMap()[store.getString(_kLang)] ?? defaultLang;
+    final lang =
+        AppLang.values.asNameMap()[store.getString(_kLang)] ?? defaultLang;
     final ageCode = store.getString(_kAge);
-    final age = _ageCodes.entries
+    final age =
+        _ageCodes.entries
             .where((e) => e.value == ageCode)
             .map((e) => e.key)
             .firstOrNull ??
         AgeLevel.pemula;
     final letter =
-        LetterMode.values.asNameMap()[store.getString(_kLetter)] ?? LetterMode.fonik;
+        LetterMode.values.asNameMap()[store.getString(_kLetter)] ??
+        LetterMode.fonik;
     final storedLimit = store.getInt(_kLimit);
     final int? limit = storedLimit == null
         ? 30
         : storedLimit == 0
-            ? null
-            : (_allowedLimits.contains(storedLimit) ? storedLimit : 30);
+        ? null
+        : (_allowedLimits.contains(storedLimit) ? storedLimit : 30);
 
     return AppPrefs(
       lang: lang,
@@ -96,7 +101,11 @@ final class PrefsController extends Notifier<AppPrefs> {
 
   Future<void> setDailyLimit(int? minutes) {
     if (minutes != null && !_allowedLimits.contains(minutes)) {
-      throw ArgumentError.value(minutes, 'minutes', 'harus 15, 30, 45, atau null');
+      throw ArgumentError.value(
+        minutes,
+        'minutes',
+        'harus 15, 30, 45, atau null',
+      );
     }
     state = state.copyWith(dailyLimitMinutes: minutes);
     return _store.setInt(_kLimit, minutes ?? 0);
@@ -124,7 +133,11 @@ final class PrefsController extends Notifier<AppPrefs> {
   }) async {
     final clean = _trimName(childName);
     state = state.copyWith(
-        lang: lang, childName: clean, ageLevel: age, onboarded: true);
+      lang: lang,
+      childName: clean,
+      ageLevel: age,
+      onboarded: true,
+    );
     final store = _store;
     await store.setString(_kLang, lang.name);
     await store.setString(_kName, clean);

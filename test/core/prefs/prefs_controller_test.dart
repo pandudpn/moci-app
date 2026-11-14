@@ -9,32 +9,63 @@ import 'package:moci/core/providers.dart';
 import 'package:moci/core/storage/key_value_store.dart';
 
 ProviderContainer make(MemoryKeyValueStore s, Locale l) {
-  final c = ProviderContainer(overrides: [
-    keyValueStoreProvider.overrideWithValue(s),
-    deviceLocaleProvider.overrideWithValue(l),
-  ]);
+  final c = ProviderContainer(
+    overrides: [
+      keyValueStoreProvider.overrideWithValue(s),
+      deviceLocaleProvider.overrideWithValue(l),
+    ],
+  );
   addTearDown(c.dispose);
   return c;
 }
 
 void main() {
   test('bawaan ikut bahasa perangkat', () {
-    expect(make(MemoryKeyValueStore(), const Locale('id', 'ID')).read(prefsProvider).lang, AppLang.id);
-    expect(make(MemoryKeyValueStore(), const Locale('en', 'US')).read(prefsProvider).lang, AppLang.en);
-    expect(make(MemoryKeyValueStore(), const Locale('ms', 'MY')).read(prefsProvider).lang, AppLang.en);
+    expect(
+      make(
+        MemoryKeyValueStore(),
+        const Locale('id', 'ID'),
+      ).read(prefsProvider).lang,
+      AppLang.id,
+    );
+    expect(
+      make(
+        MemoryKeyValueStore(),
+        const Locale('en', 'US'),
+      ).read(prefsProvider).lang,
+      AppLang.en,
+    );
+    expect(
+      make(
+        MemoryKeyValueStore(),
+        const Locale('ms', 'MY'),
+      ).read(prefsProvider).lang,
+      AppLang.en,
+    );
   });
   test('nilai bawaan lain', () {
-    final p = make(MemoryKeyValueStore(), const Locale('id')).read(prefsProvider);
+    final p = make(
+      MemoryKeyValueStore(),
+      const Locale('id'),
+    ).read(prefsProvider);
     expect(p.dailyLimitMinutes, 30);
-    expect([p.music, p.sfx, p.restReminder, p.onboarded], [true, true, true, false]);
+    expect(
+      [p.music, p.sfx, p.restReminder, p.onboarded],
+      [true, true, true, false],
+    );
     expect(p.letterMode, LetterMode.fonik);
     expect(p.ageLevel, AgeLevel.pemula);
   });
   test('tersimpan dan terbaca ulang, termasuk tanpa batas', () async {
     final s = MemoryKeyValueStore();
     final c = make(s, const Locale('id'));
-    await c.read(prefsProvider.notifier).completeOnboarding(
-        lang: AppLang.en, childName: '  Raka  ', age: AgeLevel.pembaca);
+    await c
+        .read(prefsProvider.notifier)
+        .completeOnboarding(
+          lang: AppLang.en,
+          childName: '  Raka  ',
+          age: AgeLevel.pembaca,
+        );
     await c.read(prefsProvider.notifier).setDailyLimit(null);
     final again = make(s, const Locale('id')).read(prefsProvider);
     expect(again.lang, AppLang.en);
@@ -50,12 +81,21 @@ void main() {
   });
   test('batas di luar 15/30/45/null ditolak', () {
     final c = make(MemoryKeyValueStore(), const Locale('id'));
-    expect(() => c.read(prefsProvider.notifier).setDailyLimit(20), throwsArgumentError);
+    expect(
+      () => c.read(prefsProvider.notifier).setDailyLimit(20),
+      throwsArgumentError,
+    );
   });
   test('resetAll kembali ke bawaan', () async {
     final s = MemoryKeyValueStore();
     final c = make(s, const Locale('en'));
-    await c.read(prefsProvider.notifier).completeOnboarding(lang: AppLang.id, childName: 'Ana', age: AgeLevel.penjelajah);
+    await c
+        .read(prefsProvider.notifier)
+        .completeOnboarding(
+          lang: AppLang.id,
+          childName: 'Ana',
+          age: AgeLevel.penjelajah,
+        );
     await c.read(prefsProvider.notifier).resetAll();
     expect(c.read(prefsProvider).onboarded, isFalse);
     expect(c.read(prefsProvider).childName, '');

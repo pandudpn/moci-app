@@ -78,7 +78,8 @@ final class SharedPrefsKeyValueStore implements KeyValueStore {
 
   @override
   Future<void> clear() async {
-    for (final key in _prefs.keys.where((k) => k.startsWith(_prefix)).toList()) {
+    for (final key
+        in _prefs.keys.where((k) => k.startsWith(_prefix)).toList()) {
       await _prefs.remove(key);
     }
   }
