@@ -42,6 +42,8 @@ Semua perintah Flutter lewat FVM.
 | Validator mode rilis | `fvm dart run tool/validate_content.dart --rilis` |
 | Integration test | `fvm flutter test integration_test -d <perangkat>` |
 | Jalankan aplikasi | `fvm flutter run -d <perangkat>` |
+| Pasang ke perangkat sendiri | `make install` (atau `scripts/moci.sh install`; pilih dengan `DEVICE=<id>`) |
+| Pemeriksaan sebelum commit | `make check` |
 
 - `--naskah` hanya terbaca dalam bentuk `--naskah=<path>`; bentuk terpisah diabaikan tanpa pesan.
 - `--rilis` keluar dengan kode 1 selama belum ada rekaman narasi. Itu keadaan yang diharapkan, bukan bug. Validator menyebut setiap baris yang belum direkam.

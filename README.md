@@ -252,7 +252,23 @@ fvm flutter pub get
 fvm flutter run -d <perangkat>
 ```
 
-Id perangkat dilihat dengan `fvm flutter devices`. Perintah pemeriksaan, tes golden, validator isi, dan integration test ada di [AGENTS.md](AGENTS.md) dan [CONTRIBUTING.md](CONTRIBUTING.md).
+Id perangkat dilihat dengan `fvm flutter devices` atau `make devices`. Perintah pemeriksaan, tes golden, validator isi, dan integration test ada di [AGENTS.md](AGENTS.md) dan [CONTRIBUTING.md](CONTRIBUTING.md).
+
+### Memasang ke iPad atau HP sendiri
+
+Moci tidak diterbitkan di App Store atau Play Store. Untuk memakainya, pasang build release langsung dari Mac ke perangkat yang tersambung kabel:
+
+```bash
+make devices                      # lihat perangkat yang terhubung
+make install                      # build release, pasang, lalu buka aplikasinya
+make install DEVICE=<id>          # pilih perangkat tertentu
+make run                          # mode debug dengan hot reload
+```
+
+Tanpa `DEVICE`, perangkat fisik pertama dipakai, iOS lebih dulu. Semua target ada di [scripts/moci.sh](scripts/moci.sh).
+
+- **iPad/iPhone:** perangkat perlu Developer Mode aktif, dan Xcode perlu masuk ke akun Apple tim pengembang (Xcode > Settings > Accounts). Pertama kali, buka `ios/Runner.xcworkspace` sekali dan pilih tim di Signing & Capabilities. Dengan akun Apple gratis, aplikasi berhenti terbuka setelah 7 hari dan perlu dipasang ulang; dengan Apple Developer Program, masa berlakunya 1 tahun.
+- **Android:** aktifkan USB debugging. APK release ditandatangani dengan kunci debug, jadi cukup untuk pemasangan sendiri.
 
 ## Dokumentasi
 
@@ -295,7 +311,7 @@ Semua aset brand final ada di [`docs/brand`](docs/brand), dalam format PNG dan S
 - [x] Aplikasi Flutter: shell, navigasi, penyimpanan lokal
 - [ ] Porting semua menu ke Flutter
 - [ ] Uji di perangkat (iPad, iPhone, HP dan tablet Android)
-- [ ] Rilis TestFlight dan Play internal testing, lalu App Store dan Play Store
+- [x] Pemasangan langsung ke perangkat sendiri (`make install`); Moci tidak diterbitkan di App Store atau Play Store
 
 ## Lisensi
 
