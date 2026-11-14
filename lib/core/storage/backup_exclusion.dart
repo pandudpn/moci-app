@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 abstract interface class BackupExclusion {
@@ -13,9 +14,12 @@ final class MethodChannelBackupExclusion implements BackupExclusion {
 
   @override
   Future<void> exclude(Directory dir) async {
-    if (!Platform.isIOS) return;
+    if (defaultTargetPlatform != TargetPlatform.iOS) return;
     try {
       await _channel.invokeMethod<void>('exclude', {'path': dir.path});
+    } on PlatformException {
+      // Atribut gagal ditulis: data tetap lokal, aplikasi tetap dibuka.
+      if (kDebugMode) debugPrint('pengecualian backup gagal: ${dir.path}');
     } on MissingPluginException {
       // kanal belum terpasang; abaikan
     }
