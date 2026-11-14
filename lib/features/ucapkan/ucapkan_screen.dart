@@ -220,8 +220,11 @@ class _UcapkanScreenState extends ConsumerState<UcapkanScreen> {
           meterKosong = true;
         }
       }
-      await sesi.usePlayback();
     } finally {
+      // Sesi audio harus kembali ke playback juga saat anak meninggalkan
+      // layar di tengah giliran; kalau tidak, narasi layar berikutnya bisa
+      // tetap di jalur rekam.
+      await sesi.usePlayback();
       await audio.resumeAfterListening();
       if (mounted) setState(() => _sibuk = false);
     }
