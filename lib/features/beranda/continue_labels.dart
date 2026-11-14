@@ -37,6 +37,12 @@ final Map<String, ContinueLabelBuilder> continueLabels = {
         ? l10n.menuAngkaTitle
         : l10n.berandaContinueTulisAngka(angka);
   },
+  Routes.hurufUcapkan: (l10n, params) {
+    final kata = params['kata'];
+    return kata == null || kata.isEmpty
+        ? l10n.menuHurufTitle
+        : l10n.berandaContinueUcapkan(kata);
+  },
 };
 
 /// Subjudul untuk [activity], atau `null` bila rutenya bukan bagian menu mana

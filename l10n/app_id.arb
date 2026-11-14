@@ -878,5 +878,108 @@
         "type": "String"
       }
     }
+  },
+  "ucapkanHear": "Dengar contoh",
+  "@ucapkanHear": {
+    "description": "Tombol dengar contoh Ucapkan"
+  },
+  "ucapkanYourTurn": "Sekarang giliranmu! Bilang:",
+  "@ucapkanYourTurn": {
+    "description": "Gelembung giliran bicara"
+  },
+  "ucapkanIdle": "Ketuk mic, lalu ucapkan",
+  "@ucapkanIdle": {
+    "description": "Status Ucapkan saat menunggu"
+  },
+  "ucapkanListen": "Moci mendengarkan…",
+  "@ucapkanListen": {
+    "description": "Status Ucapkan saat mendengar"
+  },
+  "ucapkanGood": "Bagus sekali!",
+  "@ucapkanGood": {
+    "description": "Status Ucapkan setelah berhasil"
+  },
+  "ucapkanAgain": "Ulangi",
+  "@ucapkanAgain": {
+    "description": "Tombol ulangi kata"
+  },
+  "ucapkanNextWord": "Kata berikutnya",
+  "@ucapkanNextWord": {
+    "description": "Tombol kata berikutnya"
+  },
+  "ucapkanSyl": "Suku kata",
+  "@ucapkanSyl": {
+    "description": "Label tombol suku kata"
+  },
+  "ucapkanMicIdle": "Ketuk lalu ucapkan",
+  "@ucapkanMicIdle": {
+    "description": "Label tombol mikrofon saat menunggu"
+  },
+  "ucapkanMicListen": "Moci sedang mendengarkan",
+  "@ucapkanMicListen": {
+    "description": "Label tombol mikrofon saat mendengar"
+  },
+  "ucapkanLetsSay": "Ayo bilang",
+  "@ucapkanLetsSay": {
+    "description": "narasi"
+  },
+  "ucapkanTryAgain": "Ayo coba lagi!",
+  "@ucapkanTryAgain": {
+    "description": "narasi"
+  },
+  "ucapkanDoneSay": "Hebat! Kamu bisa bilang",
+  "@ucapkanDoneSay": {
+    "description": "narasi"
+  },
+  "ucapkanMicAskTitle": "Panggil Ayah atau Bunda",
+  "@ucapkanMicAskTitle": {
+    "description": "Judul dialog gerbang mikrofon"
+  },
+  "ucapkanMicAskBody": "Mikrofon hanya dinyalakan oleh orang tua. Suara Adik dikenali di perangkat ini saja, tidak disimpan dan tidak dikirim.",
+  "@ucapkanMicAskBody": {
+    "description": "Isi dialog gerbang mikrofon"
+  },
+  "ucapkanMicAskAction": "Buka Gerbang",
+  "@ucapkanMicAskAction": {
+    "description": "Tombol buka Gerbang Orang Tua"
+  },
+  "ucapkanMicDenied": "Tanpa mikrofon, kita dengar dan tiru saja, ya!",
+  "@ucapkanMicDenied": {
+    "description": "Keterangan mode dengar dan tiru karena izin ditolak"
+  },
+  "ucapkanMicUnavailable": "Moci belum bisa mendengar di perangkat ini. Dengar dan tiru saja, ya!",
+  "@ucapkanMicUnavailable": {
+    "description": "Keterangan mode dengar dan tiru karena pengenalan tidak tersedia"
+  },
+  "ucapkanPractice": "Dengar dan tiru",
+  "@ucapkanPractice": {
+    "description": "Tombol mode dengar dan tiru"
+  },
+  "ucapkanMicLabel": "Ketuk lalu ucapkan {kata}",
+  "@ucapkanMicLabel": {
+    "description": "Label semantik tombol mikrofon",
+    "placeholders": {
+      "kata": {
+        "type": "String"
+      }
+    }
+  },
+  "ucapkanWordLabel": "{kata}, ketuk untuk mendengar",
+  "@ucapkanWordLabel": {
+    "description": "Label semantik kata Ucapkan",
+    "placeholders": {
+      "kata": {
+        "type": "String"
+      }
+    }
+  },
+  "berandaContinueUcapkan": "Ucapkan {kata}",
+  "@berandaContinueUcapkan": {
+    "description": "Subjudul kartu Lanjutkan untuk Ucapkan",
+    "placeholders": {
+      "kata": {
+        "type": "String"
+      }
+    }
   }
 }

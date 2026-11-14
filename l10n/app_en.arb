@@ -875,5 +875,108 @@
         "type": "String"
       }
     }
+  },
+  "ucapkanHear": "Hear it",
+  "@ucapkanHear": {
+    "description": "Hear-it button on Ucapkan"
+  },
+  "ucapkanYourTurn": "Your turn! Say:",
+  "@ucapkanYourTurn": {
+    "description": "Speaking-turn bubble"
+  },
+  "ucapkanIdle": "Tap the mic, then say it",
+  "@ucapkanIdle": {
+    "description": "Ucapkan status while waiting"
+  },
+  "ucapkanListen": "Moci is listening…",
+  "@ucapkanListen": {
+    "description": "Ucapkan status while listening"
+  },
+  "ucapkanGood": "Well done!",
+  "@ucapkanGood": {
+    "description": "Ucapkan status after success"
+  },
+  "ucapkanAgain": "Again",
+  "@ucapkanAgain": {
+    "description": "Repeat-word button"
+  },
+  "ucapkanNextWord": "Next word",
+  "@ucapkanNextWord": {
+    "description": "Next-word button"
+  },
+  "ucapkanSyl": "Syllable",
+  "@ucapkanSyl": {
+    "description": "Syllable button label"
+  },
+  "ucapkanMicIdle": "Tap and say",
+  "@ucapkanMicIdle": {
+    "description": "Mic button label while waiting"
+  },
+  "ucapkanMicListen": "Moci is listening",
+  "@ucapkanMicListen": {
+    "description": "Mic button label while listening"
+  },
+  "ucapkanLetsSay": "Let's say",
+  "@ucapkanLetsSay": {
+    "description": "narasi"
+  },
+  "ucapkanTryAgain": "Let's try again!",
+  "@ucapkanTryAgain": {
+    "description": "narasi"
+  },
+  "ucapkanDoneSay": "Great job! You can say",
+  "@ucapkanDoneSay": {
+    "description": "narasi"
+  },
+  "ucapkanMicAskTitle": "Call Mom or Dad",
+  "@ucapkanMicAskTitle": {
+    "description": "Microphone gate dialog title"
+  },
+  "ucapkanMicAskBody": "Only a grown-up turns on the microphone. Your voice is recognized on this device only; it is not saved or sent.",
+  "@ucapkanMicAskBody": {
+    "description": "Microphone gate dialog body"
+  },
+  "ucapkanMicAskAction": "Open Gate",
+  "@ucapkanMicAskAction": {
+    "description": "Open the Parent Gate"
+  },
+  "ucapkanMicDenied": "Without the microphone, let's listen and repeat!",
+  "@ucapkanMicDenied": {
+    "description": "Listen-and-repeat note when permission is denied"
+  },
+  "ucapkanMicUnavailable": "Moci can't listen on this device yet. Let's listen and repeat!",
+  "@ucapkanMicUnavailable": {
+    "description": "Listen-and-repeat note when recognition is unavailable"
+  },
+  "ucapkanPractice": "Listen and repeat",
+  "@ucapkanPractice": {
+    "description": "Listen-and-repeat button"
+  },
+  "ucapkanMicLabel": "Tap and say {kata}",
+  "@ucapkanMicLabel": {
+    "description": "Mic button semantic label",
+    "placeholders": {
+      "kata": {
+        "type": "String"
+      }
+    }
+  },
+  "ucapkanWordLabel": "{kata}, tap to hear it",
+  "@ucapkanWordLabel": {
+    "description": "Ucapkan word semantic label",
+    "placeholders": {
+      "kata": {
+        "type": "String"
+      }
+    }
+  },
+  "berandaContinueUcapkan": "Say {kata}",
+  "@berandaContinueUcapkan": {
+    "description": "Continue card subtitle for Ucapkan",
+    "placeholders": {
+      "kata": {
+        "type": "String"
+      }
+    }
   }
 }

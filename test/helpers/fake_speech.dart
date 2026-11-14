@@ -8,7 +8,7 @@ import 'package:moci/core/speech/speech_engine.dart';
 final class FakeSpeechEngine implements SpeechEngine {
   SpeechStatus status = SpeechStatus.siap;
   SpeechTurn? turn = const SpeechTurn(didengar: true, teks: 'apel');
-  bool hasPermissionValue = true;
+  bool hasPermissionValue = false;
 
   /// Kata target tiap panggilan [listen], urut.
   final targets = <String>[];

@@ -797,4 +797,79 @@ class AppLocalizationsId extends AppLocalizations {
   String berandaContinueAngka(String angka) {
     return 'Angka $angka';
   }
+
+  @override
+  String get ucapkanHear => 'Dengar contoh';
+
+  @override
+  String get ucapkanYourTurn => 'Sekarang giliranmu! Bilang:';
+
+  @override
+  String get ucapkanIdle => 'Ketuk mic, lalu ucapkan';
+
+  @override
+  String get ucapkanListen => 'Moci mendengarkan…';
+
+  @override
+  String get ucapkanGood => 'Bagus sekali!';
+
+  @override
+  String get ucapkanAgain => 'Ulangi';
+
+  @override
+  String get ucapkanNextWord => 'Kata berikutnya';
+
+  @override
+  String get ucapkanSyl => 'Suku kata';
+
+  @override
+  String get ucapkanMicIdle => 'Ketuk lalu ucapkan';
+
+  @override
+  String get ucapkanMicListen => 'Moci sedang mendengarkan';
+
+  @override
+  String get ucapkanLetsSay => 'Ayo bilang';
+
+  @override
+  String get ucapkanTryAgain => 'Ayo coba lagi!';
+
+  @override
+  String get ucapkanDoneSay => 'Hebat! Kamu bisa bilang';
+
+  @override
+  String get ucapkanMicAskTitle => 'Panggil Ayah atau Bunda';
+
+  @override
+  String get ucapkanMicAskBody =>
+      'Mikrofon hanya dinyalakan oleh orang tua. Suara Adik dikenali di perangkat ini saja, tidak disimpan dan tidak dikirim.';
+
+  @override
+  String get ucapkanMicAskAction => 'Buka Gerbang';
+
+  @override
+  String get ucapkanMicDenied =>
+      'Tanpa mikrofon, kita dengar dan tiru saja, ya!';
+
+  @override
+  String get ucapkanMicUnavailable =>
+      'Moci belum bisa mendengar di perangkat ini. Dengar dan tiru saja, ya!';
+
+  @override
+  String get ucapkanPractice => 'Dengar dan tiru';
+
+  @override
+  String ucapkanMicLabel(String kata) {
+    return 'Ketuk lalu ucapkan $kata';
+  }
+
+  @override
+  String ucapkanWordLabel(String kata) {
+    return '$kata, ketuk untuk mendengar';
+  }
+
+  @override
+  String berandaContinueUcapkan(String kata) {
+    return 'Ucapkan $kata';
+  }
 }

@@ -15,6 +15,7 @@ import '../features/istirahat/habis_screen.dart';
 import '../features/istirahat/istirahat_screen.dart';
 import '../features/segera/coming_soon_screen.dart';
 import '../features/tulis/tulis_screen.dart';
+import '../features/ucapkan/ucapkan_screen.dart';
 import 'play_timer/play_timer_controller.dart';
 import 'redirect.dart';
 import 'splash/splash_screen.dart';
@@ -123,7 +124,11 @@ final routerProvider = Provider<GoRouter>((ref) {
         builder: (context, state) =>
             TulisScreen(awal: state.uri.queryParameters['huruf']),
       ),
-      _soon(Routes.hurufUcapkan, MenuTheme.ucapkan),
+      GoRoute(
+        path: Routes.hurufUcapkan,
+        builder: (context, state) =>
+            UcapkanScreen(awal: state.uri.queryParameters['kata']),
+      ),
       GoRoute(
         path: Routes.angka,
         builder: (context, state) =>

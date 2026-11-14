@@ -1531,6 +1531,138 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Angka {angka}'**
   String berandaContinueAngka(String angka);
+
+  /// Tombol dengar contoh Ucapkan
+  ///
+  /// In id, this message translates to:
+  /// **'Dengar contoh'**
+  String get ucapkanHear;
+
+  /// Gelembung giliran bicara
+  ///
+  /// In id, this message translates to:
+  /// **'Sekarang giliranmu! Bilang:'**
+  String get ucapkanYourTurn;
+
+  /// Status Ucapkan saat menunggu
+  ///
+  /// In id, this message translates to:
+  /// **'Ketuk mic, lalu ucapkan'**
+  String get ucapkanIdle;
+
+  /// Status Ucapkan saat mendengar
+  ///
+  /// In id, this message translates to:
+  /// **'Moci mendengarkan…'**
+  String get ucapkanListen;
+
+  /// Status Ucapkan setelah berhasil
+  ///
+  /// In id, this message translates to:
+  /// **'Bagus sekali!'**
+  String get ucapkanGood;
+
+  /// Tombol ulangi kata
+  ///
+  /// In id, this message translates to:
+  /// **'Ulangi'**
+  String get ucapkanAgain;
+
+  /// Tombol kata berikutnya
+  ///
+  /// In id, this message translates to:
+  /// **'Kata berikutnya'**
+  String get ucapkanNextWord;
+
+  /// Label tombol suku kata
+  ///
+  /// In id, this message translates to:
+  /// **'Suku kata'**
+  String get ucapkanSyl;
+
+  /// Label tombol mikrofon saat menunggu
+  ///
+  /// In id, this message translates to:
+  /// **'Ketuk lalu ucapkan'**
+  String get ucapkanMicIdle;
+
+  /// Label tombol mikrofon saat mendengar
+  ///
+  /// In id, this message translates to:
+  /// **'Moci sedang mendengarkan'**
+  String get ucapkanMicListen;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Ayo bilang'**
+  String get ucapkanLetsSay;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Ayo coba lagi!'**
+  String get ucapkanTryAgain;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Hebat! Kamu bisa bilang'**
+  String get ucapkanDoneSay;
+
+  /// Judul dialog gerbang mikrofon
+  ///
+  /// In id, this message translates to:
+  /// **'Panggil Ayah atau Bunda'**
+  String get ucapkanMicAskTitle;
+
+  /// Isi dialog gerbang mikrofon
+  ///
+  /// In id, this message translates to:
+  /// **'Mikrofon hanya dinyalakan oleh orang tua. Suara Adik dikenali di perangkat ini saja, tidak disimpan dan tidak dikirim.'**
+  String get ucapkanMicAskBody;
+
+  /// Tombol buka Gerbang Orang Tua
+  ///
+  /// In id, this message translates to:
+  /// **'Buka Gerbang'**
+  String get ucapkanMicAskAction;
+
+  /// Keterangan mode dengar dan tiru karena izin ditolak
+  ///
+  /// In id, this message translates to:
+  /// **'Tanpa mikrofon, kita dengar dan tiru saja, ya!'**
+  String get ucapkanMicDenied;
+
+  /// Keterangan mode dengar dan tiru karena pengenalan tidak tersedia
+  ///
+  /// In id, this message translates to:
+  /// **'Moci belum bisa mendengar di perangkat ini. Dengar dan tiru saja, ya!'**
+  String get ucapkanMicUnavailable;
+
+  /// Tombol mode dengar dan tiru
+  ///
+  /// In id, this message translates to:
+  /// **'Dengar dan tiru'**
+  String get ucapkanPractice;
+
+  /// Label semantik tombol mikrofon
+  ///
+  /// In id, this message translates to:
+  /// **'Ketuk lalu ucapkan {kata}'**
+  String ucapkanMicLabel(String kata);
+
+  /// Label semantik kata Ucapkan
+  ///
+  /// In id, this message translates to:
+  /// **'{kata}, ketuk untuk mendengar'**
+  String ucapkanWordLabel(String kata);
+
+  /// Subjudul kartu Lanjutkan untuk Ucapkan
+  ///
+  /// In id, this message translates to:
+  /// **'Ucapkan {kata}'**
+  String berandaContinueUcapkan(String kata);
 }
 
 class _AppLocalizationsDelegate

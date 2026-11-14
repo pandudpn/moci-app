@@ -796,4 +796,79 @@ class AppLocalizationsEn extends AppLocalizations {
   String berandaContinueAngka(String angka) {
     return 'Number $angka';
   }
+
+  @override
+  String get ucapkanHear => 'Hear it';
+
+  @override
+  String get ucapkanYourTurn => 'Your turn! Say:';
+
+  @override
+  String get ucapkanIdle => 'Tap the mic, then say it';
+
+  @override
+  String get ucapkanListen => 'Moci is listening…';
+
+  @override
+  String get ucapkanGood => 'Well done!';
+
+  @override
+  String get ucapkanAgain => 'Again';
+
+  @override
+  String get ucapkanNextWord => 'Next word';
+
+  @override
+  String get ucapkanSyl => 'Syllable';
+
+  @override
+  String get ucapkanMicIdle => 'Tap and say';
+
+  @override
+  String get ucapkanMicListen => 'Moci is listening';
+
+  @override
+  String get ucapkanLetsSay => 'Let\'s say';
+
+  @override
+  String get ucapkanTryAgain => 'Let\'s try again!';
+
+  @override
+  String get ucapkanDoneSay => 'Great job! You can say';
+
+  @override
+  String get ucapkanMicAskTitle => 'Call Mom or Dad';
+
+  @override
+  String get ucapkanMicAskBody =>
+      'Only a grown-up turns on the microphone. Your voice is recognized on this device only; it is not saved or sent.';
+
+  @override
+  String get ucapkanMicAskAction => 'Open Gate';
+
+  @override
+  String get ucapkanMicDenied =>
+      'Without the microphone, let\'s listen and repeat!';
+
+  @override
+  String get ucapkanMicUnavailable =>
+      'Moci can\'t listen on this device yet. Let\'s listen and repeat!';
+
+  @override
+  String get ucapkanPractice => 'Listen and repeat';
+
+  @override
+  String ucapkanMicLabel(String kata) {
+    return 'Tap and say $kata';
+  }
+
+  @override
+  String ucapkanWordLabel(String kata) {
+    return '$kata, tap to hear it';
+  }
+
+  @override
+  String berandaContinueUcapkan(String kata) {
+    return 'Say $kata';
+  }
 }
