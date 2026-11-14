@@ -208,5 +208,80 @@
     }
   },
   "habisNote": "A grown-up can change the daily time limit in Parents’ Corner.",
-  "habisParents": "For grown-ups"
+  "habisParents": "For grown-ups",
+  "hebatGreat": "Great job!",
+  "@hebatGreat": {
+    "description": "narasi"
+  },
+  "hebatEarned": "You earned {count} stars!",
+  "@hebatEarned": {
+    "description": "Teks jumlah bintang yang didapat",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "hebatStarsLabel": "{total} stars, {count} new",
+  "@hebatStarsLabel": {
+    "description": "Label semantik pil bintang di Hebat",
+    "placeholders": {
+      "total": {
+        "type": "int"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "hebatNewSticker": "New sticker",
+  "hebatAgain": "Play more",
+  "hebatNext": "Continue",
+  "hebatAlbum": "Sticker book",
+  "hebatNewTag": "NEW",
+  "hebatYay": "Yay, you did it! You got three stars and a new sticker!",
+  "@hebatYay": {
+    "description": "narasi"
+  },
+  "hebatBubble": "Yay, you did it!",
+  "hebatBubbleName": "Yay, {name} did it!",
+  "@hebatBubbleName": {
+    "description": "Gelembung Moci memakai nama anak (hanya teks layar)",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "hebatTapHint": "tap to listen",
+  "stiker_kucing": "Cat",
+  "stiker_ikan": "Fish",
+  "stiker_singa": "Lion",
+  "stiker_gajah": "Elephant",
+  "stiker_panda": "Panda",
+  "stiker_pinguin": "Penguin",
+  "stiker_apel": "Apple",
+  "stiker_pisang": "Banana",
+  "stiker_stroberi": "Strawberry",
+  "stiker_semangka": "Watermelon",
+  "stiker_nanas": "Pineapple",
+  "stiker_buahnaga": "Dragon Fruit",
+  "stiker_wortel": "Carrot",
+  "stiker_tomat": "Tomato",
+  "stiker_brokoli": "Broccoli",
+  "stiker_jagung": "Corn",
+  "stiker_labu": "Pumpkin",
+  "stiker_jamur": "Mushroom",
+  "stiker_mobil": "Car",
+  "stiker_bus": "Bus",
+  "stiker_kereta": "Train",
+  "stiker_pesawat": "Airplane",
+  "stiker_kapal": "Ship",
+  "stiker_roket": "Rocket",
+  "stiker_bola": "Ball",
+  "stiker_balon": "Balloons",
+  "stiker_kado": "Gift",
+  "stiker_eskrim": "Ice Cream",
+  "stiker_layang": "Kite",
+  "stiker_payung": "Umbrella"
 }

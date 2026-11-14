@@ -571,6 +571,258 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Untuk orang tua'**
   String get habisParents;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Hebat!'**
+  String get hebatGreat;
+
+  /// Teks jumlah bintang yang didapat
+  ///
+  /// In id, this message translates to:
+  /// **'Kamu dapat {count} bintang!'**
+  String hebatEarned(int count);
+
+  /// Label semantik pil bintang di Hebat
+  ///
+  /// In id, this message translates to:
+  /// **'{total} bintang, bertambah {count}'**
+  String hebatStarsLabel(int total, int count);
+
+  /// No description provided for @hebatNewSticker.
+  ///
+  /// In id, this message translates to:
+  /// **'Stiker baru'**
+  String get hebatNewSticker;
+
+  /// No description provided for @hebatAgain.
+  ///
+  /// In id, this message translates to:
+  /// **'Main lagi'**
+  String get hebatAgain;
+
+  /// No description provided for @hebatNext.
+  ///
+  /// In id, this message translates to:
+  /// **'Lanjut'**
+  String get hebatNext;
+
+  /// No description provided for @hebatAlbum.
+  ///
+  /// In id, this message translates to:
+  /// **'Album stiker'**
+  String get hebatAlbum;
+
+  /// No description provided for @hebatNewTag.
+  ///
+  /// In id, this message translates to:
+  /// **'BARU'**
+  String get hebatNewTag;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Yeay, kamu berhasil! Kamu dapat tiga bintang dan stiker baru!'**
+  String get hebatYay;
+
+  /// No description provided for @hebatBubble.
+  ///
+  /// In id, this message translates to:
+  /// **'Yeay, kamu berhasil!'**
+  String get hebatBubble;
+
+  /// Gelembung Moci memakai nama anak (hanya teks layar)
+  ///
+  /// In id, this message translates to:
+  /// **'Yeay, {name} berhasil!'**
+  String hebatBubbleName(String name);
+
+  /// No description provided for @hebatTapHint.
+  ///
+  /// In id, this message translates to:
+  /// **'ketuk untuk mendengar'**
+  String get hebatTapHint;
+
+  /// No description provided for @stiker_kucing.
+  ///
+  /// In id, this message translates to:
+  /// **'Kucing'**
+  String get stiker_kucing;
+
+  /// No description provided for @stiker_ikan.
+  ///
+  /// In id, this message translates to:
+  /// **'Ikan'**
+  String get stiker_ikan;
+
+  /// No description provided for @stiker_singa.
+  ///
+  /// In id, this message translates to:
+  /// **'Singa'**
+  String get stiker_singa;
+
+  /// No description provided for @stiker_gajah.
+  ///
+  /// In id, this message translates to:
+  /// **'Gajah'**
+  String get stiker_gajah;
+
+  /// No description provided for @stiker_panda.
+  ///
+  /// In id, this message translates to:
+  /// **'Panda'**
+  String get stiker_panda;
+
+  /// No description provided for @stiker_pinguin.
+  ///
+  /// In id, this message translates to:
+  /// **'Pinguin'**
+  String get stiker_pinguin;
+
+  /// No description provided for @stiker_apel.
+  ///
+  /// In id, this message translates to:
+  /// **'Apel'**
+  String get stiker_apel;
+
+  /// No description provided for @stiker_pisang.
+  ///
+  /// In id, this message translates to:
+  /// **'Pisang'**
+  String get stiker_pisang;
+
+  /// No description provided for @stiker_stroberi.
+  ///
+  /// In id, this message translates to:
+  /// **'Stroberi'**
+  String get stiker_stroberi;
+
+  /// No description provided for @stiker_semangka.
+  ///
+  /// In id, this message translates to:
+  /// **'Semangka'**
+  String get stiker_semangka;
+
+  /// No description provided for @stiker_nanas.
+  ///
+  /// In id, this message translates to:
+  /// **'Nanas'**
+  String get stiker_nanas;
+
+  /// No description provided for @stiker_buahnaga.
+  ///
+  /// In id, this message translates to:
+  /// **'Buah Naga'**
+  String get stiker_buahnaga;
+
+  /// No description provided for @stiker_wortel.
+  ///
+  /// In id, this message translates to:
+  /// **'Wortel'**
+  String get stiker_wortel;
+
+  /// No description provided for @stiker_tomat.
+  ///
+  /// In id, this message translates to:
+  /// **'Tomat'**
+  String get stiker_tomat;
+
+  /// No description provided for @stiker_brokoli.
+  ///
+  /// In id, this message translates to:
+  /// **'Brokoli'**
+  String get stiker_brokoli;
+
+  /// No description provided for @stiker_jagung.
+  ///
+  /// In id, this message translates to:
+  /// **'Jagung'**
+  String get stiker_jagung;
+
+  /// No description provided for @stiker_labu.
+  ///
+  /// In id, this message translates to:
+  /// **'Labu'**
+  String get stiker_labu;
+
+  /// No description provided for @stiker_jamur.
+  ///
+  /// In id, this message translates to:
+  /// **'Jamur'**
+  String get stiker_jamur;
+
+  /// No description provided for @stiker_mobil.
+  ///
+  /// In id, this message translates to:
+  /// **'Mobil'**
+  String get stiker_mobil;
+
+  /// No description provided for @stiker_bus.
+  ///
+  /// In id, this message translates to:
+  /// **'Bus'**
+  String get stiker_bus;
+
+  /// No description provided for @stiker_kereta.
+  ///
+  /// In id, this message translates to:
+  /// **'Kereta'**
+  String get stiker_kereta;
+
+  /// No description provided for @stiker_pesawat.
+  ///
+  /// In id, this message translates to:
+  /// **'Pesawat'**
+  String get stiker_pesawat;
+
+  /// No description provided for @stiker_kapal.
+  ///
+  /// In id, this message translates to:
+  /// **'Kapal'**
+  String get stiker_kapal;
+
+  /// No description provided for @stiker_roket.
+  ///
+  /// In id, this message translates to:
+  /// **'Roket'**
+  String get stiker_roket;
+
+  /// No description provided for @stiker_bola.
+  ///
+  /// In id, this message translates to:
+  /// **'Bola'**
+  String get stiker_bola;
+
+  /// No description provided for @stiker_balon.
+  ///
+  /// In id, this message translates to:
+  /// **'Balon'**
+  String get stiker_balon;
+
+  /// No description provided for @stiker_kado.
+  ///
+  /// In id, this message translates to:
+  /// **'Kado'**
+  String get stiker_kado;
+
+  /// No description provided for @stiker_eskrim.
+  ///
+  /// In id, this message translates to:
+  /// **'Es Krim'**
+  String get stiker_eskrim;
+
+  /// No description provided for @stiker_layang.
+  ///
+  /// In id, this message translates to:
+  /// **'Layang-layang'**
+  String get stiker_layang;
+
+  /// No description provided for @stiker_payung.
+  ///
+  /// In id, this message translates to:
+  /// **'Payung'**
+  String get stiker_payung;
 }
 
 class _AppLocalizationsDelegate

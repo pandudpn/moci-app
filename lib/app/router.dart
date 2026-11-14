@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 
 import '../core/prefs/prefs_controller.dart';
 import '../features/beranda/beranda_screen.dart';
+import '../features/hadiah/hadiah_controller.dart';
+import '../features/hadiah/hebat_screen.dart';
 import '../features/orang_tua/gerbang_screen.dart';
 import '../features/sambutan/sambutan_screen.dart';
 import '../features/istirahat/habis_screen.dart';
@@ -121,7 +123,14 @@ final routerProvider = Provider<GoRouter>((ref) {
       _soon(Routes.mewarnai, MenuTheme.mewarnai),
       _soon(Routes.mewarnaiHalaman, MenuTheme.mewarnai),
       _soon(Routes.karyaku, MenuTheme.karyaku),
-      _soon(Routes.hebat, MenuTheme.hebat),
+      GoRoute(
+        path: Routes.hebat,
+        // Tanpa HebatArgs (pemulihan dingin, tautan salah): kembali ke Beranda.
+        redirect: (context, state) =>
+            state.extra is HebatArgs ? null : Routes.beranda,
+        builder: (context, state) =>
+            HebatScreen(args: state.extra! as HebatArgs),
+      ),
       GoRoute(
         path: Routes.istirahat,
         builder: (context, state) =>

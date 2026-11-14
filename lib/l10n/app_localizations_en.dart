@@ -266,4 +266,137 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get habisParents => 'For grown-ups';
+
+  @override
+  String get hebatGreat => 'Great job!';
+
+  @override
+  String hebatEarned(int count) {
+    return 'You earned $count stars!';
+  }
+
+  @override
+  String hebatStarsLabel(int total, int count) {
+    return '$total stars, $count new';
+  }
+
+  @override
+  String get hebatNewSticker => 'New sticker';
+
+  @override
+  String get hebatAgain => 'Play more';
+
+  @override
+  String get hebatNext => 'Continue';
+
+  @override
+  String get hebatAlbum => 'Sticker book';
+
+  @override
+  String get hebatNewTag => 'NEW';
+
+  @override
+  String get hebatYay =>
+      'Yay, you did it! You got three stars and a new sticker!';
+
+  @override
+  String get hebatBubble => 'Yay, you did it!';
+
+  @override
+  String hebatBubbleName(String name) {
+    return 'Yay, $name did it!';
+  }
+
+  @override
+  String get hebatTapHint => 'tap to listen';
+
+  @override
+  String get stiker_kucing => 'Cat';
+
+  @override
+  String get stiker_ikan => 'Fish';
+
+  @override
+  String get stiker_singa => 'Lion';
+
+  @override
+  String get stiker_gajah => 'Elephant';
+
+  @override
+  String get stiker_panda => 'Panda';
+
+  @override
+  String get stiker_pinguin => 'Penguin';
+
+  @override
+  String get stiker_apel => 'Apple';
+
+  @override
+  String get stiker_pisang => 'Banana';
+
+  @override
+  String get stiker_stroberi => 'Strawberry';
+
+  @override
+  String get stiker_semangka => 'Watermelon';
+
+  @override
+  String get stiker_nanas => 'Pineapple';
+
+  @override
+  String get stiker_buahnaga => 'Dragon Fruit';
+
+  @override
+  String get stiker_wortel => 'Carrot';
+
+  @override
+  String get stiker_tomat => 'Tomato';
+
+  @override
+  String get stiker_brokoli => 'Broccoli';
+
+  @override
+  String get stiker_jagung => 'Corn';
+
+  @override
+  String get stiker_labu => 'Pumpkin';
+
+  @override
+  String get stiker_jamur => 'Mushroom';
+
+  @override
+  String get stiker_mobil => 'Car';
+
+  @override
+  String get stiker_bus => 'Bus';
+
+  @override
+  String get stiker_kereta => 'Train';
+
+  @override
+  String get stiker_pesawat => 'Airplane';
+
+  @override
+  String get stiker_kapal => 'Ship';
+
+  @override
+  String get stiker_roket => 'Rocket';
+
+  @override
+  String get stiker_bola => 'Ball';
+
+  @override
+  String get stiker_balon => 'Balloons';
+
+  @override
+  String get stiker_kado => 'Gift';
+
+  @override
+  String get stiker_eskrim => 'Ice Cream';
+
+  @override
+  String get stiker_layang => 'Kite';
+
+  @override
+  String get stiker_payung => 'Umbrella';
 }

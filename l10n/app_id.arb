@@ -211,5 +211,80 @@
     }
   },
   "habisNote": "Orang tua bisa mengubah batas waktu harian di Area Orang Tua.",
-  "habisParents": "Untuk orang tua"
+  "habisParents": "Untuk orang tua",
+  "hebatGreat": "Hebat!",
+  "@hebatGreat": {
+    "description": "narasi"
+  },
+  "hebatEarned": "Kamu dapat {count} bintang!",
+  "@hebatEarned": {
+    "description": "Teks jumlah bintang yang didapat",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "hebatStarsLabel": "{total} bintang, bertambah {count}",
+  "@hebatStarsLabel": {
+    "description": "Label semantik pil bintang di Hebat",
+    "placeholders": {
+      "total": {
+        "type": "int"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "hebatNewSticker": "Stiker baru",
+  "hebatAgain": "Main lagi",
+  "hebatNext": "Lanjut",
+  "hebatAlbum": "Album stiker",
+  "hebatNewTag": "BARU",
+  "hebatYay": "Yeay, kamu berhasil! Kamu dapat tiga bintang dan stiker baru!",
+  "@hebatYay": {
+    "description": "narasi"
+  },
+  "hebatBubble": "Yeay, kamu berhasil!",
+  "hebatBubbleName": "Yeay, {name} berhasil!",
+  "@hebatBubbleName": {
+    "description": "Gelembung Moci memakai nama anak (hanya teks layar)",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "hebatTapHint": "ketuk untuk mendengar",
+  "stiker_kucing": "Kucing",
+  "stiker_ikan": "Ikan",
+  "stiker_singa": "Singa",
+  "stiker_gajah": "Gajah",
+  "stiker_panda": "Panda",
+  "stiker_pinguin": "Pinguin",
+  "stiker_apel": "Apel",
+  "stiker_pisang": "Pisang",
+  "stiker_stroberi": "Stroberi",
+  "stiker_semangka": "Semangka",
+  "stiker_nanas": "Nanas",
+  "stiker_buahnaga": "Buah Naga",
+  "stiker_wortel": "Wortel",
+  "stiker_tomat": "Tomat",
+  "stiker_brokoli": "Brokoli",
+  "stiker_jagung": "Jagung",
+  "stiker_labu": "Labu",
+  "stiker_jamur": "Jamur",
+  "stiker_mobil": "Mobil",
+  "stiker_bus": "Bus",
+  "stiker_kereta": "Kereta",
+  "stiker_pesawat": "Pesawat",
+  "stiker_kapal": "Kapal",
+  "stiker_roket": "Roket",
+  "stiker_bola": "Bola",
+  "stiker_balon": "Balon",
+  "stiker_kado": "Kado",
+  "stiker_eskrim": "Es Krim",
+  "stiker_layang": "Layang-layang",
+  "stiker_payung": "Payung"
 }
