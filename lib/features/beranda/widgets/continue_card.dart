@@ -6,8 +6,6 @@ import '../../../widgets/moci_illustration.dart';
 import '../../../widgets/pressable.dart';
 import '../beranda_menu.dart';
 
-const _cardShadow = Color(0xFF8EC5EE);
-
 /// Kartu "Lanjutkan": kegiatan terakhir anak. Ukuran tablet 364 x 132; ukuran
 /// HP 176 x 92 tanpa tombol putar.
 class ContinueCard extends StatelessWidget {
@@ -33,7 +31,7 @@ class ContinueCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final tile = compact ? 48.0 : 86.0;
     return MociPressable(
-      shadowColor: _cardShadow,
+      shadowColor: MociColors.cardShadow,
       depth: compact ? 6 : 8,
       borderRadius: BorderRadius.circular(compact ? 22 : 32),
       semanticLabel: '$heading, $label',

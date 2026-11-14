@@ -6,7 +6,6 @@ import '../../../core/lang.dart';
 import '../../../widgets/pressable.dart';
 
 const _enBlue = Color(0xFF1C7ED6);
-const _pillShadow = Color(0xFF8EC5EE);
 const _clear = Color(0x00000000);
 
 /// Sakelar ID/EN. Tombol aktif berwarna (ID merah, EN biru) bertulisan putih.
@@ -63,7 +62,7 @@ class LangSwitch extends StatelessWidget {
                   borderRadius: BorderRadius.circular(999),
                   boxShadow: [
                     BoxShadow(
-                      color: _pillShadow,
+                      color: MociColors.cardShadow,
                       offset: Offset(0, compact ? 5 : 6),
                     ),
                   ],

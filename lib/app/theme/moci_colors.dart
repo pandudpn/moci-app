@@ -16,6 +16,9 @@ abstract final class MociColors {
   static const starFill = Color(0xFFFFC21A);
   static const starStroke = Color(0xFFF08C00);
 
+  /// Bayangan padat biru langit di bawah kartu putih (prototipe `#8EC5EE`).
+  static const cardShadow = Color(0xFF8EC5EE);
+
   /// Bayangan padat netral saat tidak ada tema menu (rgba(43,35,80,.12)).
   static const neutralShadow = Color(0x1F2B2350);
 }
