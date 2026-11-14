@@ -6,6 +6,7 @@ import '../core/prefs/prefs_controller.dart';
 import '../features/beranda/beranda_screen.dart';
 import '../features/hadiah/hadiah_controller.dart';
 import '../features/hadiah/hebat_screen.dart';
+import '../features/huruf/huruf_screen.dart';
 import '../features/orang_tua/gerbang_screen.dart';
 import '../features/orang_tua/orang_tua_screen.dart';
 import '../features/sambutan/sambutan_screen.dart';
@@ -111,7 +112,11 @@ final routerProvider = Provider<GoRouter>((ref) {
         builder: (context, state) =>
             const PopScope(canPop: false, child: BerandaScreen()),
       ),
-      _soon(Routes.huruf, MenuTheme.huruf),
+      GoRoute(
+        path: Routes.huruf,
+        builder: (context, state) =>
+            HurufScreen(awal: state.uri.queryParameters['huruf']),
+      ),
       GoRoute(
         path: Routes.hurufTulis,
         builder: (context, state) =>

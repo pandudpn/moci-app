@@ -705,4 +705,57 @@ class AppLocalizationsEn extends AppLocalizations {
   String berandaContinueTulisAngka(String angka) {
     return 'Write the number $angka';
   }
+
+  @override
+  String get hurufListen => 'Hear the letter sound and word';
+
+  @override
+  String get hurufPrev => 'Previous letter';
+
+  @override
+  String get hurufNext => 'Next letter';
+
+  @override
+  String get hurufLetter => 'Letter';
+
+  @override
+  String get hurufTapHint => 'tap to hear its sound';
+
+  @override
+  String get hurufTapHintName => 'tap to hear its name';
+
+  @override
+  String get hurufSound => 'Sound';
+
+  @override
+  String get hurufName => 'Name:';
+
+  @override
+  String get hurufSoundOf => 'Sound of letter';
+
+  @override
+  String get hurufNameOf => 'Name of letter';
+
+  @override
+  String hurufLetterLabel(String huruf, String petunjuk) {
+    return 'Letter $huruf, $petunjuk';
+  }
+
+  @override
+  String hurufSoundAria(String huruf, String bunyi) {
+    return 'Sound of letter $huruf $bunyi';
+  }
+
+  @override
+  String hurufNameAria(String huruf) {
+    return 'Name of letter $huruf';
+  }
+
+  @override
+  String get hurufGridLabel => 'Pick a letter';
+
+  @override
+  String berandaContinueHuruf(String huruf) {
+    return 'Letter $huruf';
+  }
 }

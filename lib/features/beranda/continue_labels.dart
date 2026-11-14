@@ -13,6 +13,12 @@ typedef ContinueLabelBuilder = String Function(
 /// "Tulis huruf {huruf}".
 final Map<String, ContinueLabelBuilder> continueLabels = {
   for (final m in BerandaMenu.values) m.route: (l10n, _) => m.title(l10n),
+  Routes.huruf: (l10n, params) {
+    final huruf = params['huruf'];
+    return huruf == null || huruf.isEmpty
+        ? l10n.menuHurufTitle
+        : l10n.berandaContinueHuruf(huruf);
+  },
   Routes.hurufTulis: (l10n, params) {
     final huruf = params['huruf'];
     return huruf == null || huruf.isEmpty

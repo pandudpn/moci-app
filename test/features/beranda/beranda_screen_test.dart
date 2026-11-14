@@ -138,7 +138,11 @@ void main() {
           final router = await _open(t, env: env, size: size);
           await _tapMenu(t, m);
           expect(_top(router).matchedLocation, m.route);
-          expect(env.tts.spoken.last.$1, _titlesId[m]);
+          // Layar Kenal Huruf membacakan huruf dan contoh katanya sendiri.
+          expect(
+            env.tts.spoken.last.$1,
+            m == BerandaMenu.huruf ? 'Apel' : _titlesId[m],
+          );
           expect(env.tts.spoken.last.$2, AppLang.id);
         });
       }

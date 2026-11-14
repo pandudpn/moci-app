@@ -726,5 +726,91 @@
         "type": "String"
       }
     }
+  },
+  "hurufListen": "Hear the letter sound and word",
+  "@hurufListen": {
+    "description": "Label of the listen button on the letters screen"
+  },
+  "hurufPrev": "Previous letter",
+  "@hurufPrev": {
+    "description": "Label of the previous letter button"
+  },
+  "hurufNext": "Next letter",
+  "@hurufNext": {
+    "description": "Label of the next letter button"
+  },
+  "hurufLetter": "Letter",
+  "@hurufLetter": {
+    "description": "Prefix of a letter label in the grid"
+  },
+  "hurufTapHint": "tap to hear its sound",
+  "@hurufTapHint": {
+    "description": "Tap hint for a letter in phonics mode"
+  },
+  "hurufTapHintName": "tap to hear its name",
+  "@hurufTapHintName": {
+    "description": "Tap hint for a letter in name mode"
+  },
+  "hurufSound": "Sound",
+  "@hurufSound": {
+    "description": "Letter sound pill"
+  },
+  "hurufName": "Name:",
+  "@hurufName": {
+    "description": "Letter name pill"
+  },
+  "hurufSoundOf": "Sound of letter",
+  "@hurufSoundOf": {
+    "description": "Prefix of the sound pill semantic label"
+  },
+  "hurufNameOf": "Name of letter",
+  "@hurufNameOf": {
+    "description": "Prefix of the name pill semantic label"
+  },
+  "hurufLetterLabel": "Letter {huruf}, {petunjuk}",
+  "@hurufLetterLabel": {
+    "description": "Semantic label of the big letter",
+    "placeholders": {
+      "huruf": {
+        "type": "String"
+      },
+      "petunjuk": {
+        "type": "String"
+      }
+    }
+  },
+  "hurufSoundAria": "Sound of letter {huruf} {bunyi}",
+  "@hurufSoundAria": {
+    "description": "Semantic label of the sound pill",
+    "placeholders": {
+      "huruf": {
+        "type": "String"
+      },
+      "bunyi": {
+        "type": "String"
+      }
+    }
+  },
+  "hurufNameAria": "Name of letter {huruf}",
+  "@hurufNameAria": {
+    "description": "Semantic label of the name pill",
+    "placeholders": {
+      "huruf": {
+        "type": "String"
+      }
+    }
+  },
+  "hurufGridLabel": "Pick a letter",
+  "@hurufGridLabel": {
+    "description": "Semantic label of the letter grid"
+  },
+  "berandaContinueHuruf": "Letter {huruf}",
+  "@berandaContinueHuruf": {
+    "description": "Continue card subtitle for Kenal Huruf",
+    "placeholders": {
+      "huruf": {
+        "type": "String"
+      }
+    }
   }
 }

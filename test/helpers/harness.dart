@@ -18,6 +18,7 @@ import 'package:moci/core/content/content_repository.dart';
 import 'package:moci/core/content/katalog.dart';
 import 'package:moci/core/content/tracing.dart';
 import 'package:moci/core/lang.dart';
+import 'package:moci/core/prefs/app_prefs.dart';
 import 'package:moci/core/prefs/prefs_controller.dart';
 import 'package:moci/core/progress/progress.dart';
 import 'package:moci/core/progress/progress_controller.dart';
@@ -160,6 +161,7 @@ final class TestEnv {
     AppLang lang = AppLang.id,
     String childName = '',
     bool onboarded = true,
+    LetterMode letterMode = LetterMode.fonik,
     this.progress = const Progress(),
     DateTime? now,
     this.assets = const {},
@@ -171,6 +173,7 @@ final class TestEnv {
     this.store
       ..setString('moci.bahasa', lang.name)
       ..setString('moci.nama', childName)
+      ..setString('moci.caraBaca', letterMode.name)
       ..setBool('moci.sambutanSelesai', onboarded);
   }
 

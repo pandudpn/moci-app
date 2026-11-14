@@ -1381,6 +1381,96 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Tulis angka {angka}'**
   String berandaContinueTulisAngka(String angka);
+
+  /// Label tombol dengar di layar huruf
+  ///
+  /// In id, this message translates to:
+  /// **'Dengarkan bunyi huruf dan kata'**
+  String get hurufListen;
+
+  /// Label tombol huruf sebelumnya
+  ///
+  /// In id, this message translates to:
+  /// **'Huruf sebelumnya'**
+  String get hurufPrev;
+
+  /// Label tombol huruf berikutnya
+  ///
+  /// In id, this message translates to:
+  /// **'Huruf berikutnya'**
+  String get hurufNext;
+
+  /// Awalan label huruf di kisi
+  ///
+  /// In id, this message translates to:
+  /// **'Huruf'**
+  String get hurufLetter;
+
+  /// Petunjuk ketuk huruf dalam mode fonik
+  ///
+  /// In id, this message translates to:
+  /// **'ketuk untuk mendengar bunyinya'**
+  String get hurufTapHint;
+
+  /// Petunjuk ketuk huruf dalam mode nama
+  ///
+  /// In id, this message translates to:
+  /// **'ketuk untuk mendengar namanya'**
+  String get hurufTapHintName;
+
+  /// Pil bunyi huruf
+  ///
+  /// In id, this message translates to:
+  /// **'Bunyi'**
+  String get hurufSound;
+
+  /// Pil nama huruf
+  ///
+  /// In id, this message translates to:
+  /// **'Nama:'**
+  String get hurufName;
+
+  /// Awalan label semantik pil bunyi
+  ///
+  /// In id, this message translates to:
+  /// **'Bunyi huruf'**
+  String get hurufSoundOf;
+
+  /// Awalan label semantik pil nama
+  ///
+  /// In id, this message translates to:
+  /// **'Nama huruf'**
+  String get hurufNameOf;
+
+  /// Label semantik huruf besar
+  ///
+  /// In id, this message translates to:
+  /// **'Huruf {huruf}, {petunjuk}'**
+  String hurufLetterLabel(String huruf, String petunjuk);
+
+  /// Label semantik pil bunyi
+  ///
+  /// In id, this message translates to:
+  /// **'Bunyi huruf {huruf} {bunyi}'**
+  String hurufSoundAria(String huruf, String bunyi);
+
+  /// Label semantik pil nama
+  ///
+  /// In id, this message translates to:
+  /// **'Nama huruf {huruf}'**
+  String hurufNameAria(String huruf);
+
+  /// Label semantik kisi huruf
+  ///
+  /// In id, this message translates to:
+  /// **'Pilih huruf'**
+  String get hurufGridLabel;
+
+  /// Subjudul kartu Lanjutkan untuk Kenal Huruf
+  ///
+  /// In id, this message translates to:
+  /// **'Huruf {huruf}'**
+  String berandaContinueHuruf(String huruf);
 }
 
 class _AppLocalizationsDelegate

@@ -729,5 +729,91 @@
         "type": "String"
       }
     }
+  },
+  "hurufListen": "Dengarkan bunyi huruf dan kata",
+  "@hurufListen": {
+    "description": "Label tombol dengar di layar huruf"
+  },
+  "hurufPrev": "Huruf sebelumnya",
+  "@hurufPrev": {
+    "description": "Label tombol huruf sebelumnya"
+  },
+  "hurufNext": "Huruf berikutnya",
+  "@hurufNext": {
+    "description": "Label tombol huruf berikutnya"
+  },
+  "hurufLetter": "Huruf",
+  "@hurufLetter": {
+    "description": "Awalan label huruf di kisi"
+  },
+  "hurufTapHint": "ketuk untuk mendengar bunyinya",
+  "@hurufTapHint": {
+    "description": "Petunjuk ketuk huruf dalam mode fonik"
+  },
+  "hurufTapHintName": "ketuk untuk mendengar namanya",
+  "@hurufTapHintName": {
+    "description": "Petunjuk ketuk huruf dalam mode nama"
+  },
+  "hurufSound": "Bunyi",
+  "@hurufSound": {
+    "description": "Pil bunyi huruf"
+  },
+  "hurufName": "Nama:",
+  "@hurufName": {
+    "description": "Pil nama huruf"
+  },
+  "hurufSoundOf": "Bunyi huruf",
+  "@hurufSoundOf": {
+    "description": "Awalan label semantik pil bunyi"
+  },
+  "hurufNameOf": "Nama huruf",
+  "@hurufNameOf": {
+    "description": "Awalan label semantik pil nama"
+  },
+  "hurufLetterLabel": "Huruf {huruf}, {petunjuk}",
+  "@hurufLetterLabel": {
+    "description": "Label semantik huruf besar",
+    "placeholders": {
+      "huruf": {
+        "type": "String"
+      },
+      "petunjuk": {
+        "type": "String"
+      }
+    }
+  },
+  "hurufSoundAria": "Bunyi huruf {huruf} {bunyi}",
+  "@hurufSoundAria": {
+    "description": "Label semantik pil bunyi",
+    "placeholders": {
+      "huruf": {
+        "type": "String"
+      },
+      "bunyi": {
+        "type": "String"
+      }
+    }
+  },
+  "hurufNameAria": "Nama huruf {huruf}",
+  "@hurufNameAria": {
+    "description": "Label semantik pil nama",
+    "placeholders": {
+      "huruf": {
+        "type": "String"
+      }
+    }
+  },
+  "hurufGridLabel": "Pilih huruf",
+  "@hurufGridLabel": {
+    "description": "Label semantik kisi huruf"
+  },
+  "berandaContinueHuruf": "Huruf {huruf}",
+  "@berandaContinueHuruf": {
+    "description": "Subjudul kartu Lanjutkan untuk Kenal Huruf",
+    "placeholders": {
+      "huruf": {
+        "type": "String"
+      }
+    }
   }
 }
