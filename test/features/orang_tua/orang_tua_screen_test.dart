@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'dart:math';
 
 import 'package:flutter/widgets.dart';
@@ -12,6 +14,7 @@ import 'package:moci/core/prefs/app_prefs.dart';
 import 'package:moci/core/prefs/prefs_controller.dart';
 import 'package:moci/core/progress/progress.dart';
 import 'package:moci/core/progress/progress_controller.dart';
+import 'package:moci/core/storage/key_value_store.dart';
 import 'package:moci/features/orang_tua/gerbang_game.dart';
 import 'package:moci/features/orang_tua/gerbang_screen.dart';
 import 'package:moci/widgets/number_keypad.dart';
@@ -401,5 +404,28 @@ void main() {
       expect(_top(router), '/');
       expect(_container(t).read(parentAccessProvider), false);
     });
+  });
+
+  testWidgets('simpan nama: dialog menunggu penulisan selesai', (t) async {
+    final gate = GatedKeyValueStore(MemoryKeyValueStore());
+    final env = TestEnv(progress: _progress(), store: gate);
+    await _open(t, env: env);
+    await _tap(t, env, find.bySemanticsLabel('Ubah nama anak'));
+    await t.enterText(find.byType(EditableText), 'Budi');
+    await t.pump();
+    final hold = Completer<void>();
+    gate.gerbang = hold;
+    env.clock.advance(const Duration(seconds: 1));
+    await t.tap(find.text('Simpan'));
+    // Lewati durasi animasi tutup dialog: kalau dialog sudah dipanggil tutup,
+    // teks Simpan hilang di sini.
+    await t.pump();
+    await t.pump(const Duration(milliseconds: 300));
+    expect(find.text('Simpan'), findsOneWidget, reason: 'dialog belum tutup');
+    hold.complete();
+    await _pump(t, 400);
+    await t.pump(const Duration(milliseconds: 400));
+    expect(find.text('Simpan'), findsNothing);
+    expect(_prefs(t).childName, 'Budi');
   });
 }
