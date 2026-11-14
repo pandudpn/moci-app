@@ -903,5 +903,37 @@
   "memoriInst": "Buka dua kartu dan cari pasangannya.",
   "@memoriInst": {
     "description": "narasi"
+  },
+  "bayanganTitle": "Tebak Bayangan",
+  "@bayanganTitle": {
+    "description": "Judul bilah atas layar Tebak Bayangan"
+  },
+  "bayanganAsk": "Bayangan siapa ini?",
+  "@bayanganAsk": {
+    "description": "narasi"
+  },
+  "bayanganShadow": "Bayangan misteri",
+  "@bayanganShadow": {
+    "description": "Label bayangan yang belum terbuka"
+  },
+  "bayanganProgress": "Kemajuan",
+  "@bayanganProgress": {
+    "description": "Label pil kemajuan enam ronde"
+  },
+  "bayanganYes": "Betul! Itu",
+  "@bayanganYes": {
+    "description": "narasi"
+  },
+  "bayanganNo": "Bukan yang itu, itu",
+  "@bayanganNo": {
+    "description": "narasi"
+  },
+  "bayanganInst": "Ketuk gambar yang bayangannya sama.",
+  "@bayanganInst": {
+    "description": "narasi"
+  },
+  "bayanganSemantic": "Pilihan bayangan",
+  "@bayanganSemantic": {
+    "description": "Label kelompok pilihan bayangan"
   }
 }

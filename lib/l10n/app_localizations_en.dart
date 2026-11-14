@@ -834,4 +834,28 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get memoriInst => 'Open two cards and find the pair.';
+
+  @override
+  String get bayanganTitle => 'Shadow Match';
+
+  @override
+  String get bayanganAsk => 'Whose shadow is this?';
+
+  @override
+  String get bayanganShadow => 'A mystery shadow';
+
+  @override
+  String get bayanganProgress => 'Progress';
+
+  @override
+  String get bayanganYes => 'Yes! It is the';
+
+  @override
+  String get bayanganNo => 'Not that one, that is the';
+
+  @override
+  String get bayanganInst => 'Tap the picture that matches the shadow.';
+
+  @override
+  String get bayanganSemantic => 'Shadow choices';
 }

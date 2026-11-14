@@ -833,4 +833,28 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get memoriInst => 'Buka dua kartu dan cari pasangannya.';
+
+  @override
+  String get bayanganTitle => 'Tebak Bayangan';
+
+  @override
+  String get bayanganAsk => 'Bayangan siapa ini?';
+
+  @override
+  String get bayanganShadow => 'Bayangan misteri';
+
+  @override
+  String get bayanganProgress => 'Kemajuan';
+
+  @override
+  String get bayanganYes => 'Betul! Itu';
+
+  @override
+  String get bayanganNo => 'Bukan yang itu, itu';
+
+  @override
+  String get bayanganInst => 'Ketuk gambar yang bayangannya sama.';
+
+  @override
+  String get bayanganSemantic => 'Pilihan bayangan';
 }

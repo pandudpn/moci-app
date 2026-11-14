@@ -900,5 +900,37 @@
   "memoriInst": "Open two cards and find the pair.",
   "@memoriInst": {
     "description": "narasi"
+  },
+  "bayanganTitle": "Shadow Match",
+  "@bayanganTitle": {
+    "description": "Title of the Shadow Match screen bar"
+  },
+  "bayanganAsk": "Whose shadow is this?",
+  "@bayanganAsk": {
+    "description": "narasi"
+  },
+  "bayanganShadow": "A mystery shadow",
+  "@bayanganShadow": {
+    "description": "Label of the shadow before it is revealed"
+  },
+  "bayanganProgress": "Progress",
+  "@bayanganProgress": {
+    "description": "Label of the six-round progress pill"
+  },
+  "bayanganYes": "Yes! It is the",
+  "@bayanganYes": {
+    "description": "narasi"
+  },
+  "bayanganNo": "Not that one, that is the",
+  "@bayanganNo": {
+    "description": "narasi"
+  },
+  "bayanganInst": "Tap the picture that matches the shadow.",
+  "@bayanganInst": {
+    "description": "narasi"
+  },
+  "bayanganSemantic": "Shadow choices",
+  "@bayanganSemantic": {
+    "description": "Label of the shadow choice group"
   }
 }

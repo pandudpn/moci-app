@@ -6,6 +6,7 @@ import '../core/prefs/prefs_controller.dart';
 import '../features/beranda/beranda_screen.dart';
 import '../features/hadiah/hadiah_controller.dart';
 import '../features/hadiah/hebat_screen.dart';
+import '../features/main_yuk/bayangan_screen.dart';
 import '../features/main_yuk/cocokkan_screen.dart';
 import '../features/main_yuk/hub_screen.dart';
 import '../features/main_yuk/memori_screen.dart';
@@ -149,7 +150,10 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: Routes.memori,
         builder: (context, state) => const MemoriScreen(),
       ),
-      _soon(Routes.bayangan, MenuTheme.bayangan),
+      GoRoute(
+        path: Routes.bayangan,
+        builder: (context, state) => const BayanganScreen(),
+      ),
       _soon(Routes.puzzle, MenuTheme.puzzle),
       _soon(Routes.balon, MenuTheme.balon),
       _soon(Routes.besarKecil, MenuTheme.besarKecil),

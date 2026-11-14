@@ -1627,6 +1627,54 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Buka dua kartu dan cari pasangannya.'**
   String get memoriInst;
+
+  /// Judul bilah atas layar Tebak Bayangan
+  ///
+  /// In id, this message translates to:
+  /// **'Tebak Bayangan'**
+  String get bayanganTitle;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Bayangan siapa ini?'**
+  String get bayanganAsk;
+
+  /// Label bayangan yang belum terbuka
+  ///
+  /// In id, this message translates to:
+  /// **'Bayangan misteri'**
+  String get bayanganShadow;
+
+  /// Label pil kemajuan enam ronde
+  ///
+  /// In id, this message translates to:
+  /// **'Kemajuan'**
+  String get bayanganProgress;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Betul! Itu'**
+  String get bayanganYes;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Bukan yang itu, itu'**
+  String get bayanganNo;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Ketuk gambar yang bayangannya sama.'**
+  String get bayanganInst;
+
+  /// Label kelompok pilihan bayangan
+  ///
+  /// In id, this message translates to:
+  /// **'Pilihan bayangan'**
+  String get bayanganSemantic;
 }
 
 class _AppLocalizationsDelegate
