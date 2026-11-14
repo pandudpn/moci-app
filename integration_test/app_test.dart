@@ -251,8 +251,18 @@ void main() {
       expect(_stack(t), ['/']);
 
       // Sebelum pohon dibongkar: tulisannya sudah ada di penyimpanan
-      // perangkat, bukan hanya di state provider.
+      // perangkat, bukan hanya di state provider. `completeOnboarding`
+      // menulis empat kunci berurutan lewat platform channel setelah state
+      // berganti, jadi di Android tulisan terakhir bisa belum sampai saat
+      // Beranda tampil. Tunggu sampai bendera tertulis, dengan batas waktu.
       final disk = SharedPreferencesAsync();
+      await t.runAsync(() async {
+        final deadline = DateTime.now().add(const Duration(seconds: 5));
+        while (await disk.getBool('moci.sambutanSelesai') != true &&
+            DateTime.now().isBefore(deadline)) {
+          await Future<void>.delayed(const Duration(milliseconds: 50));
+        }
+      });
       expect(await disk.getBool('moci.sambutanSelesai'), isTrue);
       expect(await disk.getString('moci.nama'), 'Raka');
       expect(await disk.getString('moci.bahasa'), AppLang.en.name);
