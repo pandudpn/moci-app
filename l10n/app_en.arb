@@ -812,5 +812,69 @@
   "gameLevel": "Level",
   "@gameLevel": {
     "description": "Label pil level kesulitan"
+  },
+  "cocokkanTitle": "Match It!",
+  "@cocokkanTitle": {
+    "description": "Judul bilah atas layar Cocokkan"
+  },
+  "cocokkanTema": "Theme",
+  "@cocokkanTema": {
+    "description": "Label kolom tema"
+  },
+  "cocokkanShuffle": "New pictures",
+  "@cocokkanShuffle": {
+    "description": "Tombol gambar baru"
+  },
+  "cocokkanHear": "Listen to the instructions",
+  "@cocokkanHear": {
+    "description": "Tombol dengar petunjuk"
+  },
+  "cocokkanIns": "Draw a line, or tap two pictures that are the same",
+  "@cocokkanIns": {
+    "description": "Petunjuk singkat di papan"
+  },
+  "cocokkanInst": "Draw a line from a picture to the one that is the same.",
+  "@cocokkanInst": {
+    "description": "narasi"
+  },
+  "cocokkanHeadBuah": "Match the same fruits",
+  "@cocokkanHeadBuah": {
+    "description": "Judul tema buah"
+  },
+  "cocokkanHeadHewan": "Match the same animals",
+  "@cocokkanHeadHewan": {
+    "description": "Judul tema hewan"
+  },
+  "cocokkanHeadSayur": "Match the same veggies",
+  "@cocokkanHeadSayur": {
+    "description": "Judul tema sayur"
+  },
+  "cocokkanHeadKendaraan": "Match the same vehicles",
+  "@cocokkanHeadKendaraan": {
+    "description": "Judul tema kendaraan"
+  },
+  "cocokkanHeadBenda": "Match the same toys & things",
+  "@cocokkanHeadBenda": {
+    "description": "Judul tema mainan dan benda"
+  },
+  "cocokkanMatch": "Match!",
+  "@cocokkanMatch": {
+    "description": "narasi"
+  },
+  "cocokkanRetry": "Oops, try again!",
+  "@cocokkanRetry": {
+    "description": "narasi"
+  },
+  "cocokkanTipPick": "Pick a picture!",
+  "@cocokkanTipPick": {
+    "description": "Petunjuk saat pasangan salah"
+  },
+  "cocokkanTipNext": "Now find the same one!",
+  "@cocokkanTipNext": {
+    "description": "Petunjuk setelah memilih satu gambar"
+  },
+  "cocokkanTipDone": "Hooray!",
+  "@cocokkanTipDone": {
+    "description": "Seruan saat semua pasangan cocok"
   }
 }

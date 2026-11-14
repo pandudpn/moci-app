@@ -766,4 +766,54 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get gameLevel => 'Level';
+
+  @override
+  String get cocokkanTitle => 'Match It!';
+
+  @override
+  String get cocokkanTema => 'Theme';
+
+  @override
+  String get cocokkanShuffle => 'New pictures';
+
+  @override
+  String get cocokkanHear => 'Listen to the instructions';
+
+  @override
+  String get cocokkanIns =>
+      'Draw a line, or tap two pictures that are the same';
+
+  @override
+  String get cocokkanInst =>
+      'Draw a line from a picture to the one that is the same.';
+
+  @override
+  String get cocokkanHeadBuah => 'Match the same fruits';
+
+  @override
+  String get cocokkanHeadHewan => 'Match the same animals';
+
+  @override
+  String get cocokkanHeadSayur => 'Match the same veggies';
+
+  @override
+  String get cocokkanHeadKendaraan => 'Match the same vehicles';
+
+  @override
+  String get cocokkanHeadBenda => 'Match the same toys & things';
+
+  @override
+  String get cocokkanMatch => 'Match!';
+
+  @override
+  String get cocokkanRetry => 'Oops, try again!';
+
+  @override
+  String get cocokkanTipPick => 'Pick a picture!';
+
+  @override
+  String get cocokkanTipNext => 'Now find the same one!';
+
+  @override
+  String get cocokkanTipDone => 'Hooray!';
 }

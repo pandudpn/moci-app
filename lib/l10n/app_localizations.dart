@@ -1495,6 +1495,102 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Level'**
   String get gameLevel;
+
+  /// Judul bilah atas layar Cocokkan
+  ///
+  /// In id, this message translates to:
+  /// **'Cocokkan!'**
+  String get cocokkanTitle;
+
+  /// Label kolom tema
+  ///
+  /// In id, this message translates to:
+  /// **'Tema'**
+  String get cocokkanTema;
+
+  /// Tombol gambar baru
+  ///
+  /// In id, this message translates to:
+  /// **'Gambar baru'**
+  String get cocokkanShuffle;
+
+  /// Tombol dengar petunjuk
+  ///
+  /// In id, this message translates to:
+  /// **'Dengarkan petunjuk'**
+  String get cocokkanHear;
+
+  /// Petunjuk singkat di papan
+  ///
+  /// In id, this message translates to:
+  /// **'Tarik garis atau ketuk dua gambar yang sama'**
+  String get cocokkanIns;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Tarik garis dari gambar ke gambar yang sama.'**
+  String get cocokkanInst;
+
+  /// Judul tema buah
+  ///
+  /// In id, this message translates to:
+  /// **'Cocokkan Buah yang Sama'**
+  String get cocokkanHeadBuah;
+
+  /// Judul tema hewan
+  ///
+  /// In id, this message translates to:
+  /// **'Cocokkan Hewan yang Sama'**
+  String get cocokkanHeadHewan;
+
+  /// Judul tema sayur
+  ///
+  /// In id, this message translates to:
+  /// **'Cocokkan Sayur yang Sama'**
+  String get cocokkanHeadSayur;
+
+  /// Judul tema kendaraan
+  ///
+  /// In id, this message translates to:
+  /// **'Cocokkan Kendaraan yang Sama'**
+  String get cocokkanHeadKendaraan;
+
+  /// Judul tema mainan dan benda
+  ///
+  /// In id, this message translates to:
+  /// **'Cocokkan Mainan & Benda yang Sama'**
+  String get cocokkanHeadBenda;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Cocok!'**
+  String get cocokkanMatch;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Ups, coba lagi ya!'**
+  String get cocokkanRetry;
+
+  /// Petunjuk saat pasangan salah
+  ///
+  /// In id, this message translates to:
+  /// **'Pilih satu gambar!'**
+  String get cocokkanTipPick;
+
+  /// Petunjuk setelah memilih satu gambar
+  ///
+  /// In id, this message translates to:
+  /// **'Sekarang cari yang sama!'**
+  String get cocokkanTipNext;
+
+  /// Seruan saat semua pasangan cocok
+  ///
+  /// In id, this message translates to:
+  /// **'Horee!'**
+  String get cocokkanTipDone;
 }
 
 class _AppLocalizationsDelegate

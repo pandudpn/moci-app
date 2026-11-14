@@ -815,5 +815,69 @@
   "gameLevel": "Level",
   "@gameLevel": {
     "description": "Label pil level kesulitan"
+  },
+  "cocokkanTitle": "Cocokkan!",
+  "@cocokkanTitle": {
+    "description": "Judul bilah atas layar Cocokkan"
+  },
+  "cocokkanTema": "Tema",
+  "@cocokkanTema": {
+    "description": "Label kolom tema"
+  },
+  "cocokkanShuffle": "Gambar baru",
+  "@cocokkanShuffle": {
+    "description": "Tombol gambar baru"
+  },
+  "cocokkanHear": "Dengarkan petunjuk",
+  "@cocokkanHear": {
+    "description": "Tombol dengar petunjuk"
+  },
+  "cocokkanIns": "Tarik garis atau ketuk dua gambar yang sama",
+  "@cocokkanIns": {
+    "description": "Petunjuk singkat di papan"
+  },
+  "cocokkanInst": "Tarik garis dari gambar ke gambar yang sama.",
+  "@cocokkanInst": {
+    "description": "narasi"
+  },
+  "cocokkanHeadBuah": "Cocokkan Buah yang Sama",
+  "@cocokkanHeadBuah": {
+    "description": "Judul tema buah"
+  },
+  "cocokkanHeadHewan": "Cocokkan Hewan yang Sama",
+  "@cocokkanHeadHewan": {
+    "description": "Judul tema hewan"
+  },
+  "cocokkanHeadSayur": "Cocokkan Sayur yang Sama",
+  "@cocokkanHeadSayur": {
+    "description": "Judul tema sayur"
+  },
+  "cocokkanHeadKendaraan": "Cocokkan Kendaraan yang Sama",
+  "@cocokkanHeadKendaraan": {
+    "description": "Judul tema kendaraan"
+  },
+  "cocokkanHeadBenda": "Cocokkan Mainan & Benda yang Sama",
+  "@cocokkanHeadBenda": {
+    "description": "Judul tema mainan dan benda"
+  },
+  "cocokkanMatch": "Cocok!",
+  "@cocokkanMatch": {
+    "description": "narasi"
+  },
+  "cocokkanRetry": "Ups, coba lagi ya!",
+  "@cocokkanRetry": {
+    "description": "narasi"
+  },
+  "cocokkanTipPick": "Pilih satu gambar!",
+  "@cocokkanTipPick": {
+    "description": "Petunjuk saat pasangan salah"
+  },
+  "cocokkanTipNext": "Sekarang cari yang sama!",
+  "@cocokkanTipNext": {
+    "description": "Petunjuk setelah memilih satu gambar"
+  },
+  "cocokkanTipDone": "Horee!",
+  "@cocokkanTipDone": {
+    "description": "Seruan saat semua pasangan cocok"
   }
 }

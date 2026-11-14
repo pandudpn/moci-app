@@ -767,4 +767,52 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get gameLevel => 'Level';
+
+  @override
+  String get cocokkanTitle => 'Cocokkan!';
+
+  @override
+  String get cocokkanTema => 'Tema';
+
+  @override
+  String get cocokkanShuffle => 'Gambar baru';
+
+  @override
+  String get cocokkanHear => 'Dengarkan petunjuk';
+
+  @override
+  String get cocokkanIns => 'Tarik garis atau ketuk dua gambar yang sama';
+
+  @override
+  String get cocokkanInst => 'Tarik garis dari gambar ke gambar yang sama.';
+
+  @override
+  String get cocokkanHeadBuah => 'Cocokkan Buah yang Sama';
+
+  @override
+  String get cocokkanHeadHewan => 'Cocokkan Hewan yang Sama';
+
+  @override
+  String get cocokkanHeadSayur => 'Cocokkan Sayur yang Sama';
+
+  @override
+  String get cocokkanHeadKendaraan => 'Cocokkan Kendaraan yang Sama';
+
+  @override
+  String get cocokkanHeadBenda => 'Cocokkan Mainan & Benda yang Sama';
+
+  @override
+  String get cocokkanMatch => 'Cocok!';
+
+  @override
+  String get cocokkanRetry => 'Ups, coba lagi ya!';
+
+  @override
+  String get cocokkanTipPick => 'Pilih satu gambar!';
+
+  @override
+  String get cocokkanTipNext => 'Sekarang cari yang sama!';
+
+  @override
+  String get cocokkanTipDone => 'Horee!';
 }
