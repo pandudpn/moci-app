@@ -19,6 +19,12 @@ final Map<String, ContinueLabelBuilder> continueLabels = {
         ? l10n.menuHurufTitle
         : l10n.berandaContinueHuruf(huruf);
   },
+  Routes.angka: (l10n, params) {
+    final angka = params['angka'];
+    return angka == null || angka.isEmpty
+        ? l10n.menuAngkaTitle
+        : l10n.berandaContinueAngka(angka);
+  },
   Routes.hurufTulis: (l10n, params) {
     final huruf = params['huruf'];
     return huruf == null || huruf.isEmpty

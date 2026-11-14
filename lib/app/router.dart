@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../core/prefs/prefs_controller.dart';
 import '../features/beranda/beranda_screen.dart';
+import '../features/berhitung/berhitung_screen.dart';
 import '../features/hadiah/hadiah_controller.dart';
 import '../features/hadiah/hebat_screen.dart';
 import '../features/huruf/huruf_screen.dart';
@@ -123,7 +124,11 @@ final routerProvider = Provider<GoRouter>((ref) {
             TulisScreen(awal: state.uri.queryParameters['huruf']),
       ),
       _soon(Routes.hurufUcapkan, MenuTheme.ucapkan),
-      _soon(Routes.angka, MenuTheme.berhitung),
+      GoRoute(
+        path: Routes.angka,
+        builder: (context, state) =>
+            BerhitungScreen(awal: state.uri.queryParameters['angka']),
+      ),
       GoRoute(
         path: Routes.angkaTulis,
         builder: (context, state) => TulisScreen(

@@ -759,4 +759,42 @@ class AppLocalizationsId extends AppLocalizations {
   String berandaContinueHuruf(String huruf) {
     return 'Huruf $huruf';
   }
+
+  @override
+  String get angkaListen => 'Dengar angkanya';
+
+  @override
+  String get angkaAuto => 'Hitung bareng';
+
+  @override
+  String get angkaRange => 'Rentang angka';
+
+  @override
+  String get angkaPick => 'Pilih angka';
+
+  @override
+  String angkaNumber(int n) {
+    return 'Angka $n';
+  }
+
+  @override
+  String angkaCountPrompt(String benda) {
+    return 'Ayo hitung $benda!';
+  }
+
+  @override
+  String get angkaTapIt => 'Ketuk untuk menghitung';
+
+  @override
+  String angkaDone(String kata, String benda) {
+    return 'Ada $kata $benda!';
+  }
+
+  @override
+  String get angkaDoneSay => 'Hebat, hitungannya benar!';
+
+  @override
+  String berandaContinueAngka(String angka) {
+    return 'Angka $angka';
+  }
 }

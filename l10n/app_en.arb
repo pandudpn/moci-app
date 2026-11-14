@@ -812,5 +812,68 @@
         "type": "String"
       }
     }
+  },
+  "angkaListen": "Hear the number",
+  "@angkaListen": {
+    "description": "Label of the listen button on the numbers screen"
+  },
+  "angkaAuto": "Count for me",
+  "@angkaAuto": {
+    "description": "Auto count button"
+  },
+  "angkaRange": "Number range",
+  "@angkaRange": {
+    "description": "Semantic label of the number range group"
+  },
+  "angkaPick": "Pick a number",
+  "@angkaPick": {
+    "description": "Semantic label of the number grid"
+  },
+  "angkaNumber": "Number {n}",
+  "@angkaNumber": {
+    "description": "Semantic label of one number cell",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "angkaCountPrompt": "Let's count the {benda}!",
+  "@angkaCountPrompt": {
+    "description": "Counting panel title",
+    "placeholders": {
+      "benda": {
+        "type": "String"
+      }
+    }
+  },
+  "angkaTapIt": "Tap to count",
+  "@angkaTapIt": {
+    "description": "Semantic label of an uncounted item"
+  },
+  "angkaDone": "{kata} {benda}!",
+  "@angkaDone": {
+    "description": "Counting done bar",
+    "placeholders": {
+      "kata": {
+        "type": "String"
+      },
+      "benda": {
+        "type": "String"
+      }
+    }
+  },
+  "angkaDoneSay": "Great counting!",
+  "@angkaDoneSay": {
+    "description": "narasi"
+  },
+  "berandaContinueAngka": "Number {angka}",
+  "@berandaContinueAngka": {
+    "description": "Continue card subtitle for Berhitung",
+    "placeholders": {
+      "angka": {
+        "type": "String"
+      }
+    }
   }
 }

@@ -19,6 +19,7 @@ import '../../core/progress/progress_controller.dart';
 import '../../l10n/l10n.dart';
 import '../../widgets/game/game_glyphs.dart';
 import '../../widgets/game/route_mode_pill.dart';
+import '../../widgets/game/ring_pulse.dart';
 import '../../widgets/moci_back_button.dart';
 import '../../widgets/moci_illustration.dart';
 import '../../widgets/moci_mascot.dart';
@@ -266,7 +267,9 @@ class _HurufScreenState extends ConsumerState<HurufScreen>
             top: 370,
             width: 100,
             height: 100,
-            child: _RingPulse(
+            child: RingPulse(
+              size: 100,
+              color: const Color(0xFFFFB020),
               child: MociPressable(
                 key: HurufScreen.listenKey,
                 onTap: _sayAll,
@@ -576,72 +579,6 @@ class _HurufScreenState extends ConsumerState<HurufScreen>
           ),
         ),
       ),
-    );
-  }
-}
-
-/// Cincin berdenyut di belakang tombol dengar; diam saat gerak dikurangi.
-class _RingPulse extends StatefulWidget {
-  const _RingPulse({required this.child});
-
-  final Widget child;
-
-  @override
-  State<_RingPulse> createState() => _RingPulseState();
-}
-
-class _RingPulseState extends State<_RingPulse>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController _c = AnimationController(
-    vsync: this,
-    duration: const Duration(seconds: 2),
-  );
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    if (MediaQuery.disableAnimationsOf(context)) {
-      _c.stop();
-    } else if (!_c.isAnimating) {
-      _c.repeat();
-    }
-  }
-
-  @override
-  void dispose() {
-    _c.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
-      clipBehavior: Clip.none,
-      children: [
-        AnimatedBuilder(
-          animation: _c,
-          builder: (context, _) {
-            if (MediaQuery.disableAnimationsOf(context)) {
-              return const SizedBox.shrink();
-            }
-            return IgnorePointer(
-              child: Transform.scale(
-                scale: 1 + 0.75 * _c.value,
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFFFB020)
-                        .withValues(alpha: 0.5 * (1 - _c.value)),
-                    shape: BoxShape.circle,
-                  ),
-                  child: const SizedBox(width: 100, height: 100),
-                ),
-              ),
-            );
-          },
-        ),
-        widget.child,
-      ],
     );
   }
 }

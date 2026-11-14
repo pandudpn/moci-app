@@ -815,5 +815,68 @@
         "type": "String"
       }
     }
+  },
+  "angkaListen": "Dengar angkanya",
+  "@angkaListen": {
+    "description": "Label tombol dengar di layar angka"
+  },
+  "angkaAuto": "Hitung bareng",
+  "@angkaAuto": {
+    "description": "Tombol hitung otomatis"
+  },
+  "angkaRange": "Rentang angka",
+  "@angkaRange": {
+    "description": "Label semantik grup rentang angka"
+  },
+  "angkaPick": "Pilih angka",
+  "@angkaPick": {
+    "description": "Label semantik kisi pilih angka"
+  },
+  "angkaNumber": "Angka {n}",
+  "@angkaNumber": {
+    "description": "Label semantik satu angka di kisi",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "angkaCountPrompt": "Ayo hitung {benda}!",
+  "@angkaCountPrompt": {
+    "description": "Judul panel hitung",
+    "placeholders": {
+      "benda": {
+        "type": "String"
+      }
+    }
+  },
+  "angkaTapIt": "Ketuk untuk menghitung",
+  "@angkaTapIt": {
+    "description": "Label semantik benda yang belum dihitung"
+  },
+  "angkaDone": "Ada {kata} {benda}!",
+  "@angkaDone": {
+    "description": "Bilah selesai hitung",
+    "placeholders": {
+      "kata": {
+        "type": "String"
+      },
+      "benda": {
+        "type": "String"
+      }
+    }
+  },
+  "angkaDoneSay": "Hebat, hitungannya benar!",
+  "@angkaDoneSay": {
+    "description": "narasi"
+  },
+  "berandaContinueAngka": "Angka {angka}",
+  "@berandaContinueAngka": {
+    "description": "Subjudul kartu Lanjutkan untuk Berhitung",
+    "placeholders": {
+      "angka": {
+        "type": "String"
+      }
+    }
   }
 }

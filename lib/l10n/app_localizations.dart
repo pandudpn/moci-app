@@ -1471,6 +1471,66 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Huruf {huruf}'**
   String berandaContinueHuruf(String huruf);
+
+  /// Label tombol dengar di layar angka
+  ///
+  /// In id, this message translates to:
+  /// **'Dengar angkanya'**
+  String get angkaListen;
+
+  /// Tombol hitung otomatis
+  ///
+  /// In id, this message translates to:
+  /// **'Hitung bareng'**
+  String get angkaAuto;
+
+  /// Label semantik grup rentang angka
+  ///
+  /// In id, this message translates to:
+  /// **'Rentang angka'**
+  String get angkaRange;
+
+  /// Label semantik kisi pilih angka
+  ///
+  /// In id, this message translates to:
+  /// **'Pilih angka'**
+  String get angkaPick;
+
+  /// Label semantik satu angka di kisi
+  ///
+  /// In id, this message translates to:
+  /// **'Angka {n}'**
+  String angkaNumber(int n);
+
+  /// Judul panel hitung
+  ///
+  /// In id, this message translates to:
+  /// **'Ayo hitung {benda}!'**
+  String angkaCountPrompt(String benda);
+
+  /// Label semantik benda yang belum dihitung
+  ///
+  /// In id, this message translates to:
+  /// **'Ketuk untuk menghitung'**
+  String get angkaTapIt;
+
+  /// Bilah selesai hitung
+  ///
+  /// In id, this message translates to:
+  /// **'Ada {kata} {benda}!'**
+  String angkaDone(String kata, String benda);
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Hebat, hitungannya benar!'**
+  String get angkaDoneSay;
+
+  /// Subjudul kartu Lanjutkan untuk Berhitung
+  ///
+  /// In id, this message translates to:
+  /// **'Angka {angka}'**
+  String berandaContinueAngka(String angka);
 }
 
 class _AppLocalizationsDelegate
