@@ -41,14 +41,20 @@ Panah berarti bergantung. Aturan arahnya:
 | `lib/core/prefs/` | `AppPrefs`, `PrefsController` |
 | `lib/core/progress/` | `Progress`, `ProgressRepository`, `ProgressController` |
 | `lib/core/audio/` | `AudioEngine`, `AudioService`, `Narrator`, `Sfx`, `AssetCatalog`, `DeviceTts` |
+| `lib/core/speech/` | `SpeechEngine`, `SpeechToTextEngine`, `kataCocok`, `MicLevelMeter`, `MethodChannelMicLevelMeter` |
 | `lib/core/providers.dart` | `clockProvider`, `keyValueStoreProvider`, `jsonStoreProvider` |
 | `lib/widgets/` | `MociPressable`, `MociButton`, `MociBackButton`, `MociTopBar`, `MociMascot`, `MociIllustration`, `MociDialog`, `NumberKeypad`, `StarCounter` |
+| `lib/widgets/game/` | `GameGlyph`, `GameModePill`, `RouteModePill`, `GameInstruction`, `AnswerCard`, `ProgressDots`, `MicButton`, `RingPulse` |
 | `lib/features/beranda/` | Beranda tablet dan HP, sepuluh kartu menu, sakelar bahasa, bintang, pintu orang tua |
-| `lib/features/sambutan/` | Sambutan: bahasa, nama, usia |
+| `lib/features/berhitung/` | Berhitung 1–50: kartu angka, hitung bareng, kisi benda |
 | `lib/features/hadiah/` | Hebat, katalog 30 stiker, hadiah ronde |
+| `lib/features/huruf/` | Kenal Huruf: kartu huruf, dua cara baca, kisi A–Z |
 | `lib/features/istirahat/` | Istirahat dan Waktu Habis |
 | `lib/features/orang_tua/` | Gerbang, Area Orang Tua, ringkasan, widget pengaturan |
+| `lib/features/sambutan/` | Sambutan: bahasa, nama, usia |
 | `lib/features/segera/` | `ComingSoonScreen` untuk rute yang layarnya belum dibangun |
+| `lib/features/tulis/` | `TracingEngine`, `TracingBoard`, kisi kunci dan krayon, layar Tulis Huruf dan Angka |
+| `lib/features/ucapkan/` | Ucapkan: kata bergambar, suku kata, tombol mikrofon, mode dengar dan tiru |
 | `assets/content/katalog.json` | Katalog isi, sumber kebenaran |
 | `assets/tracing/` | `huruf.json` dan `angka.json` |
 | `assets/coloring/` | `pages.json`, `cap.json`, `krayon.json` |
@@ -60,7 +66,7 @@ Panah berarti bergantung. Aturan arahnya:
 | `tool/konten/` | Parser literal JS, ekspor prototipe sekali, aturan validasi |
 | `tool/fonts/build_fonts.sh` | Membangun ulang font subset Latin |
 | `test/` | Tes unit dan widget, golden hanya tiga layar |
-| `integration_test/app_test.dart` | Tiga skenario di perangkat |
+| `integration_test/app_test.dart` | Empat skenario di perangkat |
 | `.github/workflows/ci.yml` | Job tes di Linux dan job golden di macOS |
 
 ## 3. Provider dan pemiliknya
@@ -75,6 +81,9 @@ Panah berarti bergantung. Aturan arahnya:
 | `initialProgressProvider` | `lib/core/progress/progress_controller.dart` | `Progress` hasil baca `progress.json` saat aplikasi dibuka. |
 | `progressProvider` | `lib/core/progress/progress_controller.dart` | `Progress` berjalan dan antrean simpan. |
 | `katalogProvider` | `lib/core/content/content_repository.dart` | `Katalog`. Diisi `runMoci`, dilempar kalau belum dioverride. |
+| `tracingHurufProvider`, `tracingAngkaProvider` | `lib/core/content/content_repository.dart` | `TracingSet` hasil baca `assets/tracing/`; `runMoci` mengisinya, `TestEnv` memakai berkas yang sama. |
+| `speechEngineProvider` | `lib/core/speech/speech_to_text_engine.dart` | `SpeechToTextEngine` dengan `onDevice: true`; tes memakai `FakeSpeechEngine`. |
+| `micLevelMeterProvider` | `lib/core/speech/method_channel_mic_level_meter.dart` | `MethodChannelMicLevelMeter` di Android dan iOS, `NoopMicLevelMeter` di platform lain; tes memakai `FakeMicLevelMeter`. |
 | `audioEngineProvider` | `lib/core/audio/audio_providers.dart` | `SoLoudAudioEngine`; tes memakai `FakeAudioEngine`. |
 | `assetCatalogProvider` | `lib/core/audio/audio_providers.dart` | `AssetCatalog` dari manifest aset. |
 | `deviceTtsProvider` | `lib/core/audio/audio_providers.dart` | `MethodChannelDeviceTts`, dipakai di semua mode build. |
@@ -98,8 +107,11 @@ Panah berarti bergantung. Aturan arahnya:
 | `/splash` | `SplashScreen` |
 | `/sambutan` | `SambutanScreen` |
 | `/` | `BerandaScreen` |
-| `/huruf`, `/huruf/tulis`, `/huruf/ucapkan` | `ComingSoonScreen` |
-| `/angka`, `/angka/tulis` | `ComingSoonScreen` |
+| `/huruf` | `HurufScreen`, huruf awal dari query `huruf` |
+| `/huruf/tulis` | `TulisScreen` mode huruf, huruf awal dari query `huruf` |
+| `/huruf/ucapkan` | `UcapkanScreen`, kata awal dari query `kata` |
+| `/angka` | `BerhitungScreen`, angka awal dari query `angka` |
+| `/angka/tulis` | `TulisScreen` mode angka, angka awal dari query `angka` |
 | `/hewan`, `/buah-sayur`, `/warna`, `/bentuk`, `/musik` | `ComingSoonScreen` |
 | `/membaca/suku-kata`, `/membaca/susun-kata`, `/membaca/kalimat` | `ComingSoonScreen` |
 | `/main`, `/main/cocokkan`, `/main/memori`, `/main/bayangan`, `/main/puzzle`, `/main/balon`, `/main/besar-kecil` | `ComingSoonScreen` |
@@ -144,9 +156,12 @@ Redirect `/hebat` yang tidak membawa `HebatArgs` kembali ke Beranda. `PopScope(c
 | `test/helpers/fake_clock.dart` | `FakeClock` |
 | `test/helpers/contrast.dart` | `contrastRatio` untuk tes kontras |
 | `test/flutter_test_config.dart` | Memuat Fredoka dan Nunito untuk semua tes |
+| `test/helpers/fake_speech.dart` | `FakeSpeechEngine` dan `FakeMicLevelMeter` |
 | `dart_test.yaml` | Mendeklarasikan tag `golden` |
 
-`TestEnv` mengisi `MemoryKeyValueStore`, `MemoryJsonStore`, `FakeClock`, `FakeAudioEngine`, `FakeDeviceTts`, katalog aset kosong, dan katalog isi dari `assets/content/katalog.json` yang dibaca sekali per proses. `pumpScreen` memasang satu layar dengan tema, l10n, dan penyimpanan palsu. `pumpApp` memasang `MociApp` utuh dan mengembalikan routernya.
+`TestEnv` mengisi `MemoryKeyValueStore`, `MemoryJsonStore`, `FakeClock`, `FakeAudioEngine`, `FakeDeviceTts`, `FakeSpeechEngine`, `FakeMicLevelMeter`, katalog aset kosong, dan katalog isi dari `assets/content/katalog.json` yang dibaca sekali per proses. `pumpScreen` memasang satu layar dengan tema, l10n, dan penyimpanan palsu. `pumpApp` memasang `MociApp` utuh dan mengembalikan routernya.
+
+**Komponen permainan bersama.** `lib/widgets/game/` berisi `GameGlyph` (ikon garis dari artboard), `GameModePill` dan `RouteModePill` (pil mode; yang kedua berpindah rute dengan `pushReplacement`), `GameInstruction`, `AnswerCard`, `ProgressDots`, `MicButton` 180 pt, dan `RingPulse`. Layar Kenal Huruf, Tulis, Berhitung, dan Ucapkan memakainya; jangan membuat salinan baru saat layar berikutnya butuh bentuk yang sama.
 
 Golden hanya untuk Beranda, Hebat, dan Area Orang Tua: `test/features/beranda/beranda_golden_test.dart`, `test/features/hadiah/hebat_golden_test.dart`, dan `test/features/orang_tua/orang_tua_golden_test.dart`. Integration test di `integration_test/app_test.dart` memakai `runMoci(overrides:)` dan tidak memakai `pumpAndSettle`.
 

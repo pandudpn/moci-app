@@ -8,7 +8,7 @@ Dokumen ini menjelaskan perilaku sistem saat aplikasi berjalan: batas privasi, d
 - Manifest rilis Android hanya meminta `RECORD_AUDIO` untuk Ucapkan, dan tidak meminta INTERNET. Semua isi ikut di bundel: katalog, tracing, halaman mewarnai, ilustrasi, dan nanti audio.
 - Data anak hanya di folder aplikasi. `android:allowBackup="false"` mematikan cadangan Android, dan folder `<application support>/moci` ditandai `isExcludedFromBackup` di iOS lewat kanal `moci/backup`. Karena itu, data tidak pindah saat ganti perangkat.
 - Debug dan profile tetap memakai INTERNET untuk hot reload, jadi izin itu hanya ada di manifest debug dan profile.
-- Satu-satunya izin adalah mikrofon untuk Ucapkan, ditambahkan di Rencana 03 bersama dua alasan izin di iOS. Rinciannya di bagian 5.
+- Satu-satunya izin sistem adalah mikrofon untuk Ucapkan, ditambahkan di Rencana 03 bersama dua alasan izin di iOS. Rilis juga membawa satu izin milik aplikasi sendiri yang disuntikkan androidx.core, `id.pandudpn.moci.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION`. Rinciannya di bagian 5 dan 7.
 
 ## 2. Data yang tersimpan
 
@@ -96,13 +96,15 @@ Aturan yang sudah berlaku di kode:
 
 ## 5. Mikrofon (Rencana 03)
 
-Mesin pengenal dan izinnya sudah terpasang di `lib/core/speech/`; layar Ucapkan menyusul. Aturan yang berlaku:
+Pengenal, pengukur level suara, dan layar Ucapkan sudah terpasang. Aturan yang berlaku:
 
 - `speech_to_text` dipakai dengan `onDevice: true` dan `contextualPhrases` berisi kata target. Tidak ada mode yang boleh memakai layanan jaringan.
 - Gerbang Orang Tua muncul sebelum dialog izin sistem. Kalau izin ditolak, Ucapkan berjalan dalam mode dengar dan tiru tanpa mikrofon.
 - Android hanya meminta `RECORD_AUDIO` dan blok `<queries>` untuk `android.speech.RecognitionService`. INTERNET dan Bluetooth tidak ditambahkan, dan Ucapkan diuji di mode pesawat.
 - iOS menambah `NSMicrophoneUsageDescription` dan `NSSpeechRecognitionUsageDescription` dengan teks untuk orang tua.
 - Suara tidak direkam ke berkas dan tidak dikirim. Setelah izin atau manifest berubah, `docs/PRIVACY-RELEASE.md` wajib diperbarui.
+- `MicLevelMeter` menjadi cadangan saat pengenalan luring tidak tersedia: kanal `moci/mic_level` mengalirkan level 0..1 tiap 50 ms dari `AudioRecord` (Android) atau tap `AVAudioEngine` 1024 frame (iOS). Suara dianggap ada kalau level di atas 0,12 selama 300 ms; buffer dibuang setelah RMS dihitung.
+- Layar Ucapkan memanggil `pauseForListening` sebelum mikrofon hidup dan `resumeAfterListening` di `finally`, jadi narasi dan musik tidak ikut terekam.
 
 ## 6. Pipeline konten dan validator
 
@@ -138,7 +140,7 @@ Aturan yang ditegakkan:
 | Versi aplikasi | `1.0.0+1` dari `pubspec.yaml` |
 | Bahasa | `CFBundleLocalizations` berisi `id` dan `en`; Android mengambil locale perangkat lewat plugin Flutter, lalu teks dari ARB |
 | Cadangan | `android:allowBackup="false"` dan `isExcludedFromBackup` untuk folder data iOS |
-| Izin rilis | Tidak ada. `aapt2 dump permissions` menunjukkan satu izin yang disuntikkan androidx.core, `id.pandudpn.moci.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION`, dan izin itu milik aplikasi sendiri (protectionLevel `signature`), bukan izin sistem |
+| Izin rilis | `RECORD_AUDIO` untuk Ucapkan, ditambah satu izin milik aplikasi sendiri yang disuntikkan androidx.core, `id.pandudpn.moci.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION` (protectionLevel `signature`). `aapt2 dump permissions` pada APK arm64 rilis menunjukkan hanya keduanya: tanpa INTERNET dan tanpa Bluetooth |
 | Signing | Belum ada. `android/app/build.gradle.kts` masih memakai kunci debug, dan `android/key.properties` beserta berkas kunci ditolak `.gitignore` |
 
 Kalau sistem mengabaikan kunci orientasi, panggung tetap aman karena isi selalu diskalakan ke area aman oleh `fitStage`.

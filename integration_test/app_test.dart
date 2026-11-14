@@ -33,8 +33,11 @@ import 'package:moci/core/lang.dart';
 import 'package:moci/core/prefs/app_prefs.dart';
 import 'package:moci/core/prefs/prefs_controller.dart';
 import 'package:moci/core/providers.dart';
+import 'package:moci/features/huruf/huruf_screen.dart';
 import 'package:moci/features/orang_tua/gerbang_screen.dart';
+import 'package:moci/features/tulis/tracing_board.dart';
 import 'package:moci/main.dart' as moci;
+import 'package:moci/widgets/moci_back_button.dart';
 import 'package:moci/widgets/number_keypad.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -217,6 +220,27 @@ Future<void> _passGate(WidgetTester t) async {
   await _type(t, _answerOnScreen(t));
   await _screen(t, find.text('Enter'));
   await _tap(t, find.text('Enter'));
+}
+
+/// Menggores satu garis lurus di papan tracing, memakai koordinat dasar 520.
+Future<void> _traceOn(WidgetTester t, Offset a, Offset b) async {
+  final r = t.getRect(find.byKey(TracingBoard.surfaceKey));
+  Offset p(Offset v) =>
+      Offset(r.left + v.dx * r.width / 520, r.top + v.dy * r.height / 520);
+  final g = await t.startGesture(p(a));
+  for (var i = 1; i <= 24; i++) {
+    await g.moveTo(p(Offset.lerp(a, b, i / 24)!));
+    await t.pump(const Duration(milliseconds: 16));
+  }
+  await g.up();
+  await t.pump(const Duration(milliseconds: 120));
+}
+
+/// Tiga goresan huruf A, sama dengan jalur di aset tracing.
+Future<void> _traceA(WidgetTester t) async {
+  await _traceOn(t, const Offset(260, 70), const Offset(130, 450));
+  await _traceOn(t, const Offset(260, 70), const Offset(390, 450));
+  await _traceOn(t, const Offset(176, 315), const Offset(344, 315));
 }
 
 void main() {
@@ -403,4 +427,40 @@ void main() {
     },
     timeout: const Timeout(Duration(minutes: 3)),
   );
+
+  testWidgets('huruf: kenal, tulis A, lalu lanjutkan', (t) async {
+    await _prepareDevice(lang: AppLang.id, childName: 'Raka', onboarded: true);
+    final app = _Launch();
+    addTearDown(app.dispose);
+    await app.run(t);
+    await _screen(t, find.text('Hai, Raka!'));
+    expect(_stack(t), ['/']);
+
+    // Beranda → Kenal Huruf.
+    await _tap(t, find.byKey(const ValueKey('menu-huruf')));
+    await _screen(t, find.byKey(HurufScreen.letterKey));
+    expect(_stack(t), ['/', '/huruf']);
+
+    // Pil Tulis menggantikan Kenal Huruf; tumpukan tidak menumpuk mode.
+    await _tap(t, find.text('Tulis'));
+    await _screen(t, find.byType(TracingBoard));
+    expect(_stack(t), ['/', '/huruf/tulis']);
+
+    // Gores A sampai bilah selesai muncul.
+    await _traceA(t);
+    await _pumpUntil(t, find.text('Hebat!'));
+    expect(find.text('Lanjut'), findsOneWidget);
+
+    // Kembali ke Beranda: kartu Lanjutkan menunjuk tulisan terakhir.
+    await _tap(t, find.byType(MociBackButton));
+    await _screen(t, find.text('Hai, Raka!'));
+    expect(_stack(t), ['/']);
+    expect(find.text('Tulis huruf A'), findsOneWidget);
+
+    // Kartu Lanjutkan membuka lagi layar yang sama dengan huruf tersimpan.
+    await _tap(t, find.text('Tulis huruf A'));
+    await _screen(t, find.byType(TracingBoard));
+    expect(_lastPath(t), '/huruf/tulis');
+    expect(find.text('Tulis A'), findsOneWidget);
+  }, timeout: const Timeout(Duration(minutes: 3)));
 }

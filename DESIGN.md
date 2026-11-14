@@ -121,7 +121,33 @@ Bayangan selalu padat tanpa blur, bergeser lurus ke bawah, dan tidak memakan tem
 | `NumberKeypad` | Papan angka Gerbang. Tombol 96 × 84 dengan jarak 14, tanpa jeda ketuk supaya hapus dua kali berurutan tetap diterima. |
 | `StarCounter` | Pil bintang dan jumlahnya. Tinggi 64 di tablet, 48 dalam mode `compact` untuk HP. |
 
-Komponen permainan bersama, seperti pil mode dan kartu jawaban, belum ada. Rencana 03 menambahkannya saat layar pertama memakainya.
+### Komponen permainan
+
+| Komponen | API dan perilaku |
+| --- | --- |
+| `GameGlyph` | `GameGlyph(kind, size, color)`. Ikon garis dari artboard: `eye`, `pencil`, `mic`, `count`, `listen`, `play`, `check`, `refresh`, `next`, `star`. |
+| `GameModePill` | `GameModePill(tabs, selected, onSelected, semanticLabel, accent)`. Pil putih bulat; tab aktif berlatar `accent`. Tanpa rute, hanya memberi kabar. |
+| `RouteModePill` | `RouteModePill(tabs: (label, route, icon), semanticLabel, accent)`. Tab aktif dibaca dari `currentPathProvider`; perpindahan memakai `pushReplacement`, jadi tombol kembali tetap ke Beranda. |
+| `GameInstruction` | `GameInstruction(title, text, semanticLabel, narration, listenLabel)`. Kotak instruksi dengan tombol dengar yang hanya muncul kalau ada baris narasi. |
+| `AnswerCard` | `AnswerCard(state: idle/benar/salah, accent, illustration, text, child, width, height)`. Kartu jawaban dengan bingkai dan lencana sesuai keadaan. |
+| `ProgressDots` | `ProgressDots(count, current, semanticLabel, dotSize, activeWidth, activeColor)`. Titik yang sudah lewat hijau, titik aktif lebih lebar. |
+| `MicButton` | `MicButton(phase: idle/listening/good/off, onTap, semanticLabel, size)`. 180 pt; dua cincin berdenyut saat mendengar dan centang hijau saat berhasil. `off` mematikan ketukan. |
+| `RingPulse` | Cincin berdenyut di belakang tombol dengar; berhenti saat `disableAnimations`. |
+
+### Cara baca huruf
+
+`prefs.letterMode` (`LetterMode.fonik` atau `LetterMode.nama`) menentukan apa yang dibacakan ketukan huruf besar, tombol sebelumnya/berikutnya, dan "Dengarkan" di Kenal Huruf. Kedua pil "Bunyi /b/" dan "Nama: be" selalu tampil dan tetap bisa diketuk; pil yang tidak mengikuti pengaturan hanya tidak ditandai aktif.
+
+### Konstanta tracing
+
+`lib/features/tulis/tracing_engine.dart` bekerja pada sampel 4 unit di kotak 520 × 520: koridor jari 44 unit, lompatan maju maksimal 40 unit, radius mulai 74 unit, dan goresan selesai di 97% panjang path. Kemajuan hanya maju, jadi gerak mundur atau lompatan jauh ditolak. Papan menggambar satu `CustomPainter` di dalam `RepaintBoundary`; jari yang bergerak hanya memberi kabar lewat `ValueNotifier`, bukan membangun ulang widget.
+
+### Alur izin Ucapkan
+
+1. Ketukan mikrofon pertama membuka dialog "Panggil Ayah atau Bunda". Tombol "Buka Gerbang" mendorong `/gerbang`, dan hasil `true` baru memanggil `SpeechEngine.prepare`. Gerbang selalu mendahului permintaan izin sistem.
+2. Izin ditolak: layar masuk mode dengar dan tiru, tombol mikrofon diganti `MociButton` "Dengar dan tiru", kata tetap bisa didengar, dan "Kata berikutnya" selalu ada.
+3. Pengenalan luring tidak tersedia: layar tetap mencoba `listen`; kalau jawabannya `null`, `MicLevelMeter` menentukan ada suara (0,12 selama 300 ms). Kalau meter juga tidak tersedia, layar masuk mode dengar dan tiru. Pengenalan daring tidak pernah dipakai.
+4. Selama mendengar, `AudioService.pauseForListening` menghentikan narasi dan musik; `resumeAfterListening` memulihkan musik kalau sakelarnya menyala, dan sesi iOS kembali ke kategori playback.
 
 ## 3. Panggung tablet dan HP
 

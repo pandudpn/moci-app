@@ -47,6 +47,10 @@ app.*.map.json
 # iOS CocoaPods
 ios/Pods/
 
+# Cache SPM Xcode yang dibuat `flutter pub get`
+ios/Runner.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/
+ios/Runner.xcworkspace/xcshareddata/swiftpm/
+
 # Rahasia signing dan kredensial lokal
 android/key.properties
 *.jks
