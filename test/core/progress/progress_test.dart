@@ -81,4 +81,22 @@ void main() {
     });
     expect(p.lastActivity!.params, {'y': 'z'});
   });
+
+  test('copyWith bisa menghapus kegiatan terakhir', () {
+    const p = Progress(lastActivity: LastActivity('/huruf'));
+    expect(p.copyWith().lastActivity, isNotNull);
+    expect(p.copyWith(lastActivity: null).lastActivity, isNull);
+  });
+
+  test('hitungan negatif di berkas dijepit ke nol', () {
+    final p = Progress.fromJson({
+      'bintang': -4,
+      'harian': {
+        '2026-11-14': {'bintang': -1, 'stiker': -2, 'karya': -3},
+      },
+    });
+    expect(p.stars, 0);
+    final d = p.harian['2026-11-14']!;
+    expect([d.stars, d.stickers, d.karya], [0, 0, 0]);
+  });
 }

@@ -34,6 +34,33 @@ final class _SlowStore implements JsonStore {
   Future<void> deleteAll() => _inner.deleteAll();
 }
 
+/// Gagal sekali tulis, lalu normal lagi.
+final class _FlakyStore implements JsonStore {
+  final _inner = MemoryJsonStore();
+  bool gagalSekali = true;
+
+  @override
+  Future<void> write(String path, Map<String, Object?> json) async {
+    if (gagalSekali) {
+      gagalSekali = false;
+      throw StateError('disk penuh');
+    }
+    await _inner.write(path, json);
+  }
+
+  @override
+  Future<Map<String, Object?>?> read(String path) => _inner.read(path);
+
+  @override
+  Future<void> delete(String path) => _inner.delete(path);
+
+  @override
+  Future<List<String>> list(String dir) => _inner.list(dir);
+
+  @override
+  Future<void> deleteAll() => _inner.deleteAll();
+}
+
 void main() {
   late MemoryJsonStore store;
   late FakeClock clock;
@@ -194,5 +221,28 @@ void main() {
     await Future.wait([n.addStars(1), n.addStars(2), n.addStars(3)]);
     expect(slow.maxActive, 1);
     expect((await slow.read('progress.json'))!['bintang'], 6);
+  });
+
+  test('addStars negatif ditolak', () {
+    expect(() => ctrl().addStars(-1), throwsArgumentError);
+    expect(container.read(progressProvider).stars, 0);
+  });
+
+  test('tulis gagal tidak menyumbat antrean', () async {
+    final flaky = _FlakyStore();
+    final c = ProviderContainer(
+      overrides: [
+        jsonStoreProvider.overrideWithValue(flaky),
+        clockProvider.overrideWithValue(clock),
+      ],
+    );
+    addTearDown(c.dispose);
+    final n = c.read(progressProvider.notifier);
+    final gagal = n.addStars(1);
+    final lanjut = n.addStars(2);
+    await expectLater(gagal, throwsA(isA<StateError>()));
+    await lanjut;
+    expect(c.read(progressProvider).stars, 3);
+    expect((await flaky.read('progress.json'))!['bintang'], 3);
   });
 }

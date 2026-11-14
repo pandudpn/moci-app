@@ -65,13 +65,16 @@ class ProgressController extends Notifier<Progress> {
     Map<String, String> params = const {},
   ]) => _commit((p) => p.copyWith(lastActivity: LastActivity(route, params)));
 
-  Future<void> addStars(int n) => _commit((p) {
-    final d = _day(p);
-    return _withDay(
-      p.copyWith(stars: p.stars + n),
-      d.copyWith(stars: d.stars + n),
-    );
-  });
+  Future<void> addStars(int n) {
+    if (n < 0) throw ArgumentError.value(n, 'n', 'tidak boleh negatif');
+    return _commit((p) {
+      final d = _day(p);
+      return _withDay(
+        p.copyWith(stars: p.stars + n),
+        d.copyWith(stars: d.stars + n),
+      );
+    });
+  }
 
   Future<void> addSticker(String id) {
     if (state.stickers.contains(id)) return _enqueue(() async {});

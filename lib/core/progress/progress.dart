@@ -4,7 +4,8 @@ String dateKey(DateTime local) {
   return '${local.year.toString().padLeft(4, '0')}-${two(local.month)}-${two(local.day)}';
 }
 
-int _int(Object? v) => v is int ? v : 0;
+/// Hitungan dari berkas tidak boleh negatif: nilai aneh dianggap nol.
+int _int(Object? v) => v is int && v > 0 ? v : 0;
 
 List<String> _strings(Object? v) => v is List
     ? [
@@ -140,17 +141,21 @@ final class Progress {
     'harian': {for (final e in harian.entries) e.key: e.value.toJson()},
   };
 
+  static const _keep = Object();
+
   Progress copyWith({
     int? stars,
     List<String>? stickers,
-    LastActivity? lastActivity,
+    Object? lastActivity = _keep,
     Map<String, int>? playSeconds,
     Map<String, Map<String, List<String>>>? perkembangan,
     Map<String, DayStats>? harian,
   }) => Progress(
     stars: stars ?? this.stars,
     stickers: stickers ?? this.stickers,
-    lastActivity: lastActivity ?? this.lastActivity,
+    lastActivity: identical(lastActivity, _keep)
+        ? this.lastActivity
+        : lastActivity as LastActivity?,
     playSeconds: playSeconds ?? this.playSeconds,
     perkembangan: perkembangan ?? this.perkembangan,
     harian: harian ?? this.harian,
