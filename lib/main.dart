@@ -2,7 +2,15 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/misc.dart' show Override;
+
 import 'app/moci_app.dart';
+import 'core/providers.dart';
+import 'core/storage/app_files.dart';
+import 'core/storage/backup_exclusion.dart';
+import 'core/storage/json_store.dart';
+import 'core/storage/key_value_store.dart';
 
 void _registerFontLicenses() {
   LicenseRegistry.addLicense(() async* {
@@ -16,12 +24,25 @@ void _registerFontLicenses() {
   });
 }
 
-Future<void> main() async {
+Future<void> main() => runMoci();
+
+Future<void> runMoci({List<Override> overrides = const []}) async {
   WidgetsFlutterBinding.ensureInitialized();
   _registerFontLicenses();
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.landscapeLeft,
     DeviceOrientation.landscapeRight,
   ]);
-  runApp(const MociApp());
+  final keyValueStore = await SharedPrefsKeyValueStore.open();
+  final dir = await AppFiles.open(const MethodChannelBackupExclusion());
+  runApp(
+    ProviderScope(
+      overrides: [
+        keyValueStoreProvider.overrideWithValue(keyValueStore),
+        jsonStoreProvider.overrideWithValue(FileJsonStore(dir)),
+        ...overrides,
+      ],
+      child: const MociApp(),
+    ),
+  );
 }
