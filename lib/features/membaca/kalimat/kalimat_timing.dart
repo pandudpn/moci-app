@@ -18,12 +18,14 @@ Duration durasiKata(String kata) =>
 ///
 /// Memakai [waktu] rekaman (detik) hanya kalau panjangnya sama dengan jumlah
 /// kata dan menaik ketat; selain itu rumus kumulatif prototipe.
-List<Duration> waktuMulaiKata({required List<String> kata, List<double>? waktu}) {
+List<Duration> waktuMulaiKata({
+  required List<String> kata,
+  List<double>? waktu,
+}) {
   if (kata.isEmpty) return const [];
   if (waktu != null && _layak(waktu, kata.length)) {
     return [
-      for (final detik in waktu)
-        Duration(milliseconds: (detik * 1000).round()),
+      for (final detik in waktu) Duration(milliseconds: (detik * 1000).round()),
     ];
   }
   final mulai = <Duration>[Duration.zero];

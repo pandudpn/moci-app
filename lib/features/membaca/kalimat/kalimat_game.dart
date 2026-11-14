@@ -5,9 +5,7 @@ import '../../../core/content/katalog.dart';
 /// Id ilustrasi dari kolom `gambar`: nama berkas tanpa folder dan `.svg`.
 String itemDariGambar(String gambar) {
   final nama = gambar.split('/').last;
-  return nama.endsWith('.svg')
-      ? nama.substring(0, nama.length - 4)
-      : nama;
+  return nama.endsWith('.svg') ? nama.substring(0, nama.length - 4) : nama;
 }
 
 /// Tiga id item unik untuk Tebak gambar: jawaban dan dua pengganggu.

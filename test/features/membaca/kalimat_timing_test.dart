@@ -14,10 +14,10 @@ void main() {
     expect(totalKata(kata, mulai), const Duration(milliseconds: 1440));
   });
   test('waktu rekaman dipakai kalau panjangnya cocok', () {
-    expect(
-      waktuMulaiKata(kata: ['Ini', 'bola.'], waktu: [0, 0.5]),
-      [Duration.zero, const Duration(milliseconds: 500)],
-    );
+    expect(waktuMulaiKata(kata: ['Ini', 'bola.'], waktu: [0, 0.5]), [
+      Duration.zero,
+      const Duration(milliseconds: 500),
+    ]);
   });
   test('waktu rekaman yang tidak cocok diabaikan', () {
     final rumus = [Duration.zero, const Duration(milliseconds: 645)];
