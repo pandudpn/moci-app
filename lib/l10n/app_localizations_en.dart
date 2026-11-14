@@ -81,4 +81,98 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get sambutanBadge3 => 'Works offline';
+
+  @override
+  String berandaHi(String name) {
+    return 'Hi, $name!';
+  }
+
+  @override
+  String get berandaAsk => 'What shall we play today?';
+
+  @override
+  String get berandaSay => 'Hi! I\'m Moci. What shall we play today?';
+
+  @override
+  String get berandaContinue => 'Continue';
+
+  @override
+  String get berandaParents => 'Parents';
+
+  @override
+  String get berandaLangLabel => 'Language';
+
+  @override
+  String get berandaMociLabel => 'Moci, tap to say hi';
+
+  @override
+  String berandaStarsLabel(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count stars',
+      one: '1 star',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get menuHurufTitle => 'Letters';
+
+  @override
+  String get menuHurufSub => 'A to Z';
+
+  @override
+  String get menuAngkaTitle => 'Numbers';
+
+  @override
+  String get menuAngkaSub => '1 to 50';
+
+  @override
+  String get menuHewanTitle => 'Animals';
+
+  @override
+  String get menuHewanSub => 'Names & sounds';
+
+  @override
+  String get menuBuahTitle => 'Fruits & Veggies';
+
+  @override
+  String get menuBuahSub => 'Guess the name';
+
+  @override
+  String get menuBacaTitle => 'Let\'s Read';
+
+  @override
+  String get menuBacaSub => 'Syllables & sentences';
+
+  @override
+  String get menuMainTitle => 'Let\'s Play!';
+
+  @override
+  String get menuMainSub => 'Match & remember';
+
+  @override
+  String get menuWarnaiTitle => 'Coloring';
+
+  @override
+  String get menuWarnaiSub => 'Color your way';
+
+  @override
+  String get menuWarnaTitle => 'Colors';
+
+  @override
+  String get menuWarnaSub => 'Find & tap';
+
+  @override
+  String get menuBentukTitle => 'Shapes';
+
+  @override
+  String get menuBentukSub => 'Circle, triangle, square';
+
+  @override
+  String get menuMusikTitle => 'Music Time';
+
+  @override
+  String get menuMusikSub => 'Tap & listen';
 }

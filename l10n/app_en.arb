@@ -1,17 +1,29 @@
 {
   "@@locale": "en",
   "appTitle": "Moci",
-  "@appTitle": { "description": "App name" },
+  "@appTitle": {
+    "description": "App name"
+  },
   "commonBack": "Back to home",
-  "@commonBack": { "description": "Button to go back to the home screen" },
+  "@commonBack": {
+    "description": "Button to go back to the home screen"
+  },
   "commonListen": "Listen",
-  "@commonListen": { "description": "Button to listen to the narration" },
+  "@commonListen": {
+    "description": "Button to listen to the narration"
+  },
   "langNameId": "Bahasa Indonesia",
-  "@langNameId": { "description": "narasi" },
+  "@langNameId": {
+    "description": "narasi"
+  },
   "langNameEn": "English",
-  "@langNameEn": { "description": "narasi" },
+  "@langNameEn": {
+    "description": "narasi"
+  },
   "childFallbackName": "little one",
-  "@childFallbackName": { "description": "Term for the child when no name is set" },
+  "@childFallbackName": {
+    "description": "Term for the child when no name is set"
+  },
   "berandaTag": "Play & Learn",
   "sambutanTag": "Play & Learn",
   "sambutanHi": "Hi! I'm Moci.",
@@ -22,16 +34,101 @@
   "sambutanYears": "years",
   "sambutanNote": "Saved only on this device. You can change it in Parents' Corner.",
   "sambutanStart": "Let's Go!",
-  "@sambutanStart": {"description": "narasi"},
+  "@sambutanStart": {
+    "description": "narasi"
+  },
   "sambutanSkip": "Skip intro",
-  "@sambutanSkip": {"description": "Splash skip button label"},
+  "@sambutanSkip": {
+    "description": "Splash skip button label"
+  },
   "sambutanHello": "Hi",
   "sambutanFriend": "friend",
   "sambutanSay": "Hi! I'm Moci. What's your name?",
-  "@sambutanSay": {"description": "narasi"},
+  "@sambutanSay": {
+    "description": "narasi"
+  },
   "sambutanHalo": "Hi! I'm Moci.",
-  "@sambutanHalo": {"description": "narasi"},
+  "@sambutanHalo": {
+    "description": "narasi"
+  },
   "sambutanBadge1": "No ads",
   "sambutanBadge2": "No in-app purchases",
-  "sambutanBadge3": "Works offline"
+  "sambutanBadge3": "Works offline",
+  "berandaHi": "Hi, {name}!",
+  "@berandaHi": {
+    "description": "Greeting on the home screen",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "berandaAsk": "What shall we play today?",
+  "berandaSay": "Hi! I'm Moci. What shall we play today?",
+  "@berandaSay": {
+    "description": "narasi"
+  },
+  "berandaContinue": "Continue",
+  "berandaParents": "Parents",
+  "berandaLangLabel": "Language",
+  "berandaMociLabel": "Moci, tap to say hi",
+  "berandaStarsLabel": "{count, plural, =1{1 star} other{{count} stars}}",
+  "@berandaStarsLabel": {
+    "description": "Semantic label for the star count",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "menuHurufTitle": "Letters",
+  "@menuHurufTitle": {
+    "description": "narasi"
+  },
+  "menuHurufSub": "A to Z",
+  "menuAngkaTitle": "Numbers",
+  "@menuAngkaTitle": {
+    "description": "narasi"
+  },
+  "menuAngkaSub": "1 to 50",
+  "menuHewanTitle": "Animals",
+  "@menuHewanTitle": {
+    "description": "narasi"
+  },
+  "menuHewanSub": "Names & sounds",
+  "menuBuahTitle": "Fruits & Veggies",
+  "@menuBuahTitle": {
+    "description": "narasi"
+  },
+  "menuBuahSub": "Guess the name",
+  "menuBacaTitle": "Let's Read",
+  "@menuBacaTitle": {
+    "description": "narasi"
+  },
+  "menuBacaSub": "Syllables & sentences",
+  "menuMainTitle": "Let's Play!",
+  "@menuMainTitle": {
+    "description": "narasi"
+  },
+  "menuMainSub": "Match & remember",
+  "menuWarnaiTitle": "Coloring",
+  "@menuWarnaiTitle": {
+    "description": "narasi"
+  },
+  "menuWarnaiSub": "Color your way",
+  "menuWarnaTitle": "Colors",
+  "@menuWarnaTitle": {
+    "description": "narasi"
+  },
+  "menuWarnaSub": "Find & tap",
+  "menuBentukTitle": "Shapes",
+  "@menuBentukTitle": {
+    "description": "narasi"
+  },
+  "menuBentukSub": "Circle, triangle, square",
+  "menuMusikTitle": "Music Time",
+  "@menuMusikTitle": {
+    "description": "narasi"
+  },
+  "menuMusikSub": "Tap & listen"
 }

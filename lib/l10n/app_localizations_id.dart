@@ -81,4 +81,98 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get sambutanBadge3 => 'Bisa offline';
+
+  @override
+  String berandaHi(String name) {
+    return 'Hai, $name!';
+  }
+
+  @override
+  String get berandaAsk => 'Mau main apa hari ini?';
+
+  @override
+  String get berandaSay => 'Hai! Aku Moci. Mau main apa hari ini?';
+
+  @override
+  String get berandaContinue => 'Lanjutkan';
+
+  @override
+  String get berandaParents => 'Orang Tua';
+
+  @override
+  String get berandaLangLabel => 'Bahasa';
+
+  @override
+  String get berandaMociLabel => 'Moci, ketuk untuk menyapa';
+
+  @override
+  String berandaStarsLabel(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count bintang',
+      one: '1 bintang',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get menuHurufTitle => 'Kenal Huruf';
+
+  @override
+  String get menuHurufSub => 'A sampai Z';
+
+  @override
+  String get menuAngkaTitle => 'Berhitung';
+
+  @override
+  String get menuAngkaSub => '1 sampai 50';
+
+  @override
+  String get menuHewanTitle => 'Dunia Hewan';
+
+  @override
+  String get menuHewanSub => 'Nama & suaranya';
+
+  @override
+  String get menuBuahTitle => 'Buah & Sayur';
+
+  @override
+  String get menuBuahSub => 'Tebak namanya';
+
+  @override
+  String get menuBacaTitle => 'Ayo Membaca';
+
+  @override
+  String get menuBacaSub => 'Suku kata & kalimat';
+
+  @override
+  String get menuMainTitle => 'Main Yuk!';
+
+  @override
+  String get menuMainSub => 'Cocokkan & ingat';
+
+  @override
+  String get menuWarnaiTitle => 'Mewarnai';
+
+  @override
+  String get menuWarnaiSub => 'Warnai sesukamu';
+
+  @override
+  String get menuWarnaTitle => 'Warna';
+
+  @override
+  String get menuWarnaSub => 'Cari & sentuh';
+
+  @override
+  String get menuBentukTitle => 'Bentuk';
+
+  @override
+  String get menuBentukSub => 'Bulat, segitiga, kotak';
+
+  @override
+  String get menuMusikTitle => 'Main Musik';
+
+  @override
+  String get menuMusikSub => 'Ketuk & dengar';
 }

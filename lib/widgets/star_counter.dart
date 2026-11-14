@@ -9,39 +9,66 @@ import '../core/progress/progress_controller.dart';
 
 /// Pil putih berisi bintang dan jumlah bintang yang sudah dikumpulkan.
 class StarCounter extends ConsumerWidget {
-  const StarCounter({super.key});
+  const StarCounter({super.key, this.semanticLabelOf, this.compact = false});
+
+  /// Label semantik dari jumlah bintang, mis. "24 bintang". Tanpa ini pil
+  /// dibacakan sebagai angkanya saja.
+  final String Function(int stars)? semanticLabelOf;
+
+  /// Ukuran HP: tinggi 48, bayangan 5.
+  final bool compact;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final stars = ref.watch(progressProvider.select((p) => p.stars));
-    return DecoratedBox(
+    final height = compact ? 48.0 : MociSize.topPillHeight;
+    final label = semanticLabelOf?.call(stars);
+    final pill = DecoratedBox(
       decoration: BoxDecoration(
         color: MociColors.white,
-        borderRadius: BorderRadius.circular(MociSize.topPillHeight / 2),
+        borderRadius: BorderRadius.circular(height / 2),
         boxShadow: [
           BoxShadow(
             color:
                 MenuThemeScope.maybeOf(context)?.shadow ??
                 MociColors.neutralShadow,
-            offset: const Offset(0, MociSize.topShadow),
+            offset: Offset(0, compact ? 5 : MociSize.topShadow),
             blurRadius: 0,
           ),
         ],
       ),
       child: SizedBox(
-        height: MociSize.topPillHeight,
+        height: height,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 22),
+          padding: EdgeInsets.fromLTRB(
+            compact ? 10 : 12,
+            0,
+            compact ? 16 : 20,
+            0,
+          ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const CustomPaint(size: Size(38, 38), painter: _StarPainter()),
-              const SizedBox(width: 10),
-              Text('$stars', style: MociText.title.copyWith(fontSize: 28)),
+              CustomPaint(
+                size: Size.square(compact ? 28 : 38),
+                painter: const _StarPainter(),
+              ),
+              SizedBox(width: compact ? 6 : 8),
+              Text(
+                '$stars',
+                style: MociText.title.copyWith(fontSize: compact ? 22 : 28),
+              ),
             ],
           ),
         ),
       ),
+    );
+    if (label == null) return pill;
+    return Semantics(
+      container: true,
+      label: label,
+      excludeSemantics: true,
+      child: pill,
     );
   }
 }

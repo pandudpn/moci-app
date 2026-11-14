@@ -1,0 +1,23 @@
+import '../../core/progress/progress.dart';
+import '../../l10n/l10n.dart';
+import 'beranda_menu.dart';
+
+typedef ContinueLabelBuilder = String Function(
+  AppLocalizations l10n,
+  Map<String, String> params,
+);
+
+/// Subjudul kartu Lanjutkan menurut rute. Di sini baru judul tiap menu;
+/// rencana fitur menambahkan entri yang lebih spesifik, misalnya
+/// "Tulis huruf {huruf}".
+final Map<String, ContinueLabelBuilder> continueLabels = {
+  for (final m in BerandaMenu.values) m.route: (l10n, _) => m.title(l10n),
+};
+
+/// Subjudul untuk [activity], atau `null` bila rutenya bukan bagian menu mana
+/// pun (kartu Lanjutkan lalu disembunyikan).
+String? continueLabel(AppLocalizations l10n, LastActivity activity) {
+  final builder = continueLabels[activity.route];
+  if (builder != null) return builder(l10n, activity.params);
+  return BerandaMenu.parentOf(activity.route)?.title(l10n);
+}

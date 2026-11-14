@@ -241,6 +241,174 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Bisa offline'**
   String get sambutanBadge3;
+
+  /// Sapaan di Beranda
+  ///
+  /// In id, this message translates to:
+  /// **'Hai, {name}!'**
+  String berandaHi(String name);
+
+  /// No description provided for @berandaAsk.
+  ///
+  /// In id, this message translates to:
+  /// **'Mau main apa hari ini?'**
+  String get berandaAsk;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Hai! Aku Moci. Mau main apa hari ini?'**
+  String get berandaSay;
+
+  /// No description provided for @berandaContinue.
+  ///
+  /// In id, this message translates to:
+  /// **'Lanjutkan'**
+  String get berandaContinue;
+
+  /// No description provided for @berandaParents.
+  ///
+  /// In id, this message translates to:
+  /// **'Orang Tua'**
+  String get berandaParents;
+
+  /// No description provided for @berandaLangLabel.
+  ///
+  /// In id, this message translates to:
+  /// **'Bahasa'**
+  String get berandaLangLabel;
+
+  /// No description provided for @berandaMociLabel.
+  ///
+  /// In id, this message translates to:
+  /// **'Moci, ketuk untuk menyapa'**
+  String get berandaMociLabel;
+
+  /// Label semantik jumlah bintang
+  ///
+  /// In id, this message translates to:
+  /// **'{count, plural, =1{1 bintang} other{{count} bintang}}'**
+  String berandaStarsLabel(int count);
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Kenal Huruf'**
+  String get menuHurufTitle;
+
+  /// No description provided for @menuHurufSub.
+  ///
+  /// In id, this message translates to:
+  /// **'A sampai Z'**
+  String get menuHurufSub;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Berhitung'**
+  String get menuAngkaTitle;
+
+  /// No description provided for @menuAngkaSub.
+  ///
+  /// In id, this message translates to:
+  /// **'1 sampai 50'**
+  String get menuAngkaSub;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Dunia Hewan'**
+  String get menuHewanTitle;
+
+  /// No description provided for @menuHewanSub.
+  ///
+  /// In id, this message translates to:
+  /// **'Nama & suaranya'**
+  String get menuHewanSub;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Buah & Sayur'**
+  String get menuBuahTitle;
+
+  /// No description provided for @menuBuahSub.
+  ///
+  /// In id, this message translates to:
+  /// **'Tebak namanya'**
+  String get menuBuahSub;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Ayo Membaca'**
+  String get menuBacaTitle;
+
+  /// No description provided for @menuBacaSub.
+  ///
+  /// In id, this message translates to:
+  /// **'Suku kata & kalimat'**
+  String get menuBacaSub;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Main Yuk!'**
+  String get menuMainTitle;
+
+  /// No description provided for @menuMainSub.
+  ///
+  /// In id, this message translates to:
+  /// **'Cocokkan & ingat'**
+  String get menuMainSub;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Mewarnai'**
+  String get menuWarnaiTitle;
+
+  /// No description provided for @menuWarnaiSub.
+  ///
+  /// In id, this message translates to:
+  /// **'Warnai sesukamu'**
+  String get menuWarnaiSub;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Warna'**
+  String get menuWarnaTitle;
+
+  /// No description provided for @menuWarnaSub.
+  ///
+  /// In id, this message translates to:
+  /// **'Cari & sentuh'**
+  String get menuWarnaSub;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Bentuk'**
+  String get menuBentukTitle;
+
+  /// No description provided for @menuBentukSub.
+  ///
+  /// In id, this message translates to:
+  /// **'Bulat, segitiga, kotak'**
+  String get menuBentukSub;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Main Musik'**
+  String get menuMusikTitle;
+
+  /// No description provided for @menuMusikSub.
+  ///
+  /// In id, this message translates to:
+  /// **'Ketuk & dengar'**
+  String get menuMusikSub;
 }
 
 class _AppLocalizationsDelegate

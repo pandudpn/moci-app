@@ -1,5 +1,4 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_ui/material_ui.dart';
@@ -34,35 +33,7 @@ Future<GoRouter> _open(
 ProviderContainer _container(WidgetTester t) =>
     ProviderScope.containerOf(t.element(find.byType(Router<Object>)));
 
-/// Tes memakai Ahem kecuali font dimuat; metrik asli perlu supaya tata letak
-/// panggung yang rapat tidak meluap di tes tetapi benar di perangkat.
-Future<void> _loadFonts() async {
-  const files = {
-    'Fredoka': [
-      'Fredoka-Regular',
-      'Fredoka-Medium',
-      'Fredoka-SemiBold',
-      'Fredoka-Bold',
-    ],
-    'Nunito': [
-      'Nunito-SemiBold',
-      'Nunito-Bold',
-      'Nunito-ExtraBold',
-      'Nunito-Black',
-    ],
-  };
-  for (final MapEntry(key: family, value: names) in files.entries) {
-    final loader = FontLoader(family);
-    for (final n in names) {
-      loader.addFont(rootBundle.load('assets/fonts/$n.ttf'));
-    }
-    await loader.load();
-  }
-}
-
 void main() {
-  setUpAll(_loadFonts);
-
   testWidgets('alur lengkap menyimpan prefs dan membuka Beranda', (t) async {
     final env = TestEnv(onboarded: false);
     final router = await _open(t, env: env);

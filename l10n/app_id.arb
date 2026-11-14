@@ -1,19 +1,33 @@
 {
   "@@locale": "id",
   "appTitle": "Moci",
-  "@appTitle": { "description": "Nama aplikasi" },
+  "@appTitle": {
+    "description": "Nama aplikasi"
+  },
   "commonBack": "Kembali ke beranda",
-  "@commonBack": { "description": "Tombol kembali ke layar beranda" },
+  "@commonBack": {
+    "description": "Tombol kembali ke layar beranda"
+  },
   "commonListen": "Dengar",
-  "@commonListen": { "description": "Tombol untuk mendengarkan narasi" },
+  "@commonListen": {
+    "description": "Tombol untuk mendengarkan narasi"
+  },
   "langNameId": "Bahasa Indonesia",
-  "@langNameId": { "description": "narasi" },
+  "@langNameId": {
+    "description": "narasi"
+  },
   "langNameEn": "English",
-  "@langNameEn": { "description": "narasi" },
+  "@langNameEn": {
+    "description": "narasi"
+  },
   "childFallbackName": "Adik",
-  "@childFallbackName": { "description": "Sebutan anak bila nama belum diisi" },
+  "@childFallbackName": {
+    "description": "Sebutan anak bila nama belum diisi"
+  },
   "berandaTag": "Main & Belajar",
-  "@berandaTag": { "description": "Tagline di Splash dan Beranda" },
+  "@berandaTag": {
+    "description": "Tagline di Splash dan Beranda"
+  },
   "sambutanTag": "Main & Belajar",
   "sambutanHi": "Halo! Aku Moci.",
   "sambutanSub": "Teman main dan belajar untuk anak usia 2–7 tahun.",
@@ -23,16 +37,101 @@
   "sambutanYears": "tahun",
   "sambutanNote": "Nama hanya tersimpan di perangkat ini. Bisa diubah di Area Orang Tua.",
   "sambutanStart": "Ayo Mulai!",
-  "@sambutanStart": {"description": "narasi"},
+  "@sambutanStart": {
+    "description": "narasi"
+  },
   "sambutanSkip": "Lewati intro",
-  "@sambutanSkip": {"description": "Label tombol lewati di Splash"},
+  "@sambutanSkip": {
+    "description": "Label tombol lewati di Splash"
+  },
   "sambutanHello": "Hai",
   "sambutanFriend": "teman",
   "sambutanSay": "Halo! Aku Moci. Siapa namamu?",
-  "@sambutanSay": {"description": "narasi"},
+  "@sambutanSay": {
+    "description": "narasi"
+  },
   "sambutanHalo": "Halo! Aku Moci.",
-  "@sambutanHalo": {"description": "narasi"},
+  "@sambutanHalo": {
+    "description": "narasi"
+  },
   "sambutanBadge1": "Tanpa iklan",
   "sambutanBadge2": "Tanpa pembelian",
-  "sambutanBadge3": "Bisa offline"
+  "sambutanBadge3": "Bisa offline",
+  "berandaHi": "Hai, {name}!",
+  "@berandaHi": {
+    "description": "Sapaan di Beranda",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "berandaAsk": "Mau main apa hari ini?",
+  "berandaSay": "Hai! Aku Moci. Mau main apa hari ini?",
+  "@berandaSay": {
+    "description": "narasi"
+  },
+  "berandaContinue": "Lanjutkan",
+  "berandaParents": "Orang Tua",
+  "berandaLangLabel": "Bahasa",
+  "berandaMociLabel": "Moci, ketuk untuk menyapa",
+  "berandaStarsLabel": "{count, plural, =1{1 bintang} other{{count} bintang}}",
+  "@berandaStarsLabel": {
+    "description": "Label semantik jumlah bintang",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "menuHurufTitle": "Kenal Huruf",
+  "@menuHurufTitle": {
+    "description": "narasi"
+  },
+  "menuHurufSub": "A sampai Z",
+  "menuAngkaTitle": "Berhitung",
+  "@menuAngkaTitle": {
+    "description": "narasi"
+  },
+  "menuAngkaSub": "1 sampai 50",
+  "menuHewanTitle": "Dunia Hewan",
+  "@menuHewanTitle": {
+    "description": "narasi"
+  },
+  "menuHewanSub": "Nama & suaranya",
+  "menuBuahTitle": "Buah & Sayur",
+  "@menuBuahTitle": {
+    "description": "narasi"
+  },
+  "menuBuahSub": "Tebak namanya",
+  "menuBacaTitle": "Ayo Membaca",
+  "@menuBacaTitle": {
+    "description": "narasi"
+  },
+  "menuBacaSub": "Suku kata & kalimat",
+  "menuMainTitle": "Main Yuk!",
+  "@menuMainTitle": {
+    "description": "narasi"
+  },
+  "menuMainSub": "Cocokkan & ingat",
+  "menuWarnaiTitle": "Mewarnai",
+  "@menuWarnaiTitle": {
+    "description": "narasi"
+  },
+  "menuWarnaiSub": "Warnai sesukamu",
+  "menuWarnaTitle": "Warna",
+  "@menuWarnaTitle": {
+    "description": "narasi"
+  },
+  "menuWarnaSub": "Cari & sentuh",
+  "menuBentukTitle": "Bentuk",
+  "@menuBentukTitle": {
+    "description": "narasi"
+  },
+  "menuBentukSub": "Bulat, segitiga, kotak",
+  "menuMusikTitle": "Main Musik",
+  "@menuMusikTitle": {
+    "description": "narasi"
+  },
+  "menuMusikSub": "Ketuk & dengar"
 }
