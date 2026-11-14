@@ -15,38 +15,31 @@ const _anjingPath = 'assets/audio/vo/en/nama_anjing.m4a';
 
 void main() {
   late FakeAudioEngine engine;
-  late FakeDevTts tts;
+  late FakeDeviceTts tts;
 
-  Narrator build(Set<String> paths, {bool allowTts = true}) {
+  Narrator build(Set<String> paths) {
     final catalog = AssetCatalog(paths);
     return Narrator(
       audio: AudioService(engine: engine, assets: catalog),
       assets: catalog,
       tts: tts,
-      allowTts: allowTts,
     );
   }
 
   setUp(() {
     engine = FakeAudioEngine();
-    tts = FakeDevTts();
+    tts = FakeDeviceTts();
   });
 
-  test('memutar rekaman kalau ada, tanpa TTS', () async {
+  test('rekaman ada: diputar dan TTS tidak dipanggil', () async {
     await build({_kucingPath}).say(_kucing, AppLang.en);
     expect(engine.plays.single.asset, _kucingPath);
     expect(tts.spoken, isEmpty);
   });
 
-  test('tanpa rekaman dan TTS diizinkan: TTS bicara', () async {
+  test('tanpa rekaman, TTS perangkat dipakai', () async {
     await build({}).say(_kucing, AppLang.en);
-    expect(tts.spoken, [('Cat', AppLang.en)]);
-    expect(engine.plays, isEmpty);
-  });
-
-  test('tanpa rekaman dan TTS tidak diizinkan: diam', () async {
-    await build({}, allowTts: false).say(_kucing, AppLang.en);
-    expect(tts.spoken, isEmpty);
+    expect(tts.spoken.single.$1, 'Cat');
     expect(engine.plays, isEmpty);
   });
 
@@ -81,9 +74,12 @@ void main() {
     expect(engine.plays.map((p) => p.asset), [_kucingPath, _anjingPath]);
   });
 
-  test('sayAll tanpa rekaman: TTS berurutan tanpa menunggu', () async {
-    await build({}).sayAll([_kucing, _anjing], AppLang.en);
-    expect(tts.spoken, [('Cat', AppLang.en), ('Dog', AppLang.en)]);
+  test('sayAll membacakan semua baris berurutan', () async {
+    await build({}).sayAll(const [
+      NarrationLine(jenis: 'fonik', id: 'b', text: 'beh'),
+      NarrationLine(jenis: 'contoh', id: 'b', text: 'Bola'),
+    ], AppLang.id);
+    expect(tts.spoken.map((e) => e.$1), ['beh', 'Bola']);
   });
 
   test(

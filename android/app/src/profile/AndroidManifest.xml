@@ -4,10 +4,4 @@
          to allow setting breakpoints, to provide hot reload, etc.
     -->
     <uses-permission android:name="android.permission.INTERNET"/>
-    <!-- TTS dev (Android 11+): hanya build debug dan profile, supaya manifest rilis tetap bersih. -->
-    <queries>
-        <intent>
-            <action android:name="android.intent.action.TTS_SERVICE"/>
-        </intent>
-    </queries>
 </manifest>

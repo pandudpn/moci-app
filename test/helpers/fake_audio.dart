@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:moci/core/audio/audio_engine.dart';
-import 'package:moci/core/audio/dev_tts.dart';
+import 'package:moci/core/audio/device_tts.dart';
 import 'package:moci/core/lang.dart';
 
 typedef PlayRecord = ({String asset, double volume, bool loop, SoundId id});
@@ -103,7 +103,7 @@ final class FakeAudioEngine implements AudioEngine {
   }
 }
 
-final class FakeDevTts implements DevTts {
+final class FakeDeviceTts implements DeviceTts {
   final spoken = <(String, AppLang)>[];
   int stopCount = 0;
 

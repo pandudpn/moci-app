@@ -40,7 +40,7 @@ Panah berarti bergantung. Aturan arahnya:
 | `lib/core/storage/` | `KeyValueStore`, `JsonStore`, `AppFiles`, `BackupExclusion` |
 | `lib/core/prefs/` | `AppPrefs`, `PrefsController` |
 | `lib/core/progress/` | `Progress`, `ProgressRepository`, `ProgressController` |
-| `lib/core/audio/` | `AudioEngine`, `AudioService`, `Narrator`, `Sfx`, `AssetCatalog`, `DevTts` |
+| `lib/core/audio/` | `AudioEngine`, `AudioService`, `Narrator`, `Sfx`, `AssetCatalog`, `DeviceTts` |
 | `lib/core/providers.dart` | `clockProvider`, `keyValueStoreProvider`, `jsonStoreProvider` |
 | `lib/widgets/` | `MociPressable`, `MociButton`, `MociBackButton`, `MociTopBar`, `MociMascot`, `MociIllustration`, `MociDialog`, `NumberKeypad`, `StarCounter` |
 | `lib/features/beranda/` | Beranda tablet dan HP, sepuluh kartu menu, sakelar bahasa, bintang, pintu orang tua |
@@ -77,10 +77,10 @@ Panah berarti bergantung. Aturan arahnya:
 | `katalogProvider` | `lib/core/content/content_repository.dart` | `Katalog`. Diisi `runMoci`, dilempar kalau belum dioverride. |
 | `audioEngineProvider` | `lib/core/audio/audio_providers.dart` | `SoLoudAudioEngine`; tes memakai `FakeAudioEngine`. |
 | `assetCatalogProvider` | `lib/core/audio/audio_providers.dart` | `AssetCatalog` dari manifest aset. |
-| `devTtsProvider` | `lib/core/audio/audio_providers.dart` | `MethodChannelDevTts` di debug dan profile, `NoopDevTts` di rilis. |
+| `deviceTtsProvider` | `lib/core/audio/audio_providers.dart` | `MethodChannelDeviceTts`, dipakai di semua mode build. |
 | `audioSessionProvider` | `lib/core/audio/audio_providers.dart` | `MethodChannelAudioSession`, kategori playback iOS. |
 | `audioServiceProvider` | `lib/core/audio/audio_providers.dart` | `AudioService`: prioritas, volume, ducking musik. |
-| `narratorProvider` | `lib/core/audio/audio_providers.dart` | `Narrator`: rekaman dulu, TTS dev sebagai cadangan. |
+| `narratorProvider` | `lib/core/audio/audio_providers.dart` | `Narrator`: rekaman dulu, TTS perangkat sebagai cadangan. |
 | `audioBootProvider` | `lib/core/audio/audio_providers.dart` | `FutureProvider` inisialisasi mesin setelah frame pertama. |
 | `routerProvider` | `lib/app/router.dart` | `GoRouter`, daftar rute, dan penyegar redirect. |
 | `parentAccessProvider` | `lib/app/router.dart` | `bool` akses Area Orang Tua, hanya di memori. |
@@ -140,13 +140,13 @@ Redirect `/hebat` yang tidak membawa `HebatArgs` kembali ke Beranda. `PopScope(c
 | Berkas | Isi |
 | --- | --- |
 | `test/helpers/harness.dart` | `TestEnv`, `pumpScreen`, `pumpApp`, `useScreen`, `tabletSize`, `phoneSize` |
-| `test/helpers/fake_audio.dart` | `FakeAudioEngine` dan `FakeDevTts` |
+| `test/helpers/fake_audio.dart` | `FakeAudioEngine` dan `FakeDeviceTts` |
 | `test/helpers/fake_clock.dart` | `FakeClock` |
 | `test/helpers/contrast.dart` | `contrastRatio` untuk tes kontras |
 | `test/flutter_test_config.dart` | Memuat Fredoka dan Nunito untuk semua tes |
 | `dart_test.yaml` | Mendeklarasikan tag `golden` |
 
-`TestEnv` mengisi `MemoryKeyValueStore`, `MemoryJsonStore`, `FakeClock`, `FakeAudioEngine`, `FakeDevTts`, katalog aset kosong, dan katalog isi dari `assets/content/katalog.json` yang dibaca sekali per proses. `pumpScreen` memasang satu layar dengan tema, l10n, dan penyimpanan palsu. `pumpApp` memasang `MociApp` utuh dan mengembalikan routernya.
+`TestEnv` mengisi `MemoryKeyValueStore`, `MemoryJsonStore`, `FakeClock`, `FakeAudioEngine`, `FakeDeviceTts`, katalog aset kosong, dan katalog isi dari `assets/content/katalog.json` yang dibaca sekali per proses. `pumpScreen` memasang satu layar dengan tema, l10n, dan penyimpanan palsu. `pumpApp` memasang `MociApp` utuh dan mengembalikan routernya.
 
 Golden hanya untuk Beranda, Hebat, dan Area Orang Tua: `test/features/beranda/beranda_golden_test.dart`, `test/features/hadiah/hebat_golden_test.dart`, dan `test/features/orang_tua/orang_tua_golden_test.dart`. Integration test di `integration_test/app_test.dart` memakai `runMoci(overrides:)` dan tidak memakai `pumpAndSettle`.
 

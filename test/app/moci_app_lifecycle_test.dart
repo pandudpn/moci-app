@@ -31,7 +31,7 @@ Future<(FakeAudioEngine, _FakeSession)> _pumpApp(WidgetTester tester) async {
         playTimerTicksProvider.overrideWithValue(const Stream<void>.empty()),
         audioEngineProvider.overrideWithValue(engine),
         audioSessionProvider.overrideWithValue(session),
-        devTtsProvider.overrideWithValue(FakeDevTts()),
+        deviceTtsProvider.overrideWithValue(FakeDeviceTts()),
         assetCatalogProvider.overrideWithValue(
           const AssetCatalog({AudioService.musicAsset}),
         ),

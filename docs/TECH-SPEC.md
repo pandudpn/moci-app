@@ -180,7 +180,7 @@ Aturan lain:
 
 - Narasi adalah instruksi utama, jadi sesi audio iOS memakai kategori playback. Dengan begitu narasi tetap terdengar walau sakelar senyap aktif, dan volume tetap ikut tombol volume.
 - Saat aplikasi pindah ke latar belakang, semua suara berhenti. Saat ada telepon masuk, narasi berhenti dan tidak dilanjutkan otomatis.
-- TTS perangkat hanya dipakai selama pengembangan, untuk teks yang belum direkam. Skrip validasi menggagalkan build rilis kalau masih ada teks tanpa rekaman.
+- TTS perangkat dipakai di semua mode build untuk teks yang belum direkam, karena rekaman baru masuk di Rencana 09 dan aplikasi disebar lewat sideload. Skrip validasi tetap menggagalkan `--rilis` kalau masih ada teks tanpa rekaman.
 
 ### Mikrofon di menu Ucapkan
 

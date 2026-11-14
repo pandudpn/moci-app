@@ -83,7 +83,7 @@ Alur satu suara:
 1. `AssetCatalog` memuat daftar aset dari manifest bundel. Pemutaran apa pun dicek dulu ke katalog ini, jadi aset yang belum ada tidak menjadi galat.
 2. `AudioService` mengatur prioritas: narasi di atas efek, efek di atas musik. Volume narasi 1,0; efek 0,7; musik 0,25; musik turun ke 0,10 selama narasi berbunyi.
 3. `SoLoudAudioEngine` memuat aset sekali per path, memutar lewat `flutter_soloud`, dan memberi kabar selesai dari `AudioSource.soundEvents` saat `handleIsNoMoreValid`.
-4. `Narrator` menyusun path `assets/audio/vo/<bahasa>/<jenis>_<id>.m4a`. Kalau rekaman belum ada dan build bukan rilis, teks dibacakan `DevTts`. Di rilis, teks yang belum direkam tidak bersuara.
+4. `Narrator` menyusun path `assets/audio/vo/<bahasa>/<jenis>_<id>.m4a`. Kalau rekaman belum ada, teks dibacakan `DeviceTts` di semua mode build.
 
 Aturan yang sudah berlaku di kode:
 
@@ -92,7 +92,7 @@ Aturan yang sudah berlaku di kode:
 - Efek memakai enum `Sfx`: `klik`, `benar`, `salahLembut`, `sorak`, `bintang`, dengan path `assets/audio/sfx/<nama>.wav`.
 - Musik latar memakai `AudioService.musicAsset`: berkas OGG di `assets/audio/`, diputar berulang. Berkasnya belum ada, jadi pemutaran musik saat ini tidak menghasilkan suara.
 - Sesi iOS memakai kategori playback lewat kanal `moci/audio_session`, supaya suara tetap terdengar saat sakelar senyap menyala. Pelaksana native-nya ada di `ios/Runner/MociChannels.swift`.
-- TTS perangkat hanya untuk debug dan profile. Ia memakai kanal `moci/tts`, dan manifest debug serta profile menambahkan blok `<queries>` untuk `TTS_SERVICE` (Android 11+).
+- TTS perangkat dipakai di semua mode build. Ia memakai kanal `moci/tts`, dan manifest utama menambahkan blok `<queries>` untuk `TTS_SERVICE` (Android 11+).
 
 ## 5. Mikrofon (Rencana 03)
 

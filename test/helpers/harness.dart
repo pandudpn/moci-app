@@ -160,7 +160,7 @@ final class TestEnv {
   final KeyValueStore store;
   final json = MemoryJsonStore();
   final audio = FakeAudioEngine();
-  final tts = FakeDevTts();
+  final tts = FakeDeviceTts();
   final FakeClock clock;
   final ticks = StreamController<void>.broadcast();
 
@@ -173,7 +173,7 @@ final class TestEnv {
     audioEngineProvider.overrideWithValue(audio),
     assetCatalogProvider.overrideWithValue(AssetCatalog(assets)),
     katalogProvider.overrideWithValue(_katalogUji()),
-    devTtsProvider.overrideWithValue(tts),
+    deviceTtsProvider.overrideWithValue(tts),
     audioSessionProvider.overrideWithValue(_NoopAudioSession()),
     playTimerTicksProvider.overrideWithValue(ticks.stream),
     ...extraOverrides,

@@ -1,7 +1,7 @@
 import '../lang.dart';
 import 'asset_catalog.dart';
 import 'audio_service.dart';
-import 'dev_tts.dart';
+import 'device_tts.dart';
 
 final class NarrationLine {
   const NarrationLine({
@@ -14,22 +14,16 @@ final class NarrationLine {
   final String jenis;
   final String id;
 
-  /// Teks yang dibacakan TTS dev kalau rekaman belum ada.
+  /// Teks yang dibacakan TTS perangkat kalau rekaman belum ada.
   final String text;
 }
 
 final class Narrator {
-  Narrator({
-    required this._audio,
-    required this._assets,
-    required this._tts,
-    required this._allowTts,
-  });
+  Narrator({required this._audio, required this._assets, required this._tts});
 
   final AudioService _audio;
   final AssetCatalog _assets;
-  final DevTts _tts;
-  final bool _allowTts;
+  final DeviceTts _tts;
   int _gen = 0;
 
   static String pathFor(NarrationLine line, AppLang lang) =>
@@ -70,7 +64,7 @@ final class Narrator {
     if (_assets.has(path)) {
       final id = await _audio.narrate(path);
       if (wait && id != null) await _audio.narrationFinished(id);
-    } else if (_allowTts) {
+    } else {
       await _tts.speak(line.text, lang);
     }
   }

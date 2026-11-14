@@ -13,7 +13,7 @@ class MainActivity : FlutterActivity() {
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
-        // TTS dev: tanpa izin; di build rilis Dart tidak memanggil kanal ini.
+        // TTS perangkat untuk narasi di semua mode build; tanpa izin.
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "moci/tts")
             .setMethodCallHandler { call, result ->
                 when (call.method) {

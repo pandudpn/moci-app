@@ -6,7 +6,7 @@ import 'asset_catalog.dart';
 import 'audio_engine.dart';
 import 'audio_service.dart';
 import 'audio_session.dart';
-import 'dev_tts.dart';
+import 'device_tts.dart';
 import 'narrator.dart';
 import 'soloud_audio_engine.dart';
 
@@ -17,8 +17,8 @@ final assetCatalogProvider = Provider<AssetCatalog>(
   (ref) => const AssetCatalog({}),
 );
 
-final devTtsProvider = Provider<DevTts>(
-  (ref) => kReleaseMode ? const NoopDevTts() : const MethodChannelDevTts(),
+final deviceTtsProvider = Provider<DeviceTts>(
+  (ref) => const MethodChannelDeviceTts(),
 );
 
 final audioSessionProvider = Provider<AudioSessionConfigurator>(
@@ -43,8 +43,7 @@ final narratorProvider = Provider<Narrator>(
   (ref) => Narrator(
     audio: ref.watch(audioServiceProvider),
     assets: ref.watch(assetCatalogProvider),
-    tts: ref.watch(devTtsProvider),
-    allowTts: !kReleaseMode,
+    tts: ref.watch(deviceTtsProvider),
   ),
 );
 

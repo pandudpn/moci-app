@@ -22,6 +22,18 @@ void main() {
       expect(manifest, isNot(contains('uses-permission')));
       expect(manifest, contains('android:label="Moci"'));
     });
+    test('queries TTS untuk build rilis, tanpa INTERNET', () {
+      expect(manifest, contains('android.intent.action.TTS_SERVICE'));
+      expect(manifest, isNot(contains('android.permission.INTERNET')));
+    });
+    test('manifest debug dan profile tidak lagi mendeklarasikan TTS', () {
+      for (final f in [
+        'android/app/src/debug/AndroidManifest.xml',
+        'android/app/src/profile/AndroidManifest.xml',
+      ]) {
+        expect(_read(f), isNot(contains('TTS_SERVICE')));
+      }
+    });
     test('level SDK dan application id', () {
       expect(gradle, contains('minSdk = 24'));
       expect(gradle, contains('targetSdk = 36'));

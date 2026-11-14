@@ -2,7 +2,7 @@ import Flutter
 import UIKit
 import AVFoundation
 
-/// Kanal platform milik Moci: backup, sesi audio, dan TTS dev.
+/// Kanal platform milik Moci: backup, sesi audio, dan TTS perangkat.
 class MociChannels: NSObject, FlutterPlugin {
   private static let synthesizer = AVSpeechSynthesizer()
 
@@ -52,7 +52,7 @@ class MociChannels: NSObject, FlutterPlugin {
     }
   }
 
-  /// TTS dev. Ucapan diantrekan; `stop` memotong antrean.
+  /// TTS perangkat untuk narasi. Ucapan diantrekan; `stop` memotong antrean.
   private static func registerTts(_ registrar: FlutterPluginRegistrar) {
     let channel = FlutterMethodChannel(name: "moci/tts", binaryMessenger: registrar.messenger())
     channel.setMethodCallHandler { call, result in

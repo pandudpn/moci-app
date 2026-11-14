@@ -54,9 +54,9 @@ final class _SilentSession implements AudioSessionConfigurator {
 const _langCardHint = 'Pilih bahasa · Choose a language';
 
 /// Override mesin audio dan TTS: tes tidak memutar suara.
-List<Override> _quietAudio(FakeAudioEngine audio, FakeDevTts tts) => [
+List<Override> _quietAudio(FakeAudioEngine audio, FakeDeviceTts tts) => [
   audioEngineProvider.overrideWithValue(audio),
-  devTtsProvider.overrideWithValue(tts),
+  deviceTtsProvider.overrideWithValue(tts),
   audioSessionProvider.overrideWithValue(const _SilentSession()),
 ];
 
@@ -87,7 +87,7 @@ final class _Launch {
 
   final FakeClock clock;
   final audio = FakeAudioEngine();
-  final tts = FakeDevTts();
+  final tts = FakeDeviceTts();
   final ticks = StreamController<void>.broadcast();
 
   Future<void> run(WidgetTester t, {List<Override> extra = const []}) async {
