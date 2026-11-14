@@ -47,6 +47,14 @@ Future<void> runMoci({List<Override> overrides = const []}) async {
   final progress = await ProgressRepository(jsonStore).load();
   final assetCatalog = await AssetCatalog.load(rootBundle);
   final katalog = await ContentRepository.loadKatalog(rootBundle);
+  final tracingHuruf = await ContentRepository.loadTracing(
+    rootBundle,
+    angka: false,
+  );
+  final tracingAngka = await ContentRepository.loadTracing(
+    rootBundle,
+    angka: true,
+  );
   runApp(
     ProviderScope(
       overrides: [
@@ -55,6 +63,8 @@ Future<void> runMoci({List<Override> overrides = const []}) async {
         initialProgressProvider.overrideWithValue(progress),
         assetCatalogProvider.overrideWithValue(assetCatalog),
         katalogProvider.overrideWithValue(katalog),
+        tracingHurufProvider.overrideWithValue(tracingHuruf),
+        tracingAngkaProvider.overrideWithValue(tracingAngka),
         ...overrides,
       ],
       child: const MociApp(),

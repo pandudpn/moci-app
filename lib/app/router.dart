@@ -12,6 +12,7 @@ import '../features/sambutan/sambutan_screen.dart';
 import '../features/istirahat/habis_screen.dart';
 import '../features/istirahat/istirahat_screen.dart';
 import '../features/segera/coming_soon_screen.dart';
+import '../features/tulis/tulis_screen.dart';
 import 'play_timer/play_timer_controller.dart';
 import 'redirect.dart';
 import 'splash/splash_screen.dart';
@@ -111,7 +112,11 @@ final routerProvider = Provider<GoRouter>((ref) {
             const PopScope(canPop: false, child: BerandaScreen()),
       ),
       _soon(Routes.huruf, MenuTheme.huruf),
-      _soon(Routes.hurufTulis, MenuTheme.huruf),
+      GoRoute(
+        path: Routes.hurufTulis,
+        builder: (context, state) =>
+            TulisScreen(awal: state.uri.queryParameters['huruf']),
+      ),
       _soon(Routes.hurufUcapkan, MenuTheme.ucapkan),
       _soon(Routes.angka, MenuTheme.berhitung),
       _soon(Routes.angkaTulis, MenuTheme.berhitung),

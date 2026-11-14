@@ -16,6 +16,7 @@ import 'package:moci/core/audio/audio_providers.dart';
 import 'package:moci/core/audio/audio_session.dart';
 import 'package:moci/core/content/content_repository.dart';
 import 'package:moci/core/content/katalog.dart';
+import 'package:moci/core/content/tracing.dart';
 import 'package:moci/core/lang.dart';
 import 'package:moci/core/prefs/prefs_controller.dart';
 import 'package:moci/core/progress/progress.dart';
@@ -34,6 +35,29 @@ Katalog? _katalog;
 Katalog _katalogUji() => _katalog ??= Katalog.fromJson(
   jsonDecode(File(ContentRepository.katalogPath).readAsStringSync()) as Object?,
 );
+
+TracingSet? _tracingHurufUji;
+TracingSet? _tracingAngkaUji;
+
+TracingSet _tracingUji({required bool angka}) {
+  final cache = angka ? _tracingAngkaUji : _tracingHurufUji;
+  if (cache != null) return cache;
+  final set = TracingSet.fromJson(
+    jsonDecode(
+      File(
+        angka
+            ? ContentRepository.tracingAngkaPath
+            : ContentRepository.tracingHurufPath,
+      ).readAsStringSync(),
+    ) as Object?,
+  );
+  if (angka) {
+    _tracingAngkaUji = set;
+  } else {
+    _tracingHurufUji = set;
+  }
+  return set;
+}
 
 const tabletSize = Size(1180, 820);
 const phoneSize = Size(844, 390);
@@ -173,6 +197,8 @@ final class TestEnv {
     audioEngineProvider.overrideWithValue(audio),
     assetCatalogProvider.overrideWithValue(AssetCatalog(assets)),
     katalogProvider.overrideWithValue(_katalogUji()),
+    tracingHurufProvider.overrideWithValue(_tracingUji(angka: false)),
+    tracingAngkaProvider.overrideWithValue(_tracingUji(angka: true)),
     deviceTtsProvider.overrideWithValue(tts),
     audioSessionProvider.overrideWithValue(_NoopAudioSession()),
     playTimerTicksProvider.overrideWithValue(ticks.stream),

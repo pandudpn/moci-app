@@ -568,4 +568,127 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get orangTuaSupport => 'Contact us';
+
+  @override
+  String get hurufTitle => 'Letters';
+
+  @override
+  String get hurufLearn => 'Learn';
+
+  @override
+  String get hurufWrite => 'Write';
+
+  @override
+  String get hurufSay => 'Say';
+
+  @override
+  String get modeSemantic => 'Learning mode';
+
+  @override
+  String get tulisFollow => 'Drag Moci along the yellow arrows to the star!';
+
+  @override
+  String get tulisWriteVerb => 'Write';
+
+  @override
+  String get tulisLine => 'Line';
+
+  @override
+  String get tulisOf => 'of';
+
+  @override
+  String get tulisDone => 'All done!';
+
+  @override
+  String get tulisGreat => 'Great job!';
+
+  @override
+  String get tulisNext => 'Next';
+
+  @override
+  String get tulisCrayons => 'Crayons';
+
+  @override
+  String get tulisAgain => 'Again';
+
+  @override
+  String get tulisListen => 'Listen';
+
+  @override
+  String get tulisArea => 'Writing area';
+
+  @override
+  String get tulisWriteAgain => 'Write again';
+
+  @override
+  String get tulisColor1 => 'Pink crayon';
+
+  @override
+  String get tulisColor2 => 'Blue crayon';
+
+  @override
+  String get tulisColor3 => 'Green crayon';
+
+  @override
+  String get tulisColor4 => 'Orange crayon';
+
+  @override
+  String get tulisColor5 => 'Purple crayon';
+
+  @override
+  String get tulisPickHuruf => 'Pick a letter';
+
+  @override
+  String get tulisUnitHuruf => 'the letter';
+
+  @override
+  String tulisKeyLabel(String huruf) {
+    return 'Write the letter $huruf';
+  }
+
+  @override
+  String tulisAreaLabel(String huruf) {
+    return 'Writing area for the letter $huruf';
+  }
+
+  @override
+  String tulisProgress(int n, int total) {
+    return '$n of $total';
+  }
+
+  @override
+  String get tulisSayStartHuruf => 'Let\'s write the letter';
+
+  @override
+  String get tulisSayDoneHuruf => 'Great job! You wrote the letter';
+
+  @override
+  String get tulisNice => 'Nice!';
+
+  @override
+  String get tulisHint => 'Drag Moci along the yellow arrows to the star.';
+
+  @override
+  String berandaContinueTulisHuruf(String huruf) {
+    return 'Write the letter $huruf';
+  }
+
+  @override
+  String get tulisPickAngka => 'Pick a number';
+
+  @override
+  String tulisKeyLabelAngka(String angka) {
+    return 'Write the number $angka';
+  }
+
+  @override
+  String tulisAreaLabelAngka(String angka) {
+    return 'Writing area for the number $angka';
+  }
+
+  @override
+  String get tulisSayStartAngka => 'Let\'s write the number';
+
+  @override
+  String get tulisSayDoneAngka => 'Great job! You wrote the number';
 }

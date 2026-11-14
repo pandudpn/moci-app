@@ -527,5 +527,186 @@
   "orangTuaSupport": "Hubungi kami",
   "@orangTuaSupport": {
     "description": "Tautan surel dukungan"
+  },
+  "hurufTitle": "Huruf",
+  "@hurufTitle": {
+    "description": "Judul bilah atas layar huruf"
+  },
+  "hurufLearn": "Kenali",
+  "@hurufLearn": {
+    "description": "Pil mode kenal huruf"
+  },
+  "hurufWrite": "Tulis",
+  "@hurufWrite": {
+    "description": "Pil mode tulis"
+  },
+  "hurufSay": "Ucapkan",
+  "@hurufSay": {
+    "description": "Pil mode ucapkan"
+  },
+  "modeSemantic": "Mode belajar",
+  "@modeSemantic": {
+    "description": "Label semantik pil mode"
+  },
+  "tulisFollow": "Geser Moci ikuti panah kuning sampai ke bintang!",
+  "@tulisFollow": {
+    "description": "Petunjuk menulis di kartu kunci"
+  },
+  "tulisWriteVerb": "Tulis",
+  "@tulisWriteVerb": {
+    "description": "Awalan judul di kartu papan"
+  },
+  "tulisLine": "Garis",
+  "@tulisLine": {
+    "description": "Awalan hitungan goresan"
+  },
+  "tulisOf": "dari",
+  "@tulisOf": {
+    "description": "Penghubung hitungan goresan"
+  },
+  "tulisDone": "Selesai!",
+  "@tulisDone": {
+    "description": "Keterangan semua goresan selesai"
+  },
+  "tulisGreat": "Hebat!",
+  "@tulisGreat": {
+    "description": "Pujian di bilah selesai"
+  },
+  "tulisNext": "Lanjut",
+  "@tulisNext": {
+    "description": "Tombol ke kunci berikutnya"
+  },
+  "tulisCrayons": "Krayon",
+  "@tulisCrayons": {
+    "description": "Judul pilihan krayon"
+  },
+  "tulisAgain": "Ulangi",
+  "@tulisAgain": {
+    "description": "Tombol mengulang goresan"
+  },
+  "tulisListen": "Dengar",
+  "@tulisListen": {
+    "description": "Tombol mendengar petunjuk"
+  },
+  "tulisArea": "Area menulis",
+  "@tulisArea": {
+    "description": "Nama area menulis"
+  },
+  "tulisWriteAgain": "Tulis lagi",
+  "@tulisWriteAgain": {
+    "description": "Label tombol ulang di bilah selesai"
+  },
+  "tulisColor1": "Krayon merah muda",
+  "@tulisColor1": {
+    "description": "Nama krayon pertama"
+  },
+  "tulisColor2": "Krayon biru",
+  "@tulisColor2": {
+    "description": "Nama krayon kedua"
+  },
+  "tulisColor3": "Krayon hijau",
+  "@tulisColor3": {
+    "description": "Nama krayon ketiga"
+  },
+  "tulisColor4": "Krayon oranye",
+  "@tulisColor4": {
+    "description": "Nama krayon keempat"
+  },
+  "tulisColor5": "Krayon ungu",
+  "@tulisColor5": {
+    "description": "Nama krayon kelima"
+  },
+  "tulisPickHuruf": "Pilih huruf",
+  "@tulisPickHuruf": {
+    "description": "Judul kisi kunci"
+  },
+  "tulisUnitHuruf": "huruf",
+  "@tulisUnitHuruf": {
+    "description": "Satuan huruf di label"
+  },
+  "tulisKeyLabel": "Tulis huruf {huruf}",
+  "@tulisKeyLabel": {
+    "description": "Label semantik kunci huruf",
+    "placeholders": {
+      "huruf": {
+        "type": "String"
+      }
+    }
+  },
+  "tulisAreaLabel": "Area menulis huruf {huruf}",
+  "@tulisAreaLabel": {
+    "description": "Label area menulis",
+    "placeholders": {
+      "huruf": {
+        "type": "String"
+      }
+    }
+  },
+  "tulisProgress": "{n} dari {total}",
+  "@tulisProgress": {
+    "description": "Hitungan goresan",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "tulisSayStartHuruf": "Ayo tulis huruf",
+  "@tulisSayStartHuruf": {
+    "description": "narasi"
+  },
+  "tulisSayDoneHuruf": "Hebat! Kamu bisa menulis huruf",
+  "@tulisSayDoneHuruf": {
+    "description": "narasi"
+  },
+  "tulisNice": "Bagus!",
+  "@tulisNice": {
+    "description": "narasi"
+  },
+  "tulisHint": "Geser Moci ikuti panah kuning sampai ke bintang.",
+  "@tulisHint": {
+    "description": "narasi"
+  },
+  "berandaContinueTulisHuruf": "Tulis huruf {huruf}",
+  "@berandaContinueTulisHuruf": {
+    "description": "Subjudul kartu Lanjutkan untuk Tulis Huruf",
+    "placeholders": {
+      "huruf": {
+        "type": "String"
+      }
+    }
+  },
+  "tulisPickAngka": "Pilih angka",
+  "@tulisPickAngka": {
+    "description": "Judul kisi kunci angka"
+  },
+  "tulisKeyLabelAngka": "Tulis angka {angka}",
+  "@tulisKeyLabelAngka": {
+    "description": "Label semantik kunci angka",
+    "placeholders": {
+      "angka": {
+        "type": "String"
+      }
+    }
+  },
+  "tulisAreaLabelAngka": "Area menulis angka {angka}",
+  "@tulisAreaLabelAngka": {
+    "description": "Label area menulis angka",
+    "placeholders": {
+      "angka": {
+        "type": "String"
+      }
+    }
+  },
+  "tulisSayStartAngka": "Ayo tulis angka",
+  "@tulisSayStartAngka": {
+    "description": "narasi"
+  },
+  "tulisSayDoneAngka": "Hebat! Kamu bisa menulis angka",
+  "@tulisSayDoneAngka": {
+    "description": "narasi"
   }
 }

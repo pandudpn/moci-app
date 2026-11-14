@@ -569,4 +569,127 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get orangTuaSupport => 'Hubungi kami';
+
+  @override
+  String get hurufTitle => 'Huruf';
+
+  @override
+  String get hurufLearn => 'Kenali';
+
+  @override
+  String get hurufWrite => 'Tulis';
+
+  @override
+  String get hurufSay => 'Ucapkan';
+
+  @override
+  String get modeSemantic => 'Mode belajar';
+
+  @override
+  String get tulisFollow => 'Geser Moci ikuti panah kuning sampai ke bintang!';
+
+  @override
+  String get tulisWriteVerb => 'Tulis';
+
+  @override
+  String get tulisLine => 'Garis';
+
+  @override
+  String get tulisOf => 'dari';
+
+  @override
+  String get tulisDone => 'Selesai!';
+
+  @override
+  String get tulisGreat => 'Hebat!';
+
+  @override
+  String get tulisNext => 'Lanjut';
+
+  @override
+  String get tulisCrayons => 'Krayon';
+
+  @override
+  String get tulisAgain => 'Ulangi';
+
+  @override
+  String get tulisListen => 'Dengar';
+
+  @override
+  String get tulisArea => 'Area menulis';
+
+  @override
+  String get tulisWriteAgain => 'Tulis lagi';
+
+  @override
+  String get tulisColor1 => 'Krayon merah muda';
+
+  @override
+  String get tulisColor2 => 'Krayon biru';
+
+  @override
+  String get tulisColor3 => 'Krayon hijau';
+
+  @override
+  String get tulisColor4 => 'Krayon oranye';
+
+  @override
+  String get tulisColor5 => 'Krayon ungu';
+
+  @override
+  String get tulisPickHuruf => 'Pilih huruf';
+
+  @override
+  String get tulisUnitHuruf => 'huruf';
+
+  @override
+  String tulisKeyLabel(String huruf) {
+    return 'Tulis huruf $huruf';
+  }
+
+  @override
+  String tulisAreaLabel(String huruf) {
+    return 'Area menulis huruf $huruf';
+  }
+
+  @override
+  String tulisProgress(int n, int total) {
+    return '$n dari $total';
+  }
+
+  @override
+  String get tulisSayStartHuruf => 'Ayo tulis huruf';
+
+  @override
+  String get tulisSayDoneHuruf => 'Hebat! Kamu bisa menulis huruf';
+
+  @override
+  String get tulisNice => 'Bagus!';
+
+  @override
+  String get tulisHint => 'Geser Moci ikuti panah kuning sampai ke bintang.';
+
+  @override
+  String berandaContinueTulisHuruf(String huruf) {
+    return 'Tulis huruf $huruf';
+  }
+
+  @override
+  String get tulisPickAngka => 'Pilih angka';
+
+  @override
+  String tulisKeyLabelAngka(String angka) {
+    return 'Tulis angka $angka';
+  }
+
+  @override
+  String tulisAreaLabelAngka(String angka) {
+    return 'Area menulis angka $angka';
+  }
+
+  @override
+  String get tulisSayStartAngka => 'Ayo tulis angka';
+
+  @override
+  String get tulisSayDoneAngka => 'Hebat! Kamu bisa menulis angka';
 }

@@ -1135,6 +1135,228 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Hubungi kami'**
   String get orangTuaSupport;
+
+  /// Judul bilah atas layar huruf
+  ///
+  /// In id, this message translates to:
+  /// **'Huruf'**
+  String get hurufTitle;
+
+  /// Pil mode kenal huruf
+  ///
+  /// In id, this message translates to:
+  /// **'Kenali'**
+  String get hurufLearn;
+
+  /// Pil mode tulis
+  ///
+  /// In id, this message translates to:
+  /// **'Tulis'**
+  String get hurufWrite;
+
+  /// Pil mode ucapkan
+  ///
+  /// In id, this message translates to:
+  /// **'Ucapkan'**
+  String get hurufSay;
+
+  /// Label semantik pil mode
+  ///
+  /// In id, this message translates to:
+  /// **'Mode belajar'**
+  String get modeSemantic;
+
+  /// Petunjuk menulis di kartu kunci
+  ///
+  /// In id, this message translates to:
+  /// **'Geser Moci ikuti panah kuning sampai ke bintang!'**
+  String get tulisFollow;
+
+  /// Awalan judul di kartu papan
+  ///
+  /// In id, this message translates to:
+  /// **'Tulis'**
+  String get tulisWriteVerb;
+
+  /// Awalan hitungan goresan
+  ///
+  /// In id, this message translates to:
+  /// **'Garis'**
+  String get tulisLine;
+
+  /// Penghubung hitungan goresan
+  ///
+  /// In id, this message translates to:
+  /// **'dari'**
+  String get tulisOf;
+
+  /// Keterangan semua goresan selesai
+  ///
+  /// In id, this message translates to:
+  /// **'Selesai!'**
+  String get tulisDone;
+
+  /// Pujian di bilah selesai
+  ///
+  /// In id, this message translates to:
+  /// **'Hebat!'**
+  String get tulisGreat;
+
+  /// Tombol ke kunci berikutnya
+  ///
+  /// In id, this message translates to:
+  /// **'Lanjut'**
+  String get tulisNext;
+
+  /// Judul pilihan krayon
+  ///
+  /// In id, this message translates to:
+  /// **'Krayon'**
+  String get tulisCrayons;
+
+  /// Tombol mengulang goresan
+  ///
+  /// In id, this message translates to:
+  /// **'Ulangi'**
+  String get tulisAgain;
+
+  /// Tombol mendengar petunjuk
+  ///
+  /// In id, this message translates to:
+  /// **'Dengar'**
+  String get tulisListen;
+
+  /// Nama area menulis
+  ///
+  /// In id, this message translates to:
+  /// **'Area menulis'**
+  String get tulisArea;
+
+  /// Label tombol ulang di bilah selesai
+  ///
+  /// In id, this message translates to:
+  /// **'Tulis lagi'**
+  String get tulisWriteAgain;
+
+  /// Nama krayon pertama
+  ///
+  /// In id, this message translates to:
+  /// **'Krayon merah muda'**
+  String get tulisColor1;
+
+  /// Nama krayon kedua
+  ///
+  /// In id, this message translates to:
+  /// **'Krayon biru'**
+  String get tulisColor2;
+
+  /// Nama krayon ketiga
+  ///
+  /// In id, this message translates to:
+  /// **'Krayon hijau'**
+  String get tulisColor3;
+
+  /// Nama krayon keempat
+  ///
+  /// In id, this message translates to:
+  /// **'Krayon oranye'**
+  String get tulisColor4;
+
+  /// Nama krayon kelima
+  ///
+  /// In id, this message translates to:
+  /// **'Krayon ungu'**
+  String get tulisColor5;
+
+  /// Judul kisi kunci
+  ///
+  /// In id, this message translates to:
+  /// **'Pilih huruf'**
+  String get tulisPickHuruf;
+
+  /// Satuan huruf di label
+  ///
+  /// In id, this message translates to:
+  /// **'huruf'**
+  String get tulisUnitHuruf;
+
+  /// Label semantik kunci huruf
+  ///
+  /// In id, this message translates to:
+  /// **'Tulis huruf {huruf}'**
+  String tulisKeyLabel(String huruf);
+
+  /// Label area menulis
+  ///
+  /// In id, this message translates to:
+  /// **'Area menulis huruf {huruf}'**
+  String tulisAreaLabel(String huruf);
+
+  /// Hitungan goresan
+  ///
+  /// In id, this message translates to:
+  /// **'{n} dari {total}'**
+  String tulisProgress(int n, int total);
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Ayo tulis huruf'**
+  String get tulisSayStartHuruf;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Hebat! Kamu bisa menulis huruf'**
+  String get tulisSayDoneHuruf;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Bagus!'**
+  String get tulisNice;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Geser Moci ikuti panah kuning sampai ke bintang.'**
+  String get tulisHint;
+
+  /// Subjudul kartu Lanjutkan untuk Tulis Huruf
+  ///
+  /// In id, this message translates to:
+  /// **'Tulis huruf {huruf}'**
+  String berandaContinueTulisHuruf(String huruf);
+
+  /// Judul kisi kunci angka
+  ///
+  /// In id, this message translates to:
+  /// **'Pilih angka'**
+  String get tulisPickAngka;
+
+  /// Label semantik kunci angka
+  ///
+  /// In id, this message translates to:
+  /// **'Tulis angka {angka}'**
+  String tulisKeyLabelAngka(String angka);
+
+  /// Label area menulis angka
+  ///
+  /// In id, this message translates to:
+  /// **'Area menulis angka {angka}'**
+  String tulisAreaLabelAngka(String angka);
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Ayo tulis angka'**
+  String get tulisSayStartAngka;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Hebat! Kamu bisa menulis angka'**
+  String get tulisSayDoneAngka;
 }
 
 class _AppLocalizationsDelegate

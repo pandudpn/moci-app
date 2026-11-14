@@ -232,11 +232,11 @@ void main() {
         ),
       ),
     );
-    // Tanpa entri khusus, judul menu induk (/huruf) dipakai.
+    // Entri khusus Tulis Huruf memakai huruf dari params.
     expect(
       find.descendant(
         of: find.byType(ContinueCard),
-        matching: find.text('Kenal Huruf'),
+        matching: find.text('Tulis huruf A'),
       ),
       findsOneWidget,
     );

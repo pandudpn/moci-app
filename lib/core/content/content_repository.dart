@@ -56,3 +56,15 @@ final class ContentRepository {
 final katalogProvider = Provider<Katalog>(
   (ref) => throw UnimplementedError('katalogProvider dioverride di runMoci'),
 );
+
+/// Panduan menulis huruf. Diisi `runMoci` sebelum aplikasi dijalankan.
+final tracingHurufProvider = Provider<TracingSet>(
+  (ref) =>
+      throw UnimplementedError('tracingHurufProvider dioverride di runMoci'),
+);
+
+/// Panduan menulis angka. Diisi `runMoci` sebelum aplikasi dijalankan.
+final tracingAngkaProvider = Provider<TracingSet>(
+  (ref) =>
+      throw UnimplementedError('tracingAngkaProvider dioverride di runMoci'),
+);
