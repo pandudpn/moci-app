@@ -309,7 +309,8 @@ class _PuzzleScreenState extends ConsumerState<PuzzleScreen>
           border: Border.all(color: _trayBorder, width: 3),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(18),
+          // Sembilan keping 144 pt butuh 464 pt; sisa tinggi baki hanya 464.
+          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 8),
           child: Wrap(
             spacing: 16,
             runSpacing: 16,
