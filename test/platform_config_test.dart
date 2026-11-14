@@ -17,14 +17,24 @@ void main() {
         ),
       );
     });
-    test('tanpa backup, tanpa izin, berlabel Moci', () {
+    test('tanpa backup, satu izin mikrofon, berlabel Moci', () {
       expect(manifest, contains('android:allowBackup="false"'));
-      expect(manifest, isNot(contains('uses-permission')));
+      expect(manifest, contains('android.permission.RECORD_AUDIO'));
+      final izin = RegExp(
+        r'<uses-permission[^>]*android\.permission\.([A-Z_]+)[^>]*>',
+      ).allMatches(manifest).map((m) => m.group(1)).toList();
+      expect(izin, ['RECORD_AUDIO']);
       expect(manifest, contains('android:label="Moci"'));
     });
-    test('queries TTS untuk build rilis, tanpa INTERNET', () {
+    test('queries TTS dan pengenal untuk build rilis, tanpa INTERNET', () {
       expect(manifest, contains('android.intent.action.TTS_SERVICE'));
-      expect(manifest, isNot(contains('android.permission.INTERNET')));
+      expect(manifest, contains('android.speech.RecognitionService'));
+      final internet =
+          RegExp(r'<uses-permission[^>]*android\.permission\.INTERNET[^>]*>')
+              .allMatches(manifest)
+              .map((m) => m.group(0)!)
+              .where((e) => !e.contains('tools:node="remove"'));
+      expect(internet, isEmpty);
     });
     test('manifest debug dan profile tidak lagi mendeklarasikan TTS', () {
       for (final f in [
@@ -74,6 +84,10 @@ void main() {
           .map((m) => m.group(1))
           .toSet();
       expect(targets, {'15.0'});
+    });
+    test('Info.plist memuat dua alasan izin', () {
+      expect(plist, contains('NSMicrophoneUsageDescription'));
+      expect(plist, contains('NSSpeechRecognitionUsageDescription'));
     });
   });
 }

@@ -28,6 +28,7 @@ final class AudioService {
   int _musicGen = 0;
   int? _musicStartingGen;
   bool _ducked = false;
+  bool _listening = false;
 
   SoundId? _narrationId;
   String? _narrationAsset;
@@ -116,6 +117,7 @@ final class AudioService {
   Future<void> startMusic() async {
     _musicRequested = true;
     if (!_musicOn ||
+        _listening ||
         !_ready ||
         _musicId != null ||
         _musicStartingGen == _musicGen ||
@@ -169,6 +171,25 @@ final class AudioService {
   /// Melanjutkan musik setelah aplikasi kembali ke depan, hanya bila musik
   /// sedang diminta saat aplikasi ditinggalkan.
   Future<void> resumeMusic() async {
+    if (_musicRequested) await startMusic();
+  }
+
+  /// Menghentikan narasi dan musik selama mikrofon mendengar; [startMusic]
+  /// ditahan sampai [resumeAfterListening].
+  Future<void> pauseForListening() async {
+    _listening = true;
+    _narrationGen++;
+    await _haltNarration();
+    _musicGen++;
+    final id = _musicId;
+    _musicId = null;
+    if (id != null) await _engine.stop(id);
+  }
+
+  /// Memulihkan musik setelah mendengar, hanya kalau memang sedang diminta.
+  Future<void> resumeAfterListening() async {
+    if (!_listening) return;
+    _listening = false;
     if (_musicRequested) await startMusic();
   }
 

@@ -8,6 +8,10 @@
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
 	<string>Moci</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Moci memakai mikrofon supaya anak bisa berlatih mengucapkan kata. Suara dikenali di perangkat ini saja, tidak disimpan dan tidak dikirim.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Moci memakai pengenalan ucapan di perangkat untuk memeriksa ucapan anak. Rekaman tidak disimpan dan tidak dikirim ke mana pun.</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>

@@ -5,10 +5,10 @@ Dokumen ini menjelaskan perilaku sistem saat aplikasi berjalan: batas privasi, d
 ## 1. Batas privasi dan offline
 
 - Tidak ada server, akun, iklan, analytics, atau crash reporting. Tidak ada satu pun paket yang mengirim data.
-- Manifest rilis Android tidak meminta izin apa pun, termasuk INTERNET. Semua isi ikut di bundel: katalog, tracing, halaman mewarnai, ilustrasi, dan nanti audio.
+- Manifest rilis Android hanya meminta `RECORD_AUDIO` untuk Ucapkan, dan tidak meminta INTERNET. Semua isi ikut di bundel: katalog, tracing, halaman mewarnai, ilustrasi, dan nanti audio.
 - Data anak hanya di folder aplikasi. `android:allowBackup="false"` mematikan cadangan Android, dan folder `<application support>/moci` ditandai `isExcludedFromBackup` di iOS lewat kanal `moci/backup`. Karena itu, data tidak pindah saat ganti perangkat.
 - Debug dan profile tetap memakai INTERNET untuk hot reload, jadi izin itu hanya ada di manifest debug dan profile.
-- Satu-satunya izin yang direncanakan adalah mikrofon untuk Ucapkan, dan baru ditambahkan di Rencana 03. Rinciannya di bagian 5.
+- Satu-satunya izin adalah mikrofon untuk Ucapkan, ditambahkan di Rencana 03 bersama dua alasan izin di iOS. Rinciannya di bagian 5.
 
 ## 2. Data yang tersimpan
 
@@ -96,7 +96,7 @@ Aturan yang sudah berlaku di kode:
 
 ## 5. Mikrofon (Rencana 03)
 
-Menu Ucapkan belum dibangun. Rancangan yang sudah diputuskan:
+Mesin pengenal dan izinnya sudah terpasang di `lib/core/speech/`; layar Ucapkan menyusul. Aturan yang berlaku:
 
 - `speech_to_text` dipakai dengan `onDevice: true` dan `contextualPhrases` berisi kata target. Tidak ada mode yang boleh memakai layanan jaringan.
 - Gerbang Orang Tua muncul sebelum dialog izin sistem. Kalau izin ditolak, Ucapkan berjalan dalam mode dengar dan tiru tanpa mikrofon.
