@@ -582,5 +582,98 @@
         "type": "int"
       }
     }
+  },
+  "mewarnaiBackGaleri": "Kembali ke galeri",
+  "@mewarnaiBackGaleri": {
+    "description": "Tombol kembali dari kanvas"
+  },
+  "mewarnaiChangePage": "Gambar",
+  "@mewarnaiChangePage": {
+    "description": "Tombol buka pemilih gambar"
+  },
+  "mewarnaiUndo": "Batal",
+  "@mewarnaiUndo": {
+    "description": "Tombol batal langkah terakhir"
+  },
+  "mewarnaiClear": "Mulai lagi",
+  "@mewarnaiClear": {
+    "description": "Tombol mengosongkan halaman"
+  },
+  "mewarnaiSave": "Simpan",
+  "@mewarnaiSave": {
+    "description": "Tombol menyimpan karya"
+  },
+  "mewarnaiTools": "Alat",
+  "@mewarnaiTools": {
+    "description": "Label grup alat di panel"
+  },
+  "mewarnaiToolBrush": "Kuas",
+  "@mewarnaiToolBrush": {
+    "description": "Nama alat kuas"
+  },
+  "mewarnaiToolFill": "Isi",
+  "@mewarnaiToolFill": {
+    "description": "Nama alat isi"
+  },
+  "mewarnaiToolErase": "Hapus",
+  "@mewarnaiToolErase": {
+    "description": "Nama alat hapus"
+  },
+  "mewarnaiToolCap": "Stiker",
+  "@mewarnaiToolCap": {
+    "description": "Nama alat stiker"
+  },
+  "mewarnaiBrushSize": "Ukuran kuas",
+  "@mewarnaiBrushSize": {
+    "description": "Label grup ukuran kuas"
+  },
+  "mewarnaiBrushSmall": "Kuas kecil",
+  "@mewarnaiBrushSmall": {
+    "description": "Ukuran kuas kecil"
+  },
+  "mewarnaiBrushMedium": "Kuas sedang",
+  "@mewarnaiBrushMedium": {
+    "description": "Ukuran kuas sedang"
+  },
+  "mewarnaiBrushBig": "Kuas besar",
+  "@mewarnaiBrushBig": {
+    "description": "Ukuran kuas besar"
+  },
+  "mewarnaiCrayons": "Krayon",
+  "@mewarnaiCrayons": {
+    "description": "Label grup krayon"
+  },
+  "mewarnaiCaps": "Stiker",
+  "@mewarnaiCaps": {
+    "description": "Label grup stiker"
+  },
+  "mewarnaiHintBrush": "Warnai di dalam bagian gambar. Krayonnya tidak akan keluar garis!",
+  "@mewarnaiHintBrush": {
+    "description": "narasi"
+  },
+  "mewarnaiHintFill": "Ketuk satu bagian untuk mengisinya dengan warna.",
+  "@mewarnaiHintFill": {
+    "description": "narasi"
+  },
+  "mewarnaiHintErase": "Gosok untuk menghapus warna.",
+  "@mewarnaiHintErase": {
+    "description": "narasi"
+  },
+  "mewarnaiHintCap": "Ketuk gambar untuk menempel stiker.",
+  "@mewarnaiHintCap": {
+    "description": "narasi"
+  },
+  "mewarnaiCanvasLabel": "Gambar untuk diwarnai: {nama}",
+  "@mewarnaiCanvasLabel": {
+    "description": "Label semantik kanvas",
+    "placeholders": {
+      "nama": {
+        "type": "String"
+      }
+    }
+  },
+  "mewarnaiSayClear": "Ayo mulai dari awal!",
+  "@mewarnaiSayClear": {
+    "description": "narasi"
   }
 }

@@ -611,4 +611,73 @@ class AppLocalizationsEn extends AppLocalizations {
   String mewarnaiOpenKaryaku(int count) {
     return 'Open My Artwork, $count artworks';
   }
+
+  @override
+  String get mewarnaiBackGaleri => 'Back to pictures';
+
+  @override
+  String get mewarnaiChangePage => 'Pictures';
+
+  @override
+  String get mewarnaiUndo => 'Undo';
+
+  @override
+  String get mewarnaiClear => 'Start over';
+
+  @override
+  String get mewarnaiSave => 'Save';
+
+  @override
+  String get mewarnaiTools => 'Tools';
+
+  @override
+  String get mewarnaiToolBrush => 'Brush';
+
+  @override
+  String get mewarnaiToolFill => 'Fill';
+
+  @override
+  String get mewarnaiToolErase => 'Eraser';
+
+  @override
+  String get mewarnaiToolCap => 'Sticker';
+
+  @override
+  String get mewarnaiBrushSize => 'Brush size';
+
+  @override
+  String get mewarnaiBrushSmall => 'Small brush';
+
+  @override
+  String get mewarnaiBrushMedium => 'Medium brush';
+
+  @override
+  String get mewarnaiBrushBig => 'Big brush';
+
+  @override
+  String get mewarnaiCrayons => 'Crayons';
+
+  @override
+  String get mewarnaiCaps => 'Stickers';
+
+  @override
+  String get mewarnaiHintBrush =>
+      'Color inside a shape. Your crayon will not go outside the line!';
+
+  @override
+  String get mewarnaiHintFill => 'Tap a shape to fill it with one color.';
+
+  @override
+  String get mewarnaiHintErase => 'Rub to erase the color.';
+
+  @override
+  String get mewarnaiHintCap => 'Tap the picture to put a sticker.';
+
+  @override
+  String mewarnaiCanvasLabel(String nama) {
+    return 'Picture to color: $nama';
+  }
+
+  @override
+  String get mewarnaiSayClear => 'Let\'s start over!';
 }

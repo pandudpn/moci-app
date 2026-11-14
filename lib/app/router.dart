@@ -12,6 +12,7 @@ import '../features/sambutan/sambutan_screen.dart';
 import '../features/istirahat/habis_screen.dart';
 import '../features/istirahat/istirahat_screen.dart';
 import '../features/mewarnai/galeri_screen.dart';
+import '../features/mewarnai/kanvas_screen.dart';
 import '../features/segera/coming_soon_screen.dart';
 import 'play_timer/play_timer_controller.dart';
 import 'redirect.dart';
@@ -135,7 +136,13 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: Routes.mewarnai,
         builder: (context, state) => const GaleriScreen(),
       ),
-      _soon(Routes.mewarnaiHalaman, MenuTheme.mewarnai),
+      GoRoute(
+        path: Routes.mewarnaiHalaman,
+        builder: (context, state) => KanvasScreen(
+          key: ValueKey(state.pathParameters['halaman']),
+          halaman: state.pathParameters['halaman']!,
+        ),
+      ),
       _soon(Routes.karyaku, MenuTheme.karyaku),
       GoRoute(
         path: Routes.hebat,

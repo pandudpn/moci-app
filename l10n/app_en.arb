@@ -579,5 +579,98 @@
         "type": "int"
       }
     }
+  },
+  "mewarnaiBackGaleri": "Back to pictures",
+  "@mewarnaiBackGaleri": {
+    "description": "Tombol kembali dari kanvas"
+  },
+  "mewarnaiChangePage": "Pictures",
+  "@mewarnaiChangePage": {
+    "description": "Tombol buka pemilih gambar"
+  },
+  "mewarnaiUndo": "Undo",
+  "@mewarnaiUndo": {
+    "description": "Tombol batal langkah terakhir"
+  },
+  "mewarnaiClear": "Start over",
+  "@mewarnaiClear": {
+    "description": "Tombol mengosongkan halaman"
+  },
+  "mewarnaiSave": "Save",
+  "@mewarnaiSave": {
+    "description": "Tombol menyimpan karya"
+  },
+  "mewarnaiTools": "Tools",
+  "@mewarnaiTools": {
+    "description": "Label grup alat di panel"
+  },
+  "mewarnaiToolBrush": "Brush",
+  "@mewarnaiToolBrush": {
+    "description": "Nama alat kuas"
+  },
+  "mewarnaiToolFill": "Fill",
+  "@mewarnaiToolFill": {
+    "description": "Nama alat isi"
+  },
+  "mewarnaiToolErase": "Eraser",
+  "@mewarnaiToolErase": {
+    "description": "Nama alat hapus"
+  },
+  "mewarnaiToolCap": "Sticker",
+  "@mewarnaiToolCap": {
+    "description": "Nama alat stiker"
+  },
+  "mewarnaiBrushSize": "Brush size",
+  "@mewarnaiBrushSize": {
+    "description": "Label grup ukuran kuas"
+  },
+  "mewarnaiBrushSmall": "Small brush",
+  "@mewarnaiBrushSmall": {
+    "description": "Ukuran kuas kecil"
+  },
+  "mewarnaiBrushMedium": "Medium brush",
+  "@mewarnaiBrushMedium": {
+    "description": "Ukuran kuas sedang"
+  },
+  "mewarnaiBrushBig": "Big brush",
+  "@mewarnaiBrushBig": {
+    "description": "Ukuran kuas besar"
+  },
+  "mewarnaiCrayons": "Crayons",
+  "@mewarnaiCrayons": {
+    "description": "Label grup krayon"
+  },
+  "mewarnaiCaps": "Stickers",
+  "@mewarnaiCaps": {
+    "description": "Label grup stiker"
+  },
+  "mewarnaiHintBrush": "Color inside a shape. Your crayon will not go outside the line!",
+  "@mewarnaiHintBrush": {
+    "description": "narasi"
+  },
+  "mewarnaiHintFill": "Tap a shape to fill it with one color.",
+  "@mewarnaiHintFill": {
+    "description": "narasi"
+  },
+  "mewarnaiHintErase": "Rub to erase the color.",
+  "@mewarnaiHintErase": {
+    "description": "narasi"
+  },
+  "mewarnaiHintCap": "Tap the picture to put a sticker.",
+  "@mewarnaiHintCap": {
+    "description": "narasi"
+  },
+  "mewarnaiCanvasLabel": "Picture to color: {nama}",
+  "@mewarnaiCanvasLabel": {
+    "description": "Label semantik kanvas",
+    "placeholders": {
+      "nama": {
+        "type": "String"
+      }
+    }
+  },
+  "mewarnaiSayClear": "Let's start over!",
+  "@mewarnaiSayClear": {
+    "description": "narasi"
   }
 }

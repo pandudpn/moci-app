@@ -612,4 +612,74 @@ class AppLocalizationsId extends AppLocalizations {
   String mewarnaiOpenKaryaku(int count) {
     return 'Buka Karyaku, $count karya';
   }
+
+  @override
+  String get mewarnaiBackGaleri => 'Kembali ke galeri';
+
+  @override
+  String get mewarnaiChangePage => 'Gambar';
+
+  @override
+  String get mewarnaiUndo => 'Batal';
+
+  @override
+  String get mewarnaiClear => 'Mulai lagi';
+
+  @override
+  String get mewarnaiSave => 'Simpan';
+
+  @override
+  String get mewarnaiTools => 'Alat';
+
+  @override
+  String get mewarnaiToolBrush => 'Kuas';
+
+  @override
+  String get mewarnaiToolFill => 'Isi';
+
+  @override
+  String get mewarnaiToolErase => 'Hapus';
+
+  @override
+  String get mewarnaiToolCap => 'Stiker';
+
+  @override
+  String get mewarnaiBrushSize => 'Ukuran kuas';
+
+  @override
+  String get mewarnaiBrushSmall => 'Kuas kecil';
+
+  @override
+  String get mewarnaiBrushMedium => 'Kuas sedang';
+
+  @override
+  String get mewarnaiBrushBig => 'Kuas besar';
+
+  @override
+  String get mewarnaiCrayons => 'Krayon';
+
+  @override
+  String get mewarnaiCaps => 'Stiker';
+
+  @override
+  String get mewarnaiHintBrush =>
+      'Warnai di dalam bagian gambar. Krayonnya tidak akan keluar garis!';
+
+  @override
+  String get mewarnaiHintFill =>
+      'Ketuk satu bagian untuk mengisinya dengan warna.';
+
+  @override
+  String get mewarnaiHintErase => 'Gosok untuk menghapus warna.';
+
+  @override
+  String get mewarnaiHintCap => 'Ketuk gambar untuk menempel stiker.';
+
+  @override
+  String mewarnaiCanvasLabel(String nama) {
+    return 'Gambar untuk diwarnai: $nama';
+  }
+
+  @override
+  String get mewarnaiSayClear => 'Ayo mulai dari awal!';
 }

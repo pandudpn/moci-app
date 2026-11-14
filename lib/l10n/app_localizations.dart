@@ -1195,6 +1195,138 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Buka Karyaku, {count} karya'**
   String mewarnaiOpenKaryaku(int count);
+
+  /// Tombol kembali dari kanvas
+  ///
+  /// In id, this message translates to:
+  /// **'Kembali ke galeri'**
+  String get mewarnaiBackGaleri;
+
+  /// Tombol buka pemilih gambar
+  ///
+  /// In id, this message translates to:
+  /// **'Gambar'**
+  String get mewarnaiChangePage;
+
+  /// Tombol batal langkah terakhir
+  ///
+  /// In id, this message translates to:
+  /// **'Batal'**
+  String get mewarnaiUndo;
+
+  /// Tombol mengosongkan halaman
+  ///
+  /// In id, this message translates to:
+  /// **'Mulai lagi'**
+  String get mewarnaiClear;
+
+  /// Tombol menyimpan karya
+  ///
+  /// In id, this message translates to:
+  /// **'Simpan'**
+  String get mewarnaiSave;
+
+  /// Label grup alat di panel
+  ///
+  /// In id, this message translates to:
+  /// **'Alat'**
+  String get mewarnaiTools;
+
+  /// Nama alat kuas
+  ///
+  /// In id, this message translates to:
+  /// **'Kuas'**
+  String get mewarnaiToolBrush;
+
+  /// Nama alat isi
+  ///
+  /// In id, this message translates to:
+  /// **'Isi'**
+  String get mewarnaiToolFill;
+
+  /// Nama alat hapus
+  ///
+  /// In id, this message translates to:
+  /// **'Hapus'**
+  String get mewarnaiToolErase;
+
+  /// Nama alat stiker
+  ///
+  /// In id, this message translates to:
+  /// **'Stiker'**
+  String get mewarnaiToolCap;
+
+  /// Label grup ukuran kuas
+  ///
+  /// In id, this message translates to:
+  /// **'Ukuran kuas'**
+  String get mewarnaiBrushSize;
+
+  /// Ukuran kuas kecil
+  ///
+  /// In id, this message translates to:
+  /// **'Kuas kecil'**
+  String get mewarnaiBrushSmall;
+
+  /// Ukuran kuas sedang
+  ///
+  /// In id, this message translates to:
+  /// **'Kuas sedang'**
+  String get mewarnaiBrushMedium;
+
+  /// Ukuran kuas besar
+  ///
+  /// In id, this message translates to:
+  /// **'Kuas besar'**
+  String get mewarnaiBrushBig;
+
+  /// Label grup krayon
+  ///
+  /// In id, this message translates to:
+  /// **'Krayon'**
+  String get mewarnaiCrayons;
+
+  /// Label grup stiker
+  ///
+  /// In id, this message translates to:
+  /// **'Stiker'**
+  String get mewarnaiCaps;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Warnai di dalam bagian gambar. Krayonnya tidak akan keluar garis!'**
+  String get mewarnaiHintBrush;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Ketuk satu bagian untuk mengisinya dengan warna.'**
+  String get mewarnaiHintFill;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Gosok untuk menghapus warna.'**
+  String get mewarnaiHintErase;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Ketuk gambar untuk menempel stiker.'**
+  String get mewarnaiHintCap;
+
+  /// Label semantik kanvas
+  ///
+  /// In id, this message translates to:
+  /// **'Gambar untuk diwarnai: {nama}'**
+  String mewarnaiCanvasLabel(String nama);
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Ayo mulai dari awal!'**
+  String get mewarnaiSayClear;
 }
 
 class _AppLocalizationsDelegate

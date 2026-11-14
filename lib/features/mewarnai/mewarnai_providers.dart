@@ -80,21 +80,23 @@ final class KaryaController extends Notifier<KaryaState> {
     if (state.siap) return;
     final karya = await _repo.daftarKarya();
     final draf = await _repo.daftarDraf();
+    if (!ref.mounted) return;
     state = KaryaState(siap: true, karya: karya, draf: draf);
   }
 
   Future<Karya> simpanKarya(KaryaData data, Uint8List png) async {
     final karya = await _repo.simpanKarya(data, png);
-    state = KaryaState(
-      siap: state.siap,
-      karya: await _repo.daftarKarya(),
-      draf: state.draf,
-    );
+    final daftar = await _repo.daftarKarya();
+    if (ref.mounted) {
+      state = KaryaState(siap: state.siap, karya: daftar, draf: state.draf);
+    }
     return karya;
   }
 
   Future<void> simpanDraf(KaryaData data) async {
     await _repo.simpanDraf(data);
+    // Layar bisa sudah ditutup saat tulisan terakhir selesai.
+    if (!ref.mounted) return;
     state = KaryaState(
       siap: state.siap,
       karya: state.karya,
@@ -104,6 +106,7 @@ final class KaryaController extends Notifier<KaryaState> {
 
   Future<void> hapusKarya(String id) async {
     await _repo.hapusKarya(id);
+    if (!ref.mounted) return;
     state = KaryaState(
       siap: state.siap,
       karya: [
