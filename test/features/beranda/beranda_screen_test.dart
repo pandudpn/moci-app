@@ -131,13 +131,23 @@ void main() {
   for (final (name, size) in [('tablet', tabletSize), ('HP', phoneSize)]) {
     group('kartu menu ($name)', () {
       for (final m in BerandaMenu.values) {
-        testWidgets('${m.name}: membuka ${m.route} dan membacakan judulnya', (
-          t,
-        ) async {
+        testWidgets('${m.name}: membuka ${m.route}', (t) async {
           final env = TestEnv();
           final router = await _open(t, env: env, size: size);
           await _tapMenu(t, m);
           expect(_top(router).matchedLocation, m.route);
+          // Lima layar Rencana 04 membacakan isinya sendiri, bukan judul menu.
+          if (const {
+            BerandaMenu.hewan,
+            BerandaMenu.buah,
+            BerandaMenu.warna,
+            BerandaMenu.bentuk,
+            BerandaMenu.musik,
+          }.contains(m)) {
+            await t.pump(const Duration(milliseconds: 500));
+            expect(find.text(_titlesId[m]!), findsOneWidget);
+            return;
+          }
           // Kenal Huruf dan Berhitung membacakan isinya sendiri.
           expect(env.tts.spoken.last.$1, switch (m) {
             BerandaMenu.huruf => 'Apel',

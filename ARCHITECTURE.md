@@ -52,7 +52,14 @@ Panah berarti bergantung. Aturan arahnya:
 | `lib/features/istirahat/` | Istirahat dan Waktu Habis |
 | `lib/features/orang_tua/` | Gerbang, Area Orang Tua, ringkasan, widget pengaturan |
 | `lib/features/sambutan/` | Sambutan: bahasa, nama, usia |
-| `lib/features/segera/` | `ComingSoonScreen` untuk rute yang layarnya belum dibangun |
+| `lib/features/hewan/` | Dunia Hewan: 42 hewan, lima kelompok, fakta, suara asli atau tiruan TTS |
+| `lib/features/buah_sayur/` | Buah & Sayur: Kenali 35 kartu dan Tebak tiga pilihan berputar |
+| `lib/features/warna/` | Warna: set 12 kartu, 11 chip warna, gambar baru dan warna lain |
+| `lib/features/bentuk/` | Bentuk: Kenali dengan level usia dan hitung sudut, Cari enam ronde |
+| `lib/features/musik/` | Main Musik: xilofon, drum, `MusikAudio`, aturan lagu dan irama |
+| `lib/features/membaca/` | Ayo Membaca: Suku Kata, Susun Kata dengan level suku kata, Kalimat dengan sorotan karaoke |
+| `lib/features/main_yuk/` | Main Yuk!: hub dan enam permainan, aturan di `*_game.dart` Dart murni |
+| `lib/features/mewarnai/` | Mewarnai: mesin isi dan kuas, Galeri, Kanvas, Karyaku, `KaryaRepository` |
 | `lib/features/tulis/` | `TracingEngine`, `TracingBoard`, kisi kunci dan krayon, layar Tulis Huruf dan Angka |
 | `lib/features/ucapkan/` | Ucapkan: kata bergambar, suku kata, tombol mikrofon, mode dengar dan tiru |
 | `assets/content/katalog.json` | Katalog isi, sumber kebenaran |
@@ -60,11 +67,14 @@ Panah berarti bergantung. Aturan arahnya:
 | `assets/coloring/` | `pages.json`, `cap.json`, `krayon.json` |
 | `assets/illustrations/` | 111 SVG, dikompilasi `vector_graphics_compiler` saat build |
 | `assets/fonts/` | Fredoka dan Nunito, plus lisensi OFL |
-| `assets/audio/` | `LICENSES.csv`; rekaman masuk di Rencana 09 |
+| `assets/audio/` | `LICENSES.csv` untuk suara hewan dan instrumen; rekaman narasi `vo/` masuk di Rencana 09 |
+| `assets/audio/hewan/` | 42 suara hewan CC0 dari Freesound, dicatat di `assets/audio/LICENSES.csv` |
+| `assets/audio/instrumen/` | 12 WAV mono 16-bit 24 kHz hasil sintesis offline, lisensi `Milik sendiri` |
 | `l10n/app_id.arb`, `l10n/app_en.arb` | Sumber teks UI; keluaran gen-l10n ada di `lib/l10n/` |
 | `tool/validate_content.dart` | Validator isi, juga dipakai CI |
 | `tool/konten/` | Parser literal JS, ekspor prototipe sekali, aturan validasi |
 | `tool/fonts/build_fonts.sh` | Membangun ulang font subset Latin |
+| `tool/buat_instrumen.dart` | Generator 12 WAV xilofon dan drum; hasilnya di-commit, tidak dijalankan saat aplikasi berjalan |
 | `test/` | Tes unit dan widget, golden hanya tiga layar |
 | `integration_test/app_test.dart` | Empat skenario di perangkat |
 | `.github/workflows/ci.yml` | Job tes di Linux dan job golden di macOS |
@@ -99,6 +109,8 @@ Panah berarti bergantung. Aturan arahnya:
 | `playTimerProvider` | `lib/app/play_timer/play_timer_controller.dart` | `PlayTimerState` dan penyimpanan berkala. |
 | `hadiahProvider`, `hadiahRandomProvider` | `lib/features/hadiah/hadiah_controller.dart` | Hadiah ronde dan sumber acak pemilih stiker. |
 | `gateRandomProvider` | `lib/features/orang_tua/gerbang_screen.dart` | Sumber acak soal Gerbang. |
+| `warnaRandomProvider`, `buahRandomProvider`, `bentukRandomProvider` | `lib/features/warna/warna_screen.dart`, `lib/features/buah_sayur/buah_screen.dart`, `lib/features/bentuk/bentuk_screen.dart` | Sumber acak layar; tes menggantinya supaya urutan kartu dan soal tetap. |
+| `musikAudioProvider` | `lib/features/musik/musik_audio.dart` | `MusikAudio`: memuat 12 WAV dan memutar nada sebagai efek, mengikuti sakelar Efek suara. |
 
 ## 4. Rute dan redirect
 
@@ -112,10 +124,10 @@ Panah berarti bergantung. Aturan arahnya:
 | `/huruf/ucapkan` | `UcapkanScreen`, kata awal dari query `kata` |
 | `/angka` | `BerhitungScreen`, angka awal dari query `angka` |
 | `/angka/tulis` | `TulisScreen` mode angka, angka awal dari query `angka` |
-| `/hewan`, `/buah-sayur`, `/warna`, `/bentuk`, `/musik` | `ComingSoonScreen` |
-| `/membaca/suku-kata`, `/membaca/susun-kata`, `/membaca/kalimat` | `ComingSoonScreen` |
-| `/main`, `/main/cocokkan`, `/main/memori`, `/main/bayangan`, `/main/puzzle`, `/main/balon`, `/main/besar-kecil` | `ComingSoonScreen` |
-| `/mewarnai`, `/mewarnai/:halaman`, `/karyaku` | `ComingSoonScreen` |
+| `/hewan`, `/buah-sayur`, `/warna`, `/bentuk`, `/musik` | `HewanScreen`, `BuahScreen`, `WarnaScreen`, `BentukScreen`, `MusikScreen` |
+| `/membaca/suku-kata`, `/membaca/susun-kata`, `/membaca/kalimat` | `SukuKataScreen`, `SusunKataScreen`, `KalimatScreen` |
+| `/main`, `/main/cocokkan`, `/main/memori`, `/main/bayangan`, `/main/puzzle`, `/main/balon`, `/main/besar-kecil` | `HubScreen` dan layar permainannya |
+| `/mewarnai`, `/mewarnai/:halaman`, `/karyaku` | `GaleriScreen`, `KanvasScreen`, `KaryakuScreen` |
 | `/hebat` | `HebatScreen`, butuh `HebatArgs` di `state.extra` |
 | `/istirahat` | `IstirahatScreen` |
 | `/habis` | `HabisScreen` |
@@ -139,6 +151,8 @@ Redirect `/hebat` yang tidak membawa `HebatArgs` kembali ke Beranda. `PopScope(c
 
 **Audio menyala belakangan.** `MociApp` membaca `audioBootProvider` di `addPostFrameCallback`, supaya Splash tampil tanpa menunggu mesin audio. Urutannya: kategori sesi playback, `AudioEngine.init`, lalu `preloadSfx`.
 
+**Alat musik dan suara hewan.** Dua belas WAV mono 16-bit 24 kHz di `assets/audio/instrumen/` dibuat `tool/buat_instrumen.dart` dan dicatat `Milik sendiri`: tidak ada sampel pihak ketiga dan tidak ada sintesis saat aplikasi berjalan. `MusikAudio` memuat semuanya sekali lewat `AudioEngine` lalu memutar nada dengan volume efek 0,7; nada tidak menghentikan narasi. Suara hewan memakai `assets/audio/hewan/<id>.m4a` (42 berkas CC0). Layar hanya memutar berkas yang ada di `AssetCatalog`; kalau tidak ada, tiruan bunyi dari katalog dibacakan TTS dan layar tidak pernah menebak path.
+
 **Router.** `routerProvider` menyegarkan diri saat `prefsProvider.onboarded` berubah. `limitReachedProvider` juga menyegarkan router, kecuali `parentAccessProvider` sedang terbuka: mengubah batas di Area Orang Tua tidak boleh mengusir orang tua. `currentPathProvider` disalin dari `matchedLocation` milik kecocokan terakhir setiap delegasi router memberi kabar.
 
 **Bahasa.** `prefsProvider.lang` menjadi `MaterialApp.locale`. Ganti bahasa tidak memulai ulang aplikasi; semua teks datang dari `AppLocalizations`.
@@ -155,11 +169,12 @@ Redirect `/hebat` yang tidak membawa `HebatArgs` kembali ke Beranda. `PopScope(c
 | `test/helpers/fake_audio.dart` | `FakeAudioEngine` dan `FakeDeviceTts` |
 | `test/helpers/fake_clock.dart` | `FakeClock` |
 | `test/helpers/contrast.dart` | `contrastRatio` untuk tes kontras |
+| `test/helpers/katalog.dart` | `katalogUji()` dan `envUsia(AgeLevel)`; tingkat usia ditulis ke kunci `moci.usia` |
 | `test/flutter_test_config.dart` | Memuat Fredoka dan Nunito untuk semua tes |
 | `test/helpers/fake_speech.dart` | `FakeSpeechEngine` dan `FakeMicLevelMeter` |
 | `dart_test.yaml` | Mendeklarasikan tag `golden` |
 
-`TestEnv` mengisi `MemoryKeyValueStore`, `MemoryJsonStore`, `FakeClock`, `FakeAudioEngine`, `FakeDeviceTts`, `FakeSpeechEngine`, `FakeMicLevelMeter`, katalog aset kosong, dan katalog isi dari `assets/content/katalog.json` yang dibaca sekali per proses. `pumpScreen` memasang satu layar dengan tema, l10n, dan penyimpanan palsu. `pumpApp` memasang `MociApp` utuh dan mengembalikan routernya.
+`TestEnv` mengisi `MemoryKeyValueStore`, `MemoryJsonStore`, `FakeClock`, `FakeAudioEngine`, `FakeDeviceTts`, `FakeSpeechEngine`, `FakeMicLevelMeter`, katalog aset kosong, dan katalog isi dari `assets/content/katalog.json` yang dibaca sekali per proses. Tingkat usia tidak punya parameter sendiri: `envUsia(AgeLevel)` menulis `moci.usia` ke penyimpanan sebelum `TestEnv` dipasang. `pumpScreen` memasang satu layar dengan tema, l10n, dan penyimpanan palsu. `pumpApp` memasang `MociApp` utuh dan mengembalikan routernya. Jam palsu tidak ikut maju oleh `t.pump`, jadi tes yang mengetuk widget yang sama dua kali memajukan `FakeClock` lebih dulu (jeda ketuk `MociPressable` 400 ms).
 
 **Komponen permainan bersama.** `lib/widgets/game/` berisi `GameGlyph` (ikon garis dari artboard), `GameModePill` dan `RouteModePill` (pil mode; yang kedua berpindah rute dengan `pushReplacement`), `GameInstruction`, `AnswerCard`, `ProgressDots`, `MicButton` 180 pt, dan `RingPulse`. Layar Kenal Huruf, Tulis, Berhitung, dan Ucapkan memakainya; jangan membuat salinan baru saat layar berikutnya butuh bentuk yang sama.
 

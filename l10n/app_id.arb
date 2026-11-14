@@ -1711,5 +1711,426 @@
         "type": "int"
       }
     }
+  },
+  "hewanGroups": "Kelompok hewan",
+  "@hewanGroups": {
+    "description": "Label kelompok di layar Dunia Hewan"
+  },
+  "hewanGroupAll": "Semua",
+  "@hewanGroupAll": {
+    "description": "Kelompok hewan: semua"
+  },
+  "hewanGroupRumah": "Peliharaan & Ternak",
+  "@hewanGroupRumah": {
+    "description": "Kelompok hewan: peliharaan dan ternak"
+  },
+  "hewanGroupLiar": "Hutan & Savana",
+  "@hewanGroupLiar": {
+    "description": "Kelompok hewan: hutan dan savana"
+  },
+  "hewanGroupReptil": "Reptil & Katak",
+  "@hewanGroupReptil": {
+    "description": "Kelompok hewan: reptil dan katak"
+  },
+  "hewanGroupAir": "Laut & Air",
+  "@hewanGroupAir": {
+    "description": "Kelompok hewan: laut dan air"
+  },
+  "hewanGroupKecil": "Burung & Serangga",
+  "@hewanGroupKecil": {
+    "description": "Kelompok hewan: burung dan serangga"
+  },
+  "hewanDidYou": "Tahukah kamu?",
+  "@hewanDidYou": {
+    "description": "Judul kartu fakta hewan"
+  },
+  "hewanHearName": "Dengar nama",
+  "@hewanHearName": {
+    "description": "Tombol membacakan nama hewan"
+  },
+  "hewanHearSound": "Dengar suara",
+  "@hewanHearSound": {
+    "description": "Tombol memutar suara hewan"
+  },
+  "hewanPrev": "Hewan sebelumnya",
+  "@hewanPrev": {
+    "description": "Label tombol panah sebelumnya"
+  },
+  "hewanNext": "Hewan berikutnya",
+  "@hewanNext": {
+    "description": "Label tombol panah berikutnya"
+  },
+  "hewanTapHint": ", ketuk untuk mendengar suaranya",
+  "@hewanTapHint": {
+    "description": "Tambahan label gambar hewan"
+  },
+  "hewanCounterLabel": "Hewan {nomor} dari {total}",
+  "@hewanCounterLabel": {
+    "description": "Label semantik hitungan hewan",
+    "placeholders": {
+      "nomor": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "buahLearn": "Kenali",
+  "@buahLearn": {
+    "description": "Tab mode Kenali"
+  },
+  "buahGuess": "Tebak",
+  "@buahGuess": {
+    "description": "Tab mode Tebak"
+  },
+  "buahCats": "Kategori",
+  "@buahCats": {
+    "description": "Label kelompok kategori"
+  },
+  "buahCatAll": "Semua",
+  "@buahCatAll": {
+    "description": "Kategori semua"
+  },
+  "buahCatFruit": "Buah",
+  "@buahCatFruit": {
+    "description": "Kategori buah"
+  },
+  "buahCatVeggie": "Sayur",
+  "@buahCatVeggie": {
+    "description": "Kategori sayur"
+  },
+  "buahTagFruit": "BUAH",
+  "@buahTagFruit": {
+    "description": "Tag kartu buah"
+  },
+  "buahTagVeggie": "SAYUR",
+  "@buahTagVeggie": {
+    "description": "Tag kartu sayur"
+  },
+  "buahListen": "Dengarkan pertanyaan",
+  "@buahListen": {
+    "description": "Label tombol dengar pertanyaan"
+  },
+  "buahQuestion": "Mana yang {nama}?",
+  "@buahQuestion": {
+    "description": "Pertanyaan Tebak",
+    "placeholders": {
+      "nama": {
+        "type": "String"
+      }
+    }
+  },
+  "buahQuestionSay": "Mana yang",
+  "@buahQuestionSay": {
+    "description": "narasi"
+  },
+  "buahYesSay": "Betul!",
+  "@buahYesSay": {
+    "description": "narasi"
+  },
+  "buahWrongSay": "Bukan, coba lagi ya!",
+  "@buahWrongSay": {
+    "description": "narasi"
+  },
+  "buahRight": "Betul! Itu {nama}!",
+  "@buahRight": {
+    "description": "Teks bilah selesai",
+    "placeholders": {
+      "nama": {
+        "type": "String"
+      }
+    }
+  },
+  "buahNext": "Lanjut",
+  "@buahNext": {
+    "description": "Tombol soal berikutnya"
+  },
+  "buahProgress": "Pertanyaan {n} dari {total}",
+  "@buahProgress": {
+    "description": "Label semantik kemajuan soal",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "warnaPick": "Pilih warna",
+  "@warnaPick": {
+    "description": "Label kisi chip warna"
+  },
+  "warnaNewSet": "Gambar baru",
+  "@warnaNewSet": {
+    "description": "Tombol mengacak ulang kartu"
+  },
+  "warnaNextColor": "Warna lain",
+  "@warnaNextColor": {
+    "description": "Tombol lanjut ke warna berikutnya"
+  },
+  "warnaInstructionPre": "Sentuh semua yang",
+  "@warnaInstructionPre": {
+    "description": "Awal kalimat instruksi warna"
+  },
+  "warnaDone": "Semua yang {warna} ketemu!",
+  "@warnaDone": {
+    "description": "Teks bilah selesai",
+    "placeholders": {
+      "warna": {
+        "type": "String"
+      }
+    }
+  },
+  "warnaCounterLabel": "{found} dari {total} ketemu",
+  "@warnaCounterLabel": {
+    "description": "Label semantik hitungan warna",
+    "placeholders": {
+      "found": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "warnaChipLabel": "Warna {nama}",
+  "@warnaChipLabel": {
+    "description": "Label semantik chip warna",
+    "placeholders": {
+      "nama": {
+        "type": "String"
+      }
+    }
+  },
+  "warnaSentuh": "Sentuh semua yang berwarna",
+  "@warnaSentuh": {
+    "description": "narasi"
+  },
+  "warnaBetul": "Betul!",
+  "@warnaBetul": {
+    "description": "narasi"
+  },
+  "warnaBukan": "Bukan yang ini. Cari yang",
+  "@warnaBukan": {
+    "description": "narasi"
+  },
+  "warnaSemuaKetemu": "Semua gambarnya sudah ketemu!",
+  "@warnaSemuaKetemu": {
+    "description": "narasi"
+  },
+  "warnaBalon": "balon",
+  "@warnaBalon": {
+    "description": "Nama bentuk balon"
+  },
+  "warnaBintang": "bintang",
+  "@warnaBintang": {
+    "description": "Nama bentuk bintang"
+  },
+  "warnaHati": "hati",
+  "@warnaHati": {
+    "description": "Nama bentuk hati"
+  },
+  "bentukLearn": "Kenali",
+  "@bentukLearn": {
+    "description": "Tab mode Kenali"
+  },
+  "bentukFind": "Cari",
+  "@bentukFind": {
+    "description": "Tab mode Cari"
+  },
+  "bentukCountCorners": "Hitung sudut",
+  "@bentukCountCorners": {
+    "description": "Tombol hitung sudut"
+  },
+  "bentukCountTips": "Hitung ujung",
+  "@bentukCountTips": {
+    "description": "Tombol hitung ujung bintang"
+  },
+  "bentukSisi": "{n} sisi",
+  "@bentukSisi": {
+    "description": "Chip jumlah sisi",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "bentukSudut": "{n} sudut",
+  "@bentukSudut": {
+    "description": "Chip jumlah sudut",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "bentukUjung": "{n} ujung",
+  "@bentukUjung": {
+    "description": "Chip jumlah ujung bintang",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "bentukSayang": "Lambang sayang",
+  "@bentukSayang": {
+    "description": "Chip bentuk hati"
+  },
+  "bentukTanpaSudut": "Tidak punya sudut",
+  "@bentukTanpaSudut": {
+    "description": "Chip bentuk bulat"
+  },
+  "bentukShapeLabel": "Bentuk {nama}",
+  "@bentukShapeLabel": {
+    "description": "Label semantik kartu bentuk",
+    "placeholders": {
+      "nama": {
+        "type": "String"
+      }
+    }
+  },
+  "bentukQuestion": "Mana {nama}?",
+  "@bentukQuestion": {
+    "description": "Soal mode Cari",
+    "placeholders": {
+      "nama": {
+        "type": "String"
+      }
+    }
+  },
+  "bentukQuestionSay": "Mana",
+  "@bentukQuestionSay": {
+    "description": "narasi"
+  },
+  "bentukYesSay": "Betul! Itu",
+  "@bentukYesSay": {
+    "description": "narasi"
+  },
+  "bentukNoSay": "Bukan, itu",
+  "@bentukNoSay": {
+    "description": "narasi"
+  },
+  "bentukTryAgain": "Coba lagi!",
+  "@bentukTryAgain": {
+    "description": "narasi"
+  },
+  "bentukDone": "Hebat! Semua bentuk ketemu!",
+  "@bentukDone": {
+    "description": "narasi"
+  },
+  "bentukAgain": "Main lagi",
+  "@bentukAgain": {
+    "description": "Tombol main lagi mode Cari"
+  },
+  "bentukPrize": "Ambil hadiah",
+  "@bentukPrize": {
+    "description": "Tombol ambil hadiah mode Cari"
+  },
+  "bentukProgress": "Kemajuan {n} dari {total}",
+  "@bentukProgress": {
+    "description": "Label kemajuan enam ronde",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "bentukListen": "Dengarkan pertanyaan",
+  "@bentukListen": {
+    "description": "Tombol dengar soal mode Cari"
+  },
+  "musikXylophone": "Xilofon",
+  "@musikXylophone": {
+    "description": "Tab mode xilofon"
+  },
+  "musikDrum": "Drum",
+  "@musikDrum": {
+    "description": "Tab mode drum"
+  },
+  "musikModes": "Alat musik",
+  "@musikModes": {
+    "description": "Label semantik pil alat musik"
+  },
+  "musikSongLabel": "LAGU",
+  "@musikSongLabel": {
+    "description": "Label bilah lagu"
+  },
+  "musikSongsLabel": "Pilih lagu",
+  "@musikSongsLabel": {
+    "description": "Label semantik daftar lagu"
+  },
+  "musikStop": "Berhenti",
+  "@musikStop": {
+    "description": "Tombol berhenti memainkan lagu atau irama"
+  },
+  "musikFollow": "Ikuti",
+  "@musikFollow": {
+    "description": "Tombol ikuti lagu"
+  },
+  "musikFollowingCount": "Mengikuti · {posisi} / {total}",
+  "@musikFollowingCount": {
+    "description": "Label posisi mengikuti lagu",
+    "placeholders": {
+      "posisi": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "musikSongDone": "Hebat! Kamu memainkan satu lagu!",
+  "@musikSongDone": {
+    "description": "narasi"
+  },
+  "musikBeat": "Mainkan irama",
+  "@musikBeat": {
+    "description": "Tombol mainkan irama drum"
+  },
+  "musikDrumHint": "Ketuk drumnya! Atau mainkan irama, lalu ikut menepuk bersama Moci.",
+  "@musikDrumHint": {
+    "description": "Petunjuk mode drum"
+  },
+  "musikNote": "Nada {sol} {nomor}",
+  "@musikNote": {
+    "description": "Label semantik batang xilofon",
+    "placeholders": {
+      "sol": {
+        "type": "String"
+      },
+      "nomor": {
+        "type": "int"
+      }
+    }
+  },
+  "musikPadDrum": "Drum",
+  "@musikPadDrum": {
+    "description": "Nama pad drum"
+  },
+  "musikPadClap": "Tepuk",
+  "@musikPadClap": {
+    "description": "Nama pad tepuk"
+  },
+  "musikPadCymbal": "Simbal",
+  "@musikPadCymbal": {
+    "description": "Nama pad simbal"
+  },
+  "musikPadShaker": "Kerincing",
+  "@musikPadShaker": {
+    "description": "Nama pad kerincing"
+  },
+  "musikTwinkle": "Twinkle Twinkle",
+  "@musikTwinkle": {
+    "description": "Judul lagu pertama"
+  },
+  "musikMary": "Mary Had a Little Lamb",
+  "@musikMary": {
+    "description": "Judul lagu kedua"
   }
 }

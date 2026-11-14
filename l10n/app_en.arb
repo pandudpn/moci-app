@@ -1708,5 +1708,426 @@
         "type": "int"
       }
     }
+  },
+  "hewanGroups": "Animal groups",
+  "@hewanGroups": {
+    "description": "Group label on the Animals screen"
+  },
+  "hewanGroupAll": "All",
+  "@hewanGroupAll": {
+    "description": "Animal group: all"
+  },
+  "hewanGroupRumah": "Pets & Farm",
+  "@hewanGroupRumah": {
+    "description": "Animal group: pets and farm animals"
+  },
+  "hewanGroupLiar": "Wild",
+  "@hewanGroupLiar": {
+    "description": "Animal group: wild animals"
+  },
+  "hewanGroupReptil": "Reptiles & Frogs",
+  "@hewanGroupReptil": {
+    "description": "Animal group: reptiles and frogs"
+  },
+  "hewanGroupAir": "Sea & Water",
+  "@hewanGroupAir": {
+    "description": "Animal group: sea and water"
+  },
+  "hewanGroupKecil": "Birds & Bugs",
+  "@hewanGroupKecil": {
+    "description": "Animal group: birds and bugs"
+  },
+  "hewanDidYou": "Did you know?",
+  "@hewanDidYou": {
+    "description": "Animal fact card title"
+  },
+  "hewanHearName": "Hear name",
+  "@hewanHearName": {
+    "description": "Button that says the animal name"
+  },
+  "hewanHearSound": "Hear sound",
+  "@hewanHearSound": {
+    "description": "Button that plays the animal sound"
+  },
+  "hewanPrev": "Previous animal",
+  "@hewanPrev": {
+    "description": "Previous arrow label"
+  },
+  "hewanNext": "Next animal",
+  "@hewanNext": {
+    "description": "Next arrow label"
+  },
+  "hewanTapHint": ", tap to hear its sound",
+  "@hewanTapHint": {
+    "description": "Suffix for the animal image label"
+  },
+  "hewanCounterLabel": "Animal {nomor} of {total}",
+  "@hewanCounterLabel": {
+    "description": "Semantic label for the animal counter",
+    "placeholders": {
+      "nomor": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "buahLearn": "Learn",
+  "@buahLearn": {
+    "description": "Learn mode tab"
+  },
+  "buahGuess": "Guess",
+  "@buahGuess": {
+    "description": "Guess mode tab"
+  },
+  "buahCats": "Category",
+  "@buahCats": {
+    "description": "Category group label"
+  },
+  "buahCatAll": "All",
+  "@buahCatAll": {
+    "description": "All categories"
+  },
+  "buahCatFruit": "Fruits",
+  "@buahCatFruit": {
+    "description": "Fruit category"
+  },
+  "buahCatVeggie": "Veggies",
+  "@buahCatVeggie": {
+    "description": "Veggie category"
+  },
+  "buahTagFruit": "FRUIT",
+  "@buahTagFruit": {
+    "description": "Fruit card tag"
+  },
+  "buahTagVeggie": "VEGGIE",
+  "@buahTagVeggie": {
+    "description": "Veggie card tag"
+  },
+  "buahListen": "Listen to the question",
+  "@buahListen": {
+    "description": "Listen button label"
+  },
+  "buahQuestion": "Find the {nama}!",
+  "@buahQuestion": {
+    "description": "Guess question",
+    "placeholders": {
+      "nama": {
+        "type": "String"
+      }
+    }
+  },
+  "buahQuestionSay": "Find the",
+  "@buahQuestionSay": {
+    "description": "narasi"
+  },
+  "buahYesSay": "Yes!",
+  "@buahYesSay": {
+    "description": "narasi"
+  },
+  "buahWrongSay": "That's not it. Try again!",
+  "@buahWrongSay": {
+    "description": "narasi"
+  },
+  "buahRight": "Yes! {nama}!",
+  "@buahRight": {
+    "description": "Solved bar text",
+    "placeholders": {
+      "nama": {
+        "type": "String"
+      }
+    }
+  },
+  "buahNext": "Next",
+  "@buahNext": {
+    "description": "Next question button"
+  },
+  "buahProgress": "Question {n} of {total}",
+  "@buahProgress": {
+    "description": "Question progress semantic label",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "warnaPick": "Pick a color",
+  "@warnaPick": {
+    "description": "Color chip grid label"
+  },
+  "warnaNewSet": "New pictures",
+  "@warnaNewSet": {
+    "description": "Shuffle the cards button"
+  },
+  "warnaNextColor": "Next color",
+  "@warnaNextColor": {
+    "description": "Go to the next color button"
+  },
+  "warnaInstructionPre": "Tap everything",
+  "@warnaInstructionPre": {
+    "description": "Instruction sentence start"
+  },
+  "warnaDone": "You found all the {warna} things!",
+  "@warnaDone": {
+    "description": "Solved bar text",
+    "placeholders": {
+      "warna": {
+        "type": "String"
+      }
+    }
+  },
+  "warnaCounterLabel": "{found} of {total} found",
+  "@warnaCounterLabel": {
+    "description": "Color counter semantic label",
+    "placeholders": {
+      "found": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "warnaChipLabel": "Color {nama}",
+  "@warnaChipLabel": {
+    "description": "Color chip semantic label",
+    "placeholders": {
+      "nama": {
+        "type": "String"
+      }
+    }
+  },
+  "warnaSentuh": "Tap everything that is",
+  "@warnaSentuh": {
+    "description": "narasi"
+  },
+  "warnaBetul": "Yes!",
+  "@warnaBetul": {
+    "description": "narasi"
+  },
+  "warnaBukan": "Not this one. Find",
+  "@warnaBukan": {
+    "description": "narasi"
+  },
+  "warnaSemuaKetemu": "You found them all!",
+  "@warnaSemuaKetemu": {
+    "description": "narasi"
+  },
+  "warnaBalon": "balloon",
+  "@warnaBalon": {
+    "description": "Balloon shape name"
+  },
+  "warnaBintang": "star",
+  "@warnaBintang": {
+    "description": "Star shape name"
+  },
+  "warnaHati": "heart",
+  "@warnaHati": {
+    "description": "Heart shape name"
+  },
+  "bentukLearn": "Learn",
+  "@bentukLearn": {
+    "description": "Learn mode tab"
+  },
+  "bentukFind": "Find",
+  "@bentukFind": {
+    "description": "Find mode tab"
+  },
+  "bentukCountCorners": "Count the corners",
+  "@bentukCountCorners": {
+    "description": "Count corners button"
+  },
+  "bentukCountTips": "Count the points",
+  "@bentukCountTips": {
+    "description": "Count star points button"
+  },
+  "bentukSisi": "{n} sides",
+  "@bentukSisi": {
+    "description": "Side count chip",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "bentukSudut": "{n} corners",
+  "@bentukSudut": {
+    "description": "Corner count chip",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "bentukUjung": "{n} points",
+  "@bentukUjung": {
+    "description": "Star point count chip",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "bentukSayang": "A symbol of love",
+  "@bentukSayang": {
+    "description": "Heart shape chip"
+  },
+  "bentukTanpaSudut": "No corners",
+  "@bentukTanpaSudut": {
+    "description": "Round shape chip"
+  },
+  "bentukShapeLabel": "Shape {nama}",
+  "@bentukShapeLabel": {
+    "description": "Shape card semantic label",
+    "placeholders": {
+      "nama": {
+        "type": "String"
+      }
+    }
+  },
+  "bentukQuestion": "Where is the {nama}?",
+  "@bentukQuestion": {
+    "description": "Find mode question",
+    "placeholders": {
+      "nama": {
+        "type": "String"
+      }
+    }
+  },
+  "bentukQuestionSay": "Where is the",
+  "@bentukQuestionSay": {
+    "description": "narasi"
+  },
+  "bentukYesSay": "Yes! That is the",
+  "@bentukYesSay": {
+    "description": "narasi"
+  },
+  "bentukNoSay": "No, that is the",
+  "@bentukNoSay": {
+    "description": "narasi"
+  },
+  "bentukTryAgain": "Try again!",
+  "@bentukTryAgain": {
+    "description": "narasi"
+  },
+  "bentukDone": "Great job! You found them all!",
+  "@bentukDone": {
+    "description": "narasi"
+  },
+  "bentukAgain": "Play again",
+  "@bentukAgain": {
+    "description": "Find mode play again button"
+  },
+  "bentukPrize": "Get a prize",
+  "@bentukPrize": {
+    "description": "Find mode prize button"
+  },
+  "bentukProgress": "Progress {n} of {total}",
+  "@bentukProgress": {
+    "description": "Six round progress label",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "bentukListen": "Listen to the question",
+  "@bentukListen": {
+    "description": "Find mode listen button"
+  },
+  "musikXylophone": "Xylophone",
+  "@musikXylophone": {
+    "description": "Xylophone mode tab"
+  },
+  "musikDrum": "Drums",
+  "@musikDrum": {
+    "description": "Drum mode tab"
+  },
+  "musikModes": "Instrument",
+  "@musikModes": {
+    "description": "Instrument pill semantic label"
+  },
+  "musikSongLabel": "SONG",
+  "@musikSongLabel": {
+    "description": "Song bar label"
+  },
+  "musikSongsLabel": "Pick a song",
+  "@musikSongsLabel": {
+    "description": "Song list semantic label"
+  },
+  "musikStop": "Stop",
+  "@musikStop": {
+    "description": "Stop playing the song or rhythm"
+  },
+  "musikFollow": "Play along",
+  "@musikFollow": {
+    "description": "Play along button"
+  },
+  "musikFollowingCount": "Playing along · {posisi} / {total}",
+  "@musikFollowingCount": {
+    "description": "Play along position label",
+    "placeholders": {
+      "posisi": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "musikSongDone": "Wonderful! You played the whole song!",
+  "@musikSongDone": {
+    "description": "narasi"
+  },
+  "musikBeat": "Play a rhythm",
+  "@musikBeat": {
+    "description": "Play the drum rhythm button"
+  },
+  "musikDrumHint": "Tap the drums! Or play a rhythm, then clap along with Moci.",
+  "@musikDrumHint": {
+    "description": "Drum mode hint"
+  },
+  "musikNote": "Note {sol} {nomor}",
+  "@musikNote": {
+    "description": "Xylophone bar semantic label",
+    "placeholders": {
+      "sol": {
+        "type": "String"
+      },
+      "nomor": {
+        "type": "int"
+      }
+    }
+  },
+  "musikPadDrum": "Drum",
+  "@musikPadDrum": {
+    "description": "Drum pad name"
+  },
+  "musikPadClap": "Clap",
+  "@musikPadClap": {
+    "description": "Clap pad name"
+  },
+  "musikPadCymbal": "Cymbal",
+  "@musikPadCymbal": {
+    "description": "Cymbal pad name"
+  },
+  "musikPadShaker": "Shaker",
+  "@musikPadShaker": {
+    "description": "Shaker pad name"
+  },
+  "musikTwinkle": "Twinkle Twinkle",
+  "@musikTwinkle": {
+    "description": "First song title"
+  },
+  "musikMary": "Mary Had a Little Lamb",
+  "@musikMary": {
+    "description": "Second song title"
   }
 }

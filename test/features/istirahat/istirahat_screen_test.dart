@@ -57,7 +57,8 @@ void main() {
   testWidgets('tiap langkah dinarasikan saat mulai', (t) async {
     final env = TestEnv();
     await _open(t, env);
-    expect(env.tts.spoken, [
+    // Baris pertama milik layar /hewan di bawahnya (nama hewan).
+    expect(env.tts.spoken.skip(1), [
       ('Istirahat sebentar, yuk!', AppLang.id),
       ('Lihat jauh ke luar jendela', AppLang.id),
     ]);

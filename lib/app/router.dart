@@ -5,8 +5,11 @@ import 'package:go_router/go_router.dart';
 import '../core/prefs/prefs_controller.dart';
 import '../features/beranda/beranda_screen.dart';
 import '../features/berhitung/berhitung_screen.dart';
+import '../features/bentuk/bentuk_screen.dart';
+import '../features/buah_sayur/buah_screen.dart';
 import '../features/hadiah/hadiah_controller.dart';
 import '../features/hadiah/hebat_screen.dart';
+import '../features/hewan/hewan_screen.dart';
 import '../features/huruf/huruf_screen.dart';
 import '../features/main_yuk/balon_screen.dart';
 import '../features/main_yuk/bayangan_screen.dart';
@@ -17,23 +20,23 @@ import '../features/main_yuk/memori_screen.dart';
 import '../features/main_yuk/puzzle_screen.dart';
 import '../features/orang_tua/gerbang_screen.dart';
 import '../features/orang_tua/orang_tua_screen.dart';
+import '../features/musik/musik_screen.dart';
 import '../features/sambutan/sambutan_screen.dart';
 import '../features/istirahat/habis_screen.dart';
 import '../features/istirahat/istirahat_screen.dart';
 import '../features/mewarnai/galeri_screen.dart';
 import '../features/mewarnai/kanvas_screen.dart';
 import '../features/mewarnai/karyaku_screen.dart';
-import '../features/segera/coming_soon_screen.dart';
 import '../features/tulis/tulis_screen.dart';
 import '../features/ucapkan/ucapkan_screen.dart';
 import '../features/membaca/suku_kata/suku_kata_screen.dart';
 import '../features/membaca/susun_kata/susun_kata_screen.dart';
 import '../features/membaca/kalimat/kalimat_screen.dart';
+import '../features/warna/warna_screen.dart';
 import 'play_timer/play_timer_controller.dart';
 import 'redirect.dart';
 import 'splash/splash_screen.dart';
 import 'routes.dart';
-import 'theme/menu_theme.dart';
 
 export 'redirect.dart';
 export 'routes.dart';
@@ -70,19 +73,6 @@ final currentPathProvider = NotifierProvider<CurrentPath, String>(
 class _RefreshNotifier extends ChangeNotifier {
   void bump() => notifyListeners();
 }
-
-GoRoute _soon(String path, MenuTheme theme, {String? title}) => GoRoute(
-  path: path,
-  builder: (context, state) {
-    final route = state.uri.path;
-    return ComingSoonScreen(
-      key: ValueKey(route),
-      title: title ?? route,
-      theme: theme,
-      route: path == Routes.mewarnaiHalaman ? route : path,
-    );
-  },
-);
 
 final routerProvider = Provider<GoRouter>((ref) {
   final refresh = _RefreshNotifier();
@@ -154,11 +144,41 @@ final routerProvider = Provider<GoRouter>((ref) {
           awal: state.uri.queryParameters['angka'],
         ),
       ),
-      _soon(Routes.hewan, MenuTheme.hewan),
-      _soon(Routes.buahSayur, MenuTheme.buahSayur),
-      _soon(Routes.warna, MenuTheme.warna),
-      _soon(Routes.bentuk, MenuTheme.bentuk),
-      _soon(Routes.musik, MenuTheme.musik),
+      GoRoute(
+        path: Routes.hewan,
+        builder: (context, state) =>
+            HewanScreen(awal: state.uri.queryParameters['hewan']),
+      ),
+      GoRoute(
+        path: Routes.buahSayur,
+        builder: (context, state) => BuahScreen(
+          mode: state.uri.queryParameters['mode'] == 'kenali'
+              ? BuahMode.kenali
+              : BuahMode.tebak,
+          awal: state.uri.queryParameters['buah'],
+        ),
+      ),
+      GoRoute(
+        path: Routes.warna,
+        builder: (context, state) =>
+            WarnaScreen(awal: state.uri.queryParameters['warna']),
+      ),
+      GoRoute(
+        path: Routes.bentuk,
+        builder: (context, state) => BentukScreen(
+          mode: state.uri.queryParameters['mode'] == 'cari'
+              ? BentukMode.cari
+              : BentukMode.kenali,
+          awal: state.uri.queryParameters['bentuk'],
+        ),
+      ),
+      GoRoute(
+        path: Routes.musik,
+        builder: (context, state) => MusikScreen(
+          awal: state.uri.queryParameters['alat'],
+          awalLagu: state.uri.queryParameters['lagu'],
+        ),
+      ),
       GoRoute(
         path: Routes.sukuKata,
         builder: (context, state) =>

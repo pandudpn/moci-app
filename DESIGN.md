@@ -149,6 +149,22 @@ Bayangan selalu padat tanpa blur, bergeser lurus ke bawah, dan tidak memakan tem
 3. Pengenalan luring tidak tersedia: layar tetap mencoba `listen`; kalau jawabannya `null`, `MicLevelMeter` menentukan ada suara (0,12 selama 300 ms). Kalau meter juga tidak tersedia, layar masuk mode dengar dan tiru. Pengenalan daring tidak pernah dipakai.
 4. Selama mendengar, `AudioService.pauseForListening` menghentikan narasi dan musik; `resumeAfterListening` memulihkan musik kalau sakelarnya menyala, dan sesi iOS kembali ke kategori playback.
 
+### Tata letak lima menu
+
+Semua layar memakai panggung tablet 1180 × 820, bilah atas `MociTopBar` dengan tombol kembali, dan `GameModePill` bila punya dua mode.
+
+| Layar | Tata letak |
+| --- | --- |
+| Dunia Hewan | Kartu besar di kiri berisi ilustrasi, nama, fakta, tombol "Dengar suara", dan pil lima kelompok; rail kanan memuat 42 hewan dalam dua kolom |
+| Buah & Sayur | Kenali: kisi enam kolom berisi 35 kartu. Tebak: gelembung soal dengan nama berwarna, tiga `AnswerCard`, dan `ProgressDots` enam soal |
+| Warna | Set 12 kartu per warna: sampai empat gambar bertanda warna itu dan sisanya warna lain, plus 11 chip warna dan tombol "Gambar baru" serta "Warna lain" |
+| Bentuk | Kenali: kartu kiri 640 × 668 dengan tanda sudut 48 pt dan kisi kanan dua kolom. Cari: bilah soal 1100 × 92, papan 1100 × 548, opsi 3/4/6 pilihan dengan lencana centang 56 pt |
+| Main Musik | Xilofon: bilah lagu 1100 × 88, papan 1100 × 562 dengan dua rel dan delapan batang 100 pt. Drum: empat pad 240 × 300, tombol "Mainkan irama" 72 pt, dan teks petunjuk |
+
+Aturan level usia Bentuk: 2–3 tahun 5 bentuk dan 3 pilihan, 4–5 tahun 8 bentuk dan 4 pilihan, 6–7 tahun 10 bentuk dan 6 pilihan. Jumlah pilihan selalu memuat target dan tidak pernah melebihi isi pool.
+
+Hanya Bentuk Cari yang berakhir: enam ronde, lalu `finishGame(gameId: 'bentuk', …)` dan layar Hebat. Buah Tebak, Warna, dan Main Musik berputar tanpa akhir. Main Musik tidak memberi hadiah; setelah satu lagu selesai ia menampilkan pil "Hebat! Kamu memainkan satu lagu!" selama 3,5 detik lalu kembali ke keadaan bebas.
+
 ## 3. Panggung tablet dan HP
 
 `MociStage` menggambar latar tema penuh layar, lalu menempatkan isi berukuran dasar di area aman, diskalakan proporsional dan dipusatkan. Sisa ruang diisi latar.

@@ -37,6 +37,9 @@ import 'package:moci/core/providers.dart';
 import 'package:moci/features/huruf/huruf_screen.dart';
 import 'package:moci/features/orang_tua/gerbang_screen.dart';
 import 'package:moci/features/tulis/tracing_board.dart';
+import 'package:moci/core/content/content_repository.dart';
+import 'package:moci/features/beranda/beranda_screen.dart';
+import 'package:moci/features/bentuk/bentuk_screen.dart';
 import 'package:moci/main.dart' as moci;
 import 'package:moci/widgets/moci_back_button.dart';
 import 'package:moci/widgets/number_keypad.dart';
@@ -503,5 +506,52 @@ void main() {
     await _tap(t, find.text('Continue'));
     await _pumpUntil(t, find.text('Hi, Raka!'));
     expect(_stack(t), ['/']);
+  }, timeout: const Timeout(Duration(minutes: 3)));
+
+  testWidgets('bentuk: cari enam ronde lalu Hebat', (t) async {
+    await _prepareDevice(lang: AppLang.id, childName: 'Raka', onboarded: true);
+    final app = _Launch();
+    addTearDown(app.dispose);
+    await app.run(t);
+    await _screen(t, find.text('Hai, Raka!'));
+
+    // Beranda → Bentuk → mode Cari. Kartu terakhir ada di luar layar sampai
+    // rail Beranda digulir.
+    final kartu = find.byKey(const ValueKey('menu-bentuk'));
+    await t.scrollUntilVisible(
+      kartu,
+      200,
+      scrollable: find.descendant(
+        of: find.byType(BerandaScreen),
+        matching: find.byType(Scrollable),
+      ),
+    );
+    await _tap(t, kartu);
+    // Judul "Bentuk" sudah ada di kartu Beranda; tunggu teks pil mode.
+    await _pumpUntil(t, find.text('Cari'));
+    await _tap(t, find.text('Cari'));
+    await _pumpUntil(t, find.byKey(BentukScreen.questionKey));
+
+    final katalog = _container(t).read(katalogProvider);
+    for (var ronde = 0; ronde < 6; ronde++) {
+      final soal = t.widget<Text>(find.byKey(BentukScreen.questionKey)).data!;
+      final inti = soal.replaceFirst('Mana ', '');
+      final nama = inti.substring(0, inti.length - 1);
+      final target = katalog.bentuk.firstWhere(
+        (b) => b.nama.id.toLowerCase() == nama,
+      );
+      // Jam palsu tidak maju sendiri: lewati cooldown tekan 400 ms.
+      app.clock.advance(const Duration(seconds: 1));
+      await _tap(t, find.byKey(BentukScreen.optionKey(target.id)));
+      // Timer ronde 1200 ms; soal lama masih tampil selama jeda.
+      await t.pump(const Duration(milliseconds: 1400));
+    }
+
+    await _pumpUntil(t, find.byKey(BentukScreen.prizeKey));
+    app.clock.advance(const Duration(seconds: 1));
+    await _tap(t, find.byKey(BentukScreen.prizeKey));
+    await _pumpUntil(t, find.text('Kamu dapat 3 bintang!'));
+    expect(_lastPath(t), '/hebat');
+    expect(_container(t).read(progressProvider).stars, 3);
   }, timeout: const Timeout(Duration(minutes: 3)));
 }
