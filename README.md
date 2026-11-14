@@ -265,7 +265,7 @@ make install DEVICE=<id>          # pilih perangkat tertentu
 make run                          # mode debug dengan hot reload
 ```
 
-Tanpa `DEVICE`, perangkat fisik pertama dipakai, iOS lebih dulu. Semua target ada di [scripts/moci.sh](scripts/moci.sh).
+Tanpa `DEVICE`, perangkat fisik pertama dipakai, iOS lebih dulu. `DEVICE=<UDID simulator>` (lihat `xcrun simctl list devices`) memasang build debug ke simulator iOS. Semua target ada di [scripts/moci.sh](scripts/moci.sh).
 
 - **iPad/iPhone:** perangkat perlu Developer Mode aktif, dan Xcode perlu masuk ke akun Apple tim pengembang (Xcode > Settings > Accounts). Pertama kali, buka `ios/Runner.xcworkspace` sekali dan pilih tim di Signing & Capabilities. Dengan akun Apple gratis, aplikasi berhenti terbuka setelah 7 hari dan perlu dipasang ulang; dengan Apple Developer Program, masa berlakunya 1 tahun.
 - **Android:** aktifkan USB debugging. APK release ditandatangani dengan kunci debug, jadi cukup untuk pemasangan sendiri.

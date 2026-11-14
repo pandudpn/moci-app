@@ -8,7 +8,8 @@
 #   scripts/moci.sh check               format, analyze, tes, validator konten
 #
 # Pilih perangkat dengan DEVICE=<id atau nama>. Tanpa DEVICE, perangkat fisik
-# pertama (iOS lalu Android) yang dipakai.
+# pertama (iOS lalu Android) yang dipakai. DEVICE=<UDID simulator> memasang
+# build debug ke simulator iOS (lihat: xcrun simctl list devices).
 set -euo pipefail
 
 cd "$(dirname "$0")/.."
@@ -27,9 +28,19 @@ devices_json() {
   fvm flutter devices --machine --device-timeout 10 2>/dev/null
 }
 
+# Simulator hanya dikenali lewat UDID, supaya nama iPad fisik tidak tertukar.
+is_simulator() {
+  xcrun simctl list devices -j 2>/dev/null |
+    jq -e --arg d "$1" '[.devices[][] | select(.udid == $d)] | length > 0' >/dev/null
+}
+
 # Mencetak "<id>\t<platform>" untuk perangkat yang dipilih.
 pick_device() {
   local json
+  if [[ -n "${DEVICE:-}" ]] && is_simulator "$DEVICE"; then
+    printf '%s\tios-simulator\n' "$DEVICE"
+    return
+  fi
   json="$(devices_json)"
   if [[ -n "${DEVICE:-}" ]]; then
     jq -r --arg d "$DEVICE" '
@@ -108,6 +119,17 @@ cmd_install() {
       xcrun devicectl device process launch --device "$DEVICE_ID" "$BUNDLE_ID" ||
         echo "Aplikasi terpasang. Kalau iPad menolak membukanya, percayai sertifikat pengembang di Pengaturan > Umum > VPN & Manajemen Perangkat."
       ;;
+    ios-simulator)
+      # Simulator tidak menjalankan build release; build debug untuk simulator.
+      info "build iOS simulator (debug)"
+      fvm flutter build ios --simulator --debug
+      xcrun simctl boot "$DEVICE_ID" 2>/dev/null || true
+      open -a Simulator 2>/dev/null || info "Simulator.app tidak ada; simulator berjalan tanpa jendela"
+      info "memasang ke $DEVICE_ID"
+      xcrun simctl install "$DEVICE_ID" build/ios/iphonesimulator/Runner.app
+      info "membuka aplikasi"
+      xcrun simctl launch "$DEVICE_ID" "$BUNDLE_ID" >/dev/null
+      ;;
     android*)
       [[ -x "$ADB" ]] || die "adb tidak ditemukan di $ADB (set ANDROID_HOME)"
       build_apk
@@ -128,7 +150,7 @@ cmd_check() {
   fvm dart run tool/validate_content.dart
 }
 
-usage() { sed -n '2,11p' "$0" | sed 's/^# \{0,1\}//'; }
+usage() { sed -n '2,12p' "$0" | sed 's/^# \{0,1\}//'; }
 
 case "${1:-}" in
   devices) cmd_devices ;;
