@@ -706,4 +706,65 @@ class AppLocalizationsId extends AppLocalizations {
   String berandaContinueTulisAngka(String angka) {
     return 'Tulis angka $angka';
   }
+
+  @override
+  String get mainYukSub => 'Pilih permainan';
+
+  @override
+  String get mainYukAge2 => 'Usia 2+';
+
+  @override
+  String get mainYukAge3 => 'Usia 3+';
+
+  @override
+  String get mainYukAge4 => 'Usia 4+';
+
+  @override
+  String get mainYukCocokkanHub => 'Cocokkan Gambar';
+
+  @override
+  String get mainYukMemoriHub => 'Kartu Memori';
+
+  @override
+  String get mainYukBayanganHub => 'Tebak Bayangan';
+
+  @override
+  String get mainYukPuzzleHub => 'Puzzle';
+
+  @override
+  String get mainYukBalonHub => 'Balon Huruf';
+
+  @override
+  String get mainYukBesarKecilHub => 'Besar & Kecil';
+
+  @override
+  String get mainYukTemaAcak => 'Acak!';
+
+  @override
+  String get mainYukTemaBuah => 'Buah';
+
+  @override
+  String get mainYukTemaHewan => 'Hewan';
+
+  @override
+  String get mainYukTemaSayur => 'Sayur';
+
+  @override
+  String get mainYukTemaKendaraan => 'Kendaraan';
+
+  @override
+  String get mainYukTemaBenda => 'Mainan & Benda';
+
+  @override
+  String mainYukPairs(int n) {
+    return '$n pasang';
+  }
+
+  @override
+  String mainYukMoves(int n) {
+    return 'Langkah: $n';
+  }
+
+  @override
+  String get gameLevel => 'Level';
 }

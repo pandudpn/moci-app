@@ -705,4 +705,65 @@ class AppLocalizationsEn extends AppLocalizations {
   String berandaContinueTulisAngka(String angka) {
     return 'Write the number $angka';
   }
+
+  @override
+  String get mainYukSub => 'Pick a game';
+
+  @override
+  String get mainYukAge2 => 'Ages 2+';
+
+  @override
+  String get mainYukAge3 => 'Ages 3+';
+
+  @override
+  String get mainYukAge4 => 'Ages 4+';
+
+  @override
+  String get mainYukCocokkanHub => 'Match Pictures';
+
+  @override
+  String get mainYukMemoriHub => 'Memory Cards';
+
+  @override
+  String get mainYukBayanganHub => 'Shadow Match';
+
+  @override
+  String get mainYukPuzzleHub => 'Jigsaw Puzzle';
+
+  @override
+  String get mainYukBalonHub => 'Letter Balloons';
+
+  @override
+  String get mainYukBesarKecilHub => 'Big & Small';
+
+  @override
+  String get mainYukTemaAcak => 'Surprise!';
+
+  @override
+  String get mainYukTemaBuah => 'Fruits';
+
+  @override
+  String get mainYukTemaHewan => 'Animals';
+
+  @override
+  String get mainYukTemaSayur => 'Veggies';
+
+  @override
+  String get mainYukTemaKendaraan => 'Vehicles';
+
+  @override
+  String get mainYukTemaBenda => 'Toys & Things';
+
+  @override
+  String mainYukPairs(int n) {
+    return '$n pairs';
+  }
+
+  @override
+  String mainYukMoves(int n) {
+    return 'Moves: $n';
+  }
+
+  @override
+  String get gameLevel => 'Level';
 }

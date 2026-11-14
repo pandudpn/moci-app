@@ -726,5 +726,91 @@
         "type": "String"
       }
     }
+  },
+  "mainYukSub": "Pick a game",
+  "@mainYukSub": {
+    "description": "Subjudul hub Main Yuk"
+  },
+  "mainYukAge2": "Ages 2+",
+  "@mainYukAge2": {
+    "description": "Lencana usia minimum permainan"
+  },
+  "mainYukAge3": "Ages 3+",
+  "@mainYukAge3": {
+    "description": "Lencana usia minimum permainan"
+  },
+  "mainYukAge4": "Ages 4+",
+  "@mainYukAge4": {
+    "description": "Lencana usia minimum permainan"
+  },
+  "mainYukCocokkanHub": "Match Pictures",
+  "@mainYukCocokkanHub": {
+    "description": "narasi"
+  },
+  "mainYukMemoriHub": "Memory Cards",
+  "@mainYukMemoriHub": {
+    "description": "narasi"
+  },
+  "mainYukBayanganHub": "Shadow Match",
+  "@mainYukBayanganHub": {
+    "description": "narasi"
+  },
+  "mainYukPuzzleHub": "Jigsaw Puzzle",
+  "@mainYukPuzzleHub": {
+    "description": "narasi"
+  },
+  "mainYukBalonHub": "Letter Balloons",
+  "@mainYukBalonHub": {
+    "description": "narasi"
+  },
+  "mainYukBesarKecilHub": "Big & Small",
+  "@mainYukBesarKecilHub": {
+    "description": "narasi"
+  },
+  "mainYukTemaAcak": "Surprise!",
+  "@mainYukTemaAcak": {
+    "description": "narasi"
+  },
+  "mainYukTemaBuah": "Fruits",
+  "@mainYukTemaBuah": {
+    "description": "narasi"
+  },
+  "mainYukTemaHewan": "Animals",
+  "@mainYukTemaHewan": {
+    "description": "narasi"
+  },
+  "mainYukTemaSayur": "Veggies",
+  "@mainYukTemaSayur": {
+    "description": "narasi"
+  },
+  "mainYukTemaKendaraan": "Vehicles",
+  "@mainYukTemaKendaraan": {
+    "description": "narasi"
+  },
+  "mainYukTemaBenda": "Toys & Things",
+  "@mainYukTemaBenda": {
+    "description": "narasi"
+  },
+  "mainYukPairs": "{n} pairs",
+  "@mainYukPairs": {
+    "description": "Jumlah pasangan permainan",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "mainYukMoves": "Moves: {n}",
+  "@mainYukMoves": {
+    "description": "Jumlah langkah permainan",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "gameLevel": "Level",
+  "@gameLevel": {
+    "description": "Label pil level kesulitan"
   }
 }

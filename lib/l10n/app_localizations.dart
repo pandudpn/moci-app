@@ -1381,6 +1381,120 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Tulis angka {angka}'**
   String berandaContinueTulisAngka(String angka);
+
+  /// Subjudul hub Main Yuk
+  ///
+  /// In id, this message translates to:
+  /// **'Pilih permainan'**
+  String get mainYukSub;
+
+  /// Lencana usia minimum permainan
+  ///
+  /// In id, this message translates to:
+  /// **'Usia 2+'**
+  String get mainYukAge2;
+
+  /// Lencana usia minimum permainan
+  ///
+  /// In id, this message translates to:
+  /// **'Usia 3+'**
+  String get mainYukAge3;
+
+  /// Lencana usia minimum permainan
+  ///
+  /// In id, this message translates to:
+  /// **'Usia 4+'**
+  String get mainYukAge4;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Cocokkan Gambar'**
+  String get mainYukCocokkanHub;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Kartu Memori'**
+  String get mainYukMemoriHub;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Tebak Bayangan'**
+  String get mainYukBayanganHub;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Puzzle'**
+  String get mainYukPuzzleHub;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Balon Huruf'**
+  String get mainYukBalonHub;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Besar & Kecil'**
+  String get mainYukBesarKecilHub;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Acak!'**
+  String get mainYukTemaAcak;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Buah'**
+  String get mainYukTemaBuah;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Hewan'**
+  String get mainYukTemaHewan;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Sayur'**
+  String get mainYukTemaSayur;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Kendaraan'**
+  String get mainYukTemaKendaraan;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Mainan & Benda'**
+  String get mainYukTemaBenda;
+
+  /// Jumlah pasangan permainan
+  ///
+  /// In id, this message translates to:
+  /// **'{n} pasang'**
+  String mainYukPairs(int n);
+
+  /// Jumlah langkah permainan
+  ///
+  /// In id, this message translates to:
+  /// **'Langkah: {n}'**
+  String mainYukMoves(int n);
+
+  /// Label pil level kesulitan
+  ///
+  /// In id, this message translates to:
+  /// **'Level'**
+  String get gameLevel;
 }
 
 class _AppLocalizationsDelegate

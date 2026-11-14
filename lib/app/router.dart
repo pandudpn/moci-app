@@ -6,6 +6,7 @@ import '../core/prefs/prefs_controller.dart';
 import '../features/beranda/beranda_screen.dart';
 import '../features/hadiah/hadiah_controller.dart';
 import '../features/hadiah/hebat_screen.dart';
+import '../features/main_yuk/hub_screen.dart';
 import '../features/orang_tua/gerbang_screen.dart';
 import '../features/orang_tua/orang_tua_screen.dart';
 import '../features/sambutan/sambutan_screen.dart';
@@ -134,7 +135,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       _soon(Routes.sukuKata, MenuTheme.membaca),
       _soon(Routes.susunKata, MenuTheme.membaca),
       _soon(Routes.kalimat, MenuTheme.membaca),
-      _soon(Routes.mainYuk, MenuTheme.mainYuk),
+      GoRoute(
+        path: Routes.mainYuk,
+        builder: (context, state) => const HubScreen(),
+      ),
       _soon(Routes.cocokkan, MenuTheme.cocokkan),
       _soon(Routes.memori, MenuTheme.memori),
       _soon(Routes.bayangan, MenuTheme.bayangan),
