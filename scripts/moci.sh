@@ -3,7 +3,7 @@
 #
 #   scripts/moci.sh devices             daftar perangkat yang terhubung
 #   scripts/moci.sh run [debug|profile] jalankan dengan hot reload (bawaan: debug)
-#   scripts/moci.sh install             build release, pasang, lalu buka aplikasinya
+#   scripts/moci.sh install             build release (debug untuk simulator), pasang, lalu buka
 #   scripts/moci.sh build ios|apk       build release saja
 #   scripts/moci.sh check               format, analyze, tes, validator konten
 #
@@ -120,7 +120,7 @@ cmd_install() {
         echo "Aplikasi terpasang. Kalau iPad menolak membukanya, percayai sertifikat pengembang di Pengaturan > Umum > VPN & Manajemen Perangkat."
       ;;
     ios-simulator)
-      # Simulator tidak menjalankan build release; build debug untuk simulator.
+      # Build debug untuk simulator: cepat dan tanpa codesign.
       info "build iOS simulator (debug)"
       fvm flutter build ios --simulator --debug
       xcrun simctl boot "$DEVICE_ID" 2>/dev/null || true
