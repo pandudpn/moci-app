@@ -694,4 +694,29 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get mewarnaiClose => 'Tutup';
+
+  @override
+  String get mewarnaiKaryakuHint =>
+      'Ketuk gambar untuk melihatnya lebih besar.';
+
+  @override
+  String get mewarnaiKaryakuEmpty => 'Belum ada karya';
+
+  @override
+  String get mewarnaiKaryakuEmptyHint =>
+      'Yuk mewarnai dulu! Tekan Simpan, nanti gambarmu muncul di sini.';
+
+  @override
+  String get mewarnaiColorAgain => 'Warnai lagi';
+
+  @override
+  String get mewarnaiDelete => 'Hapus';
+
+  @override
+  String get mewarnaiDeleteConfirm => 'Yakin hapus?';
+
+  @override
+  String mewarnaiViewArt(String nama) {
+    return 'Lihat karya: $nama';
+  }
 }

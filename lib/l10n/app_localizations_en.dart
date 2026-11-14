@@ -692,4 +692,28 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get mewarnaiClose => 'Close';
+
+  @override
+  String get mewarnaiKaryakuHint => 'Tap a picture to see it bigger.';
+
+  @override
+  String get mewarnaiKaryakuEmpty => 'No artwork yet';
+
+  @override
+  String get mewarnaiKaryakuEmptyHint =>
+      'Let\'s color something! Tap Save and your picture will show up here.';
+
+  @override
+  String get mewarnaiColorAgain => 'Color again';
+
+  @override
+  String get mewarnaiDelete => 'Delete';
+
+  @override
+  String get mewarnaiDeleteConfirm => 'Delete for sure?';
+
+  @override
+  String mewarnaiViewArt(String nama) {
+    return 'See artwork: $nama';
+  }
 }

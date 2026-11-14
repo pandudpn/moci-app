@@ -1351,6 +1351,48 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Tutup'**
   String get mewarnaiClose;
+
+  /// Petunjuk di atas kisi Karyaku
+  ///
+  /// In id, this message translates to:
+  /// **'Ketuk gambar untuk melihatnya lebih besar.'**
+  String get mewarnaiKaryakuHint;
+
+  /// Judul Karyaku saat kosong
+  ///
+  /// In id, this message translates to:
+  /// **'Belum ada karya'**
+  String get mewarnaiKaryakuEmpty;
+
+  /// Ajakan mewarnai saat Karyaku kosong
+  ///
+  /// In id, this message translates to:
+  /// **'Yuk mewarnai dulu! Tekan Simpan, nanti gambarmu muncul di sini.'**
+  String get mewarnaiKaryakuEmptyHint;
+
+  /// Tombol membuka kanvas dengan isi karya
+  ///
+  /// In id, this message translates to:
+  /// **'Warnai lagi'**
+  String get mewarnaiColorAgain;
+
+  /// Tombol menghapus karya
+  ///
+  /// In id, this message translates to:
+  /// **'Hapus'**
+  String get mewarnaiDelete;
+
+  /// Konfirmasi hapus karya
+  ///
+  /// In id, this message translates to:
+  /// **'Yakin hapus?'**
+  String get mewarnaiDeleteConfirm;
+
+  /// Label semantik kartu karya
+  ///
+  /// In id, this message translates to:
+  /// **'Lihat karya: {nama}'**
+  String mewarnaiViewArt(String nama);
 }
 
 class _AppLocalizationsDelegate

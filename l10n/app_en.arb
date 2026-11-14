@@ -688,5 +688,38 @@
   "mewarnaiClose": "Close",
   "@mewarnaiClose": {
     "description": "Dialog close button"
+  },
+  "mewarnaiKaryakuHint": "Tap a picture to see it bigger.",
+  "@mewarnaiKaryakuHint": {
+    "description": "Hint above the My Artwork grid"
+  },
+  "mewarnaiKaryakuEmpty": "No artwork yet",
+  "@mewarnaiKaryakuEmpty": {
+    "description": "My Artwork title when empty"
+  },
+  "mewarnaiKaryakuEmptyHint": "Let's color something! Tap Save and your picture will show up here.",
+  "@mewarnaiKaryakuEmptyHint": {
+    "description": "Invitation to color when empty"
+  },
+  "mewarnaiColorAgain": "Color again",
+  "@mewarnaiColorAgain": {
+    "description": "Opens the canvas with the artwork's content"
+  },
+  "mewarnaiDelete": "Delete",
+  "@mewarnaiDelete": {
+    "description": "Deletes the artwork"
+  },
+  "mewarnaiDeleteConfirm": "Delete for sure?",
+  "@mewarnaiDeleteConfirm": {
+    "description": "Confirms artwork deletion"
+  },
+  "mewarnaiViewArt": "See artwork: {nama}",
+  "@mewarnaiViewArt": {
+    "description": "Semantic label of an artwork card",
+    "placeholders": {
+      "nama": {
+        "type": "String"
+      }
+    }
   }
 }

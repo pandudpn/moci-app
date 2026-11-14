@@ -691,5 +691,38 @@
   "mewarnaiClose": "Tutup",
   "@mewarnaiClose": {
     "description": "Tombol menutup dialog"
+  },
+  "mewarnaiKaryakuHint": "Ketuk gambar untuk melihatnya lebih besar.",
+  "@mewarnaiKaryakuHint": {
+    "description": "Petunjuk di atas kisi Karyaku"
+  },
+  "mewarnaiKaryakuEmpty": "Belum ada karya",
+  "@mewarnaiKaryakuEmpty": {
+    "description": "Judul Karyaku saat kosong"
+  },
+  "mewarnaiKaryakuEmptyHint": "Yuk mewarnai dulu! Tekan Simpan, nanti gambarmu muncul di sini.",
+  "@mewarnaiKaryakuEmptyHint": {
+    "description": "Ajakan mewarnai saat Karyaku kosong"
+  },
+  "mewarnaiColorAgain": "Warnai lagi",
+  "@mewarnaiColorAgain": {
+    "description": "Tombol membuka kanvas dengan isi karya"
+  },
+  "mewarnaiDelete": "Hapus",
+  "@mewarnaiDelete": {
+    "description": "Tombol menghapus karya"
+  },
+  "mewarnaiDeleteConfirm": "Yakin hapus?",
+  "@mewarnaiDeleteConfirm": {
+    "description": "Konfirmasi hapus karya"
+  },
+  "mewarnaiViewArt": "Lihat karya: {nama}",
+  "@mewarnaiViewArt": {
+    "description": "Label semantik kartu karya",
+    "placeholders": {
+      "nama": {
+        "type": "String"
+      }
+    }
   }
 }
