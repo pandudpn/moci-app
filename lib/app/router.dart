@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../core/prefs/prefs_controller.dart';
+import '../features/sambutan/sambutan_screen.dart';
 import '../features/segera/coming_soon_screen.dart';
 import 'redirect.dart';
 import 'splash/splash_screen.dart';
@@ -86,7 +87,11 @@ final routerProvider = Provider<GoRouter>((ref) {
         builder: (context, state) =>
             const PopScope(canPop: false, child: SplashScreen()),
       ),
-      _soon(Routes.sambutan, MenuTheme.sambutan, lockBack: true),
+      GoRoute(
+        path: Routes.sambutan,
+        builder: (context, state) =>
+            const PopScope(canPop: false, child: SambutanScreen()),
+      ),
       _soon(Routes.beranda, MenuTheme.beranda, lockBack: true),
       _soon(Routes.huruf, MenuTheme.huruf),
       _soon(Routes.hurufTulis, MenuTheme.huruf),

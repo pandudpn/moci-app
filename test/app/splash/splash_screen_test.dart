@@ -28,6 +28,11 @@ void main() {
     expect(_path(router), '/sambutan');
   });
 
+  testWidgets('sasaran lewati punya label semantik', (t) async {
+    await pumpApp(t, initialLocation: '/splash');
+    expect(find.bySemanticsLabel('Lewati intro'), findsOneWidget);
+  });
+
   testWidgets('ketukan langsung berpindah layar', (t) async {
     final router = await pumpApp(t, initialLocation: '/splash');
     await t.pump(const Duration(milliseconds: 200));

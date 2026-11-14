@@ -261,20 +261,24 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     final still = MediaQuery.disableAnimationsOf(context);
-    return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTap: _next,
-      child: MociStage(
-        theme: MenuTheme.beranda,
-        tablet: (_) => _SplashScene(
-          spec: _Spec.tablet,
-          animation: _controller,
-          still: still,
-        ),
-        phone: (_) => _SplashScene(
-          spec: _Spec.phone,
-          animation: _controller,
-          still: still,
+    return Semantics(
+      button: true,
+      label: context.l10n.sambutanSkip,
+      child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: _next,
+        child: MociStage(
+          theme: MenuTheme.beranda,
+          tablet: (_) => _SplashScene(
+            spec: _Spec.tablet,
+            animation: _controller,
+            still: still,
+          ),
+          phone: (_) => _SplashScene(
+            spec: _Spec.phone,
+            animation: _controller,
+            still: still,
+          ),
         ),
       ),
     );

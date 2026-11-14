@@ -139,6 +139,108 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Main & Belajar'**
   String get berandaTag;
+
+  /// No description provided for @sambutanTag.
+  ///
+  /// In id, this message translates to:
+  /// **'Main & Belajar'**
+  String get sambutanTag;
+
+  /// No description provided for @sambutanHi.
+  ///
+  /// In id, this message translates to:
+  /// **'Halo! Aku Moci.'**
+  String get sambutanHi;
+
+  /// No description provided for @sambutanSub.
+  ///
+  /// In id, this message translates to:
+  /// **'Teman main dan belajar untuk anak usia 2–7 tahun.'**
+  String get sambutanSub;
+
+  /// No description provided for @sambutanNameLabel.
+  ///
+  /// In id, this message translates to:
+  /// **'Nama anak'**
+  String get sambutanNameLabel;
+
+  /// No description provided for @sambutanNamePh.
+  ///
+  /// In id, this message translates to:
+  /// **'Nama panggilan si kecil'**
+  String get sambutanNamePh;
+
+  /// No description provided for @sambutanAge.
+  ///
+  /// In id, this message translates to:
+  /// **'Usia anak'**
+  String get sambutanAge;
+
+  /// No description provided for @sambutanYears.
+  ///
+  /// In id, this message translates to:
+  /// **'tahun'**
+  String get sambutanYears;
+
+  /// No description provided for @sambutanNote.
+  ///
+  /// In id, this message translates to:
+  /// **'Nama hanya tersimpan di perangkat ini. Bisa diubah di Area Orang Tua.'**
+  String get sambutanNote;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Ayo Mulai!'**
+  String get sambutanStart;
+
+  /// Label tombol lewati di Splash
+  ///
+  /// In id, this message translates to:
+  /// **'Lewati intro'**
+  String get sambutanSkip;
+
+  /// No description provided for @sambutanHello.
+  ///
+  /// In id, this message translates to:
+  /// **'Hai'**
+  String get sambutanHello;
+
+  /// No description provided for @sambutanFriend.
+  ///
+  /// In id, this message translates to:
+  /// **'teman'**
+  String get sambutanFriend;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Halo! Aku Moci. Siapa namamu?'**
+  String get sambutanSay;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Halo! Aku Moci.'**
+  String get sambutanHalo;
+
+  /// No description provided for @sambutanBadge1.
+  ///
+  /// In id, this message translates to:
+  /// **'Tanpa iklan'**
+  String get sambutanBadge1;
+
+  /// No description provided for @sambutanBadge2.
+  ///
+  /// In id, this message translates to:
+  /// **'Tanpa pembelian'**
+  String get sambutanBadge2;
+
+  /// No description provided for @sambutanBadge3.
+  ///
+  /// In id, this message translates to:
+  /// **'Bisa offline'**
+  String get sambutanBadge3;
 }
 
 class _AppLocalizationsDelegate
