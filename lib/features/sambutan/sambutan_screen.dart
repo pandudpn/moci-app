@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:material_ui/material_ui.dart' show Material, MaterialType;
 
 import '../../app/layout/moci_stage.dart';
+import '../../app/motion/ambient_motion.dart';
 import '../../app/routes.dart';
 import '../../app/theme/menu_theme.dart';
 import '../../app/theme/moci_colors.dart';
@@ -145,66 +146,93 @@ class _SambutanScreenState extends ConsumerState<SambutanScreen> {
         ? 0.0
         : (_fieldBottom() + _keyboardGap - (_stageHeight - kb)).clamp(0.0, kb);
 
-    return Material(
-      type: MaterialType.transparency,
-      child: GestureDetector(
-        // Ketukan di luar kolom nama melepas fokus; keyboard ikut turun.
-        behavior: HitTestBehavior.opaque,
-        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-        child: Transform.translate(
-          offset: Offset(0, -shift),
-          child: SizedBox(
-            key: _rootKey,
-            width: 1180,
-            height: _stageHeight,
-            child: Stack(
-              clipBehavior: Clip.none,
-              children: [
-                const SambutanScenery(),
-                Positioned(
-                  left: 70,
-                  top: 56,
-                  child: SambutanLogo(tag: l10n.sambutanTag),
-                ),
-                Positioned(left: 290, top: 232, child: _Bubble(text: hello)),
-                Positioned(
-                  left: 96,
-                  top: 280,
-                  width: 290,
-                  height: 290,
-                  child: Semantics(
-                    button: true,
-                    label: 'Moci',
-                    excludeSemantics: true,
-                    child: MociMascot(
-                      pose: MociPose.senang,
-                      size: 290,
-                      onTap: _tapMoci,
+    // Satu jam gerak untuk awan, matahari, gelembung, dan Moci di layar ini.
+    return AmbientMotion(
+      child: Material(
+        type: MaterialType.transparency,
+        child: GestureDetector(
+          // Ketukan di luar kolom nama melepas fokus; keyboard ikut turun.
+          behavior: HitTestBehavior.opaque,
+          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+          child: Transform.translate(
+            offset: Offset(0, -shift),
+            child: SizedBox(
+              key: _rootKey,
+              width: 1180,
+              height: _stageHeight,
+              child: Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  const SambutanScenery(),
+                  Positioned(
+                    left: 70,
+                    top: 56,
+                    child: SambutanLogo(tag: l10n.sambutanTag),
+                  ),
+                  Positioned(
+                    left: 290,
+                    top: 232,
+                    child: AmbientLayer(
+                      key: const ValueKey('sambutan-bubble'),
+                      // sbWob: goyang -2° ke 2°, poros 10% 100%.
+                      builder: (context, seconds, child) => Transform.rotate(
+                        angle: wobbleAngle(t: seconds, period: 3),
+                        alignment: const Alignment(-.8, 1),
+                        child: child,
+                      ),
+                      child: _Bubble(text: hello),
                     ),
                   ),
-                ),
-                Positioned(
-                  left: 50,
-                  top: 716,
-                  width: 430,
-                  child: Wrap(
-                    spacing: 10,
-                    runSpacing: 10,
-                    children: [
-                      SambutanBadge(text: l10n.sambutanBadge1),
-                      SambutanBadge(text: l10n.sambutanBadge2),
-                      SambutanBadge(text: l10n.sambutanBadge3),
-                    ],
+                  Positioned(
+                    left: 96,
+                    top: 280,
+                    width: 290,
+                    height: 290,
+                    child: AmbientLayer(
+                      key: const ValueKey('sambutan-moci'),
+                      // sbBob: naik 14 px tiap 3 detik.
+                      builder: (context, seconds, child) => Transform.translate(
+                        offset: Offset(
+                          0,
+                          bobOffset(t: seconds, amplitude: 14, period: 3),
+                        ),
+                        child: child,
+                      ),
+                      child: Semantics(
+                        button: true,
+                        label: 'Moci',
+                        excludeSemantics: true,
+                        child: MociMascot(
+                          pose: MociPose.senang,
+                          size: 290,
+                          onTap: _tapMoci,
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-                Positioned(
-                  left: 520,
-                  top: 50,
-                  width: 620,
-                  height: 736,
-                  child: _card(l10n, lang),
-                ),
-              ],
+                  Positioned(
+                    left: 50,
+                    top: 716,
+                    width: 430,
+                    child: Wrap(
+                      spacing: 10,
+                      runSpacing: 10,
+                      children: [
+                        SambutanBadge(text: l10n.sambutanBadge1),
+                        SambutanBadge(text: l10n.sambutanBadge2),
+                        SambutanBadge(text: l10n.sambutanBadge3),
+                      ],
+                    ),
+                  ),
+                  Positioned(
+                    left: 520,
+                    top: 50,
+                    width: 620,
+                    height: 736,
+                    child: _card(l10n, lang),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

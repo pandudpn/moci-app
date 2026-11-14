@@ -2,6 +2,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/widgets.dart';
 
+import '../../../app/motion/ambient_motion.dart';
 import '../../../app/theme/moci_colors.dart';
 import '../../../app/theme/moci_text.dart';
 
@@ -13,7 +14,9 @@ const _logo = [
   ('i', MociColors.logoI),
 ];
 
-/// Latar Beranda: matahari, awan, kilau, dan bukit. Diam (tanpa animasi).
+/// Latar Beranda: matahari, awan, kilau, dan bukit. Awan meluncur, matahari
+/// berputar, dan kilau berkelip seperti `Main.dc.html` / `HP.dc.html`.
+/// Tanpa gerak, gambarnya diam seperti versi diam prototipe.
 /// Posisi dalam koordinat artboard tablet atau HP.
 class BerandaScenery extends StatelessWidget {
   const BerandaScenery.tablet({super.key}) : _phone = false;
@@ -21,40 +24,64 @@ class BerandaScenery extends StatelessWidget {
 
   final bool _phone;
 
+  /// Rentang luncur awan (px artboard) di masing-masing artboard.
+  static const _tabletDrift = (from: -300.0, to: 1500.0);
+  static const _phoneDrift = (from: -200.0, to: 1000.0);
+
   @override
   Widget build(BuildContext context) {
+    final width = _phone ? 844.0 : 1180.0;
+    final height = _phone ? 390.0 : 820.0;
     return ExcludeSemantics(
-      child: Stack(
-        clipBehavior: Clip.none,
-        children: _phone ? _phoneItems : _tabletItems,
+      child: SizedBox(
+        width: width,
+        height: height,
+        // Awan yang meluncur keluar panggung tidak boleh menimpa latar luar.
+        child: ClipRect(
+          child: Stack(
+            clipBehavior: Clip.none,
+            children: _phone ? _phoneItems : _tabletItems,
+          ),
+        ),
       ),
     );
   }
 
-  static const _tabletItems = [
-    Positioned(
-      left: -50,
-      top: -50,
-      width: 190,
-      height: 190,
-      child: CustomPaint(painter: _SunPainter()),
-    ),
-    Positioned(
+  List<Widget> get _tabletItems => [
+    _sun(left: -50, top: -50, spokes: 12, face: true),
+    _cloud(
+      key: const ValueKey('beranda-cloud-1'),
       left: 20,
       top: 96,
       width: 190,
       height: 107,
-      child: Opacity(opacity: .95, child: _Cloud()),
+      opacity: .95,
+      period: 58,
+      drift: _tabletDrift,
     ),
-    Positioned(
+    _cloud(
+      key: const ValueKey('beranda-cloud-2'),
       left: 4,
       top: 214,
       width: 140,
       height: 79,
-      child: Opacity(opacity: .8, child: _Cloud()),
+      opacity: .8,
+      period: 76,
+      drift: _tabletDrift,
     ),
-    Positioned(left: 716, top: 112, width: 24, height: 24, child: _Sparkle()),
-    Positioned(left: 520, top: 64, width: 18, height: 18, child: _Sparkle()),
+    _sparkle(
+      key: const ValueKey('beranda-sparkle-1'),
+      left: 716,
+      top: 112,
+      size: 24,
+    ),
+    _sparkle(
+      key: const ValueKey('beranda-sparkle-2'),
+      left: 520,
+      top: 64,
+      size: 18,
+      delay: -1.2,
+    ),
     Positioned(
       left: 0,
       bottom: 0,
@@ -64,15 +91,23 @@ class BerandaScenery extends StatelessWidget {
     ),
   ];
 
-  static const _phoneItems = [
-    Positioned(
+  List<Widget> get _phoneItems => [
+    _cloud(
+      key: const ValueKey('beranda-cloud-1'),
       left: 8,
       top: 78,
       width: 120,
       height: 68,
-      child: Opacity(opacity: .9, child: _Cloud()),
+      opacity: .9,
+      period: 46,
+      drift: _phoneDrift,
     ),
-    Positioned(left: 236, top: 22, width: 16, height: 16, child: _Sparkle()),
+    _sparkle(
+      key: const ValueKey('beranda-sparkle-1'),
+      left: 236,
+      top: 22,
+      size: 16,
+    ),
     Positioned(
       left: 0,
       bottom: 0,
@@ -81,6 +116,104 @@ class BerandaScenery extends StatelessWidget {
       child: CustomPaint(painter: _HillPainter(phone: true)),
     ),
   ];
+
+  /// mnSpin: 360° per 40 detik, poros tengah. Hanya sinarnya yang berputar.
+  static Widget _sun({
+    required double left,
+    required double top,
+    required int spokes,
+    required bool face,
+  }) {
+    return Positioned(
+      key: const ValueKey('beranda-sun'),
+      left: left,
+      top: top,
+      width: 190,
+      height: 190,
+      child: Stack(
+        children: [
+          Positioned.fill(
+            child: AmbientLayer(
+              builder: (context, seconds, child) => Transform.rotate(
+                angle: sunAngle(t: seconds, period: 40),
+                child: child,
+              ),
+              child: CustomPaint(painter: _SunRaysPainter(spokes: spokes)),
+            ),
+          ),
+          Positioned.fill(
+            child: CustomPaint(painter: _SunDiscPainter(face: face)),
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// mnDrift: linear, berulang; awan mulai dari posisi diamnya.
+  static Widget _cloud({
+    required Key key,
+    required double left,
+    required double top,
+    required double width,
+    required double height,
+    required double opacity,
+    required double period,
+    required ({double from, double to}) drift,
+  }) {
+    return Positioned(
+      key: key,
+      left: left,
+      top: top,
+      width: width,
+      height: height,
+      child: Opacity(
+        opacity: opacity,
+        child: AmbientLayer(
+          builder: (context, seconds, child) => Transform.translate(
+            offset: Offset(
+              driftOffset(
+                startX: left,
+                from: drift.from,
+                to: drift.to,
+                period: period,
+                t: seconds,
+              ),
+              0,
+            ),
+            child: child,
+          ),
+          child: const _Cloud(),
+        ),
+      ),
+    );
+  }
+
+  /// mnTwinkle: 2,4 detik, opacity 0,35 → 1 dan skala 0,75 → 1,1.
+  static Widget _sparkle({
+    required Key key,
+    required double left,
+    required double top,
+    required double size,
+    double delay = 0,
+  }) {
+    return Positioned(
+      key: key,
+      left: left,
+      top: top,
+      width: size,
+      height: size,
+      child: AmbientLayer(
+        builder: (context, seconds, child) {
+          final t = twinkleAt(t: seconds, period: 2.4, delay: delay);
+          return Opacity(
+            opacity: t.opacity,
+            child: Transform.scale(scale: t.scale, child: child),
+          );
+        },
+        child: const _Sparkle(),
+      ),
+    );
+  }
 }
 
 /// Logo "Moci" berhuruf warna berkontur putih.
@@ -222,17 +355,19 @@ class _Cloud extends StatelessWidget {
       const CustomPaint(painter: _CloudPainter());
 }
 
-class _SunPainter extends CustomPainter {
-  const _SunPainter();
+class _SunRaysPainter extends CustomPainter {
+  const _SunRaysPainter({required this.spokes});
+
+  final int spokes;
 
   @override
   void paint(Canvas canvas, Size size) {
     canvas.scale(size.width / 230);
     final ray = Paint()..color = const Color(0xFFFFE066);
-    for (var i = 0; i < 12; i++) {
+    for (var i = 0; i < spokes; i++) {
       canvas.save();
       canvas.translate(115, 115);
-      canvas.rotate(i * math.pi / 6);
+      canvas.rotate(i * 2 * math.pi / spokes);
       canvas.translate(-115, -115);
       canvas.drawRRect(
         RRect.fromRectAndRadius(
@@ -243,6 +378,21 @@ class _SunPainter extends CustomPainter {
       );
       canvas.restore();
     }
+  }
+
+  @override
+  bool shouldRepaint(_SunRaysPainter old) => old.spokes != spokes;
+}
+
+class _SunDiscPainter extends CustomPainter {
+  const _SunDiscPainter({required this.face});
+
+  /// Matahari Beranda punya wajah; matahari Sambutan tidak.
+  final bool face;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    canvas.scale(size.width / 230);
     canvas.drawCircle(
       const Offset(115, 115),
       64,
@@ -253,14 +403,15 @@ class _SunPainter extends CustomPainter {
       56,
       Paint()..color = const Color(0xFFFFD43B),
     );
-    final face = Paint()..color = const Color(0xFF7A4A2A);
+    if (!face) return;
+    final ink = Paint()..color = const Color(0xFF7A4A2A);
     canvas.drawOval(
       Rect.fromCenter(center: const Offset(100, 112), width: 10, height: 14),
-      face,
+      ink,
     );
     canvas.drawOval(
       Rect.fromCenter(center: const Offset(130, 112), width: 10, height: 14),
-      face,
+      ink,
     );
     canvas.drawPath(
       Path()
@@ -275,7 +426,7 @@ class _SunPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(_SunPainter old) => false;
+  bool shouldRepaint(_SunDiscPainter old) => old.face != face;
 }
 
 class _CloudPainter extends CustomPainter {

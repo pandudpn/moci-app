@@ -2,6 +2,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/widgets.dart';
 
+import '../../../app/motion/ambient_motion.dart';
 import '../../../app/theme/moci_colors.dart';
 import '../../../app/theme/moci_text.dart';
 import 'sambutan_icons.dart';
@@ -15,50 +16,114 @@ const _logo = [
   ('i', MociColors.logoI),
 ];
 
-/// Matahari, awan, dan bukit di belakang Sambutan (diam, tanpa animasi).
+/// Matahari, awan, dan bukit di belakang Sambutan. Awan meluncur dan matahari
+/// berputar seperti `Sambutan.dc.html`; tanpa gerak, gambarnya diam.
 class SambutanScenery extends StatelessWidget {
   const SambutanScenery({super.key});
 
+  static const _width = 1180.0;
+  static const _height = 820.0;
+
   @override
   Widget build(BuildContext context) {
-    return const ExcludeSemantics(
-      child: Stack(
-        children: [
-          Positioned(
-            left: 330,
-            top: -40,
-            width: 190,
-            height: 190,
-            child: CustomPaint(painter: _SunPainter()),
+    return ExcludeSemantics(
+      child: SizedBox(
+        width: _width,
+        height: _height,
+        // Awan yang meluncur keluar panggung tidak boleh menimpa latar luar.
+        child: ClipRect(
+          child: Stack(
+            children: [
+              Positioned(
+                key: const ValueKey('sambutan-sun'),
+                left: 330,
+                top: -40,
+                width: 190,
+                height: 190,
+                child: Stack(
+                  children: [
+                    Positioned.fill(
+                      // sbSpin: 360° per 40 detik, poros tengah.
+                      child: AmbientLayer(
+                        builder: (context, seconds, child) => Transform.rotate(
+                          angle: sunAngle(t: seconds, period: 40),
+                          child: child,
+                        ),
+                        child: const CustomPaint(painter: _SunRaysPainter()),
+                      ),
+                    ),
+                    const Positioned.fill(
+                      child: CustomPaint(painter: _SunDiscPainter()),
+                    ),
+                  ],
+                ),
+              ),
+              _cloud(
+                key: const ValueKey('sambutan-cloud-1'),
+                left: 760,
+                top: 200,
+                width: 190,
+                height: 107,
+                opacity: .95,
+                period: 62,
+              ),
+              _cloud(
+                key: const ValueKey('sambutan-cloud-2'),
+                left: 250,
+                top: 40,
+                width: 130,
+                height: 73,
+                opacity: .85,
+                period: 74,
+              ),
+              Positioned(
+                left: 0,
+                bottom: 0,
+                width: _width,
+                height: 300,
+                child: CustomPaint(painter: _HillPainter()),
+              ),
+            ],
           ),
-          Positioned(
-            left: 760,
-            top: 200,
-            width: 190,
-            height: 107,
-            child: Opacity(
-              opacity: .95,
-              child: CustomPaint(painter: _CloudPainter()),
+        ),
+      ),
+    );
+  }
+
+  /// sbDrift: -300 px ke 1500 px, linear, berulang.
+  static Widget _cloud({
+    required Key key,
+    required double left,
+    required double top,
+    required double width,
+    required double height,
+    required double opacity,
+    required double period,
+  }) {
+    return Positioned(
+      key: key,
+      left: left,
+      top: top,
+      width: width,
+      height: height,
+      child: Opacity(
+        opacity: opacity,
+        child: AmbientLayer(
+          builder: (context, seconds, child) => Transform.translate(
+            offset: Offset(
+              driftOffset(
+                startX: left,
+                from: -300,
+                to: 1500,
+                period: period,
+                t: seconds,
+              ),
+              0,
             ),
+            child: child,
           ),
-          Positioned(
-            left: 250,
-            top: 40,
-            width: 130,
-            height: 73,
-            child: Opacity(
-              opacity: .85,
-              child: CustomPaint(painter: _CloudPainter()),
-            ),
-          ),
-          Positioned(
-            left: 0,
-            bottom: 0,
-            width: 1180,
-            height: 300,
-            child: CustomPaint(painter: _HillPainter()),
-          ),
-        ],
+          child: const CustomPaint(painter: _CloudPainter()),
+        ),
       ),
     );
   }
@@ -160,8 +225,8 @@ class SambutanBadge extends StatelessWidget {
   }
 }
 
-class _SunPainter extends CustomPainter {
-  const _SunPainter();
+class _SunRaysPainter extends CustomPainter {
+  const _SunRaysPainter();
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -181,6 +246,18 @@ class _SunPainter extends CustomPainter {
       );
       canvas.restore();
     }
+  }
+
+  @override
+  bool shouldRepaint(_SunRaysPainter old) => false;
+}
+
+class _SunDiscPainter extends CustomPainter {
+  const _SunDiscPainter();
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    canvas.scale(size.width / 230);
     canvas.drawCircle(
       const Offset(115, 115),
       64,
@@ -194,7 +271,7 @@ class _SunPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(_SunPainter old) => false;
+  bool shouldRepaint(_SunDiscPainter old) => false;
 }
 
 class _CloudPainter extends CustomPainter {
