@@ -1,0 +1,170 @@
+import 'dart:async';
+
+import 'asset_catalog.dart';
+import 'audio_engine.dart';
+import 'sfx.dart';
+
+/// Aturan prioritas dan volume: narasi > efek > musik.
+final class AudioService {
+  AudioService({required this._engine, required this._assets}) {
+    _sub = _engine.onFinished.listen(_onFinished);
+  }
+
+  static const narrationVolume = 1.0;
+  static const sfxVolume = 0.7;
+  static const musicVolume = 0.25;
+  static const musicDuckedVolume = 0.10;
+  static const musicAsset = 'assets/audio/musik/latar.ogg';
+
+  final AudioEngine _engine;
+  final AssetCatalog _assets;
+  late final StreamSubscription<SoundId> _sub;
+
+  bool _musicOn = true;
+  bool _sfxOn = true;
+  bool _musicRequested = false;
+
+  SoundId? _musicId;
+  bool _musicStarting = false;
+
+  SoundId? _narrationId;
+  String? _narrationAsset;
+  Completer<void>? _narrationDone;
+  int _narrationGen = 0;
+
+  bool get _ready => _engine.isReady;
+
+  /// Memuat semua efek sekali setelah mesin siap.
+  Future<void> preloadSfx() async {
+    if (!_ready) return;
+    for (final s in Sfx.values) {
+      if (_assets.has(s.asset)) await _engine.preload(s.asset);
+    }
+  }
+
+  Future<SoundId?> narrate(String asset) async {
+    await stopNarration();
+    if (!_ready || !_assets.has(asset)) return null;
+    final gen = ++_narrationGen;
+    _duck(true);
+    final id = await _engine.play(asset, volume: narrationVolume);
+    if (gen != _narrationGen) {
+      // Narasi lain mengambil alih selagi memuat.
+      if (id != null) {
+        await _engine.stop(id);
+        await _engine.release(asset);
+      }
+      return null;
+    }
+    if (id == null) {
+      _duck(false);
+      await _engine.release(asset);
+      return null;
+    }
+    _narrationId = id;
+    _narrationAsset = asset;
+    _narrationDone = Completer<void>();
+    return id;
+  }
+
+  /// Selesai saat narasi [id] selesai atau dihentikan.
+  Future<void> narrationFinished(SoundId id) =>
+      id == _narrationId ? _narrationDone!.future : Future.value();
+
+  Future<void> stopNarration() async {
+    _narrationGen++;
+    final id = _narrationId;
+    final asset = _narrationAsset;
+    _clearNarration();
+    if (id != null) await _engine.stop(id);
+    if (asset != null) await _engine.release(asset);
+  }
+
+  Future<void> playSfx(Sfx s) async {
+    if (!_sfxOn || !_ready || !_assets.has(s.asset)) return;
+    await _engine.play(s.asset, volume: sfxVolume);
+  }
+
+  Future<void> startMusic() async {
+    _musicRequested = true;
+    if (!_musicOn ||
+        !_ready ||
+        _musicId != null ||
+        _musicStarting ||
+        !_assets.has(musicAsset)) {
+      return;
+    }
+    _musicStarting = true;
+    try {
+      final id = await _engine.play(
+        musicAsset,
+        volume: _narrationId != null ? musicDuckedVolume : musicVolume,
+        loop: true,
+      );
+      if (id == null) return;
+      if (!_musicOn || !_musicRequested) {
+        await _engine.stop(id);
+        return;
+      }
+      _musicId = id;
+    } finally {
+      _musicStarting = false;
+    }
+  }
+
+  Future<void> stopMusic() async {
+    _musicRequested = false;
+    final id = _musicId;
+    _musicId = null;
+    if (id != null) await _engine.stop(id);
+  }
+
+  void applySettings({required bool music, required bool sfx}) {
+    final turnedOn = music && !_musicOn;
+    _musicOn = music;
+    _sfxOn = sfx;
+    if (!music) {
+      final id = _musicId;
+      _musicId = null;
+      if (id != null) unawaited(_engine.stop(id));
+    } else if (turnedOn && _musicRequested) {
+      unawaited(startMusic());
+    }
+  }
+
+  Future<void> stopAll() async {
+    _narrationGen++;
+    final asset = _narrationAsset;
+    _clearNarration();
+    _musicId = null;
+    await _engine.stopAll();
+    if (asset != null) await _engine.release(asset);
+  }
+
+  Future<void> dispose() => _sub.cancel();
+
+  void _clearNarration() {
+    _narrationId = null;
+    _narrationAsset = null;
+    final done = _narrationDone;
+    _narrationDone = null;
+    if (done != null && !done.isCompleted) done.complete();
+    _duck(false);
+  }
+
+  void _duck(bool ducked) {
+    final id = _musicId;
+    if (id == null) return;
+    unawaited(_engine.setVolume(id, ducked ? musicDuckedVolume : musicVolume));
+  }
+
+  void _onFinished(SoundId id) {
+    if (id == _narrationId) {
+      final asset = _narrationAsset;
+      _clearNarration();
+      if (asset != null) unawaited(_engine.release(asset));
+    } else if (id == _musicId) {
+      _musicId = null;
+    }
+  }
+}
