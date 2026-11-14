@@ -675,5 +675,21 @@
   "mewarnaiSayClear": "Ayo mulai dari awal!",
   "@mewarnaiSayClear": {
     "description": "narasi"
+  },
+  "mewarnaiSaved": "Tersimpan di Karyaku!",
+  "@mewarnaiSaved": {
+    "description": "Toast setelah karya tersimpan"
+  },
+  "mewarnaiSaySaved": "Tersimpan! Bagus sekali!",
+  "@mewarnaiSaySaved": {
+    "description": "narasi"
+  },
+  "mewarnaiPickPage": "Pilih gambar",
+  "@mewarnaiPickPage": {
+    "description": "Judul pemilih gambar"
+  },
+  "mewarnaiClose": "Tutup",
+  "@mewarnaiClose": {
+    "description": "Tombol menutup dialog"
   }
 }

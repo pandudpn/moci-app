@@ -680,4 +680,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get mewarnaiSayClear => 'Let\'s start over!';
+
+  @override
+  String get mewarnaiSaved => 'Saved to My Artwork!';
+
+  @override
+  String get mewarnaiSaySaved => 'Saved! Beautiful work!';
+
+  @override
+  String get mewarnaiPickPage => 'Pick a picture';
+
+  @override
+  String get mewarnaiClose => 'Close';
 }

@@ -1327,6 +1327,30 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Ayo mulai dari awal!'**
   String get mewarnaiSayClear;
+
+  /// Toast setelah karya tersimpan
+  ///
+  /// In id, this message translates to:
+  /// **'Tersimpan di Karyaku!'**
+  String get mewarnaiSaved;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Tersimpan! Bagus sekali!'**
+  String get mewarnaiSaySaved;
+
+  /// Judul pemilih gambar
+  ///
+  /// In id, this message translates to:
+  /// **'Pilih gambar'**
+  String get mewarnaiPickPage;
+
+  /// Tombol menutup dialog
+  ///
+  /// In id, this message translates to:
+  /// **'Tutup'**
+  String get mewarnaiClose;
 }
 
 class _AppLocalizationsDelegate

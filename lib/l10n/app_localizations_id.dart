@@ -682,4 +682,16 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get mewarnaiSayClear => 'Ayo mulai dari awal!';
+
+  @override
+  String get mewarnaiSaved => 'Tersimpan di Karyaku!';
+
+  @override
+  String get mewarnaiSaySaved => 'Tersimpan! Bagus sekali!';
+
+  @override
+  String get mewarnaiPickPage => 'Pilih gambar';
+
+  @override
+  String get mewarnaiClose => 'Tutup';
 }

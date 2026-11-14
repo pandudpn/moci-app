@@ -672,5 +672,21 @@
   "mewarnaiSayClear": "Let's start over!",
   "@mewarnaiSayClear": {
     "description": "narasi"
+  },
+  "mewarnaiSaved": "Saved to My Artwork!",
+  "@mewarnaiSaved": {
+    "description": "Toast after a picture is saved"
+  },
+  "mewarnaiSaySaved": "Saved! Beautiful work!",
+  "@mewarnaiSaySaved": {
+    "description": "narasi"
+  },
+  "mewarnaiPickPage": "Pick a picture",
+  "@mewarnaiPickPage": {
+    "description": "Page picker title"
+  },
+  "mewarnaiClose": "Close",
+  "@mewarnaiClose": {
+    "description": "Dialog close button"
   }
 }

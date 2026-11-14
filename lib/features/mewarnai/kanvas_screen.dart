@@ -12,6 +12,7 @@ import '../../app/theme/moci_colors.dart';
 import '../../app/theme/moci_text.dart';
 import '../../core/audio/audio_providers.dart';
 import '../../core/audio/narrator.dart';
+import '../../core/audio/sfx.dart';
 import '../../core/content/coloring.dart';
 import '../../core/prefs/prefs_controller.dart';
 import '../../core/progress/progress_controller.dart';
@@ -21,9 +22,15 @@ import '../../widgets/moci_mascot.dart';
 import '../../widgets/pressable.dart';
 import 'mewarnai_engine.dart';
 import 'mewarnai_model.dart';
+import 'mewarnai_painter.dart';
 import 'mewarnai_providers.dart';
 import 'widgets/coloring_canvas.dart';
+import 'widgets/page_picker.dart';
 import 'widgets/tool_bar.dart';
+import 'widgets/wide_dialog.dart';
+
+const _hijau = Color(0xFF26A03B);
+const _hijauBayang = Color(0xFF1B7A2C);
 
 /// Layar mewarnai satu halaman: kanvas sentuh, panel alat, batal, dan draf
 /// otomatis.
@@ -36,6 +43,8 @@ class KanvasScreen extends ConsumerStatefulWidget {
   static const toolbarKey = ValueKey('kanvas-toolbar');
   static const undoKey = ValueKey('kanvas-undo');
   static const clearKey = ValueKey('kanvas-clear');
+  static const saveKey = ValueKey('kanvas-save');
+  static const toastKey = ValueKey('kanvas-toast');
 
   static ValueKey<AlatMewarnai> toolKey(AlatMewarnai alat) =>
       MewarnaiToolBar.toolKey(alat);
@@ -56,7 +65,10 @@ class _KanvasScreenState extends ConsumerState<KanvasScreen> {
   MesinMewarnai? _mesin;
   KaryaController? _karya;
   Timer? _draf;
+  Timer? _toast;
   bool _dialihkan = false;
+  bool _menyimpan = false;
+  bool _adaToast = false;
 
   AlatMewarnai? _alatLalu;
   UkuranKuas? _ukuranLalu;
@@ -87,6 +99,7 @@ class _KanvasScreenState extends ConsumerState<KanvasScreen> {
   @override
   void dispose() {
     _draf?.cancel();
+    _toast?.cancel();
     final mesin = _mesin;
     if (mesin != null) {
       mesin.removeListener(_berubah);
@@ -177,6 +190,18 @@ class _KanvasScreenState extends ConsumerState<KanvasScreen> {
               ),
             ),
           ),
+          if (_adaToast)
+            Positioned(
+              left: 24,
+              width: 864,
+              top: 660,
+              child: Center(
+                child: _Toast(
+                  key: KanvasScreen.toastKey,
+                  teks: l10n.mewarnaiSaved,
+                ),
+              ),
+            ),
         ],
       ),
     );
@@ -204,6 +229,25 @@ class _KanvasScreenState extends ConsumerState<KanvasScreen> {
           ),
         ),
         const Spacer(),
+        MociPressable(
+          onTap: _gantiHalaman,
+          shadowColor: MenuTheme.mewarnai.shadow,
+          borderRadius: BorderRadius.circular(999),
+          depth: 5,
+          child: SizedBox(
+            height: 58,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Center(
+                child: Text(
+                  l10n.mewarnaiChangePage,
+                  style: MociText.button.copyWith(fontSize: 21),
+                ),
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(width: 12),
         MociPressable(
           key: KanvasScreen.undoKey,
           onTap: mesin.bisaBatal ? () => mesin.batal() : null,
@@ -246,6 +290,33 @@ class _KanvasScreenState extends ConsumerState<KanvasScreen> {
               child: CustomPaint(
                 size: Size.square(28),
                 painter: _IkonMulaiLagi(),
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(width: 12),
+        MociPressable(
+          key: KanvasScreen.saveKey,
+          onTap: _menyimpan ? null : _simpan,
+          color: _hijau,
+          shadowColor: _hijauBayang,
+          borderRadius: BorderRadius.circular(999),
+          depth: 5,
+          semanticLabel: l10n.mewarnaiSave,
+          child: SizedBox(
+            height: 58,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 22),
+              child: Center(
+                child: ExcludeSemantics(
+                  child: Text(
+                    l10n.mewarnaiSave,
+                    style: MociText.button.copyWith(
+                      fontSize: 21,
+                      color: MociColors.white,
+                    ),
+                  ),
+                ),
               ),
             ),
           ),
@@ -345,6 +416,60 @@ class _KanvasScreenState extends ConsumerState<KanvasScreen> {
     _say(('mewarnaiSayClear', context.l10n.mewarnaiSayClear));
   }
 
+  /// Menulis karya ber-PNG lalu mencatat progres sekali. Galat tulis tidak
+  /// menghentikan layar: draf tetap ada (M14).
+  Future<void> _simpan() async {
+    final mesin = _mesin;
+    if (mesin == null || _menyimpan) return;
+    setState(() => _menyimpan = true);
+    // Goresan yang masih berjalan ikut tersimpan.
+    mesin.akhiri();
+    final data = mesin.data;
+    final cap =
+        ref.read(capPictureProvider).value ?? const <String, PictureInfo>{};
+    try {
+      final png = await renderKaryaPng(
+        halaman: mesin.halaman,
+        data: data,
+        cap: cap,
+      );
+      await ref.read(karyaProvider.notifier).simpanKarya(data, png);
+      if (!mounted) return;
+      final progres = ref.read(progressProvider.notifier);
+      unawaited(progres.recordKarya());
+      unawaited(progres.markItem('mewarnai', 'diwarnai', mesin.halaman.id));
+      _tampilkanToast();
+      _say(('mewarnaiSaySaved', context.l10n.mewarnaiSaySaved));
+      unawaited(ref.read(audioServiceProvider).playSfx(Sfx.bintang));
+    } on Object {
+      // Draf sudah tersimpan; layar boleh dipakai lagi.
+    } finally {
+      if (mounted) setState(() => _menyimpan = false);
+    }
+  }
+
+  void _tampilkanToast() {
+    _toast?.cancel();
+    setState(() => _adaToast = true);
+    _toast = Timer(const Duration(milliseconds: 1800), () {
+      if (mounted) setState(() => _adaToast = false);
+    });
+  }
+
+  Future<void> _gantiHalaman() async {
+    final id = await showWideDialog<String>(
+      context,
+      builder: (dialog) => PagePickerDialog(
+        halamanAktif: widget.halaman,
+        onPick: (id) => Navigator.of(dialog).pop(id),
+      ),
+    );
+    if (id == null || !mounted || id == widget.halaman) return;
+    // Draf halaman sekarang ditulis sebelum pindah supaya tidak hilang.
+    _tulisDraf();
+    context.pushReplacement('${Routes.mewarnai}/$id');
+  }
+
   void _say((String, String) baris) {
     final lang = ref.read(prefsProvider).lang;
     unawaited(
@@ -437,4 +562,39 @@ class _IkonMulaiLagi extends CustomPainter {
 
   @override
   bool shouldRepaint(_IkonMulaiLagi old) => false;
+}
+
+/// Pil "tersimpan" yang muncul 1800 ms setelah Simpan berhasil.
+class _Toast extends StatelessWidget {
+  const _Toast({super.key, required this.teks});
+
+  final String teks;
+
+  @override
+  Widget build(BuildContext context) {
+    return Semantics(
+      liveRegion: true,
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          color: _hijau,
+          borderRadius: BorderRadius.circular(999),
+          boxShadow: const [
+            BoxShadow(color: Color(0x33000000), offset: Offset(0, 6)),
+          ],
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 16),
+          child: Text(
+            teks,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: MociText.button.copyWith(
+              fontSize: 22,
+              color: MociColors.white,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 }
