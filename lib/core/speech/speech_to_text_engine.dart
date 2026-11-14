@@ -56,17 +56,24 @@ final class SpeechToTextEngine implements SpeechEngine {
 
   @override
   Future<SpeechStatus> prepare(AppLang lang) async {
-    if (!await hasPermission()) return SpeechStatus.izinDitolak;
     if (!_siap) {
       final bool ok;
       try {
+        // `initialize` adalah satu-satunya jalur yang memunculkan dialog izin
+        // sistem; memeriksa izin lebih dulu membuat dialog itu tidak pernah
+        // muncul di perangkat yang izinnya belum pernah ditentukan.
         ok = await _plugin.initialize(onError: _onError, onStatus: _onStatus);
       } catch (_) {
         return SpeechStatus.tidakTersedia;
       }
-      if (!ok) return SpeechStatus.tidakTersedia;
+      if (!ok) {
+        return await hasPermission()
+            ? SpeechStatus.tidakTersedia
+            : SpeechStatus.izinDitolak;
+      }
       _siap = true;
     }
+    if (!await hasPermission()) return SpeechStatus.izinDitolak;
     return await _adaBahasa(lang)
         ? SpeechStatus.siap
         : SpeechStatus.tidakTersedia;
