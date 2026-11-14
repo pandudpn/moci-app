@@ -155,6 +155,71 @@ void main() {
       expect(r.top, greaterThan(400));
       expect(r.bottom, lessThan(560));
     });
+
+    Future<void> keyboardOn(WidgetTester t, double kbHeight) async {
+      t.view.viewInsets = FakeViewPadding(bottom: kbHeight);
+      addTearDown(t.view.resetViewInsets);
+      await t.pump();
+      await t.pump(const Duration(milliseconds: 100));
+    }
+
+    /// Menggeser isi ke atas dengan jari, dari titik yang aman di dalam kartu.
+    Future<void> dragUp(WidgetTester t, Offset from) async {
+      await t.dragFrom(from, const Offset(0, -420));
+      await t.pump();
+      await t.pump(const Duration(milliseconds: 600));
+    }
+
+    Future<void> checkScroll(
+      WidgetTester t,
+      Size size,
+      double kbHeight,
+      Offset from,
+    ) async {
+      final env = TestEnv(onboarded: false);
+      await _open(t, env: env, size: size);
+      await keyboardOn(t, kbHeight);
+      final limit = size.height - kbHeight;
+      final field = t.getRect(find.byType(TextField));
+      expect(field.top, greaterThanOrEqualTo(0));
+      expect(field.bottom, lessThanOrEqualTo(limit));
+      final cta = find.text('Ayo Mulai!');
+      expect(
+        t.getRect(cta).bottom,
+        greaterThan(limit),
+        reason: 'tombol masih tertutup keyboard sebelum digulir',
+      );
+
+      await dragUp(t, from);
+      final scrolled = t.getRect(cta);
+      expect(scrolled.top, greaterThanOrEqualTo(0));
+      expect(scrolled.bottom, lessThanOrEqualTo(limit));
+
+      await t.tap(cta);
+      await _settle(t);
+      expect(_container(t).read(prefsProvider).onboarded, isTrue);
+    }
+
+    testWidgets('HP: menggulir sampai tombol terlihat lalu bisa ditap', (
+      t,
+    ) async {
+      await checkScroll(t, phoneSize, 200, const Offset(400, 90));
+    });
+
+    testWidgets('iPad: menggulir sampai tombol terlihat lalu bisa ditap', (
+      t,
+    ) async {
+      await checkScroll(t, tabletSize, 400, const Offset(885, 150));
+    });
+
+    testWidgets('tanpa keyboard: geser tidak menggeser isi', (t) async {
+      await _open(t);
+      final before = t.getRect(find.byType(TextField));
+      await t.dragFrom(const Offset(885, 150), const Offset(0, -200));
+      await t.pump();
+      await t.pump(const Duration(milliseconds: 600));
+      expect(t.getRect(find.byType(TextField)), before);
+    });
   });
 
   // Tanpa router: penulisan yang tertahan tidak boleh mengalihkan layar

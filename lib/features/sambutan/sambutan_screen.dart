@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -32,6 +34,12 @@ const _keyboardGap = 24.0;
 /// Posisi bawah kolom nama di panggung bila belum sempat diukur.
 const _fieldBottomFallback = 505.0;
 
+/// Sisa ruang di bawah tombol yang ikut ditampilkan di atas keyboard.
+const _ctaGap = 24.0;
+
+/// Bawah tombol CTA di panggung bila belum sempat diukur.
+const _ctaBottomFallback = 758.0;
+
 /// Sambutan: tampil sekali saat pertama dibuka. Anak memilih bahasa, mengisi
 /// nama, dan memilih rentang usia.
 class SambutanScreen extends ConsumerStatefulWidget {
@@ -51,7 +59,15 @@ class _SambutanScreenState extends ConsumerState<SambutanScreen> {
   final _name = TextEditingController();
   final _rootKey = GlobalKey();
   final _fieldKey = GlobalKey();
+  final _ctaKey = GlobalKey();
+  final _scroll = ScrollController();
   AgeLevel _age = AgeLevel.pemula;
+
+  /// Tinggi keyboard yang terakhir dipakai mengatur posisi gulir.
+  double? _kbApplied;
+
+  /// Posisi gulir awal untuk keyboard yang sedang terbuka.
+  double _scrollStart = 0;
 
   /// Sedang menyimpan: ketukan lain diabaikan supaya tidak tersimpan dua kali.
   bool _saving = false;
@@ -65,6 +81,7 @@ class _SambutanScreenState extends ConsumerState<SambutanScreen> {
   @override
   void dispose() {
     _name.dispose();
+    _scroll.dispose();
     super.dispose();
   }
 
@@ -123,8 +140,8 @@ class _SambutanScreenState extends ConsumerState<SambutanScreen> {
     context.go(Routes.beranda);
   }
 
-  /// Bawah kolom nama pada koordinat panggung; geser tidak ikut terhitung
-  /// karena [_rootKey] berada di dalam transformasi geser.
+  /// Bawah kolom nama pada koordinat panggung; guliran tidak ikut terhitung
+  /// karena [_rootKey] berada di dalam isi yang digulir.
   double _fieldBottom() {
     final root = _rootKey.currentContext?.findRenderObject();
     final field = _fieldKey.currentContext?.findRenderObject();
@@ -134,6 +151,42 @@ class _SambutanScreenState extends ConsumerState<SambutanScreen> {
     return field.localToGlobal(Offset(0, field.size.height), ancestor: root).dy;
   }
 
+  /// Bawah tombol CTA pada koordinat panggung.
+  double _ctaBottom() {
+    final root = _rootKey.currentContext?.findRenderObject();
+    final cta = _ctaKey.currentContext?.findRenderObject();
+    if (root is! RenderBox || cta is! RenderBox || !cta.attached) {
+      return _ctaBottomFallback;
+    }
+    return cta.localToGlobal(Offset(0, cta.size.height), ancestor: root).dy;
+  }
+
+  /// Ruang kosong di bawah isi (= jarak gulir maksimum) dan posisi gulir awal
+  /// selagi keyboard terbuka. Tanpa keyboard keduanya nol.
+  ({double extra, double start}) _scrollPlan(double kb) {
+    if (kb <= 0) return (extra: 0, start: 0);
+    // Garis atas keyboard pada koordinat panggung.
+    final visible = _stageHeight - kb;
+    final extra = math.max(0.0, _ctaBottom() + _ctaGap - visible);
+    final start = (_fieldBottom() + _keyboardGap - visible).clamp(0.0, extra);
+    return (extra: extra, start: start);
+  }
+
+  /// Posisi gulir hanya diatur ulang saat tinggi keyboard berubah, supaya
+  /// guliran jari anak tidak dilawan oleh bangunan ulang layar.
+  void _syncScroll(double kb, double start) {
+    if (kb == _kbApplied) return;
+    _kbApplied = kb;
+    _scrollStart = start;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted || !_scroll.hasClients) return;
+      final position = _scroll.position;
+      _scroll.jumpTo(
+        _scrollStart.clamp(position.minScrollExtent, position.maxScrollExtent),
+      );
+    });
+  }
+
   Widget _content(BuildContext context) {
     final l10n = context.l10n;
     final lang = ref.watch(prefsProvider.select((p) => p.lang));
@@ -141,10 +194,11 @@ class _SambutanScreenState extends ConsumerState<SambutanScreen> {
         '${l10n.sambutanHello}, '
         '${_trimmed.isEmpty ? l10n.sambutanFriend : _trimmed}!';
 
-    final kb = MediaQuery.viewInsetsOf(context).bottom / context.stageScale;
-    final shift = kb <= 0
-        ? 0.0
-        : (_fieldBottom() + _keyboardGap - (_stageHeight - kb)).clamp(0.0, kb);
+    // Bagian bawah layar yang tertutup keyboard, pada koordinat panggung.
+    final kb = (MediaQuery.viewInsetsOf(context).bottom / context.stageScale)
+        .clamp(0.0, _stageHeight);
+    final plan = _scrollPlan(kb);
+    _syncScroll(kb, plan.start);
 
     // Satu jam gerak untuk awan, matahari, gelembung, dan Moci di layar ini.
     return AmbientMotion(
@@ -154,85 +208,102 @@ class _SambutanScreenState extends ConsumerState<SambutanScreen> {
           // Ketukan di luar kolom nama melepas fokus; keyboard ikut turun.
           behavior: HitTestBehavior.opaque,
           onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-          child: Transform.translate(
-            offset: Offset(0, -shift),
-            child: SizedBox(
-              key: _rootKey,
-              width: 1180,
-              height: _stageHeight,
-              child: Stack(
-                clipBehavior: Clip.none,
-                children: [
-                  const SambutanScenery(),
-                  Positioned(
-                    left: 70,
-                    top: 56,
-                    child: SambutanLogo(tag: l10n.sambutanTag),
-                  ),
-                  Positioned(
-                    left: 290,
-                    top: 232,
-                    child: AmbientLayer(
-                      key: const ValueKey('sambutan-bubble'),
-                      // sbWob: goyang -2° ke 2°, poros 10% 100%.
-                      builder: (context, seconds, child) => Transform.rotate(
-                        angle: wobbleAngle(t: seconds, period: 3),
-                        alignment: const Alignment(-.8, 1),
-                        child: child,
+          child: SingleChildScrollView(
+            controller: _scroll,
+            // Tanpa keyboard isi pas setinggi panggung: tidak ada guliran.
+            physics: plan.extra > 0
+                ? const ClampingScrollPhysics()
+                : const NeverScrollableScrollPhysics(),
+            child: Column(
+              children: [
+                SizedBox(
+                  key: _rootKey,
+                  width: 1180,
+                  height: _stageHeight,
+                  child: Stack(
+                    clipBehavior: Clip.none,
+                    children: [
+                      const SambutanScenery(),
+                      Positioned(
+                        left: 70,
+                        top: 56,
+                        child: SambutanLogo(tag: l10n.sambutanTag),
                       ),
-                      child: _Bubble(text: hello),
-                    ),
-                  ),
-                  Positioned(
-                    left: 96,
-                    top: 280,
-                    width: 290,
-                    height: 290,
-                    child: AmbientLayer(
-                      key: const ValueKey('sambutan-moci'),
-                      // sbBob: naik 14 px tiap 3 detik.
-                      builder: (context, seconds, child) => Transform.translate(
-                        offset: Offset(
-                          0,
-                          bobOffset(t: seconds, amplitude: 14, period: 3),
-                        ),
-                        child: child,
-                      ),
-                      child: Semantics(
-                        button: true,
-                        label: 'Moci',
-                        excludeSemantics: true,
-                        child: MociMascot(
-                          pose: MociPose.senang,
-                          size: 290,
-                          onTap: _tapMoci,
+                      Positioned(
+                        left: 290,
+                        top: 232,
+                        child: AmbientLayer(
+                          key: const ValueKey('sambutan-bubble'),
+                          // sbWob: goyang -2° ke 2°, poros 10% 100%.
+                          builder: (context, seconds, child) =>
+                              Transform.rotate(
+                                angle: wobbleAngle(t: seconds, period: 3),
+                                alignment: const Alignment(-.8, 1),
+                                child: child,
+                              ),
+                          child: _Bubble(text: hello),
                         ),
                       ),
-                    ),
+                      Positioned(
+                        left: 96,
+                        top: 280,
+                        width: 290,
+                        height: 290,
+                        child: AmbientLayer(
+                          key: const ValueKey('sambutan-moci'),
+                          // sbBob: naik 14 px tiap 3 detik.
+                          builder: (context, seconds, child) =>
+                              Transform.translate(
+                                offset: Offset(
+                                  0,
+                                  bobOffset(
+                                    t: seconds,
+                                    amplitude: 14,
+                                    period: 3,
+                                  ),
+                                ),
+                                child: child,
+                              ),
+                          child: Semantics(
+                            button: true,
+                            label: 'Moci',
+                            excludeSemantics: true,
+                            child: MociMascot(
+                              pose: MociPose.senang,
+                              size: 290,
+                              onTap: _tapMoci,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        left: 50,
+                        top: 716,
+                        width: 430,
+                        child: Wrap(
+                          spacing: 10,
+                          runSpacing: 10,
+                          children: [
+                            SambutanBadge(text: l10n.sambutanBadge1),
+                            SambutanBadge(text: l10n.sambutanBadge2),
+                            SambutanBadge(text: l10n.sambutanBadge3),
+                          ],
+                        ),
+                      ),
+                      Positioned(
+                        left: 520,
+                        top: 50,
+                        width: 620,
+                        height: 736,
+                        child: _card(l10n, lang),
+                      ),
+                    ],
                   ),
-                  Positioned(
-                    left: 50,
-                    top: 716,
-                    width: 430,
-                    child: Wrap(
-                      spacing: 10,
-                      runSpacing: 10,
-                      children: [
-                        SambutanBadge(text: l10n.sambutanBadge1),
-                        SambutanBadge(text: l10n.sambutanBadge2),
-                        SambutanBadge(text: l10n.sambutanBadge3),
-                      ],
-                    ),
-                  ),
-                  Positioned(
-                    left: 520,
-                    top: 50,
-                    width: 620,
-                    height: 736,
-                    child: _card(l10n, lang),
-                  ),
-                ],
-              ),
+                ),
+                // Ruang kosong ini yang membuat isi bisa digulir ke atas
+                // sampai tombol terbebas dari keyboard.
+                SizedBox(height: plan.extra),
+              ],
             ),
           ),
         ),
@@ -343,6 +414,7 @@ class _SambutanScreenState extends ConsumerState<SambutanScreen> {
             bottom: 28,
             height: 80,
             child: MociPressable(
+              key: _ctaKey,
               color: MociColors.correct,
               shadowColor: MociColors.correctShadow,
               depth: 9,
