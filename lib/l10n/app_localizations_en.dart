@@ -796,4 +796,188 @@ class AppLocalizationsEn extends AppLocalizations {
   String berandaContinueAngka(String angka) {
     return 'Number $angka';
   }
+
+  @override
+  String get hewanGroups => 'Animal groups';
+
+  @override
+  String get hewanGroupAll => 'All';
+
+  @override
+  String get hewanGroupRumah => 'Pets & Farm';
+
+  @override
+  String get hewanGroupLiar => 'Wild';
+
+  @override
+  String get hewanGroupReptil => 'Reptiles & Frogs';
+
+  @override
+  String get hewanGroupAir => 'Sea & Water';
+
+  @override
+  String get hewanGroupKecil => 'Birds & Bugs';
+
+  @override
+  String get hewanDidYou => 'Did you know?';
+
+  @override
+  String get hewanHearName => 'Hear name';
+
+  @override
+  String get hewanHearSound => 'Hear sound';
+
+  @override
+  String get hewanPrev => 'Previous animal';
+
+  @override
+  String get hewanNext => 'Next animal';
+
+  @override
+  String get hewanTapHint => ', tap to hear its sound';
+
+  @override
+  String hewanCounterLabel(int nomor, int total) {
+    return 'Animal $nomor of $total';
+  }
+
+  @override
+  String get buahLearn => 'Learn';
+
+  @override
+  String get buahGuess => 'Guess';
+
+  @override
+  String get buahCats => 'Category';
+
+  @override
+  String get buahCatAll => 'All';
+
+  @override
+  String get buahCatFruit => 'Fruits';
+
+  @override
+  String get buahCatVeggie => 'Veggies';
+
+  @override
+  String get buahTagFruit => 'FRUIT';
+
+  @override
+  String get buahTagVeggie => 'VEGGIE';
+
+  @override
+  String get buahListen => 'Listen to the question';
+
+  @override
+  String buahQuestion(String nama) {
+    return 'Find the $nama!';
+  }
+
+  @override
+  String get buahQuestionSay => 'Find the';
+
+  @override
+  String get buahYesSay => 'Yes!';
+
+  @override
+  String get buahWrongSay => 'That\'s not it. Try again!';
+
+  @override
+  String buahRight(String nama) {
+    return 'Yes! $nama!';
+  }
+
+  @override
+  String get buahNext => 'Next';
+
+  @override
+  String buahProgress(int n, int total) {
+    return 'Question $n of $total';
+  }
+
+  @override
+  String get warnaPick => 'Pick a color';
+
+  @override
+  String get warnaNewSet => 'New pictures';
+
+  @override
+  String get warnaNextColor => 'Next color';
+
+  @override
+  String get warnaInstructionPre => 'Tap everything';
+
+  @override
+  String warnaDone(String warna) {
+    return 'You found all the $warna things!';
+  }
+
+  @override
+  String warnaCounterLabel(int found, int total) {
+    return '$found of $total found';
+  }
+
+  @override
+  String warnaChipLabel(String nama) {
+    return 'Color $nama';
+  }
+
+  @override
+  String get warnaSentuh => 'Tap everything that is';
+
+  @override
+  String get warnaBetul => 'Yes!';
+
+  @override
+  String get warnaBukan => 'Not this one. Find';
+
+  @override
+  String get warnaSemuaKetemu => 'You found them all!';
+
+  @override
+  String get warnaBalon => 'balloon';
+
+  @override
+  String get warnaBintang => 'star';
+
+  @override
+  String get warnaHati => 'heart';
+
+  @override
+  String get bentukLearn => 'Learn';
+
+  @override
+  String get bentukFind => 'Find';
+
+  @override
+  String get bentukCountCorners => 'Count the corners';
+
+  @override
+  String get bentukCountTips => 'Count the points';
+
+  @override
+  String bentukSisi(int n) {
+    return '$n sides';
+  }
+
+  @override
+  String bentukSudut(int n) {
+    return '$n corners';
+  }
+
+  @override
+  String bentukUjung(int n) {
+    return '$n points';
+  }
+
+  @override
+  String get bentukSayang => 'A symbol of love';
+
+  @override
+  String get bentukTanpaSudut => 'No corners';
+
+  @override
+  String bentukShapeLabel(String nama) {
+    return 'Shape $nama';
+  }
 }

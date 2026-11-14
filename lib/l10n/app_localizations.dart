@@ -1531,6 +1531,330 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Angka {angka}'**
   String berandaContinueAngka(String angka);
+
+  /// Label kelompok di layar Dunia Hewan
+  ///
+  /// In id, this message translates to:
+  /// **'Kelompok hewan'**
+  String get hewanGroups;
+
+  /// Kelompok hewan: semua
+  ///
+  /// In id, this message translates to:
+  /// **'Semua'**
+  String get hewanGroupAll;
+
+  /// Kelompok hewan: peliharaan dan ternak
+  ///
+  /// In id, this message translates to:
+  /// **'Peliharaan & Ternak'**
+  String get hewanGroupRumah;
+
+  /// Kelompok hewan: hutan dan savana
+  ///
+  /// In id, this message translates to:
+  /// **'Hutan & Savana'**
+  String get hewanGroupLiar;
+
+  /// Kelompok hewan: reptil dan katak
+  ///
+  /// In id, this message translates to:
+  /// **'Reptil & Katak'**
+  String get hewanGroupReptil;
+
+  /// Kelompok hewan: laut dan air
+  ///
+  /// In id, this message translates to:
+  /// **'Laut & Air'**
+  String get hewanGroupAir;
+
+  /// Kelompok hewan: burung dan serangga
+  ///
+  /// In id, this message translates to:
+  /// **'Burung & Serangga'**
+  String get hewanGroupKecil;
+
+  /// Judul kartu fakta hewan
+  ///
+  /// In id, this message translates to:
+  /// **'Tahukah kamu?'**
+  String get hewanDidYou;
+
+  /// Tombol membacakan nama hewan
+  ///
+  /// In id, this message translates to:
+  /// **'Dengar nama'**
+  String get hewanHearName;
+
+  /// Tombol memutar suara hewan
+  ///
+  /// In id, this message translates to:
+  /// **'Dengar suara'**
+  String get hewanHearSound;
+
+  /// Label tombol panah sebelumnya
+  ///
+  /// In id, this message translates to:
+  /// **'Hewan sebelumnya'**
+  String get hewanPrev;
+
+  /// Label tombol panah berikutnya
+  ///
+  /// In id, this message translates to:
+  /// **'Hewan berikutnya'**
+  String get hewanNext;
+
+  /// Tambahan label gambar hewan
+  ///
+  /// In id, this message translates to:
+  /// **', ketuk untuk mendengar suaranya'**
+  String get hewanTapHint;
+
+  /// Label semantik hitungan hewan
+  ///
+  /// In id, this message translates to:
+  /// **'Hewan {nomor} dari {total}'**
+  String hewanCounterLabel(int nomor, int total);
+
+  /// Tab mode Kenali
+  ///
+  /// In id, this message translates to:
+  /// **'Kenali'**
+  String get buahLearn;
+
+  /// Tab mode Tebak
+  ///
+  /// In id, this message translates to:
+  /// **'Tebak'**
+  String get buahGuess;
+
+  /// Label kelompok kategori
+  ///
+  /// In id, this message translates to:
+  /// **'Kategori'**
+  String get buahCats;
+
+  /// Kategori semua
+  ///
+  /// In id, this message translates to:
+  /// **'Semua'**
+  String get buahCatAll;
+
+  /// Kategori buah
+  ///
+  /// In id, this message translates to:
+  /// **'Buah'**
+  String get buahCatFruit;
+
+  /// Kategori sayur
+  ///
+  /// In id, this message translates to:
+  /// **'Sayur'**
+  String get buahCatVeggie;
+
+  /// Tag kartu buah
+  ///
+  /// In id, this message translates to:
+  /// **'BUAH'**
+  String get buahTagFruit;
+
+  /// Tag kartu sayur
+  ///
+  /// In id, this message translates to:
+  /// **'SAYUR'**
+  String get buahTagVeggie;
+
+  /// Label tombol dengar pertanyaan
+  ///
+  /// In id, this message translates to:
+  /// **'Dengarkan pertanyaan'**
+  String get buahListen;
+
+  /// Pertanyaan Tebak
+  ///
+  /// In id, this message translates to:
+  /// **'Mana yang {nama}?'**
+  String buahQuestion(String nama);
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Mana yang'**
+  String get buahQuestionSay;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Betul!'**
+  String get buahYesSay;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Bukan, coba lagi ya!'**
+  String get buahWrongSay;
+
+  /// Teks bilah selesai
+  ///
+  /// In id, this message translates to:
+  /// **'Betul! Itu {nama}!'**
+  String buahRight(String nama);
+
+  /// Tombol soal berikutnya
+  ///
+  /// In id, this message translates to:
+  /// **'Lanjut'**
+  String get buahNext;
+
+  /// Label semantik kemajuan soal
+  ///
+  /// In id, this message translates to:
+  /// **'Pertanyaan {n} dari {total}'**
+  String buahProgress(int n, int total);
+
+  /// Label kisi chip warna
+  ///
+  /// In id, this message translates to:
+  /// **'Pilih warna'**
+  String get warnaPick;
+
+  /// Tombol mengacak ulang kartu
+  ///
+  /// In id, this message translates to:
+  /// **'Gambar baru'**
+  String get warnaNewSet;
+
+  /// Tombol lanjut ke warna berikutnya
+  ///
+  /// In id, this message translates to:
+  /// **'Warna lain'**
+  String get warnaNextColor;
+
+  /// Awal kalimat instruksi warna
+  ///
+  /// In id, this message translates to:
+  /// **'Sentuh semua yang'**
+  String get warnaInstructionPre;
+
+  /// Teks bilah selesai
+  ///
+  /// In id, this message translates to:
+  /// **'Semua yang {warna} ketemu!'**
+  String warnaDone(String warna);
+
+  /// Label semantik hitungan warna
+  ///
+  /// In id, this message translates to:
+  /// **'{found} dari {total} ketemu'**
+  String warnaCounterLabel(int found, int total);
+
+  /// Label semantik chip warna
+  ///
+  /// In id, this message translates to:
+  /// **'Warna {nama}'**
+  String warnaChipLabel(String nama);
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Sentuh semua yang berwarna'**
+  String get warnaSentuh;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Betul!'**
+  String get warnaBetul;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Bukan yang ini. Cari yang'**
+  String get warnaBukan;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Semua gambarnya sudah ketemu!'**
+  String get warnaSemuaKetemu;
+
+  /// Nama bentuk balon
+  ///
+  /// In id, this message translates to:
+  /// **'balon'**
+  String get warnaBalon;
+
+  /// Nama bentuk bintang
+  ///
+  /// In id, this message translates to:
+  /// **'bintang'**
+  String get warnaBintang;
+
+  /// Nama bentuk hati
+  ///
+  /// In id, this message translates to:
+  /// **'hati'**
+  String get warnaHati;
+
+  /// Tab mode Kenali
+  ///
+  /// In id, this message translates to:
+  /// **'Kenali'**
+  String get bentukLearn;
+
+  /// Tab mode Cari
+  ///
+  /// In id, this message translates to:
+  /// **'Cari'**
+  String get bentukFind;
+
+  /// Tombol hitung sudut
+  ///
+  /// In id, this message translates to:
+  /// **'Hitung sudut'**
+  String get bentukCountCorners;
+
+  /// Tombol hitung ujung bintang
+  ///
+  /// In id, this message translates to:
+  /// **'Hitung ujung'**
+  String get bentukCountTips;
+
+  /// Chip jumlah sisi
+  ///
+  /// In id, this message translates to:
+  /// **'{n} sisi'**
+  String bentukSisi(int n);
+
+  /// Chip jumlah sudut
+  ///
+  /// In id, this message translates to:
+  /// **'{n} sudut'**
+  String bentukSudut(int n);
+
+  /// Chip jumlah ujung bintang
+  ///
+  /// In id, this message translates to:
+  /// **'{n} ujung'**
+  String bentukUjung(int n);
+
+  /// Chip bentuk hati
+  ///
+  /// In id, this message translates to:
+  /// **'Lambang sayang'**
+  String get bentukSayang;
+
+  /// Chip bentuk bulat
+  ///
+  /// In id, this message translates to:
+  /// **'Tidak punya sudut'**
+  String get bentukTanpaSudut;
+
+  /// Label semantik kartu bentuk
+  ///
+  /// In id, this message translates to:
+  /// **'Bentuk {nama}'**
+  String bentukShapeLabel(String nama);
 }
 
 class _AppLocalizationsDelegate
