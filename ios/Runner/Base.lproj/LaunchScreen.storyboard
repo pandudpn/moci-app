@@ -24,6 +24,7 @@
                             <constraint firstItem="YRO-k0-Ey4" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="1a2-6s-vTC"/>
                             <constraint firstItem="YRO-k0-Ey4" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="4X2-HB-R7a"/>
                             <constraint firstItem="YRO-k0-Ey4" firstAttribute="height" secondItem="Bsa-fe-Lz1" secondAttribute="height" multiplier="0.6" id="Hh6-aB-60p"/>
+                            <constraint firstItem="YRO-k0-Ey4" firstAttribute="width" secondItem="YRO-k0-Ey4" secondAttribute="height" multiplier="0.7611" id="Wr4-tH-aSp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Bsa-fe-Lz1"/>
                     </view>

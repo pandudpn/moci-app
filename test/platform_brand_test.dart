@@ -53,4 +53,27 @@ void main() {
     expect(json, contains('"luminosity"'));
     expect(json, contains('"tinted"'));
   });
+
+  test('logo splash iOS: lebar mengikuti tinggi (rasio 685/900)', () {
+    final xml = _read('ios/Runner/Base.lproj/LaunchScreen.storyboard');
+    final id = RegExp(r'<imageView[^>]*image="LaunchLogo"[^>]*\sid="([^"]+)"')
+        .firstMatch(xml)!
+        .group(1)!;
+    final constraint = RegExp(r'<constraint\b[^>]*/>')
+        .allMatches(xml)
+        .map((m) => m.group(0)!)
+        .firstWhere(
+          (c) =>
+              c.contains('firstItem="$id"') &&
+              c.contains('firstAttribute="width"') &&
+              c.contains('secondItem="$id"') &&
+              c.contains('secondAttribute="height"'),
+          orElse: () => '',
+        );
+    expect(constraint, isNotEmpty, reason: 'constraint lebar/tinggi hilang');
+    final m = double.parse(
+      RegExp(r'multiplier="([^"]+)"').firstMatch(constraint)!.group(1)!,
+    );
+    expect(m, closeTo(685 / 900, 0.001));
+  });
 }
