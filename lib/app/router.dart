@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../core/prefs/prefs_controller.dart';
 import '../features/beranda/beranda_screen.dart';
 import '../features/berhitung/berhitung_screen.dart';
+import '../features/bentuk/bentuk_screen.dart';
 import '../features/buah_sayur/buah_screen.dart';
 import '../features/hadiah/hadiah_controller.dart';
 import '../features/hadiah/hebat_screen.dart';
@@ -158,7 +159,15 @@ final routerProvider = Provider<GoRouter>((ref) {
         builder: (context, state) =>
             WarnaScreen(awal: state.uri.queryParameters['warna']),
       ),
-      _soon(Routes.bentuk, MenuTheme.bentuk),
+      GoRoute(
+        path: Routes.bentuk,
+        builder: (context, state) => BentukScreen(
+          mode: state.uri.queryParameters['mode'] == 'cari'
+              ? BentukMode.cari
+              : BentukMode.kenali,
+          awal: state.uri.queryParameters['bentuk'],
+        ),
+      ),
       _soon(Routes.musik, MenuTheme.musik),
       _soon(Routes.sukuKata, MenuTheme.membaca),
       _soon(Routes.susunKata, MenuTheme.membaca),

@@ -1098,5 +1098,65 @@
   "warnaHati": "hati",
   "@warnaHati": {
     "description": "Nama bentuk hati"
+  },
+  "bentukLearn": "Kenali",
+  "@bentukLearn": {
+    "description": "Tab mode Kenali"
+  },
+  "bentukFind": "Cari",
+  "@bentukFind": {
+    "description": "Tab mode Cari"
+  },
+  "bentukCountCorners": "Hitung sudut",
+  "@bentukCountCorners": {
+    "description": "Tombol hitung sudut"
+  },
+  "bentukCountTips": "Hitung ujung",
+  "@bentukCountTips": {
+    "description": "Tombol hitung ujung bintang"
+  },
+  "bentukSisi": "{n} sisi",
+  "@bentukSisi": {
+    "description": "Chip jumlah sisi",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "bentukSudut": "{n} sudut",
+  "@bentukSudut": {
+    "description": "Chip jumlah sudut",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "bentukUjung": "{n} ujung",
+  "@bentukUjung": {
+    "description": "Chip jumlah ujung bintang",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "bentukSayang": "Lambang sayang",
+  "@bentukSayang": {
+    "description": "Chip bentuk hati"
+  },
+  "bentukTanpaSudut": "Tidak punya sudut",
+  "@bentukTanpaSudut": {
+    "description": "Chip bentuk bulat"
+  },
+  "bentukShapeLabel": "Bentuk {nama}",
+  "@bentukShapeLabel": {
+    "description": "Label semantik kartu bentuk",
+    "placeholders": {
+      "nama": {
+        "type": "String"
+      }
+    }
   }
 }

@@ -1095,5 +1095,65 @@
   "warnaHati": "heart",
   "@warnaHati": {
     "description": "Heart shape name"
+  },
+  "bentukLearn": "Learn",
+  "@bentukLearn": {
+    "description": "Learn mode tab"
+  },
+  "bentukFind": "Find",
+  "@bentukFind": {
+    "description": "Find mode tab"
+  },
+  "bentukCountCorners": "Count the corners",
+  "@bentukCountCorners": {
+    "description": "Count corners button"
+  },
+  "bentukCountTips": "Count the points",
+  "@bentukCountTips": {
+    "description": "Count star points button"
+  },
+  "bentukSisi": "{n} sides",
+  "@bentukSisi": {
+    "description": "Side count chip",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "bentukSudut": "{n} corners",
+  "@bentukSudut": {
+    "description": "Corner count chip",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "bentukUjung": "{n} points",
+  "@bentukUjung": {
+    "description": "Star point count chip",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "bentukSayang": "A symbol of love",
+  "@bentukSayang": {
+    "description": "Heart shape chip"
+  },
+  "bentukTanpaSudut": "No corners",
+  "@bentukTanpaSudut": {
+    "description": "Round shape chip"
+  },
+  "bentukShapeLabel": "Shape {nama}",
+  "@bentukShapeLabel": {
+    "description": "Shape card semantic label",
+    "placeholders": {
+      "nama": {
+        "type": "String"
+      }
+    }
   }
 }
