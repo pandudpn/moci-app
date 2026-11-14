@@ -11,9 +11,19 @@ abstract interface class JsonStore {
 }
 
 final class FileJsonStore implements JsonStore {
-  FileJsonStore(this.root);
+  /// [now] bisa diganti di tes supaya stempel waktu bisa dipaku.
+  FileJsonStore(this.root, {DateTime Function()? now})
+    : _now = now ?? DateTime.now;
 
   final Directory root;
+  final DateTime Function() _now;
+
+  /// Nomor urut nama berkas sementara dan karantina. Satu proses jadi satu
+  /// penulis, jadi nomor yang terus naik tidak pernah bentrok.
+  static int _seq = 0;
+
+  /// Sisa `.tmp` yang lebih tua dari ini dianggap dari proses yang mati.
+  static const _tmpBasi = Duration(minutes: 5);
 
   File _file(String path) => File('${root.path}/$path');
 
@@ -37,11 +47,16 @@ final class FileJsonStore implements JsonStore {
   }
 
   Future<void> _quarantine(File file) async {
-    final stamp = DateTime.now().millisecondsSinceEpoch;
-    try {
-      await file.rename('${file.path}.rusak-$stamp');
-    } on FileSystemException {
-      // abaikan; pembacaan tetap mengembalikan null
+    final stamp = _now().millisecondsSinceEpoch;
+    while (true) {
+      final target = '${file.path}.rusak-$stamp-${_seq++}';
+      if (await File(target).exists()) continue;
+      try {
+        await file.rename(target);
+      } on FileSystemException {
+        // abaikan; pembacaan tetap mengembalikan null
+      }
+      return;
     }
   }
 
@@ -49,9 +64,46 @@ final class FileJsonStore implements JsonStore {
   Future<void> write(String path, Map<String, Object?> json) async {
     final file = _file(path);
     await file.parent.create(recursive: true);
-    final tmp = File('${file.path}.tmp');
-    await tmp.writeAsString(jsonEncode(json), flush: true);
-    await tmp.rename(file.path);
+    await _buangTmpBasi(file);
+    // Nama sementara milik sendiri: dua tulisan bersamaan tidak berbagi `.tmp`.
+    final tmp = File('${file.path}.tmp-${_seq++}');
+    try {
+      await tmp.writeAsString(jsonEncode(json), flush: true);
+      await tmp.rename(file.path);
+    } on FileSystemException {
+      if (await tmp.exists()) await tmp.delete();
+      rethrow;
+    }
+  }
+
+  /// Membuang sisa `.tmp` dari tulisan yang tidak selesai. Berkas yang masih
+  /// baru mungkin milik penulisan lain yang sedang jalan, jadi dibiarkan.
+  Future<void> _buangTmpBasi(File file) async {
+    final base = file.uri.pathSegments.last;
+    final sekarang = _now();
+    try {
+      await for (final e in file.parent.list()) {
+        if (e is! File) continue;
+        final nama = e.uri.pathSegments.last;
+        if (!nama.startsWith('$base.tmp')) continue;
+        if (nama != '$base.tmp') {
+          final DateTime ubah;
+          try {
+            ubah = await e.lastModified();
+          } on FileSystemException {
+            continue;
+          }
+          if (sekarang.difference(ubah) <= _tmpBasi) continue;
+        }
+        try {
+          await e.delete();
+        } on FileSystemException {
+          // sudah hilang; abaikan
+        }
+      }
+    } on FileSystemException {
+      // folder tidak terbaca; biarkan sisa berkas
+    }
   }
 
   @override
@@ -68,7 +120,7 @@ final class FileJsonStore implements JsonStore {
     await for (final e in d.list()) {
       if (e is! File) continue;
       final name = e.uri.pathSegments.last;
-      if (name.endsWith('.tmp') || name.contains('.rusak-')) continue;
+      if (name.contains('.tmp') || name.contains('.rusak-')) continue;
       names.add(name);
     }
     names.sort();

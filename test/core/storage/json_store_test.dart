@@ -87,4 +87,80 @@ void main() {
     expect(progres.stars, 0);
     expect(progres.harian, isEmpty);
   });
+
+  test('dua karantina dalam 1 ms tetap dua berkas berisi byte asli', () async {
+    // Jam dipaku: tanpa penomoran, nama karantina bertabrakan.
+    final s = FileJsonStore(dir, now: () => DateTime(2026, 11, 14, 9));
+    final satu = [...utf8.encode('{"versi": 1, "bin'), 0xC3];
+    final dua = [...utf8.encode('{"versi": 2, "nama": "Ra'), 0xE2, 0x9C];
+
+    File('${dir.path}/progress.json').writeAsBytesSync(satu);
+    expect(await s.read('progress.json'), isNull);
+    File('${dir.path}/progress.json').writeAsBytesSync(dua);
+    expect(await s.read('progress.json'), isNull);
+
+    final karantina = dir
+        .listSync()
+        .whereType<File>()
+        .where((f) => f.path.contains('progress.json.rusak-'))
+        .map((f) => base64.encode(f.readAsBytesSync()))
+        .toSet();
+    expect(karantina, {base64.encode(satu), base64.encode(dua)});
+  });
+
+  test('berkas kosong: null, dikarantina, lalu bawaan', () async {
+    File('${dir.path}/progress.json').writeAsBytesSync(const []);
+    expect(await store.read('progress.json'), isNull);
+    final karantina = dir
+        .listSync()
+        .whereType<File>()
+        .where((f) => f.path.contains('progress.json.rusak-'))
+        .toList();
+    expect(karantina, hasLength(1));
+    expect(karantina.single.lengthSync(), 0);
+    expect((await ProgressRepository(store).load()).stars, 0);
+  });
+
+  test('sisa .tmp dari crash dibersihkan saat tulis berikutnya', () async {
+    File('${dir.path}/progress.json.tmp').writeAsStringSync('{"terpotong');
+    await store.write('progress.json', {'versi': 1, 'bintang': 4});
+    expect(await store.read('progress.json'), {'versi': 1, 'bintang': 4});
+    expect(_sisaTmp(dir), isEmpty);
+  });
+
+  test('tmp basi berkas dengan nama baru ikut dibersihkan', () async {
+    final s = FileJsonStore(
+      dir,
+      now: () => DateTime.now().add(const Duration(hours: 1)),
+    );
+    File('${dir.path}/progress.json.tmp-7-3').writeAsStringSync('{"terpotong');
+    await s.write('progress.json', {'versi': 1});
+    expect(_sisaTmp(dir), isEmpty);
+  });
+
+  test('dua tulisan bersamaan ke satu path tidak berbagi .tmp', () async {
+    final satu = {'versi': 1, 'isi': 'A' * 200000};
+    final dua = {'versi': 2, 'isi': 'B' * 200000};
+    for (var r = 0; r < 20; r++) {
+      await Future.wait([
+        store.write('progress.json', satu),
+        store.write('progress.json', dua),
+      ]);
+      final hasil = (await store.read('progress.json'))!;
+      expect([1, 2], contains(hasil['versi']), reason: 'putaran $r');
+      expect(
+        hasil['isi'],
+        anyOf('A' * 200000, 'B' * 200000),
+        reason: 'putaran $r',
+      );
+      expect(_sisaTmp(dir), isEmpty, reason: 'putaran $r');
+    }
+  });
 }
+
+List<String> _sisaTmp(Directory dir) => dir
+    .listSync()
+    .whereType<File>()
+    .map((f) => f.uri.pathSegments.last)
+    .where((n) => n.contains('.tmp'))
+    .toList();
