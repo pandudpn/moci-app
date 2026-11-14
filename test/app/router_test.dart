@@ -75,7 +75,7 @@ void main() {
     expect(_path(router), '/');
   });
 
-  testWidgets('ComingSoonScreen mencatat kegiatan terakhir', (t) async {
+  testWidgets('layar hewan mencatat kegiatan terakhir', (t) async {
     final router = await pumpApp(
       t,
       env: TestEnv(onboarded: true),

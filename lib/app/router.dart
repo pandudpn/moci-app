@@ -7,6 +7,7 @@ import '../features/beranda/beranda_screen.dart';
 import '../features/berhitung/berhitung_screen.dart';
 import '../features/hadiah/hadiah_controller.dart';
 import '../features/hadiah/hebat_screen.dart';
+import '../features/hewan/hewan_screen.dart';
 import '../features/huruf/huruf_screen.dart';
 import '../features/orang_tua/gerbang_screen.dart';
 import '../features/orang_tua/orang_tua_screen.dart';
@@ -136,7 +137,11 @@ final routerProvider = Provider<GoRouter>((ref) {
           awal: state.uri.queryParameters['angka'],
         ),
       ),
-      _soon(Routes.hewan, MenuTheme.hewan),
+      GoRoute(
+        path: Routes.hewan,
+        builder: (context, state) =>
+            HewanScreen(awal: state.uri.queryParameters['hewan']),
+      ),
       _soon(Routes.buahSayur, MenuTheme.buahSayur),
       _soon(Routes.warna, MenuTheme.warna),
       _soon(Routes.bentuk, MenuTheme.bentuk),

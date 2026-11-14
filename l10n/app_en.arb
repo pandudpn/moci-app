@@ -875,5 +875,69 @@
         "type": "String"
       }
     }
+  },
+  "hewanGroups": "Animal groups",
+  "@hewanGroups": {
+    "description": "Group label on the Animals screen"
+  },
+  "hewanGroupAll": "All",
+  "@hewanGroupAll": {
+    "description": "Animal group: all"
+  },
+  "hewanGroupRumah": "Pets & Farm",
+  "@hewanGroupRumah": {
+    "description": "Animal group: pets and farm animals"
+  },
+  "hewanGroupLiar": "Wild",
+  "@hewanGroupLiar": {
+    "description": "Animal group: wild animals"
+  },
+  "hewanGroupReptil": "Reptiles & Frogs",
+  "@hewanGroupReptil": {
+    "description": "Animal group: reptiles and frogs"
+  },
+  "hewanGroupAir": "Sea & Water",
+  "@hewanGroupAir": {
+    "description": "Animal group: sea and water"
+  },
+  "hewanGroupKecil": "Birds & Bugs",
+  "@hewanGroupKecil": {
+    "description": "Animal group: birds and bugs"
+  },
+  "hewanDidYou": "Did you know?",
+  "@hewanDidYou": {
+    "description": "Animal fact card title"
+  },
+  "hewanHearName": "Hear name",
+  "@hewanHearName": {
+    "description": "Button that says the animal name"
+  },
+  "hewanHearSound": "Hear sound",
+  "@hewanHearSound": {
+    "description": "Button that plays the animal sound"
+  },
+  "hewanPrev": "Previous animal",
+  "@hewanPrev": {
+    "description": "Previous arrow label"
+  },
+  "hewanNext": "Next animal",
+  "@hewanNext": {
+    "description": "Next arrow label"
+  },
+  "hewanTapHint": ", tap to hear its sound",
+  "@hewanTapHint": {
+    "description": "Suffix for the animal image label"
+  },
+  "hewanCounterLabel": "Animal {nomor} of {total}",
+  "@hewanCounterLabel": {
+    "description": "Semantic label for the animal counter",
+    "placeholders": {
+      "nomor": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
   }
 }

@@ -878,5 +878,69 @@
         "type": "String"
       }
     }
+  },
+  "hewanGroups": "Kelompok hewan",
+  "@hewanGroups": {
+    "description": "Label kelompok di layar Dunia Hewan"
+  },
+  "hewanGroupAll": "Semua",
+  "@hewanGroupAll": {
+    "description": "Kelompok hewan: semua"
+  },
+  "hewanGroupRumah": "Peliharaan & Ternak",
+  "@hewanGroupRumah": {
+    "description": "Kelompok hewan: peliharaan dan ternak"
+  },
+  "hewanGroupLiar": "Hutan & Savana",
+  "@hewanGroupLiar": {
+    "description": "Kelompok hewan: hutan dan savana"
+  },
+  "hewanGroupReptil": "Reptil & Katak",
+  "@hewanGroupReptil": {
+    "description": "Kelompok hewan: reptil dan katak"
+  },
+  "hewanGroupAir": "Laut & Air",
+  "@hewanGroupAir": {
+    "description": "Kelompok hewan: laut dan air"
+  },
+  "hewanGroupKecil": "Burung & Serangga",
+  "@hewanGroupKecil": {
+    "description": "Kelompok hewan: burung dan serangga"
+  },
+  "hewanDidYou": "Tahukah kamu?",
+  "@hewanDidYou": {
+    "description": "Judul kartu fakta hewan"
+  },
+  "hewanHearName": "Dengar nama",
+  "@hewanHearName": {
+    "description": "Tombol membacakan nama hewan"
+  },
+  "hewanHearSound": "Dengar suara",
+  "@hewanHearSound": {
+    "description": "Tombol memutar suara hewan"
+  },
+  "hewanPrev": "Hewan sebelumnya",
+  "@hewanPrev": {
+    "description": "Label tombol panah sebelumnya"
+  },
+  "hewanNext": "Hewan berikutnya",
+  "@hewanNext": {
+    "description": "Label tombol panah berikutnya"
+  },
+  "hewanTapHint": ", ketuk untuk mendengar suaranya",
+  "@hewanTapHint": {
+    "description": "Tambahan label gambar hewan"
+  },
+  "hewanCounterLabel": "Hewan {nomor} dari {total}",
+  "@hewanCounterLabel": {
+    "description": "Label semantik hitungan hewan",
+    "placeholders": {
+      "nomor": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
   }
 }
