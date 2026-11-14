@@ -1,9 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_ui/material_ui.dart';
 
 import '../core/audio/audio_providers.dart';
 import '../core/prefs/prefs_controller.dart';
 import '../l10n/l10n.dart';
+import 'play_timer/play_timer_controller.dart';
 import 'router.dart';
 import 'theme/moci_theme.dart';
 
@@ -16,6 +19,9 @@ class MociApp extends ConsumerStatefulWidget {
 
 class _MociAppState extends ConsumerState<MociApp> {
   late final AppLifecycleListener _lifecycle;
+
+  /// Istirahat sudah dibuka untuk `restDue` yang sedang berlaku.
+  bool _restOpened = false;
 
   @override
   void initState() {
@@ -46,6 +52,22 @@ class _MociAppState extends ConsumerState<MociApp> {
     }
   }
 
+  /// Membuka Istirahat bila sudah waktunya, anak sedang di rute bermain, dan
+  /// batas harian belum tercapai (Waktu Habis menang atas Istirahat).
+  void _maybeRest() {
+    if (!mounted) return;
+    final timer = ref.read(playTimerProvider);
+    if (!timer.restDue) {
+      _restOpened = false;
+      return;
+    }
+    if (_restOpened || timer.limitReached) return;
+    final path = ref.read(currentPathProvider);
+    if (routeKindOf(path) != RouteKind.play) return;
+    _restOpened = true;
+    ref.read(routerProvider).push(Routes.istirahat);
+  }
+
   @override
   void dispose() {
     _lifecycle.dispose();
@@ -55,6 +77,11 @@ class _MociAppState extends ConsumerState<MociApp> {
   @override
   Widget build(BuildContext context) {
     final lang = ref.watch(prefsProvider.select((p) => p.lang));
+    ref.listen(playTimerProvider, (_, _) => _maybeRest());
+    // Istirahat yang tertunda (anak di area orang tua, atau batas baru
+    // dinaikkan) dibuka begitu anak kembali ke rute bermain. Ditunda satu
+    // microtask: perubahan path datang dari notifikasi delegasi router.
+    ref.listen(currentPathProvider, (_, _) => scheduleMicrotask(_maybeRest));
     return MaterialApp.router(
       onGenerateTitle: (c) => c.l10n.appTitle,
       debugShowCheckedModeBanner: false,

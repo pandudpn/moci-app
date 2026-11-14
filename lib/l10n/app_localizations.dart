@@ -499,6 +499,78 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'{a} kali {b}'**
   String gerbangTimes(int a, int b);
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Istirahat sebentar, yuk!'**
+  String get istirahatTitle;
+
+  /// No description provided for @istirahatSub.
+  ///
+  /// In id, this message translates to:
+  /// **'Mata dan badan juga perlu istirahat. Ikuti Moci sampai hitungannya selesai.'**
+  String get istirahatSub;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Lihat jauh ke luar jendela'**
+  String get istirahatStep1;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Kedip-kedip 10 kali'**
+  String get istirahatStep2;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Regangkan tangan ke atas'**
+  String get istirahatStep3;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Sudah segar lagi!'**
+  String get istirahatDoneTitle;
+
+  /// Satuan di bawah angka hitung mundur
+  ///
+  /// In id, this message translates to:
+  /// **'detik'**
+  String get istirahatSecs;
+
+  /// Label semantik hitung mundur istirahat
+  ///
+  /// In id, this message translates to:
+  /// **'Sisa waktu istirahat: {n} detik'**
+  String istirahatTimer(int n);
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Waktu main hari ini sudah habis'**
+  String get habisTitle;
+
+  /// Subjudul Waktu Habis
+  ///
+  /// In id, this message translates to:
+  /// **'Sampai besok, {name}! Moci juga mau tidur dulu.'**
+  String habisSub(String name);
+
+  /// No description provided for @habisNote.
+  ///
+  /// In id, this message translates to:
+  /// **'Orang tua bisa mengubah batas waktu harian di Area Orang Tua.'**
+  String get habisNote;
+
+  /// No description provided for @habisParents.
+  ///
+  /// In id, this message translates to:
+  /// **'Untuk orang tua'**
+  String get habisParents;
 }
 
 class _AppLocalizationsDelegate

@@ -225,4 +225,46 @@ class AppLocalizationsId extends AppLocalizations {
   String gerbangTimes(int a, int b) {
     return '$a kali $b';
   }
+
+  @override
+  String get istirahatTitle => 'Istirahat sebentar, yuk!';
+
+  @override
+  String get istirahatSub =>
+      'Mata dan badan juga perlu istirahat. Ikuti Moci sampai hitungannya selesai.';
+
+  @override
+  String get istirahatStep1 => 'Lihat jauh ke luar jendela';
+
+  @override
+  String get istirahatStep2 => 'Kedip-kedip 10 kali';
+
+  @override
+  String get istirahatStep3 => 'Regangkan tangan ke atas';
+
+  @override
+  String get istirahatDoneTitle => 'Sudah segar lagi!';
+
+  @override
+  String get istirahatSecs => 'detik';
+
+  @override
+  String istirahatTimer(int n) {
+    return 'Sisa waktu istirahat: $n detik';
+  }
+
+  @override
+  String get habisTitle => 'Waktu main hari ini sudah habis';
+
+  @override
+  String habisSub(String name) {
+    return 'Sampai besok, $name! Moci juga mau tidur dulu.';
+  }
+
+  @override
+  String get habisNote =>
+      'Orang tua bisa mengubah batas waktu harian di Area Orang Tua.';
+
+  @override
+  String get habisParents => 'Untuk orang tua';
 }

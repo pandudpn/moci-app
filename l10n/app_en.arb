@@ -159,5 +159,54 @@
         "type": "int"
       }
     }
-  }
+  },
+  "istirahatTitle": "Time for a little break!",
+  "@istirahatTitle": {
+    "description": "narasi"
+  },
+  "istirahatSub": "Your eyes and body need a rest too. Follow Moci until the countdown ends.",
+  "istirahatStep1": "Look far out the window",
+  "@istirahatStep1": {
+    "description": "narasi"
+  },
+  "istirahatStep2": "Blink 10 times",
+  "@istirahatStep2": {
+    "description": "narasi"
+  },
+  "istirahatStep3": "Stretch your arms up high",
+  "@istirahatStep3": {
+    "description": "narasi"
+  },
+  "istirahatDoneTitle": "All fresh again!",
+  "@istirahatDoneTitle": {
+    "description": "narasi"
+  },
+  "istirahatSecs": "seconds",
+  "@istirahatSecs": {
+    "description": "Unit under the countdown number"
+  },
+  "istirahatTimer": "Break time left: {n} seconds",
+  "@istirahatTimer": {
+    "description": "Semantic label of the break countdown",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "habisTitle": "Playtime is over for today",
+  "@habisTitle": {
+    "description": "narasi"
+  },
+  "habisSub": "See you tomorrow, {name}! Moci is going to sleep too.",
+  "@habisSub": {
+    "description": "Subtitle of the time-is-up screen",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "habisNote": "A grown-up can change the daily time limit in Parents’ Corner.",
+  "habisParents": "For grown-ups"
 }

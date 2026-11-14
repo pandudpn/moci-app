@@ -224,4 +224,46 @@ class AppLocalizationsEn extends AppLocalizations {
   String gerbangTimes(int a, int b) {
     return '$a times $b';
   }
+
+  @override
+  String get istirahatTitle => 'Time for a little break!';
+
+  @override
+  String get istirahatSub =>
+      'Your eyes and body need a rest too. Follow Moci until the countdown ends.';
+
+  @override
+  String get istirahatStep1 => 'Look far out the window';
+
+  @override
+  String get istirahatStep2 => 'Blink 10 times';
+
+  @override
+  String get istirahatStep3 => 'Stretch your arms up high';
+
+  @override
+  String get istirahatDoneTitle => 'All fresh again!';
+
+  @override
+  String get istirahatSecs => 'seconds';
+
+  @override
+  String istirahatTimer(int n) {
+    return 'Break time left: $n seconds';
+  }
+
+  @override
+  String get habisTitle => 'Playtime is over for today';
+
+  @override
+  String habisSub(String name) {
+    return 'See you tomorrow, $name! Moci is going to sleep too.';
+  }
+
+  @override
+  String get habisNote =>
+      'A grown-up can change the daily time limit in Parents’ Corner.';
+
+  @override
+  String get habisParents => 'For grown-ups';
 }

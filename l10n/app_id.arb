@@ -162,5 +162,54 @@
         "type": "int"
       }
     }
-  }
+  },
+  "istirahatTitle": "Istirahat sebentar, yuk!",
+  "@istirahatTitle": {
+    "description": "narasi"
+  },
+  "istirahatSub": "Mata dan badan juga perlu istirahat. Ikuti Moci sampai hitungannya selesai.",
+  "istirahatStep1": "Lihat jauh ke luar jendela",
+  "@istirahatStep1": {
+    "description": "narasi"
+  },
+  "istirahatStep2": "Kedip-kedip 10 kali",
+  "@istirahatStep2": {
+    "description": "narasi"
+  },
+  "istirahatStep3": "Regangkan tangan ke atas",
+  "@istirahatStep3": {
+    "description": "narasi"
+  },
+  "istirahatDoneTitle": "Sudah segar lagi!",
+  "@istirahatDoneTitle": {
+    "description": "narasi"
+  },
+  "istirahatSecs": "detik",
+  "@istirahatSecs": {
+    "description": "Satuan di bawah angka hitung mundur"
+  },
+  "istirahatTimer": "Sisa waktu istirahat: {n} detik",
+  "@istirahatTimer": {
+    "description": "Label semantik hitung mundur istirahat",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "habisTitle": "Waktu main hari ini sudah habis",
+  "@habisTitle": {
+    "description": "narasi"
+  },
+  "habisSub": "Sampai besok, {name}! Moci juga mau tidur dulu.",
+  "@habisSub": {
+    "description": "Subjudul Waktu Habis",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "habisNote": "Orang tua bisa mengubah batas waktu harian di Area Orang Tua.",
+  "habisParents": "Untuk orang tua"
 }

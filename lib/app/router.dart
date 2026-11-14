@@ -6,7 +6,10 @@ import '../core/prefs/prefs_controller.dart';
 import '../features/beranda/beranda_screen.dart';
 import '../features/orang_tua/gerbang_screen.dart';
 import '../features/sambutan/sambutan_screen.dart';
+import '../features/istirahat/habis_screen.dart';
+import '../features/istirahat/istirahat_screen.dart';
 import '../features/segera/coming_soon_screen.dart';
+import 'play_timer/play_timer_controller.dart';
 import 'redirect.dart';
 import 'splash/splash_screen.dart';
 import 'routes.dart';
@@ -28,8 +31,10 @@ final parentAccessProvider = NotifierProvider<ParentAccess, bool>(
   ParentAccess.new,
 );
 
-/// Task 16 menggantinya dengan pembacaan pengatur waktu.
-final limitReachedProvider = Provider<bool>((_) => false);
+/// Batas harian sudah tercapai (dari pengatur waktu).
+final limitReachedProvider = Provider<bool>(
+  (ref) => ref.watch(playTimerProvider.select((s) => s.limitReached)),
+);
 
 class CurrentPath extends Notifier<String> {
   @override
@@ -46,22 +51,16 @@ class _RefreshNotifier extends ChangeNotifier {
   void bump() => notifyListeners();
 }
 
-GoRoute _soon(
-  String path,
-  MenuTheme theme, {
-  bool lockBack = false,
-  String? title,
-}) => GoRoute(
+GoRoute _soon(String path, MenuTheme theme, {String? title}) => GoRoute(
   path: path,
   builder: (context, state) {
     final route = state.uri.path;
-    final screen = ComingSoonScreen(
+    return ComingSoonScreen(
       key: ValueKey(route),
       title: title ?? route,
       theme: theme,
       route: path == Routes.mewarnaiHalaman ? route : path,
     );
-    return lockBack ? PopScope(canPop: false, child: screen) : screen;
   },
 );
 
@@ -123,8 +122,16 @@ final routerProvider = Provider<GoRouter>((ref) {
       _soon(Routes.mewarnaiHalaman, MenuTheme.mewarnai),
       _soon(Routes.karyaku, MenuTheme.karyaku),
       _soon(Routes.hebat, MenuTheme.hebat),
-      _soon(Routes.istirahat, MenuTheme.istirahat, lockBack: true),
-      _soon(Routes.habis, MenuTheme.istirahat, lockBack: true),
+      GoRoute(
+        path: Routes.istirahat,
+        builder: (context, state) =>
+            const PopScope(canPop: false, child: IstirahatScreen()),
+      ),
+      GoRoute(
+        path: Routes.habis,
+        builder: (context, state) =>
+            const PopScope(canPop: false, child: HabisScreen()),
+      ),
       GoRoute(
         path: Routes.gerbang,
         builder: (context, state) =>

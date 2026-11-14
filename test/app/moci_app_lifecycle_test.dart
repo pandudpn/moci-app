@@ -2,11 +2,13 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:moci/app/moci_app.dart';
+import 'package:moci/app/play_timer/play_timer_controller.dart';
 import 'package:moci/core/audio/asset_catalog.dart';
 import 'package:moci/core/audio/audio_providers.dart';
 import 'package:moci/core/audio/audio_service.dart';
 import 'package:moci/core/audio/audio_session.dart';
 import 'package:moci/core/providers.dart';
+import 'package:moci/core/storage/json_store.dart';
 import 'package:moci/core/storage/key_value_store.dart';
 
 import '../helpers/fake_audio.dart';
@@ -28,6 +30,9 @@ void main() {
       ProviderScope(
         overrides: [
           keyValueStoreProvider.overrideWithValue(MemoryKeyValueStore()),
+          // Pengatur waktu membaca progress, jadi penyimpanannya perlu ada.
+          jsonStoreProvider.overrideWithValue(MemoryJsonStore()),
+          playTimerTicksProvider.overrideWithValue(const Stream<void>.empty()),
           audioEngineProvider.overrideWithValue(engine),
           audioSessionProvider.overrideWithValue(session),
           devTtsProvider.overrideWithValue(FakeDevTts()),

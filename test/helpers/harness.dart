@@ -6,6 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:moci/app/moci_app.dart';
+import 'package:moci/app/play_timer/play_timer_controller.dart';
 import 'package:moci/app/router.dart';
 import 'package:moci/app/theme/moci_theme.dart';
 import 'package:moci/core/audio/asset_catalog.dart';
@@ -93,6 +94,7 @@ final class TestEnv {
     assetCatalogProvider.overrideWithValue(AssetCatalog(assets)),
     devTtsProvider.overrideWithValue(tts),
     audioSessionProvider.overrideWithValue(_NoopAudioSession()),
+    playTimerTicksProvider.overrideWithValue(ticks.stream),
     ...extraOverrides,
   ];
 }
