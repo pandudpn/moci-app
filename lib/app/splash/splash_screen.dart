@@ -241,6 +241,10 @@ class _SplashScreenState extends State<SplashScreen>
     } else if (!_started) {
       _started = true;
       _controller.forward();
+    } else if (!_controller.isAnimating && !_controller.isCompleted) {
+      // Gerak dinyalakan lagi di tengah intro: lanjut dari nilai terakhir,
+      // supaya adegan tidak beku.
+      _controller.forward();
     }
   }
 
