@@ -73,6 +73,26 @@ void main() {
     await tester.pump();
     expect(taps, 2);
   });
+  testWidgets('jam mundur 1 jam: ketukan tetap diterima', (tester) async {
+    final env = TestEnv();
+    var taps = 0;
+    await pumpScreen(tester, _host(() => taps++), env: env);
+    final c = tester.getCenter(find.byKey(const Key('p')));
+    await tester.tapAt(c);
+    env.clock.advance(const Duration(hours: -1));
+    await tester.pump();
+    await tester.tapAt(c);
+    await tester.pump();
+    expect(taps, 2, reason: 'ketukan pertama sesudah jam mundur');
+    await tester.tapAt(c);
+    await tester.pump();
+    expect(taps, 2, reason: 'masih dalam jeda');
+    env.clock.advance(const Duration(milliseconds: 500));
+    await tester.pump(const Duration(milliseconds: 500));
+    await tester.tapAt(c);
+    await tester.pump();
+    expect(taps, 3);
+  });
 
   testWidgets('onTap null: tidak bereaksi dan diredupkan', (tester) async {
     final env = TestEnv(assets: {Sfx.klik.asset});

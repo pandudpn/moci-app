@@ -73,7 +73,12 @@ class _MociPressableState extends ConsumerState<MociPressable>
     if (onTap == null) return;
     final now = ref.read(clockProvider).now();
     final last = _lastTap;
-    if (last != null && now.difference(last) < widget.cooldown) return;
+    // Jam perangkat bisa mundur (zona waktu, koreksi NTP); selisih mundur
+    // dihitung jeda lewat supaya tombol tidak membeku.
+    final since = now.difference(last ?? now);
+    if (last != null && since >= Duration.zero && since < widget.cooldown) {
+      return;
+    }
     _lastTap = now;
     if (widget.clickSound) {
       ref.read(audioServiceProvider).playSfx(Sfx.klik);
