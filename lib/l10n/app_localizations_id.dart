@@ -926,4 +926,40 @@ class AppLocalizationsId extends AppLocalizations {
   String balonLabel(String huruf) {
     return 'Balon huruf $huruf';
   }
+
+  @override
+  String get besarKecilTitle => 'Besar & Kecil';
+
+  @override
+  String get besarKecilWhich => 'Mana yang paling';
+
+  @override
+  String get besarKecilBig => 'BESAR';
+
+  @override
+  String get besarKecilSmall => 'KECIL';
+
+  @override
+  String get besarKecilProgress => 'Kemajuan';
+
+  @override
+  String get besarKecilYes => 'Betul! Itu yang paling';
+
+  @override
+  String get besarKecilNo => 'Coba lihat lagi!';
+
+  @override
+  String get besarKecilBigSay => 'besar';
+
+  @override
+  String get besarKecilSmallSay => 'kecil';
+
+  @override
+  String get besarKecilInst =>
+      'Ketuk gambar yang paling besar atau paling kecil.';
+
+  @override
+  String besarKecilLabel(String nama, int n) {
+    return '$nama, ukuran $n';
+  }
 }

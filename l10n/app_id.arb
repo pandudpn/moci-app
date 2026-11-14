@@ -1038,5 +1038,57 @@
         "type": "String"
       }
     }
+  },
+  "besarKecilTitle": "Besar & Kecil",
+  "besarKecilWhich": "Mana yang paling",
+  "besarKecilBig": "BESAR",
+  "besarKecilSmall": "KECIL",
+  "besarKecilProgress": "Kemajuan",
+  "besarKecilYes": "Betul! Itu yang paling",
+  "besarKecilNo": "Coba lihat lagi!",
+  "besarKecilBigSay": "besar",
+  "besarKecilSmallSay": "kecil",
+  "besarKecilInst": "Ketuk gambar yang paling besar atau paling kecil.",
+  "besarKecilLabel": "{nama}, ukuran {n}",
+  "@besarKecilTitle": {
+    "description": "Judul bilah atas layar Besar & Kecil"
+  },
+  "@besarKecilWhich": {
+    "description": "narasi"
+  },
+  "@besarKecilBig": {
+    "description": "Kata tanya paling besar"
+  },
+  "@besarKecilSmall": {
+    "description": "Kata tanya paling kecil"
+  },
+  "@besarKecilProgress": {
+    "description": "Label pil kemajuan enam ronde"
+  },
+  "@besarKecilYes": {
+    "description": "narasi"
+  },
+  "@besarKecilNo": {
+    "description": "narasi"
+  },
+  "@besarKecilBigSay": {
+    "description": "narasi"
+  },
+  "@besarKecilSmallSay": {
+    "description": "narasi"
+  },
+  "@besarKecilInst": {
+    "description": "narasi"
+  },
+  "@besarKecilLabel": {
+    "description": "Label gambar dengan nama dan ukurannya",
+    "placeholders": {
+      "nama": {
+        "type": "String"
+      },
+      "n": {
+        "type": "int"
+      }
+    }
   }
 }

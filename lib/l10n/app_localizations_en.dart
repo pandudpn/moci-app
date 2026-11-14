@@ -926,4 +926,39 @@ class AppLocalizationsEn extends AppLocalizations {
   String balonLabel(String huruf) {
     return 'Balloon $huruf';
   }
+
+  @override
+  String get besarKecilTitle => 'Big & Small';
+
+  @override
+  String get besarKecilWhich => 'Which one is the';
+
+  @override
+  String get besarKecilBig => 'BIGGEST';
+
+  @override
+  String get besarKecilSmall => 'SMALLEST';
+
+  @override
+  String get besarKecilProgress => 'Progress';
+
+  @override
+  String get besarKecilYes => 'Yes! That is the';
+
+  @override
+  String get besarKecilNo => 'Look again!';
+
+  @override
+  String get besarKecilBigSay => 'biggest';
+
+  @override
+  String get besarKecilSmallSay => 'smallest';
+
+  @override
+  String get besarKecilInst => 'Tap the biggest or the smallest picture.';
+
+  @override
+  String besarKecilLabel(String nama, int n) {
+    return '$nama, size $n';
+  }
 }

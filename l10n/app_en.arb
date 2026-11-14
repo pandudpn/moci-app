@@ -1035,5 +1035,57 @@
         "type": "String"
       }
     }
+  },
+  "besarKecilTitle": "Big & Small",
+  "besarKecilWhich": "Which one is the",
+  "besarKecilBig": "BIGGEST",
+  "besarKecilSmall": "SMALLEST",
+  "besarKecilProgress": "Progress",
+  "besarKecilYes": "Yes! That is the",
+  "besarKecilNo": "Look again!",
+  "besarKecilBigSay": "biggest",
+  "besarKecilSmallSay": "smallest",
+  "besarKecilInst": "Tap the biggest or the smallest picture.",
+  "besarKecilLabel": "{nama}, size {n}",
+  "@besarKecilTitle": {
+    "description": "Title of the Big & Small screen bar"
+  },
+  "@besarKecilWhich": {
+    "description": "narasi"
+  },
+  "@besarKecilBig": {
+    "description": "Biggest question word"
+  },
+  "@besarKecilSmall": {
+    "description": "Smallest question word"
+  },
+  "@besarKecilProgress": {
+    "description": "Label of the six-round progress pill"
+  },
+  "@besarKecilYes": {
+    "description": "narasi"
+  },
+  "@besarKecilNo": {
+    "description": "narasi"
+  },
+  "@besarKecilBigSay": {
+    "description": "narasi"
+  },
+  "@besarKecilSmallSay": {
+    "description": "narasi"
+  },
+  "@besarKecilInst": {
+    "description": "narasi"
+  },
+  "@besarKecilLabel": {
+    "description": "Label of a picture with its name and size",
+    "placeholders": {
+      "nama": {
+        "type": "String"
+      },
+      "n": {
+        "type": "int"
+      }
+    }
   }
 }

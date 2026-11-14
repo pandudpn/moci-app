@@ -1795,6 +1795,72 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Balon huruf {huruf}'**
   String balonLabel(String huruf);
+
+  /// Judul bilah atas layar Besar & Kecil
+  ///
+  /// In id, this message translates to:
+  /// **'Besar & Kecil'**
+  String get besarKecilTitle;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Mana yang paling'**
+  String get besarKecilWhich;
+
+  /// Kata tanya paling besar
+  ///
+  /// In id, this message translates to:
+  /// **'BESAR'**
+  String get besarKecilBig;
+
+  /// Kata tanya paling kecil
+  ///
+  /// In id, this message translates to:
+  /// **'KECIL'**
+  String get besarKecilSmall;
+
+  /// Label pil kemajuan enam ronde
+  ///
+  /// In id, this message translates to:
+  /// **'Kemajuan'**
+  String get besarKecilProgress;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Betul! Itu yang paling'**
+  String get besarKecilYes;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Coba lihat lagi!'**
+  String get besarKecilNo;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'besar'**
+  String get besarKecilBigSay;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'kecil'**
+  String get besarKecilSmallSay;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Ketuk gambar yang paling besar atau paling kecil.'**
+  String get besarKecilInst;
+
+  /// Label gambar dengan nama dan ukurannya
+  ///
+  /// In id, this message translates to:
+  /// **'{nama}, ukuran {n}'**
+  String besarKecilLabel(String nama, int n);
 }
 
 class _AppLocalizationsDelegate
