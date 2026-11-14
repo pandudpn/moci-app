@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter_test/flutter_test.dart';
 import 'package:moci/core/content/bilingual.dart';
 import 'package:moci/core/content/coloring.dart';
