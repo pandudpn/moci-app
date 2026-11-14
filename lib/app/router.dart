@@ -72,7 +72,7 @@ final routerProvider = Provider<GoRouter>((ref) {
     (_, _) => refresh.bump(),
   );
   ref.listen(limitReachedProvider, (_, _) => refresh.bump());
-  ref.listen(parentAccessProvider, (_, _) => refresh.bump());
+  // Akses orang tua sengaja tidak me-refresh router: refresh menjatuhkan push imperatif.
 
   final router = GoRouter(
     initialLocation: Routes.splash,

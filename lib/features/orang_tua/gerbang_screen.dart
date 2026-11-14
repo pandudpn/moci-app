@@ -156,17 +156,12 @@ class _GerbangScreenState extends ConsumerState<GerbangScreen>
   }
 
   void _enter() {
-    final access = ref.read(parentAccessProvider.notifier);
+    ref.read(parentAccessProvider.notifier).grant();
     final lanjut = widget.lanjut;
     if (lanjut != null) {
-      // Izin harus ada sebelum tujuan dibuka (redirect menjaga Area Orang Tua).
-      access.grant();
       context.pushReplacement(lanjut);
     } else {
-      // Keluar dulu, baru memberi izin: `grant` menyegarkan router, dan
-      // penyegaran saat rute dorong masih tampil mengubah susunan layar.
       context.pop(true);
-      access.grant();
     }
   }
 

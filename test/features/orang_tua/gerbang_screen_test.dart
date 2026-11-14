@@ -200,6 +200,40 @@ void main() {
     expect(_topPath(router), '/');
   });
 
+  testWidgets('Masuk tanpa lanjut menjaga tumpukan push pemanggil', (t) async {
+    final router = await _open(t, location: '/');
+    router.push<void>('/hewan');
+    await _settle(t);
+    final result = router.push<bool>('/gerbang');
+    await _settle(t);
+    final (q, _) = _questions();
+    await _type(t, q.answer);
+    await t.pump(const Duration(milliseconds: 600));
+    await t.tap(find.text('Masuk'));
+    await _settle(t);
+    expect(await result, true);
+    expect(_topPath(router), '/hewan');
+    expect(router.canPop(), true);
+    router.pop();
+    await _settle(t);
+    expect(_topPath(router), '/');
+  });
+
+  testWidgets('Masuk dengan lanjut dari rute dorong menjaga Beranda', (
+    t,
+  ) async {
+    final router = await _open(t, location: '/');
+    router.push<void>(Routes.gerbangLanjut(Routes.orangTua));
+    await _settle(t);
+    final (q, _) = _questions();
+    await _type(t, q.answer);
+    await t.pump(const Duration(milliseconds: 600));
+    await t.tap(find.text('Masuk'));
+    await _settle(t);
+    expect(_topPath(router), '/orang-tua');
+    expect(router.canPop(), true);
+  });
+
   testWidgets('Batal tanpa layar untuk di-pop kembali ke Beranda', (t) async {
     final router = await _open(
       t,
