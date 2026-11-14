@@ -7,7 +7,11 @@ enum MenuTheme {
     Color(0xFF8EC5EE),
     stops: [0, 0.55, 1],
   ),
-  sambutan([Color(0xFFDDF3FF)], Color(0xFF8EC5EE)),
+  sambutan(
+    [Color(0xFF74C4FF), Color(0xFFB5E2FF), Color(0xFFDDF3FF)],
+    Color(0xFF8EC5EE),
+    stops: [0, 0.6, 1],
+  ),
   huruf([Color(0xFFFFEDE6)], Color(0xFFF3C2B3)),
   ucapkan([Color(0xFFFFEDE6)], Color(0xFFF3C2B3)),
   berhitung([Color(0xFFE7F3FF)], Color(0xFFB7D7F7)),
