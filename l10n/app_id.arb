@@ -1,0 +1,15 @@
+{
+  "@@locale": "id",
+  "appTitle": "Moci",
+  "@appTitle": { "description": "Nama aplikasi" },
+  "commonBack": "Kembali ke beranda",
+  "@commonBack": { "description": "Tombol kembali ke layar beranda" },
+  "commonListen": "Dengar",
+  "@commonListen": { "description": "Tombol untuk mendengarkan narasi" },
+  "langNameId": "Bahasa Indonesia",
+  "@langNameId": { "description": "narasi" },
+  "langNameEn": "English",
+  "@langNameEn": { "description": "narasi" },
+  "childFallbackName": "Adik",
+  "@childFallbackName": { "description": "Sebutan anak bila nama belum diisi" }
+}

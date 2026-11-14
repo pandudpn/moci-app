@@ -1,0 +1,15 @@
+{
+  "@@locale": "en",
+  "appTitle": "Moci",
+  "@appTitle": { "description": "App name" },
+  "commonBack": "Back to home",
+  "@commonBack": { "description": "Button to go back to the home screen" },
+  "commonListen": "Listen",
+  "@commonListen": { "description": "Button to listen to the narration" },
+  "langNameId": "Bahasa Indonesia",
+  "@langNameId": { "description": "narasi" },
+  "langNameEn": "English",
+  "@langNameEn": { "description": "narasi" },
+  "childFallbackName": "little one",
+  "@childFallbackName": { "description": "Term for the child when no name is set" }
+}
