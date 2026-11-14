@@ -38,6 +38,9 @@ Future<void> runMoci({List<Override> overrides = const []}) async {
     DeviceOrientation.landscapeLeft,
     DeviceOrientation.landscapeRight,
   ]);
+  // Aplikasi anak: panggung memakai layar penuh. Bilah status dan indikator
+  // home disembunyikan supaya area aman tidak memotong panggung.
+  await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
   final keyValueStore = await SharedPrefsKeyValueStore.open();
   final dir = await AppFiles.open(const MethodChannelBackupExclusion());
   final jsonStore = FileJsonStore(dir);

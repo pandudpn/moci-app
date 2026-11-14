@@ -123,7 +123,7 @@ Redirect `/hebat` yang tidak membawa `HebatArgs` kembali ke Beranda. `PopScope(c
 
 ## 5. Aliran state
 
-**Membuka aplikasi.** `runMoci` di `lib/main.dart` mendaftarkan lisensi font, mengunci orientasi landscape, lalu membuka `SharedPrefsKeyValueStore`, `AppFiles.open` (folder `<application support>/moci` dan penanda backup), `FileJsonStore`, `ProgressRepository.load`, `AssetCatalog.load`, dan `ContentRepository.loadKatalog`. Keenam hasil itu menjadi override `ProviderScope`, lalu `MociApp` dijalankan.
+**Membuka aplikasi.** `runMoci` di `lib/main.dart` mendaftarkan lisensi font, mengunci orientasi landscape, menyembunyikan bilah status dan indikator home (`SystemUiMode.immersiveSticky`, ditambah `UIStatusBarHidden` di `Info.plist`), lalu membuka `SharedPrefsKeyValueStore`, `AppFiles.open` (folder `<application support>/moci` dan penanda backup), `FileJsonStore`, `ProgressRepository.load`, `AssetCatalog.load`, dan `ContentRepository.loadKatalog`. Keenam hasil itu menjadi override `ProviderScope`, lalu `MociApp` dijalankan.
 
 **Audio menyala belakangan.** `MociApp` membaca `audioBootProvider` di `addPostFrameCallback`, supaya Splash tampil tanpa menunggu mesin audio. Urutannya: kategori sesi playback, `AudioEngine.init`, lalu `preloadSfx`.
 

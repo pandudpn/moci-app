@@ -34,6 +34,26 @@ void main() {
     ),
   );
   test(
+    'iPad pas: inset bawah tidak mengecilkan panggung',
+    () => check(
+      const Size(1180, 820),
+      const EdgeInsets.only(bottom: 20),
+      kTabletBase,
+      1.0,
+      Offset.zero,
+    ),
+  );
+  test(
+    'iPad pas: bilah status atas tetap dihormati',
+    () => check(
+      const Size(1180, 820),
+      const EdgeInsets.only(top: 24, bottom: 20),
+      kTabletBase,
+      796 / 820,
+      const Offset(17.3, 24),
+    ),
+  );
+  test(
     'iPad 4:3: pita atas-bawah',
     () => check(
       const Size(1024, 768),

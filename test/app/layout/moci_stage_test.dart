@@ -120,6 +120,48 @@ void main() {
     );
   });
 
+  testWidgets('1180x820 dengan inset bawah 20 mengisi layar penuh', (
+    tester,
+  ) async {
+    setScreen(
+      tester,
+      const Size(1180, 820),
+      padding: const FakeViewPadding(bottom: 20),
+    );
+    await tester.pumpWidget(
+      host(
+        MociStage(
+          theme: MenuTheme.beranda,
+          tablet: (c) => const SizedBox.expand(key: probe),
+        ),
+      ),
+    );
+    expect(tester.getTopLeft(find.byKey(probe)), Offset.zero);
+    expect(tester.getSize(find.byKey(probe)), kTabletBase);
+  });
+
+  testWidgets('HP: notch tetap dihormati walau ada inset bawah', (
+    tester,
+  ) async {
+    setScreen(
+      tester,
+      const Size(844, 390),
+      padding: const FakeViewPadding(left: 47, right: 47, bottom: 21),
+    );
+    await tester.pumpWidget(
+      host(
+        MociStage(
+          theme: MenuTheme.beranda,
+          tablet: (c) => const SizedBox.expand(),
+          phone: (c) => const SizedBox.expand(key: probe),
+        ),
+      ),
+    );
+    final tl = tester.getTopLeft(find.byKey(probe));
+    expect(tl.dx, closeTo(47, 0.5));
+    expect(tl.dy, closeTo(21.7, 0.5));
+  });
+
   testWidgets('system text scale 2.0 with cap 1.3 gives 13', (tester) async {
     setScreen(tester, const Size(1180, 820), textScale: 2.0);
     late TextScaler s;

@@ -24,6 +24,10 @@ class StageFit {
 }
 
 /// Skala proporsional [base] ke area aman, dipusatkan di dalamnya.
+///
+/// Inset bawah tidak mengurangi tinggi: indikator home hanya garis tipis di
+/// atas panggung, dan desain sudah punya margin bawahnya sendiri. Notch,
+/// Dynamic Island, dan lubang kamera (kiri, kanan, atas) tetap dihormati.
 StageFit fitStage({
   required Size screen,
   required EdgeInsets safe,
@@ -31,7 +35,7 @@ StageFit fitStage({
 }) {
   final avail = Size(
     screen.width - safe.left - safe.right,
-    screen.height - safe.top - safe.bottom,
+    screen.height - safe.top,
   );
   final scale = math.min(avail.width / base.width, avail.height / base.height);
   final size = Size(base.width * scale, base.height * scale);
