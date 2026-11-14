@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:moci/core/audio/audio_service.dart';
+import 'package:moci/core/audio/sfx.dart';
 import 'package:moci/core/lang.dart';
 import 'package:moci/core/prefs/prefs_controller.dart';
 import 'package:moci/core/progress/progress.dart';
@@ -74,7 +75,56 @@ Future<void> _tapMenu(WidgetTester t, BerandaMenu m) async {
   await t.pump(const Duration(milliseconds: 100));
 }
 
+void _pressTests() {
+  group('tombol ID/EN: efek tekan', () {
+    testWidgets('klik sfx sekali per ketukan', (t) async {
+      final env = TestEnv(assets: {Sfx.klik.asset});
+      await _open(t, env: env);
+      await t.tap(find.byKey(const ValueKey('lang-en')));
+      await t.pump(const Duration(milliseconds: 100));
+      expect(
+        env.audio.plays.where((p) => p.asset == Sfx.klik.asset),
+        hasLength(1),
+      );
+    });
+
+    testWidgets('ditekan: visual EN turun 5 dan mengecil 0,97', (t) async {
+      await _open(t);
+      final en = find.byKey(const ValueKey('lang-en'));
+      final g = await t.startGesture(t.getCenter(en));
+      await t.pump();
+      await t.pump(const Duration(milliseconds: 120));
+      final tr = t.widget<Transform>(
+        find.descendant(of: en, matching: find.byType(Transform)).first,
+      );
+      final m = tr.transform;
+      expect(m.getTranslation().y, closeTo(5, 0.01));
+      expect(m.storage[0], closeTo(0.97, 0.001));
+      // Hanya setengah EN yang bergerak, bukan sakelar utuh.
+      final id = find.byKey(const ValueKey('lang-id'));
+      final idTr = t.widget<Transform>(
+        find.descendant(of: id, matching: find.byType(Transform)).first,
+      );
+      expect(idTr.transform.getTranslation().y, 0);
+      await g.up();
+      await t.pump(const Duration(milliseconds: 200));
+    });
+
+    testWidgets('dua ketukan dalam jeda: narasi sekali', (t) async {
+      final env = TestEnv();
+      await _open(t, env: env);
+      final en = find.byKey(const ValueKey('lang-en'));
+      await t.tap(en);
+      await t.pump(const Duration(milliseconds: 50));
+      await t.tap(en);
+      await t.pump(const Duration(milliseconds: 50));
+      expect(env.tts.spoken.where((s) => s.$1 == 'English'), hasLength(1));
+    });
+  });
+}
+
 void main() {
+  _pressTests();
   _targetTests();
 
   for (final (name, size) in [('tablet', tabletSize), ('HP', phoneSize)]) {

@@ -3,9 +3,11 @@ import 'package:flutter/widgets.dart';
 import '../../../app/theme/moci_colors.dart';
 import '../../../app/theme/moci_text.dart';
 import '../../../core/lang.dart';
+import '../../../widgets/pressable.dart';
 
 const _enBlue = Color(0xFF1C7ED6);
 const _pillShadow = Color(0xFF8EC5EE);
+const _clear = Color(0x00000000);
 
 /// Sakelar ID/EN. Tombol aktif berwarna (ID merah, EN biru) bertulisan putih.
 ///
@@ -42,6 +44,9 @@ class LangSwitch extends StatelessWidget {
       ('lang-id', 'ID', 'Bahasa Indonesia', AppLang.id, MociColors.wrong),
       ('lang-en', 'EN', 'English', AppLang.en, _enBlue),
     ];
+    // Pusat tombol tetap seperti prototipe; sel sentuh dipusatkan di situ.
+    final idLeft = pad + btnW / 2 - touch / 2;
+    final lefts = [idLeft, pillW - idLeft - touch];
     return Semantics(
       container: true,
       label: label,
@@ -63,48 +68,38 @@ class LangSwitch extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: SizedBox(
-                  width: pillW,
-                  height: pillH,
-                  child: Padding(
-                    padding: EdgeInsets.all(pad),
-                    child: Row(
-                      children: [
-                        for (final (i, e) in entries.indexed) ...[
-                          if (i > 0) const SizedBox(width: 4),
-                          _Visual(
-                            text: e.$2,
-                            width: btnW,
-                            height: btnH,
-                            active: lang == e.$4,
-                            activeColor: e.$5,
-                            compact: compact,
-                          ),
-                        ],
-                      ],
+                child: SizedBox(width: pillW, height: pillH),
+              ),
+            ),
+            for (final (i, e) in entries.indexed)
+              Positioned(
+                left: lefts[i],
+                top: 0,
+                child: Semantics(
+                  selected: lang == e.$4,
+                  child: MociPressable(
+                    key: ValueKey(e.$1),
+                    // Hanya pil tombolnya yang tampak dan ikut bergerak
+                    // saat ditekan; kotak dan bayangan pembungkus bening.
+                    color: _clear,
+                    shadowColor: _clear,
+                    depth: 0,
+                    minTouch: touch,
+                    semanticLabel: e.$3,
+                    onTap: () => onChanged(e.$4),
+                    child: ExcludeSemantics(
+                      child: _Visual(
+                        text: e.$2,
+                        width: btnW,
+                        height: btnH,
+                        active: lang == e.$4,
+                        activeColor: e.$5,
+                        compact: compact,
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                for (final e in entries)
-                  Semantics(
-                    button: true,
-                    selected: lang == e.$4,
-                    label: e.$3,
-                    excludeSemantics: true,
-                    child: GestureDetector(
-                      key: ValueKey(e.$1),
-                      behavior: HitTestBehavior.opaque,
-                      onTap: () => onChanged(e.$4),
-                      child: SizedBox(width: touch, height: touch),
-                    ),
-                  ),
-              ],
-            ),
           ],
         ),
       ),
