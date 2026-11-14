@@ -235,4 +235,60 @@ void main() {
       expect(engine.live, isEmpty);
     });
   });
+
+  group('jeda untuk mendengar', () {
+    test(
+      'pauseForListening menghentikan musik, resume memulainya lagi',
+      () async {
+        final engine = FakeAudioEngine();
+        final service = AudioService(
+          engine: engine,
+          assets: AssetCatalog({AudioService.musicAsset}),
+        );
+        await engine.init();
+        await service.startMusic();
+        expect(engine.live.values, contains(AudioService.musicAsset));
+
+        await service.pauseForListening();
+        expect(engine.live, isEmpty);
+
+        await service.resumeAfterListening();
+        expect(engine.live.values, contains(AudioService.musicAsset));
+      },
+    );
+
+    test('narasi yang dimulai saat jeda tetap jalan, musik tidak', () async {
+      final engine = FakeAudioEngine();
+      final service = AudioService(
+        engine: engine,
+        assets: AssetCatalog({
+          AudioService.musicAsset,
+          'assets/audio/vo/id/ui_a.m4a',
+        }),
+      );
+      await engine.init();
+      await service.startMusic();
+      await service.pauseForListening();
+
+      await service.narrate('assets/audio/vo/id/ui_a.m4a');
+      expect(engine.live.values, ['assets/audio/vo/id/ui_a.m4a']);
+
+      await service.resumeAfterListening();
+      expect(engine.live.values, contains(AudioService.musicAsset));
+    });
+
+    test('musik tidak dimulai kalau sakelar musik mati', () async {
+      final engine = FakeAudioEngine();
+      final service = AudioService(
+        engine: engine,
+        assets: AssetCatalog({AudioService.musicAsset}),
+      );
+      await engine.init();
+      service.applySettings(music: false, sfx: true);
+      await service.startMusic();
+      await service.pauseForListening();
+      await service.resumeAfterListening();
+      expect(engine.live, isEmpty);
+    });
+  });
 }

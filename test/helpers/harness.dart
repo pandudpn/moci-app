@@ -23,12 +23,14 @@ import 'package:moci/core/prefs/prefs_controller.dart';
 import 'package:moci/core/progress/progress.dart';
 import 'package:moci/core/progress/progress_controller.dart';
 import 'package:moci/core/providers.dart';
+import 'package:moci/core/speech/speech_to_text_engine.dart';
 import 'package:moci/core/storage/json_store.dart';
 import 'package:moci/core/storage/key_value_store.dart';
 import 'package:moci/l10n/l10n.dart';
 
 import 'fake_audio.dart';
 import 'fake_clock.dart';
+import 'fake_speech.dart';
 
 /// Katalog asli untuk tes, dibaca sekali per proses tes.
 Katalog? _katalog;
@@ -188,6 +190,7 @@ final class TestEnv {
   final json = MemoryJsonStore();
   final audio = FakeAudioEngine();
   final tts = FakeDeviceTts();
+  final speech = FakeSpeechEngine();
   final FakeClock clock;
   final ticks = StreamController<void>.broadcast();
 
@@ -204,6 +207,7 @@ final class TestEnv {
     tracingAngkaProvider.overrideWithValue(_tracingUji(angka: true)),
     deviceTtsProvider.overrideWithValue(tts),
     audioSessionProvider.overrideWithValue(_NoopAudioSession()),
+    speechEngineProvider.overrideWithValue(speech),
     playTimerTicksProvider.overrideWithValue(ticks.stream),
     ...extraOverrides,
   ];

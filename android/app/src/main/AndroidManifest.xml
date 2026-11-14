@@ -1,4 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Mikrofon hanya untuk Ucapkan, dan baru diminta setelah Gerbang Orang
+         Tua. Suara dikenali di perangkat; tidak ada izin INTERNET. -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
     <application
         android:label="Moci"
         android:allowBackup="false"
@@ -49,6 +52,10 @@
         <!-- Android 11+: narasi TTS perangkat dipakai di semua mode build. -->
         <intent>
             <action android:name="android.intent.action.TTS_SERVICE"/>
+        </intent>
+        <!-- Android 11+: pengenalan ucapan di perangkat untuk Ucapkan. -->
+        <intent>
+            <action android:name="android.speech.RecognitionService"/>
         </intent>
     </queries>
 </manifest>
