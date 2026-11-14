@@ -1,5 +1,6 @@
 import 'dart:ui' show Locale, PlatformDispatcher;
 
+import 'package:characters/characters.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../lang.dart';
@@ -75,7 +76,10 @@ final class PrefsController extends Notifier<AppPrefs> {
 
   static String _trimName(String name) {
     final t = name.trim();
-    return t.length > _maxNameLength ? t.substring(0, _maxNameLength) : t;
+    final chars = t.characters;
+    if (chars.length <= _maxNameLength) return t;
+    // Potong di batas kluster supaya emoji tidak jadi surrogate tunggal.
+    return chars.take(_maxNameLength).toString().trimRight();
   }
 
   Future<void> setLang(AppLang lang) {

@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:characters/characters.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:moci/core/lang.dart';
@@ -78,6 +79,33 @@ void main() {
     final c = make(MemoryKeyValueStore(), const Locale('id'));
     await c.read(prefsProvider.notifier).setChildName('A' * 30);
     expect(c.read(prefsProvider).childName.length, 20);
+  });
+  test('nama 19 huruf + emoji tidak jadi surrogate tunggal', () async {
+    final s = MemoryKeyValueStore();
+    final c = make(s, const Locale('id'));
+    final nama = '${'a' * 19}🎉';
+    await c.read(prefsProvider.notifier).setChildName(nama);
+    final tersimpan = s.getString('moci.nama')!;
+    expect(tersimpan, nama);
+    expect(tersimpan.length, 21);
+    expect(
+      tersimpan.runes,
+      isNot(contains(predicate<int>((r) => r >= 0xD800 && r <= 0xDFFF))),
+    );
+  });
+  test('potong nama di batas kluster grafik', () async {
+    final s = MemoryKeyValueStore();
+    final c = make(s, const Locale('id'));
+    const keluarga = '👨‍👩‍👧‍👦';
+    final batas = '${'a' * 19}$keluarga';
+    await c.read(prefsProvider.notifier).setChildName('${batas}b');
+    final tersimpan = s.getString('moci.nama')!;
+    expect(tersimpan, batas);
+    expect(tersimpan.characters.length, 20);
+    expect(
+      tersimpan.runes,
+      isNot(contains(predicate<int>((r) => r >= 0xD800 && r <= 0xDFFF))),
+    );
   });
   test('batas di luar 15/30/45/null ditolak', () {
     final c = make(MemoryKeyValueStore(), const Locale('id'));
