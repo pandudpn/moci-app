@@ -1,0 +1,13 @@
+Hak cipta (c) 2026 Pandu dwi Putra. Seluruh hak dilindungi.
+
+Kode, ilustrasi, suara, teks, dan aset brand Moci tidak boleh dipakai, disalin, diubah, atau disebarkan, sebagian maupun seluruhnya, tanpa izin tertulis dari pemilik hak cipta. Repo ini terbuka untuk dilihat dan dinilai, bukan untuk dipakai ulang.
+
+## Komponen pihak ketiga
+
+Karya pihak ketiga di repo ini memakai lisensinya sendiri. Lisensi itu berlaku di atas pernyataan di atas.
+
+- **Font.** Fredoka dan Nunito dipakai di bawah SIL Open Font License 1.1. Salinan lisensinya ada di `assets/fonts/OFL-Fredoka.txt` dan `assets/fonts/OFL-Nunito.txt`.
+- **Audio.** Setiap berkas suara memakai lisensi yang tercatat di `assets/audio/LICENSES.csv`. Sumbernya Freesound dengan lisensi CC0, atau rekaman sendiri yang ditandai `Milik sendiri`.
+- **Paket Dart dan Flutter.** Setiap paket di `pubspec.yaml`, termasuk paket bawaan Flutter, memakai lisensinya masing-masing. Daftarnya bisa dibuka dengan `fvm flutter pub deps`.
+
+Pertanyaan soal izin pemakaian dikirim ke pemilik repo.

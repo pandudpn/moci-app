@@ -44,5 +44,19 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
+# iOS CocoaPods
+ios/Pods/
+
+# Rahasia signing dan kredensial lokal
+android/key.properties
+*.jks
+*.keystore
+*.p12
+.env
+.env.*
+
+# Catatan kerja lokal
+.superpowers/
+
 # FVM Version Cache
 .fvm/
