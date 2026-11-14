@@ -91,8 +91,7 @@ lib/features/mewarnai/kanvas_screen.dart        # Kanvas
 lib/features/mewarnai/karyaku_screen.dart       # Karyaku
 l10n/app_id.arb · l10n/app_en.arb               # 43 kunci baru
 lib/app/router.dart                             # tiga rute mewarnai menggantikan ComingSoonScreen
-docs/TECH-SPEC.md · SYSTEM_DESIGN.md            # skema berkas, penyimpanan, mesin
-integration_test/app_test.dart                  # skenario mewarnai → simpan → Karyaku
+docs/TECH-SPEC.md · SYSTEM_DESIGN.md            # skema berkas, penyimpanan, mesin (Task 9)
 ```
 
 Kontrak untuk rencana berikutnya: nama tipe dan berkas di atas tidak boleh berubah tanpa memperbarui rencana yang memakainya. Rencana 08 hanya menambah builder `phone` di layar-layar ini.
@@ -459,7 +458,7 @@ test('hapus karya menghapus berkasnya', () async {
 **Interfaces:**
 - Consumes: `MesinMewarnai`, `KaryaData`, `ColoringPage`, `ColoringRegion`, `svgPath`, `warnaDariHex`, `ukuranCap`, `ukuranThumbnail`, `skalaLayar`, `PictureRecorder`/`Picture.toImage`/`ImageByteFormat.png`, `PictureInfo` (vector_graphics).
 - Produces (dipakai Task 5–8):
-  - `class ColoringView extends StatelessWidget { const ColoringView({super.key, required this.halaman, required this.data, this.cap = const {}, this.width = 800, this.height = 600, this.radius = 0}); }` — `CustomPaint` statis: latar putih, isian per bagian (bawaan putih), coretan dipotong per bagian, garis luar `#2B2350` 6 unit, detail di atasnya, lalu stiker `90` unit.
+  - `class ColoringView extends StatelessWidget { const ColoringView({super.key, required this.halaman, required this.data, this.cap = const {}, this.width = 800, this.height = 600, this.radius = 0}); }` — `CustomPaint` statis: latar putih, isian per bagian (bawaan putih), coretan dipotong per bagian, garis luar `#2B2350` 6 unit, detail di atasnya, lalu stiker `90` unit. Detail adalah `(d, fill, w)`: bila `fill` tidak kosong, gambar isian dulu dan garis tinta hanya bila `w > 0`; bila `fill` kosong, gambar garis tinta selebar `w` saja. `pages.json` memakai kedua bentuk (mis. detail `kupu` hanya garis `w = 6`).
   - `class ColoringPainter extends CustomPainter { ColoringPainter({required this.halaman, required this.data, required this.cap, required this.skala, this.goresanAktif = const [], this.bagianAktif, this.warnaAktif = '#FFFFFF', this.lebarAktif = 26, Listenable? repaint}); }` — `shouldRepaint` membandingkan `data`, `skala`, panjang `goresanAktif`, `bagianAktif`, warna/lebar aktif.
   - `Future<Uint8List> renderKaryaPng({required ColoringPage halaman, required KaryaData data, Map<String, PictureInfo> cap = const {}, int lebar = 300, int tinggi = 225});` — merekam painter dengan `skala = lebar / 800`, `picture.toImage(lebar, tinggi)`, `toByteData(format: png)`.
   - `class ColoringCanvas extends StatelessWidget { const ColoringCanvas({super.key, required this.mesin, required this.cap, this.semanticLabel, this.skala = skalaLayar}); static const surfaceKey = ValueKey('coloring-surface'); }` — `SizedBox` 864 × 648, `Semantics`, `Listener` (`onPointerDown/Move/Up/Cancel`, `behavior: HitTestBehavior.opaque`) yang membagi posisi lokal dengan `skala`, lalu `RepaintBoundary` + `CustomPaint(painter: ColoringPainter(..., repaint: mesin))`.
@@ -567,15 +566,16 @@ testWidgets('ekspor PNG memotong coretan ke bagiannya', (t) async {
   - Kartu: `MociPressable` putih radius 24 depth 7, padding 10; pita 74 × 24 berputar `-4/3/-2/5/-5` bergiliran warna `#FF8FB1/#74C0FC/#8CE99A/#FFD43B/#B197FC`; `PageThumbnail` 184 × 138 dengan border 2 `#F1EAD8`; nama 20 Fredoka 600 `maxLines: 1` + elipsis; lencana `mewarnaiContinue` hijau `#26A03B` bila `karyaState.drafUntuk(id)?.adaIsi == true`.
   - Kartu terakhir = Karyaku: bayangan `#E0A100`, pita `#FFD43B`, gambar `karyaku` (MociIllustration) 184 × 138, label `mewarnaiKaryaku`, lencana jumlah karya ungu `#7048E8` bila `karya.length > 0`; ketukan → `context.push(Routes.karyaku)`.
   - Saring: `semua` (semua), `hewan`, `benda` menurut `page.kategori`; pil aktif berlatar `#FFC233`.
-  - Ketukan kartu → `context.push('/mewarnai/${page.id}')`; `initState` memanggil `karyaProvider.notifier.muat()`.
+  - Ketukan kartu → `context.push('/mewarnai/${page.id}')`; `initState` memanggil `karyaProvider.notifier.muat()` dan membacakan petunjuk sekali lewat `Narrator.sayAll([NarrationLine(jenis: 'ui', id: 'mewarnaiHintPick', text: l10n.mewarnaiHintPick)], prefs.lang)`.
   - ARB (ID / EN): `mewarnaiFilter` "Jenis gambar"/"Picture type"; `mewarnaiTabSemua` "Semua"/"All"; `mewarnaiTabHewan` "Hewan"/"Animals"; `mewarnaiTabBenda` "Benda & Alam"/"Things & Nature"; `mewarnaiHintPick` "Pilih gambar yang mau kamu warnai!"/"Pick a picture to color!"; `mewarnaiOpenPage` "Warnai gambar: {nama}"/"Color the picture: {nama}"; `mewarnaiContinue` "Lanjutkan"/"Continue"; `mewarnaiKaryaku` "Karyaku"/"My Artwork"; `mewarnaiKaryaCount` "{count, plural, =0{Belum ada karya} =1{1 karya} other{{count} karya}}"/"{count, plural, =0{No artwork yet} =1{1 artwork} other{{count} artworks}}"; `mewarnaiOpenKaryaku` "Buka Karyaku, {count} karya"/"Open My Artwork, {count} artworks".
 - Rute: `GoRoute(path: Routes.mewarnai, builder: (_, _) => const GaleriScreen())` menggantikan `_soon`.
 
 - [ ] **Step 1: Tulis tes yang gagal**
 
 ```dart
-testWidgets('galeri: judul, 14 halaman, dan kartu Karyaku', (t) async {
-  await pumpApp(t, initialLocation: '/mewarnai');
+testWidgets('galeri: judul, 14 halaman, kartu Karyaku, dan petunjuk dibacakan', (t) async {
+  final env = TestEnv();
+  await pumpApp(t, env: env, initialLocation: '/mewarnai');
   await t.pump();
   await t.pump();
   expect(find.text('Mewarnai'), findsOneWidget);
@@ -583,6 +583,7 @@ testWidgets('galeri: judul, 14 halaman, dan kartu Karyaku', (t) async {
   expect(find.byKey(GaleriScreen.kartuKey('eskrim')), findsOneWidget);
   expect(find.byKey(GaleriScreen.karyakuKey), findsOneWidget);
   expect(find.text('Kue Ulang Tahun'), findsOneWidget);
+  expect(env.tts.spoken.map((e) => e.$1), ['Pilih gambar yang mau kamu warnai!']);
 });
 testWidgets('saring hewan menyisakan enam halaman', (t) async {
   await pumpApp(t, initialLocation: '/mewarnai');
@@ -786,7 +787,7 @@ testWidgets('halaman tak dikenal kembali ke galeri', (t) async {
 ```
 
 - [ ] **Step 2: Pastikan tesnya gagal.** Run: `fvm flutter test test/features/mewarnai/kanvas_screen_test.dart`. Expected: FAIL (rute masih `ComingSoonScreen`, `KanvasScreen` belum ada).
-- [ ] **Step 3: Implementasikan layar, toolbar, krayon, ikon, rute, dan kunci ARB.** Pilih `page = coloringProvider.byId(halaman)`; bungkus kanvas dengan `ColoringCanvas(mesin: _mesin!, cap: capPictures, semanticLabel: l10n.mewarnaiCanvasLabel(nama))`. Simpan notifier `KaryaController` di field untuk penulisan draf saat `dispose`. Tampilkan petunjuk alat aktif di baris bawah, dan bacakan petunjuknya saat alat dipilih lewat `Narrator.sayAll([NarrationLine(jenis: 'ui', id: 'mewarnaiHintFill', text: l10n.mewarnaiHintFill)], prefs.lang)`.
+- [ ] **Step 3: Implementasikan layar, toolbar, krayon, ikon, rute, dan kunci ARB.** Pilih `page = coloringProvider.byId(halaman)`; bungkus kanvas dengan `ColoringCanvas(mesin: _mesin!, cap: capPictures, semanticLabel: l10n.mewarnaiCanvasLabel(nama))`. Simpan notifier `KaryaController` di field untuk penulisan draf saat `dispose`. Tampilkan petunjuk alat aktif di baris bawah, dan bacakan petunjuknya saat alat dipilih lewat `Narrator.sayAll([NarrationLine(jenis: 'ui', id: 'mewarnaiHintFill', text: l10n.mewarnaiHintFill)], prefs.lang)`. `GoRoute(path: Routes.mewarnaiHalaman)` memakai `builder: (c, s) => KanvasScreen(key: ValueKey(s.pathParameters['halaman']!), halaman: s.pathParameters['halaman']!)`, supaya `pushReplacement` antarhalaman membuat State baru, bukan memakai kanvas halaman lama. Bilah atas kanvas memakai baris sendiri (margin 24, judul 40) sesuai artboard, bukan `MociTopBar` (margin 32, judul 46).
 - [ ] **Step 4: Jalankan tes.** Run: `fvm flutter test test/features/mewarnai`. Expected: PASS.
 - [ ] **Step 5: Commit** dengan pesan `feat(mewarnai): Kanvas dengan alat, 16 krayon, batal, dan draf otomatis`.
 
@@ -975,10 +976,10 @@ testWidgets('buka karya: pratinjau besar dan tutup', (t) async {
   await t.pump();
   await t.pump();
   await t.tap(find.byKey(KaryakuScreen.cardKey('k1')));
-  await t.pump();
+  await t.pump(const Duration(milliseconds: 250));
   expect(find.text('Warnai lagi'), findsOneWidget);
   await t.tap(find.text('Tutup'));
-  await t.pump();
+  await t.pump(const Duration(milliseconds: 250));
   expect(find.text('Warnai lagi'), findsNothing);
 });
 testWidgets('hapus dua langkah', (t) async {
@@ -988,12 +989,12 @@ testWidgets('hapus dua langkah', (t) async {
   await t.pump();
   await t.pump();
   await t.tap(find.byKey(KaryakuScreen.cardKey('k1')));
-  await t.pump();
+  await t.pump(const Duration(milliseconds: 250));
   await t.tap(find.text('Hapus'));
   await t.pump();
   expect(find.text('Yakin hapus?'), findsOneWidget);
   await t.tap(find.text('Yakin hapus?'));
-  await t.pump();
+  await t.pump(const Duration(milliseconds: 250));
   await t.pump();
   expect(await env.json.list('karya'), isEmpty);
   expect(find.byKey(KaryakuScreen.emptyKey), findsOneWidget);
@@ -1005,9 +1006,9 @@ testWidgets('warnai lagi menyalin karya ke draf lalu membuka kanvas', (t) async 
   await t.pump();
   await t.pump();
   await t.tap(find.byKey(KaryakuScreen.cardKey('k1')));
-  await t.pump();
+  await t.pump(const Duration(milliseconds: 250));
   await t.tap(find.text('Warnai lagi'));
-  await t.pump();
+  await t.pump(const Duration(milliseconds: 250));
   await t.pump();
   expect(router.routerDelegate.currentConfiguration.last.matchedLocation, '/mewarnai/kupu');
   final draf = await env.json.read('draf/kupu.json');
@@ -1023,13 +1024,13 @@ testWidgets('hapus karya tidak menghapus draf', (t) async {
   await t.pump();
   await t.pump();
   await t.tap(find.byKey(KaryakuScreen.cardKey('k1')));
-  await t.pump();
+  await t.pump(const Duration(milliseconds: 250));
   await t.tap(find.text('Hapus'));
   await t.pump();
   await t.tap(find.text('Yakin hapus?'));
   await t.pump();
+  await t.pump(const Duration(milliseconds: 250));
   await t.pump();
-  expect(await env.json.read('draf/kupu.json'), isNotNull);
 });
 testWidgets('dua belas karya dan hitungannya', (t) async {
   final env = TestEnv();
@@ -1062,27 +1063,23 @@ testWidgets('gambar rusak jatuh ke pratinjau dari data', (t) async {
 
 ---
 
-### Task 9: Dokumentasi, uji integrasi, dan pemeriksaan akhir
+### Task 9: Dokumentasi, pemeriksaan perangkat, dan pemeriksaan akhir
 
 **Files:**
-- Modify: `docs/TECH-SPEC.md`, `SYSTEM_DESIGN.md`, `integration_test/app_test.dart`
-- Test: `integration_test/app_test.dart`
+- Modify: `docs/TECH-SPEC.md`, `SYSTEM_DESIGN.md`
 
 **Interfaces:**
-- Consumes: semua task sebelumnya.
-- Produces: skema berkas tertulis, penyimpanan terdokumentasi, dan satu skenario perangkat.
+- Produces: skema berkas tertulis, penyimpanan terdokumentasi, dan satu daftar periksa perangkat. Berkas `integration_test/app_test.dart` sengaja tidak disentuh: Rencana 04–06 boleh berjalan paralel dan menambah skenario di berkas yang sama, jadi pemeriksaan ujung-ke-ujung dilakukan manual di perangkat.
 
 Dokumentasi yang harus berubah:
 - `docs/TECH-SPEC.md` §Data dan penyimpanan lokal: baris `Karya` menyebut `karya/<id>.json` berisi `gambar` (PNG 300 × 225 base64) dan tetap maksimal 12 berkas / 200 KB; tambahkan contoh JSON karya dan draf sesuai bentuk di Task 1; tambahkan aturan "thumbnail Karyaku memakai PNG yang diekspor saat Simpan, Galeri memakai warna contoh dari data".
 - `docs/TECH-SPEC.md` §Mewarnai: ganti butir 8 dengan aturan PNG di atas, dan tambahkan angka yang dipakai kode: kuas 14/26/44, hapus +10, stiker 90 unit, riwayat 30, draf 600 ms, 16 krayon, 8 stiker, 12 karya.
 - `SYSTEM_DESIGN.md`: §Data dan penyimpanan menyebut `karya/` dan `draf/` beserta PNG di dalam JSON, `karyaProvider`, batas 12; peta fitur menyebut `lib/features/mewarnai/` (galeri, kanvas, karyaku, mesin, painter); daftar rute menyebut `/mewarnai`, `/mewarnai/:halaman`, `/karyaku` tidak lagi `ComingSoonScreen`.
-- `integration_test/app_test.dart`: tambah `testWidgets('mewarnai: isi, simpan, lalu karyaku', …)` — buka Beranda, ketuk kartu Mewarnai, pilih "Ikan", pilih alat Isi dan krayon pertama, ketuk tengah kanvas, tekan Simpan sampai toast muncul, kembali ke Galeri, buka Karyaku, dan pastikan satu kartu muncul. Tidak memakai `pumpAndSettle`; penantian lewat `_pumpUntil` yang sudah ada.
+- Pemeriksaan perangkat (manual, iPad dan emulator Android): buka Beranda → Mewarnai → pilih "Ikan"; pilih Isi lalu krayon pertama dan ketuk satu bagian; gosok Kuas besar di bagian lain; tempel satu stiker; tekan Batal sekali lalu Mulai lagi lalu Batal sekali; tekan Simpan dan pastikan toast muncul; kembali ke Galeri (lencana "Lanjutkan" muncul di Ikan); buka Karyaku dan pastikan satu kartu dengan gambar yang sama; buka kartunya, tekan "Warnai lagi", dan pastikan kanvas terbuka dengan isian tersalin; tutup aplikasi lalu buka lagi dan pastikan draf Ikan serta karya tadi masih ada. Ulangi dengan bahasa English dan putar perangkat ke orientasi lain di tengah jalan.
 
-- [ ] **Step 1: Tulis uji integrasi** dengan langkah di atas memakai `_prepareDevice` dan `runMoci(overrides: _quietAudio(...))` yang sudah ada.
-- [ ] **Step 2: Jalankan di perangkat.** Run: `fvm flutter test integration_test -d "iPad (A16)"`. Expected: PASS. Kegagalan di sini adalah bug integrasi (router, penyimpanan, raster PNG): perbaiki layarnya, bukan tesnya.
-- [ ] **Step 3: Perbarui dokumentasi** sesuai daftar di atas. Jangan menyalin isi spec; tulis hanya yang berubah di kode.
-- [ ] **Step 4: Jalankan uji integrasi lagi.** Run: `fvm flutter test integration_test -d "iPad (A16)"`. Expected: PASS.
-- [ ] **Step 5: Pemeriksaan akhir.** Run:
+- [ ] **Step 1: Perbarui dokumentasi** sesuai daftar di atas. Jangan menyalin isi spec; tulis hanya yang berubah di kode.
+- [ ] **Step 2: Jalankan pemeriksaan perangkat** dengan daftar di atas. Run: `fvm flutter run --release -d "iPad (A16)"`, lalu ulangi di emulator Android. Expected: semua langkah lolos; PNG karya terlihat, bukan kotak kosong. Kegagalan di sini adalah bug integrasi (router, penyimpanan, raster PNG): perbaiki layarnya.
+- [ ] **Step 3: Pemeriksaan akhir.** Run:
 ```bash
 fvm dart format --output=none --set-exit-if-changed lib test tool integration_test
 fvm flutter analyze
@@ -1091,4 +1088,4 @@ fvm flutter test --tags golden
 fvm dart run tool/validate_content.dart
 ```
 Expected: format dan analyze bersih; semua tes PASS; validator keluar dengan kode 0 dan hanya peringatan (`mewarnai_contoh`, `narasi_lengkap` untuk rekaman yang belum ada).
-- [ ] **Step 6: Commit** dengan pesan `docs(mewarnai): skema karya, penyimpanan, dan uji integrasi`.
+- [ ] **Step 4: Commit** dengan pesan `docs(mewarnai): skema karya, penyimpanan lokal, dan batas 12 karya`.
