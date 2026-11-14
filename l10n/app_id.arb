@@ -981,5 +981,374 @@
         "type": "String"
       }
     }
+  },
+  "membacaTitle": "Ayo Membaca",
+  "@membacaTitle": {
+    "description": "Judul layar Ayo Membaca"
+  },
+  "membacaModes": "Mode membaca",
+  "@membacaModes": {
+    "description": "Label aksesibilitas tiga tab mode membaca"
+  },
+  "membacaSukuKata": "Suku Kata",
+  "@membacaSukuKata": {
+    "description": "Tab Suku Kata"
+  },
+  "membacaSusunKata": "Susun Kata",
+  "@membacaSusunKata": {
+    "description": "Tab Susun Kata"
+  },
+  "membacaKalimat": "Kalimat",
+  "@membacaKalimat": {
+    "description": "Tab Kalimat"
+  },
+  "sukuKataPilih": "Pilih huruf",
+  "@sukuKataPilih": {
+    "description": "Judul kisi konsonan"
+  },
+  "sukuKataTip": "Ketuk suku kata untuk mendengarnya!",
+  "@sukuKataTip": {
+    "description": "narasi"
+  },
+  "sukuKataHear": "Dengar kata",
+  "@sukuKataHear": {
+    "description": "Tombol contoh kata"
+  },
+  "sukuKataReadAll": "Baca semua",
+  "@sukuKataReadAll": {
+    "description": "Tombol membaca lima suku kata"
+  },
+  "sukuKataExample": "Contoh kata",
+  "@sukuKataExample": {
+    "description": "Label contoh kata"
+  },
+  "sukuKataSayIt": "Ayo ucapkan!",
+  "@sukuKataSayIt": {
+    "description": "Label suku tanpa contoh kata"
+  },
+  "sukuKataLetter": "Huruf {huruf}",
+  "@sukuKataLetter": {
+    "description": "Label aksesibilitas tombol konsonan",
+    "placeholders": {
+      "huruf": {
+        "type": "String"
+      }
+    }
+  },
+  "sukuKataSyllable": "Suku kata {suku}",
+  "@sukuKataSyllable": {
+    "description": "Label aksesibilitas kartu suku kata",
+    "placeholders": {
+      "suku": {
+        "type": "String"
+      }
+    }
+  },
+  "susunKataLevel": "Level",
+  "@susunKataLevel": {
+    "description": "Label pilihan level"
+  },
+  "susunKataLevel2": "2 suku kata",
+  "@susunKataLevel2": {
+    "description": "Pil level dua suku kata"
+  },
+  "susunKataLevel3": "3 suku kata",
+  "@susunKataLevel3": {
+    "description": "Pil level tiga suku kata"
+  },
+  "susunKataHear": "Dengar katanya",
+  "@susunKataHear": {
+    "description": "Tombol mendengar kata"
+  },
+  "susunKataIns": "Ketuk suku kata secara berurutan",
+  "@susunKataIns": {
+    "description": "narasi"
+  },
+  "susunKataNext": "Lanjut",
+  "@susunKataNext": {
+    "description": "Tombol ronde berikutnya"
+  },
+  "susunKataHintStart": "Dengarkan, lalu ketuk suku kata pertama!",
+  "@susunKataHintStart": {
+    "description": "Petunjuk saat kotak masih kosong"
+  },
+  "susunKataHintMore": "Bagus! Sekarang suku kata berikutnya.",
+  "@susunKataHintMore": {
+    "description": "Petunjuk setelah satu kotak terisi"
+  },
+  "susunKataTryAgain": "Ups, belum tepat. Coba lagi!",
+  "@susunKataTryAgain": {
+    "description": "narasi"
+  },
+  "susunKataSlot": "Kotak {nomor}",
+  "@susunKataSlot": {
+    "description": "Label aksesibilitas kotak susun",
+    "placeholders": {
+      "nomor": {
+        "type": "int"
+      }
+    }
+  },
+  "susunKataEmpty": "kosong",
+  "@susunKataEmpty": {
+    "description": "Keterangan kotak kosong"
+  },
+  "susunKataYes": "Betul!",
+  "@susunKataYes": {
+    "description": "narasi"
+  },
+  "susunKataTile": "Suku kata {suku}",
+  "@susunKataTile": {
+    "description": "Label aksesibilitas keping suku kata",
+    "placeholders": {
+      "suku": {
+        "type": "String"
+      }
+    }
+  },
+  "susunKataProgress": "Kemajuan",
+  "@susunKataProgress": {
+    "description": "Label aksesibilitas titik kemajuan"
+  },
+  "kalimatIns": "Ketuk kata untuk mendengarnya",
+  "@kalimatIns": {
+    "description": "narasi"
+  },
+  "kalimatRead": "Baca bersama",
+  "@kalimatRead": {
+    "description": "Tombol karaoke kalimat"
+  },
+  "kalimatPrev": "Kalimat sebelumnya",
+  "@kalimatPrev": {
+    "description": "Tombol kalimat sebelumnya"
+  },
+  "kalimatNext": "Kalimat berikutnya",
+  "@kalimatNext": {
+    "description": "Tombol kalimat berikutnya"
+  },
+  "kalimatWhich": "Gambar mana yang cocok?",
+  "@kalimatWhich": {
+    "description": "Pertanyaan mode tebak gambar"
+  },
+  "kalimatReadMode": "Baca",
+  "@kalimatReadMode": {
+    "description": "Pil mode baca"
+  },
+  "kalimatQuizMode": "Tebak gambar",
+  "@kalimatQuizMode": {
+    "description": "Pil mode tebak gambar"
+  },
+  "kalimatReadTip": "Ketuk \"Baca bersama\" lalu ikuti kata yang menyala!",
+  "@kalimatReadTip": {
+    "description": "Gelembung petunjuk karaoke"
+  },
+  "kalimatYes": "Betul! Pintar sekali!",
+  "@kalimatYes": {
+    "description": "narasi"
+  },
+  "kalimatNo": "Bukan yang itu. Coba lagi!",
+  "@kalimatNo": {
+    "description": "narasi"
+  },
+  "kalimatPicture": "Gambar kalimat",
+  "@kalimatPicture": {
+    "description": "Label aksesibilitas gambar kalimat"
+  },
+  "mewarnaiFilter": "Jenis gambar",
+  "@mewarnaiFilter": {
+    "description": "Label semantik grup saring galeri"
+  },
+  "mewarnaiTabSemua": "Semua",
+  "@mewarnaiTabSemua": {
+    "description": "Pil saring semua gambar"
+  },
+  "mewarnaiTabHewan": "Hewan",
+  "@mewarnaiTabHewan": {
+    "description": "Pil saring gambar hewan"
+  },
+  "mewarnaiTabBenda": "Benda & Alam",
+  "@mewarnaiTabBenda": {
+    "description": "Pil saring gambar benda dan alam"
+  },
+  "mewarnaiHintPick": "Pilih gambar yang mau kamu warnai!",
+  "@mewarnaiHintPick": {
+    "description": "Petunjuk di bawah galeri"
+  },
+  "mewarnaiOpenPage": "Warnai gambar: {nama}",
+  "@mewarnaiOpenPage": {
+    "description": "Label semantik kartu halaman",
+    "placeholders": {
+      "nama": {
+        "type": "String"
+      }
+    }
+  },
+  "mewarnaiContinue": "Lanjutkan",
+  "@mewarnaiContinue": {
+    "description": "Lencana halaman yang drafnya berisi"
+  },
+  "mewarnaiKaryaku": "Karyaku",
+  "@mewarnaiKaryaku": {
+    "description": "Nama kartu dan judul layar Karyaku"
+  },
+  "mewarnaiKaryaCount": "{count, plural, =0{Belum ada karya} =1{1 karya} other{{count} karya}}",
+  "@mewarnaiKaryaCount": {
+    "description": "Jumlah karya di kartu Karyaku",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "mewarnaiOpenKaryaku": "Buka Karyaku, {count} karya",
+  "@mewarnaiOpenKaryaku": {
+    "description": "Label semantik kartu Karyaku",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "mewarnaiBackGaleri": "Kembali ke galeri",
+  "@mewarnaiBackGaleri": {
+    "description": "Tombol kembali dari kanvas"
+  },
+  "mewarnaiChangePage": "Gambar",
+  "@mewarnaiChangePage": {
+    "description": "Tombol buka pemilih gambar"
+  },
+  "mewarnaiUndo": "Batal",
+  "@mewarnaiUndo": {
+    "description": "Tombol batal langkah terakhir"
+  },
+  "mewarnaiClear": "Mulai lagi",
+  "@mewarnaiClear": {
+    "description": "Tombol mengosongkan halaman"
+  },
+  "mewarnaiSave": "Simpan",
+  "@mewarnaiSave": {
+    "description": "Tombol menyimpan karya"
+  },
+  "mewarnaiTools": "Alat",
+  "@mewarnaiTools": {
+    "description": "Label grup alat di panel"
+  },
+  "mewarnaiToolBrush": "Kuas",
+  "@mewarnaiToolBrush": {
+    "description": "Nama alat kuas"
+  },
+  "mewarnaiToolFill": "Isi",
+  "@mewarnaiToolFill": {
+    "description": "Nama alat isi"
+  },
+  "mewarnaiToolErase": "Hapus",
+  "@mewarnaiToolErase": {
+    "description": "Nama alat hapus"
+  },
+  "mewarnaiToolCap": "Stiker",
+  "@mewarnaiToolCap": {
+    "description": "Nama alat stiker"
+  },
+  "mewarnaiBrushSize": "Ukuran kuas",
+  "@mewarnaiBrushSize": {
+    "description": "Label grup ukuran kuas"
+  },
+  "mewarnaiBrushSmall": "Kuas kecil",
+  "@mewarnaiBrushSmall": {
+    "description": "Ukuran kuas kecil"
+  },
+  "mewarnaiBrushMedium": "Kuas sedang",
+  "@mewarnaiBrushMedium": {
+    "description": "Ukuran kuas sedang"
+  },
+  "mewarnaiBrushBig": "Kuas besar",
+  "@mewarnaiBrushBig": {
+    "description": "Ukuran kuas besar"
+  },
+  "mewarnaiCrayons": "Krayon",
+  "@mewarnaiCrayons": {
+    "description": "Label grup krayon"
+  },
+  "mewarnaiCaps": "Stiker",
+  "@mewarnaiCaps": {
+    "description": "Label grup stiker"
+  },
+  "mewarnaiHintBrush": "Warnai di dalam bagian gambar. Krayonnya tidak akan keluar garis!",
+  "@mewarnaiHintBrush": {
+    "description": "narasi"
+  },
+  "mewarnaiHintFill": "Ketuk satu bagian untuk mengisinya dengan warna.",
+  "@mewarnaiHintFill": {
+    "description": "narasi"
+  },
+  "mewarnaiHintErase": "Gosok untuk menghapus warna.",
+  "@mewarnaiHintErase": {
+    "description": "narasi"
+  },
+  "mewarnaiHintCap": "Ketuk gambar untuk menempel stiker.",
+  "@mewarnaiHintCap": {
+    "description": "narasi"
+  },
+  "mewarnaiCanvasLabel": "Gambar untuk diwarnai: {nama}",
+  "@mewarnaiCanvasLabel": {
+    "description": "Label semantik kanvas",
+    "placeholders": {
+      "nama": {
+        "type": "String"
+      }
+    }
+  },
+  "mewarnaiSayClear": "Ayo mulai dari awal!",
+  "@mewarnaiSayClear": {
+    "description": "narasi"
+  },
+  "mewarnaiSaved": "Tersimpan di Karyaku!",
+  "@mewarnaiSaved": {
+    "description": "Toast setelah karya tersimpan"
+  },
+  "mewarnaiSaySaved": "Tersimpan! Bagus sekali!",
+  "@mewarnaiSaySaved": {
+    "description": "narasi"
+  },
+  "mewarnaiPickPage": "Pilih gambar",
+  "@mewarnaiPickPage": {
+    "description": "Judul pemilih gambar"
+  },
+  "mewarnaiClose": "Tutup",
+  "@mewarnaiClose": {
+    "description": "Tombol menutup dialog"
+  },
+  "mewarnaiKaryakuHint": "Ketuk gambar untuk melihatnya lebih besar.",
+  "@mewarnaiKaryakuHint": {
+    "description": "Petunjuk di atas kisi Karyaku"
+  },
+  "mewarnaiKaryakuEmpty": "Belum ada karya",
+  "@mewarnaiKaryakuEmpty": {
+    "description": "Judul Karyaku saat kosong"
+  },
+  "mewarnaiKaryakuEmptyHint": "Yuk mewarnai dulu! Tekan Simpan, nanti gambarmu muncul di sini.",
+  "@mewarnaiKaryakuEmptyHint": {
+    "description": "Ajakan mewarnai saat Karyaku kosong"
+  },
+  "mewarnaiColorAgain": "Warnai lagi",
+  "@mewarnaiColorAgain": {
+    "description": "Tombol membuka kanvas dengan isi karya"
+  },
+  "mewarnaiDelete": "Hapus",
+  "@mewarnaiDelete": {
+    "description": "Tombol menghapus karya"
+  },
+  "mewarnaiDeleteConfirm": "Yakin hapus?",
+  "@mewarnaiDeleteConfirm": {
+    "description": "Konfirmasi hapus karya"
+  },
+  "mewarnaiViewArt": "Lihat karya: {nama}",
+  "@mewarnaiViewArt": {
+    "description": "Label semantik kartu karya",
+    "placeholders": {
+      "nama": {
+        "type": "String"
+      }
+    }
   }
 }

@@ -16,8 +16,8 @@ Dokumen ini menjelaskan perilaku sistem saat aplikasi berjalan: batas privasi, d
 | --- | --- | --- |
 | Pengaturan | `shared_preferences` | Sembilan kunci di bawah |
 | Kemajuan | `progress.json` | Bintang, stiker, kegiatan terakhir, waktu bermain, perkembangan, ringkasan harian |
-| Karya | `karya/<id>.json`, maksimal 12 berkas | Rencana 07 |
-| Draf mewarnai | `draf/<halaman>.json` | Rencana 07 |
+| Karya | `karya/<id>.json`, maksimal 12 berkas | Isi halaman, waktu simpan, dan `gambar` (PNG 300 × 225 base64) |
+| Draf mewarnai | `draf/<halaman>.json`, satu per halaman | Isi halaman, tanpa PNG |
 
 Kunci pengaturan, semuanya berawalan `moci.`:
 
@@ -63,8 +63,22 @@ Aturan penyimpanan:
 - Berkas yang tidak bisa dibaca dipindah ke `<berkas>.rusak-<milidetik>` dan dianggap kosong. `list` melewati `.tmp` dan `.rusak-`.
 - `waktuBermain` dan `harian` disimpan untuk 7 hari terakhir. Pemangkasan terjadi setiap kali progres berubah.
 - `perkembangan` tidak dipangkas; ini data jangka panjang yang dipakai ringkasan Area Orang Tua.
-- `karya/` dan `draf/` belum ada di kode. Rencana 07 menambahkan maksimal 12 karya, satu draf per halaman, dan batas 200 KB per berkas (maksimal 6 MB untuk semua).
+- `karya/` dan `draf/` dibaca dan ditulis `KaryaRepository` lewat `JsonStore`, lalu dibagikan ke layar sebagai `karyaProvider`. Batasnya 12 karya (yang tertua dipangkas), satu draf per halaman, dan 200 KB per berkas. PNG pratinjau ikut di dalam JSON karya, bukan berkas terpisah, supaya satu karya tetap satu berkas atomik.
+- Simpan menulis karya lebih dulu, baru mencatat progres (`recordKarya`, `markItem('mewarnai', 'diwarnai', halaman)`). Draf tidak dihapus saat Simpan, dan menghapus karya tidak menghapus draf.
 - Hapus semua data di Area Orang Tua menjalankan `jsonStore.deleteAll`, `progress.reset`, dan `prefs.resetAll`, membuang pengatur waktu dari memori, mencabut akses orang tua, lalu membuka Sambutan lagi.
+
+### Fitur mewarnai (Rencana 07)
+
+| Berkas | Isi |
+| --- | --- |
+| `lib/features/mewarnai/galeri_screen.dart` | 14 halaman, saring jenis gambar, lencana Lanjutkan, kartu Karyaku |
+| `lib/features/mewarnai/kanvas_screen.dart` | alat, 16 krayon, 8 stiker, batal, draf otomatis, Simpan, pemilih gambar |
+| `lib/features/mewarnai/karyaku_screen.dart` | 12 karya, detail, hapus dua langkah, warnai lagi |
+| `lib/features/mewarnai/mewarnai_engine.dart` | isi, kuas, hapus, stiker, dan riwayat batal 30 langkah |
+| `lib/features/mewarnai/mewarnai_painter.dart` | painter halaman yang sama untuk layar dan ekspor PNG |
+| `lib/features/mewarnai/karya_repository.dart` | baca dan tulis `draf/` serta `karya/` lewat `JsonStore` |
+
+Rute `/mewarnai`, `/mewarnai/:halaman`, dan `/karyaku` sudah memakai layar asli, bukan `ComingSoonScreen`.
 
 ## 3. Pengatur waktu bermain
 

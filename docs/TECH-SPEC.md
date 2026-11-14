@@ -113,8 +113,8 @@ Semua data tersimpan di folder aplikasi dan tidak pernah keluar dari perangkat. 
 | --- | --- | --- | --- |
 | Pengaturan | `shared_preferences` | Bahasa, nama, level usia, cara baca huruf, batas waktu, musik latar, efek suara, pengingat istirahat, status Sambutan | Di bawah 1 KB |
 | Kemajuan | `progress.json` | Bintang, stiker, perkembangan per menu, kegiatan terakhir, waktu bermain 7 hari | Di bawah 50 KB |
-| Karya | `karya/<id>.json`, maksimal 12 file | Halaman, warna isian per bagian, coretan, stiker, waktu simpan | Maksimal 200 KB per karya |
-| Draf mewarnai | `draf/<halaman>.json`, satu per halaman | Sama seperti karya | Maksimal 200 KB per draf |
+| Karya | `karya/<id>.json`, maksimal 12 file | Isi halaman, waktu simpan, dan `gambar` (PNG 300 × 225 base64) | Maksimal 200 KB per karya |
+| Draf mewarnai | `draf/<halaman>.json`, satu per halaman | Isi halaman saja, tanpa PNG | Maksimal 200 KB per draf |
 
 Contoh isi `progress.json`:
 
@@ -128,6 +128,26 @@ Contoh isi `progress.json`:
   "perkembangan": { "huruf": { "dilihat": ["A", "B"], "ditulis": ["A"] } }
 }
 ```
+
+Contoh isi `karya/k1763115124512.json` (`draf/kupu.json` sama tanpa `id`, `waktu`, dan `gambar`):
+
+```json
+{
+  "versi": 1,
+  "id": "k1763115124512",
+  "halaman": "kupu",
+  "isian": { "1": "#74C0FC", "2": "#FFD43B" },
+  "coretan": {
+    "3": [{ "d": "M120 80 L124 81 L140 84", "warna": "#FF4B4B", "lebar": 26 }]
+  },
+  "cap": [{ "cap": "moci-senang", "x": 640.0, "y": 410.0 }],
+  "waktu": "2026-11-14T10:12:04.512",
+  "gambar": "iVBORw0KGgoAAAANSUhEUg…"
+}
+```
+
+- Thumbnail Karyaku memakai PNG yang diekspor saat Simpan; Galeri memakai warna contoh dari data halaman. Tidak ada berkas gambar terpisah.
+- Draf ditulis 600 ms setelah perubahan terakhir dan sekali lagi saat layar kanvas ditinggalkan. Simpan tidak menghapus draf.
 
 Aturan penyimpanan:
 
@@ -159,7 +179,8 @@ Tracing dan mewarnai adalah bagian paling berat di aplikasi. Keduanya digambar d
 5. Kuas punya 3 ukuran. Hapus memakai kuas putih di dalam bagian, dan Isi mengganti warna satu bagian dengan sekali ketuk.
 6. Stiker ditempel di titik ketukan dengan ukuran tetap, lalu disimpan sebagai id stiker dan posisinya.
 7. Batal menyimpan riwayat sampai 30 langkah, termasuk Mulai lagi. Jadi kanvas yang terhapus tanpa sengaja bisa dikembalikan.
-8. Thumbnail di Galeri dan Karyaku digambar dari data karya yang sama, tanpa file gambar tambahan.
+8. Saat Simpan, halaman digambar ulang lewat painter yang sama ke `PictureRecorder` dan diekspor jadi PNG 300 × 225. PNG itu disimpan base64 di `gambar` dalam berkas karya dan dipakai sebagai thumbnail Karyaku; Galeri tetap memakai pratinjau dari data.
+9. Angka yang dipakai kode: kuas 14 / 26 / 44 unit, hapus selebar kuas + 10, stiker 90 unit, riwayat batal 30 langkah, draf otomatis 600 ms, 16 krayon, 8 stiker, dan maksimal 12 karya.
 
 Dua permainan lain juga memakai ilustrasi yang sudah ada. Tebak Bayangan memberi `ColorFilter` hitam pada gambar berwarna, dan Puzzle memotong gambar per keping dengan `ClipRect`.
 

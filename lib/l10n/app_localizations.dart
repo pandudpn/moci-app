@@ -1663,6 +1663,492 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Ucapkan {kata}'**
   String berandaContinueUcapkan(String kata);
+
+  /// Judul layar Ayo Membaca
+  ///
+  /// In id, this message translates to:
+  /// **'Ayo Membaca'**
+  String get membacaTitle;
+
+  /// Label aksesibilitas tiga tab mode membaca
+  ///
+  /// In id, this message translates to:
+  /// **'Mode membaca'**
+  String get membacaModes;
+
+  /// Tab Suku Kata
+  ///
+  /// In id, this message translates to:
+  /// **'Suku Kata'**
+  String get membacaSukuKata;
+
+  /// Tab Susun Kata
+  ///
+  /// In id, this message translates to:
+  /// **'Susun Kata'**
+  String get membacaSusunKata;
+
+  /// Tab Kalimat
+  ///
+  /// In id, this message translates to:
+  /// **'Kalimat'**
+  String get membacaKalimat;
+
+  /// Judul kisi konsonan
+  ///
+  /// In id, this message translates to:
+  /// **'Pilih huruf'**
+  String get sukuKataPilih;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Ketuk suku kata untuk mendengarnya!'**
+  String get sukuKataTip;
+
+  /// Tombol contoh kata
+  ///
+  /// In id, this message translates to:
+  /// **'Dengar kata'**
+  String get sukuKataHear;
+
+  /// Tombol membaca lima suku kata
+  ///
+  /// In id, this message translates to:
+  /// **'Baca semua'**
+  String get sukuKataReadAll;
+
+  /// Label contoh kata
+  ///
+  /// In id, this message translates to:
+  /// **'Contoh kata'**
+  String get sukuKataExample;
+
+  /// Label suku tanpa contoh kata
+  ///
+  /// In id, this message translates to:
+  /// **'Ayo ucapkan!'**
+  String get sukuKataSayIt;
+
+  /// Label aksesibilitas tombol konsonan
+  ///
+  /// In id, this message translates to:
+  /// **'Huruf {huruf}'**
+  String sukuKataLetter(String huruf);
+
+  /// Label aksesibilitas kartu suku kata
+  ///
+  /// In id, this message translates to:
+  /// **'Suku kata {suku}'**
+  String sukuKataSyllable(String suku);
+
+  /// Label pilihan level
+  ///
+  /// In id, this message translates to:
+  /// **'Level'**
+  String get susunKataLevel;
+
+  /// Pil level dua suku kata
+  ///
+  /// In id, this message translates to:
+  /// **'2 suku kata'**
+  String get susunKataLevel2;
+
+  /// Pil level tiga suku kata
+  ///
+  /// In id, this message translates to:
+  /// **'3 suku kata'**
+  String get susunKataLevel3;
+
+  /// Tombol mendengar kata
+  ///
+  /// In id, this message translates to:
+  /// **'Dengar katanya'**
+  String get susunKataHear;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Ketuk suku kata secara berurutan'**
+  String get susunKataIns;
+
+  /// Tombol ronde berikutnya
+  ///
+  /// In id, this message translates to:
+  /// **'Lanjut'**
+  String get susunKataNext;
+
+  /// Petunjuk saat kotak masih kosong
+  ///
+  /// In id, this message translates to:
+  /// **'Dengarkan, lalu ketuk suku kata pertama!'**
+  String get susunKataHintStart;
+
+  /// Petunjuk setelah satu kotak terisi
+  ///
+  /// In id, this message translates to:
+  /// **'Bagus! Sekarang suku kata berikutnya.'**
+  String get susunKataHintMore;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Ups, belum tepat. Coba lagi!'**
+  String get susunKataTryAgain;
+
+  /// Label aksesibilitas kotak susun
+  ///
+  /// In id, this message translates to:
+  /// **'Kotak {nomor}'**
+  String susunKataSlot(int nomor);
+
+  /// Keterangan kotak kosong
+  ///
+  /// In id, this message translates to:
+  /// **'kosong'**
+  String get susunKataEmpty;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Betul!'**
+  String get susunKataYes;
+
+  /// Label aksesibilitas keping suku kata
+  ///
+  /// In id, this message translates to:
+  /// **'Suku kata {suku}'**
+  String susunKataTile(String suku);
+
+  /// Label aksesibilitas titik kemajuan
+  ///
+  /// In id, this message translates to:
+  /// **'Kemajuan'**
+  String get susunKataProgress;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Ketuk kata untuk mendengarnya'**
+  String get kalimatIns;
+
+  /// Tombol karaoke kalimat
+  ///
+  /// In id, this message translates to:
+  /// **'Baca bersama'**
+  String get kalimatRead;
+
+  /// Tombol kalimat sebelumnya
+  ///
+  /// In id, this message translates to:
+  /// **'Kalimat sebelumnya'**
+  String get kalimatPrev;
+
+  /// Tombol kalimat berikutnya
+  ///
+  /// In id, this message translates to:
+  /// **'Kalimat berikutnya'**
+  String get kalimatNext;
+
+  /// Pertanyaan mode tebak gambar
+  ///
+  /// In id, this message translates to:
+  /// **'Gambar mana yang cocok?'**
+  String get kalimatWhich;
+
+  /// Pil mode baca
+  ///
+  /// In id, this message translates to:
+  /// **'Baca'**
+  String get kalimatReadMode;
+
+  /// Pil mode tebak gambar
+  ///
+  /// In id, this message translates to:
+  /// **'Tebak gambar'**
+  String get kalimatQuizMode;
+
+  /// Gelembung petunjuk karaoke
+  ///
+  /// In id, this message translates to:
+  /// **'Ketuk \"Baca bersama\" lalu ikuti kata yang menyala!'**
+  String get kalimatReadTip;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Betul! Pintar sekali!'**
+  String get kalimatYes;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Bukan yang itu. Coba lagi!'**
+  String get kalimatNo;
+
+  /// Label aksesibilitas gambar kalimat
+  ///
+  /// In id, this message translates to:
+  /// **'Gambar kalimat'**
+  String get kalimatPicture;
+
+  /// Label semantik grup saring galeri
+  ///
+  /// In id, this message translates to:
+  /// **'Jenis gambar'**
+  String get mewarnaiFilter;
+
+  /// Pil saring semua gambar
+  ///
+  /// In id, this message translates to:
+  /// **'Semua'**
+  String get mewarnaiTabSemua;
+
+  /// Pil saring gambar hewan
+  ///
+  /// In id, this message translates to:
+  /// **'Hewan'**
+  String get mewarnaiTabHewan;
+
+  /// Pil saring gambar benda dan alam
+  ///
+  /// In id, this message translates to:
+  /// **'Benda & Alam'**
+  String get mewarnaiTabBenda;
+
+  /// Petunjuk di bawah galeri
+  ///
+  /// In id, this message translates to:
+  /// **'Pilih gambar yang mau kamu warnai!'**
+  String get mewarnaiHintPick;
+
+  /// Label semantik kartu halaman
+  ///
+  /// In id, this message translates to:
+  /// **'Warnai gambar: {nama}'**
+  String mewarnaiOpenPage(String nama);
+
+  /// Lencana halaman yang drafnya berisi
+  ///
+  /// In id, this message translates to:
+  /// **'Lanjutkan'**
+  String get mewarnaiContinue;
+
+  /// Nama kartu dan judul layar Karyaku
+  ///
+  /// In id, this message translates to:
+  /// **'Karyaku'**
+  String get mewarnaiKaryaku;
+
+  /// Jumlah karya di kartu Karyaku
+  ///
+  /// In id, this message translates to:
+  /// **'{count, plural, =0{Belum ada karya} =1{1 karya} other{{count} karya}}'**
+  String mewarnaiKaryaCount(int count);
+
+  /// Label semantik kartu Karyaku
+  ///
+  /// In id, this message translates to:
+  /// **'Buka Karyaku, {count} karya'**
+  String mewarnaiOpenKaryaku(int count);
+
+  /// Tombol kembali dari kanvas
+  ///
+  /// In id, this message translates to:
+  /// **'Kembali ke galeri'**
+  String get mewarnaiBackGaleri;
+
+  /// Tombol buka pemilih gambar
+  ///
+  /// In id, this message translates to:
+  /// **'Gambar'**
+  String get mewarnaiChangePage;
+
+  /// Tombol batal langkah terakhir
+  ///
+  /// In id, this message translates to:
+  /// **'Batal'**
+  String get mewarnaiUndo;
+
+  /// Tombol mengosongkan halaman
+  ///
+  /// In id, this message translates to:
+  /// **'Mulai lagi'**
+  String get mewarnaiClear;
+
+  /// Tombol menyimpan karya
+  ///
+  /// In id, this message translates to:
+  /// **'Simpan'**
+  String get mewarnaiSave;
+
+  /// Label grup alat di panel
+  ///
+  /// In id, this message translates to:
+  /// **'Alat'**
+  String get mewarnaiTools;
+
+  /// Nama alat kuas
+  ///
+  /// In id, this message translates to:
+  /// **'Kuas'**
+  String get mewarnaiToolBrush;
+
+  /// Nama alat isi
+  ///
+  /// In id, this message translates to:
+  /// **'Isi'**
+  String get mewarnaiToolFill;
+
+  /// Nama alat hapus
+  ///
+  /// In id, this message translates to:
+  /// **'Hapus'**
+  String get mewarnaiToolErase;
+
+  /// Nama alat stiker
+  ///
+  /// In id, this message translates to:
+  /// **'Stiker'**
+  String get mewarnaiToolCap;
+
+  /// Label grup ukuran kuas
+  ///
+  /// In id, this message translates to:
+  /// **'Ukuran kuas'**
+  String get mewarnaiBrushSize;
+
+  /// Ukuran kuas kecil
+  ///
+  /// In id, this message translates to:
+  /// **'Kuas kecil'**
+  String get mewarnaiBrushSmall;
+
+  /// Ukuran kuas sedang
+  ///
+  /// In id, this message translates to:
+  /// **'Kuas sedang'**
+  String get mewarnaiBrushMedium;
+
+  /// Ukuran kuas besar
+  ///
+  /// In id, this message translates to:
+  /// **'Kuas besar'**
+  String get mewarnaiBrushBig;
+
+  /// Label grup krayon
+  ///
+  /// In id, this message translates to:
+  /// **'Krayon'**
+  String get mewarnaiCrayons;
+
+  /// Label grup stiker
+  ///
+  /// In id, this message translates to:
+  /// **'Stiker'**
+  String get mewarnaiCaps;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Warnai di dalam bagian gambar. Krayonnya tidak akan keluar garis!'**
+  String get mewarnaiHintBrush;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Ketuk satu bagian untuk mengisinya dengan warna.'**
+  String get mewarnaiHintFill;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Gosok untuk menghapus warna.'**
+  String get mewarnaiHintErase;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Ketuk gambar untuk menempel stiker.'**
+  String get mewarnaiHintCap;
+
+  /// Label semantik kanvas
+  ///
+  /// In id, this message translates to:
+  /// **'Gambar untuk diwarnai: {nama}'**
+  String mewarnaiCanvasLabel(String nama);
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Ayo mulai dari awal!'**
+  String get mewarnaiSayClear;
+
+  /// Toast setelah karya tersimpan
+  ///
+  /// In id, this message translates to:
+  /// **'Tersimpan di Karyaku!'**
+  String get mewarnaiSaved;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Tersimpan! Bagus sekali!'**
+  String get mewarnaiSaySaved;
+
+  /// Judul pemilih gambar
+  ///
+  /// In id, this message translates to:
+  /// **'Pilih gambar'**
+  String get mewarnaiPickPage;
+
+  /// Tombol menutup dialog
+  ///
+  /// In id, this message translates to:
+  /// **'Tutup'**
+  String get mewarnaiClose;
+
+  /// Petunjuk di atas kisi Karyaku
+  ///
+  /// In id, this message translates to:
+  /// **'Ketuk gambar untuk melihatnya lebih besar.'**
+  String get mewarnaiKaryakuHint;
+
+  /// Judul Karyaku saat kosong
+  ///
+  /// In id, this message translates to:
+  /// **'Belum ada karya'**
+  String get mewarnaiKaryakuEmpty;
+
+  /// Ajakan mewarnai saat Karyaku kosong
+  ///
+  /// In id, this message translates to:
+  /// **'Yuk mewarnai dulu! Tekan Simpan, nanti gambarmu muncul di sini.'**
+  String get mewarnaiKaryakuEmptyHint;
+
+  /// Tombol membuka kanvas dengan isi karya
+  ///
+  /// In id, this message translates to:
+  /// **'Warnai lagi'**
+  String get mewarnaiColorAgain;
+
+  /// Tombol menghapus karya
+  ///
+  /// In id, this message translates to:
+  /// **'Hapus'**
+  String get mewarnaiDelete;
+
+  /// Konfirmasi hapus karya
+  ///
+  /// In id, this message translates to:
+  /// **'Yakin hapus?'**
+  String get mewarnaiDeleteConfirm;
+
+  /// Label semantik kartu karya
+  ///
+  /// In id, this message translates to:
+  /// **'Lihat karya: {nama}'**
+  String mewarnaiViewArt(String nama);
 }
 
 class _AppLocalizationsDelegate
