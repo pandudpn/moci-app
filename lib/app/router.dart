@@ -125,23 +125,18 @@ final routerProvider = Provider<GoRouter>((ref) {
       _soon(Routes.musik, MenuTheme.musik),
       GoRoute(
         path: Routes.sukuKata,
-        // Tab mode berganti tanpa animasi: anak langsung bisa mengetuk, dan
-        // pushReplacement antar tab tidak memantul.
-        pageBuilder: (context, state) => NoTransitionPage(
-          child: SukuKataScreen(awal: state.uri.queryParameters['huruf']),
-        ),
+        builder: (context, state) =>
+            SukuKataScreen(awal: state.uri.queryParameters['huruf']),
       ),
       GoRoute(
         path: Routes.susunKata,
-        pageBuilder: (context, state) => NoTransitionPage(
-          child: SusunKataScreen(awal: state.uri.queryParameters['level']),
-        ),
+        builder: (context, state) =>
+            SusunKataScreen(awal: state.uri.queryParameters['level']),
       ),
       GoRoute(
         path: Routes.kalimat,
-        pageBuilder: (context, state) => NoTransitionPage(
-          child: KalimatScreen(awal: state.uri.queryParameters['kalimat']),
-        ),
+        builder: (context, state) =>
+            KalimatScreen(awal: state.uri.queryParameters['kalimat']),
       ),
       _soon(Routes.mainYuk, MenuTheme.mainYuk),
       _soon(Routes.cocokkan, MenuTheme.cocokkan),

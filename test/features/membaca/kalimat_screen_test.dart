@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:go_router/go_router.dart';
 import 'package:moci/app/moci_app.dart';
 import 'package:moci/app/routes.dart';
 import 'package:moci/core/lang.dart';
@@ -9,6 +10,22 @@ import 'package:moci/features/membaca/kalimat/kalimat_word.dart';
 import 'package:moci/widgets/game/answer_card.dart';
 
 import '../../helpers/harness.dart';
+import '../../helpers/harness.dart' as harness;
+
+/// Aplikasi utuh, lalu tunggu transisi rute selesai sebelum mengetuk.
+Future<GoRouter> pumpApp(
+  WidgetTester t, {
+  TestEnv? env,
+  String? initialLocation,
+}) async {
+  final router = await harness.pumpApp(
+    t,
+    env: env,
+    initialLocation: initialLocation,
+  );
+  await t.pump(const Duration(milliseconds: 600));
+  return router;
+}
 
 void main() {
   testWidgets('membuka: kalimat pertama dan kata pertama menyala', (t) async {
