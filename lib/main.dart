@@ -8,6 +8,7 @@ import 'package:flutter_riverpod/misc.dart' show Override;
 import 'app/moci_app.dart';
 import 'core/audio/asset_catalog.dart';
 import 'core/audio/audio_providers.dart';
+import 'core/content/content_repository.dart';
 import 'core/progress/progress_controller.dart';
 import 'core/progress/progress_repository.dart';
 import 'core/providers.dart';
@@ -42,6 +43,7 @@ Future<void> runMoci({List<Override> overrides = const []}) async {
   final jsonStore = FileJsonStore(dir);
   final progress = await ProgressRepository(jsonStore).load();
   final assetCatalog = await AssetCatalog.load(rootBundle);
+  final katalog = await ContentRepository.loadKatalog(rootBundle);
   runApp(
     ProviderScope(
       overrides: [
@@ -49,6 +51,7 @@ Future<void> runMoci({List<Override> overrides = const []}) async {
         jsonStoreProvider.overrideWithValue(jsonStore),
         initialProgressProvider.overrideWithValue(progress),
         assetCatalogProvider.overrideWithValue(assetCatalog),
+        katalogProvider.overrideWithValue(katalog),
         ...overrides,
       ],
       child: const MociApp(),

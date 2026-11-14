@@ -1,0 +1,16 @@
+[
+ {
+  "id": "apel",
+  "nama": {
+   "id": "Apel",
+   "en": "Apple"
+  }
+ },
+ {
+  "id": "bola",
+  "nama": {
+   "id": "Bola",
+   "en": "Ball"
+  }
+ }
+]

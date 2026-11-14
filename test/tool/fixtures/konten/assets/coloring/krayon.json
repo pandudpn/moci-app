@@ -1,0 +1,16 @@
+[
+ {
+  "hex": "#FF4B4B",
+  "nama": {
+   "id": "Merah",
+   "en": "Red"
+  }
+ },
+ {
+  "hex": "#FFD43B",
+  "nama": {
+   "id": "Kuning",
+   "en": "Yellow"
+  }
+ }
+]

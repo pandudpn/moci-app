@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/misc.dart' show Override;
@@ -12,6 +14,8 @@ import 'package:moci/app/theme/moci_theme.dart';
 import 'package:moci/core/audio/asset_catalog.dart';
 import 'package:moci/core/audio/audio_providers.dart';
 import 'package:moci/core/audio/audio_session.dart';
+import 'package:moci/core/content/content_repository.dart';
+import 'package:moci/core/content/katalog.dart';
 import 'package:moci/core/lang.dart';
 import 'package:moci/core/prefs/prefs_controller.dart';
 import 'package:moci/core/progress/progress.dart';
@@ -23,6 +27,13 @@ import 'package:moci/l10n/l10n.dart';
 
 import 'fake_audio.dart';
 import 'fake_clock.dart';
+
+/// Katalog asli untuk tes, dibaca sekali per proses tes.
+Katalog? _katalog;
+
+Katalog _katalogUji() => _katalog ??= Katalog.fromJson(
+  jsonDecode(File(ContentRepository.katalogPath).readAsStringSync()) as Object?,
+);
 
 const tabletSize = Size(1180, 820);
 const phoneSize = Size(844, 390);
@@ -92,6 +103,7 @@ final class TestEnv {
     initialProgressProvider.overrideWithValue(progress),
     audioEngineProvider.overrideWithValue(audio),
     assetCatalogProvider.overrideWithValue(AssetCatalog(assets)),
+    katalogProvider.overrideWithValue(_katalogUji()),
     devTtsProvider.overrideWithValue(tts),
     audioSessionProvider.overrideWithValue(_NoopAudioSession()),
     playTimerTicksProvider.overrideWithValue(ticks.stream),

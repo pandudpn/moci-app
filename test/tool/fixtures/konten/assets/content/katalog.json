@@ -1,0 +1,224 @@
+{
+ "versi": 1,
+ "item": [
+  {
+   "id": "apel",
+   "kategori": "buah",
+   "nama": {
+    "id": "Apel",
+    "en": "Apple"
+   },
+   "gambar": "illustrations/apel.svg",
+   "warna": "merah",
+   "sukuKata": {
+    "id": [
+     "a",
+     "pel"
+    ],
+    "en": [
+     "ap",
+     "ple"
+    ]
+   }
+  },
+  {
+   "id": "bola",
+   "kategori": "benda",
+   "nama": {
+    "id": "Bola",
+    "en": "Ball"
+   },
+   "gambar": "illustrations/bola.svg",
+   "sukuKata": {
+    "id": [
+     "bo",
+     "la"
+    ],
+    "en": [
+     "ba",
+     "ll"
+    ]
+   }
+  },
+  {
+   "id": "kucing",
+   "kategori": "hewan",
+   "nama": {
+    "id": "Kucing",
+    "en": "Cat"
+   },
+   "gambar": "illustrations/kucing.svg",
+   "hewan": {
+    "kelompok": "rumah",
+    "bunyi": {
+     "id": "Meong!",
+     "en": "Meow!"
+    },
+    "fakta": {
+     "id": "Kucing suka tidur.",
+     "en": "Cats love to nap."
+    }
+   },
+   "sukuKata": {
+    "id": [
+     "ku",
+     "cing"
+    ],
+    "en": null
+   }
+  }
+ ],
+ "huruf": [
+  {
+   "huruf": "A",
+   "id": {
+    "kata": "Apel",
+    "gambar": "apel",
+    "bunyi": "a",
+    "nama": "a"
+   },
+   "en": {
+    "kata": "Apple",
+    "gambar": "apel",
+    "bunyi": "ah",
+    "nama": "ay"
+   }
+  }
+ ],
+ "angka": {
+  "maks": 10,
+  "rentang": [
+   [
+    1,
+    10
+   ]
+  ],
+  "benda": [
+   "apel"
+  ]
+ },
+ "warna": [
+  {
+   "id": "merah",
+   "nama": {
+    "id": "Merah",
+    "en": "Red"
+   },
+   "hex": "#E03131",
+   "teks": "#FFFFFF",
+   "garis": "#C92A2A"
+  }
+ ],
+ "bentuk": [
+  {
+   "id": "persegi",
+   "nama": {
+    "id": "Persegi",
+    "en": "Square"
+   },
+   "warna": "#4DABF7",
+   "gelap": "#1C7ED6",
+   "path": "M28 28H172V172H28Z",
+   "wajahX": 100,
+   "wajahY": 104,
+   "wajahSkala": 1,
+   "sudutTitik": [
+    [
+     28,
+     28
+    ],
+    [
+     172,
+     28
+    ],
+    [
+     172,
+     172
+    ],
+    [
+     28,
+     172
+    ]
+   ],
+   "jenis": "poly",
+   "sisi": 4,
+   "sudut": 4,
+   "fakta": {
+    "id": "Persegi punya 4 sisi.",
+    "en": "A square has 4 sides."
+   }
+  }
+ ],
+ "sukuKata": {
+  "konsonan": "b",
+  "vokal": [
+   "a"
+  ],
+  "contoh": {
+   "id": {
+    "ba": {
+     "item": "bola",
+     "kata": "Bola"
+    }
+   }
+  }
+ },
+ "kata": {
+  "id": [
+   {
+    "item": "bola",
+    "kata": "Bola",
+    "suku": [
+     "bo",
+     "la"
+    ]
+   }
+  ],
+  "en": [
+   {
+    "item": "bola",
+    "kata": "Ball",
+    "suku": [
+     "ba",
+     "ll"
+    ]
+   }
+  ]
+ },
+ "kalimat": [
+  {
+   "id": "bola",
+   "teks": {
+    "id": "Ini bola.",
+    "en": "This is a ball."
+   },
+   "gambar": "illustrations/bola.svg",
+   "waktu": {
+    "id": null,
+    "en": null
+   }
+  }
+ ],
+ "ucapkan": {
+  "id": [
+   {
+    "kata": "Bola",
+    "suku": [
+     "BO",
+     "LA"
+    ],
+    "gambar": "illustrations/bola.svg"
+   }
+  ],
+  "en": [
+   {
+    "kata": "Ball",
+    "suku": [
+     "BA",
+     "LL"
+    ],
+    "gambar": "illustrations/bola.svg"
+   }
+  ]
+ }
+}

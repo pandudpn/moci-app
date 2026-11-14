@@ -1,0 +1,36 @@
+{
+ "versi": 1,
+ "kanvas": [
+  800,
+  600
+ ],
+ "halaman": [
+  {
+   "id": "kupu",
+   "kategori": "hewan",
+   "nama": {
+    "id": "Kupu-kupu",
+    "en": "Butterfly"
+   },
+   "bagian": [
+    {
+     "d": "M0 0H800V600H0Z",
+     "detail": []
+    },
+    {
+     "d": "M34 80H126V200Z",
+     "detail": [
+      [
+       "M1 2L3 4",
+       "",
+       6.0
+      ]
+     ]
+    }
+   ],
+   "contoh": {
+    "1": "#FFD43B"
+   }
+  }
+ ]
+}

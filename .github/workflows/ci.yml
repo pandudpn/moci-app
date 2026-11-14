@@ -20,6 +20,7 @@ jobs:
       - run: flutter pub get
       - run: dart format --output=none --set-exit-if-changed .
       - run: flutter analyze
+      - run: dart run tool/validate_content.dart
       - run: flutter test --exclude-tags golden
 
   golden:
