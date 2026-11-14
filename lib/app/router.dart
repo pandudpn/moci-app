@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../core/prefs/prefs_controller.dart';
 import '../features/segera/coming_soon_screen.dart';
 import 'redirect.dart';
+import 'splash/splash_screen.dart';
 import 'routes.dart';
 import 'theme/menu_theme.dart';
 
@@ -80,7 +81,11 @@ final routerProvider = Provider<GoRouter>((ref) {
       parentUnlocked: ref.read(parentAccessProvider),
     ),
     routes: [
-      _soon(Routes.splash, MenuTheme.beranda, lockBack: true),
+      GoRoute(
+        path: Routes.splash,
+        builder: (context, state) =>
+            const PopScope(canPop: false, child: SplashScreen()),
+      ),
       _soon(Routes.sambutan, MenuTheme.sambutan, lockBack: true),
       _soon(Routes.beranda, MenuTheme.beranda, lockBack: true),
       _soon(Routes.huruf, MenuTheme.huruf),

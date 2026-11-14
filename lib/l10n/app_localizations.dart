@@ -133,6 +133,12 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Adik'**
   String get childFallbackName;
+
+  /// Tagline di Splash dan Beranda
+  ///
+  /// In id, this message translates to:
+  /// **'Main & Belajar'**
+  String get berandaTag;
 }
 
 class _AppLocalizationsDelegate

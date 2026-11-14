@@ -11,5 +11,6 @@
   "langNameEn": "English",
   "@langNameEn": { "description": "narasi" },
   "childFallbackName": "little one",
-  "@childFallbackName": { "description": "Term for the child when no name is set" }
+  "@childFallbackName": { "description": "Term for the child when no name is set" },
+  "berandaTag": "Play & Learn"
 }

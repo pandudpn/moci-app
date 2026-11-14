@@ -11,5 +11,7 @@
   "langNameEn": "English",
   "@langNameEn": { "description": "narasi" },
   "childFallbackName": "Adik",
-  "@childFallbackName": { "description": "Sebutan anak bila nama belum diisi" }
+  "@childFallbackName": { "description": "Sebutan anak bila nama belum diisi" },
+  "berandaTag": "Main & Belajar",
+  "@berandaTag": { "description": "Tagline di Splash dan Beranda" }
 }

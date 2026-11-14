@@ -26,4 +26,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get childFallbackName => 'little one';
+
+  @override
+  String get berandaTag => 'Play & Learn';
 }

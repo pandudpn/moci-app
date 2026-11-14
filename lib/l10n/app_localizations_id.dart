@@ -26,4 +26,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get childFallbackName => 'Adik';
+
+  @override
+  String get berandaTag => 'Main & Belajar';
 }
