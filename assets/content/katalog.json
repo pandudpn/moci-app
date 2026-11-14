@@ -1,0 +1,4680 @@
+{
+ "versi": 1,
+ "item": [
+  {
+   "id": "apel",
+   "kategori": "buah",
+   "nama": {
+    "id": "Apel",
+    "en": "Apple"
+   },
+   "gambar": "illustrations/apel.svg",
+   "warna": "merah",
+   "sukuKata": {
+    "id": [
+     "a",
+     "pel"
+    ],
+    "en": [
+     "ap",
+     "ple"
+    ]
+   }
+  },
+  {
+   "id": "pisang",
+   "kategori": "buah",
+   "nama": {
+    "id": "Pisang",
+    "en": "Banana"
+   },
+   "gambar": "illustrations/pisang.svg",
+   "warna": "kuning",
+   "sukuKata": {
+    "id": [
+     "pi",
+     "sang"
+    ],
+    "en": [
+     "ba",
+     "na",
+     "na"
+    ]
+   }
+  },
+  {
+   "id": "jeruk",
+   "kategori": "buah",
+   "nama": {
+    "id": "Jeruk",
+    "en": "Orange"
+   },
+   "gambar": "illustrations/jeruk.svg",
+   "warna": "oranye",
+   "sukuKata": {
+    "id": [
+     "je",
+     "ruk"
+    ],
+    "en": null
+   }
+  },
+  {
+   "id": "anggur",
+   "kategori": "buah",
+   "nama": {
+    "id": "Anggur",
+    "en": "Grapes"
+   },
+   "gambar": "illustrations/anggur.svg",
+   "warna": "ungu",
+   "sukuKata": {
+    "id": [
+     "ang",
+     "gur"
+    ],
+    "en": null
+   }
+  },
+  {
+   "id": "semangka",
+   "kategori": "buah",
+   "nama": {
+    "id": "Semangka",
+    "en": "Watermelon"
+   },
+   "gambar": "illustrations/semangka.svg",
+   "warna": "merah",
+   "sukuKata": {
+    "id": [
+     "se",
+     "mang",
+     "ka"
+    ],
+    "en": null
+   }
+  },
+  {
+   "id": "nanas",
+   "kategori": "buah",
+   "nama": {
+    "id": "Nanas",
+    "en": "Pineapple"
+   },
+   "gambar": "illustrations/nanas.svg",
+   "warna": "kuning",
+   "sukuKata": {
+    "id": [
+     "na",
+     "nas"
+    ],
+    "en": [
+     "pine",
+     "ap",
+     "ple"
+    ]
+   }
+  },
+  {
+   "id": "mangga",
+   "kategori": "buah",
+   "nama": {
+    "id": "Mangga",
+    "en": "Mango"
+   },
+   "gambar": "illustrations/mangga.svg",
+   "sukuKata": {
+    "id": [
+     "mang",
+     "ga"
+    ],
+    "en": [
+     "man",
+     "go"
+    ]
+   }
+  },
+  {
+   "id": "stroberi",
+   "kategori": "buah",
+   "nama": {
+    "id": "Stroberi",
+    "en": "Strawberry"
+   },
+   "gambar": "illustrations/stroberi.svg",
+   "warna": "merah",
+   "sukuKata": {
+    "id": null,
+    "en": null
+   }
+  },
+  {
+   "id": "ceri",
+   "kategori": "buah",
+   "nama": {
+    "id": "Ceri",
+    "en": "Cherry"
+   },
+   "gambar": "illustrations/ceri.svg",
+   "warna": "merah",
+   "sukuKata": {
+    "id": [
+     "ce",
+     "ri"
+    ],
+    "en": null
+   }
+  },
+  {
+   "id": "alpukat",
+   "kategori": "buah",
+   "nama": {
+    "id": "Alpukat",
+    "en": "Avocado"
+   },
+   "gambar": "illustrations/alpukat.svg",
+   "warna": "hijau",
+   "sukuKata": {
+    "id": null,
+    "en": null
+   }
+  },
+  {
+   "id": "durian",
+   "kategori": "buah",
+   "nama": {
+    "id": "Durian",
+    "en": "Durian"
+   },
+   "gambar": "illustrations/durian.svg",
+   "warna": "hijau",
+   "sukuKata": {
+    "id": [
+     "du",
+     "ri",
+     "an"
+    ],
+    "en": null
+   }
+  },
+  {
+   "id": "rambutan",
+   "kategori": "buah",
+   "nama": {
+    "id": "Rambutan",
+    "en": "Rambutan"
+   },
+   "gambar": "illustrations/rambutan.svg",
+   "warna": "merah",
+   "sukuKata": {
+    "id": null,
+    "en": null
+   }
+  },
+  {
+   "id": "manggis",
+   "kategori": "buah",
+   "nama": {
+    "id": "Manggis",
+    "en": "Mangosteen"
+   },
+   "gambar": "illustrations/manggis.svg",
+   "warna": "ungu",
+   "sukuKata": {
+    "id": [
+     "mang",
+     "gis"
+    ],
+    "en": null
+   }
+  },
+  {
+   "id": "salak",
+   "kategori": "buah",
+   "nama": {
+    "id": "Salak",
+    "en": "Snake Fruit"
+   },
+   "gambar": "illustrations/salak.svg",
+   "warna": "cokelat",
+   "sukuKata": {
+    "id": [
+     "sa",
+     "lak"
+    ],
+    "en": null
+   }
+  },
+  {
+   "id": "pepaya",
+   "kategori": "buah",
+   "nama": {
+    "id": "Pepaya",
+    "en": "Papaya"
+   },
+   "gambar": "illustrations/pepaya.svg",
+   "warna": "oranye",
+   "sukuKata": {
+    "id": [
+     "pe",
+     "pa",
+     "ya"
+    ],
+    "en": [
+     "pa",
+     "pa",
+     "ya"
+    ]
+   }
+  },
+  {
+   "id": "jambu",
+   "kategori": "buah",
+   "nama": {
+    "id": "Jambu Air",
+    "en": "Water Apple"
+   },
+   "gambar": "illustrations/jambu.svg",
+   "warna": "merahmuda",
+   "sukuKata": {
+    "id": null,
+    "en": null
+   }
+  },
+  {
+   "id": "kelapa",
+   "kategori": "buah",
+   "nama": {
+    "id": "Kelapa",
+    "en": "Coconut"
+   },
+   "gambar": "illustrations/kelapa.svg",
+   "warna": "hijau",
+   "sukuKata": {
+    "id": [
+     "ke",
+     "la",
+     "pa"
+    ],
+    "en": [
+     "co",
+     "co",
+     "nut"
+    ]
+   }
+  },
+  {
+   "id": "lemon",
+   "kategori": "buah",
+   "nama": {
+    "id": "Lemon",
+    "en": "Lemon"
+   },
+   "gambar": "illustrations/lemon.svg",
+   "warna": "kuning",
+   "sukuKata": {
+    "id": [
+     "le",
+     "mon"
+    ],
+    "en": [
+     "lem",
+     "on"
+    ]
+   }
+  },
+  {
+   "id": "melon",
+   "kategori": "buah",
+   "nama": {
+    "id": "Melon",
+    "en": "Melon"
+   },
+   "gambar": "illustrations/melon.svg",
+   "warna": "hijau",
+   "sukuKata": {
+    "id": [
+     "me",
+     "lon"
+    ],
+    "en": [
+     "mel",
+     "on"
+    ]
+   }
+  },
+  {
+   "id": "pir",
+   "kategori": "buah",
+   "nama": {
+    "id": "Pir",
+    "en": "Pear"
+   },
+   "gambar": "illustrations/pir.svg",
+   "warna": "hijau",
+   "sukuKata": {
+    "id": null,
+    "en": null
+   }
+  },
+  {
+   "id": "buahnaga",
+   "kategori": "buah",
+   "nama": {
+    "id": "Buah Naga",
+    "en": "Dragon Fruit"
+   },
+   "gambar": "illustrations/buahnaga.svg",
+   "warna": "merahmuda",
+   "sukuKata": {
+    "id": null,
+    "en": null
+   }
+  },
+  {
+   "id": "wortel",
+   "kategori": "sayur",
+   "nama": {
+    "id": "Wortel",
+    "en": "Carrot"
+   },
+   "gambar": "illustrations/wortel.svg",
+   "warna": "oranye",
+   "sukuKata": {
+    "id": [
+     "wor",
+     "tel"
+    ],
+    "en": [
+     "car",
+     "rot"
+    ]
+   }
+  },
+  {
+   "id": "tomat",
+   "kategori": "sayur",
+   "nama": {
+    "id": "Tomat",
+    "en": "Tomato"
+   },
+   "gambar": "illustrations/tomat.svg",
+   "warna": "merah",
+   "sukuKata": {
+    "id": [
+     "to",
+     "mat"
+    ],
+    "en": [
+     "to",
+     "ma",
+     "to"
+    ]
+   }
+  },
+  {
+   "id": "brokoli",
+   "kategori": "sayur",
+   "nama": {
+    "id": "Brokoli",
+    "en": "Broccoli"
+   },
+   "gambar": "illustrations/brokoli.svg",
+   "warna": "hijau",
+   "sukuKata": {
+    "id": [
+     "bro",
+     "ko",
+     "li"
+    ],
+    "en": null
+   }
+  },
+  {
+   "id": "jagung",
+   "kategori": "sayur",
+   "nama": {
+    "id": "Jagung",
+    "en": "Corn"
+   },
+   "gambar": "illustrations/jagung.svg",
+   "warna": "kuning",
+   "sukuKata": {
+    "id": [
+     "ja",
+     "gung"
+    ],
+    "en": null
+   }
+  },
+  {
+   "id": "terong",
+   "kategori": "sayur",
+   "nama": {
+    "id": "Terong",
+    "en": "Eggplant"
+   },
+   "gambar": "illustrations/terong.svg",
+   "warna": "ungu",
+   "sukuKata": {
+    "id": [
+     "te",
+     "rong"
+    ],
+    "en": null
+   }
+  },
+  {
+   "id": "kentang",
+   "kategori": "sayur",
+   "nama": {
+    "id": "Kentang",
+    "en": "Potato"
+   },
+   "gambar": "illustrations/kentang.svg",
+   "warna": "cokelat",
+   "sukuKata": {
+    "id": [
+     "ken",
+     "tang"
+    ],
+    "en": [
+     "po",
+     "ta",
+     "to"
+    ]
+   }
+  },
+  {
+   "id": "bawang",
+   "kategori": "sayur",
+   "nama": {
+    "id": "Bawang Merah",
+    "en": "Shallot"
+   },
+   "gambar": "illustrations/bawang.svg",
+   "sukuKata": {
+    "id": null,
+    "en": null
+   }
+  },
+  {
+   "id": "cabai",
+   "kategori": "sayur",
+   "nama": {
+    "id": "Cabai",
+    "en": "Chili"
+   },
+   "gambar": "illustrations/cabai.svg",
+   "warna": "merah",
+   "sukuKata": {
+    "id": null,
+    "en": null
+   }
+  },
+  {
+   "id": "timun",
+   "kategori": "sayur",
+   "nama": {
+    "id": "Timun",
+    "en": "Cucumber"
+   },
+   "gambar": "illustrations/timun.svg",
+   "warna": "hijau",
+   "sukuKata": {
+    "id": [
+     "ti",
+     "mun"
+    ],
+    "en": null
+   }
+  },
+  {
+   "id": "labu",
+   "kategori": "sayur",
+   "nama": {
+    "id": "Labu",
+    "en": "Pumpkin"
+   },
+   "gambar": "illustrations/labu.svg",
+   "warna": "oranye",
+   "sukuKata": {
+    "id": [
+     "la",
+     "bu"
+    ],
+    "en": [
+     "pump",
+     "kin"
+    ]
+   }
+  },
+  {
+   "id": "kubis",
+   "kategori": "sayur",
+   "nama": {
+    "id": "Kubis",
+    "en": "Cabbage"
+   },
+   "gambar": "illustrations/kubis.svg",
+   "warna": "hijau",
+   "sukuKata": {
+    "id": [
+     "ku",
+     "bis"
+    ],
+    "en": null
+   }
+  },
+  {
+   "id": "buncis",
+   "kategori": "sayur",
+   "nama": {
+    "id": "Buncis",
+    "en": "Green Beans"
+   },
+   "gambar": "illustrations/buncis.svg",
+   "warna": "hijau",
+   "sukuKata": {
+    "id": null,
+    "en": null
+   }
+  },
+  {
+   "id": "paprika",
+   "kategori": "sayur",
+   "nama": {
+    "id": "Paprika",
+    "en": "Bell Pepper"
+   },
+   "gambar": "illustrations/paprika.svg",
+   "warna": "merah",
+   "sukuKata": {
+    "id": [
+     "pa",
+     "pri",
+     "ka"
+    ],
+    "en": null
+   }
+  },
+  {
+   "id": "jamur",
+   "kategori": "sayur",
+   "nama": {
+    "id": "Jamur",
+    "en": "Mushroom"
+   },
+   "gambar": "illustrations/jamur.svg",
+   "warna": "merah",
+   "sukuKata": {
+    "id": [
+     "ja",
+     "mur"
+    ],
+    "en": null
+   }
+  },
+  {
+   "id": "kucing",
+   "kategori": "hewan",
+   "nama": {
+    "id": "Kucing",
+    "en": "Cat"
+   },
+   "gambar": "illustrations/kucing.svg",
+   "warna": "oranye",
+   "hewan": {
+    "kelompok": "rumah",
+    "bunyi": {
+     "id": "Meong!",
+     "en": "Meow!"
+    },
+    "fakta": {
+     "id": "Kucing suka tidur dan bermain.",
+     "en": "Cats love to nap and play."
+    }
+   },
+   "sukuKata": {
+    "id": [
+     "ku",
+     "cing"
+    ],
+    "en": null
+   }
+  },
+  {
+   "id": "anjing",
+   "kategori": "hewan",
+   "nama": {
+    "id": "Anjing",
+    "en": "Dog"
+   },
+   "gambar": "illustrations/anjing.svg",
+   "hewan": {
+    "kelompok": "rumah",
+    "bunyi": {
+     "id": "Guk guk!",
+     "en": "Woof woof!"
+    },
+    "fakta": {
+     "id": "Anjing adalah teman yang setia.",
+     "en": "Dogs are loyal friends."
+    }
+   },
+   "sukuKata": {
+    "id": null,
+    "en": null
+   }
+  },
+  {
+   "id": "kelinci",
+   "kategori": "hewan",
+   "nama": {
+    "id": "Kelinci",
+    "en": "Rabbit"
+   },
+   "gambar": "illustrations/kelinci.svg",
+   "warna": "putih",
+   "hewan": {
+    "kelompok": "rumah",
+    "bunyi": {
+     "id": "Hop hop!",
+     "en": "Hop hop!"
+    },
+    "fakta": {
+     "id": "Kelinci suka makan wortel.",
+     "en": "Rabbits love carrots."
+    }
+   },
+   "sukuKata": {
+    "id": [
+     "ke",
+     "lin",
+     "ci"
+    ],
+    "en": [
+     "rab",
+     "bit"
+    ]
+   }
+  },
+  {
+   "id": "tikus",
+   "kategori": "hewan",
+   "nama": {
+    "id": "Tikus",
+    "en": "Mouse"
+   },
+   "gambar": "illustrations/tikus.svg",
+   "warna": "abu",
+   "hewan": {
+    "kelompok": "rumah",
+    "bunyi": {
+     "id": "Cit cit!",
+     "en": "Squeak!"
+    },
+    "fakta": {
+     "id": "Tikus suka makan keju.",
+     "en": "Mice like cheese."
+    }
+   },
+   "sukuKata": {
+    "id": [
+     "ti",
+     "kus"
+    ],
+    "en": null
+   }
+  },
+  {
+   "id": "sapi",
+   "kategori": "hewan",
+   "nama": {
+    "id": "Sapi",
+    "en": "Cow"
+   },
+   "gambar": "illustrations/sapi.svg",
+   "hewan": {
+    "kelompok": "rumah",
+    "bunyi": {
+     "id": "Mooo!",
+     "en": "Moo!"
+    },
+    "fakta": {
+     "id": "Sapi memberi kita susu.",
+     "en": "Cows give us milk."
+    }
+   },
+   "sukuKata": {
+    "id": [
+     "sa",
+     "pi"
+    ],
+    "en": null
+   }
+  },
+  {
+   "id": "kambing",
+   "kategori": "hewan",
+   "nama": {
+    "id": "Kambing",
+    "en": "Goat"
+   },
+   "gambar": "illustrations/kambing.svg",
+   "warna": "putih",
+   "hewan": {
+    "kelompok": "rumah",
+    "bunyi": {
+     "id": "Mbeeek!",
+     "en": "Maa!"
+    },
+    "fakta": {
+     "id": "Kambing pandai memanjat.",
+     "en": "Goats are great climbers."
+    }
+   },
+   "sukuKata": {
+    "id": [
+     "kam",
+     "bing"
+    ],
+    "en": null
+   }
+  },
+  {
+   "id": "domba",
+   "kategori": "hewan",
+   "nama": {
+    "id": "Domba",
+    "en": "Sheep"
+   },
+   "gambar": "illustrations/domba.svg",
+   "warna": "putih",
+   "hewan": {
+    "kelompok": "rumah",
+    "bunyi": {
+     "id": "Mbeee!",
+     "en": "Baa!"
+    },
+    "fakta": {
+     "id": "Bulu domba dibuat jadi wol.",
+     "en": "Sheep wool keeps us warm."
+    }
+   },
+   "sukuKata": {
+    "id": [
+     "dom",
+     "ba"
+    ],
+    "en": null
+   }
+  },
+  {
+   "id": "kuda",
+   "kategori": "hewan",
+   "nama": {
+    "id": "Kuda",
+    "en": "Horse"
+   },
+   "gambar": "illustrations/kuda.svg",
+   "warna": "cokelat",
+   "hewan": {
+    "kelompok": "rumah",
+    "bunyi": {
+     "id": "Hiiihiii!",
+     "en": "Neigh!"
+    },
+    "fakta": {
+     "id": "Kuda bisa berlari sangat cepat.",
+     "en": "Horses can run very fast."
+    }
+   },
+   "sukuKata": {
+    "id": [
+     "ku",
+     "da"
+    ],
+    "en": null
+   }
+  },
+  {
+   "id": "ayam",
+   "kategori": "hewan",
+   "nama": {
+    "id": "Ayam",
+    "en": "Chicken"
+   },
+   "gambar": "illustrations/ayam.svg",
+   "warna": "putih",
+   "hewan": {
+    "kelompok": "rumah",
+    "bunyi": {
+     "id": "Kukuruyuk!",
+     "en": "Cock-a-doodle-doo!"
+    },
+    "fakta": {
+     "id": "Ayam bertelur.",
+     "en": "Hens lay eggs."
+    }
+   },
+   "sukuKata": {
+    "id": null,
+    "en": [
+     "chick",
+     "en"
+    ]
+   }
+  },
+  {
+   "id": "bebek",
+   "kategori": "hewan",
+   "nama": {
+    "id": "Bebek",
+    "en": "Duck"
+   },
+   "gambar": "illustrations/bebek.svg",
+   "warna": "putih",
+   "hewan": {
+    "kelompok": "rumah",
+    "bunyi": {
+     "id": "Kwek kwek!",
+     "en": "Quack quack!"
+    },
+    "fakta": {
+     "id": "Bebek pandai berenang.",
+     "en": "Ducks are good swimmers."
+    }
+   },
+   "sukuKata": {
+    "id": [
+     "be",
+     "bek"
+    ],
+    "en": null
+   }
+  },
+  {
+   "id": "singa",
+   "kategori": "hewan",
+   "nama": {
+    "id": "Singa",
+    "en": "Lion"
+   },
+   "gambar": "illustrations/singa.svg",
+   "warna": "oranye",
+   "hewan": {
+    "kelompok": "liar",
+    "bunyi": {
+     "id": "Aum!",
+     "en": "Roar!"
+    },
+    "fakta": {
+     "id": "Singa adalah raja hutan.",
+     "en": "The lion is king of the jungle."
+    }
+   },
+   "sukuKata": {
+    "id": null,
+    "en": [
+     "li",
+     "on"
+    ]
+   }
+  },
+  {
+   "id": "harimau",
+   "kategori": "hewan",
+   "nama": {
+    "id": "Harimau",
+    "en": "Tiger"
+   },
+   "gambar": "illustrations/harimau.svg",
+   "warna": "oranye",
+   "hewan": {
+    "kelompok": "liar",
+    "bunyi": {
+     "id": "Grrr, aum!",
+     "en": "Grrr, roar!"
+    },
+    "fakta": {
+     "id": "Harimau Sumatra hidup di Indonesia.",
+     "en": "Sumatran tigers live in Indonesia."
+    }
+   },
+   "sukuKata": {
+    "id": [
+     "ha",
+     "ri",
+     "mau"
+    ],
+    "en": [
+     "ti",
+     "ger"
+    ]
+   }
+  },
+  {
+   "id": "gajah",
+   "kategori": "hewan",
+   "nama": {
+    "id": "Gajah",
+    "en": "Elephant"
+   },
+   "gambar": "illustrations/gajah.svg",
+   "warna": "abu",
+   "hewan": {
+    "kelompok": "liar",
+    "bunyi": {
+     "id": "Tuuut!",
+     "en": "Toot!"
+    },
+    "fakta": {
+     "id": "Gajah punya belalai yang panjang.",
+     "en": "Elephants have long trunks."
+    }
+   },
+   "sukuKata": {
+    "id": [
+     "ga",
+     "jah"
+    ],
+    "en": [
+     "el",
+     "e",
+     "phant"
+    ]
+   }
+  },
+  {
+   "id": "jerapah",
+   "kategori": "hewan",
+   "nama": {
+    "id": "Jerapah",
+    "en": "Giraffe"
+   },
+   "gambar": "illustrations/jerapah.svg",
+   "warna": "kuning",
+   "hewan": {
+    "kelompok": "liar",
+    "bunyi": {
+     "id": "Hmmm...",
+     "en": "Hmm..."
+    },
+    "fakta": {
+     "id": "Jerapah punya leher paling panjang.",
+     "en": "Giraffes have the longest necks."
+    }
+   },
+   "sukuKata": {
+    "id": [
+     "je",
+     "ra",
+     "pah"
+    ],
+    "en": [
+     "gi",
+     "raffe"
+    ]
+   }
+  },
+  {
+   "id": "zebra",
+   "kategori": "hewan",
+   "nama": {
+    "id": "Zebra",
+    "en": "Zebra"
+   },
+   "gambar": "illustrations/zebra.svg",
+   "hewan": {
+    "kelompok": "liar",
+    "bunyi": {
+     "id": "Kwaha!",
+     "en": "Kwa-ha!"
+    },
+    "fakta": {
+     "id": "Setiap zebra punya belang yang berbeda.",
+     "en": "Every zebra has its own stripes."
+    }
+   },
+   "sukuKata": {
+    "id": [
+     "ze",
+     "bra"
+    ],
+    "en": [
+     "ze",
+     "bra"
+    ]
+   }
+  },
+  {
+   "id": "monyet",
+   "kategori": "hewan",
+   "nama": {
+    "id": "Monyet",
+    "en": "Monkey"
+   },
+   "gambar": "illustrations/monyet.svg",
+   "warna": "cokelat",
+   "hewan": {
+    "kelompok": "liar",
+    "bunyi": {
+     "id": "U-u-a-a!",
+     "en": "Ooh-ooh-aah!"
+    },
+    "fakta": {
+     "id": "Monyet suka makan pisang.",
+     "en": "Monkeys love bananas."
+    }
+   },
+   "sukuKata": {
+    "id": [
+     "mo",
+     "nyet"
+    ],
+    "en": [
+     "mon",
+     "key"
+    ]
+   }
+  },
+  {
+   "id": "orangutan",
+   "kategori": "hewan",
+   "nama": {
+    "id": "Orangutan",
+    "en": "Orangutan"
+   },
+   "gambar": "illustrations/orangutan.svg",
+   "warna": "oranye",
+   "hewan": {
+    "kelompok": "liar",
+    "bunyi": {
+     "id": "Huu huu!",
+     "en": "Hoo hoo!"
+    },
+    "fakta": {
+     "id": "Orangutan tinggal di hutan Kalimantan dan Sumatra.",
+     "en": "Orangutans live in the forests of Borneo and Sumatra."
+    }
+   },
+   "sukuKata": {
+    "id": null,
+    "en": null
+   }
+  },
+  {
+   "id": "beruang",
+   "kategori": "hewan",
+   "nama": {
+    "id": "Beruang",
+    "en": "Bear"
+   },
+   "gambar": "illustrations/beruang.svg",
+   "warna": "cokelat",
+   "hewan": {
+    "kelompok": "liar",
+    "bunyi": {
+     "id": "Grrr!",
+     "en": "Grrr!"
+    },
+    "fakta": {
+     "id": "Beruang suka madu.",
+     "en": "Bears love honey."
+    }
+   },
+   "sukuKata": {
+    "id": [
+     "be",
+     "ru",
+     "ang"
+    ],
+    "en": null
+   }
+  },
+  {
+   "id": "panda",
+   "kategori": "hewan",
+   "nama": {
+    "id": "Panda",
+    "en": "Panda"
+   },
+   "gambar": "illustrations/panda.svg",
+   "hewan": {
+    "kelompok": "liar",
+    "bunyi": {
+     "id": "Nyam nyam!",
+     "en": "Munch munch!"
+    },
+    "fakta": {
+     "id": "Panda suka makan bambu.",
+     "en": "Pandas love to eat bamboo."
+    }
+   },
+   "sukuKata": {
+    "id": [
+     "pan",
+     "da"
+    ],
+    "en": [
+     "pan",
+     "da"
+    ]
+   }
+  },
+  {
+   "id": "badak",
+   "kategori": "hewan",
+   "nama": {
+    "id": "Badak",
+    "en": "Rhino"
+   },
+   "gambar": "illustrations/badak.svg",
+   "warna": "abu",
+   "hewan": {
+    "kelompok": "liar",
+    "bunyi": {
+     "id": "Hrmph!",
+     "en": "Hrmph!"
+    },
+    "fakta": {
+     "id": "Badak punya cula di hidungnya.",
+     "en": "Rhinos have a horn on their nose."
+    }
+   },
+   "sukuKata": {
+    "id": [
+     "ba",
+     "dak"
+    ],
+    "en": [
+     "rhi",
+     "no"
+    ]
+   }
+  },
+  {
+   "id": "kudanil",
+   "kategori": "hewan",
+   "nama": {
+    "id": "Kuda Nil",
+    "en": "Hippo"
+   },
+   "gambar": "illustrations/kudanil.svg",
+   "hewan": {
+    "kelompok": "liar",
+    "bunyi": {
+     "id": "Hrooo!",
+     "en": "Hrooo!"
+    },
+    "fakta": {
+     "id": "Kuda nil suka berendam di air.",
+     "en": "Hippos love to soak in water."
+    }
+   },
+   "sukuKata": {
+    "id": null,
+    "en": null
+   }
+  },
+  {
+   "id": "rubah",
+   "kategori": "hewan",
+   "nama": {
+    "id": "Rubah",
+    "en": "Fox"
+   },
+   "gambar": "illustrations/rubah.svg",
+   "warna": "oranye",
+   "hewan": {
+    "kelompok": "liar",
+    "bunyi": {
+     "id": "Ak ak!",
+     "en": "Yip yip!"
+    },
+    "fakta": {
+     "id": "Rubah punya ekor yang lebat.",
+     "en": "Foxes have bushy tails."
+    }
+   },
+   "sukuKata": {
+    "id": [
+     "ru",
+     "bah"
+    ],
+    "en": null
+   }
+  },
+  {
+   "id": "quokka",
+   "kategori": "hewan",
+   "nama": {
+    "id": "Quokka",
+    "en": "Quokka"
+   },
+   "gambar": "illustrations/quokka.svg",
+   "warna": "cokelat",
+   "hewan": {
+    "kelompok": "liar",
+    "bunyi": {
+     "id": "Hihi!",
+     "en": "Hee hee!"
+    },
+    "fakta": {
+     "id": "Quokka selalu terlihat tersenyum.",
+     "en": "Quokkas always look like they are smiling."
+    }
+   },
+   "sukuKata": {
+    "id": null,
+    "en": null
+   }
+  },
+  {
+   "id": "buaya",
+   "kategori": "hewan",
+   "nama": {
+    "id": "Buaya",
+    "en": "Crocodile"
+   },
+   "gambar": "illustrations/buaya.svg",
+   "warna": "hijau",
+   "hewan": {
+    "kelompok": "reptil",
+    "bunyi": {
+     "id": "Hssss!",
+     "en": "Hiss!"
+    },
+    "fakta": {
+     "id": "Buaya punya banyak gigi.",
+     "en": "Crocodiles have lots of teeth."
+    }
+   },
+   "sukuKata": {
+    "id": [
+     "bu",
+     "a",
+     "ya"
+    ],
+    "en": [
+     "croc",
+     "o",
+     "dile"
+    ]
+   }
+  },
+  {
+   "id": "ular",
+   "kategori": "hewan",
+   "nama": {
+    "id": "Ular",
+    "en": "Snake"
+   },
+   "gambar": "illustrations/ular.svg",
+   "warna": "hijau",
+   "hewan": {
+    "kelompok": "reptil",
+    "bunyi": {
+     "id": "Sssss!",
+     "en": "Sss!"
+    },
+    "fakta": {
+     "id": "Ular bergerak tanpa kaki.",
+     "en": "Snakes move without legs."
+    }
+   },
+   "sukuKata": {
+    "id": [
+     "u",
+     "lar"
+    ],
+    "en": null
+   }
+  },
+  {
+   "id": "komodo",
+   "kategori": "hewan",
+   "nama": {
+    "id": "Komodo",
+    "en": "Komodo Dragon"
+   },
+   "gambar": "illustrations/komodo.svg",
+   "hewan": {
+    "kelompok": "reptil",
+    "bunyi": {
+     "id": "Hssss!",
+     "en": "Hiss!"
+    },
+    "fakta": {
+     "id": "Komodo hanya ada di Indonesia.",
+     "en": "Komodo dragons live only in Indonesia."
+    }
+   },
+   "sukuKata": {
+    "id": [
+     "ko",
+     "mo",
+     "do"
+    ],
+    "en": null
+   }
+  },
+  {
+   "id": "kura",
+   "kategori": "hewan",
+   "nama": {
+    "id": "Kura-kura",
+    "en": "Turtle"
+   },
+   "gambar": "illustrations/kura.svg",
+   "warna": "hijau",
+   "hewan": {
+    "kelompok": "reptil",
+    "bunyi": {
+     "id": "Pelan-pelan...",
+     "en": "Slowly..."
+    },
+    "fakta": {
+     "id": "Kura-kura membawa rumahnya ke mana-mana.",
+     "en": "Turtles carry their home everywhere."
+    }
+   },
+   "sukuKata": {
+    "id": null,
+    "en": [
+     "tur",
+     "tle"
+    ]
+   }
+  },
+  {
+   "id": "katak",
+   "kategori": "hewan",
+   "nama": {
+    "id": "Katak",
+    "en": "Frog"
+   },
+   "gambar": "illustrations/katak.svg",
+   "warna": "hijau",
+   "hewan": {
+    "kelompok": "reptil",
+    "bunyi": {
+     "id": "Kung kong!",
+     "en": "Ribbit!"
+    },
+    "fakta": {
+     "id": "Katak pandai melompat.",
+     "en": "Frogs are great jumpers."
+    }
+   },
+   "sukuKata": {
+    "id": [
+     "ka",
+     "tak"
+    ],
+    "en": null
+   }
+  },
+  {
+   "id": "ikan",
+   "kategori": "hewan",
+   "nama": {
+    "id": "Ikan",
+    "en": "Fish"
+   },
+   "gambar": "illustrations/ikan.svg",
+   "warna": "biru",
+   "hewan": {
+    "kelompok": "air",
+    "bunyi": {
+     "id": "Blub blub!",
+     "en": "Blub blub!"
+    },
+    "fakta": {
+     "id": "Ikan bernapas dengan insang.",
+     "en": "Fish breathe with gills."
+    }
+   },
+   "sukuKata": {
+    "id": [
+     "i",
+     "kan"
+    ],
+    "en": null
+   }
+  },
+  {
+   "id": "lumba",
+   "kategori": "hewan",
+   "nama": {
+    "id": "Lumba-lumba",
+    "en": "Dolphin"
+   },
+   "gambar": "illustrations/lumba.svg",
+   "warna": "biru",
+   "hewan": {
+    "kelompok": "air",
+    "bunyi": {
+     "id": "Ekik ekik!",
+     "en": "Click click!"
+    },
+    "fakta": {
+     "id": "Lumba-lumba sangat pintar.",
+     "en": "Dolphins are very smart."
+    }
+   },
+   "sukuKata": {
+    "id": null,
+    "en": [
+     "dol",
+     "phin"
+    ]
+   }
+  },
+  {
+   "id": "paus",
+   "kategori": "hewan",
+   "nama": {
+    "id": "Paus",
+    "en": "Whale"
+   },
+   "gambar": "illustrations/paus.svg",
+   "warna": "biru",
+   "hewan": {
+    "kelompok": "air",
+    "bunyi": {
+     "id": "Uuuuu!",
+     "en": "Ooooo!"
+    },
+    "fakta": {
+     "id": "Paus adalah hewan terbesar di dunia.",
+     "en": "Whales are the biggest animals in the world."
+    }
+   },
+   "sukuKata": {
+    "id": [
+     "pa",
+     "us"
+    ],
+    "en": null
+   }
+  },
+  {
+   "id": "kepiting",
+   "kategori": "hewan",
+   "nama": {
+    "id": "Kepiting",
+    "en": "Crab"
+   },
+   "gambar": "illustrations/kepiting.svg",
+   "warna": "merah",
+   "hewan": {
+    "kelompok": "air",
+    "bunyi": {
+     "id": "Kletek kletek!",
+     "en": "Click clack!"
+    },
+    "fakta": {
+     "id": "Kepiting berjalan ke samping.",
+     "en": "Crabs walk sideways."
+    }
+   },
+   "sukuKata": {
+    "id": [
+     "ke",
+     "pi",
+     "ting"
+    ],
+    "en": null
+   }
+  },
+  {
+   "id": "gurita",
+   "kategori": "hewan",
+   "nama": {
+    "id": "Gurita",
+    "en": "Octopus"
+   },
+   "gambar": "illustrations/gurita.svg",
+   "warna": "merahmuda",
+   "hewan": {
+    "kelompok": "air",
+    "bunyi": {
+     "id": "Blup!",
+     "en": "Bloop!"
+    },
+    "fakta": {
+     "id": "Gurita punya delapan lengan.",
+     "en": "Octopuses have eight arms."
+    }
+   },
+   "sukuKata": {
+    "id": [
+     "gu",
+     "ri",
+     "ta"
+    ],
+    "en": [
+     "oc",
+     "to",
+     "pus"
+    ]
+   }
+  },
+  {
+   "id": "ubur",
+   "kategori": "hewan",
+   "nama": {
+    "id": "Ubur-ubur",
+    "en": "Jellyfish"
+   },
+   "gambar": "illustrations/ubur.svg",
+   "warna": "ungu",
+   "hewan": {
+    "kelompok": "air",
+    "bunyi": {
+     "id": "Blup blup!",
+     "en": "Bloop bloop!"
+    },
+    "fakta": {
+     "id": "Ubur-ubur tidak punya tulang.",
+     "en": "Jellyfish have no bones."
+    }
+   },
+   "sukuKata": {
+    "id": null,
+    "en": null
+   }
+  },
+  {
+   "id": "pinguin",
+   "kategori": "hewan",
+   "nama": {
+    "id": "Pinguin",
+    "en": "Penguin"
+   },
+   "gambar": "illustrations/pinguin.svg",
+   "hewan": {
+    "kelompok": "air",
+    "bunyi": {
+     "id": "Kwak!",
+     "en": "Squawk!"
+    },
+    "fakta": {
+     "id": "Pinguin tidak bisa terbang, tapi jago berenang.",
+     "en": "Penguins can't fly, but they swim very well."
+    }
+   },
+   "sukuKata": {
+    "id": [
+     "pi",
+     "ngu",
+     "in"
+    ],
+    "en": [
+     "pen",
+     "guin"
+    ]
+   }
+  },
+  {
+   "id": "burung",
+   "kategori": "hewan",
+   "nama": {
+    "id": "Burung",
+    "en": "Bird"
+   },
+   "gambar": "illustrations/burung.svg",
+   "warna": "biru",
+   "hewan": {
+    "kelompok": "kecil",
+    "bunyi": {
+     "id": "Cuit cuit!",
+     "en": "Tweet tweet!"
+    },
+    "fakta": {
+     "id": "Burung bisa terbang tinggi.",
+     "en": "Birds can fly high."
+    }
+   },
+   "sukuKata": {
+    "id": null,
+    "en": null
+   }
+  },
+  {
+   "id": "burunghantu",
+   "kategori": "hewan",
+   "nama": {
+    "id": "Burung Hantu",
+    "en": "Owl"
+   },
+   "gambar": "illustrations/burunghantu.svg",
+   "warna": "cokelat",
+   "hewan": {
+    "kelompok": "kecil",
+    "bunyi": {
+     "id": "Uhu uhu!",
+     "en": "Hoo hoo!"
+    },
+    "fakta": {
+     "id": "Burung hantu bangun di malam hari.",
+     "en": "Owls are awake at night."
+    }
+   },
+   "sukuKata": {
+    "id": null,
+    "en": null
+   }
+  },
+  {
+   "id": "flamingo",
+   "kategori": "hewan",
+   "nama": {
+    "id": "Flamingo",
+    "en": "Flamingo"
+   },
+   "gambar": "illustrations/flamingo.svg",
+   "warna": "merahmuda",
+   "hewan": {
+    "kelompok": "kecil",
+    "bunyi": {
+     "id": "Honk honk!",
+     "en": "Honk honk!"
+    },
+    "fakta": {
+     "id": "Flamingo suka berdiri dengan satu kaki.",
+     "en": "Flamingos like to stand on one leg."
+    }
+   },
+   "sukuKata": {
+    "id": null,
+    "en": null
+   }
+  },
+  {
+   "id": "kupu",
+   "kategori": "hewan",
+   "nama": {
+    "id": "Kupu-kupu",
+    "en": "Butterfly"
+   },
+   "gambar": "illustrations/kupu.svg",
+   "warna": "ungu",
+   "hewan": {
+    "kelompok": "kecil",
+    "bunyi": {
+     "id": "Wusss...",
+     "en": "Flutter..."
+    },
+    "fakta": {
+     "id": "Kupu-kupu dulunya seekor ulat.",
+     "en": "Butterflies used to be caterpillars."
+    }
+   },
+   "sukuKata": {
+    "id": null,
+    "en": [
+     "but",
+     "ter",
+     "fly"
+    ]
+   }
+  },
+  {
+   "id": "lebah",
+   "kategori": "hewan",
+   "nama": {
+    "id": "Lebah",
+    "en": "Bee"
+   },
+   "gambar": "illustrations/lebah.svg",
+   "warna": "kuning",
+   "hewan": {
+    "kelompok": "kecil",
+    "bunyi": {
+     "id": "Nguuung!",
+     "en": "Buzz!"
+    },
+    "fakta": {
+     "id": "Lebah membuat madu.",
+     "en": "Bees make honey."
+    }
+   },
+   "sukuKata": {
+    "id": [
+     "le",
+     "bah"
+    ],
+    "en": null
+   }
+  },
+  {
+   "id": "semut",
+   "kategori": "hewan",
+   "nama": {
+    "id": "Semut",
+    "en": "Ant"
+   },
+   "gambar": "illustrations/semut.svg",
+   "warna": "hitam",
+   "hewan": {
+    "kelompok": "kecil",
+    "bunyi": {
+     "id": "Tuk tuk tuk!",
+     "en": "March march!"
+    },
+    "fakta": {
+     "id": "Semut kuat dan suka bekerja sama.",
+     "en": "Ants are strong and work together."
+    }
+   },
+   "sukuKata": {
+    "id": [
+     "se",
+     "mut"
+    ],
+    "en": null
+   }
+  },
+  {
+   "id": "ulat",
+   "kategori": "hewan",
+   "nama": {
+    "id": "Ulat",
+    "en": "Caterpillar"
+   },
+   "gambar": "illustrations/ulat.svg",
+   "warna": "hijau",
+   "hewan": {
+    "kelompok": "kecil",
+    "bunyi": {
+     "id": "Nyam nyam!",
+     "en": "Munch munch!"
+    },
+    "fakta": {
+     "id": "Ulat nanti berubah jadi kupu-kupu.",
+     "en": "Caterpillars turn into butterflies."
+    }
+   },
+   "sukuKata": {
+    "id": null,
+    "en": null
+   }
+  },
+  {
+   "id": "mobil",
+   "kategori": "kendaraan",
+   "nama": {
+    "id": "Mobil",
+    "en": "Car"
+   },
+   "gambar": "illustrations/mobil.svg",
+   "warna": "merah",
+   "sukuKata": {
+    "id": [
+     "mo",
+     "bil"
+    ],
+    "en": null
+   }
+  },
+  {
+   "id": "bus",
+   "kategori": "kendaraan",
+   "nama": {
+    "id": "Bus",
+    "en": "Bus"
+   },
+   "gambar": "illustrations/bus.svg",
+   "warna": "kuning",
+   "sukuKata": {
+    "id": null,
+    "en": null
+   }
+  },
+  {
+   "id": "kereta",
+   "kategori": "kendaraan",
+   "nama": {
+    "id": "Kereta",
+    "en": "Train"
+   },
+   "gambar": "illustrations/kereta.svg",
+   "sukuKata": {
+    "id": [
+     "ke",
+     "re",
+     "ta"
+    ],
+    "en": null
+   }
+  },
+  {
+   "id": "pesawat",
+   "kategori": "kendaraan",
+   "nama": {
+    "id": "Pesawat",
+    "en": "Airplane"
+   },
+   "gambar": "illustrations/pesawat.svg",
+   "warna": "biru",
+   "sukuKata": {
+    "id": [
+     "pe",
+     "sa",
+     "wat"
+    ],
+    "en": null
+   }
+  },
+  {
+   "id": "kapal",
+   "kategori": "kendaraan",
+   "nama": {
+    "id": "Kapal",
+    "en": "Ship"
+   },
+   "gambar": "illustrations/kapal.svg",
+   "sukuKata": {
+    "id": [
+     "ka",
+     "pal"
+    ],
+    "en": null
+   }
+  },
+  {
+   "id": "sepeda",
+   "kategori": "kendaraan",
+   "nama": {
+    "id": "Sepeda",
+    "en": "Bicycle"
+   },
+   "gambar": "illustrations/sepeda.svg",
+   "sukuKata": {
+    "id": [
+     "se",
+     "pe",
+     "da"
+    ],
+    "en": [
+     "bi",
+     "cy",
+     "cle"
+    ]
+   }
+  },
+  {
+   "id": "truk",
+   "kategori": "kendaraan",
+   "nama": {
+    "id": "Truk",
+    "en": "Truck"
+   },
+   "gambar": "illustrations/truk.svg",
+   "warna": "oranye",
+   "sukuKata": {
+    "id": null,
+    "en": null
+   }
+  },
+  {
+   "id": "helikopter",
+   "kategori": "kendaraan",
+   "nama": {
+    "id": "Helikopter",
+    "en": "Helicopter"
+   },
+   "gambar": "illustrations/helikopter.svg",
+   "warna": "kuning",
+   "sukuKata": {
+    "id": null,
+    "en": null
+   }
+  },
+  {
+   "id": "roket",
+   "kategori": "kendaraan",
+   "nama": {
+    "id": "Roket",
+    "en": "Rocket"
+   },
+   "gambar": "illustrations/roket.svg",
+   "sukuKata": {
+    "id": [
+     "ro",
+     "ket"
+    ],
+    "en": [
+     "rock",
+     "et"
+    ]
+   }
+  },
+  {
+   "id": "bola",
+   "kategori": "benda",
+   "nama": {
+    "id": "Bola",
+    "en": "Ball"
+   },
+   "gambar": "illustrations/bola.svg",
+   "sukuKata": {
+    "id": [
+     "bo",
+     "la"
+    ],
+    "en": null
+   }
+  },
+  {
+   "id": "buku",
+   "kategori": "benda",
+   "nama": {
+    "id": "Buku",
+    "en": "Book"
+   },
+   "gambar": "illustrations/buku.svg",
+   "sukuKata": {
+    "id": [
+     "bu",
+     "ku"
+    ],
+    "en": null
+   }
+  },
+  {
+   "id": "dadu",
+   "kategori": "benda",
+   "nama": {
+    "id": "Dadu",
+    "en": "Dice"
+   },
+   "gambar": "illustrations/dadu.svg",
+   "sukuKata": {
+    "id": [
+     "da",
+     "du"
+    ],
+    "en": null
+   }
+  },
+  {
+   "id": "topi",
+   "kategori": "benda",
+   "nama": {
+    "id": "Topi",
+    "en": "Hat"
+   },
+   "gambar": "illustrations/topi.svg",
+   "sukuKata": {
+    "id": [
+     "to",
+     "pi"
+    ],
+    "en": null
+   }
+  },
+  {
+   "id": "payung",
+   "kategori": "benda",
+   "nama": {
+    "id": "Payung",
+    "en": "Umbrella"
+   },
+   "gambar": "illustrations/payung.svg",
+   "sukuKata": {
+    "id": [
+     "pa",
+     "yung"
+    ],
+    "en": null
+   }
+  },
+  {
+   "id": "layang",
+   "kategori": "benda",
+   "nama": {
+    "id": "Layang-layang",
+    "en": "Kite"
+   },
+   "gambar": "illustrations/layang.svg",
+   "sukuKata": {
+    "id": null,
+    "en": null
+   }
+  },
+  {
+   "id": "yoyo",
+   "kategori": "benda",
+   "nama": {
+    "id": "Yoyo",
+    "en": "Yoyo"
+   },
+   "gambar": "illustrations/yoyo.svg",
+   "warna": "ungu",
+   "sukuKata": {
+    "id": null,
+    "en": [
+     "yo",
+     "yo"
+    ]
+   }
+  },
+  {
+   "id": "kado",
+   "kategori": "benda",
+   "nama": {
+    "id": "Kado",
+    "en": "Gift"
+   },
+   "gambar": "illustrations/kado.svg",
+   "warna": "kuning",
+   "sukuKata": {
+    "id": [
+     "ka",
+     "do"
+    ],
+    "en": null
+   }
+  },
+  {
+   "id": "balon",
+   "kategori": "benda",
+   "nama": {
+    "id": "Balon",
+    "en": "Balloons"
+   },
+   "gambar": "illustrations/balon.svg",
+   "sukuKata": {
+    "id": [
+     "ba",
+     "lon"
+    ],
+    "en": null
+   }
+  },
+  {
+   "id": "bunga",
+   "kategori": "benda",
+   "nama": {
+    "id": "Bunga",
+    "en": "Flower"
+   },
+   "gambar": "illustrations/bunga.svg",
+   "warna": "merahmuda",
+   "sukuKata": {
+    "id": [
+     "bu",
+     "nga"
+    ],
+    "en": null
+   }
+  },
+  {
+   "id": "kuekecil",
+   "kategori": "benda",
+   "nama": {
+    "id": "Kue Mangkuk",
+    "en": "Cupcake"
+   },
+   "gambar": "illustrations/kuekecil.svg",
+   "warna": "merahmuda",
+   "sukuKata": {
+    "id": null,
+    "en": [
+     "cup",
+     "cake"
+    ]
+   }
+  },
+  {
+   "id": "sepatu",
+   "kategori": "benda",
+   "nama": {
+    "id": "Sepatu",
+    "en": "Shoe"
+   },
+   "gambar": "illustrations/sepatu.svg",
+   "warna": "merah",
+   "sukuKata": {
+    "id": [
+     "se",
+     "pa",
+     "tu"
+    ],
+    "en": null
+   }
+  },
+  {
+   "id": "kaos",
+   "kategori": "benda",
+   "nama": {
+    "id": "Kaos",
+    "en": "T-shirt"
+   },
+   "gambar": "illustrations/kaos.svg",
+   "warna": "biru",
+   "sukuKata": {
+    "id": [
+     "ka",
+     "os"
+    ],
+    "en": null
+   }
+  },
+  {
+   "id": "eskrim",
+   "kategori": "benda",
+   "nama": {
+    "id": "Es Krim",
+    "en": "Ice Cream"
+   },
+   "gambar": "illustrations/eskrim.svg",
+   "sukuKata": {
+    "id": null,
+    "en": null
+   }
+  },
+  {
+   "id": "xilofon",
+   "kategori": "benda",
+   "nama": {
+    "id": "Xilofon",
+    "en": "Xylophone"
+   },
+   "gambar": "illustrations/xilofon.svg",
+   "sukuKata": {
+    "id": null,
+    "en": null
+   }
+  },
+  {
+   "id": "igloo",
+   "kategori": "benda",
+   "nama": {
+    "id": "Igloo",
+    "en": "Igloo"
+   },
+   "gambar": "illustrations/igloo.svg",
+   "warna": "putih",
+   "sukuKata": {
+    "id": null,
+    "en": null
+   }
+  },
+  {
+   "id": "rumah",
+   "kategori": "benda",
+   "nama": {
+    "id": "Rumah",
+    "en": "House"
+   },
+   "gambar": "illustrations/rumah.svg",
+   "sukuKata": {
+    "id": [
+     "ru",
+     "mah"
+    ],
+    "en": null
+   }
+  },
+  {
+   "id": "hujan",
+   "kategori": "lain",
+   "nama": {
+    "id": "Hujan",
+    "en": "Rain"
+   },
+   "gambar": "illustrations/hujan.svg",
+   "sukuKata": {
+    "id": null,
+    "en": null
+   }
+  },
+  {
+   "id": "onde",
+   "kategori": "lain",
+   "nama": {
+    "id": "Onde-onde",
+    "en": "Sesame Ball"
+   },
+   "gambar": "illustrations/onde.svg",
+   "sukuKata": {
+    "id": null,
+    "en": null
+   }
+  },
+  {
+   "id": "vas",
+   "kategori": "lain",
+   "nama": {
+    "id": "Vas",
+    "en": "Vase"
+   },
+   "gambar": "illustrations/vas.svg",
+   "sukuKata": {
+    "id": null,
+    "en": null
+   }
+  },
+  {
+   "id": "sarang",
+   "kategori": "lain",
+   "nama": {
+    "id": "Sarang",
+    "en": "Nest"
+   },
+   "gambar": "illustrations/sarang.svg",
+   "warna": "cokelat",
+   "sukuKata": {
+    "id": null,
+    "en": null
+   }
+  }
+ ],
+ "huruf": [
+  {
+   "huruf": "A",
+   "id": {
+    "kata": "Apel",
+    "gambar": "apel",
+    "bunyi": "a",
+    "nama": "a"
+   },
+   "en": {
+    "kata": "Apple",
+    "gambar": "apel",
+    "bunyi": "ah",
+    "nama": "ay"
+   }
+  },
+  {
+   "huruf": "B",
+   "id": {
+    "kata": "Bola",
+    "gambar": "bola",
+    "bunyi": "beh",
+    "nama": "be"
+   },
+   "en": {
+    "kata": "Ball",
+    "gambar": "bola",
+    "bunyi": "buh",
+    "nama": "bee"
+   }
+  },
+  {
+   "huruf": "C",
+   "id": {
+    "kata": "Ceri",
+    "gambar": "ceri",
+    "bunyi": "ceh",
+    "nama": "ce"
+   },
+   "en": {
+    "kata": "Cat",
+    "gambar": "kucing",
+    "bunyi": "kuh",
+    "nama": "see"
+   }
+  },
+  {
+   "huruf": "D",
+   "id": {
+    "kata": "Dadu",
+    "gambar": "dadu",
+    "bunyi": "deh",
+    "nama": "de"
+   },
+   "en": {
+    "kata": "Dice",
+    "gambar": "dadu",
+    "bunyi": "duh",
+    "nama": "dee"
+   }
+  },
+  {
+   "huruf": "E",
+   "id": {
+    "kata": "Es krim",
+    "gambar": "eskrim",
+    "bunyi": "e",
+    "nama": "e"
+   },
+   "en": {
+    "kata": "Elephant",
+    "gambar": "gajah",
+    "bunyi": "eh",
+    "nama": "ee"
+   }
+  },
+  {
+   "huruf": "F",
+   "id": {
+    "kata": "Flamingo",
+    "gambar": "flamingo",
+    "bunyi": "feh",
+    "nama": "ef"
+   },
+   "en": {
+    "kata": "Fish",
+    "gambar": "ikan",
+    "bunyi": "fff",
+    "nama": "ef"
+   }
+  },
+  {
+   "huruf": "G",
+   "id": {
+    "kata": "Gajah",
+    "gambar": "gajah",
+    "bunyi": "geh",
+    "nama": "ge"
+   },
+   "en": {
+    "kata": "Grapes",
+    "gambar": "anggur",
+    "bunyi": "guh",
+    "nama": "gee"
+   }
+  },
+  {
+   "huruf": "H",
+   "id": {
+    "kata": "Hujan",
+    "gambar": "hujan",
+    "bunyi": "heh",
+    "nama": "ha"
+   },
+   "en": {
+    "kata": "House",
+    "gambar": "rumah",
+    "bunyi": "huh",
+    "nama": "aitch"
+   }
+  },
+  {
+   "huruf": "I",
+   "id": {
+    "kata": "Ikan",
+    "gambar": "ikan",
+    "bunyi": "i",
+    "nama": "i"
+   },
+   "en": {
+    "kata": "Igloo",
+    "gambar": "igloo",
+    "bunyi": "ih",
+    "nama": "eye"
+   }
+  },
+  {
+   "huruf": "J",
+   "id": {
+    "kata": "Jeruk",
+    "gambar": "jeruk",
+    "bunyi": "jeh",
+    "nama": "je"
+   },
+   "en": {
+    "kata": "Jellyfish",
+    "gambar": "ubur",
+    "bunyi": "juh",
+    "nama": "jay"
+   }
+  },
+  {
+   "huruf": "K",
+   "id": {
+    "kata": "Kucing",
+    "gambar": "kucing",
+    "bunyi": "keh",
+    "nama": "ka"
+   },
+   "en": {
+    "kata": "Kite",
+    "gambar": "layang",
+    "bunyi": "kuh",
+    "nama": "kay"
+   }
+  },
+  {
+   "huruf": "L",
+   "id": {
+    "kata": "Layang-layang",
+    "gambar": "layang",
+    "bunyi": "leh",
+    "nama": "el"
+   },
+   "en": {
+    "kata": "Lion",
+    "gambar": "singa",
+    "bunyi": "luh",
+    "nama": "el"
+   }
+  },
+  {
+   "huruf": "M",
+   "id": {
+    "kata": "Mangga",
+    "gambar": "mangga",
+    "bunyi": "meh",
+    "nama": "em"
+   },
+   "en": {
+    "kata": "Mango",
+    "gambar": "mangga",
+    "bunyi": "mmm",
+    "nama": "em"
+   }
+  },
+  {
+   "huruf": "N",
+   "id": {
+    "kata": "Nanas",
+    "gambar": "nanas",
+    "bunyi": "neh",
+    "nama": "en"
+   },
+   "en": {
+    "kata": "Nest",
+    "gambar": "sarang",
+    "bunyi": "nnn",
+    "nama": "en"
+   }
+  },
+  {
+   "huruf": "O",
+   "id": {
+    "kata": "Onde-onde",
+    "gambar": "onde",
+    "bunyi": "o",
+    "nama": "o"
+   },
+   "en": {
+    "kata": "Octopus",
+    "gambar": "gurita",
+    "bunyi": "aw",
+    "nama": "oh"
+   }
+  },
+  {
+   "huruf": "P",
+   "id": {
+    "kata": "Pisang",
+    "gambar": "pisang",
+    "bunyi": "peh",
+    "nama": "pe"
+   },
+   "en": {
+    "kata": "Pineapple",
+    "gambar": "nanas",
+    "bunyi": "puh",
+    "nama": "pee"
+   }
+  },
+  {
+   "huruf": "Q",
+   "id": {
+    "kata": "Quokka",
+    "gambar": "quokka",
+    "bunyi": "kweh",
+    "nama": "ki"
+   },
+   "en": {
+    "kata": "Quokka",
+    "gambar": "quokka",
+    "bunyi": "kwuh",
+    "nama": "cue"
+   }
+  },
+  {
+   "huruf": "R",
+   "id": {
+    "kata": "Rumah",
+    "gambar": "rumah",
+    "bunyi": "reh",
+    "nama": "er"
+   },
+   "en": {
+    "kata": "Rabbit",
+    "gambar": "kelinci",
+    "bunyi": "ruh",
+    "nama": "ar"
+   }
+  },
+  {
+   "huruf": "S",
+   "id": {
+    "kata": "Sapi",
+    "gambar": "sapi",
+    "bunyi": "seh",
+    "nama": "es"
+   },
+   "en": {
+    "kata": "Strawberry",
+    "gambar": "stroberi",
+    "bunyi": "sss",
+    "nama": "ess"
+   }
+  },
+  {
+   "huruf": "T",
+   "id": {
+    "kata": "Topi",
+    "gambar": "topi",
+    "bunyi": "teh",
+    "nama": "te"
+   },
+   "en": {
+    "kata": "Tomato",
+    "gambar": "tomat",
+    "bunyi": "tuh",
+    "nama": "tee"
+   }
+  },
+  {
+   "huruf": "U",
+   "id": {
+    "kata": "Ulat",
+    "gambar": "ulat",
+    "bunyi": "u",
+    "nama": "u"
+   },
+   "en": {
+    "kata": "Umbrella",
+    "gambar": "payung",
+    "bunyi": "uh",
+    "nama": "you"
+   }
+  },
+  {
+   "huruf": "V",
+   "id": {
+    "kata": "Vas bunga",
+    "gambar": "vas",
+    "bunyi": "veh",
+    "nama": "ve"
+   },
+   "en": {
+    "kata": "Vase",
+    "gambar": "vas",
+    "bunyi": "vvv",
+    "nama": "vee"
+   }
+  },
+  {
+   "huruf": "W",
+   "id": {
+    "kata": "Wortel",
+    "gambar": "wortel",
+    "bunyi": "weh",
+    "nama": "we"
+   },
+   "en": {
+    "kata": "Watermelon",
+    "gambar": "semangka",
+    "bunyi": "wuh",
+    "nama": "double-u"
+   }
+  },
+  {
+   "huruf": "X",
+   "id": {
+    "kata": "Xilofon",
+    "gambar": "xilofon",
+    "bunyi": "seh",
+    "nama": "eks"
+   },
+   "en": {
+    "kata": "Box",
+    "gambar": "kado",
+    "bunyi": "ks",
+    "nama": "ex"
+   }
+  },
+  {
+   "huruf": "Y",
+   "id": {
+    "kata": "Yoyo",
+    "gambar": "yoyo",
+    "bunyi": "yeh",
+    "nama": "ye"
+   },
+   "en": {
+    "kata": "Yoyo",
+    "gambar": "yoyo",
+    "bunyi": "yuh",
+    "nama": "why"
+   }
+  },
+  {
+   "huruf": "Z",
+   "id": {
+    "kata": "Zebra",
+    "gambar": "zebra",
+    "bunyi": "zeh",
+    "nama": "zet"
+   },
+   "en": {
+    "kata": "Zebra",
+    "gambar": "zebra",
+    "bunyi": "zzz",
+    "nama": "zee"
+   }
+  }
+ ],
+ "angka": {
+  "maks": 50,
+  "rentang": [
+   [
+    1,
+    10
+   ],
+   [
+    11,
+    20
+   ],
+   [
+    21,
+    30
+   ],
+   [
+    31,
+    40
+   ],
+   [
+    41,
+    50
+   ]
+  ],
+  "benda": [
+   "apel",
+   "jeruk",
+   "pisang",
+   "stroberi",
+   "bola",
+   "ikan",
+   "bebek",
+   "kupu",
+   "mobil",
+   "balon",
+   "bunga",
+   "kuekecil"
+  ]
+ },
+ "warna": [
+  {
+   "id": "merah",
+   "nama": {
+    "id": "Merah",
+    "en": "Red"
+   },
+   "hex": "#E03131",
+   "teks": "#FFFFFF",
+   "garis": "#C92A2A"
+  },
+  {
+   "id": "oranye",
+   "nama": {
+    "id": "Oranye",
+    "en": "Orange"
+   },
+   "hex": "#FF922B",
+   "teks": "#2B2350",
+   "garis": "#E8590C"
+  },
+  {
+   "id": "kuning",
+   "nama": {
+    "id": "Kuning",
+    "en": "Yellow"
+   },
+   "hex": "#FFD43B",
+   "teks": "#2B2350",
+   "garis": "#F08C00"
+  },
+  {
+   "id": "hijau",
+   "nama": {
+    "id": "Hijau",
+    "en": "Green"
+   },
+   "hex": "#2F9E44",
+   "teks": "#FFFFFF",
+   "garis": "#237A34"
+  },
+  {
+   "id": "biru",
+   "nama": {
+    "id": "Biru",
+    "en": "Blue"
+   },
+   "hex": "#1C7ED6",
+   "teks": "#FFFFFF",
+   "garis": "#1565B0"
+  },
+  {
+   "id": "ungu",
+   "nama": {
+    "id": "Ungu",
+    "en": "Purple"
+   },
+   "hex": "#7048E8",
+   "teks": "#FFFFFF",
+   "garis": "#5032B8"
+  },
+  {
+   "id": "merahmuda",
+   "nama": {
+    "id": "Merah Muda",
+    "en": "Pink"
+   },
+   "hex": "#F783AC",
+   "teks": "#2B2350",
+   "garis": "#D6336C"
+  },
+  {
+   "id": "cokelat",
+   "nama": {
+    "id": "Cokelat",
+    "en": "Brown"
+   },
+   "hex": "#A0673C",
+   "teks": "#FFFFFF",
+   "garis": "#7A4A22"
+  },
+  {
+   "id": "hitam",
+   "nama": {
+    "id": "Hitam",
+    "en": "Black"
+   },
+   "hex": "#343A40",
+   "teks": "#FFFFFF",
+   "garis": "#212529"
+  },
+  {
+   "id": "putih",
+   "nama": {
+    "id": "Putih",
+    "en": "White"
+   },
+   "hex": "#FFFFFF",
+   "teks": "#2B2350",
+   "garis": "#ADB5BD"
+  },
+  {
+   "id": "abu",
+   "nama": {
+    "id": "Abu-abu",
+    "en": "Gray"
+   },
+   "hex": "#ADB5BD",
+   "teks": "#2B2350",
+   "garis": "#868E96"
+  }
+ ],
+ "bentuk": [
+  {
+   "id": "lingkaran",
+   "nama": {
+    "id": "Lingkaran",
+    "en": "Circle"
+   },
+   "warna": "#FF6B6B",
+   "gelap": "#E03E3E",
+   "path": "M18 100A82 82 0 1 1 182 100A82 82 0 1 1 18 100Z",
+   "wajahX": 100.0,
+   "wajahY": 100.0,
+   "wajahSkala": 1.0,
+   "sudutTitik": [],
+   "jenis": "round",
+   "sisi": 0,
+   "sudut": 0,
+   "fakta": {
+    "id": "Lingkaran itu bulat dan tidak punya sudut.",
+    "en": "A circle is round and has no corners."
+   }
+  },
+  {
+   "id": "persegi",
+   "nama": {
+    "id": "Persegi",
+    "en": "Square"
+   },
+   "warna": "#4DABF7",
+   "gelap": "#1C7ED6",
+   "path": "M28 28H172V172H28Z",
+   "wajahX": 100.0,
+   "wajahY": 104.0,
+   "wajahSkala": 1.0,
+   "sudutTitik": [
+    [
+     28.0,
+     28.0
+    ],
+    [
+     172.0,
+     28.0
+    ],
+    [
+     172.0,
+     172.0
+    ],
+    [
+     28.0,
+     172.0
+    ]
+   ],
+   "jenis": "poly",
+   "sisi": 4,
+   "sudut": 4,
+   "fakta": {
+    "id": "Persegi punya 4 sisi yang sama panjang.",
+    "en": "A square has 4 sides that are all the same."
+   }
+  },
+  {
+   "id": "segitiga",
+   "nama": {
+    "id": "Segitiga",
+    "en": "Triangle"
+   },
+   "warna": "#51CF66",
+   "gelap": "#2F9E44",
+   "path": "M100 20L184 172H16Z",
+   "wajahX": 100.0,
+   "wajahY": 124.0,
+   "wajahSkala": 0.9,
+   "sudutTitik": [
+    [
+     100.0,
+     20.0
+    ],
+    [
+     184.0,
+     172.0
+    ],
+    [
+     16.0,
+     172.0
+    ]
+   ],
+   "jenis": "poly",
+   "sisi": 3,
+   "sudut": 3,
+   "fakta": {
+    "id": "Segitiga punya 3 sisi dan 3 sudut.",
+    "en": "A triangle has 3 sides and 3 corners."
+   }
+  },
+  {
+   "id": "persegipanjang",
+   "nama": {
+    "id": "Persegi panjang",
+    "en": "Rectangle"
+   },
+   "warna": "#FFA94D",
+   "gelap": "#E8590C",
+   "path": "M10 52H190V148H10Z",
+   "wajahX": 100.0,
+   "wajahY": 100.0,
+   "wajahSkala": 0.9,
+   "sudutTitik": [
+    [
+     10.0,
+     52.0
+    ],
+    [
+     190.0,
+     52.0
+    ],
+    [
+     190.0,
+     148.0
+    ],
+    [
+     10.0,
+     148.0
+    ]
+   ],
+   "jenis": "poly",
+   "sisi": 4,
+   "sudut": 4,
+   "fakta": {
+    "id": "Persegi panjang punya 2 sisi panjang dan 2 sisi pendek.",
+    "en": "A rectangle has 2 long sides and 2 short sides."
+   }
+  },
+  {
+   "id": "oval",
+   "nama": {
+    "id": "Oval",
+    "en": "Oval"
+   },
+   "warna": "#3BC9DB",
+   "gelap": "#0C8599",
+   "path": "M10 100A90 64 0 1 1 190 100A90 64 0 1 1 10 100Z",
+   "wajahX": 100.0,
+   "wajahY": 100.0,
+   "wajahSkala": 1.0,
+   "sudutTitik": [],
+   "jenis": "round",
+   "sisi": 0,
+   "sudut": 0,
+   "fakta": {
+    "id": "Oval itu bulat lonjong, seperti telur.",
+    "en": "An oval is a stretched circle, like an egg."
+   }
+  },
+  {
+   "id": "belahketupat",
+   "nama": {
+    "id": "Belah ketupat",
+    "en": "Diamond"
+   },
+   "warna": "#9775FA",
+   "gelap": "#6741D9",
+   "path": "M100 10L182 100L100 190L18 100Z",
+   "wajahX": 100.0,
+   "wajahY": 104.0,
+   "wajahSkala": 0.9,
+   "sudutTitik": [
+    [
+     100.0,
+     10.0
+    ],
+    [
+     182.0,
+     100.0
+    ],
+    [
+     100.0,
+     190.0
+    ],
+    [
+     18.0,
+     100.0
+    ]
+   ],
+   "jenis": "poly",
+   "sisi": 4,
+   "sudut": 4,
+   "fakta": {
+    "id": "Belah ketupat punya 4 sisi yang miring.",
+    "en": "A diamond has 4 slanted sides."
+   }
+  },
+  {
+   "id": "bintang",
+   "nama": {
+    "id": "Bintang",
+    "en": "Star"
+   },
+   "warna": "#FFD43B",
+   "gelap": "#F59F00",
+   "path": "M100 12L123.5 71.6L187.5 75.6L138 116.4L154.1 178.4L100 144L45.9 178.4L62 116.4L12.5 75.6L76.5 71.6Z",
+   "wajahX": 100.0,
+   "wajahY": 106.0,
+   "wajahSkala": 0.72,
+   "sudutTitik": [
+    [
+     100.0,
+     12.0
+    ],
+    [
+     187.5,
+     75.6
+    ],
+    [
+     154.1,
+     178.4
+    ],
+    [
+     45.9,
+     178.4
+    ],
+    [
+     12.5,
+     75.6
+    ]
+   ],
+   "jenis": "star",
+   "sisi": 0,
+   "sudut": 5,
+   "fakta": {
+    "id": "Bintang punya 5 ujung yang lancip.",
+    "en": "A star has 5 pointy tips."
+   }
+  },
+  {
+   "id": "hati",
+   "nama": {
+    "id": "Hati",
+    "en": "Heart"
+   },
+   "warna": "#F06595",
+   "gelap": "#C2255C",
+   "path": "M100 176C40 132 14 100 14 66C14 38 36 20 60 20C78 20 92 30 100 46C108 30 122 20 140 20C164 20 186 38 186 66C186 100 160 132 100 176Z",
+   "wajahX": 100.0,
+   "wajahY": 88.0,
+   "wajahSkala": 1.0,
+   "sudutTitik": [],
+   "jenis": "love",
+   "sisi": 0,
+   "sudut": 0,
+   "fakta": {
+    "id": "Hati itu tanda sayang.",
+    "en": "A heart means love."
+   }
+  },
+  {
+   "id": "segilima",
+   "nama": {
+    "id": "Segi lima",
+    "en": "Pentagon"
+   },
+   "warna": "#A9E34B",
+   "gelap": "#5C940D",
+   "path": "M100 16L185.6 78.2L152.9 178.8L47.1 178.8L14.4 78.2Z",
+   "wajahX": 100.0,
+   "wajahY": 112.0,
+   "wajahSkala": 0.95,
+   "sudutTitik": [
+    [
+     100.0,
+     16.0
+    ],
+    [
+     185.6,
+     78.2
+    ],
+    [
+     152.9,
+     178.8
+    ],
+    [
+     47.1,
+     178.8
+    ],
+    [
+     14.4,
+     78.2
+    ]
+   ],
+   "jenis": "poly",
+   "sisi": 5,
+   "sudut": 5,
+   "fakta": {
+    "id": "Segi lima punya 5 sisi dan 5 sudut.",
+    "en": "A pentagon has 5 sides and 5 corners."
+   }
+  },
+  {
+   "id": "segienam",
+   "nama": {
+    "id": "Segi enam",
+    "en": "Hexagon"
+   },
+   "warna": "#F59F00",
+   "gelap": "#D9480F",
+   "path": "M100 12L176.2 56L176.2 144L100 188L23.8 144L23.8 56Z",
+   "wajahX": 100.0,
+   "wajahY": 104.0,
+   "wajahSkala": 1.0,
+   "sudutTitik": [
+    [
+     100.0,
+     12.0
+    ],
+    [
+     176.2,
+     56.0
+    ],
+    [
+     176.2,
+     144.0
+    ],
+    [
+     100.0,
+     188.0
+    ],
+    [
+     23.8,
+     144.0
+    ],
+    [
+     23.8,
+     56.0
+    ]
+   ],
+   "jenis": "poly",
+   "sisi": 6,
+   "sudut": 6,
+   "fakta": {
+    "id": "Segi enam punya 6 sisi, seperti sarang lebah.",
+    "en": "A hexagon has 6 sides, like a honeycomb."
+   }
+  }
+ ],
+ "sukuKata": {
+  "konsonan": "bcdfghjklmnprstwyz",
+  "vokal": [
+   "a",
+   "i",
+   "u",
+   "e",
+   "o"
+  ],
+  "contoh": {
+   "id": {
+    "ba": {
+     "item": "badak",
+     "kata": "Badak"
+    },
+    "bu": {
+     "item": "bus",
+     "kata": "Bus"
+    },
+    "be": {
+     "item": "bebek",
+     "kata": "Bebek"
+    },
+    "bo": {
+     "item": "bola",
+     "kata": "Bola"
+    },
+    "ca": {
+     "item": "cabai",
+     "kata": "Cabai"
+    },
+    "ce": {
+     "item": "ceri",
+     "kata": "Ceri"
+    },
+    "da": {
+     "item": "dadu",
+     "kata": "Dadu"
+    },
+    "du": {
+     "item": "durian",
+     "kata": "Durian"
+    },
+    "do": {
+     "item": "domba",
+     "kata": "Domba"
+    },
+    "ga": {
+     "item": "gajah",
+     "kata": "Gajah"
+    },
+    "gu": {
+     "item": "gurita",
+     "kata": "Gurita"
+    },
+    "ha": {
+     "item": "harimau",
+     "kata": "Harimau"
+    },
+    "he": {
+     "item": "helikopter",
+     "kata": "Helikopter"
+    },
+    "ja": {
+     "item": "jamur",
+     "kata": "Jamur"
+    },
+    "je": {
+     "item": "jeruk",
+     "kata": "Jeruk"
+    },
+    "ka": {
+     "item": "kado",
+     "kata": "Kado"
+    },
+    "ku": {
+     "item": "kuda",
+     "kata": "Kuda"
+    },
+    "ke": {
+     "item": "kelapa",
+     "kata": "Kelapa"
+    },
+    "ko": {
+     "item": "komodo",
+     "kata": "Komodo"
+    },
+    "la": {
+     "item": "labu",
+     "kata": "Labu"
+    },
+    "lu": {
+     "item": "lumba",
+     "kata": "Lumba-lumba"
+    },
+    "le": {
+     "item": "lebah",
+     "kata": "Lebah"
+    },
+    "ma": {
+     "item": "mangga",
+     "kata": "Mangga"
+    },
+    "me": {
+     "item": "melon",
+     "kata": "Melon"
+    },
+    "mo": {
+     "item": "mobil",
+     "kata": "Mobil"
+    },
+    "na": {
+     "item": "nanas",
+     "kata": "Nanas"
+    },
+    "pa": {
+     "item": "paus",
+     "kata": "Paus"
+    },
+    "pi": {
+     "item": "pir",
+     "kata": "Pir"
+    },
+    "pe": {
+     "item": "pepaya",
+     "kata": "Pepaya"
+    },
+    "ra": {
+     "item": "rambutan",
+     "kata": "Rambutan"
+    },
+    "ru": {
+     "item": "rubah",
+     "kata": "Rubah"
+    },
+    "ro": {
+     "item": "roket",
+     "kata": "Roket"
+    },
+    "sa": {
+     "item": "sapi",
+     "kata": "Sapi"
+    },
+    "si": {
+     "item": "singa",
+     "kata": "Singa"
+    },
+    "se": {
+     "item": "semut",
+     "kata": "Semut"
+    },
+    "ti": {
+     "item": "tikus",
+     "kata": "Tikus"
+    },
+    "te": {
+     "item": "terong",
+     "kata": "Terong"
+    },
+    "to": {
+     "item": "topi",
+     "kata": "Topi"
+    },
+    "wo": {
+     "item": "wortel",
+     "kata": "Wortel"
+    },
+    "yo": {
+     "item": "yoyo",
+     "kata": "Yoyo"
+    },
+    "ze": {
+     "item": "zebra",
+     "kata": "Zebra"
+    }
+   },
+   "en": {
+    "ba": {
+     "item": "bola",
+     "kata": "Ball"
+    },
+    "bi": {
+     "item": "burung",
+     "kata": "Bird"
+    },
+    "bu": {
+     "item": "bus",
+     "kata": "Bus"
+    },
+    "be": {
+     "item": "lebah",
+     "kata": "Bee"
+    },
+    "bo": {
+     "item": "buku",
+     "kata": "Book"
+    },
+    "ca": {
+     "item": "kucing",
+     "kata": "Cat"
+    },
+    "cu": {
+     "item": "kuekecil",
+     "kata": "Cupcake"
+    },
+    "co": {
+     "item": "sapi",
+     "kata": "Cow"
+    },
+    "di": {
+     "item": "dadu",
+     "kata": "Dice"
+    },
+    "du": {
+     "item": "bebek",
+     "kata": "Duck"
+    },
+    "do": {
+     "item": "anjing",
+     "kata": "Dog"
+    },
+    "fi": {
+     "item": "ikan",
+     "kata": "Fish"
+    },
+    "fo": {
+     "item": "rubah",
+     "kata": "Fox"
+    },
+    "gi": {
+     "item": "kado",
+     "kata": "Gift"
+    },
+    "go": {
+     "item": "kambing",
+     "kata": "Goat"
+    },
+    "ha": {
+     "item": "topi",
+     "kata": "Hat"
+    },
+    "hi": {
+     "item": "kudanil",
+     "kata": "Hippo"
+    },
+    "he": {
+     "item": "helikopter",
+     "kata": "Helicopter"
+    },
+    "ho": {
+     "item": "kuda",
+     "kata": "Horse"
+    },
+    "je": {
+     "item": "ubur",
+     "kata": "Jellyfish"
+    },
+    "ki": {
+     "item": "layang",
+     "kata": "Kite"
+    },
+    "ko": {
+     "item": "komodo",
+     "kata": "Komodo Dragon"
+    },
+    "li": {
+     "item": "singa",
+     "kata": "Lion"
+    },
+    "le": {
+     "item": "lemon",
+     "kata": "Lemon"
+    },
+    "ma": {
+     "item": "mangga",
+     "kata": "Mango"
+    },
+    "mu": {
+     "item": "jamur",
+     "kata": "Mushroom"
+    },
+    "me": {
+     "item": "melon",
+     "kata": "Melon"
+    },
+    "mo": {
+     "item": "tikus",
+     "kata": "Mouse"
+    },
+    "pa": {
+     "item": "panda",
+     "kata": "Panda"
+    },
+    "pi": {
+     "item": "nanas",
+     "kata": "Pineapple"
+    },
+    "pu": {
+     "item": "labu",
+     "kata": "Pumpkin"
+    },
+    "pe": {
+     "item": "pir",
+     "kata": "Pear"
+    },
+    "po": {
+     "item": "kentang",
+     "kata": "Potato"
+    },
+    "ra": {
+     "item": "kelinci",
+     "kata": "Rabbit"
+    },
+    "ro": {
+     "item": "roket",
+     "kata": "Rocket"
+    },
+    "ti": {
+     "item": "harimau",
+     "kata": "Tiger"
+    },
+    "tu": {
+     "item": "kura",
+     "kata": "Turtle"
+    },
+    "to": {
+     "item": "tomat",
+     "kata": "Tomato"
+    },
+    "wa": {
+     "item": "semangka",
+     "kata": "Watermelon"
+    },
+    "yo": {
+     "item": "yoyo",
+     "kata": "Yoyo"
+    },
+    "ze": {
+     "item": "zebra",
+     "kata": "Zebra"
+    }
+   }
+  }
+ },
+ "kata": {
+  "id": [
+   {
+    "item": "bola",
+    "kata": "Bola",
+    "suku": [
+     "bo",
+     "la"
+    ]
+   },
+   {
+    "item": "buku",
+    "kata": "Buku",
+    "suku": [
+     "bu",
+     "ku"
+    ]
+   },
+   {
+    "item": "sapi",
+    "kata": "Sapi",
+    "suku": [
+     "sa",
+     "pi"
+    ]
+   },
+   {
+    "item": "ikan",
+    "kata": "Ikan",
+    "suku": [
+     "i",
+     "kan"
+    ]
+   },
+   {
+    "item": "topi",
+    "kata": "Topi",
+    "suku": [
+     "to",
+     "pi"
+    ]
+   },
+   {
+    "item": "kuda",
+    "kata": "Kuda",
+    "suku": [
+     "ku",
+     "da"
+    ]
+   },
+   {
+    "item": "dadu",
+    "kata": "Dadu",
+    "suku": [
+     "da",
+     "du"
+    ]
+   },
+   {
+    "item": "kado",
+    "kata": "Kado",
+    "suku": [
+     "ka",
+     "do"
+    ]
+   },
+   {
+    "item": "mobil",
+    "kata": "Mobil",
+    "suku": [
+     "mo",
+     "bil"
+    ]
+   },
+   {
+    "item": "pisang",
+    "kata": "Pisang",
+    "suku": [
+     "pi",
+     "sang"
+    ]
+   },
+   {
+    "item": "nanas",
+    "kata": "Nanas",
+    "suku": [
+     "na",
+     "nas"
+    ]
+   },
+   {
+    "item": "tomat",
+    "kata": "Tomat",
+    "suku": [
+     "to",
+     "mat"
+    ]
+   },
+   {
+    "item": "jeruk",
+    "kata": "Jeruk",
+    "suku": [
+     "je",
+     "ruk"
+    ]
+   },
+   {
+    "item": "kucing",
+    "kata": "Kucing",
+    "suku": [
+     "ku",
+     "cing"
+    ]
+   },
+   {
+    "item": "bebek",
+    "kata": "Bebek",
+    "suku": [
+     "be",
+     "bek"
+    ]
+   },
+   {
+    "item": "gajah",
+    "kata": "Gajah",
+    "suku": [
+     "ga",
+     "jah"
+    ]
+   },
+   {
+    "item": "zebra",
+    "kata": "Zebra",
+    "suku": [
+     "ze",
+     "bra"
+    ]
+   },
+   {
+    "item": "wortel",
+    "kata": "Wortel",
+    "suku": [
+     "wor",
+     "tel"
+    ]
+   },
+   {
+    "item": "payung",
+    "kata": "Payung",
+    "suku": [
+     "pa",
+     "yung"
+    ]
+   },
+   {
+    "item": "rumah",
+    "kata": "Rumah",
+    "suku": [
+     "ru",
+     "mah"
+    ]
+   },
+   {
+    "item": "kapal",
+    "kata": "Kapal",
+    "suku": [
+     "ka",
+     "pal"
+    ]
+   },
+   {
+    "item": "labu",
+    "kata": "Labu",
+    "suku": [
+     "la",
+     "bu"
+    ]
+   },
+   {
+    "item": "salak",
+    "kata": "Salak",
+    "suku": [
+     "sa",
+     "lak"
+    ]
+   },
+   {
+    "item": "melon",
+    "kata": "Melon",
+    "suku": [
+     "me",
+     "lon"
+    ]
+   },
+   {
+    "item": "lemon",
+    "kata": "Lemon",
+    "suku": [
+     "le",
+     "mon"
+    ]
+   },
+   {
+    "item": "semut",
+    "kata": "Semut",
+    "suku": [
+     "se",
+     "mut"
+    ]
+   },
+   {
+    "item": "tikus",
+    "kata": "Tikus",
+    "suku": [
+     "ti",
+     "kus"
+    ]
+   },
+   {
+    "item": "monyet",
+    "kata": "Monyet",
+    "suku": [
+     "mo",
+     "nyet"
+    ]
+   },
+   {
+    "item": "domba",
+    "kata": "Domba",
+    "suku": [
+     "dom",
+     "ba"
+    ]
+   },
+   {
+    "item": "kambing",
+    "kata": "Kambing",
+    "suku": [
+     "kam",
+     "bing"
+    ]
+   },
+   {
+    "item": "panda",
+    "kata": "Panda",
+    "suku": [
+     "pan",
+     "da"
+    ]
+   },
+   {
+    "item": "ular",
+    "kata": "Ular",
+    "suku": [
+     "u",
+     "lar"
+    ]
+   },
+   {
+    "item": "katak",
+    "kata": "Katak",
+    "suku": [
+     "ka",
+     "tak"
+    ]
+   },
+   {
+    "item": "paus",
+    "kata": "Paus",
+    "suku": [
+     "pa",
+     "us"
+    ]
+   },
+   {
+    "item": "jagung",
+    "kata": "Jagung",
+    "suku": [
+     "ja",
+     "gung"
+    ]
+   },
+   {
+    "item": "kubis",
+    "kata": "Kubis",
+    "suku": [
+     "ku",
+     "bis"
+    ]
+   },
+   {
+    "item": "timun",
+    "kata": "Timun",
+    "suku": [
+     "ti",
+     "mun"
+    ]
+   },
+   {
+    "item": "roket",
+    "kata": "Roket",
+    "suku": [
+     "ro",
+     "ket"
+    ]
+   },
+   {
+    "item": "balon",
+    "kata": "Balon",
+    "suku": [
+     "ba",
+     "lon"
+    ]
+   },
+   {
+    "item": "bunga",
+    "kata": "Bunga",
+    "suku": [
+     "bu",
+     "nga"
+    ]
+   },
+   {
+    "item": "kaos",
+    "kata": "Kaos",
+    "suku": [
+     "ka",
+     "os"
+    ]
+   },
+   {
+    "item": "apel",
+    "kata": "Apel",
+    "suku": [
+     "a",
+     "pel"
+    ]
+   },
+   {
+    "item": "ceri",
+    "kata": "Ceri",
+    "suku": [
+     "ce",
+     "ri"
+    ]
+   },
+   {
+    "item": "lebah",
+    "kata": "Lebah",
+    "suku": [
+     "le",
+     "bah"
+    ]
+   },
+   {
+    "item": "badak",
+    "kata": "Badak",
+    "suku": [
+     "ba",
+     "dak"
+    ]
+   },
+   {
+    "item": "rubah",
+    "kata": "Rubah",
+    "suku": [
+     "ru",
+     "bah"
+    ]
+   },
+   {
+    "item": "jamur",
+    "kata": "Jamur",
+    "suku": [
+     "ja",
+     "mur"
+    ]
+   },
+   {
+    "item": "kentang",
+    "kata": "Kentang",
+    "suku": [
+     "ken",
+     "tang"
+    ]
+   },
+   {
+    "item": "terong",
+    "kata": "Terong",
+    "suku": [
+     "te",
+     "rong"
+    ]
+   },
+   {
+    "item": "anggur",
+    "kata": "Anggur",
+    "suku": [
+     "ang",
+     "gur"
+    ]
+   },
+   {
+    "item": "mangga",
+    "kata": "Mangga",
+    "suku": [
+     "mang",
+     "ga"
+    ]
+   },
+   {
+    "item": "manggis",
+    "kata": "Manggis",
+    "suku": [
+     "mang",
+     "gis"
+    ]
+   },
+   {
+    "item": "kelinci",
+    "kata": "Kelinci",
+    "suku": [
+     "ke",
+     "lin",
+     "ci"
+    ]
+   },
+   {
+    "item": "kereta",
+    "kata": "Kereta",
+    "suku": [
+     "ke",
+     "re",
+     "ta"
+    ]
+   },
+   {
+    "item": "sepatu",
+    "kata": "Sepatu",
+    "suku": [
+     "se",
+     "pa",
+     "tu"
+    ]
+   },
+   {
+    "item": "harimau",
+    "kata": "Harimau",
+    "suku": [
+     "ha",
+     "ri",
+     "mau"
+    ]
+   },
+   {
+    "item": "buaya",
+    "kata": "Buaya",
+    "suku": [
+     "bu",
+     "a",
+     "ya"
+    ]
+   },
+   {
+    "item": "pepaya",
+    "kata": "Pepaya",
+    "suku": [
+     "pe",
+     "pa",
+     "ya"
+    ]
+   },
+   {
+    "item": "durian",
+    "kata": "Durian",
+    "suku": [
+     "du",
+     "ri",
+     "an"
+    ]
+   },
+   {
+    "item": "sepeda",
+    "kata": "Sepeda",
+    "suku": [
+     "se",
+     "pe",
+     "da"
+    ]
+   },
+   {
+    "item": "kepiting",
+    "kata": "Kepiting",
+    "suku": [
+     "ke",
+     "pi",
+     "ting"
+    ]
+   },
+   {
+    "item": "jerapah",
+    "kata": "Jerapah",
+    "suku": [
+     "je",
+     "ra",
+     "pah"
+    ]
+   },
+   {
+    "item": "komodo",
+    "kata": "Komodo",
+    "suku": [
+     "ko",
+     "mo",
+     "do"
+    ]
+   },
+   {
+    "item": "kelapa",
+    "kata": "Kelapa",
+    "suku": [
+     "ke",
+     "la",
+     "pa"
+    ]
+   },
+   {
+    "item": "semangka",
+    "kata": "Semangka",
+    "suku": [
+     "se",
+     "mang",
+     "ka"
+    ]
+   },
+   {
+    "item": "brokoli",
+    "kata": "Brokoli",
+    "suku": [
+     "bro",
+     "ko",
+     "li"
+    ]
+   },
+   {
+    "item": "paprika",
+    "kata": "Paprika",
+    "suku": [
+     "pa",
+     "pri",
+     "ka"
+    ]
+   },
+   {
+    "item": "gurita",
+    "kata": "Gurita",
+    "suku": [
+     "gu",
+     "ri",
+     "ta"
+    ]
+   },
+   {
+    "item": "beruang",
+    "kata": "Beruang",
+    "suku": [
+     "be",
+     "ru",
+     "ang"
+    ]
+   },
+   {
+    "item": "pesawat",
+    "kata": "Pesawat",
+    "suku": [
+     "pe",
+     "sa",
+     "wat"
+    ]
+   },
+   {
+    "item": "pinguin",
+    "kata": "Pinguin",
+    "suku": [
+     "pi",
+     "ngu",
+     "in"
+    ]
+   }
+  ],
+  "en": [
+   {
+    "item": "apel",
+    "kata": "Apple",
+    "suku": [
+     "ap",
+     "ple"
+    ]
+   },
+   {
+    "item": "zebra",
+    "kata": "Zebra",
+    "suku": [
+     "ze",
+     "bra"
+    ]
+   },
+   {
+    "item": "mangga",
+    "kata": "Mango",
+    "suku": [
+     "man",
+     "go"
+    ]
+   },
+   {
+    "item": "yoyo",
+    "kata": "Yoyo",
+    "suku": [
+     "yo",
+     "yo"
+    ]
+   },
+   {
+    "item": "kelinci",
+    "kata": "Rabbit",
+    "suku": [
+     "rab",
+     "bit"
+    ]
+   },
+   {
+    "item": "wortel",
+    "kata": "Carrot",
+    "suku": [
+     "car",
+     "rot"
+    ]
+   },
+   {
+    "item": "harimau",
+    "kata": "Tiger",
+    "suku": [
+     "ti",
+     "ger"
+    ]
+   },
+   {
+    "item": "monyet",
+    "kata": "Monkey",
+    "suku": [
+     "mon",
+     "key"
+    ]
+   },
+   {
+    "item": "panda",
+    "kata": "Panda",
+    "suku": [
+     "pan",
+     "da"
+    ]
+   },
+   {
+    "item": "lemon",
+    "kata": "Lemon",
+    "suku": [
+     "lem",
+     "on"
+    ]
+   },
+   {
+    "item": "melon",
+    "kata": "Melon",
+    "suku": [
+     "mel",
+     "on"
+    ]
+   },
+   {
+    "item": "roket",
+    "kata": "Rocket",
+    "suku": [
+     "rock",
+     "et"
+    ]
+   },
+   {
+    "item": "singa",
+    "kata": "Lion",
+    "suku": [
+     "li",
+     "on"
+    ]
+   },
+   {
+    "item": "pinguin",
+    "kata": "Penguin",
+    "suku": [
+     "pen",
+     "guin"
+    ]
+   },
+   {
+    "item": "kura",
+    "kata": "Turtle",
+    "suku": [
+     "tur",
+     "tle"
+    ]
+   },
+   {
+    "item": "badak",
+    "kata": "Rhino",
+    "suku": [
+     "rhi",
+     "no"
+    ]
+   },
+   {
+    "item": "kuekecil",
+    "kata": "Cupcake",
+    "suku": [
+     "cup",
+     "cake"
+    ]
+   },
+   {
+    "item": "lumba",
+    "kata": "Dolphin",
+    "suku": [
+     "dol",
+     "phin"
+    ]
+   },
+   {
+    "item": "labu",
+    "kata": "Pumpkin",
+    "suku": [
+     "pump",
+     "kin"
+    ]
+   },
+   {
+    "item": "ayam",
+    "kata": "Chicken",
+    "suku": [
+     "chick",
+     "en"
+    ]
+   },
+   {
+    "item": "paprika",
+    "kata": "Pepper",
+    "suku": [
+     "pep",
+     "per"
+    ]
+   },
+   {
+    "item": "jerapah",
+    "kata": "Giraffe",
+    "suku": [
+     "gi",
+     "raffe"
+    ]
+   },
+   {
+    "item": "tomat",
+    "kata": "Tomato",
+    "suku": [
+     "to",
+     "ma",
+     "to"
+    ]
+   },
+   {
+    "item": "pisang",
+    "kata": "Banana",
+    "suku": [
+     "ba",
+     "na",
+     "na"
+    ]
+   },
+   {
+    "item": "kupu",
+    "kata": "Butterfly",
+    "suku": [
+     "but",
+     "ter",
+     "fly"
+    ]
+   },
+   {
+    "item": "sepeda",
+    "kata": "Bicycle",
+    "suku": [
+     "bi",
+     "cy",
+     "cle"
+    ]
+   },
+   {
+    "item": "pepaya",
+    "kata": "Papaya",
+    "suku": [
+     "pa",
+     "pa",
+     "ya"
+    ]
+   },
+   {
+    "item": "kelapa",
+    "kata": "Coconut",
+    "suku": [
+     "co",
+     "co",
+     "nut"
+    ]
+   },
+   {
+    "item": "gajah",
+    "kata": "Elephant",
+    "suku": [
+     "el",
+     "e",
+     "phant"
+    ]
+   },
+   {
+    "item": "gurita",
+    "kata": "Octopus",
+    "suku": [
+     "oc",
+     "to",
+     "pus"
+    ]
+   },
+   {
+    "item": "buaya",
+    "kata": "Crocodile",
+    "suku": [
+     "croc",
+     "o",
+     "dile"
+    ]
+   },
+   {
+    "item": "nanas",
+    "kata": "Pineapple",
+    "suku": [
+     "pine",
+     "ap",
+     "ple"
+    ]
+   },
+   {
+    "item": "kentang",
+    "kata": "Potato",
+    "suku": [
+     "po",
+     "ta",
+     "to"
+    ]
+   }
+  ]
+ },
+ "kalimat": [
+  {
+   "id": "bola",
+   "teks": {
+    "id": "Ini bola.",
+    "en": "This is a ball."
+   },
+   "gambar": "illustrations/bola.svg",
+   "waktu": {
+    "id": null,
+    "en": null
+   }
+  },
+  {
+   "id": "kucing",
+   "teks": {
+    "id": "Kucing suka tidur.",
+    "en": "The cat likes to sleep."
+   },
+   "gambar": "illustrations/kucing.svg",
+   "waktu": {
+    "id": null,
+    "en": null
+   }
+  },
+  {
+   "id": "apel",
+   "teks": {
+    "id": "Ani makan apel.",
+    "en": "Ani eats an apple."
+   },
+   "gambar": "illustrations/apel.svg",
+   "waktu": {
+    "id": null,
+    "en": null
+   }
+  },
+  {
+   "id": "pisang",
+   "teks": {
+    "id": "Pisang itu kuning.",
+    "en": "The banana is yellow."
+   },
+   "gambar": "illustrations/pisang.svg",
+   "waktu": {
+    "id": null,
+    "en": null
+   }
+  },
+  {
+   "id": "sapi",
+   "teks": {
+    "id": "Sapi minum air.",
+    "en": "The cow drinks water."
+   },
+   "gambar": "illustrations/sapi.svg",
+   "waktu": {
+    "id": null,
+    "en": null
+   }
+  },
+  {
+   "id": "ikan",
+   "teks": {
+    "id": "Ikan ada di air.",
+    "en": "The fish is in the water."
+   },
+   "gambar": "illustrations/ikan.svg",
+   "waktu": {
+    "id": null,
+    "en": null
+   }
+  },
+  {
+   "id": "balon",
+   "teks": {
+    "id": "Balon itu besar.",
+    "en": "The balloon is big."
+   },
+   "gambar": "illustrations/balon.svg",
+   "waktu": {
+    "id": null,
+    "en": null
+   }
+  },
+  {
+   "id": "mobil",
+   "teks": {
+    "id": "Ayah naik mobil.",
+    "en": "Dad drives a car."
+   },
+   "gambar": "illustrations/mobil.svg",
+   "waktu": {
+    "id": null,
+    "en": null
+   }
+  },
+  {
+   "id": "bunga",
+   "teks": {
+    "id": "Bunga itu cantik.",
+    "en": "The flower is pretty."
+   },
+   "gambar": "illustrations/bunga.svg",
+   "waktu": {
+    "id": null,
+    "en": null
+   }
+  },
+  {
+   "id": "buku",
+   "teks": {
+    "id": "Kakak membaca buku.",
+    "en": "My sister reads a book."
+   },
+   "gambar": "illustrations/buku.svg",
+   "waktu": {
+    "id": null,
+    "en": null
+   }
+  },
+  {
+   "id": "monyet",
+   "teks": {
+    "id": "Monyet suka makan pisang.",
+    "en": "The monkey likes to eat bananas."
+   },
+   "gambar": "illustrations/monyet.svg",
+   "waktu": {
+    "id": null,
+    "en": null
+   }
+  },
+  {
+   "id": "bebek",
+   "teks": {
+    "id": "Bebek berenang di kolam.",
+    "en": "The duck swims in the pond."
+   },
+   "gambar": "illustrations/bebek.svg",
+   "waktu": {
+    "id": null,
+    "en": null
+   }
+  },
+  {
+   "id": "kupu",
+   "teks": {
+    "id": "Kupu-kupu terbang tinggi.",
+    "en": "The butterfly flies high."
+   },
+   "gambar": "illustrations/kupu.svg",
+   "waktu": {
+    "id": null,
+    "en": null
+   }
+  },
+  {
+   "id": "gajah",
+   "teks": {
+    "id": "Gajah punya belalai panjang.",
+    "en": "The elephant has a long trunk."
+   },
+   "gambar": "illustrations/gajah.svg",
+   "waktu": {
+    "id": null,
+    "en": null
+   }
+  },
+  {
+   "id": "kereta",
+   "teks": {
+    "id": "Kereta itu melaju cepat.",
+    "en": "The train goes very fast."
+   },
+   "gambar": "illustrations/kereta.svg",
+   "waktu": {
+    "id": null,
+    "en": null
+   }
+  },
+  {
+   "id": "eskrim",
+   "teks": {
+    "id": "Adik makan es krim.",
+    "en": "My little brother eats ice cream."
+   },
+   "gambar": "illustrations/eskrim.svg",
+   "waktu": {
+    "id": null,
+    "en": null
+   }
+  },
+  {
+   "id": "kelinci",
+   "teks": {
+    "id": "Kelinci suka makan wortel.",
+    "en": "The rabbit likes to eat carrots."
+   },
+   "gambar": "illustrations/kelinci.svg",
+   "waktu": {
+    "id": null,
+    "en": null
+   }
+  },
+  {
+   "id": "pesawat",
+   "teks": {
+    "id": "Pesawat terbang di langit.",
+    "en": "The airplane flies in the sky."
+   },
+   "gambar": "illustrations/pesawat.svg",
+   "waktu": {
+    "id": null,
+    "en": null
+   }
+  }
+ ],
+ "ucapkan": {
+  "id": [
+   {
+    "kata": "Apel",
+    "suku": [
+     "A",
+     "PEL"
+    ],
+    "gambar": "illustrations/apel.svg"
+   },
+   {
+    "kata": "Bola",
+    "suku": [
+     "BO",
+     "LA"
+    ],
+    "gambar": "illustrations/bola.svg"
+   },
+   {
+    "kata": "Ikan",
+    "suku": [
+     "I",
+     "KAN"
+    ],
+    "gambar": "illustrations/ikan.svg"
+   },
+   {
+    "kata": "Sapi",
+    "suku": [
+     "SA",
+     "PI"
+    ],
+    "gambar": "illustrations/sapi.svg"
+   },
+   {
+    "kata": "Topi",
+    "suku": [
+     "TO",
+     "PI"
+    ],
+    "gambar": "illustrations/topi.svg"
+   }
+  ],
+  "en": [
+   {
+    "kata": "Apple",
+    "suku": [
+     "AP",
+     "PLE"
+    ],
+    "gambar": "illustrations/apel.svg"
+   },
+   {
+    "kata": "Zebra",
+    "suku": [
+     "ZE",
+     "BRA"
+    ],
+    "gambar": "illustrations/zebra.svg"
+   },
+   {
+    "kata": "Rabbit",
+    "suku": [
+     "RAB",
+     "BIT"
+    ],
+    "gambar": "illustrations/kelinci.svg"
+   },
+   {
+    "kata": "Yoyo",
+    "suku": [
+     "YO",
+     "YO"
+    ],
+    "gambar": "illustrations/yoyo.svg"
+   },
+   {
+    "kata": "Mango",
+    "suku": [
+     "MAN",
+     "GO"
+    ],
+    "gambar": "illustrations/mangga.svg"
+   }
+  ]
+ }
+}

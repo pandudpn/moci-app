@@ -1,0 +1,114 @@
+[
+ {
+  "hex": "#FF4B4B",
+  "nama": {
+   "id": "Merah",
+   "en": "Red"
+  }
+ },
+ {
+  "hex": "#FF922B",
+  "nama": {
+   "id": "Oranye",
+   "en": "Orange"
+  }
+ },
+ {
+  "hex": "#FFD43B",
+  "nama": {
+   "id": "Kuning",
+   "en": "Yellow"
+  }
+ },
+ {
+  "hex": "#8CE99A",
+  "nama": {
+   "id": "Hijau muda",
+   "en": "Light green"
+  }
+ },
+ {
+  "hex": "#2FB344",
+  "nama": {
+   "id": "Hijau",
+   "en": "Green"
+  }
+ },
+ {
+  "hex": "#22C1C3",
+  "nama": {
+   "id": "Tosca",
+   "en": "Teal"
+  }
+ },
+ {
+  "hex": "#74C0FC",
+  "nama": {
+   "id": "Biru muda",
+   "en": "Light blue"
+  }
+ },
+ {
+  "hex": "#1C7ED6",
+  "nama": {
+   "id": "Biru",
+   "en": "Blue"
+  }
+ },
+ {
+  "hex": "#9775FA",
+  "nama": {
+   "id": "Ungu",
+   "en": "Purple"
+  }
+ },
+ {
+  "hex": "#FF8FB1",
+  "nama": {
+   "id": "Merah muda",
+   "en": "Pink"
+  }
+ },
+ {
+  "hex": "#E64980",
+  "nama": {
+   "id": "Magenta",
+   "en": "Magenta"
+  }
+ },
+ {
+  "hex": "#B07A4F",
+  "nama": {
+   "id": "Cokelat",
+   "en": "Brown"
+  }
+ },
+ {
+  "hex": "#FFE8CC",
+  "nama": {
+   "id": "Krem",
+   "en": "Cream"
+  }
+ },
+ {
+  "hex": "#ADB5BD",
+  "nama": {
+   "id": "Abu-abu",
+   "en": "Gray"
+  }
+ },
+ {
+  "hex": "#343A40",
+  "nama": {
+   "id": "Hitam",
+   "en": "Black"
+  }
+ },
+ {
+  "hex": "#FFFFFF",
+  "nama": {
+   "id": "Putih",
+   "en": "White"
+  }
+ }
+]

@@ -90,6 +90,9 @@ flutter:
     - path: assets/illustrations/
       transformers:
         - package: vector_graphics_compiler
+    - assets/content/
+    - assets/tracing/
+    - assets/coloring/
 
   fonts:
     - family: Fredoka

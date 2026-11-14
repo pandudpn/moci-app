@@ -1,0 +1,58 @@
+[
+ {
+  "id": "moci",
+  "nama": {
+   "id": "Moci",
+   "en": "Moci"
+  }
+ },
+ {
+  "id": "moci-senang",
+  "nama": {
+   "id": "Moci senang",
+   "en": "Happy Moci"
+  }
+ },
+ {
+  "id": "apel",
+  "nama": {
+   "id": "Apel",
+   "en": "Apple"
+  }
+ },
+ {
+  "id": "stroberi",
+  "nama": {
+   "id": "Stroberi",
+   "en": "Strawberry"
+  }
+ },
+ {
+  "id": "bola",
+  "nama": {
+   "id": "Bola",
+   "en": "Ball"
+  }
+ },
+ {
+  "id": "eskrim",
+  "nama": {
+   "id": "Es Krim",
+   "en": "Ice Cream"
+  }
+ },
+ {
+  "id": "kado",
+  "nama": {
+   "id": "Kado",
+   "en": "Gift"
+  }
+ },
+ {
+  "id": "ikan",
+  "nama": {
+   "id": "Ikan",
+   "en": "Fish"
+  }
+ }
+]
