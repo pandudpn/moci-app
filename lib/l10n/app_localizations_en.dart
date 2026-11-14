@@ -657,4 +657,38 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get susunKataProgress => 'Progress';
+
+  @override
+  String get kalimatIns => 'Tap a word to hear it';
+
+  @override
+  String get kalimatRead => 'Read with me';
+
+  @override
+  String get kalimatPrev => 'Previous sentence';
+
+  @override
+  String get kalimatNext => 'Next sentence';
+
+  @override
+  String get kalimatWhich => 'Which picture matches?';
+
+  @override
+  String get kalimatReadMode => 'Read';
+
+  @override
+  String get kalimatQuizMode => 'Guess the picture';
+
+  @override
+  String get kalimatReadTip =>
+      'Tap \"Read with me\" and follow the words as they light up!';
+
+  @override
+  String get kalimatYes => 'Yes! That is right!';
+
+  @override
+  String get kalimatNo => 'Not that one. Try again!';
+
+  @override
+  String get kalimatPicture => 'Sentence picture';
 }

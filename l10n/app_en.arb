@@ -652,5 +652,49 @@
   "susunKataProgress": "Progress",
   "@susunKataProgress": {
     "description": "Label aksesibilitas titik kemajuan"
+  },
+  "kalimatIns": "Tap a word to hear it",
+  "@kalimatIns": {
+    "description": "narasi"
+  },
+  "kalimatRead": "Read with me",
+  "@kalimatRead": {
+    "description": "Tombol karaoke kalimat"
+  },
+  "kalimatPrev": "Previous sentence",
+  "@kalimatPrev": {
+    "description": "Tombol kalimat sebelumnya"
+  },
+  "kalimatNext": "Next sentence",
+  "@kalimatNext": {
+    "description": "Tombol kalimat berikutnya"
+  },
+  "kalimatWhich": "Which picture matches?",
+  "@kalimatWhich": {
+    "description": "Pertanyaan mode tebak gambar"
+  },
+  "kalimatReadMode": "Read",
+  "@kalimatReadMode": {
+    "description": "Pil mode baca"
+  },
+  "kalimatQuizMode": "Guess the picture",
+  "@kalimatQuizMode": {
+    "description": "Pil mode tebak gambar"
+  },
+  "kalimatReadTip": "Tap \"Read with me\" and follow the words as they light up!",
+  "@kalimatReadTip": {
+    "description": "Gelembung petunjuk karaoke"
+  },
+  "kalimatYes": "Yes! That is right!",
+  "@kalimatYes": {
+    "description": "narasi"
+  },
+  "kalimatNo": "Not that one. Try again!",
+  "@kalimatNo": {
+    "description": "narasi"
+  },
+  "kalimatPicture": "Sentence picture",
+  "@kalimatPicture": {
+    "description": "Label aksesibilitas gambar kalimat"
   }
 }

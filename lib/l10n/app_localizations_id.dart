@@ -658,4 +658,38 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get susunKataProgress => 'Kemajuan';
+
+  @override
+  String get kalimatIns => 'Ketuk kata untuk mendengarnya';
+
+  @override
+  String get kalimatRead => 'Baca bersama';
+
+  @override
+  String get kalimatPrev => 'Kalimat sebelumnya';
+
+  @override
+  String get kalimatNext => 'Kalimat berikutnya';
+
+  @override
+  String get kalimatWhich => 'Gambar mana yang cocok?';
+
+  @override
+  String get kalimatReadMode => 'Baca';
+
+  @override
+  String get kalimatQuizMode => 'Tebak gambar';
+
+  @override
+  String get kalimatReadTip =>
+      'Ketuk \"Baca bersama\" lalu ikuti kata yang menyala!';
+
+  @override
+  String get kalimatYes => 'Betul! Pintar sekali!';
+
+  @override
+  String get kalimatNo => 'Bukan yang itu. Coba lagi!';
+
+  @override
+  String get kalimatPicture => 'Gambar kalimat';
 }

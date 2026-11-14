@@ -1297,6 +1297,72 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Kemajuan'**
   String get susunKataProgress;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Ketuk kata untuk mendengarnya'**
+  String get kalimatIns;
+
+  /// Tombol karaoke kalimat
+  ///
+  /// In id, this message translates to:
+  /// **'Baca bersama'**
+  String get kalimatRead;
+
+  /// Tombol kalimat sebelumnya
+  ///
+  /// In id, this message translates to:
+  /// **'Kalimat sebelumnya'**
+  String get kalimatPrev;
+
+  /// Tombol kalimat berikutnya
+  ///
+  /// In id, this message translates to:
+  /// **'Kalimat berikutnya'**
+  String get kalimatNext;
+
+  /// Pertanyaan mode tebak gambar
+  ///
+  /// In id, this message translates to:
+  /// **'Gambar mana yang cocok?'**
+  String get kalimatWhich;
+
+  /// Pil mode baca
+  ///
+  /// In id, this message translates to:
+  /// **'Baca'**
+  String get kalimatReadMode;
+
+  /// Pil mode tebak gambar
+  ///
+  /// In id, this message translates to:
+  /// **'Tebak gambar'**
+  String get kalimatQuizMode;
+
+  /// Gelembung petunjuk karaoke
+  ///
+  /// In id, this message translates to:
+  /// **'Ketuk \"Baca bersama\" lalu ikuti kata yang menyala!'**
+  String get kalimatReadTip;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Betul! Pintar sekali!'**
+  String get kalimatYes;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Bukan yang itu. Coba lagi!'**
+  String get kalimatNo;
+
+  /// Label aksesibilitas gambar kalimat
+  ///
+  /// In id, this message translates to:
+  /// **'Gambar kalimat'**
+  String get kalimatPicture;
 }
 
 class _AppLocalizationsDelegate

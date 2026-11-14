@@ -14,6 +14,7 @@ import '../features/istirahat/istirahat_screen.dart';
 import '../features/segera/coming_soon_screen.dart';
 import '../features/membaca/suku_kata/suku_kata_screen.dart';
 import '../features/membaca/susun_kata/susun_kata_screen.dart';
+import '../features/membaca/kalimat/kalimat_screen.dart';
 import 'play_timer/play_timer_controller.dart';
 import 'redirect.dart';
 import 'splash/splash_screen.dart';
@@ -136,7 +137,12 @@ final routerProvider = Provider<GoRouter>((ref) {
           child: SusunKataScreen(awal: state.uri.queryParameters['level']),
         ),
       ),
-      _soon(Routes.kalimat, MenuTheme.membaca),
+      GoRoute(
+        path: Routes.kalimat,
+        pageBuilder: (context, state) => NoTransitionPage(
+          child: KalimatScreen(awal: state.uri.queryParameters['kalimat']),
+        ),
+      ),
       _soon(Routes.mainYuk, MenuTheme.mainYuk),
       _soon(Routes.cocokkan, MenuTheme.cocokkan),
       _soon(Routes.memori, MenuTheme.memori),
