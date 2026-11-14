@@ -62,6 +62,73 @@ final class _NoopAudioSession implements AudioSessionConfigurator {
   Future<void> usePlayback() async {}
 }
 
+/// Penyimpanan uji yang bisa menahan dan menghitung penulisan.
+final class GatedKeyValueStore implements KeyValueStore {
+  GatedKeyValueStore(this.inner);
+
+  final KeyValueStore inner;
+
+  /// Bila ada, tiap penulisan menunggu gerbang ini dulu.
+  Completer<void>? gerbang;
+
+  /// Penulisan yang selalu gagal.
+  bool gagal = false;
+
+  /// Jumlah penulisan per kunci, termasuk yang ditahan.
+  final tulis = <String, int>{};
+
+  int tulisKe(String key) => tulis[key] ?? 0;
+
+  /// Semua penulisan yang sudah dimulai.
+  int get total => tulis.values.fold(0, (a, b) => a + b);
+
+  Future<void> _awal(String key) async {
+    tulis[key] = tulisKe(key) + 1;
+    final g = gerbang;
+    if (g != null) await g.future;
+    if (gagal) throw StateError('penyimpanan gagal');
+  }
+
+  @override
+  String? getString(String key) => inner.getString(key);
+
+  @override
+  int? getInt(String key) => inner.getInt(key);
+
+  @override
+  bool? getBool(String key) => inner.getBool(key);
+
+  @override
+  Future<void> setString(String key, String value) async {
+    await _awal(key);
+    await inner.setString(key, value);
+  }
+
+  @override
+  Future<void> setInt(String key, int value) async {
+    await _awal(key);
+    await inner.setInt(key, value);
+  }
+
+  @override
+  Future<void> setBool(String key, bool value) async {
+    await _awal(key);
+    await inner.setBool(key, value);
+  }
+
+  @override
+  Future<void> remove(String key) async {
+    await _awal(key);
+    await inner.remove(key);
+  }
+
+  @override
+  Future<void> clear() async {
+    await _awal('*');
+    await inner.clear();
+  }
+}
+
 /// Semua dependensi tes sudah palsu: penyimpanan memori, jam tetap, mesin
 /// audio siap, katalog aset kosong.
 final class TestEnv {
@@ -73,9 +140,11 @@ final class TestEnv {
     DateTime? now,
     this.assets = const {},
     this.extraOverrides = const [],
+    KeyValueStore? store,
   }) : _lang = lang,
+       store = store ?? MemoryKeyValueStore(),
        clock = FakeClock(now ?? DateTime(2026, 11, 14, 10)) {
-    store
+    this.store
       ..setString('moci.bahasa', lang.name)
       ..setString('moci.nama', childName)
       ..setBool('moci.sambutanSelesai', onboarded);
@@ -88,7 +157,7 @@ final class TestEnv {
   /// Override tambahan milik tes (misalnya sumber acak).
   final List<Override> extraOverrides;
 
-  final store = MemoryKeyValueStore();
+  final KeyValueStore store;
   final json = MemoryJsonStore();
   final audio = FakeAudioEngine();
   final tts = FakeDevTts();
