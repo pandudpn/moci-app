@@ -166,6 +166,12 @@ final class AudioService {
     }
   }
 
+  /// Melanjutkan musik setelah aplikasi kembali ke depan, hanya bila musik
+  /// sedang diminta saat aplikasi ditinggalkan.
+  Future<void> resumeMusic() async {
+    if (_musicRequested) await startMusic();
+  }
+
   Future<void> stopAll() async {
     _narrationGen++;
     final asset = _narrationAsset;

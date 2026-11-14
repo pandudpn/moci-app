@@ -46,9 +46,13 @@ class _MociAppState extends ConsumerState<MociApp> {
   Future<void> _resume() async {
     // iOS: sesi harus diaktifkan lagi setelah interupsi (telepon, Siri).
     await ref.read(audioSessionProvider).usePlayback();
-    if (!mounted) return;
+    // Aplikasi bisa sudah ke latar lagi selama menunggu sesi.
+    if (!mounted ||
+        WidgetsBinding.instance.lifecycleState != AppLifecycleState.resumed) {
+      return;
+    }
     if (ref.read(prefsProvider).music) {
-      ref.read(audioServiceProvider).startMusic();
+      unawaited(ref.read(audioServiceProvider).resumeMusic());
     }
   }
 
