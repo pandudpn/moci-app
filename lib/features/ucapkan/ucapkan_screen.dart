@@ -14,6 +14,7 @@ import '../../core/content/content_repository.dart';
 import '../../core/lang.dart';
 import '../../core/prefs/prefs_controller.dart';
 import '../../core/progress/progress_controller.dart';
+import '../../core/speech/mic_level_meter.dart';
 import '../../core/speech/method_channel_mic_level_meter.dart';
 import '../../core/speech/speech_engine.dart';
 import '../../core/speech/speech_to_text_engine.dart';
@@ -84,9 +85,18 @@ class _UcapkanScreenState extends ConsumerState<UcapkanScreen> {
 
   AppLang get _lang => ref.read(prefsProvider).lang;
 
+  /// Diambil sekali di [initState]: `dispose` dan lanjutan `listen` yang
+  /// masih berjalan tidak boleh menyentuh `ref` lagi.
+  late final SpeechEngine _speech;
+  late final MicLevelMeter _meter;
+  late final Narrator _narrator;
+
   @override
   void initState() {
     super.initState();
+    _speech = ref.read(speechEngineProvider);
+    _meter = ref.read(micLevelMeterProvider);
+    _narrator = ref.read(narratorProvider);
     final awal = widget.awal?.toLowerCase();
     if (awal != null) {
       final at = _daftar.indexWhere((k) => k.kata.toLowerCase() == awal);
@@ -98,14 +108,22 @@ class _UcapkanScreenState extends ConsumerState<UcapkanScreen> {
     });
   }
 
+  @override
+  void dispose() {
+    // Mikrofon tidak boleh terus mendengar setelah anak pindah layar.
+    _speech.stop();
+    _meter.stop();
+    _narrator.stop();
+    super.dispose();
+  }
+
   void _catat() {
     ref.read(progressProvider.notifier).setLastActivity(Routes.hurufUcapkan, {
       'kata': _kata.kata,
     });
   }
 
-  void _say(List<NarrationLine> lines) =>
-      ref.read(narratorProvider).sayAll(lines, _lang);
+  void _say(List<NarrationLine> lines) => _narrator.sayAll(lines, _lang);
 
   NarrationLine _ui(String kunci, String teks) =>
       NarrationLine(jenis: 'ui', id: kunci, text: teks);
@@ -122,7 +140,7 @@ class _UcapkanScreenState extends ConsumerState<UcapkanScreen> {
 
   Future<void> _ketukMic() async {
     if (_sibuk || _dengarTiru || _fase != _Fase.idle) return;
-    final speech = ref.read(speechEngineProvider);
+    final speech = _speech;
     if (!await speech.hasPermission()) {
       final lolos = await _mintaGerbang();
       if (!mounted || !lolos) return;
@@ -179,7 +197,8 @@ class _UcapkanScreenState extends ConsumerState<UcapkanScreen> {
 
   Future<void> _dengar(SpeechEngine speech) async {
     final audio = ref.read(audioServiceProvider);
-    final meter = ref.read(micLevelMeterProvider);
+    final sesi = ref.read(audioSessionProvider);
+    final meter = _meter;
     final target = _kata.kata;
     setState(() {
       _sibuk = true;
@@ -190,6 +209,8 @@ class _UcapkanScreenState extends ConsumerState<UcapkanScreen> {
     await audio.pauseForListening();
     try {
       hasil = await speech.listen(target: target, lang: _lang, batas: giliran);
+      // Anak sudah pindah layar: jangan menyentuh state atau provider lagi.
+      if (!mounted) return;
       if (hasil == null) {
         // Tidak ada pengenalan luring: level suara menentukan ada tidaknya
         // suara. Pengenalan daring tidak pernah dipakai.
@@ -199,7 +220,7 @@ class _UcapkanScreenState extends ConsumerState<UcapkanScreen> {
           meterKosong = true;
         }
       }
-      await ref.read(audioSessionProvider).usePlayback();
+      await sesi.usePlayback();
     } finally {
       await audio.resumeAfterListening();
       if (mounted) setState(() => _sibuk = false);

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:moci/core/speech/speech_engine.dart';
@@ -99,5 +101,28 @@ void main() {
     await _open(t, lokasi: '/huruf/ucapkan?kata=Bola');
     expect(find.text('BOLA'), findsOneWidget);
     expect(find.byKey(UcapkanScreen.syllableKey(0)), findsOneWidget);
+  });
+
+  testWidgets('meninggalkan layar saat mendengar mematikan mikrofon', (
+    t,
+  ) async {
+    final env = TestEnv();
+    env.speech.hasPermissionValue = true;
+    env.speech.gate = Completer<void>();
+    final router = await _open(t, env: env);
+    await t.tap(find.byKey(UcapkanScreen.micKey));
+    await t.pump();
+    expect(env.speech.listenCount, 1);
+    // Anak keluar selagi giliran mendengar masih berjalan.
+    router.go('/beranda');
+    await t.pump();
+    // Dua pump: yang pertama memulai transisi rute, kedua menuntaskannya.
+    await t.pump(const Duration(milliseconds: 600));
+    expect(env.speech.stopCount, 1);
+    expect(env.meter.stopCount, 1);
+    // Giliran yang tertinggal tidak boleh menyentuh state layar yang lepas.
+    env.speech.gate!.complete();
+    await t.pump();
+    expect(t.takeException(), isNull);
   });
 }
