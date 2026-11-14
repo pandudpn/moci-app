@@ -20,6 +20,11 @@ void main() {
     ('/orang-tua', true, true, true, null),
     ('/orang-tua', true, true, false, '/gerbang?lanjut=%2Forang-tua'),
     ('/habis', true, false, false, '/'),
+    // Garis miring di ujung mengikuti aturan path tanpa garis miring.
+    ('/orang-tua/', true, false, false, '/gerbang?lanjut=%2Forang-tua'),
+    ('/orang-tua/', true, false, true, null),
+    ('/sambutan/', false, false, false, null),
+    ('/habis/', true, false, false, '/'),
   ];
   for (final (path, onb, lim, par, exp) in cases) {
     test('$path onboarded=$onb limit=$lim parent=$par → $exp', () {
@@ -34,6 +39,31 @@ void main() {
       );
     });
   }
+
+  test('garis miring di ujung path dinormalkan', () {
+    for (final path in ['/hewan/', '/hewan//', '/hewan']) {
+      expect(
+        resolveRedirect(
+          path: path,
+          onboarded: true,
+          limitReached: true,
+          parentUnlocked: false,
+        ),
+        '/habis',
+        reason: path,
+      );
+    }
+    // Garis miring saja tetap Beranda, bukan path kosong.
+    expect(
+      resolveRedirect(
+        path: '//',
+        onboarded: true,
+        limitReached: false,
+        parentUnlocked: false,
+      ),
+      isNull,
+    );
+  });
 
   test('jenis rute', () {
     expect(routeKindOf('/'), RouteKind.play);
