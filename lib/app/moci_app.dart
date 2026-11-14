@@ -81,7 +81,14 @@ class _MociAppState extends ConsumerState<MociApp> {
     // Istirahat yang tertunda (anak di area orang tua, atau batas baru
     // dinaikkan) dibuka begitu anak kembali ke rute bermain. Ditunda satu
     // microtask: perubahan path datang dari notifikasi delegasi router.
-    ref.listen(currentPathProvider, (_, _) => scheduleMicrotask(_maybeRest));
+    ref.listen(currentPathProvider, (before, after) {
+      // Istirahat keluar dari tumpukan dengan cara apa pun (selesai, atau
+      // dialihkan ke Waktu Habis): istirahat berikutnya boleh membuka lagi.
+      if (before == Routes.istirahat && after != Routes.istirahat) {
+        _restOpened = false;
+      }
+      scheduleMicrotask(_maybeRest);
+    });
     return MaterialApp.router(
       onGenerateTitle: (c) => c.l10n.appTitle,
       debugShowCheckedModeBanner: false,

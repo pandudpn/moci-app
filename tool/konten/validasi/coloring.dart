@@ -10,11 +10,12 @@ void validasiColoring(Laporan laporan, ColoringSet set) {
   for (final page in set.halaman) {
     for (var i = 0; i < page.bagian.length; i++) {
       final d = page.bagian[i].d.trim();
-      if (!d.endsWith('Z') && !d.endsWith('z')) {
-        terbuka.add('${page.id} bagian $i tidak diakhiri Z');
-      }
       if (d.isEmpty) {
         terbuka.add('${page.id} bagian $i kosong');
+        continue;
+      }
+      if (!d.endsWith('Z') && !d.endsWith('z')) {
+        terbuka.add('${page.id} bagian $i tidak diakhiri Z');
       }
     }
   }

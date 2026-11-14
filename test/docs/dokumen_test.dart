@@ -21,8 +21,9 @@ const _sengajaTidakAda = {'android/key.properties'};
 
 /// Path repo yang disebut [markdown].
 ///
-/// Sumbernya dua: tautan relatif `[..](path)` dan token di dalam backtick yang
-/// diawali salah satu [_akarRepo]. URL, anchor, pola glob, dan placeholder
+/// Sumbernya tiga: tautan relatif `[..](path)`, token di dalam backtick yang
+/// diawali salah satu [_akarRepo], dan atribut HTML `src`/`srcset` (gambar di
+/// README). URL, path absolut situs, anchor, pola glob, dan placeholder
 /// (`*`, `<`, `>`) dilewati.
 List<String> pathRepoDi(String markdown) {
   bool kandidat(String p) =>
@@ -39,6 +40,15 @@ List<String> pathRepoDi(String markdown) {
   for (final m in RegExp(r'`([^`\n]+)`').allMatches(markdown)) {
     final p = m.group(1)!.trim();
     if (kandidat(p)) hasil.add(p);
+  }
+  // `srcset` memuat beberapa kandidat: pisahkan koma, buang deskriptor `1x`/`2w`.
+  for (final m in RegExp(
+    r'''\b(?:src|srcset)\s*=\s*["']([^"']+)["']''',
+  ).allMatches(markdown)) {
+    for (final bagian in m.group(1)!.split(',')) {
+      final p = bagian.trim().split(RegExp(r'\s+')).first;
+      if (kandidat(p)) hasil.add(p);
+    }
   }
   return [
     for (final p in hasil) p.endsWith('/') ? p.substring(0, p.length - 1) : p,
@@ -188,6 +198,26 @@ void main() {
     test('mencantumkan status aplikasi Flutter sebagai selesai', () {
       final s = File('README.md').readAsStringSync();
       expect(s, contains('- [x] Aplikasi Flutter: shell, navigasi'));
+    });
+  });
+
+  group('pathRepoDi', () {
+    test('mengumpulkan atribut src dan srcset gambar HTML', () {
+      const markdown = '''
+<picture>
+  <source srcset="docs/a.png 1x, docs/b.svg 2x">
+  <img src="docs/c.png" alt="Contoh">
+  <img src="https://contoh.id/docs/luar.png">
+  <img src="//contoh.id/docs/luar.png">
+  <img src="/docs/absolut.png">
+</picture>
+''';
+      expect(pathRepoDi(markdown), ['docs/a.png', 'docs/b.svg', 'docs/c.png']);
+    });
+
+    test('README menyebut gambar yang benar-benar ada', () {
+      final paths = pathRepoDi(File('README.md').readAsStringSync());
+      expect(paths, contains('docs/brand/github/banner-light.png'));
     });
   });
 

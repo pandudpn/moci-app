@@ -33,6 +33,27 @@ PlayTimerState run(
   return s;
 }
 
+/// Pengatur waktu yang dimajukan per tick dengan jarak milidetik bebas.
+final class _Tick {
+  _Tick(this.s);
+
+  PlayTimerState s;
+  DateTime _now = DateTime(2026, 11, 14, 9);
+
+  void gap(int ms) {
+    _now = _now.add(Duration(milliseconds: ms));
+    s = tickPlayTimer(
+      s,
+      now: _now,
+      elapsed: Duration(milliseconds: ms),
+      counting: true,
+      limitMinutes: null,
+      restReminder: false,
+      storedSecondsFor: (_) => 0,
+    );
+  }
+}
+
 void main() {
   test('hanya menghitung saat counting', () {
     expect(run(t0('2026-11-14'), 60, counting: false).secondsToday, 0);
@@ -112,5 +133,26 @@ void main() {
       (next.date, next.secondsToday, next.secondsSinceRest),
       ('2026-11-15', 400, 0),
     );
+  });
+
+  test('pecahan detik diakumulasi antartick', () {
+    final t = _Tick(t0('2026-11-14'));
+    t.gap(400);
+    expect(t.s.secondsToday, 0);
+    t.gap(400);
+    expect(t.s.secondsToday, 0);
+    t.gap(400); // 1,2 s
+    expect(t.s.secondsToday, 1);
+    t.gap(600); // 1,8 s
+    expect(t.s.secondsToday, 1);
+    t.gap(600); // 2,4 s
+    expect(t.s.secondsToday, 2);
+    t.gap(1500); // 3,9 s
+    expect(t.s.secondsToday, 3);
+  });
+
+  test('tick 1,5 detik dihitung satu detik, bukan dua', () {
+    final t = _Tick(t0('2026-11-14'))..gap(1500);
+    expect(t.s.secondsToday, 1);
   });
 }

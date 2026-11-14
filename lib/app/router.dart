@@ -91,6 +91,9 @@ final routerProvider = Provider<GoRouter>((ref) {
       limitReached: ref.read(limitReachedProvider),
       parentUnlocked: ref.read(parentAccessProvider),
     ),
+    // Path tak dikenal (tautan lama, salah ketik) tidak memakai halaman galat
+    // bawaan yang berbahasa Inggris: kembali ke Beranda.
+    onException: (context, state, router) => router.go(Routes.beranda),
     routes: [
       GoRoute(
         path: Routes.splash,

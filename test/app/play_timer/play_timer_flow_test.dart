@@ -178,4 +178,30 @@ void main() {
     await t.pump();
     expect(_c(t).read(playTimerProvider).secondsToday, 12);
   });
+
+  testWidgets(
+    'Istirahat yang dialihkan ke Waktu Habis bisa dibuka lagi setelah batas '
+    'dinaikkan',
+    (t) async {
+      final env = TestEnv();
+      final router = await _openHewan(t, env);
+      await _tick(t, env, 1200);
+      await t.pump(const Duration(milliseconds: 600));
+      expect(_top(router), '/istirahat');
+
+      // Batas tercapai saat Istirahat terbuka: anak dialihkan ke Waktu Habis.
+      await _c(t).read(prefsProvider.notifier).setDailyLimit(15);
+      await t.pump(const Duration(milliseconds: 600));
+      expect(_top(router), '/habis');
+      expect(_stack(router), ['/habis']);
+      expect(_c(t).read(playTimerProvider).restDue, isTrue);
+
+      // Batas dinaikkan: anak kembali bermain, dan Istirahat yang belum
+      // dijalani harus terbuka lagi.
+      await _c(t).read(prefsProvider.notifier).setDailyLimit(30);
+      await t.pump(const Duration(milliseconds: 600));
+      expect(_top(router), '/istirahat');
+      expect(_stack(router), ['/', '/istirahat']);
+    },
+  );
 }
