@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:math';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -11,6 +12,7 @@ import 'package:moci/core/lang.dart';
 import 'package:moci/core/prefs/prefs_controller.dart';
 import 'package:moci/core/progress/progress.dart';
 import 'package:moci/core/progress/progress_controller.dart';
+import 'package:moci/features/membaca/membaca_providers.dart';
 import 'package:moci/features/membaca/susun_kata/susun_kata_screen.dart';
 import 'package:moci/features/membaca/susun_kata/susun_tile.dart';
 import 'package:moci/widgets/moci_illustration.dart';
@@ -75,14 +77,18 @@ void main() {
     expect(t.takeException(), isNull);
   });
   testWidgets('menyusun kata dengan benar menandai suku kata', (t) async {
-    final env = TestEnv();
+    // Sumber acak tetap: kata yang terundi sama di setiap jalan.
+    final env = TestEnv(
+      extraOverrides: [membacaRandomProvider.overrideWithValue(Random(1))],
+    );
     await pumpApp(t, env: env, initialLocation: Routes.susunKata);
     final item = _item(t);
     final entry = _katalog().kata.id.firstWhere((e) => e.item == item);
     await _selesaikanKata(t, AppLang.id);
     await t.pump();
     expect(find.byKey(SusunKataScreen.nextKey), findsOneWidget);
-    final dicatat = _progress(t).perkembangan['membaca']!['dibaca']!;
+    // Kata di luar kisi (misalnya "ular") tidak mencatat suku kata apa pun.
+    final dicatat = _progress(t).perkembangan['membaca']?['dibaca'] ?? const [];
     for (final suku in entry.suku) {
       if (_katalog().sukuKata.semua.contains(suku)) {
         expect(dicatat, contains(suku));
