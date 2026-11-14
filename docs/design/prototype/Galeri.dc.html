@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Moci · Pilih Gambar Mewarnai</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&amp;family=Nunito:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.f{font-family:'Fredoka',ui-rounded,'Arial Rounded MT Bold','Trebuchet MS',system-ui,sans-serif}
+.n{font-family:'Nunito',ui-rounded,system-ui,-apple-system,'Segoe UI',sans-serif}
+a{color:#2B2350;text-decoration:none}a:hover{color:#2B2350}
+button{font:inherit;color:inherit;border:0;padding:0;margin:0;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.tap{transition:transform .12s ease}.tap:active{transform:translateY(5px) scale(.97)}
+.glIn{animation:glIn .35s cubic-bezier(.3,1.4,.5,1) both}
+.glBob{animation:glBob 3s ease-in-out infinite}
+@keyframes glIn{0%{transform:translateY(16px);opacity:0}100%{transform:translateY(0);opacity:1}}
+@keyframes glBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="f" style="position: relative; width: 1180px; height: 820px; overflow: hidden; background-color: #FFF8E1; background-image: radial-gradient(#FFE9A8 3px, transparent 3px); background-size: 36px 36px; color: #2B2350">
+
+<div style="position: absolute; left: 36px; right: 36px; top: 22px; display: flex; align-items: center; gap: 18px">
+<a href="{{lk.Main.h}}" onClick="{{lk.Main.go}}" class="tap" aria-label="{{t.back}}" style="width: 76px; height: 76px; border-radius: 26px; background: #FFFFFF; box-shadow: 0 7px 0 #F2D27A; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="#2B2350" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+</a>
+<h1 class="f" style="margin: 0; font-size: 46px; font-weight: 700">{{t.title}}</h1>
+<div style="flex: 1"></div>
+<div role="group" aria-label="{{t.filter}}" style="display: flex; gap: 6px; padding: 6px; background: #FFFFFF; border-radius: 999px; box-shadow: 0 6px 0 #F2D27A">
+<sc-for list="{{tabs}}" as="tb" hint-placeholder-count="3">
+<button class="f tap" onClick="{{tb.pick}}" aria-pressed="{{tb.on}}" style="height: 56px; padding: 0 22px; border-radius: 999px; background: {{tb.bg}}; color: {{tb.fg}}; font-size: 22px; font-weight: 600">{{tb.t}}</button>
+</sc-for>
+</div>
+<div class="f" style="display: flex; align-items: center; gap: 8px; height: 64px; padding: 0 22px 0 14px; background: #FFFFFF; border-radius: 999px; box-shadow: 0 6px 0 #F2D27A; font-size: 30px; font-weight: 700">
+<svg viewBox="0 0 40 40" width="40" height="40" aria-hidden="true"><path d="M20 3l5.2 10.6 11.7 1.7-8.5 8.2 2 11.6L20 29.6 9.6 35.1l2-11.6-8.5-8.2 11.7-1.7z" fill="#FFC21A" stroke="#F08C00" stroke-width="2" stroke-linejoin="round"/></svg>
+<span>24</span>
+</div>
+</div>
+
+<div style="position: absolute; left: 36px; top: 132px; width: 1108px; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 26px 22px">
+<sc-for list="{{cards}}" as="c" hint-placeholder-count="15">
+<a href="{{c.h}}" onClick="{{c.go}}" class="tap glIn" aria-label="{{c.label}}" style="position: relative; display: block; border-radius: 24px; padding: 10px 10px 8px; background: #FFFFFF; box-shadow: 0 7px 0 {{c.sh}}; text-align: center; animation-delay: {{c.delay}}s">
+<div aria-hidden="true" style="position: absolute; left: 50%; top: -11px; width: 74px; height: 24px; margin-left: -37px; border-radius: 4px; background: {{c.tape}}; opacity: .9; transform: rotate({{c.rot}}deg)"></div>
+<img src="{{c.t}}" alt="" style="display: block; width: 184px; height: 138px; box-sizing: border-box; border-radius: 14px; border: 2px solid #F1EAD8; background: #FFFFFF; object-fit: contain">
+<span class="f" style="display: block; margin-top: 6px; font-size: 20px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{c.name}}</span>
+<span class="n" aria-hidden="true" style="position: absolute; right: -6px; top: 20px; padding: 4px 10px; border-radius: 999px; background: {{c.badgeBg}}; color: #FFFFFF; font-size: 13px; font-weight: 800; display: {{c.badge}}">{{c.badgeT}}</span>
+</a>
+</sc-for>
+</div>
+
+<div class="n" style="position: absolute; left: 36px; bottom: 26px; display: flex; align-items: center; gap: 12px; font-size: 18px; font-weight: 800; color: #6B5F99">
+<img class="glBob" src="/_blob/0b224341bbd230f2dd731c560e41d4cb" alt="" style="width: 52px; height: 52px">
+<span>{{t.hint}}</span>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"lang":{"editor":"enum","options":["auto","id","en"],"default":"auto","section":"Bahasa"},"app":{"editor":null},"$preview":{"width":1180,"height":820}}'>
+class Component extends DCLogic {
+  pref(k) {
+    var a = this.props.app;
+    if (a && a.prefs) return a.prefs[k] || '';
+    var st = this.state || {};
+    if (st['p_' + k] !== undefined) return st['p_' + k];
+    try { var v = window.localStorage.getItem('moci-' + k); if (v !== null) return v; } catch (e) {}
+    return '';
+  }
+  L() {
+    var p = this.props.lang;
+    if (p === 'id' || p === 'en') return p;
+    return this.pref('lang') === 'en' ? 'en' : 'id';
+  }
+  lk(names) {
+    var a = this.props.app, o = {};
+    names.forEach((n) => {
+      o[n] = (a && a.nav) ? { h: '#', go: (e) => { try { e.preventDefault(); } catch (x) {} a.nav(n); } } : { h: n + '.dc.html', go: null };
+    });
+    return o;
+  }
+  speak(t, lang) {
+    try {
+      var s = window.speechSynthesis;
+      if (!s || typeof SpeechSynthesisUtterance === 'undefined') return;
+      s.cancel();
+      var u = new SpeechSynthesisUtterance(t);
+      var en = (lang || this.L()) === 'en';
+      u.lang = en ? 'en-US' : 'id-ID'; u.rate = 0.9; u.pitch = 1.15;
+      var re = en ? /^en/i : /^id/i;
+      var vs = s.getVoices ? s.getVoices() : [];
+      for (var i = 0; i < vs.length; i++) { if (re.test(vs[i].lang)) { u.voice = vs[i]; break; } }
+      s.speak(u);
+    } catch (e) {}
+  }
+  renderVals() {
+    var st = this.state || {};
+    var en = this.L() === 'en';
+    var T = en
+      ? { title: 'Coloring', back: 'Back to home', filter: 'Picture type', hint: 'Pick a picture to color!', tabs: ['All', 'Animals', 'Things & Nature'], mine: 'My Artwork', cont: 'Continue', newT: 'NEW', open: 'Color the picture: ' }
+      : { title: 'Mewarnai', back: 'Kembali ke beranda', filter: 'Jenis gambar', hint: 'Pilih gambar yang mau kamu warnai!', tabs: ['Semua', 'Hewan', 'Benda & Alam'], mine: 'Karyaku', cont: 'Lanjutkan', newT: 'BARU', open: 'Warnai gambar: ' };
+    var B = '/_blob/';
+    var P = [
+      ['kupu', 'Kupu-kupu', 'Butterfly', 'hewan', 'f3f17810ba3333dafaa73fd14014629b'],
+      ['ikan', 'Ikan', 'Fish', 'hewan', '08facf88ddb4bdf4b469fb7baf18aee5'],
+      ['kucing', 'Kucing', 'Cat', 'hewan', '11b0a88f8ebcc3f9ee0bef891976ebbc'],
+      ['gajah', 'Gajah', 'Elephant', 'hewan', '6a3c5b2df4d80f6bca66f129b80924df'],
+      ['dino', 'Dinosaurus', 'Dinosaur', 'hewan', '7cd2fd356f2b7bd679ded4fa7d3a4080'],
+      ['hantu', 'Burung Hantu', 'Owl', 'hewan', '083409af4b96c7b7f100b4df2d1f66e8'],
+      ['rumah', 'Rumah', 'House', 'benda', 'e9a05d1b132bbff74f749600fc842bce'],
+      ['mobil', 'Mobil', 'Car', 'benda', '80d57340d7a04979966c6987151f8149'],
+      ['bunga', 'Bunga', 'Flowers', 'benda', 'a6e8841e95adbb1cee88ec689bff8c75'],
+      ['roket', 'Roket', 'Rocket', 'benda', '6d648e7114505f118092a3c663226a46'],
+      ['kapal', 'Kapal', 'Boat', 'benda', 'c11dc33d6c0c3f2549d2a1535f1b1282'],
+      ['kue', 'Kue Ulang Tahun', 'Birthday Cake', 'benda', 'd43e8992671c82a372fe69dab7b13707'],
+      ['pelangi', 'Pelangi', 'Rainbow', 'benda', '3316bfaf816f7653b77542fbf30cd0e4'],
+      ['eskrim', 'Es Krim', 'Ice Cream', 'benda', '5a0c0aeebf5ba88e69c75c1b4e150baf']
+    ];
+    var tab = st.tab || 0;
+    var keys = ['', 'hewan', 'benda'];
+    var tapes = ['#FF8FB1', '#74C0FC', '#8CE99A', '#FFD43B', '#B197FC'];
+    var a = this.props.app;
+    var list = P.filter((p) => !keys[tab] || p[3] === keys[tab]).map((p, i) => {
+      var name = en ? p[2] : p[1];
+      var go = (a && a.nav) ? (e) => { try { e.preventDefault(); } catch (x) {} a.nav('Mewarnai', { page: p[0] }); } : () => this.speak(name);
+      var isNew = ['gajah', 'dino', 'hantu', 'roket', 'kapal', 'kue', 'pelangi', 'eskrim'].indexOf(p[0]) >= 0;
+      var mw = a && a.mem && a.mem.mwWork;
+      var w = mw && mw[p[0]];
+      var started = w ? (Object.keys(w.fills || {}).length + Object.keys(w.strokes || {}).length + (w.stk || []).length) > 0 : (!mw && p[0] === 'kupu');
+      var badge = started ? 'cont' : (isNew ? 'new' : '');
+      return {
+        h: (a && a.nav) ? '#' : 'Mewarnai.dc.html', go: go,
+        label: T.open + name, name: name, t: B + p[4],
+        sh: '#F2D27A', tape: tapes[i % tapes.length], rot: [-4, 3, -2, 5, -5][i % 5], delay: (i * 0.03).toFixed(2),
+        badge: badge ? 'block' : 'none', badgeT: badge === 'cont' ? T.cont : T.newT, badgeBg: badge === 'cont' ? '#26A03B' : '#E8384F'
+      };
+    });
+    if (!tab) {
+      list.push({
+        h: (a && a.nav) ? '#' : 'Karyaku.dc.html',
+        go: (a && a.nav) ? (e) => { try { e.preventDefault(); } catch (x) {} this.speak(T.mine); a.nav('Karyaku'); } : () => this.speak(T.mine),
+        label: T.mine, name: T.mine, t: B + '4061ab5bce10e62e630528c89ad08553',
+        sh: '#E0A100', tape: '#FFD43B', rot: 3, delay: '0.45',
+        badge: (a && a.mem && !(a.mem.karya || []).length) ? 'none' : 'block',
+        badgeT: String(a && a.mem ? (a.mem.karya || []).length : 4), badgeBg: '#7048E8'
+      });
+    }
+    return {
+      t: T,
+      lk: this.lk(['Main']),
+      cards: list,
+      tabs: T.tabs.map((x, i) => ({
+        t: x, on: i === tab,
+        bg: i === tab ? '#FFC233' : '#FFFFFF', fg: '#2B2350',
+        pick: () => { this.setState({ tab: i }); this.speak(x); }
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Moci · Hadiah</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&amp;family=Nunito:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.f{font-family:'Fredoka',ui-rounded,'Arial Rounded MT Bold','Trebuchet MS',system-ui,sans-serif}
+.n{font-family:'Nunito',ui-rounded,system-ui,-apple-system,'Segoe UI',sans-serif}
+a{color:#2B2350;text-decoration:none}a:hover{color:#2B2350}
+button{font:inherit;color:inherit;border:0;padding:0;margin:0;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.tap{transition:transform .12s ease}.tap:active{transform:translateY(5px) scale(.97)}
+.hbSpin{animation:hbSpin 70s linear infinite;transform-origin:50% 50%}
+.hbFall{position:absolute;top:-40px;animation-name:hbFall;animation-timing-function:linear;animation-iteration-count:infinite}
+.hbJump{animation:hbJump 1.3s ease-in-out infinite;transform-origin:50% 100%}
+.hbCardIn{animation:hbCardIn .6s cubic-bezier(.3,1.5,.5,1) both}
+.hbS1{animation:hbStarIn .6s cubic-bezier(.3,1.7,.5,1) .3s both}
+.hbS2{animation:hbStarIn .6s cubic-bezier(.3,1.7,.5,1) .55s both}
+.hbS3{animation:hbStarIn .6s cubic-bezier(.3,1.7,.5,1) .8s both}
+.hbShine{animation:hbShine 2.4s ease-in-out infinite}
+.hbRibbon{animation:hbRibbon 3s ease-in-out infinite;transform-origin:50% 50%}
+.hbPop{animation:hbPop 1.8s ease-in-out infinite}
+@keyframes hbSpin{to{transform:rotate(360deg)}}
+@keyframes hbFall{0%{transform:translateY(-60px) rotate(0deg)}100%{transform:translateY(900px) rotate(720deg)}}
+@keyframes hbJump{0%,100%{transform:translateY(0) scale(1,1)}20%{transform:translateY(0) scale(1.06,.94)}50%{transform:translateY(-40px) scale(.97,1.04)}80%{transform:translateY(0) scale(1.04,.96)}}
+@keyframes hbCardIn{0%{transform:scale(.6);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes hbStarIn{0%{transform:scale(0) rotate(-120deg)}100%{transform:scale(1) rotate(0)}}
+@keyframes hbShine{0%,100%{transform:rotate(-6deg) scale(1)}50%{transform:rotate(6deg) scale(1.06)}}
+@keyframes hbRibbon{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg)}}
+@keyframes hbPop{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="f" style="position: relative; width: 1180px; height: 820px; overflow: hidden; background: #FFE58F; color: #2B2350">
+
+<svg class="hbSpin" aria-hidden="true" viewBox="-850 -850 1700 1700" width="1700" height="1700" style="position: absolute; left: -260px; top: -440px">
+<g fill="#FFD43B">
+<path d="M0 0L1000 -98L1000 98Z"/><path d="M0 0L1000 -98L1000 98Z" transform="rotate(22.5)"/><path d="M0 0L1000 -98L1000 98Z" transform="rotate(45)"/><path d="M0 0L1000 -98L1000 98Z" transform="rotate(67.5)"/>
+<path d="M0 0L1000 -98L1000 98Z" transform="rotate(90)"/><path d="M0 0L1000 -98L1000 98Z" transform="rotate(112.5)"/><path d="M0 0L1000 -98L1000 98Z" transform="rotate(135)"/><path d="M0 0L1000 -98L1000 98Z" transform="rotate(157.5)"/>
+<path d="M0 0L1000 -98L1000 98Z" transform="rotate(180)"/><path d="M0 0L1000 -98L1000 98Z" transform="rotate(202.5)"/><path d="M0 0L1000 -98L1000 98Z" transform="rotate(225)"/><path d="M0 0L1000 -98L1000 98Z" transform="rotate(247.5)"/>
+<path d="M0 0L1000 -98L1000 98Z" transform="rotate(270)"/><path d="M0 0L1000 -98L1000 98Z" transform="rotate(292.5)"/><path d="M0 0L1000 -98L1000 98Z" transform="rotate(315)"/><path d="M0 0L1000 -98L1000 98Z" transform="rotate(337.5)"/>
+</g>
+</svg>
+
+<div aria-hidden="true">
+<div class="hbFall" style="left: 40px; width: 14px; height: 22px; border-radius: 4px; background: #FF5C8A; animation-duration: 5.2s; animation-delay: -1s"></div>
+<div class="hbFall" style="left: 110px; width: 16px; height: 16px; border-radius: 50%; background: #3BA4FF; animation-duration: 6.4s; animation-delay: -3s"></div>
+<div class="hbFall" style="left: 170px; width: 12px; height: 24px; border-radius: 4px; background: #26A03B; animation-duration: 5.8s; animation-delay: -4.6s"></div>
+<div class="hbFall" style="left: 236px; width: 18px; height: 12px; border-radius: 4px; background: #9775FA; animation-duration: 7s; animation-delay: -2.2s"></div>
+<div class="hbFall" style="left: 300px; width: 14px; height: 14px; border-radius: 50%; background: #FF922B; animation-duration: 5.5s; animation-delay: -0.4s"></div>
+<div class="hbFall" style="left: 358px; width: 12px; height: 22px; border-radius: 4px; background: #E8384F; animation-duration: 6.8s; animation-delay: -5.2s"></div>
+<div class="hbFall" style="left: 420px; width: 16px; height: 16px; border-radius: 50%; background: #22C1C3; animation-duration: 5.9s; animation-delay: -2.8s"></div>
+<div class="hbFall" style="left: 480px; width: 14px; height: 24px; border-radius: 4px; background: #FF5C8A; animation-duration: 7.4s; animation-delay: -6.1s"></div>
+<div class="hbFall" style="left: 540px; width: 18px; height: 12px; border-radius: 4px; background: #3BA4FF; animation-duration: 5.4s; animation-delay: -1.7s"></div>
+<div class="hbFall" style="left: 602px; width: 14px; height: 14px; border-radius: 50%; background: #26A03B; animation-duration: 6.2s; animation-delay: -4s"></div>
+<div class="hbFall" style="left: 660px; width: 12px; height: 22px; border-radius: 4px; background: #9775FA; animation-duration: 5.6s; animation-delay: -3.4s"></div>
+<div class="hbFall" style="left: 720px; width: 16px; height: 16px; border-radius: 50%; background: #FF922B; animation-duration: 7.2s; animation-delay: -0.9s"></div>
+<div class="hbFall" style="left: 784px; width: 14px; height: 24px; border-radius: 4px; background: #E8384F; animation-duration: 6s; animation-delay: -5.6s"></div>
+<div class="hbFall" style="left: 846px; width: 18px; height: 12px; border-radius: 4px; background: #22C1C3; animation-duration: 5.3s; animation-delay: -2.5s"></div>
+<div class="hbFall" style="left: 906px; width: 14px; height: 14px; border-radius: 50%; background: #FF5C8A; animation-duration: 6.6s; animation-delay: -4.3s"></div>
+<div class="hbFall" style="left: 966px; width: 12px; height: 22px; border-radius: 4px; background: #3BA4FF; animation-duration: 5.7s; animation-delay: -1.2s"></div>
+<div class="hbFall" style="left: 1030px; width: 16px; height: 16px; border-radius: 50%; background: #26A03B; animation-duration: 7.1s; animation-delay: -6.4s"></div>
+<div class="hbFall" style="left: 1090px; width: 14px; height: 24px; border-radius: 4px; background: #9775FA; animation-duration: 6.1s; animation-delay: -3.9s"></div>
+<div class="hbFall" style="left: 1140px; width: 18px; height: 12px; border-radius: 4px; background: #FF922B; animation-duration: 5.5s; animation-delay: -0.2s"></div>
+<div class="hbFall" style="left: 80px; width: 12px; height: 12px; border-radius: 50%; background: #FFFFFF; animation-duration: 6.9s; animation-delay: -5s"></div>
+<div class="hbFall" style="left: 640px; width: 12px; height: 12px; border-radius: 50%; background: #FFFFFF; animation-duration: 6.3s; animation-delay: -2s"></div>
+<div class="hbFall" style="left: 1000px; width: 12px; height: 12px; border-radius: 50%; background: #FFFFFF; animation-duration: 7.3s; animation-delay: -4.8s"></div>
+</div>
+
+<div class="f" aria-label="{{t.starsLabel}}" style="position: absolute; right: 30px; top: 26px; display: flex; align-items: center; gap: 8px; height: 64px; padding: 0 12px; background: #FFFFFF; border-radius: 999px; box-shadow: 0 6px 0 #F2C94C; font-size: 28px; font-weight: 700">
+<svg viewBox="0 0 40 40" width="38" height="38" aria-hidden="true"><path d="M20 3l5.2 10.6 11.7 1.7-8.5 8.2 2 11.6L20 29.6 9.6 35.1l2-11.6-8.5-8.2 11.7-1.7z" fill="#FFC21A" stroke="#F08C00" stroke-width="2" stroke-linejoin="round"/></svg>
+<span>27</span>
+<span class="n hbPop" style="height: 36px; padding: 0 10px; border-radius: 999px; background: #E6F8EA; color: #157A28; font-size: 18px; font-weight: 800; display: flex; align-items: center">+3</span>
+</div>
+
+<button class="tap" onClick="{{cheer}}" aria-label="{{listenLabel}}" style="position: absolute; left: 12px; bottom: 34px; width: 280px; display: flex; flex-direction: column; align-items: center">
+<div style="position: relative; max-width: 262px; box-sizing: border-box; padding: 14px 18px; border-radius: 26px; background: #FFFFFF; box-shadow: 0 6px 0 #F2C94C; display: flex; align-items: center; gap: 10px; text-align: left">
+<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#E8384F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="#E8384F"/><path d="M15.5 9a4 4 0 0 1 0 6"/><path d="M18.5 6.5a7.5 7.5 0 0 1 0 11"/></svg>
+<span class="f" style="font-size: 24px; font-weight: 600; line-height: 1.15">{{bubble}}</span>
+<svg aria-hidden="true" viewBox="0 0 36 26" width="36" height="26" style="position: absolute; left: 50%; bottom: -24px; margin-left: -18px"><path d="M4 6H32L18 26Z" fill="#F2C94C"/><path d="M4 0H32L18 20Z" fill="#FFFFFF"/></svg>
+</div>
+<img class="hbJump" src="/_blob/c6f764abf556b8252c9552e7fa94a90d" alt="" style="margin-top: 22px; width: 250px; height: 250px">
+</button>
+
+<div class="hbCardIn" style="position: absolute; left: 300px; top: 120px; width: 580px; height: 600px; box-sizing: border-box; padding: 110px 40px 0; border-radius: 52px; background: #FFFFFF; box-shadow: 0 16px 0 #F2C94C, 0 36px 60px rgba(43,35,80,.22); text-align: center">
+<div class="hbRibbon" style="position: absolute; left: 50%; top: -38px; width: 520px; height: 110px; margin-left: -260px">
+<svg aria-hidden="true" viewBox="0 0 520 110" width="520" height="110" style="position: absolute; left: 0; top: 0">
+<path d="M0 34H70V104H0L22 69Z" fill="#C2255C"/><path d="M520 34H450V104H520L498 69Z" fill="#C2255C"/>
+<path d="M40 14H480V90H40Z" fill="#F03E7C"/><path d="M40 90L70 104V90ZM480 90L450 104V90Z" fill="#8F1D47"/>
+</svg>
+<h1 class="f" style="position: absolute; left: 40px; right: 40px; top: 14px; height: 76px; margin: 0; display: flex; align-items: center; justify-content: center; color: #FFFFFF; font-size: 52px; font-weight: 700; letter-spacing: 3px; text-shadow: 0 3px 0 #C2255C">{{t.great}}</h1>
+</div>
+<div aria-hidden="true" style="display: flex; justify-content: center; align-items: flex-end; gap: 6px">
+<svg class="hbS1" viewBox="0 0 40 40" width="104" height="104"><path d="M20 3l5.2 10.6 11.7 1.7-8.5 8.2 2 11.6L20 29.6 9.6 35.1l2-11.6-8.5-8.2 11.7-1.7z" fill="#FFC21A" stroke="#F08C00" stroke-width="2" stroke-linejoin="round"/></svg>
+<svg class="hbS2" viewBox="0 0 40 40" width="136" height="136"><path d="M20 3l5.2 10.6 11.7 1.7-8.5 8.2 2 11.6L20 29.6 9.6 35.1l2-11.6-8.5-8.2 11.7-1.7z" fill="#FFC21A" stroke="#F08C00" stroke-width="2" stroke-linejoin="round"/></svg>
+<svg class="hbS3" viewBox="0 0 40 40" width="104" height="104"><path d="M20 3l5.2 10.6 11.7 1.7-8.5 8.2 2 11.6L20 29.6 9.6 35.1l2-11.6-8.5-8.2 11.7-1.7z" fill="#FFC21A" stroke="#F08C00" stroke-width="2" stroke-linejoin="round"/></svg>
+</div>
+<div class="f" style="margin-top: 10px; font-size: 32px; font-weight: 600; line-height: 1.2">{{t.earned}}</div>
+<div style="margin-top: 22px; display: flex; align-items: center; justify-content: center; gap: 20px">
+<div class="hbShine" style="width: 116px; height: 116px; box-sizing: border-box; border-radius: 50%; background: #FFF1EC; border: 7px solid #FFFFFF; box-shadow: 0 0 0 4px #FFB020, 0 8px 18px rgba(43,35,80,.18); display: flex; align-items: center; justify-content: center">
+<img src="/_blob/f3ad85e8656c762498e18346c0834e64" alt="" style="width: 84px; height: 84px">
+</div>
+<div style="text-align: left">
+<div class="n" style="font-size: 17px; font-weight: 800; color: #B3235E; text-transform: uppercase; letter-spacing: .6px">{{t.newSticker}}</div>
+<div class="f" style="font-size: 30px; font-weight: 700">{{t.stickerName}}</div>
+</div>
+</div>
+<div style="position: absolute; left: 40px; right: 40px; bottom: 36px; display: flex; gap: 16px">
+<a href="{{lk.Permainan.h}}" onClick="{{lk.Permainan.go}}" class="f tap" style="flex: 1; height: 78px; border-radius: 999px; background: #FFF1EC; box-shadow: 0 7px 0 #F7C9A5; font-size: 26px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 10px">
+<svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.6-5.9"/><path d="M4 4v5h5"/></svg>
+<span>{{t.again}}</span>
+</a>
+<a href="{{lk.Main.h}}" onClick="{{lk.Main.go}}" class="f tap" style="flex: 1; height: 78px; border-radius: 999px; background: #26A03B; box-shadow: 0 7px 0 #1E8A31; color: #FFFFFF; font-size: 26px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 10px">
+<span>{{t.next}}</span>
+<svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13"/><path d="M13 6l6 6-6 6"/></svg>
+</a>
+</div>
+</div>
+
+<div style="position: absolute; left: 904px; top: 250px; width: 248px; transform: rotate(4deg)">
+<div style="position: relative; box-sizing: border-box; padding: 20px 20px 22px; border-radius: 30px; background: #7048E8; box-shadow: 0 10px 0 #5032B8, 0 20px 34px rgba(43,35,80,.2); color: #FFFFFF">
+<div class="n" style="font-size: 16px; font-weight: 800; letter-spacing: .6px; text-transform: uppercase">{{t.album}}</div>
+<div class="f" style="margin-top: 2px; font-size: 38px; font-weight: 700; line-height: 1">8<span style="font-size: 24px; font-weight: 600"> / 30</span></div>
+<div aria-hidden="true" style="margin-top: 10px; height: 14px; border-radius: 999px; background: rgba(255,255,255,.28); overflow: hidden"><div style="width: 27%; height: 14px; border-radius: 999px; background: #FFD43B"></div></div>
+<div aria-hidden="true" style="margin-top: 18px; display: grid; grid-template-columns: repeat(3, 60px); gap: 14px">
+<div style="width: 60px; height: 60px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center"><img src="/_blob/6de067c8bd1b21524d7d6e6b6f4c199a" alt="" style="width: 48px; height: 48px"></div>
+<div style="width: 60px; height: 60px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center"><img src="/_blob/b6ba1bc1e8f26eb3aa05f31a41e7bb31" alt="" style="width: 46px; height: 46px"></div>
+<div style="width: 60px; height: 60px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center"><img src="/_blob/ce8b6885ad970a4e66e036e133810b2b" alt="" style="width: 48px; height: 48px"></div>
+<div style="position: relative; width: 60px; height: 60px">
+<div class="hbPop" style="width: 60px; height: 60px; border-radius: 50%; background: #FFFFFF; box-shadow: 0 0 0 4px #FFD43B; display: flex; align-items: center; justify-content: center"><img src="/_blob/f3ad85e8656c762498e18346c0834e64" alt="" style="width: 46px; height: 46px"></div>
+<div class="n" style="position: absolute; right: -16px; top: -12px; padding: 2px 8px; border-radius: 999px; background: #C2255C; color: #FFFFFF; font-size: 12px; font-weight: 800; letter-spacing: .4px">{{t.newTag}}</div>
+</div>
+<div style="width: 60px; height: 60px; box-sizing: border-box; border-radius: 50%; border: 3px dashed rgba(255,255,255,.6)"></div>
+<div style="width: 60px; height: 60px; box-sizing: border-box; border-radius: 50%; border: 3px dashed rgba(255,255,255,.6)"></div>
+</div>
+</div>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"lang":{"editor":"enum","options":["auto","id","en"],"default":"auto","section":"Bahasa"},"app":{"editor":null},"$preview":{"width":1180,"height":820}}'>
+class Component extends DCLogic {
+  pref(k) {
+    var a = this.props.app;
+    if (a && a.prefs) return a.prefs[k] || '';
+    var st = this.state || {};
+    if (st['p_' + k] !== undefined) return st['p_' + k];
+    try { var v = window.localStorage.getItem('moci-' + k); if (v !== null) return v; } catch (e) {}
+    return '';
+  }
+  L() {
+    var p = this.props.lang;
+    if (p === 'id' || p === 'en') return p;
+    return this.pref('lang') === 'en' ? 'en' : 'id';
+  }
+  componentDidMount() {
+    this._onPref = (e) => { var d = e && e.detail; if (d && d.k) { var o = {}; o['p_' + d.k] = d.v; this.setState(o); } };
+    this._onStore = (e) => { if (e && e.key && e.key.indexOf('moci-') === 0) { var o = {}; o['p_' + e.key.slice(5)] = e.newValue || ''; this.setState(o); } };
+    try { window.addEventListener('moci-pref', this._onPref); window.addEventListener('storage', this._onStore); } catch (e) {}
+  }
+  componentWillUnmount() {
+    try { window.removeEventListener('moci-pref', this._onPref); window.removeEventListener('storage', this._onStore); } catch (e) {}
+  }
+  speak(t, lang) {
+    try {
+      var s = window.speechSynthesis;
+      if (!s || typeof SpeechSynthesisUtterance === 'undefined') return;
+      s.cancel();
+      var u = new SpeechSynthesisUtterance(t);
+      var en = (lang || this.L()) === 'en';
+      u.lang = en ? 'en-US' : 'id-ID'; u.rate = 0.9; u.pitch = 1.2;
+      var re = en ? /^en/i : /^id/i;
+      var vs = s.getVoices ? s.getVoices() : [];
+      for (var i = 0; i < vs.length; i++) { if (re.test(vs[i].lang)) { u.voice = vs[i]; break; } }
+      s.speak(u);
+    } catch (e) {}
+  }
+  lk(names) {
+    var o = {};
+    names.forEach((n) => {
+      o[n] = (this.props.app && this.props.app.nav) ? { h: '#', go: (e) => this.navTo(e, n) } : { h: n + '.dc.html', go: null };
+    });
+    return o;
+  }
+  navTo(e, to, params) {
+    var a = this.props.app;
+    if (!a || !a.nav) return false;
+    try { if (e && e.preventDefault) e.preventDefault(); } catch (x) {}
+    a.nav(to, params);
+    return true;
+  }
+  renderVals() {
+    var v = this.renderVals0();
+    v.lk = this.lk(['Main', 'Permainan']);
+    return v;
+  }
+  renderVals0() {
+    var en = this.L() === 'en';
+    var nm = String(this.pref('name') || '').trim();
+    var T = en
+      ? { great: 'GREAT JOB!', earned: 'You earned 3 stars!', newSticker: 'New sticker', stickerName: 'Red Apple', again: 'Play more', next: 'Continue', album: 'Sticker book', newTag: 'NEW', starsLabel: '27 stars, 3 new', got: 'You got three stars and a new apple sticker!', tapHint: 'tap to listen' }
+      : { great: 'HEBAT!', earned: 'Kamu dapat 3 bintang!', newSticker: 'Stiker baru', stickerName: 'Apel Merah', again: 'Main lagi', next: 'Lanjut', album: 'Album stiker', newTag: 'BARU', starsLabel: '27 bintang, bertambah 3', got: 'Kamu dapat tiga bintang dan stiker apel baru!', tapHint: 'ketuk untuk mendengar' };
+    var bubble = en ? (nm ? 'Yay, ' + nm + ' did it!' : 'Yay, you did it!') : (nm ? 'Yeay, ' + nm + ' berhasil!' : 'Yeay, kamu berhasil!');
+    return {
+      t: T,
+      bubble: bubble,
+      listenLabel: bubble + ' ' + T.tapHint,
+      cheer: () => this.speak(bubble + ' ' + T.got)
+    };
+  }
+}
+</script>
+</body>
+</html>

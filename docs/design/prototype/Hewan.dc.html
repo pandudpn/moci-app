@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Moci · Dunia Hewan</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&amp;family=Nunito:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.f{font-family:'Fredoka',ui-rounded,'Arial Rounded MT Bold','Trebuchet MS',system-ui,sans-serif}
+.n{font-family:'Nunito',ui-rounded,system-ui,-apple-system,'Segoe UI',sans-serif}
+a{color:#2B2350;text-decoration:none}a:hover{color:#2B2350}
+button{font:inherit;color:inherit;border:0;padding:0;margin:0;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.tap{transition:transform .12s ease}.tap:active{transform:translateY(5px) scale(.97)}
+.hwSel{transition:transform .2s cubic-bezier(.3,1.6,.5,1)}
+.hwBob{animation:hwBob 2.6s ease-in-out infinite}
+.hwDrift{animation-name:hwDrift;animation-timing-function:linear;animation-iteration-count:infinite}
+.hwBubA{animation:hwBub .5s cubic-bezier(.3,1.6,.5,1) both;transform-origin:0% 100%}
+.hwBubB{animation:hwBub2 .5s cubic-bezier(.3,1.6,.5,1) both;transform-origin:0% 100%}
+.hwJumpA{animation:hwJump .7s ease-out 1}
+.hwJumpB{animation:hwJump2 .7s ease-out 1}
+.hwRail{scrollbar-width:none;-webkit-overflow-scrolling:touch}.hwRail::-webkit-scrollbar{display:none}
+@keyframes hwBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes hwDrift{from{transform:translateX(-300px)}to{transform:translateX(1500px)}}
+@keyframes hwBub{0%{transform:scale(0) rotate(-10deg)}100%{transform:scale(1) rotate(0)}}
+@keyframes hwBub2{0%{transform:scale(0) rotate(-10deg)}100%{transform:scale(1) rotate(0)}}
+@keyframes hwJump{0%{transform:translateY(0)}35%{transform:translateY(-36px) scale(1.04)}70%{transform:translateY(0) scale(1.06,.94)}100%{transform:translateY(0)}}
+@keyframes hwJump2{0%{transform:translateY(0)}35%{transform:translateY(-36px) scale(1.04)}70%{transform:translateY(0) scale(1.06,.94)}100%{transform:translateY(0)}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="f" style="position: relative; width: 1180px; height: 820px; overflow: hidden; background: linear-gradient(180deg, #BFEBFF 0%, #E3F7FF 52%, #E3F7FF 100%); color: #2B2350">
+
+<div class="hwDrift" aria-hidden="true" style="position: absolute; left: 0; top: 150px; width: 170px; height: 96px; animation-duration: 64s; animation-delay: -30s; opacity: .95">
+<svg viewBox="0 0 160 90" width="170" height="96"><path d="M30 80C12 80 10 56 28 52C26 30 54 22 66 36C74 14 112 14 118 40C138 36 150 58 138 70C136 78 128 80 122 80Z" fill="#FFFFFF"/></svg>
+</div>
+<svg aria-hidden="true" viewBox="0 0 1180 420" width="1180" height="420" style="position: absolute; left: 0; bottom: 0">
+<path d="M0 120C200 60 380 90 600 120C820 150 980 80 1180 100V420H0Z" fill="#A6E38A"/>
+<path d="M0 200C220 170 420 190 620 210C840 232 1000 190 1180 200V420H0Z" fill="#7BD66C"/>
+</svg>
+
+<div style="position: absolute; left: 32px; right: 32px; top: 22px; display: flex; align-items: center; gap: 18px">
+<a href="{{lk.Main.h}}" onClick="{{lk.Main.go}}" class="tap" aria-label="{{t.back}}" style="width: 76px; height: 76px; border-radius: 26px; background: #FFFFFF; box-shadow: 0 7px 0 #9FD3A0; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="#2B2350" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+</a>
+<h1 class="f" style="margin: 0; font-size: 46px; font-weight: 700">{{t.title}}</h1>
+<div style="flex: 1"></div>
+<div class="f" style="display: flex; align-items: center; height: 60px; padding: 0 22px; background: #FFFFFF; border-radius: 999px; box-shadow: 0 6px 0 #9FD3A0; font-size: 24px; font-weight: 600">{{counter}}</div>
+<div class="f" style="display: flex; align-items: center; gap: 8px; height: 64px; padding: 0 22px 0 14px; background: #FFFFFF; border-radius: 999px; box-shadow: 0 6px 0 #9FD3A0; font-size: 30px; font-weight: 700">
+<svg viewBox="0 0 40 40" width="40" height="40" aria-hidden="true"><path d="M20 3l5.2 10.6 11.7 1.7-8.5 8.2 2 11.6L20 29.6 9.6 35.1l2-11.6-8.5-8.2 11.7-1.7z" fill="#FFC21A" stroke="#F08C00" stroke-width="2" stroke-linejoin="round"/></svg>
+<span>24</span>
+</div>
+</div>
+
+<div role="group" aria-label="{{t.groups}}" style="position: absolute; left: 32px; right: 32px; top: 112px; display: flex; justify-content: center; gap: 8px">
+<sc-for list="{{groups}}" as="g" hint-placeholder-count="6">
+<button class="f tap" onClick="{{g.pick}}" aria-pressed="{{g.on}}" style="height: 50px; padding: 0 14px; border-radius: 999px; background: {{g.bg}}; color: {{g.fg}}; box-shadow: 0 5px 0 {{g.sh}}; font-size: 17px; font-weight: 600; white-space: nowrap">{{g.t}}</button>
+</sc-for>
+</div>
+
+<div style="position: absolute; left: 44px; top: 196px; width: 300px; box-sizing: border-box; padding: 22px 24px 24px; border-radius: 34px; background: #FFFFFF; box-shadow: 0 10px 0 #9FD3A0">
+<div style="display: flex; align-items: center; gap: 10px">
+<div aria-hidden="true" style="width: 46px; height: 46px; border-radius: 50%; background: #FFF3BF; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#E0870B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.4 1 1.1 1 1.8V16h5v-.3c0-.7.4-1.4 1-1.8A6 6 0 0 0 12 3z" fill="#FFD43B"/></svg>
+</div>
+<div class="n" style="font-size: 17px; font-weight: 800; color: #6B5F99">{{t.didYou}}</div>
+</div>
+<p class="n" style="margin: 12px 0 0; font-size: 23px; font-weight: 800; line-height: 1.3; color: #2B2350">{{cur.fact}}</p>
+<button class="f tap" onClick="{{sayFact}}" style="margin-top: 14px; height: 50px; padding: 0 16px; border-radius: 999px; background: #FFF3BF; box-shadow: 0 4px 0 #F2D27A; font-size: 18px; font-weight: 600; display: flex; align-items: center; gap: 8px">
+<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="currentColor"/><path d="M15.5 9a4 4 0 0 1 0 6"/></svg>
+<span>{{t.hearFact}}</span>
+</button>
+</div>
+
+<div aria-hidden="true" style="position: absolute; left: 400px; top: 500px; width: 400px; height: 64px; border-radius: 50%; background: #5FC456; opacity: .55"></div>
+<button class="{{jumpClass}}" onClick="{{tapAnimal}}" aria-label="{{cur.aria}}" style="position: absolute; left: 440px; top: 196px; width: 320px; height: 320px">
+<img class="hwBob" src="{{cur.img}}" alt="" style="width: 320px; height: 320px">
+</button>
+
+<sc-if value="{{showBubble}}" hint-placeholder-val="{{true}}">
+<div class="{{bubClass}}" style="position: absolute; left: 712px; top: 176px; min-width: 180px; box-sizing: border-box; padding: 14px 24px 16px; border-radius: 36px; background: #FFFFFF; box-shadow: 0 8px 0 rgba(43,35,80,.12); text-align: center">
+<div class="f" style="font-size: {{soundSize}}px; font-weight: 700; line-height: 1.05; color: #E8384F; white-space: nowrap">{{cur.sound}}</div>
+<svg aria-hidden="true" viewBox="0 0 40 30" width="40" height="30" style="position: absolute; left: 18px; bottom: -26px"><path d="M0 0H40L6 28Z" fill="#FFFFFF"/></svg>
+</div>
+</sc-if>
+
+<div style="position: absolute; left: 400px; top: 520px; width: 400px; display: flex; flex-direction: column; align-items: center">
+<div class="f" style="min-width: 220px; max-width: 400px; box-sizing: border-box; padding: 8px 28px 12px; border-radius: 22px; background: #A9744F; box-shadow: 0 7px 0 #7A5236; color: #FFFFFF; font-size: {{nameSize}}px; font-weight: 700; line-height: 1.05; text-align: center; white-space: nowrap">{{cur.name}}</div>
+<div aria-hidden="true" style="display: flex; gap: 120px"><div style="width: 14px; height: 24px; background: #7A5236"></div><div style="width: 14px; height: 24px; background: #7A5236"></div></div>
+</div>
+
+<div style="position: absolute; left: 888px; top: 268px; width: 256px; display: flex; flex-direction: column; gap: 16px">
+<button class="f tap" onClick="{{sayName}}" style="height: 80px; border-radius: 999px; background: #FFB020; box-shadow: 0 8px 0 #E0870B; font-size: 23px; font-weight: 600; color: #2B2350; display: flex; align-items: center; justify-content: center; gap: 10px">
+<svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="currentColor"/><path d="M15.5 9a4 4 0 0 1 0 6"/><path d="M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>
+<span>{{t.hearName}}</span>
+</button>
+<button class="f tap" onClick="{{saySound}}" style="height: 80px; border-radius: 999px; background: #26A03B; box-shadow: 0 8px 0 #1E8A31; font-size: 23px; font-weight: 600; color: #FFFFFF; display: flex; align-items: center; justify-content: center; gap: 10px">
+<svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h2M7 8v8M11 5v14M15 8v8M19 10v4"/></svg>
+<span>{{t.hearSound}}</span>
+</button>
+<div style="display: flex; gap: 14px">
+<button class="tap" onClick="{{prev}}" aria-label="{{t.prev}}" style="flex: 1; height: 70px; border-radius: 24px; background: #FFFFFF; box-shadow: 0 7px 0 #9FD3A0; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="#2B2350" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+</button>
+<button class="tap" onClick="{{next}}" aria-label="{{t.next}}" style="flex: 1; height: 70px; border-radius: 24px; background: #FFFFFF; box-shadow: 0 7px 0 #9FD3A0; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="#2B2350" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+</button>
+</div>
+</div>
+
+<div class="hwRail" style="position: absolute; left: 0; top: 636px; width: 1180px; height: 168px; overflow-x: auto; overflow-y: hidden">
+<div style="display: flex; gap: 16px; padding: 10px 44px 24px; width: max-content">
+<sc-for list="{{animals}}" as="an" hint-placeholder-count="10">
+<button class="hwSel tap" onClick="{{an.pick}}" aria-label="{{an.name}}" aria-pressed="{{an.on}}" style="width: 112px; height: 112px; flex: none; border-radius: 50%; background: #FFFFFF; border: 6px solid {{an.ring}}; box-shadow: 0 7px 0 {{an.sh}}; transform: {{an.lift}}; display: flex; align-items: center; justify-content: center; box-sizing: border-box">
+<img src="{{an.img}}" alt="" style="width: 84px; height: 84px">
+</button>
+</sc-for>
+</div>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"lang":{"editor":"enum","options":["auto","id","en"],"default":"auto","section":"Bahasa"},"app":{"editor":null},"$preview":{"width":1180,"height":820}}'>
+class Component extends DCLogic {
+  pref(k) {
+    var a = this.props.app;
+    if (a && a.prefs) return a.prefs[k] || '';
+    var st = this.state || {};
+    if (st['p_' + k] !== undefined) return st['p_' + k];
+    try { var v = window.localStorage.getItem('moci-' + k); if (v !== null) return v; } catch (e) {}
+    return '';
+  }
+  L() {
+    var p = this.props.lang;
+    if (p === 'id' || p === 'en') return p;
+    return this.pref('lang') === 'en' ? 'en' : 'id';
+  }
+  lk(names) {
+    var a = this.props.app, o = {};
+    names.forEach((n) => {
+      o[n] = (a && a.nav) ? { h: '#', go: (e) => { try { e.preventDefault(); } catch (x) {} a.nav(n); } } : { h: n + '.dc.html', go: null };
+    });
+    return o;
+  }
+  speak(t, lang) {
+    try {
+      var s = window.speechSynthesis;
+      if (!s || typeof SpeechSynthesisUtterance === 'undefined') return;
+      s.cancel();
+      var u = new SpeechSynthesisUtterance(t);
+      var en = (lang || this.L()) === 'en';
+      u.lang = en ? 'en-US' : 'id-ID'; u.rate = 0.9; u.pitch = 1.15;
+      var re = en ? /^en/i : /^id/i;
+      var vs = s.getVoices ? s.getVoices() : [];
+      for (var i = 0; i < vs.length; i++) { if (re.test(vs[i].lang)) { u.voice = vs[i]; break; } }
+      s.speak(u);
+    } catch (e) {}
+  }
+  play(url, fallback) {
+    if (url) {
+      try { if (this._au) this._au.pause(); this._au = new Audio(url); var pr = this._au.play(); if (pr && pr.catch) pr.catch(() => this.speak(fallback)); return; } catch (e) {}
+    }
+    this.speak(fallback);
+  }
+  componentWillUnmount() { try { if (this._au) this._au.pause(); } catch (e) {} }
+  data() {
+    if (!this._d) this._d = [["kucing","Kucing","Cat","6de067c8bd1b21524d7d6e6b6f4c199a","rumah","Meong!","Meow!","Kucing suka tidur dan bermain.","Cats love to nap and play."],["anjing","Anjing","Dog","c242939ae5225d55061992c4a9c3f53a","rumah","Guk guk!","Woof woof!","Anjing adalah teman yang setia.","Dogs are loyal friends."],["kelinci","Kelinci","Rabbit","f7d015c440e821b1c7c751875e4327e8","rumah","Hop hop!","Hop hop!","Kelinci suka makan wortel.","Rabbits love carrots."],["tikus","Tikus","Mouse","de9512c85659eedbd04f024fc5074f4b","rumah","Cit cit!","Squeak!","Tikus suka makan keju.","Mice like cheese."],["sapi","Sapi","Cow","eb1bebc96da8f6f1ffc1494e0fc98f3f","rumah","Mooo!","Moo!","Sapi memberi kita susu.","Cows give us milk."],["kambing","Kambing","Goat","1c4ae5e05ea5cb5b1c97d7553d420d8f","rumah","Mbeeek!","Maa!","Kambing pandai memanjat.","Goats are great climbers."],["domba","Domba","Sheep","c780d1ee0c9956db8125fe76ed646f3d","rumah","Mbeee!","Baa!","Bulu domba dibuat jadi wol.","Sheep wool keeps us warm."],["kuda","Kuda","Horse","cc9b06fecc57b5d105417f65369928a4","rumah","Hiiihiii!","Neigh!","Kuda bisa berlari sangat cepat.","Horses can run very fast."],["ayam","Ayam","Chicken","81f53fe15d52afbfe261d665ef8b74ba","rumah","Kukuruyuk!","Cock-a-doodle-doo!","Ayam bertelur.","Hens lay eggs."],["bebek","Bebek","Duck","754f0bd7e0eb7cdaa2fd47f6f89b2df2","rumah","Kwek kwek!","Quack quack!","Bebek pandai berenang.","Ducks are good swimmers."],["singa","Singa","Lion","dd80b453f8b3c290ec0572401fe88fe7","liar","Aum!","Roar!","Singa adalah raja hutan.","The lion is king of the jungle."],["harimau","Harimau","Tiger","136c12a57e02d6f48327aa4a5aa7e505","liar","Grrr, aum!","Grrr, roar!","Harimau Sumatra hidup di Indonesia.","Sumatran tigers live in Indonesia."],["gajah","Gajah","Elephant","8cb65c6477727354f6b9ad662449edba","liar","Tuuut!","Toot!","Gajah punya belalai yang panjang.","Elephants have long trunks."],["jerapah","Jerapah","Giraffe","4c3d5f88d1553c3efc658ffde91c904f","liar","Hmmm...","Hmm...","Jerapah punya leher paling panjang.","Giraffes have the longest necks."],["zebra","Zebra","Zebra","e7a48678ca5c900be7908c88a20c5a18","liar","Kwaha!","Kwa-ha!","Setiap zebra punya belang yang berbeda.","Every zebra has its own stripes."],["monyet","Monyet","Monkey","817145047067c4f962003b16c2f5fe59","liar","U-u-a-a!","Ooh-ooh-aah!","Monyet suka makan pisang.","Monkeys love bananas."],["orangutan","Orangutan","Orangutan","7ed47b04dad452d96a24e6150153b9f5","liar","Huu huu!","Hoo hoo!","Orangutan tinggal di hutan Kalimantan dan Sumatra.","Orangutans live in the forests of Borneo and Sumatra."],["beruang","Beruang","Bear","6227b1cc8d2743c5fdb255f35b6ac00e","liar","Grrr!","Grrr!","Beruang suka madu.","Bears love honey."],["panda","Panda","Panda","2aca45982f4d73d88f787d45ec03d315","liar","Nyam nyam!","Munch munch!","Panda suka makan bambu.","Pandas love to eat bamboo."],["badak","Badak","Rhino","246ed92afd22d9cd0b627495a965b7d8","liar","Hrmph!","Hrmph!","Badak punya cula di hidungnya.","Rhinos have a horn on their nose."],["kudanil","Kuda Nil","Hippo","f9fef0ce562868c87a2a2d34583a9a91","liar","Hrooo!","Hrooo!","Kuda nil suka berendam di air.","Hippos love to soak in water."],["rubah","Rubah","Fox","5c40d0968fbcc89166b74a9be572773b","liar","Ak ak!","Yip yip!","Rubah punya ekor yang lebat.","Foxes have bushy tails."],["quokka","Quokka","Quokka","4649005d6db1c08190f0c0cd49412f15","liar","Hihi!","Hee hee!","Quokka selalu terlihat tersenyum.","Quokkas always look like they are smiling."],["buaya","Buaya","Crocodile","e257162228dd7c14327b984fc28fedd7","reptil","Hssss!","Hiss!","Buaya punya banyak gigi.","Crocodiles have lots of teeth."],["ular","Ular","Snake","4d73c54d6666d5e184ba443f2597f2d9","reptil","Sssss!","Sss!","Ular bergerak tanpa kaki.","Snakes move without legs."],["komodo","Komodo","Komodo Dragon","ad4951cf81893165769f3f647fc54846","reptil","Hssss!","Hiss!","Komodo hanya ada di Indonesia.","Komodo dragons live only in Indonesia."],["kura","Kura-kura","Turtle","db916cd9c526fad67c469d232d3e5885","reptil","Pelan-pelan...","Slowly...","Kura-kura membawa rumahnya ke mana-mana.","Turtles carry their home everywhere."],["katak","Katak","Frog","bec3ad3d9d42a30492ed1e061fdda4e0","reptil","Kung kong!","Ribbit!","Katak pandai melompat.","Frogs are great jumpers."],["ikan","Ikan","Fish","ce8b6885ad970a4e66e036e133810b2b","air","Blub blub!","Blub blub!","Ikan bernapas dengan insang.","Fish breathe with gills."],["lumba","Lumba-lumba","Dolphin","52d07c866db14ef1a0fbd2c42022531a","air","Ekik ekik!","Click click!","Lumba-lumba sangat pintar.","Dolphins are very smart."],["paus","Paus","Whale","193e7df94e29721da1a2ac0f2f472b53","air","Uuuuu!","Ooooo!","Paus adalah hewan terbesar di dunia.","Whales are the biggest animals in the world."],["kepiting","Kepiting","Crab","2718e0ad945f18ded680238031a1a768","air","Kletek kletek!","Click clack!","Kepiting berjalan ke samping.","Crabs walk sideways."],["gurita","Gurita","Octopus","b56f04945cb0c68002805a3329cf26c5","air","Blup!","Bloop!","Gurita punya delapan lengan.","Octopuses have eight arms."],["ubur","Ubur-ubur","Jellyfish","e030d26c76d42274c76cf645c9e57bee","air","Blup blup!","Bloop bloop!","Ubur-ubur tidak punya tulang.","Jellyfish have no bones."],["pinguin","Pinguin","Penguin","2d6f65aa46663557cff33fa1ac230978","air","Kwak!","Squawk!","Pinguin tidak bisa terbang, tapi jago berenang.","Penguins can't fly, but they swim very well."],["burung","Burung","Bird","a5705cd1aa08b59d26872e7d4381cf2b","kecil","Cuit cuit!","Tweet tweet!","Burung bisa terbang tinggi.","Birds can fly high."],["burunghantu","Burung Hantu","Owl","c26166f1dd3bb0c3f4b4b44cf09a5d4f","kecil","Uhu uhu!","Hoo hoo!","Burung hantu bangun di malam hari.","Owls are awake at night."],["flamingo","Flamingo","Flamingo","c1c03878fc3cf75b46b14877a58b8a26","kecil","Honk honk!","Honk honk!","Flamingo suka berdiri dengan satu kaki.","Flamingos like to stand on one leg."],["kupu","Kupu-kupu","Butterfly","dbdd2cc62f8a5bd8584cf371fac1c3b5","kecil","Wusss...","Flutter...","Kupu-kupu dulunya seekor ulat.","Butterflies used to be caterpillars."],["lebah","Lebah","Bee","b79511af670fe0c41fb57609f87bc0d7","kecil","Nguuung!","Buzz!","Lebah membuat madu.","Bees make honey."],["semut","Semut","Ant","f6df9bbf276d2e186a24f33a3041a600","kecil","Tuk tuk tuk!","March march!","Semut kuat dan suka bekerja sama.","Ants are strong and work together."],["ulat","Ulat","Caterpillar","2cffab27ed6825a9e2c9fba43d09c3a0","kecil","Nyam nyam!","Munch munch!","Ulat nanti berubah jadi kupu-kupu.","Caterpillars turn into butterflies."]];
+    return this._d;
+  }
+  renderVals() {
+    var st = this.state || {};
+    var en = this.L() === 'en';
+    var T = en
+      ? { title: 'Animal World', back: 'Back to home', groups: 'Animal groups', didYou: 'Did you know?', hearFact: 'Listen', hearName: 'Hear name', hearSound: 'Hear sound', prev: 'Previous animal', next: 'Next animal', says: ' says ', tapToHear: ', tap to hear its sound',
+          g: { semua: 'All', rumah: 'Pets & Farm', liar: 'Wild', reptil: 'Reptiles & Frogs', air: 'Sea & Water', kecil: 'Birds & Bugs' } }
+      : { title: 'Dunia Hewan', back: 'Kembali ke beranda', groups: 'Kelompok hewan', didYou: 'Tahukah kamu?', hearFact: 'Dengar', hearName: 'Dengar nama', hearSound: 'Dengar suara', prev: 'Hewan sebelumnya', next: 'Hewan berikutnya', says: ' bunyinya ', tapToHear: ', ketuk untuk mendengar suaranya',
+          g: { semua: 'Semua', rumah: 'Peliharaan & Ternak', liar: 'Hutan & Savana', reptil: 'Reptil & Katak', air: 'Laut & Air', kecil: 'Burung & Serangga' } };
+    var D = this.data();
+    var grp = st.grp || 'semua';
+    var list = D.filter((a) => grp === 'semua' || a[4] === grp);
+    var key = st.k || 'sapi';
+    var idx = 0;
+    for (var i = 0; i < list.length; i++) if (list[i][0] === key) { idx = i; break; }
+    var a = list[idx] || D[0];
+    var name = en ? a[2] : a[1];
+    var sound = en ? a[6] : a[5];
+    var fact = en ? a[8] : a[7];
+    var go = (j) => {
+      var b = list[(j + list.length) % list.length];
+      var s2 = this.state || {};
+      this.setState({ k: b[0], jump: !s2.jump, bub: !s2.bub, heard: true });
+      this.speak((en ? b[2] : b[1]) + '! ' + (en ? b[6] : b[5]));
+    };
+    var groupKeys = ['semua', 'rumah', 'liar', 'reptil', 'air', 'kecil'];
+    return {
+      t: T,
+      lk: this.lk(['Main']),
+      counter: (idx + 1) + ' / ' + list.length,
+      cur: { img: '/_blob/' + a[3], name: name, sound: sound, fact: fact, aria: name + T.tapToHear },
+      nameSize: name.length > 11 ? 38 : (name.length > 8 ? 44 : 52),
+      soundSize: sound.length > 13 ? 26 : (sound.length > 9 ? 32 : 40),
+      jumpClass: st.jump === undefined ? '' : (st.jump ? 'hwJumpA' : 'hwJumpB'),
+      bubClass: st.bub ? 'hwBubA' : 'hwBubB',
+      showBubble: true,
+      groups: groupKeys.map((g) => ({
+        t: T.g[g], on: grp === g,
+        bg: grp === g ? '#2F9E44' : '#FFFFFF', fg: grp === g ? '#FFFFFF' : '#2B2350', sh: grp === g ? '#1E7A33' : '#9FD3A0',
+        pick: () => {
+          var nl = D.filter((x) => g === 'semua' || x[4] === g);
+          var keep = nl.some((x) => x[0] === key);
+          this.setState({ grp: g, k: keep ? key : nl[0][0] });
+          this.speak(T.g[g]);
+        }
+      })),
+      animals: list.map((b, j) => ({
+        img: '/_blob/' + b[3], name: en ? b[2] : b[1], on: j === idx,
+        ring: j === idx ? '#FFB020' : '#FFFFFF', sh: j === idx ? '#E0870B' : '#9FD3A0', lift: j === idx ? 'translateY(-8px)' : 'none',
+        pick: () => go(j)
+      })),
+      prev: () => go(idx - 1),
+      next: () => go(idx + 1),
+      tapAnimal: () => { var s2 = this.state || {}; this.setState({ jump: !s2.jump, bub: !s2.bub }); this.play(a[9], sound); },
+      sayName: () => this.speak(name),
+      saySound: () => { var s2 = this.state || {}; this.setState({ bub: !s2.bub }); this.play(a[9], sound); },
+      sayFact: () => this.speak(fact)
+    };
+  }
+}
+</script>
+</body>
+</html>

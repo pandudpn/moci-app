@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Moci · Buah &amp; Sayur</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&amp;family=Nunito:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.f{font-family:'Fredoka',ui-rounded,'Arial Rounded MT Bold','Trebuchet MS',system-ui,sans-serif}
+.n{font-family:'Nunito',ui-rounded,system-ui,-apple-system,'Segoe UI',sans-serif}
+a{color:#2B2350;text-decoration:none}a:hover{color:#2B2350}
+button{font:inherit;color:inherit;border:0;padding:0;margin:0;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.tap{transition:transform .12s ease}.tap:active{transform:translateY(5px) scale(.97)}
+.bsBob{animation:bsBob 3s ease-in-out infinite}
+.bsOkA{animation:bsOk .6s cubic-bezier(.3,1.6,.5,1) 1}
+.bsOkB{animation:bsOk2 .6s cubic-bezier(.3,1.6,.5,1) 1}
+.bsNoA{animation:bsNo .45s ease 1}
+.bsNoB{animation:bsNo2 .45s ease 1}
+.bsPop1{animation:bsPop .5s cubic-bezier(.3,1.6,.5,1) both}
+.bsPop2{animation:bsPop .5s cubic-bezier(.3,1.6,.5,1) .15s both}
+.bsPop3{animation:bsPop .5s cubic-bezier(.3,1.6,.5,1) .3s both}
+.bsRise{animation:bsRise .45s cubic-bezier(.3,1.5,.5,1) both}
+.bsPeek{animation:bsPeek 3s ease-in-out infinite;transform-origin:50% 100%}
+.bsIn{animation:bsIn .4s cubic-bezier(.3,1.5,.5,1) both}
+.bsHop{animation:bsHop .5s cubic-bezier(.3,1.6,.5,1) 1}
+.bsHop2{animation:bsHop2 .5s cubic-bezier(.3,1.6,.5,1) 1}
+@keyframes bsHop2{0%{transform:translateY(0)}40%{transform:translateY(-18px) scale(1.06)}100%{transform:translateY(0)}}
+.bsScroll{scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+@keyframes bsBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes bsOk{0%{transform:scale(1)}40%{transform:scale(1.08) translateY(-16px)}100%{transform:scale(1)}}
+@keyframes bsOk2{0%{transform:scale(1)}40%{transform:scale(1.08) translateY(-16px)}100%{transform:scale(1)}}
+@keyframes bsNo{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-12px)}40%,80%{transform:translateX(12px)}}
+@keyframes bsNo2{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-12px)}40%,80%{transform:translateX(12px)}}
+@keyframes bsPop{0%{transform:scale(0)}100%{transform:scale(1)}}
+@keyframes bsRise{0%{transform:translateY(30px);opacity:0}100%{transform:translateY(0);opacity:1}}
+@keyframes bsPeek{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-8px) rotate(3deg)}}
+@keyframes bsIn{0%{transform:scale(.6);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes bsHop{0%{transform:translateY(0)}40%{transform:translateY(-18px) scale(1.06)}100%{transform:translateY(0)}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="f" style="position: relative; width: 1180px; height: 820px; overflow: hidden; background-color: #FFEAF3; background-image: radial-gradient(#FFD3E5 3px, transparent 3px); background-size: 36px 36px; color: #2B2350">
+
+<div style="position: absolute; left: 32px; right: 32px; top: 22px; display: flex; align-items: center; gap: 16px">
+<a href="{{lk.Main.h}}" onClick="{{lk.Main.go}}" class="tap" aria-label="{{t.back}}" style="width: 76px; height: 76px; border-radius: 26px; background: #FFFFFF; box-shadow: 0 7px 0 #F5BCD3; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="#2B2350" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+</a>
+<h1 class="f" style="margin: 0; font-size: 46px; font-weight: 700; white-space: nowrap">{{t.title}}</h1>
+<div style="flex: 1"></div>
+<nav aria-label="{{t.modes}}" style="display: flex; gap: 6px; padding: 6px; background: #FFFFFF; border-radius: 999px; box-shadow: 0 6px 0 #F5BCD3">
+<sc-for list="{{modes}}" as="m" hint-placeholder-count="2">
+<button class="f tap" onClick="{{m.pick}}" aria-pressed="{{m.on}}" style="height: 56px; padding: 0 22px; border-radius: 999px; background: {{m.bg}}; color: {{m.fg}}; font-size: 23px; font-weight: 600">{{m.t}}</button>
+</sc-for>
+</nav>
+<div role="group" aria-label="{{t.cats}}" style="display: flex; gap: 6px; padding: 6px; background: #FFFFFF; border-radius: 999px; box-shadow: 0 6px 0 #F5BCD3">
+<sc-for list="{{cats}}" as="c" hint-placeholder-count="3">
+<button class="f tap" onClick="{{c.pick}}" aria-pressed="{{c.on}}" style="height: 56px; padding: 0 18px; border-radius: 999px; background: {{c.bg}}; color: {{c.fg}}; font-size: 21px; font-weight: 600">{{c.t}}</button>
+</sc-for>
+</div>
+</div>
+
+<sc-if value="{{isQuiz}}" hint-placeholder-val="{{true}}">
+<div>
+<img class="bsPeek" src="/_blob/0b224341bbd230f2dd731c560e41d4cb" alt="" style="position: absolute; left: 110px; top: 118px; width: 168px; height: 168px">
+<div style="position: absolute; left: 294px; top: 134px; width: 660px; height: 112px; box-sizing: border-box; padding: 0 20px 0 32px; border-radius: 40px; background: #FFFFFF; box-shadow: 0 9px 0 rgba(43,35,80,.1); display: flex; align-items: center; gap: 16px">
+<div class="f" style="flex: 1; font-size: {{askSize}}px; font-weight: 700; line-height: 1.1">{{p.pre}}<span style="color: #E8384F">{{p.name}}</span>{{p.post}}</div>
+<button class="tap" onClick="{{ask}}" aria-label="{{t.listen}}" style="width: 72px; height: 72px; flex: none; border-radius: 50%; background: #FFB020; box-shadow: 0 6px 0 #E0870B; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="#2B2350" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="#2B2350"/><path d="M15.5 9a4 4 0 0 1 0 6"/><path d="M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>
+</button>
+</div>
+<svg aria-hidden="true" viewBox="0 0 30 30" width="30" height="30" style="position: absolute; left: 270px; top: 178px"><path d="M30 0V30L0 14Z" fill="#FFFFFF"/></svg>
+<div aria-label="{{progressLabel}}" style="position: absolute; left: 976px; top: 166px; display: flex; align-items: center; gap: 7px; height: 48px; padding: 0 16px; background: #FFFFFF; border-radius: 999px; box-shadow: 0 5px 0 #F5BCD3">
+<sc-for list="{{dots}}" as="d" hint-placeholder-count="6">
+<div style="width: {{d.w}}px; height: 12px; border-radius: 6px; background: {{d.c}}"></div>
+</sc-for>
+</div>
+
+<div style="position: absolute; left: 90px; top: 296px; width: 1000px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px">
+<sc-for list="{{opts}}" as="o" hint-placeholder-count="3">
+<button class="{{o.cls}}" onClick="{{o.pick}}" aria-label="{{o.aria}}" style="position: relative; height: 340px; box-sizing: border-box; border-radius: 42px; background: #FFFFFF; border: 8px solid {{o.bd}}; box-shadow: 0 12px 0 {{o.sh}}, 0 24px 36px rgba(43,35,80,.1)">
+<img class="bsBob" src="{{o.img}}" alt="" style="position: absolute; left: 50%; top: 24px; width: 210px; height: 210px; margin-left: -105px; animation-delay: {{o.delay}}s">
+<sc-if value="{{o.reveal}}" hint-placeholder-val="{{false}}">
+<div class="f" style="position: absolute; left: 0; right: 0; bottom: 24px; text-align: center; font-size: 32px; font-weight: 700; color: {{o.fg}}">{{o.name}}</div>
+</sc-if>
+<sc-if value="{{o.ok}}" hint-placeholder-val="{{false}}">
+<div style="position: absolute; right: -14px; top: -14px; width: 64px; height: 64px; box-sizing: border-box; border-radius: 50%; background: #26A03B; border: 5px solid #FFFFFF; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 0 rgba(43,35,80,.18)">
+<svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="#FFFFFF" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+</div>
+</sc-if>
+</button>
+</sc-for>
+</div>
+
+<sc-if value="{{solved}}" hint-placeholder-val="{{true}}">
+<div class="bsRise" style="position: absolute; left: 50%; top: 690px; margin-left: -300px; width: 600px; box-sizing: border-box; display: flex; align-items: center; gap: 18px; height: 96px; padding: 0 16px 0 26px; border-radius: 999px; background: #FFFFFF; box-shadow: 0 9px 0 #F5BCD3, 0 18px 36px rgba(43,35,80,.14); white-space: nowrap">
+<div aria-hidden="true" style="display: flex; align-items: flex-end; gap: 2px">
+<svg class="bsPop1" viewBox="0 0 40 40" width="38" height="38"><path d="M20 3l5.2 10.6 11.7 1.7-8.5 8.2 2 11.6L20 29.6 9.6 35.1l2-11.6-8.5-8.2 11.7-1.7z" fill="#FFC21A" stroke="#F08C00" stroke-width="2" stroke-linejoin="round"/></svg>
+<svg class="bsPop2" viewBox="0 0 40 40" width="50" height="50"><path d="M20 3l5.2 10.6 11.7 1.7-8.5 8.2 2 11.6L20 29.6 9.6 35.1l2-11.6-8.5-8.2 11.7-1.7z" fill="#FFC21A" stroke="#F08C00" stroke-width="2" stroke-linejoin="round"/></svg>
+<svg class="bsPop3" viewBox="0 0 40 40" width="38" height="38"><path d="M20 3l5.2 10.6 11.7 1.7-8.5 8.2 2 11.6L20 29.6 9.6 35.1l2-11.6-8.5-8.2 11.7-1.7z" fill="#FFC21A" stroke="#F08C00" stroke-width="2" stroke-linejoin="round"/></svg>
+</div>
+<div class="f" style="flex: 1; font-size: 32px; font-weight: 700; color: #1E8A31; overflow: hidden; text-overflow: ellipsis">{{okText}}</div>
+<button class="f tap" onClick="{{nextQ}}" style="height: 66px; padding: 0 26px; border-radius: 999px; background: #E64980; box-shadow: 0 6px 0 #B3235E; color: #FFFFFF; font-size: 26px; font-weight: 600; display: flex; align-items: center; gap: 6px">
+<span>{{t.next}}</span>
+<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+</button>
+</div>
+</sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{isLearn}}" hint-placeholder-val="{{false}}">
+<div class="bsScroll" style="position: absolute; left: 32px; right: 32px; top: 124px; bottom: 20px; overflow-y: auto; overflow-x: hidden; border-radius: 30px">
+<div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 18px; padding: 10px 10px 30px">
+<sc-for list="{{cards}}" as="c" hint-placeholder-count="12">
+<button class="tap bsIn" onClick="{{c.pick}}" aria-label="{{c.name}}" style="position: relative; height: 196px; box-sizing: border-box; border-radius: 30px; background: #FFFFFF; border: 6px solid {{c.bd}}; box-shadow: 0 8px 0 {{c.sh}}; animation-delay: {{c.delay}}s">
+<img class="{{c.hop}}" src="{{c.img}}" alt="" style="position: absolute; left: 50%; top: 14px; width: 124px; height: 124px; margin-left: -62px">
+<span class="f" style="position: absolute; left: 6px; right: 6px; bottom: 14px; text-align: center; font-size: {{c.fs}}px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{c.name}}</span>
+<span class="n" aria-hidden="true" style="position: absolute; left: 12px; top: 10px; padding: 2px 10px; border-radius: 999px; background: {{c.tagBg}}; color: #FFFFFF; font-size: 12px; font-weight: 800">{{c.tag}}</span>
+</button>
+</sc-for>
+</div>
+</div>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"lang":{"editor":"enum","options":["auto","id","en"],"default":"auto","section":"Bahasa"},"app":{"editor":null},"$preview":{"width":1180,"height":820}}'>
+class Component extends DCLogic {
+  pref(k) {
+    var a = this.props.app;
+    if (a && a.prefs) return a.prefs[k] || '';
+    var st = this.state || {};
+    if (st['p_' + k] !== undefined) return st['p_' + k];
+    try { var v = window.localStorage.getItem('moci-' + k); if (v !== null) return v; } catch (e) {}
+    return '';
+  }
+  L() {
+    var p = this.props.lang;
+    if (p === 'id' || p === 'en') return p;
+    return this.pref('lang') === 'en' ? 'en' : 'id';
+  }
+  lk(names) {
+    var a = this.props.app, o = {};
+    names.forEach((n) => {
+      o[n] = (a && a.nav) ? { h: '#', go: (e) => { try { e.preventDefault(); } catch (x) {} a.nav(n); } } : { h: n + '.dc.html', go: null };
+    });
+    return o;
+  }
+  speak(t, lang) {
+    try {
+      var s = window.speechSynthesis;
+      if (!s || typeof SpeechSynthesisUtterance === 'undefined') return;
+      s.cancel();
+      var u = new SpeechSynthesisUtterance(t);
+      var en = (lang || this.L()) === 'en';
+      u.lang = en ? 'en-US' : 'id-ID'; u.rate = 0.9; u.pitch = 1.15;
+      var re = en ? /^en/i : /^id/i;
+      var vs = s.getVoices ? s.getVoices() : [];
+      for (var i = 0; i < vs.length; i++) { if (re.test(vs[i].lang)) { u.voice = vs[i]; break; } }
+      s.speak(u);
+    } catch (e) {}
+  }
+  data() {
+    if (!this._d) this._d = [["apel","Apel","Apple","f3ad85e8656c762498e18346c0834e64","buah"],["pisang","Pisang","Banana","c75dbf0ae357afaddcf97c42d58a1160","buah"],["jeruk","Jeruk","Orange","59fd969d55c43ab93330b9607a09797b","buah"],["anggur","Anggur","Grapes","7e32fcc5a77bca13617a7e9e6ebe6e67","buah"],["semangka","Semangka","Watermelon","b573b73d242c8297b108f60d1a04c80d","buah"],["nanas","Nanas","Pineapple","c5b26a2b99c1d84e15e9b08ad81a2811","buah"],["mangga","Mangga","Mango","8a6b053fd31a1f50cc94e69e5242e40f","buah"],["stroberi","Stroberi","Strawberry","09d4664bec1323b432b1b9c812474c22","buah"],["ceri","Ceri","Cherry","3fd7f59fde32f0a08b786024c2ae1816","buah"],["alpukat","Alpukat","Avocado","5f73428052239896d0b19d90bbdca29c","buah"],["durian","Durian","Durian","e2d12c8abf7cbc81caa370e3127314c8","buah"],["rambutan","Rambutan","Rambutan","b003fadeccd318f540f8d8b84f0432f8","buah"],["manggis","Manggis","Mangosteen","75e7e3110acc6c21ed3fdebef127894a","buah"],["salak","Salak","Snake Fruit","9a04b8bf05b1e774b527a1e5b07fe2e4","buah"],["pepaya","Pepaya","Papaya","e656141d6c19c6456cb0733ad9d863f6","buah"],["jambu","Jambu Air","Water Apple","8fc15ac4c08d61291754b32791eb1206","buah"],["kelapa","Kelapa","Coconut","d0a5a178291f6bd0606cb8a325a7c385","buah"],["lemon","Lemon","Lemon","8b60cce55b018ce76778d0e91124dc59","buah"],["melon","Melon","Melon","7b51db2aaa58605a7ae15e1af1369775","buah"],["pir","Pir","Pear","cab62ecc12c60a9bac84afc2e9ebdaa9","buah"],["buahnaga","Buah Naga","Dragon Fruit","ab38e88101d413a3d63b42752d453205","buah"],["wortel","Wortel","Carrot","bd07cd5b5330a2434002468d23961755","sayur"],["tomat","Tomat","Tomato","af7684512ef48e45fd48313f41839ba0","sayur"],["brokoli","Brokoli","Broccoli","112a01a0bb2ec54bcc9c5d82c4483374","sayur"],["jagung","Jagung","Corn","e08be0e2320e04d93c135ec839e948c3","sayur"],["terong","Terong","Eggplant","19a19c17820600c0673160b75b8d3f29","sayur"],["kentang","Kentang","Potato","656defb15a88ce7a84799d436f569272","sayur"],["bawang","Bawang Merah","Shallot","f87ae2fa3c291525aa0f9743c06faae0","sayur"],["cabai","Cabai","Chili","59862cf8071958f919b8bc19c09b5360","sayur"],["timun","Timun","Cucumber","9a8a7f8d87315469e96e98fb1f2b6e65","sayur"],["labu","Labu","Pumpkin","515d2976a430bbde0badf4b3ffcb74a5","sayur"],["kubis","Kubis","Cabbage","bb4ae18f2157c2fda0b35c73ac0500a4","sayur"],["buncis","Buncis","Green Beans","6fbf958d791ba2f93fe3fec3baef7668","sayur"],["paprika","Paprika","Bell Pepper","b52770bc9ad3fc2ce8c5111f526ebf56","sayur"],["jamur","Jamur","Mushroom","165cb51bf0986707ffbfb2d921d0e176","sayur"]];
+    return this._d;
+  }
+  find(k) { var D = this.data(); for (var i = 0; i < D.length; i++) if (D[i][0] === k) return D[i]; return D[0]; }
+  shuffle(a) {
+    var b = a.slice();
+    for (var i = b.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = b[i]; b[i] = b[j]; b[j] = t; }
+    return b;
+  }
+  makeQ(cat, avoid) {
+    var D = this.data().filter((x) => cat === 'semua' || x[4] === cat);
+    var pool = D.filter((x) => x[0] !== avoid);
+    var ans = pool[Math.floor(Math.random() * pool.length)];
+    var others = this.shuffle(D.filter((x) => x[0] !== ans[0])).slice(0, 2);
+    return { ans: ans[0], opts: this.shuffle([ans[0]].concat(others.map((x) => x[0]))), picked: {} };
+  }
+  quiz() {
+    var st = this.state || {};
+    if (st.q) return st.q;
+    return { ans: 'pisang', opts: ['apel', 'pisang', 'wortel'], picked: { apel: 'no', pisang: 'ok' }, fresh: true };
+  }
+  askText(k) {
+    var it = this.find(k);
+    var en = this.L() === 'en';
+    var nm = en ? it[2] : it[1];
+    return en ? { pre: 'Find the ', name: nm.toUpperCase(), post: '!', say: 'Find the ' + nm + '!' } : { pre: 'Mana yang ', name: nm.toUpperCase(), post: '?', say: 'Mana yang ' + nm + '?' };
+  }
+  renderVals() {
+    var st = this.state || {};
+    var en = this.L() === 'en';
+    var T = en
+      ? { title: 'Fruits & Veggies', back: 'Back to home', modes: 'Mode', learn: 'Learn', quiz: 'Guess', cats: 'Category', all: 'All', fruit: 'Fruits', veg: 'Veggies', listen: 'Listen to the question', next: 'Next', right: 'Yes! ', rightEnd: '!', wrongSay: "That's not it. Try again!", tagF: 'FRUIT', tagV: 'VEGGIE', progress: 'Question ' }
+      : { title: 'Buah & Sayur', back: 'Kembali ke beranda', modes: 'Mode', learn: 'Kenali', quiz: 'Tebak', cats: 'Kategori', all: 'Semua', fruit: 'Buah', veg: 'Sayur', listen: 'Dengarkan pertanyaan', next: 'Lanjut', right: 'Betul! Itu ', rightEnd: '!', wrongSay: 'Bukan, coba lagi ya!', tagF: 'BUAH', tagV: 'SAYUR', progress: 'Pertanyaan ' };
+    var mode = st.mode || 'quiz';
+    var cat = st.cat || 'semua';
+    var q = this.quiz();
+    var A = this.askText(q.ans);
+    var solved = q.picked[q.ans] === 'ok';
+    var ansIt = this.find(q.ans);
+    var qn = st.qn || 3;
+    var D = this.data().filter((x) => cat === 'semua' || x[4] === cat);
+    return {
+      t: T,
+      lk: this.lk(['Main']),
+      isQuiz: mode === 'quiz',
+      isLearn: mode === 'learn',
+      modes: [['learn', T.learn], ['quiz', T.quiz]].map((m) => ({
+        t: m[1], on: mode === m[0], bg: mode === m[0] ? '#E64980' : '#FFFFFF', fg: mode === m[0] ? '#FFFFFF' : '#2B2350',
+        pick: () => { this.setState({ mode: m[0] }); this.speak(m[1]); }
+      })),
+      cats: [['semua', T.all], ['buah', T.fruit], ['sayur', T.veg]].map((c) => ({
+        t: c[1], on: cat === c[0], bg: cat === c[0] ? '#FFD8E8' : '#FFFFFF', fg: '#2B2350',
+        pick: () => {
+          var nq = this.makeQ(c[0], null);
+          this.setState({ cat: c[0], q: nq, qn: 1 });
+          this.speak(c[1]);
+        }
+      })),
+      p: A,
+      askSize: A.name.length > 10 ? 36 : 44,
+      ask: () => this.speak(A.say),
+      progressLabel: T.progress + qn + '/6',
+      dots: [1, 2, 3, 4, 5, 6].map((i) => ({ w: i === qn ? 30 : 12, c: i < qn ? '#26A03B' : (i === qn ? '#E64980' : '#F5BCD3') })),
+      solved: solved,
+      okText: T.right + (en ? ansIt[2] : ansIt[1]) + T.rightEnd,
+      opts: q.opts.map((k, i) => {
+        var it = this.find(k);
+        var res = q.picked[k];
+        var nm = en ? it[2] : it[1];
+        return {
+          img: '/_blob/' + it[3], name: nm, aria: nm, delay: (i * 0.4).toFixed(1),
+          reveal: !!res, ok: res === 'ok', fg: res === 'ok' ? '#1E8A31' : '#C92A2A',
+          bd: res === 'ok' ? '#26A03B' : (res === 'no' ? '#FF8787' : '#FFFFFF'),
+          sh: res === 'ok' ? '#1E8A31' : (res === 'no' ? '#F5BCD3' : '#F5BCD3'),
+          cls: res && st.lastPick === k ? (res === 'ok' ? (st.flip ? 'bsOkA' : 'bsOkB') : (st.flip ? 'bsNoA' : 'bsNoB')) : '',
+          pick: () => {
+            var q2 = this.quiz();
+            if (q2.picked[q2.ans] === 'ok' && !q2.fresh) return;
+            var picked = q2.fresh ? {} : Object.assign({}, q2.picked);
+            var s2 = this.state || {};
+            if (k === q2.ans) { picked[k] = 'ok'; this.speak(T.right + nm + T.rightEnd); }
+            else { picked[k] = 'no'; this.speak(nm + '. ' + T.wrongSay); }
+            this.setState({ q: { ans: q2.ans, opts: q2.opts, picked: picked }, lastPick: k, flip: !s2.flip });
+          }
+        };
+      }),
+      nextQ: () => {
+        var q2 = this.quiz();
+        var nq = this.makeQ(cat, q2.ans);
+        var n2 = (qn % 6) + 1;
+        this.setState({ q: nq, qn: n2, lastPick: null });
+        this.speak(this.askText(nq.ans).say);
+      },
+      cards: D.map((it, i) => {
+        var nm = en ? it[2] : it[1];
+        var isF = it[4] === 'buah';
+        return {
+          img: '/_blob/' + it[3], name: nm, fs: nm.length > 11 ? 18 : 22, delay: Math.min(i * 0.02, 0.6).toFixed(2),
+          bd: st.lk === it[0] ? '#E64980' : '#FFFFFF', sh: isF ? '#F5BCD3' : '#B9E4B5',
+          tag: isF ? T.tagF : T.tagV, tagBg: isF ? '#E64980' : '#2F9E44',
+          hop: st.lk === it[0] ? (st.hp ? 'bsHop' : 'bsHop2') : '',
+          pick: () => { var s2 = this.state || {}; this.setState({ lk: it[0], hp: !s2.hp }); this.speak(nm); }
+        };
+      })
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Moci · Ayo Membaca — Suku Kata</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&amp;family=Nunito:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.f{font-family:'Fredoka',ui-rounded,'Arial Rounded MT Bold','Trebuchet MS',system-ui,sans-serif}
+.n{font-family:'Nunito',ui-rounded,system-ui,-apple-system,'Segoe UI',sans-serif}
+a{color:#2B2350;text-decoration:none}a:hover{color:#2B2350}
+button{font:inherit;color:inherit;border:0;padding:0;margin:0;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.tap{transition:transform .12s ease}.tap:active{transform:translateY(5px) scale(.97)}
+.skLift{transition:transform .18s cubic-bezier(.3,1.6,.5,1)}
+.skBob{animation:skBob 3s ease-in-out infinite}
+.skPopA{animation:skPop .45s cubic-bezier(.3,1.6,.5,1) 1}
+.skPopB{animation:skPop2 .45s cubic-bezier(.3,1.6,.5,1) 1}
+@keyframes skBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes skPop{0%{transform:scale(.7)}100%{transform:scale(1)}}
+@keyframes skPop2{0%{transform:scale(.7)}100%{transform:scale(1)}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="f" style="position: relative; width: 1180px; height: 820px; overflow: hidden; background-color: #FFF1E6; background-image: radial-gradient(#FFDCC2 3px, transparent 3px); background-size: 36px 36px; color: #2B2350">
+
+<div style="position: absolute; left: 32px; right: 32px; top: 22px; display: flex; align-items: center; gap: 18px">
+<a href="{{lk.Main.h}}" onClick="{{lk.Main.go}}" class="tap" aria-label="{{t.back}}" style="width: 76px; height: 76px; border-radius: 26px; background: #FFFFFF; box-shadow: 0 7px 0 #F7C9A5; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="#2B2350" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+</a>
+<h1 class="f" style="margin: 0; font-size: 44px; font-weight: 700; white-space: nowrap">{{t.title}}</h1>
+<div style="flex: 1"></div>
+<nav aria-label="{{t.modes}}" style="display: flex; gap: 6px; padding: 6px; background: #FFFFFF; border-radius: 999px; box-shadow: 0 6px 0 #F7C9A5">
+<a href="{{lk.SukuKata.h}}" onClick="{{lk.SukuKata.go}}" aria-current="page" class="f" style="height: 56px; padding: 0 20px; border-radius: 999px; background: #E0661A; color: #FFFFFF; font-size: 22px; font-weight: 600; display: flex; align-items: center">{{t.m1}}</a>
+<a href="{{lk.Kata.h}}" onClick="{{lk.Kata.go}}" class="f tap" style="height: 56px; padding: 0 20px; border-radius: 999px; color: #2B2350; font-size: 22px; font-weight: 600; display: flex; align-items: center">{{t.m2}}</a>
+<a href="{{lk.Kalimat.h}}" onClick="{{lk.Kalimat.go}}" class="f tap" style="height: 56px; padding: 0 20px; border-radius: 999px; color: #2B2350; font-size: 22px; font-weight: 600; display: flex; align-items: center">{{t.m3}}</a>
+</nav>
+</div>
+
+<div style="position: absolute; left: 32px; top: 122px; width: 300px; height: 660px; border-radius: 40px; background: #FFFFFF; box-shadow: 0 12px 0 #F7C9A5">
+<div class="n" style="position: absolute; left: 0; right: 0; top: 20px; text-align: center; font-size: 18px; font-weight: 800; color: #6B5F99">{{t.pickCons}}</div>
+<div role="group" aria-label="{{t.pickCons}}" style="position: absolute; left: 22px; right: 22px; top: 56px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px">
+<sc-for list="{{cons}}" as="c" hint-placeholder-count="18">
+<button class="f tap" onClick="{{c.pick}}" aria-pressed="{{c.on}}" aria-label="{{c.aria}}" style="height: 56px; border-radius: 18px; background: {{c.bg}}; color: {{c.fg}}; box-shadow: 0 5px 0 {{c.sh}}; font-size: 30px; font-weight: 700">{{c.u}}</button>
+</sc-for>
+</div>
+<img class="skBob" src="/_blob/0b224341bbd230f2dd731c560e41d4cb" alt="" style="position: absolute; left: 100px; bottom: 74px; width: 100px; height: 100px">
+<div class="n" style="position: absolute; left: 16px; right: 16px; bottom: 18px; text-align: center; font-size: 15px; font-weight: 800; line-height: 1.25; color: #6B5F99">{{t.tip}}</div>
+</div>
+
+<div style="position: absolute; left: 356px; top: 122px; width: 792px; height: 660px; border-radius: 44px; background: #FFFFFF; box-shadow: 0 14px 0 #F7C9A5, 0 26px 40px rgba(43,35,80,.1)">
+<div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 26px; display: flex; align-items: center; justify-content: center; gap: 14px">
+<div class="f" style="width: 78px; height: 78px; border-radius: 24px; background: #2B2350; color: #FFFFFF; font-size: 50px; font-weight: 700; display: flex; align-items: center; justify-content: center">{{C}}</div>
+<div class="f" style="font-size: 44px; font-weight: 700; color: #ADB5BD">+</div>
+<sc-for list="{{vowels}}" as="v" hint-placeholder-count="5">
+<div class="f" style="width: 58px; height: 58px; border-radius: 50%; background: {{v.col}}; color: #FFFFFF; font-size: 34px; font-weight: 700; display: flex; align-items: center; justify-content: center">{{v.v}}</div>
+</sc-for>
+</div>
+
+<div style="position: absolute; left: 36px; right: 36px; top: 132px; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px">
+<sc-for list="{{sylls}}" as="s" hint-placeholder-count="5">
+<button class="skLift tap" onClick="{{s.pick}}" aria-pressed="{{s.on}}" aria-label="{{s.aria}}" style="position: relative; height: 150px; border-radius: 34px; background: {{s.bg}}; box-shadow: 0 9px 0 {{s.sh}}; transform: {{s.lift}}; display: flex; align-items: center; justify-content: center">
+<span class="f" style="font-size: 64px; font-weight: 700; color: #FFFFFF; letter-spacing: 1px"><span style="opacity: .85">{{s.c}}</span>{{s.v}}</span>
+<span aria-hidden="true" style="position: absolute; left: 50%; bottom: -26px; margin-left: -8px; width: 16px; height: 16px; border-radius: 50%; background: {{s.dot}}"></span>
+</button>
+</sc-for>
+</div>
+
+<div class="{{exCls}}" style="position: absolute; left: 36px; right: 36px; top: 330px; height: 290px; border-radius: 34px; background: #FFF6EE; display: flex; align-items: center; gap: 26px; padding: 0 30px; box-sizing: border-box">
+<sc-if value="{{ex.has}}" hint-placeholder-val="{{true}}">
+<img class="skBob" src="{{ex.img}}" alt="" style="width: 210px; height: 210px; flex: none">
+</sc-if>
+<sc-if value="{{ex.none}}" hint-placeholder-val="{{false}}">
+<div aria-hidden="true" class="f" style="width: 210px; height: 210px; flex: none; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 90px; font-weight: 700; color: {{ex.col}}">{{ex.syl}}</div>
+</sc-if>
+<div style="flex: 1; min-width: 0">
+<div class="n" style="font-size: 18px; font-weight: 800; color: #6B5F99">{{ex.label}}</div>
+<div class="f" style="margin-top: 6px; font-size: {{ex.fs}}px; font-weight: 700; line-height: 1.05; white-space: nowrap"><span style="color: {{ex.col}}; text-decoration: underline; text-decoration-thickness: 6px; text-underline-offset: 10px">{{ex.pre}}</span>{{ex.post}}</div>
+<div style="margin-top: 22px; display: flex; gap: 12px">
+<button class="f tap" onClick="{{sayEx}}" style="height: 60px; padding: 0 22px; border-radius: 999px; background: #FFB020; box-shadow: 0 6px 0 #E0870B; font-size: 21px; font-weight: 600; display: flex; align-items: center; gap: 8px">
+<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="currentColor"/><path d="M15.5 9a4 4 0 0 1 0 6"/><path d="M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>
+<span>{{t.hearWord}}</span>
+</button>
+<button class="f tap" onClick="{{readAll}}" style="height: 60px; padding: 0 22px; border-radius: 999px; background: #E0661A; box-shadow: 0 6px 0 #A9480D; color: #FFFFFF; font-size: 21px; font-weight: 600; display: flex; align-items: center; gap: 8px">
+<svg viewBox="0 0 24 24" width="24" height="24" fill="#FFFFFF" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg>
+<span>{{t.readAll}}</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"lang":{"editor":"enum","options":["auto","id","en"],"default":"auto","section":"Bahasa"},"app":{"editor":null},"$preview":{"width":1180,"height":820}}'>
+class Component extends DCLogic {
+  pref(k) {
+    var a = this.props.app;
+    if (a && a.prefs) return a.prefs[k] || '';
+    var st = this.state || {};
+    if (st['p_' + k] !== undefined) return st['p_' + k];
+    try { var v = window.localStorage.getItem('moci-' + k); if (v !== null) return v; } catch (e) {}
+    return '';
+  }
+  L() {
+    var p = this.props.lang;
+    if (p === 'id' || p === 'en') return p;
+    return this.pref('lang') === 'en' ? 'en' : 'id';
+  }
+  lk(names) {
+    var a = this.props.app, o = {};
+    names.forEach((n) => {
+      o[n] = (a && a.nav) ? { h: '#', go: (e) => { try { e.preventDefault(); } catch (x) {} a.nav(n); } } : { h: n + '.dc.html', go: null };
+    });
+    return o;
+  }
+  componentWillUnmount() { clearInterval(this._iv); }
+  speak(t, lang, rate) {
+    try {
+      var s = window.speechSynthesis;
+      if (!s || typeof SpeechSynthesisUtterance === 'undefined') return;
+      s.cancel();
+      var u = new SpeechSynthesisUtterance(t);
+      var en = (lang || this.L()) === 'en';
+      u.lang = en ? 'en-US' : 'id-ID'; u.rate = rate || 0.85; u.pitch = 1.15;
+      var re = en ? /^en/i : /^id/i;
+      var vs = s.getVoices ? s.getVoices() : [];
+      for (var i = 0; i < vs.length; i++) { if (re.test(vs[i].lang)) { u.voice = vs[i]; break; } }
+      s.speak(u);
+    } catch (e) {}
+  }
+  data() {
+    if (!this._d) this._d = {"id":{"ba":["badak","Badak","246ed92afd22d9cd0b627495a965b7d8"],"bu":["bus","Bus","5fa24324963167da186e12222fc34b6a"],"be":["bebek","Bebek","754f0bd7e0eb7cdaa2fd47f6f89b2df2"],"bo":["bola","Bola","b6ba1bc1e8f26eb3aa05f31a41e7bb31"],"ca":["cabai","Cabai","59862cf8071958f919b8bc19c09b5360"],"ce":["ceri","Ceri","3fd7f59fde32f0a08b786024c2ae1816"],"da":["dadu","Dadu","21ec3ff6cd7241ec48aa204f338666e8"],"du":["durian","Durian","e2d12c8abf7cbc81caa370e3127314c8"],"do":["domba","Domba","c780d1ee0c9956db8125fe76ed646f3d"],"ga":["gajah","Gajah","8cb65c6477727354f6b9ad662449edba"],"gu":["gurita","Gurita","b56f04945cb0c68002805a3329cf26c5"],"ha":["harimau","Harimau","136c12a57e02d6f48327aa4a5aa7e505"],"he":["helikopter","Helikopter","62be577d88c8efa7d0650f8e6fe147ee"],"ja":["jamur","Jamur","165cb51bf0986707ffbfb2d921d0e176"],"je":["jeruk","Jeruk","59fd969d55c43ab93330b9607a09797b"],"ka":["kado","Kado","89f1eaa66e0150028701c8f5c32dab8c"],"ku":["kuda","Kuda","cc9b06fecc57b5d105417f65369928a4"],"ke":["kelapa","Kelapa","d0a5a178291f6bd0606cb8a325a7c385"],"ko":["komodo","Komodo","ad4951cf81893165769f3f647fc54846"],"la":["labu","Labu","515d2976a430bbde0badf4b3ffcb74a5"],"lu":["lumba","Lumba-lumba","52d07c866db14ef1a0fbd2c42022531a"],"le":["lebah","Lebah","b79511af670fe0c41fb57609f87bc0d7"],"ma":["mangga","Mangga","8a6b053fd31a1f50cc94e69e5242e40f"],"me":["melon","Melon","7b51db2aaa58605a7ae15e1af1369775"],"mo":["mobil","Mobil","9a4b52d03d573cb2bb9e7fc33aa00ad6"],"na":["nanas","Nanas","c5b26a2b99c1d84e15e9b08ad81a2811"],"pa":["paus","Paus","193e7df94e29721da1a2ac0f2f472b53"],"pi":["pir","Pir","cab62ecc12c60a9bac84afc2e9ebdaa9"],"pe":["pepaya","Pepaya","e656141d6c19c6456cb0733ad9d863f6"],"ra":["rambutan","Rambutan","b003fadeccd318f540f8d8b84f0432f8"],"ru":["rubah","Rubah","5c40d0968fbcc89166b74a9be572773b"],"ro":["roket","Roket","65a1f0b3aa312fc93fd888b8a105ce98"],"sa":["sapi","Sapi","eb1bebc96da8f6f1ffc1494e0fc98f3f"],"si":["singa","Singa","dd80b453f8b3c290ec0572401fe88fe7"],"se":["semut","Semut","f6df9bbf276d2e186a24f33a3041a600"],"ti":["tikus","Tikus","de9512c85659eedbd04f024fc5074f4b"],"te":["terong","Terong","19a19c17820600c0673160b75b8d3f29"],"to":["topi","Topi","4ffb45a35e6ab85a85df0806cc4ed5bf"],"wo":["wortel","Wortel","bd07cd5b5330a2434002468d23961755"],"yo":["yoyo","Yoyo","d8d724511b118aee435cb582d2599023"],"ze":["zebra","Zebra","e7a48678ca5c900be7908c88a20c5a18"]},"en":{"ba":["bola","Ball","b6ba1bc1e8f26eb3aa05f31a41e7bb31"],"bi":["burung","Bird","a5705cd1aa08b59d26872e7d4381cf2b"],"bu":["bus","Bus","5fa24324963167da186e12222fc34b6a"],"be":["lebah","Bee","b79511af670fe0c41fb57609f87bc0d7"],"bo":["buku","Book","40764645d095695dc89e65d699f811f8"],"ca":["kucing","Cat","6de067c8bd1b21524d7d6e6b6f4c199a"],"cu":["kuekecil","Cupcake","5175853037660fb2f7ad154418e040ec"],"co":["sapi","Cow","eb1bebc96da8f6f1ffc1494e0fc98f3f"],"di":["dadu","Dice","21ec3ff6cd7241ec48aa204f338666e8"],"du":["bebek","Duck","754f0bd7e0eb7cdaa2fd47f6f89b2df2"],"do":["anjing","Dog","c242939ae5225d55061992c4a9c3f53a"],"fi":["ikan","Fish","ce8b6885ad970a4e66e036e133810b2b"],"fo":["rubah","Fox","5c40d0968fbcc89166b74a9be572773b"],"gi":["kado","Gift","89f1eaa66e0150028701c8f5c32dab8c"],"go":["kambing","Goat","1c4ae5e05ea5cb5b1c97d7553d420d8f"],"ha":["topi","Hat","4ffb45a35e6ab85a85df0806cc4ed5bf"],"hi":["kudanil","Hippo","f9fef0ce562868c87a2a2d34583a9a91"],"he":["helikopter","Helicopter","62be577d88c8efa7d0650f8e6fe147ee"],"ho":["kuda","Horse","cc9b06fecc57b5d105417f65369928a4"],"je":["ubur","Jellyfish","e030d26c76d42274c76cf645c9e57bee"],"ki":["layang","Kite","b318984ee6d49e39029e199e88367107"],"ko":["komodo","Komodo Dragon","ad4951cf81893165769f3f647fc54846"],"li":["singa","Lion","dd80b453f8b3c290ec0572401fe88fe7"],"le":["lemon","Lemon","8b60cce55b018ce76778d0e91124dc59"],"ma":["mangga","Mango","8a6b053fd31a1f50cc94e69e5242e40f"],"mu":["jamur","Mushroom","165cb51bf0986707ffbfb2d921d0e176"],"me":["melon","Melon","7b51db2aaa58605a7ae15e1af1369775"],"mo":["tikus","Mouse","de9512c85659eedbd04f024fc5074f4b"],"pa":["panda","Panda","2aca45982f4d73d88f787d45ec03d315"],"pi":["nanas","Pineapple","c5b26a2b99c1d84e15e9b08ad81a2811"],"pu":["labu","Pumpkin","515d2976a430bbde0badf4b3ffcb74a5"],"pe":["pir","Pear","cab62ecc12c60a9bac84afc2e9ebdaa9"],"po":["kentang","Potato","656defb15a88ce7a84799d436f569272"],"ra":["kelinci","Rabbit","f7d015c440e821b1c7c751875e4327e8"],"ro":["roket","Rocket","65a1f0b3aa312fc93fd888b8a105ce98"],"ti":["harimau","Tiger","136c12a57e02d6f48327aa4a5aa7e505"],"tu":["kura","Turtle","db916cd9c526fad67c469d232d3e5885"],"to":["tomat","Tomato","af7684512ef48e45fd48313f41839ba0"],"wa":["semangka","Watermelon","b573b73d242c8297b108f60d1a04c80d"],"yo":["yoyo","Yoyo","d8d724511b118aee435cb582d2599023"],"ze":["zebra","Zebra","e7a48678ca5c900be7908c88a20c5a18"]}};
+    return this._d;
+  }
+  renderVals() {
+    var st = this.state || {};
+    var en = this.L() === 'en';
+    var T = en
+      ? { title: "Let's Read", back: 'Back to home', modes: 'Reading mode', m1: 'Syllables', m2: 'Build Words', m3: 'Sentences', pickCons: 'Pick a letter', tip: 'Tap a syllable to hear it!', hearWord: 'Hear word', readAll: 'Read all', example: 'Example word', noEx: 'Say it out loud!', letter: 'Letter ' }
+      : { title: 'Ayo Membaca', back: 'Kembali ke beranda', modes: 'Mode membaca', m1: 'Suku Kata', m2: 'Susun Kata', m3: 'Kalimat', pickCons: 'Pilih huruf', tip: 'Ketuk suku kata untuk mendengarnya!', hearWord: 'Dengar kata', readAll: 'Baca semua', example: 'Contoh kata', noEx: 'Ayo ucapkan!', letter: 'Huruf ' };
+    var D = this.data()[en ? 'en' : 'id'];
+    var cons = 'bcdfghjklmnprstwyz'.split('');
+    var c = st.c || 'b';
+    var VC = { a: ['#E8384F', '#B82A3E'], i: ['#1C7ED6', '#1565B0'], u: ['#2F9E44', '#237A34'], e: ['#F08C00', '#C46F00'], o: ['#7048E8', '#5032B8'] };
+    var vs = ['a', 'i', 'u', 'e', 'o'];
+    var sel = st.v || 'a';
+    var hl = st.hl === undefined ? -1 : st.hl;
+    var syl = c + sel;
+    var ex = D[syl];
+    var col = VC[sel][0];
+    var exWord = ex ? ex[1] : syl;
+    var low = exWord.toLowerCase();
+    var cut = ex && low.indexOf(syl) === 0 ? 2 : 0;
+    return {
+      t: T,
+      lk: this.lk(['Main', 'SukuKata', 'Kata', 'Kalimat']),
+      C: c.toUpperCase(),
+      vowels: vs.map((v) => ({ v: v, col: VC[v][0] })),
+      cons: cons.map((k) => ({
+        u: k.toUpperCase(), on: k === c, aria: T.letter + k.toUpperCase(),
+        bg: k === c ? '#E0661A' : '#FFF1E6', fg: k === c ? '#FFFFFF' : '#2B2350', sh: k === c ? '#A9480D' : '#F7C9A5',
+        pick: () => { clearInterval(this._iv); this.setState({ c: k, v: 'a', hl: -1, pop: !st.pop }); this.speak(k + 'a, ' + k + 'i, ' + k + 'u, ' + k + 'e, ' + k + 'o'); }
+      })),
+      sylls: vs.map((v, i) => {
+        var on = v === sel || hl === i;
+        return {
+          c: c, v: v, on: on, aria: c + v,
+          bg: VC[v][0], sh: VC[v][1], dot: on ? VC[v][0] : 'transparent',
+          lift: on ? 'translateY(-10px) scale(1.06)' : 'none',
+          pick: () => { clearInterval(this._iv); var s2 = this.state || {}; this.setState({ v: v, hl: -1, pop: !s2.pop }); this.speak(c + v); }
+        };
+      }),
+      exCls: st.pop === undefined ? '' : (st.pop ? 'skPopA' : 'skPopB'),
+      ex: {
+        has: !!ex, none: !ex, img: ex ? '/_blob/' + ex[2] : '', syl: syl, col: col,
+        label: ex ? T.example : T.noEx,
+        pre: ex ? exWord.slice(0, cut) : syl, post: ex ? exWord.slice(cut) : '',
+        fs: exWord.length > 9 ? 56 : 76
+      },
+      sayEx: () => this.speak(ex ? (syl + '... ' + exWord) : syl),
+      readAll: () => {
+        clearInterval(this._iv);
+        var i = 0;
+        this.setState({ hl: 0 });
+        this.speak(c + vs[0]);
+        this._iv = setInterval(() => {
+          i++;
+          if (i >= vs.length) { clearInterval(this._iv); this.setState({ hl: -1 }); return; }
+          this.setState({ hl: i });
+          this.speak(c + vs[i]);
+        }, 900);
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

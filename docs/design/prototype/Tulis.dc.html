@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Moci · Tulis Huruf &amp; Angka</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&amp;family=Nunito:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.f{font-family:'Fredoka',ui-rounded,'Arial Rounded MT Bold','Trebuchet MS',system-ui,sans-serif}
+.n{font-family:'Nunito',ui-rounded,system-ui,-apple-system,'Segoe UI',sans-serif}
+a{color:#2B2350;text-decoration:none}a:hover{color:#2B2350}
+button{font:inherit;color:inherit;border:0;padding:0;margin:0;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.tap{transition:transform .12s ease}.tap:active{transform:translateY(5px) scale(.97)}
+.sw{transition:transform .15s ease}
+.trRing{animation:trRing 1.6s ease-out infinite}
+.trGoal{animation:trRing 1.8s ease-out infinite}
+.trTwinkle{animation:trTwinkle 1.6s ease-in-out infinite}
+.trIdle{animation:trIdle 1.3s ease-in-out infinite}
+.trDrag{transform:scale(1.18);transition:transform .15s ease}
+.trNudgeA{animation:trNudgeA .5s ease 1}
+.trNudgeB{animation:trNudgeB .5s ease 1}
+.trBoomA{animation:trBoomA .8s ease-out both}
+.trBoomB{animation:trBoomB .8s ease-out both}
+.trStarA{animation:trStarA .9s cubic-bezier(.3,1.5,.5,1) both}
+.trStarB{animation:trStarB .9s cubic-bezier(.3,1.5,.5,1) both}
+.trPop1{animation:trPop .5s cubic-bezier(.3,1.6,.5,1) both}
+.trPop2{animation:trPop .5s cubic-bezier(.3,1.6,.5,1) .15s both}
+.trPop3{animation:trPop .5s cubic-bezier(.3,1.6,.5,1) .3s both}
+.trRise{animation:trRise .45s cubic-bezier(.3,1.5,.5,1) both}
+.trPeek{animation:trPeek 3s ease-in-out infinite;transform-origin:50% 100%}
+.trFlow{animation:trFlow .9s linear infinite}
+.trChev{animation:trChev 1.4s ease-in-out infinite}
+.trGhost{position:absolute;left:0;top:0;width:60px;height:64px;offset-rotate:0deg;offset-anchor:33% 3%;animation:trGhost 2.6s ease-in-out infinite}
+@supports not (offset-path: path('M0 0L1 1')){.trGhost{display:none}}
+@keyframes trRing{0%{transform:scale(1);opacity:.55}100%{transform:scale(1.9);opacity:0}}
+@keyframes trTwinkle{0%,100%{transform:scale(1) rotate(0deg)}50%{transform:scale(1.15) rotate(14deg)}}
+@keyframes trIdle{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes trNudgeA{0%,100%{transform:rotate(0)}25%{transform:rotate(-14deg)}75%{transform:rotate(14deg)}}
+@keyframes trNudgeB{0%,100%{transform:rotate(0)}25%{transform:rotate(-14deg)}75%{transform:rotate(14deg)}}
+@keyframes trBoomA{0%{transform:scale(.3);opacity:1}100%{transform:scale(2.3);opacity:0}}
+@keyframes trBoomB{0%{transform:scale(.3);opacity:1}100%{transform:scale(2.3);opacity:0}}
+@keyframes trStarA{0%{transform:scale(0);opacity:1}55%{transform:scale(1.45);opacity:1}100%{transform:scale(1) translateY(-34px);opacity:0}}
+@keyframes trStarB{0%{transform:scale(0);opacity:1}55%{transform:scale(1.45);opacity:1}100%{transform:scale(1) translateY(-34px);opacity:0}}
+@keyframes trPop{0%{transform:scale(0) rotate(-30deg)}100%{transform:scale(1) rotate(0)}}
+@keyframes trRise{0%{transform:translateY(40px);opacity:0}100%{transform:translateY(0);opacity:1}}
+@keyframes trPeek{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-8px) rotate(3deg)}}
+@keyframes trFlow{to{stroke-dashoffset:-30}}
+@keyframes trChev{0%,100%{opacity:.45;transform:scale(.8)}35%{opacity:1;transform:scale(1.2)}}
+@keyframes trGhost{0%{offset-distance:0%;opacity:0}12%{offset-distance:0%;opacity:.95}80%{offset-distance:100%;opacity:.95}100%{offset-distance:100%;opacity:0}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="f" style="position: relative; width: 1180px; height: 820px; overflow: hidden; background-color: {{th.bg}}; background-image: radial-gradient({{th.dot}} 3px, transparent 3px); background-size: 36px 36px; color: #2B2350">
+
+<div style="position: absolute; left: 32px; right: 32px; top: 22px; display: flex; align-items: center; gap: 18px">
+<a href="{{lk.Main.h}}" onClick="{{lk.Main.go}}" class="tap" aria-label="{{t.back}}" style="width: 76px; height: 76px; border-radius: 26px; background: #FFFFFF; box-shadow: 0 7px 0 {{th.softSh}}; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="#2B2350" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+</a>
+<h1 class="f" style="margin: 0; font-size: 46px; font-weight: 700">{{t.title}}</h1>
+<div style="flex: 1"></div>
+<sc-if value="{{isHuruf}}" hint-placeholder-val="{{true}}">
+<nav aria-label="{{t.modes}}" style="display: flex; gap: 6px; padding: 6px; background: #FFFFFF; border-radius: 999px; box-shadow: 0 6px 0 {{th.softSh}}">
+<a href="{{lk.Huruf.h}}" onClick="{{lk.Huruf.go}}" class="f tap" style="display: flex; align-items: center; gap: 8px; height: 56px; padding: 0 22px; border-radius: 999px; color: #2B2350; font-size: 24px; font-weight: 600">
+<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+<span>{{t.learn}}</span>
+</a>
+<a href="{{lk.Tulis.h}}" onClick="{{lk.Tulis.go}}" aria-current="page" class="f" style="display: flex; align-items: center; gap: 8px; height: 56px; padding: 0 22px; border-radius: 999px; background: {{th.acc}}; color: #FFFFFF; font-size: 24px; font-weight: 600">
+<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l4-1 11-11-3-3L5 16z"/><path d="M14 6l3 3"/></svg>
+<span>{{t.write}}</span>
+</a>
+<a href="{{lk.Ucapkan.h}}" onClick="{{lk.Ucapkan.go}}" class="f tap" style="display: flex; align-items: center; gap: 8px; height: 56px; padding: 0 22px; border-radius: 999px; color: #2B2350; font-size: 24px; font-weight: 600">
+<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0"/><path d="M12 17.5V21"/></svg>
+<span>{{t.say}}</span>
+</a>
+</nav>
+</sc-if>
+<sc-if value="{{isAngka}}" hint-placeholder-val="{{false}}">
+<nav aria-label="{{t.modes}}" style="display: flex; gap: 6px; padding: 6px; background: #FFFFFF; border-radius: 999px; box-shadow: 0 6px 0 {{th.softSh}}">
+<a href="{{lk.Angka.h}}" onClick="{{lk.Angka.go}}" class="f tap" style="display: flex; align-items: center; gap: 8px; height: 56px; padding: 0 22px; border-radius: 999px; color: #2B2350; font-size: 24px; font-weight: 600">
+<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="7" cy="7" r="3"/><circle cx="17" cy="7" r="3"/><circle cx="7" cy="17" r="3"/><circle cx="17" cy="17" r="3"/></svg>
+<span>{{t.count}}</span>
+</a>
+<a href="{{lk.AngkaTulis.h}}" onClick="{{lk.AngkaTulis.go}}" aria-current="page" class="f" style="display: flex; align-items: center; gap: 8px; height: 56px; padding: 0 22px; border-radius: 999px; background: {{th.acc}}; color: #FFFFFF; font-size: 24px; font-weight: 600">
+<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l4-1 11-11-3-3L5 16z"/><path d="M14 6l3 3"/></svg>
+<span>{{t.write}}</span>
+</a>
+</nav>
+</sc-if>
+<div class="f" style="display: flex; align-items: center; gap: 8px; height: 64px; padding: 0 22px 0 14px; background: #FFFFFF; border-radius: 999px; box-shadow: 0 6px 0 {{th.softSh}}; font-size: 30px; font-weight: 700">
+<svg viewBox="0 0 40 40" width="40" height="40" aria-hidden="true"><path d="M20 3l5.2 10.6 11.7 1.7-8.5 8.2 2 11.6L20 29.6 9.6 35.1l2-11.6-8.5-8.2 11.7-1.7z" fill="#FFC21A" stroke="#F08C00" stroke-width="2" stroke-linejoin="round"/></svg>
+<span>24</span>
+</div>
+</div>
+
+<div style="position: absolute; left: 32px; top: 120px; width: 236px; height: 650px; border-radius: 36px; background: #FFFFFF; box-shadow: 0 10px 0 {{th.cardSh}}">
+<div class="n" style="position: absolute; left: 10px; right: 10px; top: 18px; text-align: center; font-size: 17px; font-weight: 800; color: #6B5F99">{{t.pick}}</div>
+<div role="group" aria-label="{{t.pick}}" style="position: absolute; left: 14px; right: 14px; top: 52px; display: grid; grid-template-columns: repeat({{th.cols}}, minmax(0, 1fr)); gap: {{th.gap}}px">
+<sc-for list="{{keys}}" as="kk" hint-placeholder-count="26">
+<button class="f tap" onClick="{{kk.pick}}" aria-label="{{kk.label}}" aria-pressed="{{kk.on}}" style="position: relative; height: {{th.keyH}}px; border-radius: 16px; background: {{kk.bg}}; color: {{kk.fg}}; box-shadow: 0 5px 0 {{kk.sh}}; font-size: {{th.keyFs}}px; font-weight: 700">{{kk.k}}<span aria-hidden="true" style="position: absolute; right: -4px; top: -6px; width: 18px; height: 18px; display: {{kk.star}}"><svg viewBox="0 0 40 40" width="18" height="18"><path d="M20 3l5.2 10.6 11.7 1.7-8.5 8.2 2 11.6L20 29.6 9.6 35.1l2-11.6-8.5-8.2 11.7-1.7z" fill="#FFC21A" stroke="#F08C00" stroke-width="3" stroke-linejoin="round"/></svg></span></button>
+</sc-for>
+</div>
+<img class="trPeek" src="/_blob/0b224341bbd230f2dd731c560e41d4cb" alt="" style="position: absolute; left: 68px; bottom: 74px; width: 100px; height: 100px">
+<div class="n" style="position: absolute; left: 14px; right: 14px; bottom: 18px; text-align: center; font-size: 15px; font-weight: 800; line-height: 1.25; color: #6B5F99">{{t.follow}}</div>
+</div>
+
+<div style="position: absolute; left: 290px; top: 120px; width: 600px; height: 650px; border-radius: 40px; background: #FFFFFF; box-shadow: 0 12px 0 {{th.cardSh}}, 0 26px 40px rgba(43,35,80,.12)">
+<div style="position: absolute; left: 30px; right: 30px; top: 20px; height: 48px; display: flex; align-items: center; justify-content: space-between">
+<div class="f" style="font-size: 30px; font-weight: 700">{{t.writeVerb}} <span style="color: {{th.acc}}">{{title}}</span></div>
+<div class="n" style="font-size: 18px; font-weight: 800; color: #6B5F99">{{progress}}</div>
+</div>
+
+<div style="position: absolute; left: 30px; top: 78px; width: 520px; height: 520px; transform: scale(1.0385); transform-origin: 0 0">
+<svg viewBox="0 0 520 520" width="520" height="520" role="img" aria-label="{{areaLabel}}" onPointerDown="{{down}}" onPointerMove="{{move}}" onPointerUp="{{up}}" onPointerCancel="{{up}}" style="position: absolute; left: 0; top: 0; touch-action: none; cursor: {{cursor}}; border-radius: 20px">
+<defs>
+<pattern id="mociStarsTulis2" width="34" height="34" patternUnits="userSpaceOnUse">
+<path d="M17 7l2.6 5.2 5.7.8-4.1 4 1 5.6-5.2-2.7-5.2 2.7 1-5.6-4.1-4 5.7-.8z" fill="#FFFFFF" opacity=".55"/>
+<circle cx="4" cy="29" r="2.4" fill="#FFFFFF" opacity=".5"/>
+</pattern>
+</defs>
+<rect width="520" height="520" rx="20" fill="#FFFDFB"/>
+<path d="M20 70H500" stroke="#CFE3FF" stroke-width="3"/>
+<path d="M20 260H500" stroke="#FFC9BD" stroke-width="3" stroke-dasharray="12 12"/>
+<path d="M20 450H500" stroke="#CFE3FF" stroke-width="3"/>
+<path d="{{g.all}}" stroke="#ECE7F8" stroke-width="66" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<path d="{{g.doneD}}" stroke="{{ink}}" stroke-width="60" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<path d="{{g.doneD}}" stroke="url(#mociStarsTulis2)" stroke-width="60" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<path d="{{g.curD}}" stroke="#4C3F86" stroke-width="66" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<path class="trFlow" d="{{g.curD}}" stroke="#FFD43B" stroke-width="7" stroke-linecap="round" stroke-dasharray="14 16" fill="none"/>
+<path d="{{g.curD}}" pathLength="1" stroke="{{ink}}" stroke-width="60" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="{{g.dash}}" fill="none"/>
+<path d="{{g.curD}}" pathLength="1" stroke="url(#mociStarsTulis2)" stroke-width="60" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="{{g.dash}}" fill="none"/>
+</svg>
+
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 520px; height: 520px; pointer-events: none">
+<sc-for list="{{marks}}" as="m" hint-placeholder-count="1">
+<div class="f" style="position: absolute; left: {{m.x}}px; top: {{m.y}}px; width: 38px; height: 38px; box-sizing: border-box; border-radius: 50%; background: #FFFFFF; border: 3px solid #B9AEE0; color: #4C3F86; font-size: 19px; font-weight: 700; display: flex; align-items: center; justify-content: center">{{m.num}}</div>
+</sc-for>
+<sc-for list="{{chev}}" as="c" hint-placeholder-count="4">
+<div style="position: absolute; left: {{c.x}}px; top: {{c.y}}px; width: 40px; height: 40px; transform: rotate({{c.r}}deg)">
+<svg class="trChev" viewBox="0 0 40 40" width="40" height="40" style="animation-delay: {{c.d}}s"><path d="M13 8l13 12-13 12" fill="none" stroke="#2B2350" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" opacity=".45"/><path d="M13 8l13 12-13 12" fill="none" stroke="#FFD43B" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</div>
+</sc-for>
+<sc-if value="{{showGoal}}" hint-placeholder-val="{{true}}">
+<div style="position: absolute; left: {{goal.x}}px; top: {{goal.y}}px; width: 0; height: 0">
+<div class="trGoal" style="position: absolute; left: -34px; top: -34px; width: 68px; height: 68px; border-radius: 50%; background: #FFD43B"></div>
+<svg class="trTwinkle" viewBox="0 0 40 40" width="66" height="66" style="position: absolute; left: -33px; top: -33px"><path d="M20 3l5.2 10.6 11.7 1.7-8.5 8.2 2 11.6L20 29.6 9.6 35.1l2-11.6-8.5-8.2 11.7-1.7z" fill="#FFC21A" stroke="#F08C00" stroke-width="2.4" stroke-linejoin="round"/></svg>
+</div>
+</sc-if>
+<sc-if value="{{hasBurst}}" hint-placeholder-val="{{false}}">
+<div style="position: absolute; left: {{burst.x}}px; top: {{burst.y}}px; width: 0; height: 0">
+<div class="{{burst.ring}}" style="position: absolute; left: -50px; top: -50px; width: 100px; height: 100px; box-sizing: border-box; border-radius: 50%; border: 7px solid #FFD43B"></div>
+<svg class="{{burst.star}}" viewBox="0 0 40 40" width="80" height="80" style="position: absolute; left: -40px; top: -40px"><path d="M20 3l5.2 10.6 11.7 1.7-8.5 8.2 2 11.6L20 29.6 9.6 35.1l2-11.6-8.5-8.2 11.7-1.7z" fill="#FFC21A" stroke="#F08C00" stroke-width="2.4" stroke-linejoin="round"/></svg>
+</div>
+</sc-if>
+<sc-if value="{{showGuide}}" hint-placeholder-val="{{true}}">
+<div style="position: absolute; left: {{guide.x}}px; top: {{guide.y}}px; width: 0; height: 0">
+<sc-if value="{{guide.idle}}" hint-placeholder-val="{{true}}">
+<div class="trRing" style="position: absolute; left: -42px; top: -42px; width: 84px; height: 84px; border-radius: 50%; background: #26A03B"></div>
+</sc-if>
+<img class="{{guide.cls}}" src="/_blob/0b224341bbd230f2dd731c560e41d4cb" alt="" style="position: absolute; left: -43px; top: -50px; width: 86px; height: 86px">
+<div class="f" style="position: absolute; left: 20px; top: -58px; width: 32px; height: 32px; box-sizing: border-box; border-radius: 50%; background: #4C3F86; border: 3px solid #FFFFFF; color: #FFFFFF; font-size: 16px; font-weight: 700; display: flex; align-items: center; justify-content: center">{{guide.num}}</div>
+</div>
+</sc-if>
+<sc-if value="{{showGhost}}" hint-placeholder-val="{{false}}">
+<div class="trGhost" style="offset-path: path('{{g.curD}}')">
+<svg viewBox="0 0 60 64" width="60" height="64"><path d="M14 30V6C14 2.7 16.7 0 20 0C23.3 0 26 2.7 26 6V25C27 23.6 28.9 22.6 31.2 22.6C34 22.6 36.2 24.4 36.8 27C37.8 25.6 39.6 24.7 41.8 24.7C44.9 24.7 47.2 27 47.4 30C48.4 29 49.8 28.4 51.6 28.4C54.6 28.4 57 30.8 57 33.8V46C57 55.4 49.4 63 40 63H31C25.6 63 21 60.2 18.2 55.6L6.2 36.6C4.8 34.4 5.5 31.4 7.8 30.2C10 29 12.6 29.4 14 30Z" fill="#FFFFFF" stroke="#2B2350" stroke-width="3" stroke-linejoin="round"/><path d="M26 25V36M36.8 27V37M47.4 30V38" stroke="#2B2350" stroke-width="2.4" stroke-linecap="round" opacity=".5"/></svg>
+</div>
+</sc-if>
+</div>
+</div>
+
+<sc-if value="{{done}}" hint-placeholder-val="{{false}}">
+<div class="trRise" style="position: absolute; left: 24px; top: 516px; width: 552px; height: 112px; box-sizing: border-box; padding: 0 18px; border-radius: 32px; background: #FFFFFF; box-shadow: 0 10px 0 {{th.cardSh}}, 0 18px 40px rgba(43,35,80,.2); display: flex; align-items: center; gap: 14px">
+<div aria-hidden="true" style="display: flex; align-items: flex-end; gap: 2px">
+<svg class="trPop1" viewBox="0 0 40 40" width="40" height="40"><path d="M20 3l5.2 10.6 11.7 1.7-8.5 8.2 2 11.6L20 29.6 9.6 35.1l2-11.6-8.5-8.2 11.7-1.7z" fill="#FFC21A" stroke="#F08C00" stroke-width="2" stroke-linejoin="round"/></svg>
+<svg class="trPop2" viewBox="0 0 40 40" width="52" height="52"><path d="M20 3l5.2 10.6 11.7 1.7-8.5 8.2 2 11.6L20 29.6 9.6 35.1l2-11.6-8.5-8.2 11.7-1.7z" fill="#FFC21A" stroke="#F08C00" stroke-width="2" stroke-linejoin="round"/></svg>
+<svg class="trPop3" viewBox="0 0 40 40" width="40" height="40"><path d="M20 3l5.2 10.6 11.7 1.7-8.5 8.2 2 11.6L20 29.6 9.6 35.1l2-11.6-8.5-8.2 11.7-1.7z" fill="#FFC21A" stroke="#F08C00" stroke-width="2" stroke-linejoin="round"/></svg>
+</div>
+<div class="f" style="flex: 1; font-size: 36px; font-weight: 700; color: {{th.acc}}">{{t.great}}</div>
+<button class="tap" onClick="{{reset}}" aria-label="{{t.writeAgain}}" style="width: 64px; height: 64px; border-radius: 50%; background: {{th.soft}}; box-shadow: 0 5px 0 {{th.softSh}}; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#2B2350" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.6-5.9"/><path d="M4 4v5h5"/></svg>
+</button>
+<button class="f tap" onClick="{{nextKey}}" style="height: 64px; padding: 0 22px; border-radius: 999px; background: {{th.acc}}; box-shadow: 0 6px 0 {{th.accSh}}; color: #FFFFFF; font-size: 24px; font-weight: 600; display: flex; align-items: center; gap: 6px">
+<span>{{t.next}}</span>
+<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+</button>
+</div>
+</sc-if>
+</div>
+
+<div style="position: absolute; left: 912px; top: 120px; width: 236px; height: 650px; border-radius: 36px; background: #FFFFFF; box-shadow: 0 10px 0 {{th.cardSh}}">
+<div class="n" style="position: absolute; left: 0; right: 0; top: 22px; text-align: center; font-size: 18px; font-weight: 800; color: #6B5F99">{{t.crayons}}</div>
+<div role="group" aria-label="{{t.crayons}}" style="position: absolute; left: 0; right: 0; top: 60px; display: flex; flex-direction: column; align-items: center; gap: 14px">
+<sc-for list="{{colors}}" as="c" hint-placeholder-count="5">
+<button class="sw" onClick="{{c.pick}}" aria-label="{{c.name}}" aria-pressed="{{c.on}}" style="width: 64px; height: 64px; border-radius: 50%; background: {{c.c}}; border: 5px solid {{c.ring}}; box-shadow: 0 5px 0 rgba(43,35,80,.18); transform: {{c.shift}}"></button>
+</sc-for>
+</div>
+<div aria-hidden="true" style="position: absolute; left: 30px; right: 30px; top: 462px; height: 3px; border-radius: 3px; background: {{th.soft}}"></div>
+<button class="f tap" onClick="{{reset}}" style="position: absolute; left: 28px; top: 486px; width: 180px; height: 60px; border-radius: 999px; background: {{th.soft}}; box-shadow: 0 5px 0 {{th.softSh}}; font-size: 22px; font-weight: 600; color: #2B2350; display: flex; align-items: center; justify-content: center; gap: 8px">
+<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.6-5.9"/><path d="M4 4v5h5"/></svg>
+<span>{{t.again}}</span>
+</button>
+<button class="f tap" onClick="{{listen}}" style="position: absolute; left: 28px; top: 562px; width: 180px; height: 60px; border-radius: 999px; background: #FFB020; box-shadow: 0 5px 0 #E0870B; font-size: 22px; font-weight: 600; color: #2B2350; display: flex; align-items: center; justify-content: center; gap: 8px">
+<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="currentColor"/><path d="M15.5 9a4 4 0 0 1 0 6"/><path d="M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>
+<span>{{t.listen}}</span>
+</button>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"mode":{"editor":"enum","options":["huruf","angka"],"default":"huruf","section":"Isi"},"lang":{"editor":"enum","options":["auto","id","en"],"default":"auto","section":"Bahasa"},"app":{"editor":null},"$preview":{"width":1180,"height":820}}'>
+class Component extends DCLogic {
+  pref(k) {
+    var a = this.props.app;
+    if (a && a.prefs) return a.prefs[k] || '';
+    var st = this.state || {};
+    if (st['p_' + k] !== undefined) return st['p_' + k];
+    try { var v = window.localStorage.getItem('moci-' + k); if (v !== null) return v; } catch (e) {}
+    return '';
+  }
+  L() {
+    var p = this.props.lang;
+    if (p === 'id' || p === 'en') return p;
+    return this.pref('lang') === 'en' ? 'en' : 'id';
+  }
+  lk(names) {
+    var a = this.props.app, o = {};
+    names.forEach((n) => {
+      o[n] = (a && a.nav) ? { h: '#', go: (e) => { try { e.preventDefault(); } catch (x) {} a.nav(n); } } : { h: n + '.dc.html', go: null };
+    });
+    return o;
+  }
+  componentDidMount() {
+    this._onPref = (e) => { var d = e && e.detail; if (d && d.k) { var o = {}; o['p_' + d.k] = d.v; this.setState(o); } };
+    try { window.addEventListener('moci-pref', this._onPref); } catch (e) {}
+  }
+  componentWillUnmount() {
+    clearTimeout(this._bt); clearTimeout(this._nt);
+    try { window.removeEventListener('moci-pref', this._onPref); } catch (e) {}
+  }
+  speak(t, lang) {
+    try {
+      var s = window.speechSynthesis;
+      if (!s || typeof SpeechSynthesisUtterance === 'undefined') return;
+      s.cancel();
+      var u = new SpeechSynthesisUtterance(t);
+      var en = (lang || this.L()) === 'en';
+      u.lang = en ? 'en-US' : 'id-ID'; u.rate = 0.9; u.pitch = 1.15;
+      var re = en ? /^en/i : /^id/i;
+      var vs = s.getVoices ? s.getVoices() : [];
+      for (var i = 0; i < vs.length; i++) { if (re.test(vs[i].lang)) { u.voice = vs[i]; break; } }
+      s.speak(u);
+    } catch (e) {}
+  }
+  mode() {
+    var a = this.props.app;
+    if (a && a.params && a.params.mode === 'angka') return 'angka';
+    return this.props.mode === 'angka' ? 'angka' : 'huruf';
+  }
+  texts(lang, angka) {
+    var T = {
+      id: { learn: 'Kenali', write: 'Tulis', say: 'Ucapkan', count: 'Berhitung', back: 'Kembali ke beranda', modes: 'Mode belajar', follow: 'Geser Moci ikuti panah kuning sampai ke bintang!', writeVerb: 'Tulis', line: 'Garis', of: 'dari', done: 'Selesai!', great: 'Hebat!', next: 'Lanjut', crayons: 'Krayon', again: 'Ulangi', listen: 'Dengar', area: 'Area menulis', writeAgain: 'Tulis lagi', sayStart: 'Ayo tulis ', nice: 'Bagus!', sayDone: 'Hebat! Kamu bisa menulis ', hint: '. Geser Moci ikuti panah sampai ke bintang.', colors: ['Krayon merah muda', 'Krayon biru', 'Krayon hijau', 'Krayon oranye', 'Krayon ungu'] },
+      en: { learn: 'Learn', write: 'Write', say: 'Say', count: 'Count', back: 'Back to home', modes: 'Learning mode', follow: 'Drag Moci along the yellow arrows to the star!', writeVerb: 'Write', line: 'Line', of: 'of', done: 'All done!', great: 'Great job!', next: 'Next', crayons: 'Crayons', again: 'Again', listen: 'Listen', area: 'Writing area', writeAgain: 'Write again', sayStart: "Let's write ", nice: 'Nice!', sayDone: 'Great job! You wrote ', hint: '. Drag Moci along the arrows to the star.', colors: ['Pink crayon', 'Blue crayon', 'Green crayon', 'Orange crayon', 'Purple crayon'] }
+    }[lang];
+    T.title = angka ? (lang === 'en' ? 'Numbers' : 'Angka') : (lang === 'en' ? 'Letters' : 'Huruf');
+    T.pick = angka ? (lang === 'en' ? 'Pick a number' : 'Pilih angka') : (lang === 'en' ? 'Pick a letter' : 'Pilih huruf');
+    T.unit = angka ? (lang === 'en' ? 'the number' : 'angka') : (lang === 'en' ? 'the letter' : 'huruf');
+    return T;
+  }
+  guides() {
+    return {
+      A: ['M260 70L130 450', 'M260 70L390 450', 'M176 315H344'],
+      B: ['M170 70V450', 'M170 70H270C330 70 360 105 360 160C360 215 325 255 270 255H170', 'M170 255H285C345 255 380 295 380 350C380 410 340 450 280 450H170'],
+      C: ['M372 140C345 95 305 70 260 70C175 70 120 150 120 260C120 370 175 450 260 450C305 450 345 425 372 380'],
+      D: ['M160 70V450', 'M160 70H240C330 70 390 150 390 260C390 370 330 450 240 450H160'],
+      E: ['M170 70V450', 'M170 70H360', 'M170 260H330', 'M170 450H360'],
+      F: ['M175 70V450', 'M175 70H365', 'M175 260H335'],
+      G: ['M375 140C348 96 307 70 260 70C175 70 120 150 120 260C120 370 175 450 260 450C330 450 385 405 385 330V290H290'],
+      H: ['M150 70V450', 'M370 70V450', 'M150 260H370'],
+      I: ['M260 70V450'],
+      J: ['M330 70V350C330 410 295 450 245 450C195 450 160 415 155 370'],
+      K: ['M170 70V450', 'M360 70L170 280', 'M225 219L365 450'],
+      L: ['M175 70V450H365'],
+      M: ['M140 70V450', 'M140 70L260 330L380 70', 'M380 70V450'],
+      N: ['M150 70V450', 'M150 70L370 450', 'M370 450V70'],
+      O: ['M260 70C175 70 120 155 120 260C120 365 175 450 260 450C345 450 400 365 400 260C400 155 345 70 260 70'],
+      P: ['M170 70V450', 'M170 70H270C335 70 370 110 370 168C370 228 330 268 270 268H170'],
+      Q: ['M260 70C175 70 120 155 120 260C120 365 175 450 260 450C345 450 400 365 400 260C400 155 345 70 260 70', 'M300 360L395 465'],
+      R: ['M170 70V450', 'M170 70H270C335 70 370 110 370 168C370 228 330 268 270 268H170', 'M265 268L375 450'],
+      S: ['M365 125C340 90 302 70 258 70C195 70 150 105 150 160C150 215 200 240 260 258C325 277 375 300 375 360C375 415 325 450 260 450C210 450 168 430 145 395'],
+      T: ['M140 70H380', 'M260 70V450'],
+      U: ['M150 70V320C150 395 198 450 260 450C322 450 370 395 370 320V70'],
+      V: ['M140 70L260 450L380 70'],
+      W: ['M110 70L185 450L260 150L335 450L410 70'],
+      X: ['M150 70L370 450', 'M370 70L150 450'],
+      Y: ['M145 70L260 265', 'M375 70L260 265V450'],
+      Z: ['M150 70H370L150 450H370'],
+      '0': ['M260 70C185 70 145 160 145 260C145 360 185 450 260 450C335 450 375 360 375 260C375 160 335 70 260 70'],
+      '1': ['M200 140L275 70V450'],
+      '2': ['M150 160C150 105 200 70 255 70C315 70 360 110 360 165C360 225 310 270 150 450H370'],
+      '3': ['M160 110C185 85 220 70 258 70C318 70 355 105 355 158C355 215 310 255 250 255C320 255 370 295 370 352C370 415 320 450 255 450C210 450 172 432 148 400'],
+      '4': ['M300 70L140 320H380', 'M300 70V450'],
+      '5': ['M180 70V240C210 225 235 220 260 220C320 220 365 265 365 330C365 400 315 450 255 450C210 450 172 430 148 400', 'M180 70H350'],
+      '6': ['M345 95C320 78 292 70 265 70C185 70 140 160 140 270C140 380 190 450 262 450C330 450 375 405 375 340C375 275 330 232 268 232C210 232 162 268 145 320'],
+      '7': ['M140 70H380L220 450'],
+      '8': ['M260 70C200 70 160 105 160 160C160 215 205 245 260 260C320 277 365 310 365 360C365 415 320 450 260 450C200 450 155 415 155 360C155 310 200 277 260 260C315 245 360 215 360 160C360 105 320 70 260 70'],
+      '9': ['M360 170C360 110 315 70 258 70C195 70 150 112 150 172C150 232 195 272 255 272C315 272 360 232 360 170V450']
+    };
+  }
+  keys() { return this.mode() === 'angka' ? '0123456789'.split('') : 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''); }
+  samp(d) {
+    if (!this._sc) this._sc = {};
+    if (this._sc[d]) return this._sc[d];
+    var tk = d.match(/[MLHVC]|-?\d*\.?\d+/g) || [];
+    var pts = [], i = 0, cmd = '', x = 0, y = 0;
+    var num = function () { return parseFloat(tk[i++]); };
+    var line = function (x1, y1) {
+      var dx = x1 - x, dy = y1 - y, n = Math.max(1, Math.ceil(Math.sqrt(dx * dx + dy * dy) / 4));
+      for (var k = 1; k <= n; k++) pts.push([x + dx * k / n, y + dy * k / n]);
+      x = x1; y = y1;
+    };
+    while (i < tk.length) {
+      if (/[MLHVC]/.test(tk[i])) { cmd = tk[i]; i++; continue; }
+      if (cmd === 'M') { x = num(); y = num(); pts.push([x, y]); cmd = 'L'; }
+      else if (cmd === 'L') { var a = num(); var b = num(); line(a, b); }
+      else if (cmd === 'H') { var h = num(); line(h, y); }
+      else if (cmd === 'V') { var v = num(); line(x, v); }
+      else if (cmd === 'C') {
+        var x1 = num(), y1 = num(), x2 = num(), y2 = num(), x3 = num(), y3 = num();
+        var x0 = x, y0 = y;
+        for (var k = 1; k <= 40; k++) {
+          var t = k / 40, m = 1 - t;
+          pts.push([m * m * m * x0 + 3 * m * m * t * x1 + 3 * m * t * t * x2 + t * t * t * x3, m * m * m * y0 + 3 * m * m * t * y1 + 3 * m * t * t * y2 + t * t * t * y3]);
+        }
+        x = x3; y = y3;
+      } else { i++; }
+    }
+    var cum = [0];
+    for (var j = 1; j < pts.length; j++) { var ex = pts[j][0] - pts[j - 1][0], ey = pts[j][1] - pts[j - 1][1]; cum.push(cum[j - 1] + Math.sqrt(ex * ex + ey * ey)); }
+    var r = { pts: pts, cum: cum };
+    this._sc[d] = r;
+    return r;
+  }
+  pt(e) {
+    var r = e.currentTarget.getBoundingClientRect();
+    return [(e.clientX - r.left) * 520 / r.width, (e.clientY - r.top) * 520 / r.height];
+  }
+  S() {
+    var st = this.state || {};
+    var a = this.props.app;
+    var first = (a && a.params && a.params.k && this.guides()[a.params.k]) ? a.params.k : null;
+    var ks = this.keys();
+    var k = st.k && ks.indexOf(st.k) >= 0 ? st.k : (first || (this.mode() === 'angka' ? '2' : 'A'));
+    return {
+      fresh: st.k === undefined,
+      k: k,
+      step: st.step === undefined ? (this.mode() === 'angka' ? 0 : 1) : st.step,
+      pi: st.pi,
+      color: st.color || '#FF5C8A',
+      drag: !!st.drag
+    };
+  }
+  pick(k) {
+    clearTimeout(this._bt);
+    this.setState({ k: k, step: 0, pi: 0, drag: false, burst: null });
+    var T = this.texts(this.L(), this.mode() === 'angka');
+    this.speak(T.sayStart + T.unit + ' ' + k);
+  }
+  finish() {
+    var S = this.S();
+    var G = this.guides()[S.k];
+    var n = G.length;
+    var step = Math.min(S.step, n);
+    if (step >= n) return;
+    var c = this.samp(G[step]);
+    var endP = c.pts[c.pts.length - 1];
+    var ns = step + 1;
+    var st = this.state || {};
+    var dn = Object.assign({}, st.dn || {});
+    if (ns >= n) dn[S.k] = true;
+    clearTimeout(this._bt);
+    this.setState({ k: S.k, step: ns, pi: 0, drag: false, burst: { x: endP[0], y: endP[1] }, bk: !st.bk, dn: dn });
+    this._bt = setTimeout(() => this.setState({ burst: null }), 900);
+    var T = this.texts(this.L(), this.mode() === 'angka');
+    if (ns >= n) this.speak(T.sayDone + T.unit + ' ' + S.k + '!');
+    else this.speak(T.nice);
+  }
+  renderVals() {
+    var st = this.state || {};
+    var lang = this.L();
+    var angka = this.mode() === 'angka';
+    var T = this.texts(lang, angka);
+    var S = this.S();
+    var G = this.guides()[S.k];
+    var n = G.length;
+    var step = Math.min(S.step, n);
+    var done = step >= n;
+    var cur = done ? null : this.samp(G[step]);
+    var last = cur ? cur.pts.length - 1 : 0;
+    var pi = 0;
+    if (cur) pi = S.pi === undefined ? (S.fresh ? Math.round(last * 0.45) : 0) : Math.min(S.pi, last);
+    var frac = cur ? cur.cum[pi] / cur.cum[last] : 1;
+    var marks = [];
+    for (var i = step + 1; i < n; i++) {
+      var p0 = this.samp(G[i]).pts[0];
+      if (cur && Math.abs(p0[0] - cur.pts[0][0]) < 2 && Math.abs(p0[1] - cur.pts[0][1]) < 2) continue;
+      marks.push({ x: p0[0] - 19, y: p0[1] - 19, num: String(i + 1) });
+    }
+    var chev = [];
+    if (cur) {
+      var tot = cur.cum[last];
+      var k = 0, ci = 0;
+      for (var Ld = 52; Ld < tot - 30; Ld += 58) {
+        while (k < last && cur.cum[k] < Ld) k++;
+        if (k <= pi + 10) continue;
+        var a = cur.pts[Math.max(0, k - 2)], b = cur.pts[Math.min(last, k + 2)];
+        var ang = Math.atan2(b[1] - a[1], b[0] - a[0]) * 180 / Math.PI;
+        chev.push({ x: (cur.pts[k][0] - 20).toFixed(1), y: (cur.pts[k][1] - 20).toFixed(1), r: ang.toFixed(1), d: (ci * 0.16).toFixed(2) });
+        ci++;
+      }
+    }
+    var th = angka
+      ? { bg: '#E7F3FF', dot: '#CFE6FF', acc: '#1C7ED6', accSh: '#1565B0', soft: '#EAF4FF', softSh: '#BBD9F7', cardSh: '#C3DDF7', cols: 2, gap: 12, keyH: 74, keyFs: 40 }
+      : { bg: '#FFEDE6', dot: '#FFD9CC', acc: '#E8384F', accSh: '#B82A3E', soft: '#FFF1EC', softSh: '#F3C2B3', cardSh: '#F6CDBF', cols: 4, gap: 8, keyH: 50, keyFs: 26 };
+    var cols = ['#FF5C8A', '#3BA4FF', '#51CF66', '#FFB020', '#9775FA'];
+    var guideCls = S.drag ? 'trDrag' : (st.nudge === undefined || st.nudge === null ? 'trIdle' : (st.nudge ? 'trNudgeA' : 'trNudgeB'));
+    var labelK = T.unit + ' ' + S.k;
+    var dn = st.dn || {};
+    return {
+      t: T,
+      th: th,
+      isHuruf: !angka,
+      isAngka: angka,
+      lk: this.lk(['Main', 'Huruf', 'Tulis', 'Ucapkan', 'Angka', 'AngkaTulis']),
+      title: labelK,
+      areaLabel: T.area + ' ' + labelK,
+      progress: done ? T.done : (T.line + ' ' + (step + 1) + ' ' + T.of + ' ' + n),
+      ink: S.color,
+      cursor: S.drag ? 'grabbing' : 'grab',
+      g: {
+        all: G.join(' '),
+        doneD: step > 0 ? G.slice(0, step).join(' ') : 'M-200 -200',
+        curD: done ? 'M-200 -200' : G[step],
+        dash: (done ? 0 : frac).toFixed(4) + ' 2'
+      },
+      marks: marks,
+      chev: chev,
+      done: done,
+      showGoal: !done,
+      goal: cur ? { x: cur.pts[last][0], y: cur.pts[last][1] } : { x: -100, y: -100 },
+      showGuide: !done,
+      showGhost: !done && !S.drag && pi === 0,
+      guide: cur ? { x: cur.pts[pi][0], y: cur.pts[pi][1], idle: !S.drag && pi === 0, cls: guideCls, num: String(step + 1) } : { x: -100, y: -100, idle: false, cls: '', num: '' },
+      hasBurst: !!st.burst,
+      burst: st.burst ? { x: st.burst.x, y: st.burst.y, ring: st.bk ? 'trBoomA' : 'trBoomB', star: st.bk ? 'trStarA' : 'trStarB' } : { x: -100, y: -100, ring: '', star: '' },
+      keys: this.keys().map((kk) => ({
+        k: kk,
+        on: kk === S.k,
+        label: T.writeVerb + ' ' + T.unit + ' ' + kk,
+        bg: kk === S.k ? th.acc : th.soft,
+        fg: kk === S.k ? '#FFFFFF' : '#2B2350',
+        sh: kk === S.k ? th.accSh : th.softSh,
+        star: dn[kk] ? 'block' : 'none',
+        pick: () => this.pick(kk)
+      })),
+      colors: cols.map((c, ci2) => ({
+        c: c, name: T.colors[ci2], on: c === S.color,
+        ring: c === S.color ? '#2B2350' : '#FFFFFF',
+        shift: c === S.color ? 'translateX(-10px) scale(1.1)' : 'none',
+        pick: () => this.setState({ color: c })
+      })),
+      down: (e) => {
+        if (done || !cur) return;
+        var q = this.pt(e);
+        var g = cur.pts[pi];
+        var dx = q[0] - g[0], dy = q[1] - g[1];
+        if (dx * dx + dy * dy <= 74 * 74) {
+          try { e.currentTarget.setPointerCapture(e.pointerId); } catch (x) {}
+          this.setState({ k: S.k, step: step, pi: pi, drag: true });
+        } else {
+          clearTimeout(this._nt);
+          this.setState({ nudge: !st.nudge });
+          this._nt = setTimeout(() => this.setState({ nudge: null }), 600);
+        }
+      },
+      move: (e) => {
+        var s2 = this.state || {};
+        if (!s2.drag) return;
+        var S2 = this.S();
+        var G2 = this.guides()[S2.k];
+        if (S2.step >= G2.length) return;
+        var c = this.samp(G2[S2.step]);
+        var lastI = c.pts.length - 1;
+        var from = Math.min(s2.pi || 0, lastI);
+        var q = this.pt(e);
+        var best = -1, bd = 1e9;
+        for (var j = from; j <= Math.min(lastI, from + 45); j++) {
+          var ddx = c.pts[j][0] - q[0], ddy = c.pts[j][1] - q[1];
+          var d2 = ddx * ddx + ddy * ddy;
+          if (d2 < bd) { bd = d2; best = j; }
+        }
+        if (best > from && bd <= 60 * 60) {
+          if (best >= lastI - 1) this.finish();
+          else this.setState({ pi: best });
+        }
+      },
+      up: () => { var s2 = this.state || {}; if (s2.drag) this.setState({ drag: false }); },
+      reset: () => { clearTimeout(this._bt); this.setState({ k: S.k, step: 0, pi: 0, drag: false, burst: null }); },
+      listen: () => this.speak(T.sayStart + labelK + T.hint),
+      nextKey: () => { var ks = this.keys(); this.pick(ks[(ks.indexOf(S.k) + 1) % ks.length]); }
+    };
+  }
+}
+</script>
+</body>
+</html>

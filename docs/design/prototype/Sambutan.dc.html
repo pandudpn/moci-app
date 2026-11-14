@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Moci · Aplikasi (mulai dari Sambutan)</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&amp;family=Nunito:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.f{font-family:'Fredoka',ui-rounded,'Arial Rounded MT Bold','Trebuchet MS',system-ui,sans-serif}
+.n{font-family:'Nunito',ui-rounded,system-ui,-apple-system,'Segoe UI',sans-serif}
+a{color:#2B2350;text-decoration:none}a:hover{color:#2B2350}
+button{font:inherit;color:inherit;border:0;padding:0;margin:0;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.tap{transition:transform .12s ease}.tap:active{transform:translateY(5px) scale(.97)}
+.sbInp{outline:none;transition:border-color .15s ease}.sbInp:focus{border-color:#1C7ED6}
+.sbInp::placeholder{color:#6B5F99;opacity:1}
+.sbBob{animation:sbBob 3s ease-in-out infinite}
+.sbDrift{animation-name:sbDrift;animation-timing-function:linear;animation-iteration-count:infinite}
+.sbSpin{animation:sbSpin 40s linear infinite;transform-origin:50% 50%}
+.sbCheck{animation:sbPop .4s cubic-bezier(.3,1.6,.5,1) both}
+.sbBubble{animation:sbWob 3s ease-in-out infinite;transform-origin:10% 100%}
+@keyframes sbBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+@keyframes sbDrift{from{transform:translateX(-300px)}to{transform:translateX(1500px)}}
+@keyframes sbSpin{to{transform:rotate(360deg)}}
+@keyframes sbPop{0%{transform:scale(0)}100%{transform:scale(1)}}
+@keyframes sbWob{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg)}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="f" style="position: relative; width: 1180px; height: 820px; overflow: hidden; background: #DDF3FF; color: #2B2350">
+<sc-if value="{{isWelcome}}" hint-placeholder-val="{{true}}">
+<div style="position: absolute; left: 0; top: 0; width: 1180px; height: 820px; overflow: hidden; background: linear-gradient(180deg, #74C4FF 0%, #B5E2FF 60%, #DDF3FF 100%)">
+
+<div aria-hidden="true" style="position: absolute; left: 330px; top: -40px; width: 190px; height: 190px">
+<svg class="sbSpin" viewBox="0 0 230 230" width="190" height="190" style="position: absolute; left: 0; top: 0">
+<g fill="#FFE066">
+<rect x="109" y="4" width="12" height="34" rx="6"/>
+<rect x="109" y="4" width="12" height="34" rx="6" transform="rotate(45 115 115)"/>
+<rect x="109" y="4" width="12" height="34" rx="6" transform="rotate(90 115 115)"/>
+<rect x="109" y="4" width="12" height="34" rx="6" transform="rotate(135 115 115)"/>
+<rect x="109" y="4" width="12" height="34" rx="6" transform="rotate(180 115 115)"/>
+<rect x="109" y="4" width="12" height="34" rx="6" transform="rotate(225 115 115)"/>
+<rect x="109" y="4" width="12" height="34" rx="6" transform="rotate(270 115 115)"/>
+<rect x="109" y="4" width="12" height="34" rx="6" transform="rotate(315 115 115)"/>
+</g>
+</svg>
+<svg viewBox="0 0 230 230" width="190" height="190" style="position: absolute; left: 0; top: 0"><circle cx="115" cy="115" r="64" fill="#FFE88A"/><circle cx="115" cy="115" r="56" fill="#FFD43B"/></svg>
+</div>
+
+<div class="sbDrift" aria-hidden="true" style="position: absolute; left: 0; top: 200px; width: 190px; height: 107px; animation-duration: 62s; animation-delay: -20s; opacity: .95">
+<svg viewBox="0 0 160 90" width="190" height="107"><path d="M30 80C12 80 10 56 28 52C26 30 54 22 66 36C74 14 112 14 118 40C138 36 150 58 138 70C136 78 128 80 122 80Z" fill="#FFFFFF"/></svg>
+</div>
+<div class="sbDrift" aria-hidden="true" style="position: absolute; left: 0; top: 40px; width: 130px; height: 73px; animation-duration: 74s; animation-delay: -52s; opacity: .85">
+<svg viewBox="0 0 160 90" width="130" height="73"><path d="M30 80C12 80 10 56 28 52C26 30 54 22 66 36C74 14 112 14 118 40C138 36 150 58 138 70C136 78 128 80 122 80Z" fill="#FFFFFF"/></svg>
+</div>
+
+<svg aria-hidden="true" viewBox="0 0 1180 300" width="1180" height="300" style="position: absolute; left: 0; bottom: 0">
+<path d="M0 120C160 40 330 60 470 110C620 160 760 70 920 70C1040 70 1120 100 1180 120V300H0Z" fill="#A6E38A"/>
+<path d="M0 200C140 150 300 160 440 190C600 224 760 160 920 170C1040 178 1120 200 1180 210V300H0Z" fill="#6FCF63"/>
+</svg>
+
+<div style="position: absolute; left: 70px; top: 56px; display: flex; flex-direction: column; gap: 6px">
+<div class="f" style="display: flex; font-size: 104px; font-weight: 700; line-height: 1; letter-spacing: 3px">
+<span style="color: #F03E7C; text-shadow: 4px 0 0 #FFFFFF, -4px 0 0 #FFFFFF, 0 4px 0 #FFFFFF, 0 -4px 0 #FFFFFF, 3px 3px 0 #FFFFFF, -3px 3px 0 #FFFFFF, 3px -3px 0 #FFFFFF, -3px -3px 0 #FFFFFF, 0 10px 0 rgba(43,35,80,.22)">M</span>
+<span style="color: #FF9F1C; text-shadow: 4px 0 0 #FFFFFF, -4px 0 0 #FFFFFF, 0 4px 0 #FFFFFF, 0 -4px 0 #FFFFFF, 3px 3px 0 #FFFFFF, -3px 3px 0 #FFFFFF, 3px -3px 0 #FFFFFF, -3px -3px 0 #FFFFFF, 0 10px 0 rgba(43,35,80,.22)">o</span>
+<span style="color: #1C8CF0; text-shadow: 4px 0 0 #FFFFFF, -4px 0 0 #FFFFFF, 0 4px 0 #FFFFFF, 0 -4px 0 #FFFFFF, 3px 3px 0 #FFFFFF, -3px 3px 0 #FFFFFF, 3px -3px 0 #FFFFFF, -3px -3px 0 #FFFFFF, 0 10px 0 rgba(43,35,80,.22)">c</span>
+<span style="color: #26A03B; text-shadow: 4px 0 0 #FFFFFF, -4px 0 0 #FFFFFF, 0 4px 0 #FFFFFF, 0 -4px 0 #FFFFFF, 3px 3px 0 #FFFFFF, -3px 3px 0 #FFFFFF, 3px -3px 0 #FFFFFF, -3px -3px 0 #FFFFFF, 0 10px 0 rgba(43,35,80,.22)">i</span>
+</div>
+<div class="n" style="font-size: 24px; font-weight: 800; color: #1B4A82; padding-left: 6px">{{t.tag}}</div>
+</div>
+
+<div class="sbBubble" style="position: absolute; left: 290px; top: 232px; max-width: 214px; box-sizing: border-box; padding: 12px 20px 14px; border-radius: 26px; background: #FFFFFF; box-shadow: 0 7px 0 rgba(43,35,80,.12); font-size: 28px; font-weight: 700; line-height: 1.15; color: #2B2350">{{hello}}</div>
+<button class="sbBob" onClick="{{tapMoci}}" aria-label="Moci" style="position: absolute; left: 96px; top: 280px; width: 290px; height: 290px">
+<img src="/_blob/c6f764abf556b8252c9552e7fa94a90d" alt="" style="width: 290px; height: 290px">
+</button>
+
+<div style="position: absolute; left: 50px; top: 716px; display: flex; flex-wrap: wrap; gap: 10px; width: 430px">
+<sc-for list="{{badges}}" as="b" hint-placeholder-count="3">
+<div class="n" style="display: flex; align-items: center; gap: 6px; height: 40px; padding: 0 14px 0 10px; border-radius: 999px; background: #FFFFFF; box-shadow: 0 4px 0 rgba(43,35,80,.12); font-size: 16px; font-weight: 800; color: #2B2350">
+<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#1E8A31" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+<span>{{b.t}}</span>
+</div>
+</sc-for>
+</div>
+
+<div style="position: absolute; left: 520px; top: 50px; width: 620px; height: 736px; box-sizing: border-box; padding: 30px 30px 0; border-radius: 48px; background: #FFFFFF; box-shadow: 0 14px 0 #8EC5EE, 0 30px 50px rgba(43,35,80,.18)">
+<h1 class="f" style="margin: 0; font-size: 44px; font-weight: 700; line-height: 1.1">{{t.hi}}</h1>
+<p class="n" style="margin: 6px 0 0; font-size: 19px; font-weight: 700; color: #5B5480">{{t.sub}}</p>
+
+<div class="n" style="margin-top: 20px; font-size: 17px; font-weight: 800; color: #6B5F99; letter-spacing: .3px">Pilih bahasa · Choose a language</div>
+<div style="margin-top: 8px; display: flex; flex-direction: column; gap: 12px">
+<button class="tap" onClick="{{toId}}" aria-pressed="{{isId}}" style="display: flex; align-items: center; gap: 16px; height: 84px; box-sizing: border-box; padding: 0 20px; border-radius: 28px; background: {{idCard.bg}}; border: 5px solid {{idCard.bd}}; text-align: left">
+<div class="f" aria-hidden="true" style="width: 54px; height: 54px; flex: none; border-radius: 18px; background: #E8384F; color: #FFFFFF; font-size: 24px; font-weight: 700; display: flex; align-items: center; justify-content: center">ID</div>
+<div style="flex: 1">
+<div class="f" style="font-size: 28px; font-weight: 700; line-height: 1.1">Bahasa Indonesia</div>
+<div class="n" style="font-size: 15px; font-weight: 700; color: #5B5480">Suara &amp; teks Bahasa Indonesia</div>
+</div>
+<sc-if value="{{isId}}" hint-placeholder-val="{{true}}">
+<div class="sbCheck" aria-hidden="true" style="width: 44px; height: 44px; border-radius: 50%; background: #1C7ED6; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#FFFFFF" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+</sc-if>
+</button>
+<button class="tap" onClick="{{toEn}}" aria-pressed="{{isEn}}" style="display: flex; align-items: center; gap: 16px; height: 84px; box-sizing: border-box; padding: 0 20px; border-radius: 28px; background: {{enCard.bg}}; border: 5px solid {{enCard.bd}}; text-align: left">
+<div class="f" aria-hidden="true" style="width: 54px; height: 54px; flex: none; border-radius: 18px; background: #1C7ED6; color: #FFFFFF; font-size: 24px; font-weight: 700; display: flex; align-items: center; justify-content: center">EN</div>
+<div style="flex: 1">
+<div class="f" style="font-size: 28px; font-weight: 700; line-height: 1.1">English</div>
+<div class="n" style="font-size: 15px; font-weight: 700; color: #5B5480">English voice &amp; text</div>
+</div>
+<sc-if value="{{isEn}}" hint-placeholder-val="{{false}}">
+<div class="sbCheck" aria-hidden="true" style="width: 44px; height: 44px; border-radius: 50%; background: #1C7ED6; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#FFFFFF" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+</sc-if>
+</button>
+</div>
+
+<label for="namaAnak" class="n" style="display: block; margin-top: 20px; font-size: 17px; font-weight: 800; color: #6B5F99; letter-spacing: .3px">{{t.nameLabel}}</label>
+<input id="namaAnak" class="sbInp f" type="text" autocomplete="off" maxlength="20" value="{{nameVal}}" onChange="{{onName}}" placeholder="{{t.namePh}}" style="margin-top: 8px; width: 100%; height: 62px; box-sizing: border-box; padding: 0 20px; border-radius: 22px; border: 4px solid #EEE9F7; background: #F8F6FD; font-size: 26px; font-weight: 600; color: #2B2350">
+
+<div class="n" style="margin-top: 20px; font-size: 17px; font-weight: 800; color: #6B5F99; letter-spacing: .3px">{{t.age}}</div>
+<div style="margin-top: 8px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px">
+<sc-for list="{{ages}}" as="a" hint-placeholder-count="3">
+<button class="tap" onClick="{{a.pick}}" aria-pressed="{{a.on}}" style="height: 64px; border-radius: 22px; background: {{a.bg}}; box-shadow: 0 6px 0 {{a.sh}}; display: flex; align-items: center; justify-content: center; gap: 6px">
+<span class="f" style="font-size: 28px; font-weight: 700; color: #2B2350">{{a.v}}</span>
+<span class="n" style="font-size: 16px; font-weight: 800; color: #2B2350">{{t.years}}</span>
+</button>
+</sc-for>
+</div>
+<p class="n" style="margin: 12px 0 0; font-size: 15px; font-weight: 700; color: #6B5F99">{{t.note}}</p>
+
+<a href="#" class="tap f" onClick="{{go}}" style="position: absolute; left: 30px; right: 30px; bottom: 28px; height: 80px; border-radius: 999px; background: #26A03B; box-shadow: 0 9px 0 #1E8A31; color: #FFFFFF; font-size: 32px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 12px">
+<span>{{t.start}}</span>
+<svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13"/><path d="M13 6l6 6-6 6"/></svg>
+</a>
+</div>
+
+</div>
+</sc-if>
+
+<sc-if value="{{on.Main}}" hint-placeholder-val="{{false}}"><div style="position: absolute; left: 0; top: 0; width: 1180px; height: 820px"><dc-import name="Main" app="{{app}}" hint-size="1180px,820px"></dc-import></div></sc-if>
+<sc-if value="{{on.Huruf}}" hint-placeholder-val="{{false}}"><div style="position: absolute; left: 0; top: 0; width: 1180px; height: 820px"><dc-import name="Huruf" app="{{app}}" hint-size="1180px,820px"></dc-import></div></sc-if>
+<sc-if value="{{on.Tulis}}" hint-placeholder-val="{{false}}"><div style="position: absolute; left: 0; top: 0; width: 1180px; height: 820px"><dc-import name="Tulis" mode="huruf" app="{{app}}" hint-size="1180px,820px"></dc-import></div></sc-if>
+<sc-if value="{{on.Ucapkan}}" hint-placeholder-val="{{false}}"><div style="position: absolute; left: 0; top: 0; width: 1180px; height: 820px"><dc-import name="Ucapkan" app="{{app}}" hint-size="1180px,820px"></dc-import></div></sc-if>
+<sc-if value="{{on.Angka}}" hint-placeholder-val="{{false}}"><div style="position: absolute; left: 0; top: 0; width: 1180px; height: 820px"><dc-import name="Angka" app="{{app}}" hint-size="1180px,820px"></dc-import></div></sc-if>
+<sc-if value="{{on.AngkaTulis}}" hint-placeholder-val="{{false}}"><div style="position: absolute; left: 0; top: 0; width: 1180px; height: 820px"><dc-import name="Tulis" mode="angka" app="{{app}}" hint-size="1180px,820px"></dc-import></div></sc-if>
+<sc-if value="{{on.Hewan}}" hint-placeholder-val="{{false}}"><div style="position: absolute; left: 0; top: 0; width: 1180px; height: 820px"><dc-import name="Hewan" app="{{app}}" hint-size="1180px,820px"></dc-import></div></sc-if>
+<sc-if value="{{on.Buah}}" hint-placeholder-val="{{false}}"><div style="position: absolute; left: 0; top: 0; width: 1180px; height: 820px"><dc-import name="Buah" app="{{app}}" hint-size="1180px,820px"></dc-import></div></sc-if>
+<sc-if value="{{on.Warna}}" hint-placeholder-val="{{false}}"><div style="position: absolute; left: 0; top: 0; width: 1180px; height: 820px"><dc-import name="Warna" app="{{app}}" hint-size="1180px,820px"></dc-import></div></sc-if>
+<sc-if value="{{on.SukuKata}}" hint-placeholder-val="{{false}}"><div style="position: absolute; left: 0; top: 0; width: 1180px; height: 820px"><dc-import name="SukuKata" app="{{app}}" hint-size="1180px,820px"></dc-import></div></sc-if>
+<sc-if value="{{on.Kata}}" hint-placeholder-val="{{false}}"><div style="position: absolute; left: 0; top: 0; width: 1180px; height: 820px"><dc-import name="Kata" app="{{app}}" hint-size="1180px,820px"></dc-import></div></sc-if>
+<sc-if value="{{on.Kalimat}}" hint-placeholder-val="{{false}}"><div style="position: absolute; left: 0; top: 0; width: 1180px; height: 820px"><dc-import name="Kalimat" app="{{app}}" hint-size="1180px,820px"></dc-import></div></sc-if>
+<sc-if value="{{on.Permainan}}" hint-placeholder-val="{{false}}"><div style="position: absolute; left: 0; top: 0; width: 1180px; height: 820px"><dc-import name="Permainan" app="{{app}}" hint-size="1180px,820px"></dc-import></div></sc-if>
+<sc-if value="{{on.Cocokkan}}" hint-placeholder-val="{{false}}"><div style="position: absolute; left: 0; top: 0; width: 1180px; height: 820px"><dc-import name="Cocokkan" app="{{app}}" hint-size="1180px,820px"></dc-import></div></sc-if>
+<sc-if value="{{on.Memori}}" hint-placeholder-val="{{false}}"><div style="position: absolute; left: 0; top: 0; width: 1180px; height: 820px"><dc-import name="Memori" app="{{app}}" hint-size="1180px,820px"></dc-import></div></sc-if>
+<sc-if value="{{on.Galeri}}" hint-placeholder-val="{{false}}"><div style="position: absolute; left: 0; top: 0; width: 1180px; height: 820px"><dc-import name="Galeri" app="{{app}}" hint-size="1180px,820px"></dc-import></div></sc-if>
+<sc-if value="{{on.Mewarnai}}" hint-placeholder-val="{{false}}"><div style="position: absolute; left: 0; top: 0; width: 1180px; height: 820px"><dc-import name="Mewarnai" app="{{app}}" hint-size="1180px,820px"></dc-import></div></sc-if>
+<sc-if value="{{on.Hebat}}" hint-placeholder-val="{{false}}"><div style="position: absolute; left: 0; top: 0; width: 1180px; height: 820px"><dc-import name="Hebat" app="{{app}}" hint-size="1180px,820px"></dc-import></div></sc-if>
+<sc-if value="{{on.Gate}}" hint-placeholder-val="{{false}}"><div style="position: absolute; left: 0; top: 0; width: 1180px; height: 820px"><dc-import name="Gate" app="{{app}}" hint-size="1180px,820px"></dc-import></div></sc-if>
+<sc-if value="{{on.OrangTua}}" hint-placeholder-val="{{false}}"><div style="position: absolute; left: 0; top: 0; width: 1180px; height: 820px"><dc-import name="OrangTua" app="{{app}}" hint-size="1180px,820px"></dc-import></div></sc-if>
+<sc-if value="{{on.Bentuk}}" hint-placeholder-val="{{false}}"><div style="position: absolute; left: 0; top: 0; width: 1180px; height: 820px"><dc-import name="Bentuk" app="{{app}}" hint-size="1180px,820px"></dc-import></div></sc-if>
+<sc-if value="{{on.Musik}}" hint-placeholder-val="{{false}}"><div style="position: absolute; left: 0; top: 0; width: 1180px; height: 820px"><dc-import name="Musik" app="{{app}}" hint-size="1180px,820px"></dc-import></div></sc-if>
+<sc-if value="{{on.Karyaku}}" hint-placeholder-val="{{false}}"><div style="position: absolute; left: 0; top: 0; width: 1180px; height: 820px"><dc-import name="Karyaku" app="{{app}}" hint-size="1180px,820px"></dc-import></div></sc-if>
+<sc-if value="{{on.Istirahat}}" hint-placeholder-val="{{false}}"><div style="position: absolute; left: 0; top: 0; width: 1180px; height: 820px"><dc-import name="Istirahat" app="{{app}}" hint-size="1180px,820px"></dc-import></div></sc-if>
+<sc-if value="{{on.Bayangan}}" hint-placeholder-val="{{false}}"><div style="position: absolute; left: 0; top: 0; width: 1180px; height: 820px"><dc-import name="Bayangan" app="{{app}}" hint-size="1180px,820px"></dc-import></div></sc-if>
+<sc-if value="{{on.Puzzle}}" hint-placeholder-val="{{false}}"><div style="position: absolute; left: 0; top: 0; width: 1180px; height: 820px"><dc-import name="Puzzle" app="{{app}}" hint-size="1180px,820px"></dc-import></div></sc-if>
+<sc-if value="{{on.Balon}}" hint-placeholder-val="{{false}}"><div style="position: absolute; left: 0; top: 0; width: 1180px; height: 820px"><dc-import name="Balon" app="{{app}}" hint-size="1180px,820px"></dc-import></div></sc-if>
+<sc-if value="{{on.BesarKecil}}" hint-placeholder-val="{{false}}"><div style="position: absolute; left: 0; top: 0; width: 1180px; height: 820px"><dc-import name="BesarKecil" app="{{app}}" hint-size="1180px,820px"></dc-import></div></sc-if>
+<sc-if value="{{isSplash}}" hint-placeholder-val="{{false}}"><div style="position: absolute; left: 0; top: 0; width: 1180px; height: 820px"><dc-import name="SplashTablet" tema="terang" hint-size="1180px,820px"></dc-import><button onClick="{{skip}}" aria-label="{{t.skip}}" style="position: absolute; left: 0; top: 0; width: 1180px; height: 820px; border: 0; padding: 0; background: transparent; cursor: pointer"></button></div></sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"lang":{"editor":"enum","options":["auto","id","en"],"default":"auto","section":"Bahasa"},"$preview":{"width":1180,"height":820}}'>
+class Component extends DCLogic {
+  screens() {
+    return ['Main', 'Huruf', 'Tulis', 'Ucapkan', 'Angka', 'AngkaTulis', 'Hewan', 'Buah', 'Warna', 'SukuKata', 'Kata', 'Kalimat', 'Permainan', 'Cocokkan', 'Memori', 'Galeri', 'Mewarnai', 'Hebat', 'Gate', 'OrangTua', 'Bentuk', 'Musik', 'Karyaku', 'Istirahat', 'Bayangan', 'Puzzle', 'Balon', 'BesarKecil'];
+  }
+  pref(k) {
+    var st = this.state || {};
+    if (st['p_' + k] !== undefined) return st['p_' + k];
+    try { var v = window.localStorage.getItem('moci-' + k); if (v !== null) return v; } catch (e) {}
+    return '';
+  }
+  setPref(k, v) {
+    v = v === undefined || v === null ? '' : String(v);
+    try { window.localStorage.setItem('moci-' + k, v); } catch (e) {}
+    var o = {}; o['p_' + k] = v; this.setState(o);
+    try { window.dispatchEvent(new CustomEvent('moci-pref', { detail: { k: k, v: v } })); } catch (e) {}
+  }
+  L() {
+    var p = this.props.lang;
+    if (p === 'id' || p === 'en') return p;
+    var v = this.pref('lang');
+    return v === 'en' ? 'en' : 'id';
+  }
+  nav(to, params) {
+    var scr = to === 'Sambutan' || this.screens().indexOf(to) >= 0 ? to : 'Main';
+    this.setState({ scr: scr, params: params || null });
+  }
+  tick() {
+    // play-time tracking for break reminders and the daily limit (Area Orang Tua settings)
+    var st = this.state || {};
+    var scr = st.scr || 'Splash';
+    if (['Splash', 'Sambutan', 'Istirahat', 'Gate', 'OrangTua'].indexOf(scr) >= 0) return;
+    this._play = (this._play || 0) + 15000;
+    this._brk = (this._brk || 0) + 15000;
+    var limit = this.pref('limit');
+    if (limit !== '15' && limit !== '45' && limit !== 'off') limit = '30';
+    if (limit !== 'off' && this._play >= parseInt(limit, 10) * 60000) { this.nav('Istirahat', { jenis: 'habis' }); return; }
+    if (this.pref('breaks') !== 'off' && this._brk >= 20 * 60000) { this._brk = 0; this.nav('Istirahat', { jenis: 'istirahat', back: scr }); }
+  }
+  componentDidMount() {
+    this._onPref = (e) => { var d = e && e.detail; if (d && d.k) { var o = {}; o['p_' + d.k] = d.v; this.setState(o); } };
+    this._onStore = (e) => { if (e && e.key && e.key.indexOf('moci-') === 0) { var o = {}; o['p_' + e.key.slice(5)] = e.newValue || ''; this.setState(o); } };
+    try { window.addEventListener('moci-pref', this._onPref); window.addEventListener('storage', this._onStore); } catch (e) {}
+    this._spl = setTimeout(() => { var s = this.state || {}; if (!s.scr || s.scr === 'Splash') this.setState({ scr: 'Sambutan' }); }, 3600);
+    this._clock = setInterval(() => this.tick(), 15000);
+  }
+  componentWillUnmount() {
+    clearTimeout(this._spl);
+    clearInterval(this._clock);
+    try { window.removeEventListener('moci-pref', this._onPref); window.removeEventListener('storage', this._onStore); } catch (e) {}
+  }
+  speak(t, lang) {
+    try {
+      var s = window.speechSynthesis;
+      if (!s || typeof SpeechSynthesisUtterance === 'undefined') return;
+      s.cancel();
+      var u = new SpeechSynthesisUtterance(t);
+      var en = (lang || this.L()) === 'en';
+      u.lang = en ? 'en-US' : 'id-ID'; u.rate = 0.9; u.pitch = 1.15;
+      var re = en ? /^en/i : /^id/i;
+      var vs = s.getVoices ? s.getVoices() : [];
+      for (var i = 0; i < vs.length; i++) { if (re.test(vs[i].lang)) { u.voice = vs[i]; break; } }
+      s.speak(u);
+    } catch (e) {}
+  }
+  renderVals() {
+    var lang = this.L();
+    var st = this.state || {};
+    var name = String(this.pref('name') || '');
+    var nm = name.trim();
+    var T = {
+      id: { tag: 'Main & Belajar', hi: 'Halo! Aku Moci.', sub: 'Teman main dan belajar untuk anak usia 2–7 tahun.', nameLabel: 'Nama anak', namePh: 'Nama panggilan si kecil', age: 'Usia anak', years: 'tahun', note: 'Nama hanya tersimpan di perangkat ini. Bisa diubah di Area Orang Tua.', start: 'Ayo Mulai!', skip: 'Lewati intro', hello: 'Hai', friend: 'teman', say: 'Halo! Aku Moci. Siapa namamu?', badges: ['Tanpa iklan', 'Tanpa pembelian', 'Bisa offline'] },
+      en: { tag: 'Play & Learn', hi: "Hi! I'm Moci.", sub: 'A play-and-learn buddy for kids aged 2–7.', nameLabel: "Child's name", namePh: "Your little one's nickname", age: "Child's age", years: 'years', note: "Saved only on this device. You can change it in Parents' Corner.", start: "Let's Go!", skip: 'Skip intro', hello: 'Hi', friend: 'friend', say: "Hi! I'm Moci. What's your name?", badges: ['No ads', 'No in-app purchases', 'Works offline'] }
+    }[lang];
+    var age = this.pref('age');
+    if (age !== '4–5' && age !== '6–7') age = '2–3';
+    var onCard = { bg: '#EAF4FF', bd: '#1C7ED6' };
+    var offCard = { bg: '#FFFFFF', bd: '#EEE9F7' };
+    var scr = st.scr || 'Splash';
+    var on = {};
+    this.screens().forEach((k) => { on[k] = scr === k; });
+    if (!this._mem) this._mem = {};
+    var app = {
+      prefs: { lang: lang, name: nm, age: age, letters: this.pref('letters'), limit: this.pref('limit'), music: this.pref('music'), sfx: this.pref('sfx'), breaks: this.pref('breaks') },
+      set: (k, v) => this.setPref(k, v),
+      nav: (to, params) => this.nav(to, params),
+      params: st.params || {},
+      mem: this._mem
+    };
+    return {
+      t: T,
+      app: app,
+      on: on,
+      isWelcome: scr === 'Sambutan',
+      isSplash: scr === 'Splash',
+      skip: () => { clearTimeout(this._spl); this.setState({ scr: 'Sambutan' }); },
+      nameVal: name,
+      hello: T.hello + ', ' + (nm || T.friend) + '!',
+      isId: lang === 'id',
+      isEn: lang === 'en',
+      idCard: lang === 'id' ? onCard : offCard,
+      enCard: lang === 'en' ? onCard : offCard,
+      badges: T.badges.map((b) => ({ t: b })),
+      ages: ['2–3', '4–5', '6–7'].map((v) => ({
+        v: v, on: v === age,
+        bg: v === age ? '#FFC233' : '#F4F1FA',
+        sh: v === age ? '#E0A100' : '#E3DDF0',
+        pick: () => this.setPref('age', v)
+      })),
+      onName: (e) => { var v = String((e && e.target && e.target.value) || '').slice(0, 20); this.setPref('name', v); },
+      toId: () => { this.setPref('lang', 'id'); this.speak('Bahasa Indonesia', 'id'); },
+      toEn: () => { this.setPref('lang', 'en'); this.speak('English', 'en'); },
+      tapMoci: () => this.speak(nm ? (T.hello + ', ' + nm + '!') : T.say),
+      go: (e) => {
+        try { if (e && e.preventDefault) e.preventDefault(); } catch (x) {}
+        this.speak(T.start.replace('!', '') + (nm ? ', ' + nm : '') + '!');
+        this.nav('Main');
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

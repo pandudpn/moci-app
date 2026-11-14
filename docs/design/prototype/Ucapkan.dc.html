@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Moci · Ucapkan</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&amp;family=Nunito:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.f{font-family:'Fredoka',ui-rounded,'Arial Rounded MT Bold','Trebuchet MS',system-ui,sans-serif}
+.n{font-family:'Nunito',ui-rounded,system-ui,-apple-system,'Segoe UI',sans-serif}
+a{color:#2B2350;text-decoration:none}a:hover{color:#2B2350}
+button{font:inherit;color:inherit;border:0;padding:0;margin:0;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.tap{transition:transform .12s ease}.tap:active{transform:translateY(5px) scale(.97)}
+.ucBob{animation:ucBob 3s ease-in-out infinite}
+.ucRing{animation:ucRing 2.4s ease-out infinite}
+.ucEq{animation:ucEq .8s ease-in-out infinite;transform-origin:50% 100%}
+.ucPop1{animation:ucPop .5s cubic-bezier(.3,1.6,.5,1) both}
+.ucPop2{animation:ucPop .5s cubic-bezier(.3,1.6,.5,1) .15s both}
+.ucPop3{animation:ucPop .5s cubic-bezier(.3,1.6,.5,1) .3s both}
+.ucPeek{animation:ucPeek 3s ease-in-out infinite;transform-origin:50% 100%}
+@keyframes ucBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes ucRing{0%{transform:scale(1);opacity:.45}100%{transform:scale(2);opacity:0}}
+@keyframes ucEq{0%,100%{transform:scaleY(.25)}50%{transform:scaleY(1)}}
+@keyframes ucPop{0%{transform:scale(0) rotate(-30deg)}100%{transform:scale(1) rotate(0)}}
+@keyframes ucPeek{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-8px) rotate(3deg)}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="f" style="position: relative; width: 1180px; height: 820px; overflow: hidden; background-color: #FFEDE6; background-image: radial-gradient(#FFD9CC 3px, transparent 3px); background-size: 36px 36px; color: #2B2350">
+
+<div style="position: absolute; left: 32px; right: 32px; top: 22px; display: flex; align-items: center; gap: 18px">
+<a href="{{lk.Main.h}}" onClick="{{lk.Main.go}}" class="tap" aria-label="{{t.back}}" style="width: 76px; height: 76px; border-radius: 26px; background: #FFFFFF; box-shadow: 0 7px 0 #F3C2B3; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="#2B2350" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+</a>
+<h1 class="f" style="margin: 0; font-size: 46px; font-weight: 700">{{t.title}}</h1>
+<div style="flex: 1"></div>
+<nav aria-label="{{t.modes}}" style="display: flex; gap: 6px; padding: 6px; background: #FFFFFF; border-radius: 999px; box-shadow: 0 6px 0 #F3C2B3">
+<a href="{{lk.Huruf.h}}" onClick="{{lk.Huruf.go}}" class="f tap" style="display: flex; align-items: center; gap: 8px; height: 56px; padding: 0 22px; border-radius: 999px; color: #2B2350; font-size: 24px; font-weight: 600">
+<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+<span>{{t.learn}}</span>
+</a>
+<a href="{{lk.Tulis.h}}" onClick="{{lk.Tulis.go}}" class="f tap" style="display: flex; align-items: center; gap: 8px; height: 56px; padding: 0 22px; border-radius: 999px; color: #2B2350; font-size: 24px; font-weight: 600">
+<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l4-1 11-11-3-3L5 16z"/><path d="M14 6l3 3"/></svg>
+<span>{{t.write}}</span>
+</a>
+<a href="{{lk.Ucapkan.h}}" onClick="{{lk.Ucapkan.go}}" aria-current="page" class="f" style="display: flex; align-items: center; gap: 8px; height: 56px; padding: 0 22px; border-radius: 999px; background: #E8384F; color: #FFFFFF; font-size: 24px; font-weight: 600">
+<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0"/><path d="M12 17.5V21"/></svg>
+<span>{{t.say}}</span>
+</a>
+</nav>
+<div class="f" style="display: flex; align-items: center; gap: 8px; height: 64px; padding: 0 22px 0 14px; background: #FFFFFF; border-radius: 999px; box-shadow: 0 6px 0 #F3C2B3; font-size: 30px; font-weight: 700">
+<svg viewBox="0 0 40 40" width="40" height="40" aria-hidden="true"><path d="M20 3l5.2 10.6 11.7 1.7-8.5 8.2 2 11.6L20 29.6 9.6 35.1l2-11.6-8.5-8.2 11.7-1.7z" fill="#FFC21A" stroke="#F08C00" stroke-width="2" stroke-linejoin="round"/></svg>
+<span>24</span>
+</div>
+</div>
+
+<div style="position: absolute; left: 60px; top: 128px; width: 500px; height: 600px; border-radius: 44px; background: #FFFFFF; box-shadow: 0 14px 0 #F6CDBF, 0 26px 40px rgba(43,35,80,.12)">
+<div aria-hidden="true" style="position: absolute; left: 110px; top: 34px; width: 280px; height: 280px; border-radius: 50%; background: #FFF1EC"></div>
+<img class="ucBob" src="{{cur.img}}" alt="{{cur.w}}" style="position: absolute; left: 125px; top: 42px; width: 250px; height: 250px">
+<div style="position: absolute; left: 0; right: 0; top: 334px; display: flex; justify-content: center; gap: 14px">
+<sc-for list="{{syl}}" as="sy" hint-placeholder-count="2">
+<button class="f tap" onClick="{{sy.say}}" aria-label="{{sy.label}}" style="height: 100px; min-width: 100px; padding: 0 28px; border-radius: 30px; background: {{sy.bg}}; box-shadow: 0 8px 0 {{sy.sh}}; color: #FFFFFF; font-size: 60px; font-weight: 700; letter-spacing: 2px">{{sy.t}}</button>
+</sc-for>
+</div>
+<button class="f tap" onClick="{{hear}}" style="position: absolute; left: 110px; top: 470px; width: 280px; height: 72px; border-radius: 999px; background: #FFB020; box-shadow: 0 7px 0 #E0870B; font-size: 26px; font-weight: 600; color: #2B2350; display: flex; align-items: center; justify-content: center; gap: 10px">
+<svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="currentColor"/><path d="M15.5 9a4 4 0 0 1 0 6"/><path d="M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>
+<span>{{t.hear}}</span>
+</button>
+<div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 566px; display: flex; justify-content: center; gap: 10px">
+<sc-for list="{{dots}}" as="d" hint-placeholder-count="5">
+<div style="width: {{d.w}}px; height: 12px; border-radius: 6px; background: {{d.c}}"></div>
+</sc-for>
+</div>
+</div>
+
+<img class="ucPeek" src="/_blob/0b224341bbd230f2dd731c560e41d4cb" alt="" style="position: absolute; left: 612px; top: 132px; width: 190px; height: 190px">
+<div style="position: absolute; left: 806px; top: 126px; width: 330px; box-sizing: border-box; padding: 18px 22px; border-radius: 30px; background: #FFFFFF; box-shadow: 0 8px 0 rgba(43,35,80,.1)">
+<div class="f" style="font-size: 26px; font-weight: 600; line-height: 1.2">{{t.yourTurn}}</div>
+<div class="f" style="font-size: 52px; font-weight: 700; line-height: 1.1; color: #E8384F; letter-spacing: 2px; margin-top: 4px">{{cur.big}}</div>
+</div>
+<svg aria-hidden="true" viewBox="0 0 30 30" width="30" height="30" style="position: absolute; left: 784px; top: 196px"><path d="M30 0V30L0 12Z" fill="#FFFFFF"/></svg>
+
+<div aria-hidden="true" class="ucRing" style="position: absolute; left: 780px; top: 372px; width: 180px; height: 180px; border-radius: 50%; background: {{micRing}}"></div>
+<sc-if value="{{listening}}" hint-placeholder-val="{{false}}">
+<div aria-hidden="true" class="ucRing" style="position: absolute; left: 780px; top: 372px; width: 180px; height: 180px; border-radius: 50%; background: #F03E7C; animation-delay: .8s"></div>
+<div aria-hidden="true" class="ucRing" style="position: absolute; left: 780px; top: 372px; width: 180px; height: 180px; border-radius: 50%; background: #F03E7C; animation-delay: 1.6s"></div>
+</sc-if>
+<button class="tap" onClick="{{tapMic}}" aria-label="{{micLabel}}" style="position: absolute; left: 780px; top: 372px; width: 180px; height: 180px; border-radius: 50%; background: {{micBg}}; box-shadow: 0 12px 0 {{micSh}}, 0 24px 40px rgba(43,35,80,.2); display: flex; align-items: center; justify-content: center">
+<sc-if value="{{notGood}}" hint-placeholder-val="{{true}}">
+<svg viewBox="0 0 24 24" width="84" height="84" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3" fill="#FFFFFF"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0"/><path d="M12 17.5V21"/></svg>
+</sc-if>
+<sc-if value="{{good}}" hint-placeholder-val="{{false}}">
+<svg viewBox="0 0 24 24" width="90" height="90" fill="none" stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+</sc-if>
+</button>
+
+<div class="f" style="position: absolute; left: 640px; width: 460px; top: 584px; text-align: center; font-size: 30px; font-weight: 600">{{status}}</div>
+
+<sc-if value="{{listening}}" hint-placeholder-val="{{false}}">
+<div aria-hidden="true" style="position: absolute; left: 790px; top: 640px; width: 160px; height: 60px; display: flex; align-items: flex-end; justify-content: center; gap: 8px">
+<div class="ucEq" style="width: 12px; height: 60px; border-radius: 6px; background: #F03E7C"></div>
+<div class="ucEq" style="width: 12px; height: 60px; border-radius: 6px; background: #FFB020; animation-delay: -.2s"></div>
+<div class="ucEq" style="width: 12px; height: 60px; border-radius: 6px; background: #1C8CF0; animation-delay: -.4s"></div>
+<div class="ucEq" style="width: 12px; height: 60px; border-radius: 6px; background: #26A03B; animation-delay: -.1s"></div>
+<div class="ucEq" style="width: 12px; height: 60px; border-radius: 6px; background: #9775FA; animation-delay: -.5s"></div>
+<div class="ucEq" style="width: 12px; height: 60px; border-radius: 6px; background: #F03E7C; animation-delay: -.3s"></div>
+<div class="ucEq" style="width: 12px; height: 60px; border-radius: 6px; background: #FFB020; animation-delay: -.6s"></div>
+</div>
+</sc-if>
+
+<sc-if value="{{good}}" hint-placeholder-val="{{false}}">
+<div aria-hidden="true" style="position: absolute; left: 770px; top: 628px; width: 200px; display: flex; justify-content: center; align-items: flex-end; gap: 4px">
+<svg class="ucPop1" viewBox="0 0 40 40" width="44" height="44"><path d="M20 3l5.2 10.6 11.7 1.7-8.5 8.2 2 11.6L20 29.6 9.6 35.1l2-11.6-8.5-8.2 11.7-1.7z" fill="#FFC21A" stroke="#F08C00" stroke-width="2" stroke-linejoin="round"/></svg>
+<svg class="ucPop2" viewBox="0 0 40 40" width="58" height="58"><path d="M20 3l5.2 10.6 11.7 1.7-8.5 8.2 2 11.6L20 29.6 9.6 35.1l2-11.6-8.5-8.2 11.7-1.7z" fill="#FFC21A" stroke="#F08C00" stroke-width="2" stroke-linejoin="round"/></svg>
+<svg class="ucPop3" viewBox="0 0 40 40" width="44" height="44"><path d="M20 3l5.2 10.6 11.7 1.7-8.5 8.2 2 11.6L20 29.6 9.6 35.1l2-11.6-8.5-8.2 11.7-1.7z" fill="#FFC21A" stroke="#F08C00" stroke-width="2" stroke-linejoin="round"/></svg>
+</div>
+<div style="position: absolute; left: 640px; width: 460px; top: 712px; display: flex; justify-content: center; gap: 14px">
+<button class="f tap" onClick="{{again}}" style="height: 64px; padding: 0 24px; border-radius: 999px; background: #FFFFFF; box-shadow: 0 6px 0 #F3C2B3; font-size: 24px; font-weight: 600; color: #2B2350; display: flex; align-items: center; gap: 8px">
+<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.6-5.9"/><path d="M4 4v5h5"/></svg>
+<span>{{t.again}}</span>
+</button>
+<button class="f tap" onClick="{{nextWord}}" style="height: 64px; padding: 0 24px; border-radius: 999px; background: #E8384F; box-shadow: 0 6px 0 #B82A3E; font-size: 24px; font-weight: 600; color: #FFFFFF; display: flex; align-items: center; gap: 6px">
+<span>{{t.nextWord}}</span>
+<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+</button>
+</div>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"lang":{"editor":"enum","options":["auto","id","en"],"default":"auto","section":"Bahasa"},"app":{"editor":null},"$preview":{"width":1180,"height":820}}'>
+class Component extends DCLogic {
+  pref(k) {
+    var a = this.props.app;
+    if (a && a.prefs) return a.prefs[k] || '';
+    var st = this.state || {};
+    if (st['p_' + k] !== undefined) return st['p_' + k];
+    try { var v = window.localStorage.getItem('moci-' + k); if (v !== null) return v; } catch (e) {}
+    return '';
+  }
+  L() {
+    var p = this.props.lang;
+    if (p === 'id' || p === 'en') return p;
+    return this.pref('lang') === 'en' ? 'en' : 'id';
+  }
+  componentDidMount() {
+    this._onPref = (e) => { var d = e && e.detail; if (d && d.k) { var o = {}; o['p_' + d.k] = d.v; this.setState(o); } };
+    this._onStore = (e) => { if (e && e.key && e.key.indexOf('moci-') === 0) { var o = {}; o['p_' + e.key.slice(5)] = e.newValue || ''; this.setState(o); } };
+    try { window.addEventListener('moci-pref', this._onPref); window.addEventListener('storage', this._onStore); } catch (e) {}
+  }
+  componentWillUnmount() {
+    clearTimeout(this._t);
+    try { window.removeEventListener('moci-pref', this._onPref); window.removeEventListener('storage', this._onStore); } catch (e) {}
+  }
+  speak(t, lang) {
+    try {
+      var s = window.speechSynthesis;
+      if (!s || typeof SpeechSynthesisUtterance === 'undefined') return;
+      s.cancel();
+      var u = new SpeechSynthesisUtterance(t);
+      var en = (lang || this.L()) === 'en';
+      u.lang = en ? 'en-US' : 'id-ID'; u.rate = 0.8; u.pitch = 1.15;
+      var re = en ? /^en/i : /^id/i;
+      var vs = s.getVoices ? s.getVoices() : [];
+      for (var i = 0; i < vs.length; i++) { if (re.test(vs[i].lang)) { u.voice = vs[i]; break; } }
+      s.speak(u);
+    } catch (e) {}
+  }
+  words(lang) {
+    var B = '/_blob/';
+    return lang === 'en' ? [
+      { w: 'Apple', syl: ['AP', 'PLE'], img: B + 'f3ad85e8656c762498e18346c0834e64' },
+      { w: 'Zebra', syl: ['ZE', 'BRA'], img: B + 'e7a48678ca5c900be7908c88a20c5a18' },
+      { w: 'Rabbit', syl: ['RAB', 'BIT'], img: B + 'f7d015c440e821b1c7c751875e4327e8' },
+      { w: 'Yoyo', syl: ['YO', 'YO'], img: B + 'd8d724511b118aee435cb582d2599023' },
+      { w: 'Mango', syl: ['MAN', 'GO'], img: B + '8a6b053fd31a1f50cc94e69e5242e40f' }
+    ] : [
+      { w: 'Apel', syl: ['A', 'PEL'], img: B + 'f3ad85e8656c762498e18346c0834e64' },
+      { w: 'Bola', syl: ['BO', 'LA'], img: B + 'b6ba1bc1e8f26eb3aa05f31a41e7bb31' },
+      { w: 'Ikan', syl: ['I', 'KAN'], img: B + 'ce8b6885ad970a4e66e036e133810b2b' },
+      { w: 'Sapi', syl: ['SA', 'PI'], img: B + 'eb1bebc96da8f6f1ffc1494e0fc98f3f' },
+      { w: 'Topi', syl: ['TO', 'PI'], img: B + '4ffb45a35e6ab85a85df0806cc4ed5bf' }
+    ];
+  }
+  lk(names) {
+    var o = {};
+    names.forEach((n) => {
+      o[n] = (this.props.app && this.props.app.nav) ? { h: '#', go: (e) => this.navTo(e, n) } : { h: n + '.dc.html', go: null };
+    });
+    return o;
+  }
+  navTo(e, to, params) {
+    var a = this.props.app;
+    if (!a || !a.nav) return false;
+    try { if (e && e.preventDefault) e.preventDefault(); } catch (x) {}
+    a.nav(to, params);
+    return true;
+  }
+  renderVals() {
+    var v = this.renderVals0();
+    v.lk = this.lk(['Huruf', 'Main', 'Tulis', 'Ucapkan']);
+    return v;
+  }
+  renderVals0() {
+    var st = this.state || {};
+    var lang = this.L();
+    var T = {
+      id: { title: 'Huruf', learn: 'Kenali', write: 'Tulis', say: 'Ucapkan', back: 'Kembali ke beranda', modes: 'Mode belajar', hear: 'Dengar contoh', yourTurn: 'Sekarang giliranmu! Bilang:', idle: 'Ketuk mic, lalu ucapkan', listen: 'Moci mendengarkan…', good: 'Bagus sekali!', again: 'Ulangi', nextWord: 'Kata berikutnya', syl: 'Suku kata', micIdle: 'Ketuk lalu ucapkan', micListen: 'Moci sedang mendengarkan', letsSay: 'Ayo bilang ' },
+      en: { title: 'Letters', learn: 'Learn', write: 'Write', say: 'Say', back: 'Back to home', modes: 'Learning mode', hear: 'Hear it', yourTurn: 'Your turn! Say:', idle: 'Tap the mic, then say it', listen: 'Moci is listening…', good: 'Well done!', again: 'Again', nextWord: 'Next word', syl: 'Syllable', micIdle: 'Tap and say', micListen: 'Moci is listening', letsSay: "Let's say " }
+    }[lang];
+    var W = this.words(lang);
+    var i = Math.min(st.i || 0, W.length - 1);
+    var cur = W[i];
+    var phase = st.phase || 'idle';
+    var bgs = ['#E8384F', '#1C8CF0', '#7048E8'];
+    var shs = ['#B82A3E', '#1265B5', '#5032B8'];
+    return {
+      t: T,
+      cur: { w: cur.w, img: cur.img, big: cur.w.toUpperCase() },
+      syl: cur.syl.map((s, k) => ({ t: s, label: T.syl + ' ' + s, bg: bgs[k % 3], sh: shs[k % 3], say: () => this.speak(s.toLowerCase()) })),
+      dots: W.map((x, k) => ({ w: k === i ? 34 : 12, c: k < i ? '#26A03B' : (k === i ? '#E8384F' : '#F3C2B3') })),
+      listening: phase === 'listen',
+      good: phase === 'good',
+      notGood: phase !== 'good',
+      micBg: phase === 'good' ? '#26A03B' : '#F03E7C',
+      micSh: phase === 'good' ? '#1E8A31' : '#C2255C',
+      micRing: phase === 'good' ? '#26A03B' : '#F03E7C',
+      micLabel: phase === 'listen' ? T.micListen : (T.micIdle + ' ' + cur.w),
+      status: phase === 'listen' ? T.listen : (phase === 'good' ? T.good : T.idle),
+      hear: () => this.speak(lang === 'en' ? (cur.w + '. ' + cur.w) : (cur.syl.join(' ').toLowerCase() + '. ' + cur.w)),
+      tapMic: () => {
+        if (phase === 'listen') return;
+        clearTimeout(this._t);
+        this.setState({ phase: 'listen' });
+        this._t = setTimeout(() => { this.setState({ phase: 'good' }); this.speak(T.good + ' ' + cur.w + '!'); }, 2600);
+      },
+      again: () => { clearTimeout(this._t); this.setState({ phase: 'idle' }); },
+      nextWord: () => { clearTimeout(this._t); var n = (i + 1) % W.length; this.setState({ i: n, phase: 'idle' }); this.speak(T.letsSay + W[n].w); }
+    };
+  }
+}
+</script>
+</body>
+</html>

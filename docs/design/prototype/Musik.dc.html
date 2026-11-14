@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Moci · Main Musik</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&amp;family=Nunito:wght@600;700;800;900&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.f{font-family:'Fredoka',ui-rounded,'Arial Rounded MT Bold','Trebuchet MS',system-ui,sans-serif}
+.n{font-family:'Nunito',ui-rounded,system-ui,-apple-system,'Segoe UI',sans-serif}
+a{color:#2B2350;text-decoration:none}a:hover{color:#2B2350}
+button{font:inherit;color:inherit;border:0;padding:0;margin:0;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.tap{transition:transform .12s ease}.tap:active{transform:translateY(5px) scale(.97)}
+.muHitA{animation:muHitA .32s ease-out 1}
+.muHitB{animation:muHitB .32s ease-out 1}
+.muPadA{animation:muPadA .28s ease-out 1}
+.muPadB{animation:muPadB .28s ease-out 1}
+.muBob{animation:muBob .9s ease-in-out infinite}
+.muIn{animation:muIn .45s cubic-bezier(.3,1.5,.5,1) both}
+@keyframes muHitA{0%{transform:translateY(0)}35%{transform:translateY(9px) scale(.98)}100%{transform:translateY(0)}}
+@keyframes muHitB{0%{transform:translateY(0)}35%{transform:translateY(9px) scale(.98)}100%{transform:translateY(0)}}
+@keyframes muPadA{0%{transform:scale(1)}35%{transform:scale(.93)}100%{transform:scale(1)}}
+@keyframes muPadB{0%{transform:scale(1)}35%{transform:scale(.93)}100%{transform:scale(1)}}
+@keyframes muBob{0%,100%{transform:translateY(0)}50%{transform:translateY(10px)}}
+@keyframes muIn{0%{transform:scale(.5);opacity:0}100%{transform:scale(1);opacity:1}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="f" style="position: relative; width: 1180px; height: 820px; overflow: hidden; background-color: #FFF0F6; background-image: radial-gradient(#FFD6E7 3px, transparent 3px); background-size: 36px 36px; color: #2B2350">
+
+<div style="position: absolute; left: 32px; right: 32px; top: 22px; display: flex; align-items: center; gap: 16px">
+<a href="{{lk.Main.h}}" onClick="{{lk.Main.go}}" class="tap" aria-label="{{t.back}}" style="width: 76px; height: 76px; border-radius: 26px; background: #FFFFFF; box-shadow: 0 7px 0 #F8C4D9; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="#2B2350" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+</a>
+<h1 class="f" style="margin: 0; font-size: 44px; font-weight: 700; white-space: nowrap">{{t.title}}</h1>
+<div style="flex: 1"></div>
+<nav aria-label="{{t.modes}}" style="display: flex; gap: 6px; padding: 6px; background: #FFFFFF; border-radius: 999px; box-shadow: 0 6px 0 #F8C4D9">
+<sc-for list="{{modes}}" as="m" hint-placeholder-count="2">
+<button class="f tap" onClick="{{m.pick}}" aria-pressed="{{m.on}}" style="height: 56px; padding: 0 26px; border-radius: 999px; background: {{m.bg}}; color: {{m.fg}}; font-size: 22px; font-weight: 600">{{m.t}}</button>
+</sc-for>
+</nav>
+</div>
+
+<sc-if value="{{isXylo}}" hint-placeholder-val="{{true}}">
+<div style="position: absolute; left: 40px; top: 118px; width: 1100px; height: 88px; box-sizing: border-box; padding: 0 16px 0 26px; border-radius: 30px; background: #FFFFFF; box-shadow: 0 8px 0 #F8C4D9; display: flex; align-items: center; gap: 12px">
+<span class="n" style="font-size: 17px; font-weight: 900; color: #A6567A; letter-spacing: .5px">{{t.song}}</span>
+<sc-for list="{{songs}}" as="s" hint-placeholder-count="2">
+<button class="f tap" onClick="{{s.pick}}" aria-pressed="{{s.on}}" style="height: 54px; padding: 0 20px; border-radius: 999px; background: {{s.bg}}; color: {{s.fg}}; box-shadow: 0 5px 0 {{s.sh}}; font-size: 20px; font-weight: 600; white-space: nowrap">{{s.t}}</button>
+</sc-for>
+<div style="flex: 1"></div>
+<button class="f tap" onClick="{{listen}}" style="height: 58px; padding: 0 22px; border-radius: 999px; background: #F06595; box-shadow: 0 6px 0 #C2255C; color: #FFFFFF; font-size: 21px; font-weight: 600; display: flex; align-items: center; gap: 8px">
+<sc-if value="{{playing}}" hint-placeholder-val="{{false}}"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2.5" fill="#FFFFFF"/></svg></sc-if>
+<sc-if value="{{notPlaying}}" hint-placeholder-val="{{true}}"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z" fill="#FFFFFF"/></svg></sc-if>
+<span>{{listenLabel}}</span>
+</button>
+<button class="f tap" onClick="{{follow}}" aria-pressed="{{following}}" style="height: 58px; padding: 0 22px; border-radius: 999px; background: {{followBg}}; color: {{followFg}}; box-shadow: 0 6px 0 {{followSh}}; font-size: 21px; font-weight: 600; display: flex; align-items: center; gap: 8px; white-space: nowrap">
+<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg>
+<span>{{followLabel}}</span>
+</button>
+</div>
+
+<div style="position: absolute; left: 40px; top: 230px; width: 1100px; height: 562px; border-radius: 44px; background: #FFFFFF; box-shadow: 0 12px 0 #F8C4D9, 0 24px 40px rgba(43,35,80,.08)">
+<div aria-hidden="true" style="position: absolute; left: 44px; right: 44px; top: 136px; height: 28px; border-radius: 14px; background: #C8875A; box-shadow: 0 6px 0 #9C6239"></div>
+<div aria-hidden="true" style="position: absolute; left: 44px; right: 44px; top: 398px; height: 28px; border-radius: 14px; background: #C8875A; box-shadow: 0 6px 0 #9C6239"></div>
+<sc-for list="{{bars}}" as="b" hint-placeholder-count="8">
+<button class="{{b.cls}}" onClick="{{b.play}}" aria-label="{{b.aria}}" style="position: absolute; left: {{b.x}}px; top: {{b.y}}px; width: 100px; height: {{b.h}}px; border-radius: 28px; background: {{b.col}}; box-shadow: 0 10px 0 {{b.dark}}{{b.ring}}; display: flex; flex-direction: column; align-items: center; justify-content: space-between; box-sizing: border-box; padding: 24px 0 20px">
+<span aria-hidden="true" style="width: 20px; height: 20px; border-radius: 50%; background: #FFFFFF; box-shadow: inset 0 -3px 0 rgba(0,0,0,.15)"></span>
+<span class="n" aria-hidden="true" style="font-size: 20px; font-weight: 900; color: #FFFFFF; opacity: .9">{{b.num}}</span>
+<span class="f" aria-hidden="true" style="font-size: 32px; font-weight: 700; color: #FFFFFF; text-shadow: 0 3px 0 rgba(0,0,0,.18)">{{b.sol}}</span>
+<span aria-hidden="true" style="width: 20px; height: 20px; border-radius: 50%; background: #FFFFFF; box-shadow: inset 0 -3px 0 rgba(0,0,0,.15)"></span>
+</button>
+</sc-for>
+<sc-if value="{{showNext}}" hint-placeholder-val="{{true}}">
+<svg class="muBob" aria-hidden="true" viewBox="0 0 44 40" width="44" height="40" style="position: absolute; left: {{nextX}}px; top: {{nextY}}px"><path d="M6 4H38L22 34Z" fill="#2B2350" stroke="#2B2350" stroke-width="6" stroke-linejoin="round"/></svg>
+</sc-if>
+<sc-if value="{{cele}}" hint-placeholder-val="{{false}}">
+<div class="muIn" role="status" style="position: absolute; left: 50%; top: 20px; margin-left: -260px; width: 520px; height: 70px; border-radius: 999px; background: #2B2350; color: #FFFFFF; display: flex; align-items: center; justify-content: center; gap: 12px; font-size: 24px; font-weight: 600">
+<svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M12 2.5l2.9 5.9 6.5.9-4.7 4.6 1.1 6.5L12 17.3l-5.8 3.1 1.1-6.5L2.6 9.3l6.5-.9z" fill="#FFD43B"/></svg>
+<span>{{t.songDone}}</span>
+</div>
+</sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{isDrum}}" hint-placeholder-val="{{false}}">
+<div style="position: absolute; left: 50px; top: 150px; display: flex; gap: 40px">
+<sc-for list="{{pads}}" as="p" hint-placeholder-count="4">
+<button class="{{p.cls}}" onClick="{{p.hit}}" aria-label="{{p.t}}" style="width: 240px; height: 300px; border-radius: 56px; background: {{p.col}}; box-shadow: 0 12px 0 {{p.dark}}{{p.ring}}; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px">
+<span aria-hidden="true" style="width: 150px; height: 150px; border-radius: 50%; background: rgba(255,255,255,.28); display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 24 24" width="92" height="92" fill="none" stroke="#FFFFFF" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="{{p.icon}}"/></svg>
+</span>
+<span class="f" style="font-size: 32px; font-weight: 700; color: #FFFFFF; text-shadow: 0 3px 0 rgba(0,0,0,.15)">{{p.t}}</span>
+</button>
+</sc-for>
+</div>
+<div style="position: absolute; left: 0; right: 0; top: 530px; display: flex; flex-direction: column; align-items: center; gap: 18px">
+<button class="f tap" onClick="{{beat}}" style="height: 72px; padding: 0 32px; border-radius: 999px; background: #2B2350; box-shadow: 0 8px 0 #16112F; color: #FFFFFF; font-size: 25px; font-weight: 600; display: flex; align-items: center; gap: 12px">
+<svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z" fill="#FFFFFF"/></svg>
+<span>{{beatLabel}}</span>
+</button>
+<p class="n" style="margin: 0; max-width: 760px; text-align: center; font-size: 21px; font-weight: 800; line-height: 1.4; color: #8A4D69">{{t.drumHint}}</p>
+</div>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"lang":{"editor":"enum","options":["auto","id","en"],"default":"auto","section":"Bahasa"},"app":{"editor":null},"$preview":{"width":1180,"height":820}}'>
+class Component extends DCLogic {
+  pref(k) {
+    var a = this.props.app;
+    if (a && a.prefs) return a.prefs[k] || '';
+    var st = this.state || {};
+    if (st['p_' + k] !== undefined) return st['p_' + k];
+    try { var v = window.localStorage.getItem('moci-' + k); if (v !== null) return v; } catch (e) {}
+    return '';
+  }
+  L() {
+    var p = this.props.lang;
+    if (p === 'id' || p === 'en') return p;
+    return this.pref('lang') === 'en' ? 'en' : 'id';
+  }
+  lk(names) {
+    var a = this.props.app, o = {};
+    names.forEach((n) => {
+      o[n] = (a && a.nav) ? { h: '#', go: (e) => { try { e.preventDefault(); } catch (x) {} a.nav(n); } } : { h: n + '.dc.html', go: null };
+    });
+    return o;
+  }
+  componentWillUnmount() {
+    this.stopAll();
+    try { if (this._ac && this._ac.close) this._ac.close(); } catch (e) {}
+  }
+  stopAll() {
+    (this._tm || []).forEach((x) => clearTimeout(x));
+    this._tm = [];
+    clearTimeout(this._ct);
+  }
+  speak(t, lang) {
+    try {
+      var s = window.speechSynthesis;
+      if (!s || typeof SpeechSynthesisUtterance === 'undefined') return;
+      s.cancel();
+      var u = new SpeechSynthesisUtterance(t);
+      var en = (lang || this.L()) === 'en';
+      u.lang = en ? 'en-US' : 'id-ID'; u.rate = 0.9; u.pitch = 1.15;
+      var re = en ? /^en/i : /^id/i;
+      var vs = s.getVoices ? s.getVoices() : [];
+      for (var i = 0; i < vs.length; i++) { if (re.test(vs[i].lang)) { u.voice = vs[i]; break; } }
+      s.speak(u);
+    } catch (e) {}
+  }
+  ctx() {
+    try {
+      if (!this._ac) {
+        var AC = window.AudioContext || window.webkitAudioContext;
+        if (!AC) return null;
+        this._ac = new AC();
+      }
+      if (this._ac.state === 'suspended' && this._ac.resume) this._ac.resume();
+      return this._ac;
+    } catch (e) { return null; }
+  }
+  tone(i) {
+    var ac = this.ctx();
+    if (!ac) return;
+    var f = [523.25, 587.33, 659.25, 698.46, 783.99, 880, 987.77, 1046.5][i];
+    var t = ac.currentTime + 0.005;
+    var g = ac.createGain();
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(0.45, t + 0.006);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + 1.2);
+    g.connect(ac.destination);
+    var o1 = ac.createOscillator();
+    o1.type = 'sine'; o1.frequency.value = f; o1.connect(g);
+    var g2 = ac.createGain();
+    g2.gain.setValueAtTime(0.35, t);
+    g2.gain.exponentialRampToValueAtTime(0.0001, t + 0.18);
+    g2.connect(g);
+    var o2 = ac.createOscillator();
+    o2.type = 'sine'; o2.frequency.value = f * 3.93; o2.connect(g2);
+    o1.start(t); o2.start(t); o1.stop(t + 1.25); o2.stop(t + 0.2);
+  }
+  noise() {
+    var ac = this.ctx();
+    if (!this._nb) {
+      var len = Math.floor(ac.sampleRate * 1.5);
+      var b = ac.createBuffer(1, len, ac.sampleRate);
+      var d = b.getChannelData(0);
+      for (var i = 0; i < len; i++) d[i] = Math.random() * 2 - 1;
+      this._nb = b;
+    }
+    return this._nb;
+  }
+  drum(kind) {
+    var ac = this.ctx();
+    if (!ac) return;
+    var t = ac.currentTime + 0.005;
+    if (kind === 'kick') {
+      var o = ac.createOscillator();
+      var gk = ac.createGain();
+      o.frequency.setValueAtTime(165, t);
+      o.frequency.exponentialRampToValueAtTime(45, t + 0.35);
+      gk.gain.setValueAtTime(0.95, t);
+      gk.gain.exponentialRampToValueAtTime(0.001, t + 0.45);
+      o.connect(gk); gk.connect(ac.destination);
+      o.start(t); o.stop(t + 0.5);
+      return;
+    }
+    var src = ac.createBufferSource();
+    src.buffer = this.noise();
+    var fl = ac.createBiquadFilter();
+    var g = ac.createGain();
+    var dur = 0.3;
+    if (kind === 'clap') {
+      fl.type = 'bandpass'; fl.frequency.value = 1500; fl.Q.value = 0.9;
+      g.gain.setValueAtTime(0.0001, t);
+      [0, 0.014, 0.028].forEach((d) => { g.gain.setValueAtTime(0.9, t + d); g.gain.exponentialRampToValueAtTime(0.08, t + d + 0.012); });
+      g.gain.exponentialRampToValueAtTime(0.0001, t + 0.26);
+    } else if (kind === 'cymbal') {
+      fl.type = 'highpass'; fl.frequency.value = 6500;
+      g.gain.setValueAtTime(0.55, t);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + 1.3);
+      dur = 1.4;
+    } else {
+      fl.type = 'highpass'; fl.frequency.value = 4500;
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.exponentialRampToValueAtTime(0.45, t + 0.03);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + 0.16);
+      dur = 0.2;
+    }
+    src.connect(fl); fl.connect(g); g.connect(ac.destination);
+    src.start(t); src.stop(t + dur);
+  }
+  songs() {
+    return {
+      twinkle: { t: 'Twinkle Twinkle', n: [0, 0, 4, 4, 5, 5, 4, 3, 3, 2, 2, 1, 1, 0, 4, 4, 3, 3, 2, 2, 1, 4, 4, 3, 3, 2, 2, 1, 0, 0, 4, 4, 5, 5, 4, 3, 3, 2, 2, 1, 1, 0], b: [1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 2] },
+      mary: { t: 'Mary Had a Little Lamb', n: [2, 1, 0, 1, 2, 2, 2, 1, 1, 1, 2, 4, 4, 2, 1, 0, 1, 2, 2, 2, 2, 1, 1, 2, 1, 0], b: [1, 1, 1, 1, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4] }
+    };
+  }
+  renderVals() {
+    var st = this.state || {};
+    var en = this.L() === 'en';
+    var T = en
+      ? { title: 'Music Time', back: 'Back to home', modes: 'Instrument', xylo: 'Xylophone', drum: 'Drums', song: 'SONG', listen: 'Listen', stop: 'Stop', follow: 'Play along', following: 'Playing along', songDone: 'Wonderful! You played the whole song!', beat: 'Play a rhythm', beatStop: 'Stop', drumHint: 'Tap the drums! Or play a rhythm, then clap along with Moci.', note: 'Note ', pads: ['Drum', 'Clap', 'Cymbal', 'Shaker'] }
+      : { title: 'Main Musik', back: 'Kembali ke beranda', modes: 'Alat musik', xylo: 'Xilofon', drum: 'Drum', song: 'LAGU', listen: 'Dengar', stop: 'Berhenti', follow: 'Ikuti', following: 'Mengikuti', songDone: 'Hebat! Kamu memainkan satu lagu!', beat: 'Mainkan irama', beatStop: 'Berhenti', drumHint: 'Ketuk drumnya! Atau mainkan irama, lalu ikut menepuk bersama Moci.', note: 'Nada ', pads: ['Drum', 'Tepuk', 'Simbal', 'Kerincing'] };
+    var SOL = ['do', 're', 'mi', 'fa', 'sol', 'la', 'si', 'do'];
+    var COL = [['#FF6B6B', '#E03E3E'], ['#FF922B', '#E8590C'], ['#FFD43B', '#F59F00'], ['#51CF66', '#2F9E44'], ['#20C997', '#0CA678'], ['#339AF0', '#1971C2'], ['#5C7CFA', '#3B5BDB'], ['#9775FA', '#6741D9']];
+    var SONGS = this.songs();
+    var mode = st.mode || 'xylo';
+    var sk = st.song || 'twinkle';
+    var song = SONGS[sk];
+    var fresh = st.follow === undefined;
+    var following = fresh ? true : !!st.follow;
+    var pos = fresh ? 2 : (st.pos || 0);
+    var next = following && pos < song.n.length ? song.n[pos] : -1;
+    var playing = !!st.playing;
+    var barX = (i) => 66 + i * 124;
+    var barH = (i) => 470 - i * 24;
+    var barY = (i) => Math.round((562 - barH(i)) / 2) - 6;
+    var hitCls = (i) => (st.hit === i ? (st.hf ? 'muHitA' : 'muHitB') : '');
+    var stopSong = () => { this.stopAll(); this.setState({ playing: false, hl: -1 }); };
+    var PADS = [
+      ['kick', '#FF6B6B', '#E03E3E', 'M4 8.5c0-1.7 3.6-3 8-3s8 1.3 8 3-3.6 3-8 3-8-1.3-8-3zM4 8.5v7c0 1.7 3.6 3 8 3s8-1.3 8-3v-7M8 2.5l4 4M16 2.5l-4 4'],
+      ['clap', '#FFB020', '#E0870B', 'M7.5 12.5V7a1.5 1.5 0 0 1 3 0v4.5M10.5 11V5a1.5 1.5 0 0 1 3 0v6M13.5 11V6a1.5 1.5 0 0 1 3 0v5.5M16.5 10a1.5 1.5 0 0 1 3 0v4.5c0 4-3 7-7 7-2.6 0-4.2-1.2-5.6-3.2L4.3 15a1.6 1.6 0 0 1 2.5-2l.7.8M3 5l1.5 1.5M5.5 2.5l.6 2'],
+      ['cymbal', '#339AF0', '#1971C2', 'M3 9c0-1.4 4-2.5 9-2.5s9 1.1 9 2.5-4 2.5-9 2.5S3 10.4 3 9zM12 6.5V4M12 11.5V21M8 21h8'],
+      ['shaker', '#51CF66', '#2F9E44', 'M14.5 4.5c2.5 1.4 3 5 1.2 8.1-1.8 3.1-5.2 4.4-7.7 3s-3-5-1.2-8.1c1.8-3.1 5.2-4.4 7.7-3zM8.5 16.5L5 21M18 3l1.5-1.5M20 6.5l2-.5M17.5 1.5l.3-1']
+    ];
+    return {
+      t: T,
+      lk: this.lk(['Main']),
+      isXylo: mode === 'xylo',
+      isDrum: mode === 'drum',
+      modes: [['xylo', T.xylo], ['drum', T.drum]].map((m) => ({
+        t: m[1], on: mode === m[0], bg: mode === m[0] ? '#F06595' : '#FFFFFF', fg: mode === m[0] ? '#FFFFFF' : '#2B2350',
+        pick: () => { this.stopAll(); this.setState({ mode: m[0], playing: false, hl: -1, beating: false }); this.speak(m[1]); }
+      })),
+      songs: Object.keys(SONGS).map((k) => ({
+        t: SONGS[k].t, on: k === sk,
+        bg: k === sk ? '#2B2350' : '#FFF0F6', fg: k === sk ? '#FFFFFF' : '#2B2350', sh: k === sk ? '#16112F' : '#F8C4D9',
+        pick: () => { this.stopAll(); this.setState({ song: k, pos: 0, follow: false, playing: false, hl: -1, cele: false }); this.speak(SONGS[k].t, 'en'); }
+      })),
+      playing: playing,
+      notPlaying: !playing,
+      listenLabel: playing ? T.stop : T.listen,
+      listen: () => {
+        if (playing) { stopSong(); return; }
+        this.stopAll();
+        this.setState({ playing: true, follow: false, cele: false });
+        var acc = 250;
+        song.n.forEach((ni, j) => {
+          this._tm.push(setTimeout(() => { this.tone(ni); var s2 = this.state || {}; this.setState({ hit: ni, hf: !s2.hf, hl: ni }); }, acc));
+          acc += song.b[j] * 420;
+        });
+        this._tm.push(setTimeout(() => this.setState({ playing: false, hl: -1 }), acc + 200));
+      },
+      following: following,
+      followLabel: following ? T.following + ' · ' + pos + ' / ' + song.n.length : T.follow,
+      followBg: following ? '#26A03B' : '#FFFFFF',
+      followFg: following ? '#FFFFFF' : '#2B2350',
+      followSh: following ? '#1E8A31' : '#F8C4D9',
+      follow: () => {
+        this.stopAll();
+        if (following) { this.setState({ follow: false, playing: false, hl: -1 }); return; }
+        this.setState({ follow: true, pos: 0, playing: false, hl: -1, cele: false });
+        this.speak(T.follow + '! ' + song.t);
+      },
+      cele: !!st.cele,
+      bars: SOL.map((s, i) => ({
+        x: barX(i), y: barY(i), h: barH(i), col: COL[i][0], dark: COL[i][1], sol: s, num: i + 1,
+        aria: T.note + s + ' ' + (i + 1),
+        cls: hitCls(i),
+        ring: (st.hl === i || next === i) ? ', 0 0 0 7px #FFFFFF, 0 0 0 12px ' + COL[i][1] : '',
+        play: () => {
+          this.tone(i);
+          var s2 = this.state || {};
+          var up = { hit: i, hf: !s2.hf };
+          var f2 = s2.follow === undefined ? true : !!s2.follow;
+          var p2 = s2.follow === undefined ? 2 : (s2.pos || 0);
+          var sg = SONGS[s2.song || 'twinkle'];
+          if (f2 && sg.n[p2] === i) {
+            p2 += 1;
+            up.pos = p2; up.follow = true;
+            if (p2 >= sg.n.length) {
+              up.follow = false; up.cele = true;
+              clearTimeout(this._ct);
+              this._ct = setTimeout(() => { this.setState({ cele: false }); }, 3500);
+              setTimeout(() => this.speak(T.songDone), 700);
+            }
+          }
+          this.setState(up);
+        }
+      })),
+      showNext: next >= 0,
+      nextX: next >= 0 ? barX(next) + 28 : 0,
+      nextY: next >= 0 ? barY(next) - 54 : 0,
+      pads: PADS.map((p, i) => ({
+        t: T.pads[i], col: p[1], dark: p[2], icon: p[3],
+        cls: st.pad === i ? (st.pf ? 'muPadA' : 'muPadB') : '',
+        ring: st.pad === i && st.beating ? ', 0 0 0 7px #FFFFFF, 0 0 0 12px ' + p[2] : '',
+        hit: () => { this.drum(p[0]); var s2 = this.state || {}; this.setState({ pad: i, pf: !s2.pf }); }
+      })),
+      beatLabel: st.beating ? T.beatStop : T.beat,
+      beat: () => {
+        if (st.beating) { this.stopAll(); this.setState({ beating: false, pad: -1 }); return; }
+        this.stopAll();
+        this.setState({ beating: true });
+        var step = 150;
+        for (var loop = 0; loop < 2; loop++) {
+          for (var k = 0; k < 16; k++) {
+            ((kk, lp) => {
+              var hits = [];
+              if (kk === 0 || kk === 6 || kk === 8) hits.push(0);
+              if (kk === 4 || kk === 12) hits.push(1);
+              if (lp === 1 && kk === 14) hits.push(2);
+              if (kk % 2 === 0) hits.push(3);
+              if (!hits.length) return;
+              this._tm.push(setTimeout(() => {
+                hits.forEach((h) => this.drum(PADS[h][0]));
+                var s2 = this.state || {};
+                this.setState({ pad: hits[0], pf: !s2.pf });
+              }, (lp * 16 + kk) * step + 100));
+            })(k, loop);
+          }
+        }
+        this._tm.push(setTimeout(() => this.setState({ beating: false, pad: -1 }), 32 * step + 500));
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

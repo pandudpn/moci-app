@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Moci · Area Orang Tua</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&amp;family=Nunito:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.f{font-family:'Fredoka',ui-rounded,'Arial Rounded MT Bold','Trebuchet MS',system-ui,sans-serif}
+.n{font-family:'Nunito',ui-rounded,system-ui,-apple-system,'Segoe UI',sans-serif}
+a{color:#2B2350;text-decoration:none}a:hover{color:#2B2350}
+button{font:inherit;color:inherit;border:0;padding:0;margin:0;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.tap{transition:transform .12s ease}.tap:active{transform:translateY(5px) scale(.97)}
+.otCard{box-sizing:border-box;border-radius:32px;background:#FFFFFF;box-shadow:0 8px 0 #DCD5EE,0 18px 30px rgba(43,35,80,.08)}
+.otLbl{font-size:15px;font-weight:800;color:#6B5F99;letter-spacing:.3px}
+.otKnob{transition:left .2s ease}
+.otTrack{transition:background-color .2s ease}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="f" style="position: relative; width: 1180px; height: 820px; overflow: hidden; background-color: #F1EEF9; background-image: radial-gradient(#E3DDF3 3px, transparent 3px); background-size: 36px 36px; color: #2B2350">
+
+<div style="position: absolute; left: 32px; right: 32px; top: 26px; display: flex; align-items: center; gap: 18px">
+<a href="{{lk.Main.h}}" onClick="{{lk.Main.go}}" class="tap" aria-label="{{t.back}}" style="width: 76px; height: 76px; border-radius: 26px; background: #FFFFFF; box-shadow: 0 7px 0 #DCD5EE; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="#2B2350" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+</a>
+<h1 class="f" style="margin: 0; font-size: 46px; font-weight: 700">{{t.title}}</h1>
+<div style="flex: 1"></div>
+<div class="n" style="display: flex; align-items: center; gap: 8px; height: 52px; padding: 0 18px 0 14px; border-radius: 999px; background: #2B2350; color: #FFFFFF; font-size: 16px; font-weight: 800">
+<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg>
+<span>{{t.locks}}</span>
+</div>
+</div>
+
+<section class="otCard" aria-label="{{t.profile}}" style="position: absolute; left: 32px; top: 124px; width: 360px; height: 222px; padding: 22px">
+<div style="display: flex; align-items: center; gap: 14px">
+<div class="f" aria-hidden="true" style="width: 84px; height: 84px; flex: none; border-radius: 50%; background: #FFC233; box-shadow: 0 5px 0 #E0A100; display: flex; align-items: center; justify-content: center; font-size: 44px; font-weight: 700; overflow: hidden">
+<sc-if value="{{prof.hasName}}" hint-placeholder-val="{{false}}"><span>{{prof.init}}</span></sc-if>
+<sc-if value="{{prof.noName}}" hint-placeholder-val="{{true}}"><img src="/_blob/0b224341bbd230f2dd731c560e41d4cb" alt="" style="width: 74px; height: 74px; margin-top: 10px"></sc-if>
+</div>
+<div style="flex: 1; min-width: 0">
+<div class="f" style="font-size: 30px; font-weight: 700; line-height: 1.1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: {{prof.col}}">{{prof.name}}</div>
+<div class="n" style="margin-top: 4px; font-size: 16px; font-weight: 800; color: #6B5F99">{{prof.sub}}</div>
+</div>
+<a href="{{lk.Sambutan.h}}" onClick="{{lk.Sambutan.go}}" class="tap" aria-label="{{t.editName}}" style="width: 52px; height: 52px; flex: none; border-radius: 18px; background: #F4F1FA; box-shadow: 0 5px 0 #DCD5EE; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#2B2350" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l4-1 11-11-3-3L5 16z"/><path d="M14 6l3 3"/></svg>
+</a>
+</div>
+<div class="n otLbl" id="lblAge" style="margin-top: 16px">{{t.ageLevel}}</div>
+<div role="group" aria-labelledby="lblAge" style="margin-top: 6px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px">
+<sc-for list="{{ages}}" as="a" hint-placeholder-count="3">
+<button class="f tap" onClick="{{a.pick}}" aria-pressed="{{a.on}}" style="height: 52px; border-radius: 18px; background: {{a.bg}}; color: {{a.fg}}; box-shadow: 0 5px 0 {{a.sh}}; font-size: 19px; font-weight: 600">{{a.label}}</button>
+</sc-for>
+</div>
+</section>
+
+<section class="otCard" aria-label="{{t.today}}" style="position: absolute; left: 32px; top: 366px; width: 360px; height: 352px; padding: 22px">
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 10px">
+<h2 class="f" style="margin: 0; font-size: 26px; font-weight: 700">{{t.today}}</h2>
+<span class="n otLbl">{{t.playTime}}</span>
+</div>
+<div style="margin-top: 14px; display: flex; align-items: center; gap: 18px">
+<div style="position: relative; width: 140px; height: 140px; flex: none">
+<svg viewBox="0 0 120 120" width="140" height="140" aria-hidden="true" style="transform: rotate(-90deg)">
+<circle cx="60" cy="60" r="50" fill="none" stroke="#F1EEF9" stroke-width="14"/>
+<circle cx="60" cy="60" r="50" fill="none" stroke="{{ring.col}}" stroke-width="14" stroke-linecap="round" pathLength="1" stroke-dasharray="{{ring.dash}}"/>
+</svg>
+<div style="position: absolute; left: 0; top: 0; width: 140px; height: 140px; display: flex; flex-direction: column; align-items: center; justify-content: center">
+<div class="f" style="font-size: 46px; font-weight: 700; line-height: 1">18</div>
+<div class="n" style="font-size: 15px; font-weight: 800; color: #6B5F99">{{t.min}}</div>
+</div>
+</div>
+<div style="flex: 1; min-width: 0">
+<div class="n" style="font-size: 16px; font-weight: 800; line-height: 1.3; color: #5B5480">{{ring.of}}</div>
+<div class="f" style="margin-top: 10px; display: inline-flex; align-items: center; height: 40px; padding: 0 14px; border-radius: 999px; background: {{ring.chipBg}}; color: {{ring.chipFg}}; font-size: 18px; font-weight: 600; white-space: nowrap">{{ring.status}}</div>
+</div>
+</div>
+<div style="margin-top: 20px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px">
+<div style="height: 88px; border-radius: 20px; background: #FFF8E1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px">
+<svg viewBox="0 0 40 40" width="28" height="28" aria-hidden="true"><path d="M20 3l5.2 10.6 11.7 1.7-8.5 8.2 2 11.6L20 29.6 9.6 35.1l2-11.6-8.5-8.2 11.7-1.7z" fill="#FFC21A" stroke="#F08C00" stroke-width="2" stroke-linejoin="round"/></svg>
+<div class="f" style="font-size: 22px; font-weight: 700; line-height: 1.1">+9</div>
+<div class="n" style="font-size: 13px; font-weight: 800; color: #6B5F99">{{t.stars}}</div>
+</div>
+<div style="height: 88px; border-radius: 20px; background: #FFEEF3; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px">
+<img src="/_blob/f3ad85e8656c762498e18346c0834e64" alt="" style="width: 30px; height: 30px">
+<div class="f" style="font-size: 22px; font-weight: 700; line-height: 1.1">+1</div>
+<div class="n" style="font-size: 13px; font-weight: 800; color: #6B5F99">{{t.stickers}}</div>
+</div>
+<div style="height: 88px; border-radius: 20px; background: #E9F6FF; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px">
+<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#1C7ED6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18c1.4 0 2-1 2-2 0-1.6-1.6-1.8-1.6-3.2 0-1 .8-1.8 1.8-1.8H17a4 4 0 0 0 4-4c0-3.9-4-7-9-7z"/><circle cx="7.5" cy="11" r="1.3" fill="#E8384F" stroke="none"/><circle cx="10" cy="7.2" r="1.3" fill="#FFC233" stroke="none"/><circle cx="14.6" cy="7.2" r="1.3" fill="#26A03B" stroke="none"/></svg>
+<div class="f" style="font-size: 22px; font-weight: 700; line-height: 1.1">+1</div>
+<div class="n" style="font-size: 13px; font-weight: 800; color: #6B5F99">{{t.art}}</div>
+</div>
+</div>
+</section>
+
+<section class="otCard" aria-label="{{t.progress}}" style="position: absolute; left: 412px; top: 124px; width: 360px; height: 594px; padding: 22px">
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 10px">
+<h2 class="f" style="margin: 0; font-size: 26px; font-weight: 700">{{t.progress}}</h2>
+<span class="n otLbl">{{t.week}}</span>
+</div>
+<div style="margin-top: 16px; display: flex; flex-direction: column; gap: 10px">
+<sc-for list="{{mods}}" as="m" hint-placeholder-count="6">
+<div style="height: 62px; display: flex; align-items: center; gap: 12px">
+<div class="f" aria-hidden="true" style="width: 52px; height: 52px; flex: none; border-radius: 16px; background: {{m.bg}}; box-shadow: 0 4px 0 {{m.sh}}; display: flex; align-items: center; justify-content: center; color: #FFFFFF; font-size: 22px; font-weight: 700; overflow: hidden">
+<sc-if value="{{m.hasImg}}" hint-placeholder-val="{{true}}"><img src="{{m.img}}" alt="" style="width: 42px; height: 42px; border-radius: 10px"></sc-if>
+<sc-if value="{{m.hasG}}" hint-placeholder-val="{{false}}"><span>{{m.g}}</span></sc-if>
+</div>
+<div style="flex: 1; min-width: 0">
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 8px">
+<span class="f" style="font-size: 19px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{m.name}}</span>
+<span class="f" style="font-size: 18px; font-weight: 700; white-space: nowrap">{{m.count}}</span>
+</div>
+<div aria-hidden="true" style="margin-top: 8px; height: 12px; border-radius: 999px; background: #F1EEF9; overflow: hidden"><div style="width: {{m.w}}; height: 12px; border-radius: 999px; background: {{m.col}}"></div></div>
+</div>
+</div>
+</sc-for>
+</div>
+<div style="position: absolute; left: 22px; right: 22px; bottom: 22px; box-sizing: border-box; padding: 12px 16px; border-radius: 20px; background: #FFF6DB; display: flex; gap: 10px; align-items: flex-start">
+<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#B36B00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 0-3.6 10.8c.6.5 1 1.2 1 2V16h5.2v-.2c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z" fill="#FFE066"/></svg>
+<div class="n" style="font-size: 15px; font-weight: 800; line-height: 1.35; color: #5C4200">{{t.tip}}</div>
+</div>
+</section>
+
+<section class="otCard" aria-label="{{t.settings}}" style="position: absolute; left: 792px; top: 124px; width: 356px; height: 594px; padding: 22px 24px; display: flex; flex-direction: column; gap: 16px">
+<h2 class="f" style="margin: 0; font-size: 26px; font-weight: 700">{{t.settings}}</h2>
+<div>
+<div class="n otLbl" id="lblLang">Bahasa · Language</div>
+<div role="group" aria-labelledby="lblLang" style="margin-top: 6px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+<button class="f tap" onClick="{{toId}}" aria-pressed="{{isId}}" style="height: 52px; border-radius: 18px; background: {{segId.bg}}; color: {{segId.fg}}; box-shadow: 0 5px 0 {{segId.sh}}; font-size: 19px; font-weight: 600">Indonesia</button>
+<button class="f tap" onClick="{{toEn}}" aria-pressed="{{isEn}}" style="height: 52px; border-radius: 18px; background: {{segEn.bg}}; color: {{segEn.fg}}; box-shadow: 0 5px 0 {{segEn.sh}}; font-size: 19px; font-weight: 600">English</button>
+</div>
+</div>
+<div>
+<div class="n otLbl" id="lblLetters">{{t.letters}}</div>
+<div role="group" aria-labelledby="lblLetters" style="margin-top: 6px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+<button class="f tap" onClick="{{toPhonics}}" aria-pressed="{{isPhonics}}" style="height: 52px; border-radius: 18px; background: {{segPh.bg}}; color: {{segPh.fg}}; box-shadow: 0 5px 0 {{segPh.sh}}; font-size: 18px; font-weight: 600">{{t.phonics}}</button>
+<button class="f tap" onClick="{{toNames}}" aria-pressed="{{isNames}}" style="height: 52px; border-radius: 18px; background: {{segNm.bg}}; color: {{segNm.fg}}; box-shadow: 0 5px 0 {{segNm.sh}}; font-size: 18px; font-weight: 600">{{t.names}}</button>
+</div>
+<div class="n" style="margin-top: 8px; font-size: 14px; font-weight: 700; color: #5B5480">{{lettersHint}}</div>
+</div>
+<div>
+<div class="n otLbl" id="lblLimit">{{t.limit}}</div>
+<div role="group" aria-labelledby="lblLimit" style="margin-top: 6px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px">
+<sc-for list="{{limits}}" as="l" hint-placeholder-count="4">
+<button class="f tap" onClick="{{l.pick}}" aria-pressed="{{l.on}}" style="height: 52px; border-radius: 18px; background: {{l.bg}}; color: {{l.fg}}; box-shadow: 0 5px 0 {{l.sh}}; font-size: 17px; font-weight: 600; white-space: nowrap">{{l.label}}</button>
+</sc-for>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 2px">
+<sc-for list="{{toggles}}" as="g" hint-placeholder-count="3">
+<button role="switch" aria-checked="{{g.on}}" onClick="{{g.flip}}" style="height: 52px; display: flex; align-items: center; justify-content: space-between; gap: 12px; text-align: left">
+<span class="f" style="font-size: 20px; font-weight: 600">{{g.label}}</span>
+<span class="otTrack" aria-hidden="true" style="position: relative; width: 64px; height: 38px; flex: none; border-radius: 999px; background-color: {{g.track}}">
+<span class="otKnob" style="position: absolute; top: 4px; left: {{g.x}}px; width: 30px; height: 30px; border-radius: 50%; background: #FFFFFF; box-shadow: 0 2px 4px rgba(43,35,80,.25)"></span>
+</span>
+</button>
+</sc-for>
+</div>
+</section>
+
+<div style="position: absolute; left: 32px; right: 32px; top: 744px; display: flex; justify-content: center; gap: 12px">
+<sc-for list="{{badges}}" as="b" hint-placeholder-count="4">
+<div class="n" style="height: 44px; padding: 0 16px 0 10px; border-radius: 999px; background: #FFFFFF; box-shadow: 0 4px 0 #DCD5EE; display: flex; align-items: center; gap: 8px; font-size: 16px; font-weight: 800; white-space: nowrap">
+<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#26A03B"/><path d="M7.5 12.5l3 3 6-6.5" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<span>{{b.t}}</span>
+</div>
+</sc-for>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"lang":{"editor":"enum","options":["auto","id","en"],"default":"auto","section":"Bahasa"},"app":{"editor":null},"$preview":{"width":1180,"height":820}}'>
+class Component extends DCLogic {
+  pref(k) {
+    var a = this.props.app;
+    if (a && a.prefs) return a.prefs[k] || '';
+    var st = this.state || {};
+    if (st['p_' + k] !== undefined) return st['p_' + k];
+    try { var v = window.localStorage.getItem('moci-' + k); if (v !== null) return v; } catch (e) {}
+    return '';
+  }
+  setPref(k, v) {
+    var a = this.props.app;
+    if (a && a.set) { a.set(k, v); return; }
+    try { window.localStorage.setItem('moci-' + k, v); } catch (e) {}
+    var o = {}; o['p_' + k] = v; this.setState(o);
+    try { window.dispatchEvent(new CustomEvent('moci-pref', { detail: { k: k, v: v } })); } catch (e) {}
+  }
+  L() {
+    var p = this.props.lang;
+    if (p === 'id' || p === 'en') return p;
+    return this.pref('lang') === 'en' ? 'en' : 'id';
+  }
+  componentDidMount() {
+    this._onPref = (e) => { var d = e && e.detail; if (d && d.k) { var o = {}; o['p_' + d.k] = d.v; this.setState(o); } };
+    this._onStore = (e) => { if (e && e.key && e.key.indexOf('moci-') === 0) { var o = {}; o['p_' + e.key.slice(5)] = e.newValue || ''; this.setState(o); } };
+    try { window.addEventListener('moci-pref', this._onPref); window.addEventListener('storage', this._onStore); } catch (e) {}
+  }
+  componentWillUnmount() {
+    try { window.removeEventListener('moci-pref', this._onPref); window.removeEventListener('storage', this._onStore); } catch (e) {}
+  }
+  speak(t, lang) {
+    try {
+      var s = window.speechSynthesis;
+      if (!s || typeof SpeechSynthesisUtterance === 'undefined') return;
+      s.cancel();
+      var u = new SpeechSynthesisUtterance(t);
+      var en = (lang || this.L()) === 'en';
+      u.lang = en ? 'en-US' : 'id-ID'; u.rate = 0.85; u.pitch = 1.15;
+      var re = en ? /^en/i : /^id/i;
+      var vs = s.getVoices ? s.getVoices() : [];
+      for (var i = 0; i < vs.length; i++) { if (re.test(vs[i].lang)) { u.voice = vs[i]; break; } }
+      s.speak(u);
+    } catch (e) {}
+  }
+  seg(on) {
+    return on ? { bg: '#7048E8', fg: '#FFFFFF', sh: '#5032B8' } : { bg: '#F4F1FA', fg: '#2B2350', sh: '#DCD5EE' };
+  }
+  lk(names) {
+    var o = {};
+    names.forEach((n) => {
+      o[n] = (this.props.app && this.props.app.nav) ? { h: '#', go: (e) => this.navTo(e, n) } : { h: n + '.dc.html', go: null };
+    });
+    return o;
+  }
+  navTo(e, to, params) {
+    var a = this.props.app;
+    if (!a || !a.nav) return false;
+    try { if (e && e.preventDefault) e.preventDefault(); } catch (x) {}
+    a.nav(to, params);
+    return true;
+  }
+  renderVals() {
+    var v = this.renderVals0();
+    v.lk = this.lk(['Main', 'Sambutan']);
+    return v;
+  }
+  renderVals0() {
+    var lang = this.L();
+    var en = lang === 'en';
+    var B = '/_blob/';
+    var T = en ? {
+      title: "Parents' Corner", back: 'Lock and go back home', locks: 'Locks when you leave', profile: 'Child profile', editName: "Change child's name", ageLevel: 'Age level',
+      today: 'Today', playTime: 'Play time', min: 'min', stars: 'stars', stickers: 'sticker', art: 'artwork',
+      progress: 'Progress', week: 'This week', tip: 'Tip: B, D and P are easy to mix up. Practise them in Write.',
+      settings: 'Settings', letters: 'How letters are read', phonics: 'Phonics', names: 'Letter names', limit: 'Daily time limit',
+      badges: ['No ads', 'No in-app purchases', 'Works offline', 'Data stays on this device']
+    } : {
+      title: 'Area Orang Tua', back: 'Kunci dan kembali ke beranda', locks: 'Terkunci saat keluar', profile: 'Profil anak', editName: 'Ubah nama anak', ageLevel: 'Level usia',
+      today: 'Hari ini', playTime: 'Waktu bermain', min: 'menit', stars: 'bintang', stickers: 'stiker', art: 'karya',
+      progress: 'Perkembangan', week: 'Minggu ini', tip: 'Saran: B, D, dan P sering tertukar. Coba latih di menu Tulis.',
+      settings: 'Pengaturan', letters: 'Cara baca huruf', phonics: 'Bunyi (fonik)', names: 'Nama huruf', limit: 'Batas waktu harian',
+      badges: ['Tanpa iklan', 'Tanpa pembelian dalam aplikasi', 'Bisa offline', 'Data hanya di perangkat ini']
+    };
+    var nm = String(this.pref('name') || '').trim();
+    var age = this.pref('age');
+    if (age !== '4–5' && age !== '6–7') age = '2–3';
+    var lv = { '2–3': en ? 'Starter' : 'Pemula', '4–5': en ? 'Explorer' : 'Penjelajah', '6–7': en ? 'Reader' : 'Pembaca' }[age];
+    var letters = this.pref('letters') === 'name' ? 'name' : 'phonics';
+    var limit = this.pref('limit');
+    if (limit !== '15' && limit !== '45' && limit !== 'off') limit = '30';
+    var used = 18;
+    var lim = limit === 'off' ? 0 : parseInt(limit, 10);
+    var ring;
+    if (!lim) {
+      ring = { dash: '1 1', col: '#CFC8E8', of: en ? 'No daily limit set' : 'Tanpa batas harian', status: en ? 'Unlimited' : 'Bebas', chipBg: '#F1EEF9', chipFg: '#2B2350' };
+    } else {
+      var left = lim - used;
+      ring = {
+        dash: Math.min(1, used / lim).toFixed(3) + ' 1',
+        col: left > 0 ? '#7048E8' : '#E8590C',
+        of: en ? 'of ' + lim + ' min today' : 'dari ' + lim + ' menit hari ini',
+        status: left > 0 ? (en ? left + ' min left' : 'Sisa ' + left + ' menit') : (en ? "Time's up" : 'Waktu habis'),
+        chipBg: left > 0 ? '#EEE8FF' : '#FFE8D9',
+        chipFg: left > 0 ? '#4A2FB0' : '#A33A00'
+      };
+    }
+    var M = [
+      [en ? 'Letters' : 'Kenal Huruf', 12, 26, '#FF6B6B', '#E04848', '#E8384F', '', 'Aa'],
+      [en ? 'Numbers' : 'Berhitung', 7, 10, '#4DA8FF', '#2A84E0', '#1C7ED6', '', '12'],
+      [en ? 'Animals' : 'Dunia Hewan', 6, 8, '#5FD068', '#3BAA45', '#2F9E44', B + '6de067c8bd1b21524d7d6e6b6f4c199a', ''],
+      [en ? 'Fruits & Veggies' : 'Buah & Sayur', 4, 6, '#FF7EB6', '#E0528F', '#D6336C', B + 'f3ad85e8656c762498e18346c0834e64', ''],
+      [en ? "Let's Read" : 'Ayo Membaca', 2, 5, '#FF8A3D', '#E0661A', '#E8590C', B + '40764645d095695dc89e65d699f811f8', ''],
+      [en ? 'Coloring' : 'Mewarnai', 3, 6, '#FFC233', '#E0A100', '#F08C00', B + '4061ab5bce10e62e630528c89ad08553', '']
+    ];
+    var ex = en ? { ph: 'B says “buh”, then “Ball!”', nm: 'B is read “bee”, then “Ball!”', sayPh: 'buh... Ball!', sayNm: 'B... Ball!' }
+                : { ph: 'B dibaca “beh”, lalu “Bola!”', nm: 'B dibaca “be”, lalu “Bola!”', sayPh: 'beh... Bola!', sayNm: 'B... Bola!' };
+    var tg = [
+      ['music', en ? 'Background music' : 'Musik latar'],
+      ['sfx', en ? 'Sound effects' : 'Efek suara'],
+      ['breaks', en ? 'Break reminders' : 'Pengingat istirahat']
+    ];
+    return {
+      t: T,
+      prof: {
+        hasName: !!nm,
+        noName: !nm,
+        init: nm ? nm.charAt(0).toUpperCase() : '',
+        name: nm || (en ? 'Your child' : 'Si kecil'),
+        col: nm ? '#2B2350' : '#6B5F99',
+        sub: (en ? 'Age ' + age + ' · ' : 'Usia ' + age + ' tahun · ') + lv
+      },
+      ages: ['2–3', '4–5', '6–7'].map((v) => {
+        var on = v === age;
+        var s = this.seg(on);
+        return { label: v + (en ? ' yrs' : ' thn'), on: on, bg: s.bg, fg: s.fg, sh: s.sh, pick: () => this.setPref('age', v) };
+      }),
+      ring: ring,
+      mods: M.map((r) => ({ name: r[0], count: r[1] + '/' + r[2], w: Math.round(r[1] / r[2] * 100) + '%', bg: r[3], sh: r[4], col: r[5], img: r[6], hasImg: !!r[6], hasG: !r[6], g: r[7] })),
+      isId: lang === 'id',
+      isEn: lang === 'en',
+      segId: this.seg(lang === 'id'),
+      segEn: this.seg(lang === 'en'),
+      toId: () => { this.setPref('lang', 'id'); this.speak('Bahasa Indonesia', 'id'); },
+      toEn: () => { this.setPref('lang', 'en'); this.speak('English', 'en'); },
+      isPhonics: letters === 'phonics',
+      isNames: letters === 'name',
+      segPh: this.seg(letters === 'phonics'),
+      segNm: this.seg(letters === 'name'),
+      lettersHint: letters === 'name' ? ex.nm : ex.ph,
+      toPhonics: () => { this.setPref('letters', 'phonics'); this.speak(ex.sayPh); },
+      toNames: () => { this.setPref('letters', 'name'); this.speak(ex.sayNm); },
+      limits: ['15', '30', '45', 'off'].map((v) => {
+        var on = v === limit;
+        var s = this.seg(on);
+        var label = v === 'off' ? (en ? 'Off' : 'Bebas') : v + (en ? ' min' : ' mnt');
+        return { label: label, on: on, bg: s.bg, fg: s.fg, sh: s.sh, pick: () => this.setPref('limit', v) };
+      }),
+      toggles: tg.map((r) => {
+        var on = this.pref(r[0]) !== 'off';
+        return { label: r[1], on: on, track: on ? '#26A03B' : '#CFC8E8', x: on ? 30 : 4, flip: () => this.setPref(r[0], on ? 'off' : 'on') };
+      }),
+      badges: T.badges.map((s) => ({ t: s }))
+    };
+  }
+}
+</script>
+</body>
+</html>

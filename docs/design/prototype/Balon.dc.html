@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Moci · Balon Huruf</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&amp;family=Nunito:wght@600;700;800;900&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.f{font-family:'Fredoka',ui-rounded,'Arial Rounded MT Bold','Trebuchet MS',system-ui,sans-serif}
+.n{font-family:'Nunito',ui-rounded,system-ui,-apple-system,'Segoe UI',sans-serif}
+a{color:#2B2350;text-decoration:none}a:hover{color:#2B2350}
+button{font:inherit;color:inherit;border:0;padding:0;margin:0;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.tap{transition:transform .12s ease}.tap:active{transform:translateY(5px) scale(.97)}
+.blFloat{animation-name:blFloat;animation-timing-function:linear;animation-iteration-count:infinite}
+.blSway{animation:blSway 2.6s ease-in-out infinite;transform-origin:50% 0}
+.blNoA{animation:blNoA .45s ease 1}
+.blNoB{animation:blNoB .45s ease 1}
+.blBurst{animation:blBurst .6s ease-out both}
+.blCloud{animation-name:blCloud;animation-timing-function:linear;animation-iteration-count:infinite}
+.blIn{animation:blIn .45s cubic-bezier(.3,1.5,.5,1) both}
+@keyframes blFloat{0%{transform:translateY(380px)}100%{transform:translateY(-560px)}}
+@keyframes blSway{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
+@keyframes blNoA{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-12px)}40%,80%{transform:translateX(12px)}}
+@keyframes blNoB{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-12px)}40%,80%{transform:translateX(12px)}}
+@keyframes blBurst{0%{transform:scale(.4);opacity:1}100%{transform:scale(1.5);opacity:0}}
+@keyframes blCloud{from{transform:translateX(-260px)}to{transform:translateX(1440px)}}
+@keyframes blIn{0%{transform:scale(.5);opacity:0}100%{transform:scale(1);opacity:1}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="f" style="position: relative; width: 1180px; height: 820px; overflow: hidden; background: linear-gradient(180deg, #8FD3FF 0%, #CDEBFF 60%, #EAF6FF 100%); color: #2B2350">
+
+<div class="blCloud" aria-hidden="true" style="position: absolute; left: 0; top: 190px; width: 170px; height: 96px; animation-duration: 70s; animation-delay: -20s; opacity: .9"><svg viewBox="0 0 160 90" width="170" height="96"><path d="M30 80C12 80 10 56 28 52C26 30 54 22 66 36C74 14 112 14 118 40C138 36 150 58 138 70C136 78 128 80 122 80Z" fill="#FFFFFF"/></svg></div>
+<div class="blCloud" aria-hidden="true" style="position: absolute; left: 0; top: 560px; width: 130px; height: 73px; animation-duration: 80s; animation-delay: -55s; opacity: .8"><svg viewBox="0 0 160 90" width="130" height="73"><path d="M30 80C12 80 10 56 28 52C26 30 54 22 66 36C74 14 112 14 118 40C138 36 150 58 138 70C136 78 128 80 122 80Z" fill="#FFFFFF"/></svg></div>
+
+<sc-for list="{{balloons}}" as="b" hint-placeholder-count="6">
+<div class="blFloat" style="position: absolute; left: {{b.x}}px; top: {{b.y}}px; width: 150px; height: 236px; animation-duration: {{b.dur}}s; animation-delay: {{b.delay}}s">
+<sc-if value="{{b.popped}}" hint-placeholder-val="{{false}}">
+<svg class="blBurst" aria-hidden="true" viewBox="0 0 150 160" width="150" height="160"><g fill="{{b.col}}"><path d="M75 6l9 40 38-18-26 34 42 8-42 10 26 34-38-18-9 40-9-40-38 18 26-34-42-10 42-8-26-34 38 18z"/></g></svg>
+</sc-if>
+<sc-if value="{{b.live}}" hint-placeholder-val="{{true}}">
+<div class="blSway">
+<button class="{{b.cls}}" onClick="{{b.pop}}" aria-label="{{b.label}}" style="position: relative; width: 150px; height: 236px">
+<svg aria-hidden="true" viewBox="0 0 150 236" width="150" height="236" style="position: absolute; left: 0; top: 0">
+<path d="M75 156C75 176 64 186 72 200C80 214 70 224 76 236" fill="none" stroke="#6B5F99" stroke-width="3" stroke-linecap="round"/>
+<path d="M66 154H84L80 144H70Z" fill="{{b.dark}}"/>
+<ellipse cx="75" cy="78" rx="64" ry="74" fill="{{b.col}}"/>
+<ellipse cx="50" cy="44" rx="13" ry="22" transform="rotate(25 50 44)" fill="#FFFFFF" opacity=".45"/>
+</svg>
+<span class="f" style="position: absolute; left: 0; right: 0; top: 34px; font-size: 68px; font-weight: 700; line-height: 1; color: #FFFFFF; text-shadow: 0 4px 0 rgba(0,0,0,.18)">{{b.l}}</span>
+</button>
+</div>
+</sc-if>
+</div>
+</sc-for>
+
+<div style="position: absolute; left: 32px; right: 32px; top: 22px; display: flex; align-items: center; gap: 16px">
+<a href="{{lk.Permainan.h}}" onClick="{{lk.Permainan.go}}" class="tap" aria-label="{{t.back}}" style="width: 76px; height: 76px; border-radius: 26px; background: #FFFFFF; box-shadow: 0 7px 0 #8ECBEE; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="#2B2350" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+</a>
+<h1 class="f" style="margin: 0; font-size: 44px; font-weight: 700; white-space: nowrap">{{t.title}}</h1>
+<div style="flex: 1"></div>
+<button class="tap" onClick="{{sayQ}}" style="height: 76px; padding: 0 12px 0 22px; border-radius: 999px; background: #FFFFFF; box-shadow: 0 7px 0 #8ECBEE; display: flex; align-items: center; gap: 14px">
+<span class="f" style="font-size: 28px; font-weight: 600">{{t.ask}}</span>
+<span class="f" style="width: 58px; height: 58px; border-radius: 18px; background: #22C1C3; box-shadow: 0 5px 0 #129A9C; color: #FFFFFF; font-size: 40px; font-weight: 700; display: flex; align-items: center; justify-content: center">{{target}}</span>
+</button>
+<div aria-label="{{progressLabel}}" style="height: 58px; padding: 0 20px; border-radius: 999px; background: #FFFFFF; box-shadow: 0 6px 0 #8ECBEE; display: flex; align-items: center; gap: 8px">
+<sc-for list="{{dots}}" as="d" hint-placeholder-count="5">
+<span style="width: {{d.w}}px; height: 16px; border-radius: 999px; background: {{d.c}}"></span>
+</sc-for>
+</div>
+</div>
+
+<sc-if value="{{done}}" hint-placeholder-val="{{false}}">
+<div class="blIn" style="position: absolute; left: 190px; top: 170px; width: 800px; height: 520px; border-radius: 44px; background: rgba(255,255,255,.96); box-shadow: 0 12px 0 #8ECBEE; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px">
+<img src="/_blob/c6f764abf556b8252c9552e7fa94a90d" alt="" style="width: 210px; height: 210px">
+<div class="f" style="font-size: 44px; font-weight: 700; text-align: center">{{t.great}}</div>
+<div style="display: flex; gap: 16px">
+<button class="f tap" onClick="{{again}}" style="height: 70px; padding: 0 30px; border-radius: 999px; background: #FFFFFF; box-shadow: 0 7px 0 #8ECBEE, inset 0 0 0 3px #8ECBEE; font-size: 24px; font-weight: 600">{{t.again}}</button>
+<a href="{{lk.Hebat.h}}" onClick="{{lk.Hebat.go}}" class="f tap" style="height: 70px; padding: 0 30px; border-radius: 999px; background: #26A03B; box-shadow: 0 7px 0 #1E8A31; color: #FFFFFF; font-size: 24px; font-weight: 600; display: flex; align-items: center">{{t.prize}}</a>
+</div>
+</div>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"lang":{"editor":"enum","options":["auto","id","en"],"default":"auto","section":"Bahasa"},"app":{"editor":null},"$preview":{"width":1180,"height":820}}'>
+class Component extends DCLogic {
+  pref(k) {
+    var a = this.props.app;
+    if (a && a.prefs) return a.prefs[k] || '';
+    var st = this.state || {};
+    if (st['p_' + k] !== undefined) return st['p_' + k];
+    try { var v = window.localStorage.getItem('moci-' + k); if (v !== null) return v; } catch (e) {}
+    return '';
+  }
+  L() {
+    var p = this.props.lang;
+    if (p === 'id' || p === 'en') return p;
+    return this.pref('lang') === 'en' ? 'en' : 'id';
+  }
+  lk(names) {
+    var a = this.props.app, o = {};
+    names.forEach((n) => {
+      o[n] = (a && a.nav) ? { h: '#', go: (e) => { try { e.preventDefault(); } catch (x) {} a.nav(n); } } : { h: n + '.dc.html', go: null };
+    });
+    return o;
+  }
+  componentWillUnmount() { clearTimeout(this._t); }
+  speak(t, lang) {
+    try {
+      var s = window.speechSynthesis;
+      if (!s || typeof SpeechSynthesisUtterance === 'undefined') return;
+      s.cancel();
+      var u = new SpeechSynthesisUtterance(t);
+      var en = (lang || this.L()) === 'en';
+      u.lang = en ? 'en-US' : 'id-ID'; u.rate = 0.85; u.pitch = 1.15;
+      var re = en ? /^en/i : /^id/i;
+      var vs = s.getVoices ? s.getVoices() : [];
+      for (var i = 0; i < vs.length; i++) { if (re.test(vs[i].lang)) { u.voice = vs[i]; break; } }
+      s.speak(u);
+    } catch (e) {}
+  }
+  shuffle(a) {
+    var b = a.slice();
+    for (var i = b.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = b[i]; b[i] = b[j]; b[j] = t; }
+    return b;
+  }
+  makeRound(score, avoid) {
+    var set = (this.pref('age') === '2–3' || !this.pref('age') ? 'ABCIMOPSU' : 'ABCDEFGHIJKLMNOPRSTUWYZ').split('');
+    var target = this.shuffle(set.filter((l) => l !== avoid))[0];
+    var others = this.shuffle(set.filter((l) => l !== target)).slice(0, 4);
+    var letters = this.shuffle([target, target].concat(others));
+    return {
+      target: target, score: score, popped: {},
+      letters: letters,
+      timing: letters.map(() => [Math.round(10 + Math.random() * 5), -Math.round(Math.random() * 10)])
+    };
+  }
+  renderVals() {
+    var st = this.state || {};
+    var en = this.L() === 'en';
+    var T = en
+      ? { title: 'Letter Balloons', back: 'Back to games', ask: 'Pop the letter', progress: 'Progress', yes: 'Pop! That is ', no: 'Oops, that is ', great: 'Great popping! You found every letter!', again: 'Play again', prize: 'Get a prize', balloon: 'Balloon ' }
+      : { title: 'Balon Huruf', back: 'Kembali ke permainan', ask: 'Pecahkan balon huruf', progress: 'Kemajuan', yes: 'Dor! Itu huruf ', no: 'Ups, itu huruf ', great: 'Hebat! Semua huruf ketemu!', again: 'Main lagi', prize: 'Ambil hadiah', balloon: 'Balon huruf ' };
+    var COLS = [['#FF6B6B', '#E03E3E'], ['#FFB020', '#E0870B'], ['#22C1C3', '#129A9C'], ['#9775FA', '#7048E8'], ['#51CF66', '#2F9E44'], ['#F06595', '#C2255C']];
+    var SLOTS = [[60, 400], [240, 270], [420, 430], [600, 290], [780, 440], [960, 300]];
+    var round = st.round || { target: 'B', score: 1, popped: {}, letters: ['A', 'B', 'D', 'B', 'E', 'C'], timing: [[12, -3], [11, -7], [13, -1], [10, -5], [14, -9], [12, -4]] };
+    var done = round.score >= 5;
+    var q = T.ask + ' ' + round.target;
+    return {
+      t: T,
+      lk: this.lk(['Permainan', 'Hebat']),
+      target: round.target,
+      progressLabel: T.progress + ' ' + Math.min(round.score, 5) + ' / 5',
+      dots: [0, 1, 2, 3, 4].map((i) => ({ w: i === round.score ? 34 : 16, c: i < round.score ? '#26A03B' : (i === round.score ? '#22C1C3' : '#CDEBFF') })),
+      sayQ: () => this.speak(q),
+      done: done,
+      again: () => { var r = this.makeRound(0, ''); this.setState({ round: r }); this.speak(T.ask + ' ' + r.target); },
+      balloons: done ? [] : round.letters.map((l, i) => ({
+        l: l, x: SLOTS[i][0], y: SLOTS[i][1], col: COLS[i % COLS.length][0], dark: COLS[i % COLS.length][1],
+        dur: round.timing[i][0], delay: round.timing[i][1],
+        popped: !!round.popped[i], live: !round.popped[i], label: T.balloon + l,
+        cls: st.last === i ? (st.fl ? 'blNoA' : 'blNoB') : '',
+        pop: () => {
+          var cur = this.state || {};
+          var r0 = cur.round || round;
+          if (r0.score >= 5 || r0.popped[i]) return;
+          if (l === r0.target) {
+            var popped = Object.assign({}, r0.popped);
+            popped[i] = true;
+            this.setState({ round: Object.assign({}, r0, { popped: popped }), last: -1 });
+            this.speak(T.yes + l + '!');
+            clearTimeout(this._t);
+            this._t = setTimeout(() => {
+              var r1 = (this.state || {}).round || r0;
+              var sc = r1.score + 1;
+              if (sc >= 5) { this.setState({ round: Object.assign({}, r1, { score: sc }) }); this.speak(T.great); return; }
+              var nr = this.makeRound(sc, r1.target);
+              this.setState({ round: nr });
+              this.speak(T.ask + ' ' + nr.target);
+            }, 1000);
+          } else {
+            this.setState({ last: i, fl: !cur.fl });
+            this.speak(T.no + l + '.');
+          }
+        }
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

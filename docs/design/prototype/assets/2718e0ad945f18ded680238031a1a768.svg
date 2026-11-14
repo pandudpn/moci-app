@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+<path d="M66 128L40 140" fill="none" stroke="#E03131" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M64 140L38 156" fill="none" stroke="#E03131" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M68 152L46 170" fill="none" stroke="#E03131" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M134 128L160 140" fill="none" stroke="#E03131" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M136 140L162 156" fill="none" stroke="#E03131" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M132 152L154 170" fill="none" stroke="#E03131" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M70 112L50 86" fill="none" stroke="#E03131" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M130 112L150 86" fill="none" stroke="#E03131" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M46 58C30 58 26 82 40 90L48 78L58 84C64 70 60 58 46 58Z" fill="#FA5252"></path>
+<path d="M154 58C170 58 174 82 160 90L152 78L142 84C136 70 140 58 154 58Z" fill="#FA5252"></path>
+<ellipse cx="100" cy="132" rx="44" ry="32" fill="#FA5252"></ellipse>
+<path d="M88 104V88" fill="none" stroke="#E03131" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M112 104V88" fill="none" stroke="#E03131" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"></path>
+<circle cx="88" cy="84" r="9" fill="#FFFFFF"></circle>
+<circle cx="112" cy="84" r="9" fill="#FFFFFF"></circle>
+<circle cx="88.8" cy="84.8" r="4.5" fill="#2B2350"></circle>
+<circle cx="112.8" cy="84.8" r="4.5" fill="#2B2350"></circle>
+<path d="M88 138Q100 147.6 112 138" fill="none" stroke="#2B2350" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+<ellipse cx="76" cy="132" rx="8" ry="5" fill="#FF8FA3" opacity=".7"></ellipse>
+<ellipse cx="124" cy="132" rx="8" ry="5" fill="#FF8FA3" opacity=".7"></ellipse>
+</svg>

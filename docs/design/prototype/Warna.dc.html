@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Moci · Warna</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&amp;family=Nunito:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.f{font-family:'Fredoka',ui-rounded,'Arial Rounded MT Bold','Trebuchet MS',system-ui,sans-serif}
+.n{font-family:'Nunito',ui-rounded,system-ui,-apple-system,'Segoe UI',sans-serif}
+a{color:#2B2350;text-decoration:none}a:hover{color:#2B2350}
+button{font:inherit;color:inherit;border:0;padding:0;margin:0;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.tap{transition:transform .12s ease}.tap:active{transform:translateY(5px) scale(.97)}
+.wnSw{transition:transform .15s ease}
+.wnWob{animation:wnWob 3.2s ease-in-out infinite}
+.wnOkA{animation:wnOk .5s cubic-bezier(.3,1.6,.5,1) 1}
+.wnOkB{animation:wnOk2 .5s cubic-bezier(.3,1.6,.5,1) 1}
+.wnNoA{animation:wnNo .45s ease 1}
+.wnNoB{animation:wnNo2 .45s ease 1}
+.wnIn{animation:wnIn .35s cubic-bezier(.3,1.5,.5,1) both}
+.wnRise{animation:wnRise .45s cubic-bezier(.3,1.5,.5,1) both}
+@keyframes wnWob{0%,100%{transform:rotate(-4deg) scale(1)}50%{transform:rotate(4deg) scale(1.05)}}
+@keyframes wnOk{0%{transform:scale(1)}40%{transform:scale(1.12)}100%{transform:scale(1)}}
+@keyframes wnOk2{0%{transform:scale(1)}40%{transform:scale(1.12)}100%{transform:scale(1)}}
+@keyframes wnNo{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-10px)}40%,80%{transform:translateX(10px)}}
+@keyframes wnNo2{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-10px)}40%,80%{transform:translateX(10px)}}
+@keyframes wnIn{0%{transform:scale(.5);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes wnRise{0%{transform:translateY(30px);opacity:0}100%{transform:translateY(0);opacity:1}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="f" style="position: relative; width: 1180px; height: 820px; overflow: hidden; background-color: #F3EEFF; background-image: radial-gradient(#E3D9FF 3px, transparent 3px); background-size: 36px 36px; color: #2B2350">
+
+<div style="position: absolute; left: 32px; right: 32px; top: 22px; display: flex; align-items: center; gap: 18px">
+<a href="{{lk.Main.h}}" onClick="{{lk.Main.go}}" class="tap" aria-label="{{t.back}}" style="width: 76px; height: 76px; border-radius: 26px; background: #FFFFFF; box-shadow: 0 7px 0 #D0BFFF; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="#2B2350" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+</a>
+<h1 class="f" style="margin: 0; font-size: 46px; font-weight: 700">{{t.title}}</h1>
+<div style="flex: 1"></div>
+<button class="f tap" onClick="{{shuffle}}" style="display: flex; align-items: center; gap: 8px; height: 64px; padding: 0 20px 0 16px; background: #FFFFFF; border-radius: 999px; box-shadow: 0 6px 0 #D0BFFF; font-size: 21px; font-weight: 600">
+<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 3h5v5"/><path d="M4 20L21 3"/><path d="M21 16v5h-5"/><path d="M15 15l6 6"/><path d="M4 4l5 5"/></svg>
+<span>{{t.newSet}}</span>
+</button>
+<div class="f" style="display: flex; align-items: center; gap: 8px; height: 64px; padding: 0 22px 0 14px; background: #FFFFFF; border-radius: 999px; box-shadow: 0 6px 0 #D0BFFF; font-size: 30px; font-weight: 700">
+<svg viewBox="0 0 40 40" width="40" height="40" aria-hidden="true"><path d="M20 3l5.2 10.6 11.7 1.7-8.5 8.2 2 11.6L20 29.6 9.6 35.1l2-11.6-8.5-8.2 11.7-1.7z" fill="#FFC21A" stroke="#F08C00" stroke-width="2" stroke-linejoin="round"/></svg>
+<span>24</span>
+</div>
+</div>
+
+<div style="position: absolute; left: 40px; top: 120px; width: 330px; height: 660px; border-radius: 40px; background: #FFFFFF; box-shadow: 0 12px 0 #D0BFFF, 0 24px 40px rgba(43,35,80,.1)">
+<button class="wnWob" onClick="{{sayColor}}" aria-label="{{tg.name}}" style="position: absolute; left: 75px; top: 18px; width: 180px; height: 180px">
+<svg viewBox="0 0 200 200" width="180" height="180" aria-hidden="true">
+<path d="M100 22C126 22 136 44 156 40C182 36 190 66 174 86C194 104 182 138 156 134C150 162 120 178 100 160C80 178 46 168 46 140C20 138 12 106 30 90C14 66 36 38 62 46C68 28 84 22 100 22Z" fill="{{tg.hex}}" stroke="{{tg.line}}" stroke-width="4"/>
+<circle cx="182" cy="34" r="8" fill="{{tg.hex}}" stroke="{{tg.line}}" stroke-width="3"/><circle cx="24" cy="164" r="10" fill="{{tg.hex}}" stroke="{{tg.line}}" stroke-width="3"/><circle cx="172" cy="172" r="6" fill="{{tg.hex}}" stroke="{{tg.line}}" stroke-width="3"/>
+<ellipse cx="74" cy="72" rx="16" ry="10" transform="rotate(-30 74 72)" fill="#FFFFFF" opacity=".55"/>
+</svg>
+</button>
+<div class="f" style="position: absolute; left: 0; right: 0; top: 200px; text-align: center; font-size: {{tg.fs}}px; font-weight: 700; letter-spacing: 1px">{{tg.up}}</div>
+<button class="f tap" onClick="{{sayColor}}" style="position: absolute; left: 55px; top: 268px; width: 220px; height: 60px; border-radius: 999px; background: #FFB020; box-shadow: 0 6px 0 #E0870B; font-size: 22px; font-weight: 600; color: #2B2350; display: flex; align-items: center; justify-content: center; gap: 8px">
+<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="currentColor"/><path d="M15.5 9a4 4 0 0 1 0 6"/><path d="M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>
+<span>{{t.hear}}</span>
+</button>
+<div class="n" style="position: absolute; left: 0; right: 0; top: 352px; text-align: center; font-size: 17px; font-weight: 800; color: #6B5F99">{{t.pick}}</div>
+<div role="group" aria-label="{{t.pick}}" style="position: absolute; left: 40px; top: 386px; width: 250px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px 12px">
+<sc-for list="{{chips}}" as="c" hint-placeholder-count="11">
+<button class="wnSw" onClick="{{c.pick}}" aria-label="{{c.name}}" aria-pressed="{{c.on}}" style="height: 54px; border-radius: 50%; background: {{c.hex}}; border: 5px solid {{c.ring}}; box-sizing: border-box; box-shadow: 0 5px 0 rgba(43,35,80,.18); transform: {{c.lift}}"></button>
+</sc-for>
+</div>
+</div>
+
+<div style="position: absolute; left: 400px; top: 120px; width: 740px; height: 660px; border-radius: 40px; background: #FFFFFF; box-shadow: 0 12px 0 #D0BFFF, 0 24px 40px rgba(43,35,80,.1); overflow: hidden">
+<div style="position: absolute; left: 32px; right: 32px; top: 24px; display: flex; align-items: center; justify-content: space-between; gap: 12px">
+<div class="f" style="font-size: 30px; font-weight: 700; line-height: 1.15">{{ins.pre}}<span style="display: inline-block; padding: 0 12px; border-radius: 12px; background: {{tg.hex}}; color: {{tg.txt}}; box-shadow: inset 0 0 0 2px {{tg.line}}">{{tg.up}}</span>{{ins.post}}</div>
+<div class="f" role="status" style="display: flex; align-items: center; height: 54px; padding: 0 18px; border-radius: 999px; background: #F3EEFF; font-size: 30px; font-weight: 700; color: #5032B8; white-space: nowrap">{{foundN}} / {{total}}</div>
+</div>
+<div style="position: absolute; left: 34px; top: 104px; width: 672px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px">
+<sc-for list="{{items}}" as="it" hint-placeholder-count="12">
+<button class="{{it.cls}}" onClick="{{it.tap}}" aria-label="{{it.name}}" style="position: relative; height: 152px; box-sizing: border-box; border-radius: 30px; background: #FBFAFF; border: 6px solid {{it.bd}}; display: flex; align-items: center; justify-content: center; animation-delay: {{it.delay}}s">
+<sc-if value="{{it.isImg}}" hint-placeholder-val="{{true}}">
+<img src="{{it.img}}" alt="" draggable="false" style="width: 120px; height: 120px">
+</sc-if>
+<sc-if value="{{it.isBalloon}}" hint-placeholder-val="{{false}}">
+<svg viewBox="0 0 100 130" width="92" height="120" aria-hidden="true"><path d="M50 8C74 8 90 28 90 52C90 78 70 98 50 100C30 98 10 78 10 52C10 28 26 8 50 8Z" fill="{{it.fill}}" stroke="{{it.line}}" stroke-width="3"/><path d="M44 100L50 108L56 100Z" fill="{{it.fill}}" stroke="{{it.line}}" stroke-width="2"/><path d="M50 108C46 116 56 120 50 128" stroke="#868E96" stroke-width="2.5" fill="none"/><ellipse cx="34" cy="36" rx="8" ry="14" transform="rotate(25 34 36)" fill="#FFFFFF" opacity=".5"/></svg>
+</sc-if>
+<sc-if value="{{it.isStar}}" hint-placeholder-val="{{false}}">
+<svg viewBox="0 0 100 100" width="112" height="112" aria-hidden="true"><path d="M50 6l13 27 30 4-22 21 5 30-26-14-26 14 5-30-22-21 30-4z" fill="{{it.fill}}" stroke="{{it.line}}" stroke-width="3.5" stroke-linejoin="round"/><ellipse cx="40" cy="38" rx="6" ry="10" transform="rotate(30 40 38)" fill="#FFFFFF" opacity=".45"/></svg>
+</sc-if>
+<sc-if value="{{it.isHeart}}" hint-placeholder-val="{{false}}">
+<svg viewBox="0 0 100 100" width="110" height="110" aria-hidden="true"><path d="M50 88C20 66 8 50 8 32C8 18 19 8 32 8C40 8 47 12 50 19C53 12 60 8 68 8C81 8 92 18 92 32C92 50 80 66 50 88Z" fill="{{it.fill}}" stroke="{{it.line}}" stroke-width="3.5" stroke-linejoin="round"/><ellipse cx="30" cy="30" rx="8" ry="12" transform="rotate(-30 30 30)" fill="#FFFFFF" opacity=".45"/></svg>
+</sc-if>
+<sc-if value="{{it.got}}" hint-placeholder-val="{{false}}">
+<span style="position: absolute; right: -10px; top: -10px; width: 48px; height: 48px; box-sizing: border-box; border-radius: 50%; background: #26A03B; border: 4px solid #FFFFFF; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#FFFFFF" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+</span>
+</sc-if>
+</button>
+</sc-for>
+</div>
+<sc-if value="{{allFound}}" hint-placeholder-val="{{false}}">
+<div class="wnRise f" style="position: absolute; left: 50%; bottom: 22px; margin-left: -300px; width: 600px; box-sizing: border-box; display: flex; align-items: center; gap: 12px; height: 72px; padding: 0 12px 0 24px; border-radius: 999px; background: #2B2350; color: #FFFFFF; font-size: 26px; font-weight: 600; white-space: nowrap">
+<svg viewBox="0 0 40 40" width="38" height="38" aria-hidden="true"><path d="M20 3l5.2 10.6 11.7 1.7-8.5 8.2 2 11.6L20 29.6 9.6 35.1l2-11.6-8.5-8.2 11.7-1.7z" fill="#FFC21A" stroke="#F08C00" stroke-width="2" stroke-linejoin="round"/></svg>
+<span style="flex: 1; overflow: hidden; text-overflow: ellipsis">{{doneText}}</span>
+<button class="f tap" onClick="{{nextColor}}" style="height: 54px; padding: 0 20px; border-radius: 999px; background: #FFFFFF; color: #2B2350; font-size: 20px; font-weight: 600">{{t.nextColor}}</button>
+</div>
+</sc-if>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"lang":{"editor":"enum","options":["auto","id","en"],"default":"auto","section":"Bahasa"},"app":{"editor":null},"$preview":{"width":1180,"height":820}}'>
+class Component extends DCLogic {
+  pref(k) {
+    var a = this.props.app;
+    if (a && a.prefs) return a.prefs[k] || '';
+    var st = this.state || {};
+    if (st['p_' + k] !== undefined) return st['p_' + k];
+    try { var v = window.localStorage.getItem('moci-' + k); if (v !== null) return v; } catch (e) {}
+    return '';
+  }
+  L() {
+    var p = this.props.lang;
+    if (p === 'id' || p === 'en') return p;
+    return this.pref('lang') === 'en' ? 'en' : 'id';
+  }
+  lk(names) {
+    var a = this.props.app, o = {};
+    names.forEach((n) => {
+      o[n] = (a && a.nav) ? { h: '#', go: (e) => { try { e.preventDefault(); } catch (x) {} a.nav(n); } } : { h: n + '.dc.html', go: null };
+    });
+    return o;
+  }
+  speak(t, lang) {
+    try {
+      var s = window.speechSynthesis;
+      if (!s || typeof SpeechSynthesisUtterance === 'undefined') return;
+      s.cancel();
+      var u = new SpeechSynthesisUtterance(t);
+      var en = (lang || this.L()) === 'en';
+      u.lang = en ? 'en-US' : 'id-ID'; u.rate = 0.9; u.pitch = 1.15;
+      var re = en ? /^en/i : /^id/i;
+      var vs = s.getVoices ? s.getVoices() : [];
+      for (var i = 0; i < vs.length; i++) { if (re.test(vs[i].lang)) { u.voice = vs[i]; break; } }
+      s.speak(u);
+    } catch (e) {}
+  }
+  pics() {
+    if (!this._p) this._p = [["apel","Apel","Apple","f3ad85e8656c762498e18346c0834e64","merah"],["stroberi","Stroberi","Strawberry","09d4664bec1323b432b1b9c812474c22","merah"],["ceri","Ceri","Cherry","3fd7f59fde32f0a08b786024c2ae1816","merah"],["tomat","Tomat","Tomato","af7684512ef48e45fd48313f41839ba0","merah"],["cabai","Cabai","Chili","59862cf8071958f919b8bc19c09b5360","merah"],["paprika","Paprika","Bell Pepper","b52770bc9ad3fc2ce8c5111f526ebf56","merah"],["rambutan","Rambutan","Rambutan","b003fadeccd318f540f8d8b84f0432f8","merah"],["semangka","Semangka","Watermelon","b573b73d242c8297b108f60d1a04c80d","merah"],["kepiting","Kepiting","Crab","2718e0ad945f18ded680238031a1a768","merah"],["mobil","Mobil","Car","9a4b52d03d573cb2bb9e7fc33aa00ad6","merah"],["sepatu","Sepatu","Shoe","47d389b3dc6c01d69907d0362050c151","merah"],["jamur","Jamur","Mushroom","165cb51bf0986707ffbfb2d921d0e176","merah"],["jeruk","Jeruk","Orange","59fd969d55c43ab93330b9607a09797b","oranye"],["wortel","Wortel","Carrot","bd07cd5b5330a2434002468d23961755","oranye"],["labu","Labu","Pumpkin","515d2976a430bbde0badf4b3ffcb74a5","oranye"],["pepaya","Pepaya","Papaya","e656141d6c19c6456cb0733ad9d863f6","oranye"],["harimau","Harimau","Tiger","136c12a57e02d6f48327aa4a5aa7e505","oranye"],["rubah","Rubah","Fox","5c40d0968fbcc89166b74a9be572773b","oranye"],["orangutan","Orangutan","Orangutan","7ed47b04dad452d96a24e6150153b9f5","oranye"],["truk","Truk","Truck","e64bfdb04579e9fb52398c0da0c80992","oranye"],["singa","Singa","Lion","dd80b453f8b3c290ec0572401fe88fe7","oranye"],["kucing","Kucing","Cat","6de067c8bd1b21524d7d6e6b6f4c199a","oranye"],["pisang","Pisang","Banana","c75dbf0ae357afaddcf97c42d58a1160","kuning"],["nanas","Nanas","Pineapple","c5b26a2b99c1d84e15e9b08ad81a2811","kuning"],["lemon","Lemon","Lemon","8b60cce55b018ce76778d0e91124dc59","kuning"],["jagung","Jagung","Corn","e08be0e2320e04d93c135ec839e948c3","kuning"],["jerapah","Jerapah","Giraffe","4c3d5f88d1553c3efc658ffde91c904f","kuning"],["lebah","Lebah","Bee","b79511af670fe0c41fb57609f87bc0d7","kuning"],["bus","Bus","Bus","5fa24324963167da186e12222fc34b6a","kuning"],["helikopter","Helikopter","Helicopter","62be577d88c8efa7d0650f8e6fe147ee","kuning"],["kado","Kado","Gift","89f1eaa66e0150028701c8f5c32dab8c","kuning"],["alpukat","Alpukat","Avocado","5f73428052239896d0b19d90bbdca29c","hijau"],["brokoli","Brokoli","Broccoli","112a01a0bb2ec54bcc9c5d82c4483374","hijau"],["timun","Timun","Cucumber","9a8a7f8d87315469e96e98fb1f2b6e65","hijau"],["kubis","Kubis","Cabbage","bb4ae18f2157c2fda0b35c73ac0500a4","hijau"],["buncis","Buncis","Green Beans","6fbf958d791ba2f93fe3fec3baef7668","hijau"],["kelapa","Kelapa","Coconut","d0a5a178291f6bd0606cb8a325a7c385","hijau"],["melon","Melon","Melon","7b51db2aaa58605a7ae15e1af1369775","hijau"],["pir","Pir","Pear","cab62ecc12c60a9bac84afc2e9ebdaa9","hijau"],["katak","Katak","Frog","bec3ad3d9d42a30492ed1e061fdda4e0","hijau"],["buaya","Buaya","Crocodile","e257162228dd7c14327b984fc28fedd7","hijau"],["kura","Kura-kura","Turtle","db916cd9c526fad67c469d232d3e5885","hijau"],["ular","Ular","Snake","4d73c54d6666d5e184ba443f2597f2d9","hijau"],["durian","Durian","Durian","e2d12c8abf7cbc81caa370e3127314c8","hijau"],["ulat","Ulat","Caterpillar","2cffab27ed6825a9e2c9fba43d09c3a0","hijau"],["ikan","Ikan","Fish","ce8b6885ad970a4e66e036e133810b2b","biru"],["paus","Paus","Whale","193e7df94e29721da1a2ac0f2f472b53","biru"],["lumba","Lumba-lumba","Dolphin","52d07c866db14ef1a0fbd2c42022531a","biru"],["burung","Burung","Bird","a5705cd1aa08b59d26872e7d4381cf2b","biru"],["kaos","Kaos","T-shirt","893ce2f6a36105a5c6bf9dea02c0bc02","biru"],["pesawat","Pesawat","Airplane","cf3cbdb44abff66623a1b8886c6334a8","biru"],["anggur","Anggur","Grapes","7e32fcc5a77bca13617a7e9e6ebe6e67","ungu"],["terong","Terong","Eggplant","19a19c17820600c0673160b75b8d3f29","ungu"],["manggis","Manggis","Mangosteen","75e7e3110acc6c21ed3fdebef127894a","ungu"],["kupu","Kupu-kupu","Butterfly","dbdd2cc62f8a5bd8584cf371fac1c3b5","ungu"],["yoyo","Yoyo","Yoyo","d8d724511b118aee435cb582d2599023","ungu"],["ubur","Ubur-ubur","Jellyfish","e030d26c76d42274c76cf645c9e57bee","ungu"],["flamingo","Flamingo","Flamingo","c1c03878fc3cf75b46b14877a58b8a26","merah muda"],["buahnaga","Buah Naga","Dragon Fruit","ab38e88101d413a3d63b42752d453205","merah muda"],["jambu","Jambu Air","Water Apple","8fc15ac4c08d61291754b32791eb1206","merah muda"],["bunga","Bunga","Flower","a09858b43e75375a000f2d1c491d9333","merah muda"],["kuekecil","Kue Mangkuk","Cupcake","5175853037660fb2f7ad154418e040ec","merah muda"],["gurita","Gurita","Octopus","b56f04945cb0c68002805a3329cf26c5","merah muda"],["kentang","Kentang","Potato","656defb15a88ce7a84799d436f569272","cokelat"],["salak","Salak","Snake Fruit","9a04b8bf05b1e774b527a1e5b07fe2e4","cokelat"],["monyet","Monyet","Monkey","817145047067c4f962003b16c2f5fe59","cokelat"],["beruang","Beruang","Bear","6227b1cc8d2743c5fdb255f35b6ac00e","cokelat"],["kuda","Kuda","Horse","cc9b06fecc57b5d105417f65369928a4","cokelat"],["burunghantu","Burung Hantu","Owl","c26166f1dd3bb0c3f4b4b44cf09a5d4f","cokelat"],["quokka","Quokka","Quokka","4649005d6db1c08190f0c0cd49412f15","cokelat"],["sarang","Sarang","Nest","90b95302252dae3e8124a563dbc7cf78","cokelat"],["semut","Semut","Ant","f6df9bbf276d2e186a24f33a3041a600","hitam"],["domba","Domba","Sheep","c780d1ee0c9956db8125fe76ed646f3d","putih"],["kambing","Kambing","Goat","1c4ae5e05ea5cb5b1c97d7553d420d8f","putih"],["kelinci","Kelinci","Rabbit","f7d015c440e821b1c7c751875e4327e8","putih"],["bebek","Bebek","Duck","754f0bd7e0eb7cdaa2fd47f6f89b2df2","putih"],["igloo","Igloo","Igloo","d8346c1de7889660d9773e168f62ec9b","putih"],["ayam","Ayam","Chicken","81f53fe15d52afbfe261d665ef8b74ba","putih"],["gajah","Gajah","Elephant","8cb65c6477727354f6b9ad662449edba","abu-abu"],["badak","Badak","Rhino","246ed92afd22d9cd0b627495a965b7d8","abu-abu"],["tikus","Tikus","Mouse","de9512c85659eedbd04f024fc5074f4b","abu-abu"]];
+    return this._p;
+  }
+  colors() {
+    return [
+      ['merah', 'Merah', 'Red', '#E03131', '#FFFFFF', '#C92A2A'],
+      ['oranye', 'Oranye', 'Orange', '#FF922B', '#2B2350', '#E8590C'],
+      ['kuning', 'Kuning', 'Yellow', '#FFD43B', '#2B2350', '#F08C00'],
+      ['hijau', 'Hijau', 'Green', '#2F9E44', '#FFFFFF', '#237A34'],
+      ['biru', 'Biru', 'Blue', '#1C7ED6', '#FFFFFF', '#1565B0'],
+      ['ungu', 'Ungu', 'Purple', '#7048E8', '#FFFFFF', '#5032B8'],
+      ['merah muda', 'Merah Muda', 'Pink', '#F783AC', '#2B2350', '#D6336C'],
+      ['cokelat', 'Cokelat', 'Brown', '#A0673C', '#FFFFFF', '#7A4A22'],
+      ['hitam', 'Hitam', 'Black', '#343A40', '#FFFFFF', '#212529'],
+      ['putih', 'Putih', 'White', '#FFFFFF', '#2B2350', '#ADB5BD'],
+      ['abu-abu', 'Abu-abu', 'Gray', '#ADB5BD', '#2B2350', '#868E96']
+    ];
+  }
+  shuffle(a) {
+    var b = a.slice();
+    for (var i = b.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = b[i]; b[i] = b[j]; b[j] = t; }
+    return b;
+  }
+  makeSet(ck) {
+    var P = this.pics();
+    var C = this.colors();
+    var shapes = ['balon', 'bintang', 'hati'];
+    var mine = this.shuffle(P.filter((p) => p[4] === ck)).slice(0, 4).map((p) => ({ t: 'img', k: p[0], c: ck }));
+    var nT = 4 + Math.floor(Math.random() * 2);
+    while (mine.length < nT) mine.push({ t: shapes[mine.length % 3], c: ck });
+    var others = this.shuffle(P.filter((p) => p[4] !== ck)).slice(0, 12 - nT - 2).map((p) => ({ t: 'img', k: p[0], c: p[4] }));
+    var oc = this.shuffle(C.filter((c) => c[0] !== ck));
+    others.push({ t: shapes[Math.floor(Math.random() * 3)], c: oc[0][0] });
+    others.push({ t: shapes[Math.floor(Math.random() * 3)], c: oc[1][0] });
+    return { ck: ck, items: this.shuffle(mine.concat(others)), found: {} };
+  }
+  set() {
+    var st = this.state || {};
+    if (st.s) return st.s;
+    return {
+      ck: 'merah', fresh: true, found: { 0: true },
+      items: [{ t: 'img', k: 'apel', c: 'merah' }, { t: 'img', k: 'pisang', c: 'kuning' }, { t: 'balon', c: 'merah' }, { t: 'img', k: 'brokoli', c: 'hijau' },
+              { t: 'img', k: 'ikan', c: 'biru' }, { t: 'img', k: 'stroberi', c: 'merah' }, { t: 'bintang', c: 'kuning' }, { t: 'img', k: 'anggur', c: 'ungu' },
+              { t: 'img', k: 'jeruk', c: 'oranye' }, { t: 'hati', c: 'biru' }, { t: 'img', k: 'tomat', c: 'merah' }, { t: 'img', k: 'gajah', c: 'abu-abu' }]
+    };
+  }
+  renderVals() {
+    var st = this.state || {};
+    var en = this.L() === 'en';
+    var T = en
+      ? { title: 'Colors', back: 'Back to home', hear: 'Listen', pick: 'Pick a color', newSet: 'New pictures', nextColor: 'Next color', yes: 'Yes! ', no: 'Not this one. Find ', shapes: { balon: 'balloon', bintang: 'star', hati: 'heart' } }
+      : { title: 'Warna', back: 'Kembali ke beranda', hear: 'Dengar', pick: 'Pilih warna', newSet: 'Gambar baru', nextColor: 'Warna lain', yes: 'Betul! ', no: 'Bukan yang ini. Cari yang ', shapes: { balon: 'balon', bintang: 'bintang', hati: 'hati' } };
+    var C = this.colors();
+    var cmap = {}; C.forEach((c) => { cmap[c[0]] = c; });
+    var P = this.pics();
+    var pmap = {}; P.forEach((p) => { pmap[p[0]] = p; });
+    var S = this.set();
+    var tc = cmap[S.ck];
+    var cname = en ? tc[2] : tc[1];
+    var total = S.items.filter((x) => x.c === S.ck).length;
+    var foundN = Object.keys(S.found).length;
+    var allFound = foundN >= total && !S.fresh;
+    var itemName = (x) => {
+      var cn = en ? cmap[x.c][2].toLowerCase() : cmap[x.c][1].toLowerCase();
+      if (x.t === 'img') return en ? pmap[x.k][2] : pmap[x.k][1];
+      return en ? (cn + ' ' + T.shapes[x.t]) : (T.shapes[x.t] + ' ' + cn);
+    };
+    var say = en ? ('Tap everything that is ' + cname.toLowerCase() + '!') : ('Sentuh semua yang berwarna ' + cname.toLowerCase() + '!');
+    return {
+      t: T,
+      lk: this.lk(['Main']),
+      tg: { hex: tc[3], txt: tc[4], line: tc[5], name: cname, up: cname.toUpperCase(), fs: cname.length > 8 ? 38 : 48 },
+      ins: en ? { pre: 'Tap everything ', post: '!' } : { pre: 'Sentuh semua yang ', post: '!' },
+      foundN: foundN,
+      total: total,
+      allFound: allFound,
+      doneText: en ? ('You found all the ' + cname.toLowerCase() + ' things!') : ('Semua yang ' + cname.toLowerCase() + ' ketemu!'),
+      sayColor: () => this.speak(say),
+      shuffle: () => { var s2 = this.makeSet(S.ck); this.setState({ s: s2 }); this.speak(say); },
+      nextColor: () => {
+        var keys = C.map((c) => c[0]);
+        var nk = keys[(keys.indexOf(S.ck) + 1) % keys.length];
+        this.setState({ s: this.makeSet(nk) });
+        var nc = cmap[nk];
+        this.speak(en ? ('Tap everything that is ' + nc[2].toLowerCase() + '!') : ('Sentuh semua yang berwarna ' + nc[1].toLowerCase() + '!'));
+      },
+      chips: C.map((c) => ({
+        hex: c[3], name: en ? c[2] : c[1], on: c[0] === S.ck,
+        ring: c[0] === S.ck ? '#2B2350' : (c[0] === 'putih' ? '#DEE2E6' : '#FFFFFF'),
+        lift: c[0] === S.ck ? 'translateY(-6px) scale(1.08)' : 'none',
+        pick: () => {
+          this.setState({ s: this.makeSet(c[0]) });
+          this.speak(en ? ('Tap everything that is ' + c[2].toLowerCase() + '!') : ('Sentuh semua yang berwarna ' + c[1].toLowerCase() + '!'));
+        }
+      })),
+      items: S.items.map((x, i) => {
+        var got = !!S.found[i];
+        var cc = cmap[x.c];
+        var nm = itemName(x);
+        return {
+          isImg: x.t === 'img', isBalloon: x.t === 'balon', isStar: x.t === 'bintang', isHeart: x.t === 'hati',
+          img: x.t === 'img' ? '/_blob/' + pmap[x.k][3] : '',
+          fill: cc[3], line: cc[5],
+          name: nm, got: got, delay: S.fresh ? '0' : (i * 0.03).toFixed(2),
+          bd: got ? '#26A03B' : '#EFE9FF',
+          cls: (S.fresh ? '' : 'wnIn') + (st.hit === i ? (st.ok ? (st.fl ? ' wnOkA' : ' wnOkB') : (st.fl ? ' wnNoA' : ' wnNoB')) : ''),
+          tap: () => {
+            var S2 = this.set();
+            if (S2.found[i] && !S2.fresh) return;
+            var s3 = this.state || {};
+            if (x.c === S2.ck) {
+              var found = S2.fresh ? {} : Object.assign({}, S2.found);
+              found[i] = true;
+              this.setState({ s: { ck: S2.ck, items: S2.items, found: found }, hit: i, ok: true, fl: !s3.fl });
+              this.speak(T.yes + nm + '!');
+            } else {
+              this.setState({ hit: i, ok: false, fl: !s3.fl });
+              this.speak(nm + '. ' + T.no + cname.toLowerCase() + '!');
+            }
+          }
+        };
+      })
+    };
+  }
+}
+</script>
+</body>
+</html>

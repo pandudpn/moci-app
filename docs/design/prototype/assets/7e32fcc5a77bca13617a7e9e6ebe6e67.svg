@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+<path d="M100 56C100 46 102 38 108 30" stroke="#7A4A2A" stroke-width="6" stroke-linecap="round" fill="none"></path>
+<path d="M104 44C116 26 146 26 156 36C144 52 118 54 104 44Z" fill="#51CF66"></path>
+<path d="M108 44C122 40 136 38 150 37" stroke="#2F9E44" stroke-width="3" stroke-linecap="round" fill="none"></path>
+<g transform="translate(52 74)"><circle r="18" fill="#7048E8"></circle><circle cx="-2" cy="-2" r="15" fill="#9775FA"></circle><circle cx="-7" cy="-7" r="4" fill="#FFFFFF" opacity=".7"></circle></g>
+<g transform="translate(84 72)"><circle r="18" fill="#7048E8"></circle><circle cx="-2" cy="-2" r="15" fill="#9775FA"></circle><circle cx="-7" cy="-7" r="4" fill="#FFFFFF" opacity=".7"></circle></g>
+<g transform="translate(116 72)"><circle r="18" fill="#7048E8"></circle><circle cx="-2" cy="-2" r="15" fill="#9775FA"></circle><circle cx="-7" cy="-7" r="4" fill="#FFFFFF" opacity=".7"></circle></g>
+<g transform="translate(148 74)"><circle r="18" fill="#7048E8"></circle><circle cx="-2" cy="-2" r="15" fill="#9775FA"></circle><circle cx="-7" cy="-7" r="4" fill="#FFFFFF" opacity=".7"></circle></g>
+<g transform="translate(68 102)"><circle r="18" fill="#7048E8"></circle><circle cx="-2" cy="-2" r="15" fill="#9775FA"></circle><circle cx="-7" cy="-7" r="4" fill="#FFFFFF" opacity=".7"></circle></g>
+<g transform="translate(100 100)"><circle r="18" fill="#7048E8"></circle><circle cx="-2" cy="-2" r="15" fill="#9775FA"></circle><circle cx="-7" cy="-7" r="4" fill="#FFFFFF" opacity=".7"></circle></g>
+<g transform="translate(132 102)"><circle r="18" fill="#7048E8"></circle><circle cx="-2" cy="-2" r="15" fill="#9775FA"></circle><circle cx="-7" cy="-7" r="4" fill="#FFFFFF" opacity=".7"></circle></g>
+<g transform="translate(84 130)"><circle r="18" fill="#7048E8"></circle><circle cx="-2" cy="-2" r="15" fill="#9775FA"></circle><circle cx="-7" cy="-7" r="4" fill="#FFFFFF" opacity=".7"></circle></g>
+<g transform="translate(116 130)"><circle r="18" fill="#7048E8"></circle><circle cx="-2" cy="-2" r="15" fill="#9775FA"></circle><circle cx="-7" cy="-7" r="4" fill="#FFFFFF" opacity=".7"></circle></g>
+<g transform="translate(100 158)"><circle r="18" fill="#7048E8"></circle><circle cx="-2" cy="-2" r="15" fill="#9775FA"></circle><circle cx="-7" cy="-7" r="4" fill="#FFFFFF" opacity=".7"></circle></g>
+</svg>

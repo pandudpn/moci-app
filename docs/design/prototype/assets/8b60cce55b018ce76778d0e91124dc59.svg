@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+<ellipse cx="28" cy="106" rx="12" ry="9" fill="#FAB005"></ellipse>
+<ellipse cx="172" cy="106" rx="12" ry="9" fill="#FAB005"></ellipse>
+<defs><clipPath id="c"><path d="M30 106A70 52 0 1 0 170 106A70 52 0 1 0 30 106Z"></path></clipPath></defs>
+<path d="M30 106A70 52 0 1 0 170 106A70 52 0 1 0 30 106Z" fill="#FAB005"></path>
+<g clip-path="url(#c)"><path d="M30 106A70 52 0 1 0 170 106A70 52 0 1 0 30 106Z" fill="#FFD43B" transform="translate(-8 -8)"></path></g>
+<ellipse cx="150" cy="54" rx="18" ry="8" fill="#51CF66" transform="rotate(-30 150 54)"></ellipse>
+<path d="M136 62L144 56" fill="none" stroke="#7A4A2A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+<ellipse cx="70" cy="88" rx="18" ry="8" fill="#FFFFFF" transform="rotate(-15 70 88)" opacity=".55"></ellipse>
+</svg>

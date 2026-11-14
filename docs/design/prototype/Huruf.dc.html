@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Moci · Huruf — Kenali (fonik)</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&amp;family=Nunito:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.f{font-family:'Fredoka',ui-rounded,'Arial Rounded MT Bold','Trebuchet MS',system-ui,sans-serif}
+.n{font-family:'Nunito',ui-rounded,system-ui,-apple-system,'Segoe UI',sans-serif}
+a{color:#2B2350;text-decoration:none}a:hover{color:#2B2350}
+button{font:inherit;color:inherit;border:0;padding:0;margin:0;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.tap{transition:transform .12s ease}.tap:active{transform:translateY(5px) scale(.97)}
+.hfBob{animation:hfBob 3s ease-in-out infinite}
+.hfRing{animation:hfRing 2s ease-out infinite}
+.hfPopA{animation:hfPopA .55s cubic-bezier(.3,1.6,.5,1) 1}
+.hfPopB{animation:hfPopB .55s cubic-bezier(.3,1.6,.5,1) 1}
+.hfPeek{animation:hfPeek 3s ease-in-out infinite;transform-origin:50% 100%}
+@keyframes hfBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes hfRing{0%{transform:scale(1);opacity:.5}100%{transform:scale(1.75);opacity:0}}
+@keyframes hfPopA{0%{transform:scale(.6) rotate(-6deg)}60%{transform:scale(1.06) rotate(2deg)}100%{transform:scale(1) rotate(0)}}
+@keyframes hfPopB{0%{transform:scale(.6) rotate(-6deg)}60%{transform:scale(1.06) rotate(2deg)}100%{transform:scale(1) rotate(0)}}
+@keyframes hfPeek{0%,100%{transform:rotate(8deg) translateY(0)}50%{transform:rotate(2deg) translateY(-8px)}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="f" style="position: relative; width: 1180px; height: 820px; overflow: hidden; background-color: #FFEDE6; background-image: radial-gradient(#FFD9CC 3px, transparent 3px); background-size: 36px 36px; color: #2B2350">
+
+<div style="position: absolute; left: 32px; right: 32px; top: 26px; display: flex; align-items: center; gap: 18px">
+<a href="{{lk.Main.h}}" onClick="{{lk.Main.go}}" class="tap" aria-label="{{t.back}}" style="width: 76px; height: 76px; border-radius: 26px; background: #FFFFFF; box-shadow: 0 7px 0 #F3C2B3; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="#2B2350" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+</a>
+<h1 class="f" style="margin: 0; font-size: 46px; font-weight: 700">{{t.title}}</h1>
+<div style="flex: 1"></div>
+<nav aria-label="{{t.modes}}" style="display: flex; gap: 6px; padding: 6px; background: #FFFFFF; border-radius: 999px; box-shadow: 0 6px 0 #F3C2B3">
+<a href="{{lk.Huruf.h}}" onClick="{{lk.Huruf.go}}" aria-current="page" class="f" style="display: flex; align-items: center; gap: 8px; height: 56px; padding: 0 22px; border-radius: 999px; background: #E8384F; color: #FFFFFF; font-size: 24px; font-weight: 600">
+<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+<span>{{t.learn}}</span>
+</a>
+<a href="{{lk.Tulis.h}}" onClick="{{lk.Tulis.go}}" class="f tap" style="display: flex; align-items: center; gap: 8px; height: 56px; padding: 0 22px; border-radius: 999px; color: #2B2350; font-size: 24px; font-weight: 600">
+<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l4-1 11-11-3-3L5 16z"/><path d="M14 6l3 3"/></svg>
+<span>{{t.write}}</span>
+</a>
+<a href="{{lk.Ucapkan.h}}" onClick="{{lk.Ucapkan.go}}" class="f tap" style="display: flex; align-items: center; gap: 8px; height: 56px; padding: 0 22px; border-radius: 999px; color: #2B2350; font-size: 24px; font-weight: 600">
+<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0"/><path d="M12 17.5V21"/></svg>
+<span>{{t.say}}</span>
+</a>
+</nav>
+<div class="f" style="display: flex; align-items: center; gap: 8px; height: 64px; padding: 0 22px 0 14px; background: #FFFFFF; border-radius: 999px; box-shadow: 0 6px 0 #F3C2B3; font-size: 30px; font-weight: 700">
+<svg viewBox="0 0 40 40" width="40" height="40" aria-hidden="true"><path d="M20 3l5.2 10.6 11.7 1.7-8.5 8.2 2 11.6L20 29.6 9.6 35.1l2-11.6-8.5-8.2 11.7-1.7z" fill="#FFC21A" stroke="#F08C00" stroke-width="2" stroke-linejoin="round"/></svg>
+<span>24</span>
+</div>
+</div>
+
+<div style="position: absolute; left: 170px; top: 134px; width: 840px; height: 420px; border-radius: 48px; background: #FFFFFF; box-shadow: 0 14px 0 #F6CDBF, 0 26px 40px rgba(43,35,80,.12)">
+<div class="n" style="position: absolute; right: 30px; top: 22px; font-size: 18px; font-weight: 800; color: #6B5F99">{{idxLabel}}</div>
+<button class="{{popClass}}" onClick="{{sayMain}}" aria-label="{{letterLabel}}" style="position: absolute; left: 24px; top: 14px; width: 390px; height: 266px; display: flex; align-items: center; justify-content: center; gap: 8px">
+<span class="f" style="font-size: 196px; font-weight: 700; line-height: 1; color: #E8384F; text-shadow: 0 10px 0 #FFD0C4">{{cur.u}}</span>
+<span class="f" style="font-size: 150px; font-weight: 600; line-height: 1; color: #1C8CF0; text-shadow: 0 8px 0 #CFE6FF; margin-top: 42px">{{cur.l}}</span>
+</button>
+<div style="position: absolute; left: 34px; top: 288px; width: 370px; display: flex; justify-content: center; gap: 12px">
+<button class="f tap" onClick="{{saySound}}" aria-label="{{soundAria}}" style="height: 54px; padding: 0 18px 0 14px; border-radius: 999px; background: #FFE3DA; color: #A61E33; box-shadow: 0 5px 0 #F3C2B3; display: flex; align-items: center; gap: 8px; font-size: 22px; font-weight: 600; white-space: nowrap">
+<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="currentColor"/><path d="M15.5 9a4 4 0 0 1 0 6"/></svg>
+<span>{{t.sound}}</span><span style="font-weight: 700">{{cur.sd}}</span>
+</button>
+<button class="f tap" onClick="{{sayName}}" aria-label="{{nameAria}}" style="height: 54px; padding: 0 18px 0 14px; border-radius: 999px; background: #E7F3FF; color: #1265B5; box-shadow: 0 5px 0 #B7D7F7; display: flex; align-items: center; gap: 8px; font-size: 22px; font-weight: 600; white-space: nowrap">
+<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="currentColor"/><path d="M15.5 9a4 4 0 0 1 0 6"/></svg>
+<span>{{t.name}}</span><span style="font-weight: 700">{{cur.nm}}</span>
+</button>
+</div>
+<div aria-hidden="true" style="position: absolute; left: 420px; top: 50px; width: 4px; height: 290px; border-radius: 4px; background: #FFE3DA"></div>
+<button onClick="{{sayWord}}" aria-label="{{cur.w}}" style="position: absolute; left: 436px; top: 18px; width: 380px; height: 346px">
+<div aria-hidden="true" style="position: absolute; left: 60px; top: 10px; width: 260px; height: 260px; border-radius: 50%; background: #FFF1EC"></div>
+<img class="hfBob" src="{{cur.img}}" alt="" style="position: absolute; left: 70px; top: 6px; width: 240px; height: 240px">
+<div class="f" style="position: absolute; left: 0; right: 0; top: 264px; text-align: center; font-size: {{wordSize}}px; font-weight: 700; line-height: 1.1; color: #2B2350">{{cur.pre}}<span style="color: #E8384F">{{cur.mid}}</span>{{cur.post}}</div>
+</button>
+<div aria-hidden="true" class="hfRing" style="position: absolute; left: 370px; top: 370px; width: 100px; height: 100px; border-radius: 50%; background: #FFB020"></div>
+<button class="tap" onClick="{{sayAll}}" aria-label="{{t.listen}}" style="position: absolute; left: 370px; top: 370px; width: 100px; height: 100px; border-radius: 50%; background: #FFB020; box-shadow: 0 8px 0 #E0870B; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 24 24" width="52" height="52" fill="none" stroke="#2B2350" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="#2B2350"/><path d="M15.5 9a4 4 0 0 1 0 6"/><path d="M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>
+</button>
+</div>
+
+<button class="tap" onClick="{{prev}}" aria-label="{{t.prev}}" style="position: absolute; left: 48px; top: 296px; width: 96px; height: 96px; border-radius: 50%; background: #FFFFFF; box-shadow: 0 8px 0 #F3C2B3; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="#E8384F" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+</button>
+<button class="tap" onClick="{{next}}" aria-label="{{t.next}}" style="position: absolute; left: 1036px; top: 296px; width: 96px; height: 96px; border-radius: 50%; background: #FFFFFF; box-shadow: 0 8px 0 #F3C2B3; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="#E8384F" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+</button>
+
+<div style="position: absolute; left: 178px; top: 630px; width: 824px; display: grid; grid-template-columns: repeat(13, minmax(0, 1fr)); gap: 10px 8px">
+<sc-for list="{{alpha}}" as="ch" hint-placeholder-count="26">
+<button class="f tap" onClick="{{ch.pick}}" aria-label="{{ch.label}}" style="height: 54px; border-radius: 18px; background: {{ch.bg}}; color: {{ch.fg}}; box-shadow: 0 5px 0 {{ch.sh}}; font-size: 28px; font-weight: 700">{{ch.u}}</button>
+</sc-for>
+</div>
+
+<img class="hfPeek" src="/_blob/0b224341bbd230f2dd731c560e41d4cb" alt="" style="position: absolute; left: 14px; top: 664px; width: 150px; height: 150px">
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"lang":{"editor":"enum","options":["auto","id","en"],"default":"auto","section":"Bahasa"},"app":{"editor":null},"$preview":{"width":1180,"height":820}}'>
+class Component extends DCLogic {
+  pref(k) {
+    var a = this.props.app;
+    if (a && a.prefs) return a.prefs[k] || '';
+    var st = this.state || {};
+    if (st['p_' + k] !== undefined) return st['p_' + k];
+    try { var v = window.localStorage.getItem('moci-' + k); if (v !== null) return v; } catch (e) {}
+    return '';
+  }
+  L() {
+    var p = this.props.lang;
+    if (p === 'id' || p === 'en') return p;
+    return this.pref('lang') === 'en' ? 'en' : 'id';
+  }
+  componentDidMount() {
+    this._onPref = (e) => { var d = e && e.detail; if (d && d.k) { var o = {}; o['p_' + d.k] = d.v; this.setState(o); } };
+    this._onStore = (e) => { if (e && e.key && e.key.indexOf('moci-') === 0) { var o = {}; o['p_' + e.key.slice(5)] = e.newValue || ''; this.setState(o); } };
+    try { window.addEventListener('moci-pref', this._onPref); window.addEventListener('storage', this._onStore); } catch (e) {}
+  }
+  componentWillUnmount() {
+    try { window.removeEventListener('moci-pref', this._onPref); window.removeEventListener('storage', this._onStore); } catch (e) {}
+  }
+  speak(t, lang) {
+    try {
+      var s = window.speechSynthesis;
+      if (!s || typeof SpeechSynthesisUtterance === 'undefined') return;
+      s.cancel();
+      var u = new SpeechSynthesisUtterance(t);
+      var en = (lang || this.L()) === 'en';
+      u.lang = en ? 'en-US' : 'id-ID'; u.rate = 0.8; u.pitch = 1.15;
+      var re = en ? /^en/i : /^id/i;
+      var vs = s.getVoices ? s.getVoices() : [];
+      for (var i = 0; i < vs.length; i++) { if (re.test(vs[i].lang)) { u.voice = vs[i]; break; } }
+      s.speak(u);
+    } catch (e) {}
+  }
+  texts(lang) {
+    return {
+      id: { title: 'Huruf', learn: 'Kenali', write: 'Tulis', say: 'Ucapkan', back: 'Kembali ke beranda', modes: 'Mode belajar', listen: 'Dengarkan bunyi huruf dan kata', prev: 'Huruf sebelumnya', next: 'Huruf berikutnya', letter: 'Huruf', tapHint: 'ketuk untuk mendengar bunyinya', tapHintName: 'ketuk untuk mendengar namanya', sound: 'Bunyi', name: 'Nama:', soundOf: 'Bunyi huruf', nameOf: 'Nama huruf' },
+      en: { title: 'Letters', learn: 'Learn', write: 'Write', say: 'Say', back: 'Back to home', modes: 'Learning mode', listen: 'Hear the letter sound and word', prev: 'Previous letter', next: 'Next letter', letter: 'Letter', tapHint: 'tap to hear its sound', tapHintName: 'tap to hear its name', sound: 'Sound', name: 'Name:', soundOf: 'Sound of letter', nameOf: 'Name of letter' }
+    }[lang];
+  }
+  data(lang) {
+    var B = '/_blob/';
+    var img = {
+      apel: 'f3ad85e8656c762498e18346c0834e64', bola: 'b6ba1bc1e8f26eb3aa05f31a41e7bb31', ceri: '3fd7f59fde32f0a08b786024c2ae1816', dadu: '21ec3ff6cd7241ec48aa204f338666e8',
+      eskrim: '1c9d89ce71c86ba2d59b5b3b05b5733a', flamingo: 'c1c03878fc3cf75b46b14877a58b8a26', gajah: '8cb65c6477727354f6b9ad662449edba', hujan: '6fbbdd5bf31ab213ee619c8555232539',
+      ikan: 'ce8b6885ad970a4e66e036e133810b2b', jeruk: '59fd969d55c43ab93330b9607a09797b', kucing: '6de067c8bd1b21524d7d6e6b6f4c199a', layang: 'b318984ee6d49e39029e199e88367107',
+      mangga: '8a6b053fd31a1f50cc94e69e5242e40f', nanas: 'c5b26a2b99c1d84e15e9b08ad81a2811', onde: '0505610f29535a954866386a3bf2a5ee', pisang: 'c75dbf0ae357afaddcf97c42d58a1160',
+      quokka: '4649005d6db1c08190f0c0cd49412f15', rumah: '674389f583852b74d45e31c19d339f86', sapi: 'eb1bebc96da8f6f1ffc1494e0fc98f3f', topi: '4ffb45a35e6ab85a85df0806cc4ed5bf',
+      ulat: '2cffab27ed6825a9e2c9fba43d09c3a0', vas: '1ae5db76439373600d63d870be5b0def', wortel: 'bd07cd5b5330a2434002468d23961755', xilofon: '01c5c505a58f253f0e264c90f0a261fd',
+      yoyo: 'd8d724511b118aee435cb582d2599023', zebra: 'e7a48678ca5c900be7908c88a20c5a18', anggur: '7e32fcc5a77bca13617a7e9e6ebe6e67', ubur: 'e030d26c76d42274c76cf645c9e57bee',
+      kelinci: 'f7d015c440e821b1c7c751875e4327e8', singa: 'dd80b453f8b3c290ec0572401fe88fe7', sarang: '90b95302252dae3e8124a563dbc7cf78', stroberi: '09d4664bec1323b432b1b9c812474c22',
+      tomat: 'af7684512ef48e45fd48313f41839ba0', payung: 'f80f0f94891ce851b0295abb6cdfc6b3', semangka: 'b573b73d242c8297b108f60d1a04c80d',
+      igloo: 'd8346c1de7889660d9773e168f62ec9b', gurita: 'b56f04945cb0c68002805a3329cf26c5', kado: '89f1eaa66e0150028701c8f5c32dab8c'
+    };
+    var list = lang === 'en' ? [
+      ['A', 'Apple', 'apel', 'ah', '/a/', 'ay'], ['B', 'Ball', 'bola', 'buh', '/b/', 'bee'], ['C', 'Cat', 'kucing', 'kuh', '/k/', 'see'], ['D', 'Dice', 'dadu', 'duh', '/d/', 'dee'],
+      ['E', 'Elephant', 'gajah', 'eh', '/e/', 'ee'], ['F', 'Fish', 'ikan', 'fff', '/f/', 'ef'], ['G', 'Grapes', 'anggur', 'guh', '/g/', 'gee'], ['H', 'House', 'rumah', 'huh', '/h/', 'aitch'],
+      ['I', 'Igloo', 'igloo', 'ih', '/i/', 'eye'], ['J', 'Jellyfish', 'ubur', 'juh', '/j/', 'jay'], ['K', 'Kite', 'layang', 'kuh', '/k/', 'kay'], ['L', 'Lion', 'singa', 'luh', '/l/', 'el'],
+      ['M', 'Mango', 'mangga', 'mmm', '/m/', 'em'], ['N', 'Nest', 'sarang', 'nnn', '/n/', 'en'], ['O', 'Octopus', 'gurita', 'aw', '/o/', 'oh'], ['P', 'Pineapple', 'nanas', 'puh', '/p/', 'pee'],
+      ['Q', 'Quokka', 'quokka', 'kwuh', '/kw/', 'cue'], ['R', 'Rabbit', 'kelinci', 'ruh', '/r/', 'ar'], ['S', 'Strawberry', 'stroberi', 'sss', '/s/', 'ess'], ['T', 'Tomato', 'tomat', 'tuh', '/t/', 'tee'],
+      ['U', 'Umbrella', 'payung', 'uh', '/u/', 'you'], ['V', 'Vase', 'vas', 'vvv', '/v/', 'vee'], ['W', 'Watermelon', 'semangka', 'wuh', '/w/', 'double-u'], ['X', 'Box', 'kado', 'ks', '/ks/', 'ex'],
+      ['Y', 'Yoyo', 'yoyo', 'yuh', '/y/', 'why'], ['Z', 'Zebra', 'zebra', 'zzz', '/z/', 'zee']
+    ] : [
+      ['A', 'Apel', 'apel', 'a', '/a/', 'a'], ['B', 'Bola', 'bola', 'beh', '/b/', 'be'], ['C', 'Ceri', 'ceri', 'ceh', '/c/', 'ce'], ['D', 'Dadu', 'dadu', 'deh', '/d/', 'de'],
+      ['E', 'Es krim', 'eskrim', 'e', '/e/', 'e'], ['F', 'Flamingo', 'flamingo', 'feh', '/f/', 'ef'], ['G', 'Gajah', 'gajah', 'geh', '/g/', 'ge'], ['H', 'Hujan', 'hujan', 'heh', '/h/', 'ha'],
+      ['I', 'Ikan', 'ikan', 'i', '/i/', 'i'], ['J', 'Jeruk', 'jeruk', 'jeh', '/j/', 'je'], ['K', 'Kucing', 'kucing', 'keh', '/k/', 'ka'], ['L', 'Layang-layang', 'layang', 'leh', '/l/', 'el'],
+      ['M', 'Mangga', 'mangga', 'meh', '/m/', 'em'], ['N', 'Nanas', 'nanas', 'neh', '/n/', 'en'], ['O', 'Onde-onde', 'onde', 'o', '/o/', 'o'], ['P', 'Pisang', 'pisang', 'peh', '/p/', 'pe'],
+      ['Q', 'Quokka', 'quokka', 'kweh', '/kw/', 'ki'], ['R', 'Rumah', 'rumah', 'reh', '/r/', 'er'], ['S', 'Sapi', 'sapi', 'seh', '/s/', 'es'], ['T', 'Topi', 'topi', 'teh', '/t/', 'te'],
+      ['U', 'Ulat', 'ulat', 'u', '/u/', 'u'], ['V', 'Vas bunga', 'vas', 'veh', '/v/', 've'], ['W', 'Wortel', 'wortel', 'weh', '/w/', 'we'], ['X', 'Xilofon', 'xilofon', 'seh', '/s/', 'eks'],
+      ['Y', 'Yoyo', 'yoyo', 'yeh', '/y/', 'ye'], ['Z', 'Zebra', 'zebra', 'zeh', '/z/', 'zet']
+    ];
+    return list.map((r) => {
+      var w = r[1];
+      var at = w.toLowerCase().indexOf(r[0].toLowerCase());
+      if (at < 0) at = 0;
+      return { u: r[0], w: w, img: B + img[r[2]], snd: r[3], sd: r[4], nm: r[5], pre: w.slice(0, at), mid: w.charAt(at), post: w.slice(at + 1) };
+    });
+  }
+  chant(d) { var s = this.pref('letters') === 'name' ? d.u : d.snd; return s + '... ' + d.w + '!'; }
+  go(i) {
+    var st = this.state || {};
+    var D = this.data(this.L());
+    var idx = ((i % D.length) + D.length) % D.length;
+    this.setState({ idx: idx, flip: !st.flip });
+    this.speak(this.chant(D[idx]));
+  }
+  lk(names) {
+    var o = {};
+    names.forEach((n) => {
+      o[n] = (this.props.app && this.props.app.nav) ? { h: '#', go: (e) => this.navTo(e, n) } : { h: n + '.dc.html', go: null };
+    });
+    return o;
+  }
+  navTo(e, to, params) {
+    var a = this.props.app;
+    if (!a || !a.nav) return false;
+    try { if (e && e.preventDefault) e.preventDefault(); } catch (x) {}
+    a.nav(to, params);
+    return true;
+  }
+  renderVals() {
+    var v = this.renderVals0();
+    v.lk = this.lk(['Huruf', 'Main', 'Tulis', 'Ucapkan']);
+    return v;
+  }
+  renderVals0() {
+    var st = this.state || {};
+    var lang = this.L();
+    var T = this.texts(lang);
+    var D = this.data(lang);
+    var idx = st.idx || 0;
+    var cur = D[idx];
+    var w = cur.w;
+    var byName = this.pref('letters') === 'name';
+    return {
+      t: T,
+      cur: { u: cur.u, l: cur.u.toLowerCase(), w: w, img: cur.img, pre: cur.pre, mid: cur.mid, post: cur.post, sd: cur.sd, nm: cur.nm },
+      popClass: st.flip ? 'hfPopA' : 'hfPopB',
+      wordSize: w.length > 9 ? 44 : (w.length > 6 ? 54 : 66),
+      letterLabel: T.letter + ' ' + cur.u + ', ' + (byName ? T.tapHintName : T.tapHint),
+      soundAria: T.soundOf + ' ' + cur.u + ' ' + cur.sd,
+      nameAria: T.nameOf + ' ' + cur.u,
+      idxLabel: (idx + 1) + ' / ' + D.length,
+      sayMain: () => this.speak(byName ? cur.u : cur.snd),
+      saySound: () => this.speak(cur.snd),
+      sayName: () => this.speak(cur.u),
+      sayWord: () => this.speak(w),
+      sayAll: () => this.speak(this.chant(cur)),
+      prev: () => this.go(idx - 1),
+      next: () => this.go(idx + 1),
+      alpha: D.map((d, i) => ({
+        u: d.u,
+        label: T.letter + ' ' + d.u,
+        bg: i === idx ? '#E8384F' : '#FFFFFF',
+        fg: i === idx ? '#FFFFFF' : '#2B2350',
+        sh: i === idx ? '#B82A3E' : '#F3C2B3',
+        pick: () => this.go(i)
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

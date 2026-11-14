@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Moci · Tebak Bayangan</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&amp;family=Nunito:wght@600;700;800;900&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.f{font-family:'Fredoka',ui-rounded,'Arial Rounded MT Bold','Trebuchet MS',system-ui,sans-serif}
+.n{font-family:'Nunito',ui-rounded,system-ui,-apple-system,'Segoe UI',sans-serif}
+a{color:#2B2350;text-decoration:none}a:hover{color:#2B2350}
+button{font:inherit;color:inherit;border:0;padding:0;margin:0;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.tap{transition:transform .12s ease}.tap:active{transform:translateY(5px) scale(.97)}
+.byFloat{animation:byFloat 3s ease-in-out infinite}
+.byReveal{animation:byReveal .6s cubic-bezier(.3,1.6,.5,1) both}
+.byOkA{animation:byOkA .55s cubic-bezier(.3,1.6,.5,1) 1}
+.byOkB{animation:byOkB .55s cubic-bezier(.3,1.6,.5,1) 1}
+.byNoA{animation:byNoA .45s ease 1}
+.byNoB{animation:byNoB .45s ease 1}
+.byIn{animation:byIn .45s cubic-bezier(.3,1.5,.5,1) both}
+@keyframes byFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes byReveal{0%{transform:scale(.85)}60%{transform:scale(1.08)}100%{transform:scale(1)}}
+@keyframes byOkA{0%{transform:scale(1)}40%{transform:scale(1.1)}100%{transform:scale(1)}}
+@keyframes byOkB{0%{transform:scale(1)}40%{transform:scale(1.1)}100%{transform:scale(1)}}
+@keyframes byNoA{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-12px)}40%,80%{transform:translateX(12px)}}
+@keyframes byNoB{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-12px)}40%,80%{transform:translateX(12px)}}
+@keyframes byIn{0%{transform:scale(.5);opacity:0}100%{transform:scale(1);opacity:1}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="f" style="position: relative; width: 1180px; height: 820px; overflow: hidden; background-color: #F3F0FF; background-image: radial-gradient(#E5DBFF 3px, transparent 3px); background-size: 36px 36px; color: #2B2350">
+
+<div style="position: absolute; left: 32px; right: 32px; top: 22px; display: flex; align-items: center; gap: 16px">
+<a href="{{lk.Permainan.h}}" onClick="{{lk.Permainan.go}}" class="tap" aria-label="{{t.back}}" style="width: 76px; height: 76px; border-radius: 26px; background: #FFFFFF; box-shadow: 0 7px 0 #D0BFFF; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="#2B2350" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+</a>
+<h1 class="f" style="margin: 0; font-size: 44px; font-weight: 700; white-space: nowrap">{{t.title}}</h1>
+<div style="flex: 1"></div>
+<div aria-label="{{progressLabel}}" style="height: 58px; padding: 0 20px; border-radius: 999px; background: #FFFFFF; box-shadow: 0 6px 0 #D0BFFF; display: flex; align-items: center; gap: 8px">
+<sc-for list="{{dots}}" as="d" hint-placeholder-count="6">
+<span style="width: {{d.w}}px; height: 16px; border-radius: 999px; background: {{d.c}}"></span>
+</sc-for>
+</div>
+</div>
+
+<div style="position: absolute; left: 40px; top: 120px; width: 1100px; height: 410px; border-radius: 44px; background: #FFFFFF; box-shadow: 0 12px 0 #D0BFFF, 0 24px 40px rgba(43,35,80,.08)">
+<button class="tap" onClick="{{sayQ}}" style="position: absolute; left: 28px; top: 26px; display: flex; align-items: center; gap: 14px">
+<span style="width: 60px; height: 60px; border-radius: 50%; background: #9775FA; box-shadow: 0 5px 0 #7048E8; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h3.5L12 5v14l-4.5-4.5H4z" fill="#FFFFFF"/><path d="M15.5 9a4 4 0 0 1 0 6"/><path d="M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>
+</span>
+<span class="f" style="font-size: 34px; font-weight: 700">{{t.ask}}</span>
+</button>
+<div aria-hidden="true" style="position: absolute; left: 390px; top: 312px; width: 320px; height: 40px; border-radius: 50%; background: #EEE8FF"></div>
+<div class="byFloat" style="position: absolute; left: 400px; top: 40px; width: 300px; height: 300px">
+<img class="{{revealCls}}" src="{{target.img}}" alt="{{targetAlt}}" style="width: 300px; height: 300px; filter: {{filt}}; opacity: {{op}}">
+</div>
+<sc-if value="{{solved}}" hint-placeholder-val="{{false}}">
+<div class="byIn f" role="status" style="position: absolute; left: 740px; top: 150px; height: 84px; padding: 0 30px; border-radius: 999px; background: #26A03B; box-shadow: 0 7px 0 #1E8A31; color: #FFFFFF; font-size: 40px; font-weight: 700; display: flex; align-items: center">{{target.name}}!</div>
+</sc-if>
+</div>
+
+<div style="position: absolute; left: 0; right: 0; top: 566px; display: flex; justify-content: center; gap: 28px">
+<sc-for list="{{opts}}" as="o" hint-placeholder-count="3">
+<button class="tap {{o.cls}}" onClick="{{o.pick}}" aria-label="{{o.name}}" style="position: relative; width: 230px; height: 200px; box-sizing: border-box; border-radius: 34px; background: #FFFFFF; border: 7px solid {{o.bd}}; box-shadow: 0 9px 0 {{o.sh}}; display: flex; align-items: center; justify-content: center">
+<img src="{{o.img}}" alt="" style="width: 150px; height: 150px">
+<sc-if value="{{o.ok}}" hint-placeholder-val="{{false}}">
+<span style="position: absolute; right: -12px; top: -12px; width: 52px; height: 52px; box-sizing: border-box; border-radius: 50%; background: #26A03B; border: 4px solid #FFFFFF; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#FFFFFF" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+</span>
+</sc-if>
+</button>
+</sc-for>
+</div>
+
+<sc-if value="{{done}}" hint-placeholder-val="{{false}}">
+<div class="byIn" style="position: absolute; left: 40px; top: 120px; width: 1100px; height: 676px; border-radius: 44px; background: rgba(255,255,255,.96); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px">
+<img src="/_blob/c6f764abf556b8252c9552e7fa94a90d" alt="" style="width: 220px; height: 220px">
+<div class="f" style="font-size: 46px; font-weight: 700; text-align: center">{{t.great}}</div>
+<div style="display: flex; gap: 16px">
+<button class="f tap" onClick="{{again}}" style="height: 70px; padding: 0 30px; border-radius: 999px; background: #FFFFFF; box-shadow: 0 7px 0 #D0BFFF, inset 0 0 0 3px #D0BFFF; font-size: 24px; font-weight: 600">{{t.again}}</button>
+<a href="{{lk.Hebat.h}}" onClick="{{lk.Hebat.go}}" class="f tap" style="height: 70px; padding: 0 30px; border-radius: 999px; background: #26A03B; box-shadow: 0 7px 0 #1E8A31; color: #FFFFFF; font-size: 24px; font-weight: 600; display: flex; align-items: center">{{t.prize}}</a>
+</div>
+</div>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"lang":{"editor":"enum","options":["auto","id","en"],"default":"auto","section":"Bahasa"},"app":{"editor":null},"$preview":{"width":1180,"height":820}}'>
+class Component extends DCLogic {
+  pref(k) {
+    var a = this.props.app;
+    if (a && a.prefs) return a.prefs[k] || '';
+    var st = this.state || {};
+    if (st['p_' + k] !== undefined) return st['p_' + k];
+    try { var v = window.localStorage.getItem('moci-' + k); if (v !== null) return v; } catch (e) {}
+    return '';
+  }
+  L() {
+    var p = this.props.lang;
+    if (p === 'id' || p === 'en') return p;
+    return this.pref('lang') === 'en' ? 'en' : 'id';
+  }
+  lk(names) {
+    var a = this.props.app, o = {};
+    names.forEach((n) => {
+      o[n] = (a && a.nav) ? { h: '#', go: (e) => { try { e.preventDefault(); } catch (x) {} a.nav(n); } } : { h: n + '.dc.html', go: null };
+    });
+    return o;
+  }
+  componentWillUnmount() { clearTimeout(this._t); }
+  speak(t, lang) {
+    try {
+      var s = window.speechSynthesis;
+      if (!s || typeof SpeechSynthesisUtterance === 'undefined') return;
+      s.cancel();
+      var u = new SpeechSynthesisUtterance(t);
+      var en = (lang || this.L()) === 'en';
+      u.lang = en ? 'en-US' : 'id-ID'; u.rate = 0.85; u.pitch = 1.15;
+      var re = en ? /^en/i : /^id/i;
+      var vs = s.getVoices ? s.getVoices() : [];
+      for (var i = 0; i < vs.length; i++) { if (re.test(vs[i].lang)) { u.voice = vs[i]; break; } }
+      s.speak(u);
+    } catch (e) {}
+  }
+  items() {
+    if (!this._it) {
+      var P = {"buah":[["apel","Apel","Apple","f3ad85e8656c762498e18346c0834e64"],["pisang","Pisang","Banana","c75dbf0ae357afaddcf97c42d58a1160"],["jeruk","Jeruk","Orange","59fd969d55c43ab93330b9607a09797b"],["anggur","Anggur","Grapes","7e32fcc5a77bca13617a7e9e6ebe6e67"],["semangka","Semangka","Watermelon","b573b73d242c8297b108f60d1a04c80d"],["nanas","Nanas","Pineapple","c5b26a2b99c1d84e15e9b08ad81a2811"],["mangga","Mangga","Mango","8a6b053fd31a1f50cc94e69e5242e40f"],["stroberi","Stroberi","Strawberry","09d4664bec1323b432b1b9c812474c22"],["ceri","Ceri","Cherry","3fd7f59fde32f0a08b786024c2ae1816"],["alpukat","Alpukat","Avocado","5f73428052239896d0b19d90bbdca29c"],["durian","Durian","Durian","e2d12c8abf7cbc81caa370e3127314c8"],["rambutan","Rambutan","Rambutan","b003fadeccd318f540f8d8b84f0432f8"],["manggis","Manggis","Mangosteen","75e7e3110acc6c21ed3fdebef127894a"],["salak","Salak","Snake Fruit","9a04b8bf05b1e774b527a1e5b07fe2e4"],["pepaya","Pepaya","Papaya","e656141d6c19c6456cb0733ad9d863f6"],["jambu","Jambu Air","Water Apple","8fc15ac4c08d61291754b32791eb1206"],["kelapa","Kelapa","Coconut","d0a5a178291f6bd0606cb8a325a7c385"],["lemon","Lemon","Lemon","8b60cce55b018ce76778d0e91124dc59"],["melon","Melon","Melon","7b51db2aaa58605a7ae15e1af1369775"],["pir","Pir","Pear","cab62ecc12c60a9bac84afc2e9ebdaa9"],["buahnaga","Buah Naga","Dragon Fruit","ab38e88101d413a3d63b42752d453205"]],"sayur":[["wortel","Wortel","Carrot","bd07cd5b5330a2434002468d23961755"],["tomat","Tomat","Tomato","af7684512ef48e45fd48313f41839ba0"],["brokoli","Brokoli","Broccoli","112a01a0bb2ec54bcc9c5d82c4483374"],["jagung","Jagung","Corn","e08be0e2320e04d93c135ec839e948c3"],["terong","Terong","Eggplant","19a19c17820600c0673160b75b8d3f29"],["kentang","Kentang","Potato","656defb15a88ce7a84799d436f569272"],["bawang","Bawang Merah","Shallot","f87ae2fa3c291525aa0f9743c06faae0"],["cabai","Cabai","Chili","59862cf8071958f919b8bc19c09b5360"],["timun","Timun","Cucumber","9a8a7f8d87315469e96e98fb1f2b6e65"],["labu","Labu","Pumpkin","515d2976a430bbde0badf4b3ffcb74a5"],["kubis","Kubis","Cabbage","bb4ae18f2157c2fda0b35c73ac0500a4"],["buncis","Buncis","Green Beans","6fbf958d791ba2f93fe3fec3baef7668"],["paprika","Paprika","Bell Pepper","b52770bc9ad3fc2ce8c5111f526ebf56"],["jamur","Jamur","Mushroom","165cb51bf0986707ffbfb2d921d0e176"]],"hewan":[["kucing","Kucing","Cat","6de067c8bd1b21524d7d6e6b6f4c199a"],["anjing","Anjing","Dog","c242939ae5225d55061992c4a9c3f53a"],["kelinci","Kelinci","Rabbit","f7d015c440e821b1c7c751875e4327e8"],["tikus","Tikus","Mouse","de9512c85659eedbd04f024fc5074f4b"],["sapi","Sapi","Cow","eb1bebc96da8f6f1ffc1494e0fc98f3f"],["kambing","Kambing","Goat","1c4ae5e05ea5cb5b1c97d7553d420d8f"],["domba","Domba","Sheep","c780d1ee0c9956db8125fe76ed646f3d"],["kuda","Kuda","Horse","cc9b06fecc57b5d105417f65369928a4"],["ayam","Ayam","Chicken","81f53fe15d52afbfe261d665ef8b74ba"],["bebek","Bebek","Duck","754f0bd7e0eb7cdaa2fd47f6f89b2df2"],["singa","Singa","Lion","dd80b453f8b3c290ec0572401fe88fe7"],["harimau","Harimau","Tiger","136c12a57e02d6f48327aa4a5aa7e505"],["gajah","Gajah","Elephant","8cb65c6477727354f6b9ad662449edba"],["jerapah","Jerapah","Giraffe","4c3d5f88d1553c3efc658ffde91c904f"],["zebra","Zebra","Zebra","e7a48678ca5c900be7908c88a20c5a18"],["monyet","Monyet","Monkey","817145047067c4f962003b16c2f5fe59"],["orangutan","Orangutan","Orangutan","7ed47b04dad452d96a24e6150153b9f5"],["beruang","Beruang","Bear","6227b1cc8d2743c5fdb255f35b6ac00e"],["panda","Panda","Panda","2aca45982f4d73d88f787d45ec03d315"],["badak","Badak","Rhino","246ed92afd22d9cd0b627495a965b7d8"],["kudanil","Kuda Nil","Hippo","f9fef0ce562868c87a2a2d34583a9a91"],["rubah","Rubah","Fox","5c40d0968fbcc89166b74a9be572773b"],["quokka","Quokka","Quokka","4649005d6db1c08190f0c0cd49412f15"],["buaya","Buaya","Crocodile","e257162228dd7c14327b984fc28fedd7"],["ular","Ular","Snake","4d73c54d6666d5e184ba443f2597f2d9"],["komodo","Komodo","Komodo Dragon","ad4951cf81893165769f3f647fc54846"],["kura","Kura-kura","Turtle","db916cd9c526fad67c469d232d3e5885"],["katak","Katak","Frog","bec3ad3d9d42a30492ed1e061fdda4e0"],["ikan","Ikan","Fish","ce8b6885ad970a4e66e036e133810b2b"],["lumba","Lumba-lumba","Dolphin","52d07c866db14ef1a0fbd2c42022531a"],["paus","Paus","Whale","193e7df94e29721da1a2ac0f2f472b53"],["kepiting","Kepiting","Crab","2718e0ad945f18ded680238031a1a768"],["gurita","Gurita","Octopus","b56f04945cb0c68002805a3329cf26c5"],["ubur","Ubur-ubur","Jellyfish","e030d26c76d42274c76cf645c9e57bee"],["pinguin","Pinguin","Penguin","2d6f65aa46663557cff33fa1ac230978"],["burung","Burung","Bird","a5705cd1aa08b59d26872e7d4381cf2b"],["burunghantu","Burung Hantu","Owl","c26166f1dd3bb0c3f4b4b44cf09a5d4f"],["flamingo","Flamingo","Flamingo","c1c03878fc3cf75b46b14877a58b8a26"],["kupu","Kupu-kupu","Butterfly","dbdd2cc62f8a5bd8584cf371fac1c3b5"],["lebah","Lebah","Bee","b79511af670fe0c41fb57609f87bc0d7"],["semut","Semut","Ant","f6df9bbf276d2e186a24f33a3041a600"],["ulat","Ulat","Caterpillar","2cffab27ed6825a9e2c9fba43d09c3a0"]],"kendaraan":[["mobil","Mobil","Car","9a4b52d03d573cb2bb9e7fc33aa00ad6"],["bus","Bus","Bus","5fa24324963167da186e12222fc34b6a"],["kereta","Kereta","Train","c0044435766474df6769a38a15b41072"],["pesawat","Pesawat","Airplane","cf3cbdb44abff66623a1b8886c6334a8"],["kapal","Kapal","Ship","c13e9fd9b35f81a1e2e7c8270df7810b"],["sepeda","Sepeda","Bicycle","fd16a4542bf6b07d9b4a88c55c68fb95"],["truk","Truk","Truck","e64bfdb04579e9fb52398c0da0c80992"],["helikopter","Helikopter","Helicopter","62be577d88c8efa7d0650f8e6fe147ee"],["roket","Roket","Rocket","65a1f0b3aa312fc93fd888b8a105ce98"]],"benda":[["bola","Bola","Ball","b6ba1bc1e8f26eb3aa05f31a41e7bb31"],["buku","Buku","Book","40764645d095695dc89e65d699f811f8"],["dadu","Dadu","Dice","21ec3ff6cd7241ec48aa204f338666e8"],["topi","Topi","Hat","4ffb45a35e6ab85a85df0806cc4ed5bf"],["payung","Payung","Umbrella","f80f0f94891ce851b0295abb6cdfc6b3"],["layang","Layang-layang","Kite","b318984ee6d49e39029e199e88367107"],["yoyo","Yoyo","Yoyo","d8d724511b118aee435cb582d2599023"],["kado","Kado","Gift","89f1eaa66e0150028701c8f5c32dab8c"],["balon","Balon","Balloons","92d5ae7160761db50ac2050b7ab1a4d5"],["bunga","Bunga","Flower","a09858b43e75375a000f2d1c491d9333"],["kuekecil","Kue Mangkuk","Cupcake","5175853037660fb2f7ad154418e040ec"],["sepatu","Sepatu","Shoe","47d389b3dc6c01d69907d0362050c151"],["kaos","Kaos","T-shirt","893ce2f6a36105a5c6bf9dea02c0bc02"],["eskrim","Es Krim","Ice Cream","1c9d89ce71c86ba2d59b5b3b05b5733a"],["xilofon","Xilofon","Xylophone","01c5c505a58f253f0e264c90f0a261fd"],["igloo","Igloo","Igloo","d8346c1de7889660d9773e168f62ec9b"],["rumah","Rumah","House","674389f583852b74d45e31c19d339f86"]]};
+      var m = {};
+      ['hewan', 'buah', 'kendaraan', 'benda', 'sayur'].forEach((c) => P[c].forEach((r) => { m[r[0]] = r; }));
+      this._it = m;
+    }
+    return this._it;
+  }
+  shuffle(a) {
+    var b = a.slice();
+    for (var i = b.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = b[i]; b[i] = b[j]; b[j] = t; }
+    return b;
+  }
+  makeRound(score, avoid) {
+    var keys = Object.keys(this.items()).filter((k) => k !== avoid);
+    var n = this.pref('age') === '6–7' ? 4 : 3;
+    var pick = this.shuffle(keys).slice(0, n);
+    return { target: pick[0], opts: this.shuffle(pick), picked: {}, score: score };
+  }
+  renderVals() {
+    var st = this.state || {};
+    var en = this.L() === 'en';
+    var T = en
+      ? { title: 'Shadow Match', back: 'Back to games', ask: 'Whose shadow is this?', progress: 'Progress', yes: 'Yes! It is the ', no: 'Not that one, that is the ', again: 'Play again', prize: 'Get a prize', great: 'Great job! You know every shadow!', shadow: 'A mystery shadow' }
+      : { title: 'Tebak Bayangan', back: 'Kembali ke permainan', ask: 'Bayangan siapa ini?', progress: 'Kemajuan', yes: 'Betul! Itu ', no: 'Bukan yang itu, itu ', again: 'Main lagi', prize: 'Ambil hadiah', great: 'Hebat! Semua bayangan ketemu!', shadow: 'Bayangan misteri' };
+    var IT = this.items();
+    var nm = (k) => (en ? IT[k][2] : IT[k][1]);
+    var round = st.round || { target: 'gajah', opts: ['kucing', 'gajah', 'apel'], picked: {}, score: 2 };
+    var solved = round.picked[round.target] === 'ok';
+    var done = round.score >= 6;
+    var q = T.ask;
+    return {
+      t: T,
+      lk: this.lk(['Permainan', 'Hebat']),
+      progressLabel: T.progress + ' ' + Math.min(round.score, 6) + ' / 6',
+      dots: [0, 1, 2, 3, 4, 5].map((i) => ({ w: i === round.score ? 34 : 16, c: i < round.score ? '#26A03B' : (i === round.score ? '#9775FA' : '#E5DBFF') })),
+      target: { img: '/_blob/' + IT[round.target][3], name: nm(round.target) },
+      targetAlt: solved ? nm(round.target) : T.shadow,
+      filt: solved ? 'none' : 'brightness(0)',
+      op: solved ? 1 : 0.78,
+      revealCls: solved ? 'byReveal' : '',
+      solved: solved,
+      done: done,
+      sayQ: () => this.speak(q),
+      again: () => { var r = this.makeRound(0, ''); this.setState({ round: r, last: '' }); this.speak(q); },
+      opts: round.opts.map((k) => {
+        var res = round.picked[k];
+        return {
+          name: nm(k), img: '/_blob/' + IT[k][3], ok: res === 'ok',
+          bd: res === 'ok' ? '#26A03B' : (res === 'no' ? '#FF8787' : '#FFFFFF'), sh: res === 'ok' ? '#1E8A31' : '#D0BFFF',
+          cls: st.last === k ? (res === 'ok' ? (st.fl ? 'byOkA' : 'byOkB') : (st.fl ? 'byNoA' : 'byNoB')) : '',
+          pick: () => {
+            var cur = this.state || {};
+            var r0 = cur.round || round;
+            if (r0.score >= 6 || r0.picked[r0.target] === 'ok') return;
+            var picked = Object.assign({}, r0.picked);
+            if (k === r0.target) {
+              picked[k] = 'ok';
+              this.setState({ round: Object.assign({}, r0, { picked: picked }), last: k, fl: !cur.fl });
+              this.speak(T.yes + nm(k) + '!');
+              clearTimeout(this._t);
+              this._t = setTimeout(() => {
+                var r1 = (this.state || {}).round || r0;
+                var sc = r1.score + 1;
+                if (sc >= 6) { this.setState({ round: Object.assign({}, r1, { score: sc }) }); this.speak(T.great); return; }
+                this.setState({ round: this.makeRound(sc, r1.target), last: '' });
+                this.speak(q);
+              }, 1500);
+            } else {
+              picked[k] = 'no';
+              this.setState({ round: Object.assign({}, r0, { picked: picked }), last: k, fl: !cur.fl });
+              this.speak(T.no + nm(k) + '.');
+            }
+          }
+        };
+      })
+    };
+  }
+}
+</script>
+</body>
+</html>

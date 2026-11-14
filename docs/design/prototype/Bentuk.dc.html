@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Moci · Bentuk</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&amp;family=Nunito:wght@600;700;800;900&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.f{font-family:'Fredoka',ui-rounded,'Arial Rounded MT Bold','Trebuchet MS',system-ui,sans-serif}
+.n{font-family:'Nunito',ui-rounded,system-ui,-apple-system,'Segoe UI',sans-serif}
+a{color:#2B2350;text-decoration:none}a:hover{color:#2B2350}
+button{font:inherit;color:inherit;border:0;padding:0;margin:0;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.tap{transition:transform .12s ease}.tap:active{transform:translateY(5px) scale(.97)}
+.btPopA{animation:btPopA .55s cubic-bezier(.3,1.6,.5,1) 1}
+.btPopB{animation:btPopB .55s cubic-bezier(.3,1.6,.5,1) 1}
+.btMark{animation:btMark .35s cubic-bezier(.3,1.7,.5,1) both}
+.btOkA{animation:btOkA .55s cubic-bezier(.3,1.6,.5,1) 1}
+.btOkB{animation:btOkB .55s cubic-bezier(.3,1.6,.5,1) 1}
+.btNoA{animation:btNoA .45s ease 1}
+.btNoB{animation:btNoB .45s ease 1}
+.btIn{animation:btIn .45s cubic-bezier(.3,1.5,.5,1) both}
+@keyframes btPopA{0%{transform:scale(1)}40%{transform:scale(1.12) rotate(-4deg)}100%{transform:scale(1)}}
+@keyframes btPopB{0%{transform:scale(1)}40%{transform:scale(1.12) rotate(4deg)}100%{transform:scale(1)}}
+@keyframes btMark{0%{transform:scale(0)}100%{transform:scale(1)}}
+@keyframes btOkA{0%{transform:scale(1)}40%{transform:scale(1.15)}100%{transform:scale(1)}}
+@keyframes btOkB{0%{transform:scale(1)}40%{transform:scale(1.15)}100%{transform:scale(1)}}
+@keyframes btNoA{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-12px)}40%,80%{transform:translateX(12px)}}
+@keyframes btNoB{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-12px)}40%,80%{transform:translateX(12px)}}
+@keyframes btIn{0%{transform:scale(.4);opacity:0}100%{transform:scale(1);opacity:1}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="f" style="position: relative; width: 1180px; height: 820px; overflow: hidden; background-color: #EEF1FF; background-image: radial-gradient(#D9DFFF 3px, transparent 3px); background-size: 36px 36px; color: #2B2350">
+
+<div style="position: absolute; left: 32px; right: 32px; top: 22px; display: flex; align-items: center; gap: 16px">
+<a href="{{lk.Main.h}}" onClick="{{lk.Main.go}}" class="tap" aria-label="{{t.back}}" style="width: 76px; height: 76px; border-radius: 26px; background: #FFFFFF; box-shadow: 0 7px 0 #C5CEF7; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="#2B2350" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+</a>
+<h1 class="f" style="margin: 0; font-size: 44px; font-weight: 700; white-space: nowrap">{{t.title}}</h1>
+<div style="flex: 1"></div>
+<nav aria-label="{{t.modes}}" style="display: flex; gap: 6px; padding: 6px; background: #FFFFFF; border-radius: 999px; box-shadow: 0 6px 0 #C5CEF7">
+<sc-for list="{{modes}}" as="m" hint-placeholder-count="2">
+<button class="f tap" onClick="{{m.pick}}" aria-pressed="{{m.on}}" style="height: 56px; padding: 0 26px; border-radius: 999px; background: {{m.bg}}; color: {{m.fg}}; font-size: 22px; font-weight: 600">{{m.t}}</button>
+</sc-for>
+</nav>
+</div>
+
+<sc-if value="{{isLearn}}" hint-placeholder-val="{{true}}">
+<div style="position: absolute; left: 40px; top: 122px; width: 640px; height: 668px; border-radius: 48px; background: #FFFFFF; box-shadow: 0 14px 0 #C5CEF7, 0 26px 40px rgba(43,35,80,.10)">
+<div style="position: absolute; left: 155px; top: 26px; width: 330px; height: 330px">
+<button class="{{popCls}}" onClick="{{tapShape}}" aria-label="{{cur.name}}" style="position: absolute; left: 0; top: 0; width: 330px; height: 330px">
+<svg viewBox="0 0 200 200" width="330" height="330" aria-hidden="true" style="overflow: visible">
+<path d="{{cur.d}}" transform="translate(0 9)" fill="{{cur.dark}}" stroke="{{cur.dark}}" stroke-width="14" stroke-linejoin="round"/>
+<path d="{{cur.d}}" fill="{{cur.col}}" stroke="{{cur.col}}" stroke-width="14" stroke-linejoin="round"/>
+<g transform="translate({{cur.fx}} {{cur.fy}}) scale({{cur.fs}})">
+<ellipse cx="-17" cy="-6" rx="7" ry="9" fill="#2B2350"/>
+<ellipse cx="17" cy="-6" rx="7" ry="9" fill="#2B2350"/>
+<circle cx="-14.5" cy="-9.5" r="2.6" fill="#FFFFFF"/>
+<circle cx="19.5" cy="-9.5" r="2.6" fill="#FFFFFF"/>
+<ellipse cx="-28" cy="8" rx="7" ry="4.5" fill="#FFFFFF" opacity=".5"/>
+<ellipse cx="28" cy="8" rx="7" ry="4.5" fill="#FFFFFF" opacity=".5"/>
+<path d="M-9 8Q0 17 9 8" stroke="#2B2350" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+</g>
+</svg>
+</button>
+<sc-for list="{{marks}}" as="k" hint-placeholder-count="3">
+<span class="btMark f" aria-hidden="true" style="position: absolute; left: {{k.x}}px; top: {{k.y}}px; width: 48px; height: 48px; margin: -24px 0 0 -24px; box-sizing: border-box; border-radius: 50%; background: #2B2350; border: 4px solid #FFFFFF; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 700">{{k.n}}</span>
+</sc-for>
+</div>
+<div style="position: absolute; left: 36px; right: 36px; top: 372px; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center">
+<div class="f" style="font-size: 58px; font-weight: 700; line-height: 1.05; color: {{cur.dark}}">{{cur.name}}</div>
+<p class="n" style="margin: 0; font-size: 22px; font-weight: 800; line-height: 1.35; color: #5B5480">{{cur.fact}}</p>
+<div style="display: flex; gap: 10px; margin-top: 4px">
+<sc-for list="{{chips}}" as="c" hint-placeholder-count="2">
+<span class="n" style="height: 40px; padding: 0 18px; border-radius: 999px; background: #EEF1FF; font-size: 17px; font-weight: 900; display: flex; align-items: center">{{c.t}}</span>
+</sc-for>
+</div>
+</div>
+<div style="position: absolute; left: 0; right: 0; bottom: 28px; display: flex; justify-content: center; gap: 14px">
+<button class="f tap" onClick="{{hear}}" style="height: 64px; padding: 0 26px; border-radius: 999px; background: #5C7CFA; box-shadow: 0 7px 0 #3B5BDB; color: #FFFFFF; font-size: 23px; font-weight: 600; display: flex; align-items: center; gap: 10px">
+<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h3.5L12 5v14l-4.5-4.5H4z" fill="#FFFFFF"/><path d="M15.5 9a4 4 0 0 1 0 6"/><path d="M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>
+<span>{{t.hear}}</span>
+</button>
+<sc-if value="{{canCount}}" hint-placeholder-val="{{true}}">
+<button class="f tap" onClick="{{count}}" style="height: 64px; padding: 0 26px; border-radius: 999px; background: #FFFFFF; box-shadow: 0 7px 0 #C5CEF7, inset 0 0 0 3px #C5CEF7; color: #2B2350; font-size: 23px; font-weight: 600; display: flex; align-items: center; gap: 10px">
+<svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#2B2350"/><path d="M10.5 8.5L12.5 7v10" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<span>{{countLabel}}</span>
+</button>
+</sc-if>
+</div>
+</div>
+
+<div style="position: absolute; left: 720px; top: 122px; width: 420px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px">
+<sc-for list="{{shapes}}" as="s" hint-placeholder-count="10">
+<button class="tap" onClick="{{s.pick}}" aria-pressed="{{s.on}}" aria-label="{{s.name}}" style="height: 118px; box-sizing: border-box; padding: 0 12px; border-radius: 28px; background: {{s.bg}}; border: 5px solid {{s.bd}}; box-shadow: 0 6px 0 {{s.sh}}; display: flex; align-items: center; gap: 10px">
+<svg viewBox="0 0 200 200" width="70" height="70" aria-hidden="true" style="flex: none; overflow: visible"><path d="{{s.d}}" fill="{{s.col}}" stroke="{{s.col}}" stroke-width="14" stroke-linejoin="round"/></svg>
+<span class="f" style="font-size: {{s.fs}}px; font-weight: 600; line-height: 1.1; text-align: left">{{s.name}}</span>
+</button>
+</sc-for>
+</div>
+</sc-if>
+
+<sc-if value="{{isFind}}" hint-placeholder-val="{{false}}">
+<div style="position: absolute; left: 40px; top: 120px; width: 1100px; height: 92px; box-sizing: border-box; padding: 0 22px 0 14px; border-radius: 30px; background: #FFFFFF; box-shadow: 0 8px 0 #C5CEF7; display: flex; align-items: center; justify-content: space-between">
+<button class="tap" onClick="{{sayQ}}" aria-label="{{t.hear}}" style="display: flex; align-items: center; gap: 16px">
+<span style="width: 64px; height: 64px; border-radius: 50%; background: #5C7CFA; box-shadow: 0 5px 0 #3B5BDB; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h3.5L12 5v14l-4.5-4.5H4z" fill="#FFFFFF"/><path d="M15.5 9a4 4 0 0 1 0 6"/><path d="M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>
+</span>
+<span class="f" style="font-size: 40px; font-weight: 700">{{q}}</span>
+</button>
+<div aria-label="{{progressLabel}}" style="display: flex; align-items: center; gap: 8px">
+<sc-for list="{{dots}}" as="d" hint-placeholder-count="6">
+<span style="width: {{d.w}}px; height: 16px; border-radius: 999px; background: {{d.c}}"></span>
+</sc-for>
+</div>
+</div>
+<div style="position: absolute; left: 40px; top: 236px; width: 1100px; height: 548px; border-radius: 44px; background: #FFFFFF; box-shadow: 0 12px 0 #C5CEF7, 0 24px 40px rgba(43,35,80,.08)">
+<sc-for list="{{opts}}" as="o" hint-placeholder-count="4">
+<button class="tap {{o.cls}}" onClick="{{o.pick}}" aria-label="{{o.name}}" style="position: absolute; left: {{o.x}}px; top: {{o.y}}px; width: {{o.size}}px; height: {{o.size}}px">
+<svg viewBox="0 0 200 200" width="{{o.size}}" height="{{o.size}}" aria-hidden="true" style="overflow: visible">
+<path d="{{o.d}}" transform="translate(0 9)" fill="{{o.dark}}" stroke="{{o.dark}}" stroke-width="14" stroke-linejoin="round"/>
+<path d="{{o.d}}" fill="{{o.col}}" stroke="{{o.col}}" stroke-width="14" stroke-linejoin="round"/>
+</svg>
+<sc-if value="{{o.ok}}" hint-placeholder-val="{{false}}">
+<span style="position: absolute; right: -6px; top: -6px; width: 56px; height: 56px; box-sizing: border-box; border-radius: 50%; background: #26A03B; border: 4px solid #FFFFFF; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="#FFFFFF" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+</span>
+</sc-if>
+</button>
+</sc-for>
+<sc-if value="{{done}}" hint-placeholder-val="{{false}}">
+<div class="btIn" style="position: absolute; inset: 0; border-radius: 44px; background: rgba(255,255,255,.94); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px">
+<img src="/_blob/c6f764abf556b8252c9552e7fa94a90d" alt="" style="width: 200px; height: 200px">
+<div class="f" style="font-size: 44px; font-weight: 700; text-align: center">{{t.great}}</div>
+<div style="display: flex; gap: 16px">
+<button class="f tap" onClick="{{again}}" style="height: 70px; padding: 0 30px; border-radius: 999px; background: #FFFFFF; box-shadow: 0 7px 0 #C5CEF7, inset 0 0 0 3px #C5CEF7; font-size: 24px; font-weight: 600">{{t.again}}</button>
+<a href="{{lk.Hebat.h}}" onClick="{{lk.Hebat.go}}" class="f tap" style="height: 70px; padding: 0 30px; border-radius: 999px; background: #26A03B; box-shadow: 0 7px 0 #1E8A31; color: #FFFFFF; font-size: 24px; font-weight: 600; display: flex; align-items: center">{{t.prize}}</a>
+</div>
+</div>
+</sc-if>
+</div>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"lang":{"editor":"enum","options":["auto","id","en"],"default":"auto","section":"Bahasa"},"app":{"editor":null},"$preview":{"width":1180,"height":820}}'>
+class Component extends DCLogic {
+  pref(k) {
+    var a = this.props.app;
+    if (a && a.prefs) return a.prefs[k] || '';
+    var st = this.state || {};
+    if (st['p_' + k] !== undefined) return st['p_' + k];
+    try { var v = window.localStorage.getItem('moci-' + k); if (v !== null) return v; } catch (e) {}
+    return '';
+  }
+  L() {
+    var p = this.props.lang;
+    if (p === 'id' || p === 'en') return p;
+    return this.pref('lang') === 'en' ? 'en' : 'id';
+  }
+  lk(names) {
+    var a = this.props.app, o = {};
+    names.forEach((n) => {
+      o[n] = (a && a.nav) ? { h: '#', go: (e) => { try { e.preventDefault(); } catch (x) {} a.nav(n); } } : { h: n + '.dc.html', go: null };
+    });
+    return o;
+  }
+  componentWillUnmount() { clearInterval(this._iv); clearTimeout(this._t); }
+  speak(t, lang) {
+    try {
+      var s = window.speechSynthesis;
+      if (!s || typeof SpeechSynthesisUtterance === 'undefined') return;
+      s.cancel();
+      var u = new SpeechSynthesisUtterance(t);
+      var en = (lang || this.L()) === 'en';
+      u.lang = en ? 'en-US' : 'id-ID'; u.rate = 0.85; u.pitch = 1.15;
+      var re = en ? /^en/i : /^id/i;
+      var vs = s.getVoices ? s.getVoices() : [];
+      for (var i = 0; i < vs.length; i++) { if (re.test(vs[i].lang)) { u.voice = vs[i]; break; } }
+      s.speak(u);
+    } catch (e) {}
+  }
+  shapes() {
+    // key, ID, EN, colour, darker, path (200x200), face x, y, scale, corners, kind (poly | round | love | star), fact ID, fact EN
+    return [
+      ['lingkaran', 'Lingkaran', 'Circle', '#FF6B6B', '#E03E3E', 'M18 100A82 82 0 1 1 182 100A82 82 0 1 1 18 100Z', 100, 100, 1, [], 'round', 'Lingkaran itu bulat dan tidak punya sudut.', 'A circle is round and has no corners.'],
+      ['persegi', 'Persegi', 'Square', '#4DABF7', '#1C7ED6', 'M28 28H172V172H28Z', 100, 104, 1, [[28, 28], [172, 28], [172, 172], [28, 172]], 'poly', 'Persegi punya 4 sisi yang sama panjang.', 'A square has 4 sides that are all the same.'],
+      ['segitiga', 'Segitiga', 'Triangle', '#51CF66', '#2F9E44', 'M100 20L184 172H16Z', 100, 124, 0.9, [[100, 20], [184, 172], [16, 172]], 'poly', 'Segitiga punya 3 sisi dan 3 sudut.', 'A triangle has 3 sides and 3 corners.'],
+      ['persegipanjang', 'Persegi panjang', 'Rectangle', '#FFA94D', '#E8590C', 'M10 52H190V148H10Z', 100, 100, 0.9, [[10, 52], [190, 52], [190, 148], [10, 148]], 'poly', 'Persegi panjang punya 2 sisi panjang dan 2 sisi pendek.', 'A rectangle has 2 long sides and 2 short sides.'],
+      ['oval', 'Oval', 'Oval', '#3BC9DB', '#0C8599', 'M10 100A90 64 0 1 1 190 100A90 64 0 1 1 10 100Z', 100, 100, 1, [], 'round', 'Oval itu bulat lonjong, seperti telur.', 'An oval is a stretched circle, like an egg.'],
+      ['belahketupat', 'Belah ketupat', 'Diamond', '#9775FA', '#6741D9', 'M100 10L182 100L100 190L18 100Z', 100, 104, 0.9, [[100, 10], [182, 100], [100, 190], [18, 100]], 'poly', 'Belah ketupat punya 4 sisi yang miring.', 'A diamond has 4 slanted sides.'],
+      ['bintang', 'Bintang', 'Star', '#FFD43B', '#F59F00', 'M100 12L123.5 71.6L187.5 75.6L138 116.4L154.1 178.4L100 144L45.9 178.4L62 116.4L12.5 75.6L76.5 71.6Z', 100, 106, 0.72, [[100, 12], [187.5, 75.6], [154.1, 178.4], [45.9, 178.4], [12.5, 75.6]], 'star', 'Bintang punya 5 ujung yang lancip.', 'A star has 5 pointy tips.'],
+      ['hati', 'Hati', 'Heart', '#F06595', '#C2255C', 'M100 176C40 132 14 100 14 66C14 38 36 20 60 20C78 20 92 30 100 46C108 30 122 20 140 20C164 20 186 38 186 66C186 100 160 132 100 176Z', 100, 88, 1, [], 'love', 'Hati itu tanda sayang.', 'A heart means love.'],
+      ['segilima', 'Segi lima', 'Pentagon', '#A9E34B', '#5C940D', 'M100 16L185.6 78.2L152.9 178.8L47.1 178.8L14.4 78.2Z', 100, 112, 0.95, [[100, 16], [185.6, 78.2], [152.9, 178.8], [47.1, 178.8], [14.4, 78.2]], 'poly', 'Segi lima punya 5 sisi dan 5 sudut.', 'A pentagon has 5 sides and 5 corners.'],
+      ['segienam', 'Segi enam', 'Hexagon', '#F59F00', '#D9480F', 'M100 12L176.2 56L176.2 144L100 188L23.8 144L23.8 56Z', 100, 104, 1, [[100, 12], [176.2, 56], [176.2, 144], [100, 188], [23.8, 144], [23.8, 56]], 'poly', 'Segi enam punya 6 sisi, seperti sarang lebah.', 'A hexagon has 6 sides, like a honeycomb.']
+    ];
+  }
+  pool() {
+    var age = this.pref('age');
+    if (age === '6–7') return [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+    if (age === '4–5') return [0, 1, 2, 3, 4, 5, 6, 7];
+    return [0, 1, 2, 6, 7];
+  }
+  shuffle(a) {
+    var b = a.slice();
+    for (var i = b.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = b[i]; b[i] = b[j]; b[j] = t; }
+    return b;
+  }
+  makeRound(score, avoid) {
+    var S = this.shapes();
+    var pool = this.pool().filter((i) => i !== avoid);
+    var n = this.pref('age') === '6–7' ? 6 : (this.pref('age') === '4–5' ? 4 : 3);
+    var target = pool[Math.floor(Math.random() * pool.length)];
+    var others = this.shuffle(this.pool().filter((i) => i !== target)).slice(0, n - 1);
+    var picks = this.shuffle([target].concat(others));
+    var cols = this.shuffle(S.map((s) => [s[3], s[4]]));
+    var slots = n === 6
+      ? [[183, 137], [550, 137], [917, 137], [183, 411], [550, 411], [917, 411]]
+      : (n === 4 ? [[150, 274], [417, 274], [683, 274], [950, 274]] : [[200, 274], [550, 274], [900, 274]]);
+    var size = n === 6 ? 168 : (n === 4 ? 196 : 220);
+    var opts = picks.map((k, i) => {
+      var jx = Math.round(Math.random() * 30 - 15), jy = Math.round(Math.random() * 30 - 15);
+      return { k: k, col: cols[i][0], dark: cols[i][1], x: slots[i][0] - size / 2 + jx, y: slots[i][1] - size / 2 + jy, size: size };
+    });
+    return { target: target, opts: opts, picked: {}, score: score };
+  }
+  fixedRound() {
+    return {
+      target: 2, score: 2, picked: {},
+      opts: [
+        { k: 0, col: '#FFA94D', dark: '#E8590C', x: 102, y: 164, size: 220 },
+        { k: 2, col: '#9775FA', dark: '#6741D9', x: 440, y: 170, size: 220 },
+        { k: 6, col: '#4DABF7', dark: '#1C7ED6', x: 790, y: 158, size: 220 }
+      ]
+    };
+  }
+  renderVals() {
+    var st = this.state || {};
+    var en = this.L() === 'en';
+    var T = en
+      ? { title: 'Shapes', back: 'Back to home', modes: 'Mode', learn: 'Learn', find: 'Find', hear: 'Listen', count: 'Count the corners', countTips: 'Count the points', noCorner: 'No corners', sides: 'sides', corners: 'corners', tips: 'points', love: 'A symbol of love', progress: 'Progress', great: 'Great job! You found them all!', again: 'Play again', prize: 'Get a prize', yes: 'Yes! That is the ', no: 'No, that is the ', tryAgain: '. Try again!' }
+      : { title: 'Bentuk', back: 'Kembali ke beranda', modes: 'Mode', learn: 'Kenali', find: 'Cari', hear: 'Dengar', count: 'Hitung sudut', countTips: 'Hitung ujung', noCorner: 'Tidak punya sudut', sides: 'sisi', corners: 'sudut', tips: 'ujung', love: 'Lambang sayang', progress: 'Kemajuan', great: 'Hebat! Semua bentuk ketemu!', again: 'Main lagi', prize: 'Ambil hadiah', yes: 'Betul! Itu ', no: 'Bukan, itu ', tryAgain: '. Coba lagi!' };
+    var NUM = en ? ['one', 'two', 'three', 'four', 'five', 'six'] : ['satu', 'dua', 'tiga', 'empat', 'lima', 'enam'];
+    var S = this.shapes();
+    var nm = (s) => (en ? s[2] : s[1]);
+    var mode = st.mode || 'learn';
+    var ki = st.k === undefined ? 2 : st.k;
+    var cs = S[ki];
+    var scale = 330 / 200;
+    var shown = st.cnt === undefined ? (st.k === undefined ? cs[9].length : 0) : st.cnt;
+    var chips = [];
+    if (cs[10] === 'poly') chips = [{ t: cs[9].length + ' ' + T.sides }, { t: cs[9].length + ' ' + T.corners }];
+    else if (cs[10] === 'star') chips = [{ t: cs[9].length + ' ' + T.tips }];
+    else if (cs[10] === 'love') chips = [{ t: T.love }];
+    else chips = [{ t: T.noCorner }];
+    var round = st.round || this.fixedRound();
+    var target = S[round.target];
+    var q = en ? 'Where is the ' + target[2].toLowerCase() + '?' : 'Mana ' + target[1].toLowerCase() + '?';
+    var done = round.score >= 6;
+    return {
+      t: T,
+      lk: this.lk(['Main', 'Hebat']),
+      isLearn: mode === 'learn',
+      isFind: mode === 'find',
+      modes: [['learn', T.learn], ['find', T.find]].map((m) => ({
+        t: m[1], on: mode === m[0], bg: mode === m[0] ? '#5C7CFA' : '#FFFFFF', fg: mode === m[0] ? '#FFFFFF' : '#2B2350',
+        pick: () => {
+          clearInterval(this._iv); clearTimeout(this._t);
+          if (m[0] === 'find') {
+            var r = this.makeRound(0, -1);
+            this.setState({ mode: 'find', round: r });
+            this.speak(en ? 'Where is the ' + S[r.target][2].toLowerCase() + '?' : 'Mana ' + S[r.target][1].toLowerCase() + '?');
+          } else {
+            this.setState({ mode: 'learn' });
+            this.speak(m[1]);
+          }
+        }
+      })),
+      cur: { name: nm(cs), col: cs[3], dark: cs[4], d: cs[5], fx: cs[6], fy: cs[7], fs: cs[8], fact: en ? cs[12] : cs[11] },
+      popCls: st.pop === undefined ? '' : (st.pop ? 'btPopA' : 'btPopB'),
+      marks: cs[9].slice(0, shown).map((p, i) => ({ x: (p[0] * scale).toFixed(1), y: (p[1] * scale).toFixed(1), n: i + 1 })),
+      chips: chips,
+      canCount: cs[9].length > 0,
+      countLabel: cs[10] === 'star' ? T.countTips : T.count,
+      tapShape: () => { var s2 = this.state || {}; this.setState({ pop: !s2.pop }); this.speak(nm(cs)); },
+      hear: () => this.speak(nm(cs) + '. ' + (en ? cs[12] : cs[11])),
+      count: () => {
+        clearInterval(this._iv);
+        var k = 0, total = cs[9].length;
+        this.setState({ cnt: 0, k: ki });
+        this._iv = setInterval(() => {
+          k++;
+          this.setState({ cnt: k });
+          if (k < total) { this.speak(NUM[k - 1]); return; }
+          clearInterval(this._iv);
+          var unit = cs[10] === 'star' ? T.tips : T.corners;
+          this.speak(en ? NUM[k - 1] + '! A ' + cs[2].toLowerCase() + ' has ' + total + ' ' + unit + '!' : NUM[k - 1] + '! ' + cs[1] + ' punya ' + total + ' ' + unit + '!');
+        }, 800);
+      },
+      shapes: S.map((s, i) => ({
+        name: nm(s), d: s[5], col: s[3], on: i === ki, fs: nm(s).length > 9 ? 19 : 22,
+        bg: i === ki ? '#EEF1FF' : '#FFFFFF', bd: i === ki ? s[4] : '#FFFFFF', sh: i === ki ? s[4] : '#C5CEF7',
+        pick: () => { clearInterval(this._iv); var s2 = this.state || {}; this.setState({ k: i, cnt: 0, pop: !s2.pop }); this.speak(nm(s)); }
+      })),
+      q: q,
+      progressLabel: T.progress + ' ' + Math.min(round.score, 6) + ' / 6',
+      dots: [0, 1, 2, 3, 4, 5].map((i) => ({ w: i === round.score ? 34 : 16, c: i < round.score ? '#26A03B' : (i === round.score ? '#5C7CFA' : '#D9DFFF') })),
+      sayQ: () => this.speak(q),
+      done: done,
+      again: () => {
+        var r = this.makeRound(0, -1);
+        this.setState({ round: r });
+        this.speak(en ? 'Where is the ' + S[r.target][2].toLowerCase() + '?' : 'Mana ' + S[r.target][1].toLowerCase() + '?');
+      },
+      opts: round.opts.map((o, i) => {
+        var res = round.picked[i];
+        var s2 = st;
+        return {
+          name: nm(S[o.k]), d: S[o.k][5], col: o.col, dark: o.dark, x: o.x, y: o.y, size: o.size, ok: res === 'ok',
+          cls: s2.last === i ? (res === 'ok' ? (s2.fl ? 'btOkA' : 'btOkB') : (s2.fl ? 'btNoA' : 'btNoB')) : '',
+          pick: () => {
+            var cur = this.state || {};
+            var r0 = cur.round || this.fixedRound();
+            if (r0.score >= 6 || r0.picked[i] === 'ok') return;
+            var picked = Object.assign({}, r0.picked);
+            if (o.k === r0.target) {
+              picked[i] = 'ok';
+              this.setState({ round: Object.assign({}, r0, { picked: picked }), last: i, fl: !cur.fl });
+              this.speak(T.yes + nm(S[o.k]).toLowerCase() + '!');
+              clearTimeout(this._t);
+              this._t = setTimeout(() => {
+                var c2 = this.state || {};
+                var r1 = c2.round || r0;
+                var sc = r1.score + 1;
+                if (sc >= 6) { this.setState({ round: Object.assign({}, r1, { score: sc }) }); this.speak(T.great); return; }
+                var nr = this.makeRound(sc, r1.target);
+                this.setState({ round: nr, last: -1 });
+                this.speak(en ? 'Where is the ' + S[nr.target][2].toLowerCase() + '?' : 'Mana ' + S[nr.target][1].toLowerCase() + '?');
+              }, 1200);
+            } else {
+              picked[i] = 'no';
+              this.setState({ round: Object.assign({}, r0, { picked: picked }), last: i, fl: !cur.fl });
+              this.speak(T.no + nm(S[o.k]).toLowerCase() + T.tryAgain);
+            }
+          }
+        };
+      })
+    };
+  }
+}
+</script>
+</body>
+</html>

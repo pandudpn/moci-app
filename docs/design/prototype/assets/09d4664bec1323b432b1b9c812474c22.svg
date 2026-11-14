@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+<defs><clipPath id="c"><path d="M100 186C60 170 30 120 36 84C40 60 64 52 100 60C136 52 160 60 164 84C170 120 140 170 100 186Z"></path></clipPath></defs>
+<path d="M100 186C60 170 30 120 36 84C40 60 64 52 100 60C136 52 160 60 164 84C170 120 140 170 100 186Z" fill="#D6264A"></path>
+<g clip-path="url(#c)"><path d="M100 186C60 170 30 120 36 84C40 60 64 52 100 60C136 52 160 60 164 84C170 120 140 170 100 186Z" transform="translate(-7 -6)" fill="#FF3B5C"></path></g>
+<g fill="#FFE066"><ellipse cx="72" cy="100" rx="2.6" ry="4.2"></ellipse><ellipse cx="100" cy="94" rx="2.6" ry="4.2"></ellipse><ellipse cx="132" cy="100" rx="2.6" ry="4.2"></ellipse><ellipse cx="84" cy="122" rx="2.6" ry="4.2"></ellipse><ellipse cx="116" cy="122" rx="2.6" ry="4.2"></ellipse><ellipse cx="70" cy="142" rx="2.6" ry="4.2"></ellipse><ellipse cx="100" cy="146" rx="2.6" ry="4.2"></ellipse><ellipse cx="130" cy="142" rx="2.6" ry="4.2"></ellipse><ellipse cx="92" cy="168" rx="2.6" ry="4.2"></ellipse><ellipse cx="108" cy="168" rx="2.6" ry="4.2"></ellipse></g>
+<ellipse cx="56" cy="104" rx="6" ry="14" transform="rotate(20 56 104)" fill="#FFFFFF" opacity=".45"></ellipse>
+<path d="M100 40V20" stroke="#2F9E44" stroke-width="6" stroke-linecap="round"></path>
+<path d="M100 70L82 54L62 62L72 46L58 34L82 38L92 22L100 40L108 22L118 38L142 34L128 46L138 62L118 54Z" fill="#40C057" stroke="#40C057" stroke-width="4" stroke-linejoin="round"></path>
+</svg>

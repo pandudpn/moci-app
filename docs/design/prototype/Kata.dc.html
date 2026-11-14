@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Moci · Ayo Membaca — Susun Kata</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&amp;family=Nunito:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.f{font-family:'Fredoka',ui-rounded,'Arial Rounded MT Bold','Trebuchet MS',system-ui,sans-serif}
+.n{font-family:'Nunito',ui-rounded,system-ui,-apple-system,'Segoe UI',sans-serif}
+a{color:#2B2350;text-decoration:none}a:hover{color:#2B2350}
+button{font:inherit;color:inherit;border:0;padding:0;margin:0;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.tap{transition:transform .12s ease}.tap:active{transform:translateY(5px) scale(.97)}
+.kwBob{animation:kwBob 3s ease-in-out infinite}
+.kwDrop{animation:kwDrop .35s cubic-bezier(.3,1.6,.5,1) both}
+.kwRise{animation:kwRise .45s cubic-bezier(.3,1.5,.5,1) both}
+.kwShA{animation:kwSh .45s ease 1}
+.kwShB{animation:kwSh2 .45s ease 1}
+.kwOk{animation:kwOk .6s cubic-bezier(.3,1.6,.5,1) 1}
+.kwPeek{animation:kwPeek 3s ease-in-out infinite;transform-origin:50% 100%}
+@keyframes kwBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes kwDrop{0%{transform:scale(.4)}100%{transform:scale(1)}}
+@keyframes kwRise{0%{transform:translateY(30px);opacity:0}100%{transform:translateY(0);opacity:1}}
+@keyframes kwSh{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-12px)}40%,80%{transform:translateX(12px)}}
+@keyframes kwSh2{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-12px)}40%,80%{transform:translateX(12px)}}
+@keyframes kwOk{0%{transform:scale(1)}40%{transform:scale(1.08)}100%{transform:scale(1)}}
+@keyframes kwPeek{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-8px) rotate(3deg)}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="f" style="position: relative; width: 1180px; height: 820px; overflow: hidden; background-color: #FFF1E6; background-image: radial-gradient(#FFDCC2 3px, transparent 3px); background-size: 36px 36px; color: #2B2350">
+
+<div style="position: absolute; left: 32px; right: 32px; top: 22px; display: flex; align-items: center; gap: 16px">
+<a href="{{lk.Main.h}}" onClick="{{lk.Main.go}}" class="tap" aria-label="{{t.back}}" style="width: 76px; height: 76px; border-radius: 26px; background: #FFFFFF; box-shadow: 0 7px 0 #F7C9A5; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="#2B2350" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+</a>
+<h1 class="f" style="margin: 0; font-size: 44px; font-weight: 700; white-space: nowrap">{{t.title}}</h1>
+<div style="flex: 1"></div>
+<nav aria-label="{{t.modes}}" style="display: flex; gap: 6px; padding: 6px; background: #FFFFFF; border-radius: 999px; box-shadow: 0 6px 0 #F7C9A5">
+<a href="{{lk.SukuKata.h}}" onClick="{{lk.SukuKata.go}}" class="f tap" style="height: 56px; padding: 0 20px; border-radius: 999px; color: #2B2350; font-size: 22px; font-weight: 600; display: flex; align-items: center">{{t.m1}}</a>
+<a href="{{lk.Kata.h}}" onClick="{{lk.Kata.go}}" aria-current="page" class="f" style="height: 56px; padding: 0 20px; border-radius: 999px; background: #E0661A; color: #FFFFFF; font-size: 22px; font-weight: 600; display: flex; align-items: center">{{t.m2}}</a>
+<a href="{{lk.Kalimat.h}}" onClick="{{lk.Kalimat.go}}" class="f tap" style="height: 56px; padding: 0 20px; border-radius: 999px; color: #2B2350; font-size: 22px; font-weight: 600; display: flex; align-items: center">{{t.m3}}</a>
+</nav>
+</div>
+
+<div role="group" aria-label="{{t.level}}" style="position: absolute; left: 70px; top: 120px; display: flex; gap: 10px">
+<sc-for list="{{levels}}" as="lv" hint-placeholder-count="2">
+<button class="f tap" onClick="{{lv.pick}}" aria-pressed="{{lv.on}}" style="height: 50px; padding: 0 18px; border-radius: 999px; background: {{lv.bg}}; color: {{lv.fg}}; box-shadow: 0 5px 0 {{lv.sh}}; font-size: 19px; font-weight: 600">{{lv.t}}</button>
+</sc-for>
+</div>
+<div aria-hidden="true" style="position: absolute; right: 70px; top: 136px; display: flex; gap: 8px">
+<sc-for list="{{dots}}" as="d" hint-placeholder-count="5">
+<div style="width: {{d.w}}px; height: 14px; border-radius: 7px; background: {{d.c}}"></div>
+</sc-for>
+</div>
+
+<div style="position: absolute; left: 70px; top: 186px; width: 1040px; height: 400px; border-radius: 48px; background: #FFFFFF; box-shadow: 0 14px 0 #F7C9A5, 0 26px 40px rgba(43,35,80,.1)">
+<div aria-hidden="true" style="position: absolute; left: 40px; top: 30px; width: 290px; height: 290px; border-radius: 50%; background: #FFF1E6"></div>
+<img class="kwBob" src="{{cur.img}}" alt="{{cur.word}}" style="position: absolute; left: 60px; top: 40px; width: 250px; height: 250px">
+<button class="tap" onClick="{{hear}}" aria-label="{{t.hear}}" style="position: absolute; left: 145px; top: 300px; width: 78px; height: 78px; border-radius: 50%; background: #FFB020; box-shadow: 0 7px 0 #E0870B; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="#2B2350" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="#2B2350"/><path d="M15.5 9a4 4 0 0 1 0 6"/><path d="M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>
+</button>
+
+<div class="n" style="position: absolute; left: 380px; top: 34px; font-size: 20px; font-weight: 800; color: #6B5F99">{{t.ins}}</div>
+<div class="{{slotRowCls}}" style="position: absolute; left: 380px; top: 76px; display: flex; gap: 18px">
+<sc-for list="{{slots}}" as="sl" hint-placeholder-count="2">
+<button onClick="{{sl.tap}}" aria-label="{{sl.aria}}" style="position: relative; width: {{slotW}}px; height: 150px; box-sizing: border-box; border-radius: 32px; border: 6px {{sl.bs}} {{sl.bd}}; background: {{sl.bg}}; box-shadow: 0 8px 0 {{sl.sh}}; display: flex; align-items: center; justify-content: center">
+<sc-if value="{{sl.filled}}" hint-placeholder-val="{{true}}">
+<span class="f kwDrop" style="font-size: {{slotFs}}px; font-weight: 700; color: #FFFFFF; letter-spacing: 2px">{{sl.t}}</span>
+</sc-if>
+<sc-if value="{{sl.empty}}" hint-placeholder-val="{{false}}">
+<span class="f" style="font-size: 60px; font-weight: 700; color: #F7C9A5">?</span>
+</sc-if>
+</button>
+</sc-for>
+</div>
+<div style="position: absolute; left: 380px; top: 258px; width: 620px; height: 120px; display: flex; align-items: center; gap: 18px">
+<sc-if value="{{ok}}" hint-placeholder-val="{{false}}">
+<div class="kwRise" style="display: flex; align-items: center; gap: 18px">
+<div class="f kwOk" style="font-size: {{wordFs}}px; font-weight: 700; letter-spacing: 5px; color: #E0661A; white-space: nowrap">{{cur.up}}</div>
+<button class="f tap" onClick="{{nextWord}}" style="height: 70px; padding: 0 26px; border-radius: 999px; background: #E0661A; box-shadow: 0 7px 0 #A9480D; color: #FFFFFF; font-size: 26px; font-weight: 600; display: flex; align-items: center; gap: 6px">
+<span>{{t.next}}</span>
+<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+</button>
+</div>
+</sc-if>
+<sc-if value="{{notOk}}" hint-placeholder-val="{{true}}">
+<div class="n" style="font-size: 22px; font-weight: 800; color: #6B5F99; line-height: 1.3">{{hint}}</div>
+</sc-if>
+</div>
+</div>
+
+<div style="position: absolute; left: 0; right: 0; top: 628px; display: flex; justify-content: center; gap: 20px">
+<sc-for list="{{tiles}}" as="tl" hint-placeholder-count="4">
+<button class="tap" onClick="{{tl.tap}}" aria-label="{{tl.aria}}" style="width: 168px; height: 116px; border-radius: 30px; background: {{tl.bg}}; box-shadow: 0 10px 0 {{tl.sh}}; opacity: {{tl.op}}; display: flex; align-items: center; justify-content: center">
+<span class="f" style="font-size: 54px; font-weight: 700; color: #FFFFFF; letter-spacing: 2px">{{tl.t}}</span>
+</button>
+</sc-for>
+</div>
+
+<img class="kwPeek" src="/_blob/0b224341bbd230f2dd731c560e41d4cb" alt="" style="position: absolute; left: 20px; top: 690px; width: 120px; height: 120px">
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"lang":{"editor":"enum","options":["auto","id","en"],"default":"auto","section":"Bahasa"},"app":{"editor":null},"$preview":{"width":1180,"height":820}}'>
+class Component extends DCLogic {
+  pref(k) {
+    var a = this.props.app;
+    if (a && a.prefs) return a.prefs[k] || '';
+    var st = this.state || {};
+    if (st['p_' + k] !== undefined) return st['p_' + k];
+    try { var v = window.localStorage.getItem('moci-' + k); if (v !== null) return v; } catch (e) {}
+    return '';
+  }
+  L() {
+    var p = this.props.lang;
+    if (p === 'id' || p === 'en') return p;
+    return this.pref('lang') === 'en' ? 'en' : 'id';
+  }
+  lk(names) {
+    var a = this.props.app, o = {};
+    names.forEach((n) => {
+      o[n] = (a && a.nav) ? { h: '#', go: (e) => { try { e.preventDefault(); } catch (x) {} a.nav(n); } } : { h: n + '.dc.html', go: null };
+    });
+    return o;
+  }
+  componentWillUnmount() { clearTimeout(this._ct); }
+  speak(t, lang) {
+    try {
+      var s = window.speechSynthesis;
+      if (!s || typeof SpeechSynthesisUtterance === 'undefined') return;
+      s.cancel();
+      var u = new SpeechSynthesisUtterance(t);
+      var en = (lang || this.L()) === 'en';
+      u.lang = en ? 'en-US' : 'id-ID'; u.rate = 0.85; u.pitch = 1.15;
+      var re = en ? /^en/i : /^id/i;
+      var vs = s.getVoices ? s.getVoices() : [];
+      for (var i = 0; i < vs.length; i++) { if (re.test(vs[i].lang)) { u.voice = vs[i]; break; } }
+      s.speak(u);
+    } catch (e) {}
+  }
+  words() {
+    if (!this._w) this._w = {"id":[["bola","Bola",["bo","la"],"b6ba1bc1e8f26eb3aa05f31a41e7bb31"],["buku","Buku",["bu","ku"],"40764645d095695dc89e65d699f811f8"],["sapi","Sapi",["sa","pi"],"eb1bebc96da8f6f1ffc1494e0fc98f3f"],["ikan","Ikan",["i","kan"],"ce8b6885ad970a4e66e036e133810b2b"],["topi","Topi",["to","pi"],"4ffb45a35e6ab85a85df0806cc4ed5bf"],["kuda","Kuda",["ku","da"],"cc9b06fecc57b5d105417f65369928a4"],["dadu","Dadu",["da","du"],"21ec3ff6cd7241ec48aa204f338666e8"],["kado","Kado",["ka","do"],"89f1eaa66e0150028701c8f5c32dab8c"],["mobil","Mobil",["mo","bil"],"9a4b52d03d573cb2bb9e7fc33aa00ad6"],["pisang","Pisang",["pi","sang"],"c75dbf0ae357afaddcf97c42d58a1160"],["nanas","Nanas",["na","nas"],"c5b26a2b99c1d84e15e9b08ad81a2811"],["tomat","Tomat",["to","mat"],"af7684512ef48e45fd48313f41839ba0"],["jeruk","Jeruk",["je","ruk"],"59fd969d55c43ab93330b9607a09797b"],["kucing","Kucing",["ku","cing"],"6de067c8bd1b21524d7d6e6b6f4c199a"],["bebek","Bebek",["be","bek"],"754f0bd7e0eb7cdaa2fd47f6f89b2df2"],["gajah","Gajah",["ga","jah"],"8cb65c6477727354f6b9ad662449edba"],["zebra","Zebra",["ze","bra"],"e7a48678ca5c900be7908c88a20c5a18"],["wortel","Wortel",["wor","tel"],"bd07cd5b5330a2434002468d23961755"],["payung","Payung",["pa","yung"],"f80f0f94891ce851b0295abb6cdfc6b3"],["rumah","Rumah",["ru","mah"],"674389f583852b74d45e31c19d339f86"],["kapal","Kapal",["ka","pal"],"c13e9fd9b35f81a1e2e7c8270df7810b"],["labu","Labu",["la","bu"],"515d2976a430bbde0badf4b3ffcb74a5"],["salak","Salak",["sa","lak"],"9a04b8bf05b1e774b527a1e5b07fe2e4"],["melon","Melon",["me","lon"],"7b51db2aaa58605a7ae15e1af1369775"],["lemon","Lemon",["le","mon"],"8b60cce55b018ce76778d0e91124dc59"],["semut","Semut",["se","mut"],"f6df9bbf276d2e186a24f33a3041a600"],["tikus","Tikus",["ti","kus"],"de9512c85659eedbd04f024fc5074f4b"],["monyet","Monyet",["mo","nyet"],"817145047067c4f962003b16c2f5fe59"],["domba","Domba",["dom","ba"],"c780d1ee0c9956db8125fe76ed646f3d"],["kambing","Kambing",["kam","bing"],"1c4ae5e05ea5cb5b1c97d7553d420d8f"],["panda","Panda",["pan","da"],"2aca45982f4d73d88f787d45ec03d315"],["ular","Ular",["u","lar"],"4d73c54d6666d5e184ba443f2597f2d9"],["katak","Katak",["ka","tak"],"bec3ad3d9d42a30492ed1e061fdda4e0"],["paus","Paus",["pa","us"],"193e7df94e29721da1a2ac0f2f472b53"],["jagung","Jagung",["ja","gung"],"e08be0e2320e04d93c135ec839e948c3"],["kubis","Kubis",["ku","bis"],"bb4ae18f2157c2fda0b35c73ac0500a4"],["timun","Timun",["ti","mun"],"9a8a7f8d87315469e96e98fb1f2b6e65"],["roket","Roket",["ro","ket"],"65a1f0b3aa312fc93fd888b8a105ce98"],["balon","Balon",["ba","lon"],"92d5ae7160761db50ac2050b7ab1a4d5"],["bunga","Bunga",["bu","nga"],"a09858b43e75375a000f2d1c491d9333"],["kaos","Kaos",["ka","os"],"893ce2f6a36105a5c6bf9dea02c0bc02"],["apel","Apel",["a","pel"],"f3ad85e8656c762498e18346c0834e64"],["ceri","Ceri",["ce","ri"],"3fd7f59fde32f0a08b786024c2ae1816"],["lebah","Lebah",["le","bah"],"b79511af670fe0c41fb57609f87bc0d7"],["badak","Badak",["ba","dak"],"246ed92afd22d9cd0b627495a965b7d8"],["rubah","Rubah",["ru","bah"],"5c40d0968fbcc89166b74a9be572773b"],["jamur","Jamur",["ja","mur"],"165cb51bf0986707ffbfb2d921d0e176"],["kentang","Kentang",["ken","tang"],"656defb15a88ce7a84799d436f569272"],["terong","Terong",["te","rong"],"19a19c17820600c0673160b75b8d3f29"],["anggur","Anggur",["ang","gur"],"7e32fcc5a77bca13617a7e9e6ebe6e67"],["mangga","Mangga",["mang","ga"],"8a6b053fd31a1f50cc94e69e5242e40f"],["manggis","Manggis",["mang","gis"],"75e7e3110acc6c21ed3fdebef127894a"],["kelinci","Kelinci",["ke","lin","ci"],"f7d015c440e821b1c7c751875e4327e8"],["kereta","Kereta",["ke","re","ta"],"c0044435766474df6769a38a15b41072"],["sepatu","Sepatu",["se","pa","tu"],"47d389b3dc6c01d69907d0362050c151"],["harimau","Harimau",["ha","ri","mau"],"136c12a57e02d6f48327aa4a5aa7e505"],["buaya","Buaya",["bu","a","ya"],"e257162228dd7c14327b984fc28fedd7"],["pepaya","Pepaya",["pe","pa","ya"],"e656141d6c19c6456cb0733ad9d863f6"],["durian","Durian",["du","ri","an"],"e2d12c8abf7cbc81caa370e3127314c8"],["sepeda","Sepeda",["se","pe","da"],"fd16a4542bf6b07d9b4a88c55c68fb95"],["kepiting","Kepiting",["ke","pi","ting"],"2718e0ad945f18ded680238031a1a768"],["jerapah","Jerapah",["je","ra","pah"],"4c3d5f88d1553c3efc658ffde91c904f"],["komodo","Komodo",["ko","mo","do"],"ad4951cf81893165769f3f647fc54846"],["kelapa","Kelapa",["ke","la","pa"],"d0a5a178291f6bd0606cb8a325a7c385"],["semangka","Semangka",["se","mang","ka"],"b573b73d242c8297b108f60d1a04c80d"],["brokoli","Brokoli",["bro","ko","li"],"112a01a0bb2ec54bcc9c5d82c4483374"],["paprika","Paprika",["pa","pri","ka"],"b52770bc9ad3fc2ce8c5111f526ebf56"],["gurita","Gurita",["gu","ri","ta"],"b56f04945cb0c68002805a3329cf26c5"],["beruang","Beruang",["be","ru","ang"],"6227b1cc8d2743c5fdb255f35b6ac00e"],["pesawat","Pesawat",["pe","sa","wat"],"cf3cbdb44abff66623a1b8886c6334a8"],["pinguin","Pinguin",["pi","ngu","in"],"2d6f65aa46663557cff33fa1ac230978"]],"en":[["apel","Apple",["ap","ple"],"f3ad85e8656c762498e18346c0834e64"],["zebra","Zebra",["ze","bra"],"e7a48678ca5c900be7908c88a20c5a18"],["mangga","Mango",["man","go"],"8a6b053fd31a1f50cc94e69e5242e40f"],["yoyo","Yoyo",["yo","yo"],"d8d724511b118aee435cb582d2599023"],["kelinci","Rabbit",["rab","bit"],"f7d015c440e821b1c7c751875e4327e8"],["wortel","Carrot",["car","rot"],"bd07cd5b5330a2434002468d23961755"],["harimau","Tiger",["ti","ger"],"136c12a57e02d6f48327aa4a5aa7e505"],["monyet","Monkey",["mon","key"],"817145047067c4f962003b16c2f5fe59"],["panda","Panda",["pan","da"],"2aca45982f4d73d88f787d45ec03d315"],["lemon","Lemon",["lem","on"],"8b60cce55b018ce76778d0e91124dc59"],["melon","Melon",["mel","on"],"7b51db2aaa58605a7ae15e1af1369775"],["roket","Rocket",["rock","et"],"65a1f0b3aa312fc93fd888b8a105ce98"],["singa","Lion",["li","on"],"dd80b453f8b3c290ec0572401fe88fe7"],["pinguin","Penguin",["pen","guin"],"2d6f65aa46663557cff33fa1ac230978"],["kura","Turtle",["tur","tle"],"db916cd9c526fad67c469d232d3e5885"],["badak","Rhino",["rhi","no"],"246ed92afd22d9cd0b627495a965b7d8"],["kuekecil","Cupcake",["cup","cake"],"5175853037660fb2f7ad154418e040ec"],["lumba","Dolphin",["dol","phin"],"52d07c866db14ef1a0fbd2c42022531a"],["labu","Pumpkin",["pump","kin"],"515d2976a430bbde0badf4b3ffcb74a5"],["ayam","Chicken",["chick","en"],"81f53fe15d52afbfe261d665ef8b74ba"],["paprika","Pepper",["pep","per"],"b52770bc9ad3fc2ce8c5111f526ebf56"],["jerapah","Giraffe",["gi","raffe"],"4c3d5f88d1553c3efc658ffde91c904f"],["tomat","Tomato",["to","ma","to"],"af7684512ef48e45fd48313f41839ba0"],["pisang","Banana",["ba","na","na"],"c75dbf0ae357afaddcf97c42d58a1160"],["kupu","Butterfly",["but","ter","fly"],"dbdd2cc62f8a5bd8584cf371fac1c3b5"],["sepeda","Bicycle",["bi","cy","cle"],"fd16a4542bf6b07d9b4a88c55c68fb95"],["pepaya","Papaya",["pa","pa","ya"],"e656141d6c19c6456cb0733ad9d863f6"],["kelapa","Coconut",["co","co","nut"],"d0a5a178291f6bd0606cb8a325a7c385"],["gajah","Elephant",["el","e","phant"],"8cb65c6477727354f6b9ad662449edba"],["gurita","Octopus",["oc","to","pus"],"b56f04945cb0c68002805a3329cf26c5"],["buaya","Crocodile",["croc","o","dile"],"e257162228dd7c14327b984fc28fedd7"],["nanas","Pineapple",["pine","ap","ple"],"c5b26a2b99c1d84e15e9b08ad81a2811"],["kentang","Potato",["po","ta","to"],"656defb15a88ce7a84799d436f569272"]]};
+    return this._w[this.L() === 'en' ? 'en' : 'id'];
+  }
+  shuffle(a) {
+    var b = a.slice();
+    for (var i = b.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = b[i]; b[i] = b[j]; b[j] = t; }
+    return b;
+  }
+  make(level, avoid) {
+    var W = this.words().filter((w) => w[2].length === level);
+    var pool = W.filter((w) => w[0] !== avoid);
+    var w = pool[Math.floor(Math.random() * pool.length)];
+    var extra = this.shuffle(this.words().filter((x) => x[0] !== w[0])).reduce((acc, x) => acc.concat(x[2]), []).filter((s) => w[2].indexOf(s) < 0);
+    var tiles = this.shuffle(w[2].concat(this.shuffle(extra).slice(0, level === 2 ? 2 : 1)));
+    return { k: w[0], level: level, tiles: tiles, slots: w[2].map(() => null) };
+  }
+  round() {
+    var st = this.state || {};
+    var W = this.words();
+    if (st.r && W.some((w) => w[0] === st.r.k && w[2].length === st.r.level)) return st.r;
+    var en = this.L() === 'en';
+    var w0 = en ? W.find((w) => w[0] === 'zebra') : W.find((w) => w[0] === 'bola');
+    var tiles = en ? ['bra', 'ti', 'ze', 'mon'] : ['la', 'ku', 'bo', 'pi'];
+    return { k: w0[0], level: 2, tiles: tiles, slots: [2, null], fresh: true };
+  }
+  renderVals() {
+    var st = this.state || {};
+    var en = this.L() === 'en';
+    var T = en
+      ? { title: "Let's Read", back: 'Back to home', modes: 'Reading mode', m1: 'Syllables', m2: 'Build Words', m3: 'Sentences', level: 'Level', l2: '2 parts', l3: '3 parts', hear: 'Hear the word', ins: 'Tap the parts in order to build the word', next: 'Next', hintStart: 'Listen, then tap the first part!', hintMore: 'Good! Now the next part.', tryAgain: 'Oops, not quite. Try again!', slot: 'Part ', empty: 'empty', yes: 'Yes! ' }
+      : { title: 'Ayo Membaca', back: 'Kembali ke beranda', modes: 'Mode membaca', m1: 'Suku Kata', m2: 'Susun Kata', m3: 'Kalimat', level: 'Level', l2: '2 suku kata', l3: '3 suku kata', hear: 'Dengar katanya', ins: 'Ketuk suku kata secara berurutan', next: 'Lanjut', hintStart: 'Dengarkan, lalu ketuk suku kata pertama!', hintMore: 'Bagus! Sekarang suku kata berikutnya.', tryAgain: 'Ups, belum tepat. Coba lagi!', slot: 'Kotak ', empty: 'kosong', yes: 'Betul! ' };
+    var r = this.round();
+    var W = this.words();
+    var w = W.find((x) => x[0] === r.k) || W[0];
+    var parts = w[2];
+    var filled = r.slots.filter((x) => x !== null).length;
+    var full = filled === parts.length;
+    var built = r.slots.map((i) => (i === null ? '' : r.tiles[i])).join('');
+    var ok = full && built === parts.join('');
+    var bad = full && !ok;
+    var cols = [['#FF8A3D', '#E0661A'], ['#1C8CF0', '#1265B5'], ['#7048E8', '#5032B8'], ['#26A03B', '#1E8A31'], ['#E8384F', '#B82A3E']];
+    var qn = st.qn || 2;
+    var used = {};
+    r.slots.forEach((i) => { if (i !== null) used[i] = true; });
+    var nSl = parts.length;
+    return {
+      t: T,
+      lk: this.lk(['Main', 'SukuKata', 'Kata', 'Kalimat']),
+      cur: { img: '/_blob/' + w[3], word: w[1], up: w[1].toUpperCase() },
+      wordFs: w[1].length > 8 ? 54 : 76,
+      slotW: nSl === 2 ? 250 : 190,
+      slotFs: nSl === 2 ? 76 : 60,
+      ok: ok, notOk: !ok,
+      slotRowCls: bad ? (st.fl ? 'kwShA' : 'kwShB') : '',
+      hint: bad ? T.tryAgain : (filled ? T.hintMore : T.hintStart),
+      levels: [[2, T.l2], [3, T.l3]].map((lv) => ({
+        t: lv[1], on: r.level === lv[0], bg: r.level === lv[0] ? '#E0661A' : '#FFFFFF', fg: r.level === lv[0] ? '#FFFFFF' : '#2B2350', sh: r.level === lv[0] ? '#A9480D' : '#F7C9A5',
+        pick: () => { clearTimeout(this._ct); var nr = this.make(lv[0], null); this.setState({ r: nr, qn: 1 }); this.speak(W.find((x) => x[0] === nr.k)[1]); }
+      })),
+      dots: [1, 2, 3, 4, 5].map((i) => ({ w: i === qn ? 30 : 14, c: i < qn ? '#26A03B' : (i === qn ? '#E0661A' : '#F7C9A5') })),
+      slots: r.slots.map((ti, si) => {
+        var has = ti !== null;
+        var c = has ? cols[ti % cols.length] : null;
+        return {
+          filled: has, empty: !has, t: has ? r.tiles[ti] : '',
+          aria: T.slot + (si + 1) + ': ' + (has ? r.tiles[ti] : T.empty),
+          bs: has ? 'solid' : 'dashed', bd: has ? '#FFFFFF' : '#F7C9A5', bg: has ? (ok ? '#26A03B' : c[0]) : '#FFF8F2', sh: has ? (ok ? '#1E8A31' : c[1]) : 'transparent',
+          tap: () => {
+            if (!has || ok) return;
+            var r2 = this.round();
+            var sl = r2.slots.slice(); sl[si] = null;
+            this.setState({ r: Object.assign({}, r2, { slots: sl, fresh: false }) });
+          }
+        };
+      }),
+      tiles: r.tiles.map((tt, ti) => {
+        var c = cols[ti % cols.length];
+        return {
+          t: tt, aria: tt, bg: c[0], sh: c[1], op: used[ti] ? 0.25 : 1,
+          tap: () => {
+            var r2 = this.round();
+            if (used[ti]) return;
+            var sl = r2.slots.slice();
+            var at = sl.indexOf(null);
+            if (at < 0) return;
+            sl[at] = ti;
+            this.speak(tt);
+            var nr = Object.assign({}, r2, { slots: sl, fresh: false });
+            var full2 = sl.every((x) => x !== null);
+            if (full2) {
+              var b2 = sl.map((i) => nr.tiles[i]).join('');
+              if (b2 === parts.join('')) { this.speak(T.yes + parts.join('... ') + '... ' + w[1] + '!'); this.setState({ r: nr }); return; }
+              var s3 = this.state || {};
+              this.setState({ r: nr, fl: !s3.fl });
+              clearTimeout(this._ct);
+              this._ct = setTimeout(() => { var r3 = this.round(); this.setState({ r: Object.assign({}, r3, { slots: r3.slots.map(() => null) }) }); }, 1100);
+              this.speak(T.tryAgain);
+              return;
+            }
+            this.setState({ r: nr });
+          }
+        };
+      }),
+      hear: () => this.speak(parts.join('... ') + '... ' + w[1]),
+      nextWord: () => { clearTimeout(this._ct); var nr = this.make(r.level, r.k); this.setState({ r: nr, qn: (qn % 5) + 1 }); this.speak(W.find((x) => x[0] === nr.k)[1]); }
+    };
+  }
+}
+</script>
+</body>
+</html>

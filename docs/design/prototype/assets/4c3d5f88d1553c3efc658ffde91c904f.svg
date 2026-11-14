@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+<path d="M162 145C175 150 178 162 174 172" fill="none" stroke="#E0A100" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+<ellipse cx="174" cy="176" rx="4" ry="6" fill="#A0673C"></ellipse>
+<rect x="88" y="158" width="10" height="38" rx="4" fill="#FFD43B"></rect>
+<rect x="104" y="160" width="10" height="36" rx="4" fill="#FFD43B"></rect>
+<rect x="132" y="160" width="10" height="36" rx="4" fill="#FFD43B"></rect>
+<rect x="148" y="158" width="10" height="38" rx="4" fill="#FFD43B"></rect>
+<rect x="88" y="188" width="10" height="8" rx="3" fill="#A0673C"></rect>
+<rect x="104" y="188" width="10" height="8" rx="3" fill="#A0673C"></rect>
+<rect x="132" y="188" width="10" height="8" rx="3" fill="#A0673C"></rect>
+<rect x="148" y="188" width="10" height="8" rx="3" fill="#A0673C"></rect>
+<ellipse cx="122" cy="150" rx="46" ry="26" fill="#FFD43B"></ellipse>
+<path d="M78 152L62 70L84 66L106 142Z" fill="#FFD43B"></path>
+<path d="M62 42V28" fill="none" stroke="#E0A100" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M76 40V27" fill="none" stroke="#E0A100" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+<circle cx="62" cy="26" r="4.5" fill="#A0673C"></circle>
+<circle cx="76" cy="25" r="4.5" fill="#A0673C"></circle>
+<ellipse cx="90" cy="46" rx="10" ry="5" fill="#FFD43B" transform="rotate(-30 90 46)"></ellipse>
+<ellipse cx="66" cy="58" rx="27" ry="18" fill="#FFD43B" transform="rotate(-15 66 58)"></ellipse>
+<ellipse cx="46" cy="66" rx="13" ry="11" fill="#FFE8A3"></ellipse>
+<ellipse cx="66" cy="54" rx="4.5" ry="5.5" fill="#2B2350"></ellipse>
+<circle cx="67.8" cy="51.5" r="1.8" fill="#FFFFFF"></circle>
+<path d="M40 72Q46 76 52 72" fill="none" stroke="#2B2350" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+<circle cx="110" cy="145" r="8" fill="#E0A100"></circle>
+<circle cx="132" cy="156" r="7" fill="#E0A100"></circle>
+<circle cx="150" cy="141" r="6" fill="#E0A100"></circle>
+<circle cx="80" cy="110" r="6" fill="#E0A100"></circle>
+<circle cx="74" cy="88" r="5" fill="#E0A100"></circle>
+<circle cx="90" cy="132" r="6" fill="#E0A100"></circle>
+<ellipse cx="76" cy="66" rx="6" ry="4" fill="#FF8FA3" opacity=".7"></ellipse>
+</svg>

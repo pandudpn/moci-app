@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Moci · Kartu Memori</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&amp;family=Nunito:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.f{font-family:'Fredoka',ui-rounded,'Arial Rounded MT Bold','Trebuchet MS',system-ui,sans-serif}
+.n{font-family:'Nunito',ui-rounded,system-ui,-apple-system,'Segoe UI',sans-serif}
+a{color:#2B2350;text-decoration:none}a:hover{color:#2B2350}
+button{font:inherit;color:inherit;border:0;padding:0;margin:0;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.tap{transition:transform .12s ease}.tap:active{transform:translateY(5px) scale(.97)}
+.mmFlip{transition:transform .45s cubic-bezier(.3,1.3,.5,1);transform-style:preserve-3d;-webkit-transform-style:preserve-3d}
+.mmFace{backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.mmTw{animation:mmTw 2.4s ease-in-out infinite}
+.mmRise{animation:mmRise .45s cubic-bezier(.3,1.5,.5,1) both}
+.mmIn{animation:mmIn .4s cubic-bezier(.3,1.5,.5,1) both}
+.mmGot{animation:mmGot .6s cubic-bezier(.3,1.6,.5,1) 1}
+@keyframes mmTw{0%,100%{opacity:.6;transform:scale(.9)}50%{opacity:1;transform:scale(1.08)}}
+@keyframes mmRise{0%{transform:translateY(30px);opacity:0}100%{transform:translateY(0);opacity:1}}
+@keyframes mmIn{0%{transform:scale(.5);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes mmGot{0%{transform:scale(1)}40%{transform:scale(1.12)}100%{transform:scale(1)}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="f" style="position: relative; width: 1180px; height: 820px; overflow: hidden; background-color: #EAF2FF; background-image: radial-gradient(#D3E3FF 3px, transparent 3px); background-size: 36px 36px; color: #2B2350">
+
+<div style="position: absolute; left: 32px; right: 32px; top: 22px; display: flex; align-items: center; gap: 14px">
+<a href="{{lk.Permainan.h}}" onClick="{{lk.Permainan.go}}" class="tap" aria-label="{{t.back}}" style="width: 76px; height: 76px; border-radius: 26px; background: #FFFFFF; box-shadow: 0 7px 0 #B7D0F7; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="#2B2350" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+</a>
+<h1 class="f" style="margin: 0; font-size: 44px; font-weight: 700; white-space: nowrap">{{t.title}}</h1>
+<div style="flex: 1"></div>
+<div role="group" aria-label="{{t.level}}" style="display: flex; gap: 6px; padding: 6px; background: #FFFFFF; border-radius: 999px; box-shadow: 0 6px 0 #B7D0F7">
+<sc-for list="{{levels}}" as="lv" hint-placeholder-count="3">
+<button class="f tap" onClick="{{lv.pick}}" aria-pressed="{{lv.on}}" style="height: 52px; padding: 0 16px; border-radius: 999px; background: {{lv.bg}}; color: {{lv.fg}}; font-size: 20px; font-weight: 600; white-space: nowrap">{{lv.t}}</button>
+</sc-for>
+</div>
+<div class="f" role="status" style="display: flex; align-items: center; height: 60px; padding: 0 20px; background: #FFFFFF; border-radius: 999px; box-shadow: 0 6px 0 #B7D0F7; font-size: 22px; font-weight: 600; white-space: nowrap">{{movesLabel}}</div>
+<button class="f tap" onClick="{{restart}}" style="display: flex; align-items: center; gap: 8px; height: 60px; padding: 0 18px; background: #FFFFFF; border-radius: 999px; box-shadow: 0 6px 0 #B7D0F7; font-size: 21px; font-weight: 600">
+<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.6-5.9"/><path d="M4 4v5h5"/></svg>
+<span>{{t.restart}}</span>
+</button>
+</div>
+
+<div style="position: absolute; left: 32px; right: 32px; top: 116px; display: flex; align-items: center; justify-content: center; gap: 8px">
+<span class="n" style="font-size: 17px; font-weight: 800; color: #3B5BDB; margin-right: 4px">{{t.theme}}</span>
+<sc-for list="{{themes}}" as="th" hint-placeholder-count="6">
+<button class="f tap" onClick="{{th.pick}}" aria-pressed="{{th.on}}" style="height: 48px; padding: 0 16px; border-radius: 999px; background: {{th.bg}}; color: {{th.fg}}; box-shadow: 0 4px 0 {{th.sh}}; font-size: 18px; font-weight: 600; white-space: nowrap">{{th.t}}</button>
+</sc-for>
+</div>
+
+<div style="position: absolute; left: 50%; top: {{grid.top}}px; width: {{grid.w}}px; margin-left: {{grid.ml}}px; display: grid; grid-template-columns: repeat({{grid.cols}}, minmax(0, 1fr)); gap: {{grid.gap}}px">
+<sc-for list="{{cards}}" as="c" hint-placeholder-count="12">
+<button class="tap {{c.anim}}" onClick="{{c.tap}}" aria-label="{{c.aria}}" style="position: relative; height: {{grid.h}}px; perspective: 900px; animation-delay: {{c.delay}}s">
+<div class="mmFlip" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; transform: {{c.rot}}">
+<div class="mmFace" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; box-sizing: border-box; border-radius: 26px; background: {{c.back}}; border: 6px solid #FFFFFF; box-shadow: 0 8px 0 {{c.backSh}}; display: flex; align-items: center; justify-content: center">
+<svg class="mmTw" viewBox="0 0 40 40" width="{{grid.star}}" height="{{grid.star}}" aria-hidden="true"><path d="M20 3l5.2 10.6 11.7 1.7-8.5 8.2 2 11.6L20 29.6 9.6 35.1l2-11.6-8.5-8.2 11.7-1.7z" fill="#FFFFFF"/></svg>
+<span aria-hidden="true" style="position: absolute; left: 14px; top: 14px; width: 12px; height: 12px; border-radius: 50%; background: rgba(255,255,255,.55)"></span>
+<span aria-hidden="true" style="position: absolute; right: 16px; bottom: 16px; width: 16px; height: 16px; border-radius: 50%; background: rgba(255,255,255,.45)"></span>
+</div>
+<div class="mmFace" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; box-sizing: border-box; border-radius: 26px; background: #FFFFFF; border: 6px solid {{c.bd}}; box-shadow: 0 8px 0 {{c.sh}}; transform: rotateY(180deg); display: flex; align-items: center; justify-content: center">
+<img class="{{c.got}}" src="{{c.img}}" alt="" draggable="false" style="width: {{grid.img}}px; height: {{grid.img}}px">
+</div>
+</div>
+</button>
+</sc-for>
+</div>
+
+<sc-if value="{{allDone}}" hint-placeholder-val="{{false}}">
+<div class="mmRise" style="position: absolute; left: 50%; top: 360px; margin-left: -300px; width: 600px; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; gap: 16px; padding: 28px 34px; border-radius: 40px; background: #FFFFFF; box-shadow: 0 12px 0 #B7D0F7, 0 30px 60px rgba(43,35,80,.25)">
+<div class="f" style="font-size: 38px; font-weight: 700; color: #3B5BDB; text-align: center">{{t.done}}</div>
+<div class="n" style="font-size: 19px; font-weight: 800; color: #6B5F99">{{doneSub}}</div>
+<div style="display: flex; gap: 14px">
+<button class="f tap" onClick="{{restart}}" style="height: 64px; padding: 0 24px; border-radius: 999px; background: #EAF2FF; box-shadow: 0 5px 0 #B7D0F7; color: #2B2350; font-size: 24px; font-weight: 600">{{t.again}}</button>
+<a href="{{lk.Hebat.h}}" onClick="{{lk.Hebat.go}}" class="f tap" style="height: 64px; padding: 0 24px; border-radius: 999px; background: #3B5BDB; box-shadow: 0 5px 0 #2B44B0; color: #FFFFFF; font-size: 24px; font-weight: 600; display: flex; align-items: center">{{t.prize}}</a>
+</div>
+</div>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"lang":{"editor":"enum","options":["auto","id","en"],"default":"auto","section":"Bahasa"},"app":{"editor":null},"$preview":{"width":1180,"height":820}}'>
+class Component extends DCLogic {
+  pref(k) {
+    var a = this.props.app;
+    if (a && a.prefs) return a.prefs[k] || '';
+    var st = this.state || {};
+    if (st['p_' + k] !== undefined) return st['p_' + k];
+    try { var v = window.localStorage.getItem('moci-' + k); if (v !== null) return v; } catch (e) {}
+    return '';
+  }
+  L() {
+    var p = this.props.lang;
+    if (p === 'id' || p === 'en') return p;
+    return this.pref('lang') === 'en' ? 'en' : 'id';
+  }
+  lk(names) {
+    var a = this.props.app, o = {};
+    names.forEach((n) => {
+      o[n] = (a && a.nav) ? { h: '#', go: (e) => { try { e.preventDefault(); } catch (x) {} a.nav(n); } } : { h: n + '.dc.html', go: null };
+    });
+    return o;
+  }
+  componentWillUnmount() { clearTimeout(this._ct); }
+  speak(t, lang) {
+    try {
+      var s = window.speechSynthesis;
+      if (!s || typeof SpeechSynthesisUtterance === 'undefined') return;
+      s.cancel();
+      var u = new SpeechSynthesisUtterance(t);
+      var en = (lang || this.L()) === 'en';
+      u.lang = en ? 'en-US' : 'id-ID'; u.rate = 0.9; u.pitch = 1.15;
+      var re = en ? /^en/i : /^id/i;
+      var vs = s.getVoices ? s.getVoices() : [];
+      for (var i = 0; i < vs.length; i++) { if (re.test(vs[i].lang)) { u.voice = vs[i]; break; } }
+      s.speak(u);
+    } catch (e) {}
+  }
+  pool() {
+    if (!this._pool) this._pool = {"buah":[["apel","Apel","Apple","f3ad85e8656c762498e18346c0834e64"],["pisang","Pisang","Banana","c75dbf0ae357afaddcf97c42d58a1160"],["jeruk","Jeruk","Orange","59fd969d55c43ab93330b9607a09797b"],["anggur","Anggur","Grapes","7e32fcc5a77bca13617a7e9e6ebe6e67"],["semangka","Semangka","Watermelon","b573b73d242c8297b108f60d1a04c80d"],["nanas","Nanas","Pineapple","c5b26a2b99c1d84e15e9b08ad81a2811"],["mangga","Mangga","Mango","8a6b053fd31a1f50cc94e69e5242e40f"],["stroberi","Stroberi","Strawberry","09d4664bec1323b432b1b9c812474c22"],["ceri","Ceri","Cherry","3fd7f59fde32f0a08b786024c2ae1816"],["alpukat","Alpukat","Avocado","5f73428052239896d0b19d90bbdca29c"],["durian","Durian","Durian","e2d12c8abf7cbc81caa370e3127314c8"],["rambutan","Rambutan","Rambutan","b003fadeccd318f540f8d8b84f0432f8"],["manggis","Manggis","Mangosteen","75e7e3110acc6c21ed3fdebef127894a"],["salak","Salak","Snake Fruit","9a04b8bf05b1e774b527a1e5b07fe2e4"],["pepaya","Pepaya","Papaya","e656141d6c19c6456cb0733ad9d863f6"],["jambu","Jambu Air","Water Apple","8fc15ac4c08d61291754b32791eb1206"],["kelapa","Kelapa","Coconut","d0a5a178291f6bd0606cb8a325a7c385"],["lemon","Lemon","Lemon","8b60cce55b018ce76778d0e91124dc59"],["melon","Melon","Melon","7b51db2aaa58605a7ae15e1af1369775"],["pir","Pir","Pear","cab62ecc12c60a9bac84afc2e9ebdaa9"],["buahnaga","Buah Naga","Dragon Fruit","ab38e88101d413a3d63b42752d453205"]],"sayur":[["wortel","Wortel","Carrot","bd07cd5b5330a2434002468d23961755"],["tomat","Tomat","Tomato","af7684512ef48e45fd48313f41839ba0"],["brokoli","Brokoli","Broccoli","112a01a0bb2ec54bcc9c5d82c4483374"],["jagung","Jagung","Corn","e08be0e2320e04d93c135ec839e948c3"],["terong","Terong","Eggplant","19a19c17820600c0673160b75b8d3f29"],["kentang","Kentang","Potato","656defb15a88ce7a84799d436f569272"],["bawang","Bawang Merah","Shallot","f87ae2fa3c291525aa0f9743c06faae0"],["cabai","Cabai","Chili","59862cf8071958f919b8bc19c09b5360"],["timun","Timun","Cucumber","9a8a7f8d87315469e96e98fb1f2b6e65"],["labu","Labu","Pumpkin","515d2976a430bbde0badf4b3ffcb74a5"],["kubis","Kubis","Cabbage","bb4ae18f2157c2fda0b35c73ac0500a4"],["buncis","Buncis","Green Beans","6fbf958d791ba2f93fe3fec3baef7668"],["paprika","Paprika","Bell Pepper","b52770bc9ad3fc2ce8c5111f526ebf56"],["jamur","Jamur","Mushroom","165cb51bf0986707ffbfb2d921d0e176"]],"hewan":[["kucing","Kucing","Cat","6de067c8bd1b21524d7d6e6b6f4c199a"],["anjing","Anjing","Dog","c242939ae5225d55061992c4a9c3f53a"],["kelinci","Kelinci","Rabbit","f7d015c440e821b1c7c751875e4327e8"],["tikus","Tikus","Mouse","de9512c85659eedbd04f024fc5074f4b"],["sapi","Sapi","Cow","eb1bebc96da8f6f1ffc1494e0fc98f3f"],["kambing","Kambing","Goat","1c4ae5e05ea5cb5b1c97d7553d420d8f"],["domba","Domba","Sheep","c780d1ee0c9956db8125fe76ed646f3d"],["kuda","Kuda","Horse","cc9b06fecc57b5d105417f65369928a4"],["ayam","Ayam","Chicken","81f53fe15d52afbfe261d665ef8b74ba"],["bebek","Bebek","Duck","754f0bd7e0eb7cdaa2fd47f6f89b2df2"],["singa","Singa","Lion","dd80b453f8b3c290ec0572401fe88fe7"],["harimau","Harimau","Tiger","136c12a57e02d6f48327aa4a5aa7e505"],["gajah","Gajah","Elephant","8cb65c6477727354f6b9ad662449edba"],["jerapah","Jerapah","Giraffe","4c3d5f88d1553c3efc658ffde91c904f"],["zebra","Zebra","Zebra","e7a48678ca5c900be7908c88a20c5a18"],["monyet","Monyet","Monkey","817145047067c4f962003b16c2f5fe59"],["orangutan","Orangutan","Orangutan","7ed47b04dad452d96a24e6150153b9f5"],["beruang","Beruang","Bear","6227b1cc8d2743c5fdb255f35b6ac00e"],["panda","Panda","Panda","2aca45982f4d73d88f787d45ec03d315"],["badak","Badak","Rhino","246ed92afd22d9cd0b627495a965b7d8"],["kudanil","Kuda Nil","Hippo","f9fef0ce562868c87a2a2d34583a9a91"],["rubah","Rubah","Fox","5c40d0968fbcc89166b74a9be572773b"],["quokka","Quokka","Quokka","4649005d6db1c08190f0c0cd49412f15"],["buaya","Buaya","Crocodile","e257162228dd7c14327b984fc28fedd7"],["ular","Ular","Snake","4d73c54d6666d5e184ba443f2597f2d9"],["komodo","Komodo","Komodo Dragon","ad4951cf81893165769f3f647fc54846"],["kura","Kura-kura","Turtle","db916cd9c526fad67c469d232d3e5885"],["katak","Katak","Frog","bec3ad3d9d42a30492ed1e061fdda4e0"],["ikan","Ikan","Fish","ce8b6885ad970a4e66e036e133810b2b"],["lumba","Lumba-lumba","Dolphin","52d07c866db14ef1a0fbd2c42022531a"],["paus","Paus","Whale","193e7df94e29721da1a2ac0f2f472b53"],["kepiting","Kepiting","Crab","2718e0ad945f18ded680238031a1a768"],["gurita","Gurita","Octopus","b56f04945cb0c68002805a3329cf26c5"],["ubur","Ubur-ubur","Jellyfish","e030d26c76d42274c76cf645c9e57bee"],["pinguin","Pinguin","Penguin","2d6f65aa46663557cff33fa1ac230978"],["burung","Burung","Bird","a5705cd1aa08b59d26872e7d4381cf2b"],["burunghantu","Burung Hantu","Owl","c26166f1dd3bb0c3f4b4b44cf09a5d4f"],["flamingo","Flamingo","Flamingo","c1c03878fc3cf75b46b14877a58b8a26"],["kupu","Kupu-kupu","Butterfly","dbdd2cc62f8a5bd8584cf371fac1c3b5"],["lebah","Lebah","Bee","b79511af670fe0c41fb57609f87bc0d7"],["semut","Semut","Ant","f6df9bbf276d2e186a24f33a3041a600"],["ulat","Ulat","Caterpillar","2cffab27ed6825a9e2c9fba43d09c3a0"]],"kendaraan":[["mobil","Mobil","Car","9a4b52d03d573cb2bb9e7fc33aa00ad6"],["bus","Bus","Bus","5fa24324963167da186e12222fc34b6a"],["kereta","Kereta","Train","c0044435766474df6769a38a15b41072"],["pesawat","Pesawat","Airplane","cf3cbdb44abff66623a1b8886c6334a8"],["kapal","Kapal","Ship","c13e9fd9b35f81a1e2e7c8270df7810b"],["sepeda","Sepeda","Bicycle","fd16a4542bf6b07d9b4a88c55c68fb95"],["truk","Truk","Truck","e64bfdb04579e9fb52398c0da0c80992"],["helikopter","Helikopter","Helicopter","62be577d88c8efa7d0650f8e6fe147ee"],["roket","Roket","Rocket","65a1f0b3aa312fc93fd888b8a105ce98"]],"benda":[["bola","Bola","Ball","b6ba1bc1e8f26eb3aa05f31a41e7bb31"],["buku","Buku","Book","40764645d095695dc89e65d699f811f8"],["dadu","Dadu","Dice","21ec3ff6cd7241ec48aa204f338666e8"],["topi","Topi","Hat","4ffb45a35e6ab85a85df0806cc4ed5bf"],["payung","Payung","Umbrella","f80f0f94891ce851b0295abb6cdfc6b3"],["layang","Layang-layang","Kite","b318984ee6d49e39029e199e88367107"],["yoyo","Yoyo","Yoyo","d8d724511b118aee435cb582d2599023"],["kado","Kado","Gift","89f1eaa66e0150028701c8f5c32dab8c"],["balon","Balon","Balloons","92d5ae7160761db50ac2050b7ab1a4d5"],["bunga","Bunga","Flower","a09858b43e75375a000f2d1c491d9333"],["kuekecil","Kue Mangkuk","Cupcake","5175853037660fb2f7ad154418e040ec"],["sepatu","Sepatu","Shoe","47d389b3dc6c01d69907d0362050c151"],["kaos","Kaos","T-shirt","893ce2f6a36105a5c6bf9dea02c0bc02"],["eskrim","Es Krim","Ice Cream","1c9d89ce71c86ba2d59b5b3b05b5733a"],["xilofon","Xilofon","Xylophone","01c5c505a58f253f0e264c90f0a261fd"],["igloo","Igloo","Igloo","d8346c1de7889660d9773e168f62ec9b"],["rumah","Rumah","House","674389f583852b74d45e31c19d339f86"]]};
+    return this._pool;
+  }
+  find(k) {
+    var P = this.pool();
+    for (var c in P) for (var i = 0; i < P[c].length; i++) if (P[c][i][0] === k) return P[c][i];
+    return null;
+  }
+  shuffle(a) {
+    var b = a.slice();
+    for (var i = b.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = b[i]; b[i] = b[j]; b[j] = t; }
+    return b;
+  }
+  makeGame(pick, n, prevTheme) {
+    var P = this.pool();
+    var cats = ['buah', 'hewan', 'sayur', 'kendaraan', 'benda'];
+    var th = pick;
+    if (!th || th === 'acak') { var opts = cats.filter((c) => c !== prevTheme); th = opts[Math.floor(Math.random() * opts.length)]; }
+    var src = th === 'campur' ? [].concat(P.buah, P.hewan, P.sayur, P.kendaraan, P.benda) : P[th];
+    var keys = this.shuffle(src.map((x) => x[0])).slice(0, n);
+    return { theme: th, pick: pick || 'acak', n: n, deck: this.shuffle(keys.concat(keys)), open: [], got: {}, moves: 0 };
+  }
+  game() {
+    var st = this.state || {};
+    if (st.g) return st.g;
+    return { theme: 'hewan', pick: 'acak', n: 6, deck: ['kucing', 'sapi', 'ayam', 'bebek', 'gajah', 'singa', 'ayam', 'kucing', 'singa', 'sapi', 'bebek', 'gajah'], open: [0], got: { kucing: true }, moves: 3, fresh: true };
+  }
+  layout(n) {
+    var cards = n * 2;
+    var cols = 4;
+    var h = n <= 4 ? 230 : (n <= 6 ? 186 : 140);
+    var w = n <= 4 ? 210 : (n <= 6 ? 190 : 146);
+    var gap = n <= 6 ? 20 : 16;
+    var rows = Math.ceil(cards / cols);
+    var gw = cols * w + (cols - 1) * gap;
+    return { cols: cols, h: h, w: gw, ml: -Math.round(gw / 2), gap: gap, top: n <= 6 ? 188 : 184, img: Math.round(Math.min(w, h) * 0.66), star: Math.round(Math.min(w, h) * 0.38), rows: rows };
+  }
+  renderVals() {
+    var st = this.state || {};
+    var en = this.L() === 'en';
+    var T = en
+      ? { title: 'Memory Cards', back: 'Back to games', level: 'Level', restart: 'New game', theme: 'Theme:', moves: 'Moves', done: 'You found all the pairs!', again: 'Play again', prize: 'Get prize', pair: '! A pair!', hidden: 'Hidden card', doneSay: 'Great job! You found all the pairs!', pairs: ' pairs', doneSub: 'Moves: ' }
+      : { title: 'Kartu Memori', back: 'Kembali ke permainan', level: 'Level', restart: 'Main baru', theme: 'Tema:', moves: 'Langkah', done: 'Semua pasangan ketemu!', again: 'Main lagi', prize: 'Ambil hadiah', pair: '! Sepasang!', hidden: 'Kartu tertutup', doneSay: 'Hebat! Semua pasangan sudah ketemu!', pairs: ' pasang', doneSub: 'Langkah: ' };
+    var names = { acak: en ? 'Surprise!' : 'Acak!', buah: en ? 'Fruits' : 'Buah', hewan: en ? 'Animals' : 'Hewan', sayur: en ? 'Veggies' : 'Sayur', kendaraan: en ? 'Vehicles' : 'Kendaraan', benda: en ? 'Toys & Things' : 'Mainan & Benda' };
+    var g = this.game();
+    var lay = this.layout(g.n);
+    var palette = ['#22C1C3', '#FF8A3D', '#9775FA', '#3BA4FF', '#FF6B6B'];
+    var backC = { buah: ['#FF6B6B', '#E04848'], hewan: ['#22C1C3', '#129A9C'], sayur: ['#5FD068', '#3BAA45'], kendaraan: ['#3BA4FF', '#1C7ED6'], benda: ['#9775FA', '#7048E8'] }[g.theme] || ['#22C1C3', '#129A9C'];
+    var allDone = Object.keys(g.got).length >= g.n && !g.fresh;
+    return {
+      t: T,
+      lk: this.lk(['Permainan', 'Hebat']),
+      grid: lay,
+      movesLabel: T.moves + ': ' + g.moves,
+      doneSub: T.doneSub + g.moves,
+      allDone: allDone,
+      levels: [4, 6, 8].map((n) => ({
+        t: n + T.pairs, on: g.n === n,
+        bg: g.n === n ? '#3B5BDB' : '#FFFFFF', fg: g.n === n ? '#FFFFFF' : '#2B2350',
+        pick: () => { clearTimeout(this._ct); this.setState({ g: this.makeGame(g.pick === 'acak' ? null : g.pick, n, g.theme) }); }
+      })),
+      themes: ['acak', 'buah', 'hewan', 'sayur', 'kendaraan', 'benda'].map((k) => {
+        var on = g.pick === k && !g.fresh;
+        return {
+          t: names[k], on: on, bg: on ? '#3B5BDB' : '#FFFFFF', fg: on ? '#FFFFFF' : '#2B2350', sh: on ? '#2B44B0' : '#B7D0F7',
+          pick: () => { clearTimeout(this._ct); var g2 = this.makeGame(k === 'acak' ? null : k, g.n, g.theme); this.setState({ g: g2 }); this.speak(names[g2.theme]); }
+        };
+      }),
+      restart: () => { clearTimeout(this._ct); var g2 = this.makeGame(g.pick === 'acak' ? null : g.pick, g.n, g.theme); this.setState({ g: g2 }); this.speak(names[g2.theme]); },
+      cards: g.deck.map((k, i) => {
+        var it = this.find(k);
+        var up = g.got[k] || g.open.indexOf(i) >= 0;
+        var name = it ? (en ? it[2] : it[1]) : k;
+        var ci = Object.keys(g.got).indexOf(k);
+        return {
+          img: '/_blob/' + (it ? it[3] : ''),
+          rot: up ? 'rotateY(180deg)' : 'rotateY(0deg)',
+          aria: up ? name : T.hidden,
+          anim: g.fresh ? '' : 'mmIn',
+          delay: (i * 0.03).toFixed(2),
+          got: g.got[k] && st.last === k ? 'mmGot' : '',
+          back: backC[0], backSh: backC[1],
+          bd: g.got[k] ? palette[ci % palette.length] : '#D3E3FF',
+          sh: g.got[k] ? '#B7D0F7' : '#C5D8F5',
+          tap: () => {
+            var g2 = this.game();
+            if (g2.got[k] || g2.open.indexOf(i) >= 0 || g2.open.length >= 2) return;
+            var open = g2.open.concat([i]);
+            this.speak(name);
+            if (open.length < 2) { this.setState({ g: Object.assign({}, g2, { open: open, fresh: false }) }); return; }
+            var a = g2.deck[open[0]], b = g2.deck[open[1]];
+            var moves = g2.moves + 1;
+            if (a === b) {
+              var got = Object.assign({}, g2.got); got[a] = true;
+              var done = Object.keys(got).length >= g2.n;
+              this.setState({ g: Object.assign({}, g2, { open: [], got: got, moves: moves, fresh: false }), last: a });
+              this.speak(done ? T.doneSay : name + T.pair);
+            } else {
+              this.setState({ g: Object.assign({}, g2, { open: open, moves: moves, fresh: false }) });
+              clearTimeout(this._ct);
+              this._ct = setTimeout(() => { var g3 = this.game(); this.setState({ g: Object.assign({}, g3, { open: [] }) }); }, 950);
+            }
+          }
+        };
+      })
+    };
+  }
+}
+</script>
+</body>
+</html>

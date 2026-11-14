@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Moci · Main Yuk!</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&amp;family=Nunito:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.f{font-family:'Fredoka',ui-rounded,'Arial Rounded MT Bold','Trebuchet MS',system-ui,sans-serif}
+.n{font-family:'Nunito',ui-rounded,system-ui,-apple-system,'Segoe UI',sans-serif}
+a{color:#2B2350;text-decoration:none}a:hover{color:#2B2350}
+button{font:inherit;color:inherit;border:0;padding:0;margin:0;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.tap{transition:transform .12s ease}.tap:active{transform:translateY(5px) scale(.97)}
+.pmBob{animation:pmBob 3s ease-in-out infinite}
+.pmFloat{animation:pmFloat 3.6s ease-in-out infinite}
+.pmTwinkle{animation:pmTwinkle 2.2s ease-in-out infinite}
+.pmPeek{animation:pmPeek 3s ease-in-out infinite;transform-origin:50% 100%}
+@keyframes pmBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes pmFloat{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-12px) rotate(3deg)}}
+@keyframes pmTwinkle{0%,100%{opacity:.4;transform:scale(.8)}50%{opacity:1;transform:scale(1.1)}}
+@keyframes pmPeek{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-8px) rotate(3deg)}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="f" style="position: relative; width: 1180px; height: 820px; overflow: hidden; background-color: #E3FAFA; background-image: radial-gradient(#C3F0F0 3px, transparent 3px); background-size: 36px 36px; color: #2B2350">
+
+<div style="position: absolute; left: 32px; right: 32px; top: 22px; display: flex; align-items: center; gap: 18px">
+<a href="{{lk.Main.h}}" onClick="{{lk.Main.go}}" class="tap" aria-label="{{t.back}}" style="width: 76px; height: 76px; border-radius: 26px; background: #FFFFFF; box-shadow: 0 7px 0 #9EDCDD; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="#2B2350" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+</a>
+<div>
+<h1 class="f" style="margin: 0; font-size: 46px; font-weight: 700; line-height: 1">{{t.title}}</h1>
+<div class="n" style="font-size: 18px; font-weight: 800; color: #3D7F80; margin-top: 4px">{{t.sub}}</div>
+</div>
+<div style="flex: 1"></div>
+<div class="f" style="display: flex; align-items: center; gap: 8px; height: 64px; padding: 0 22px 0 14px; background: #FFFFFF; border-radius: 999px; box-shadow: 0 6px 0 #9EDCDD; font-size: 30px; font-weight: 700">
+<svg viewBox="0 0 40 40" width="40" height="40" aria-hidden="true"><path d="M20 3l5.2 10.6 11.7 1.7-8.5 8.2 2 11.6L20 29.6 9.6 35.1l2-11.6-8.5-8.2 11.7-1.7z" fill="#FFC21A" stroke="#F08C00" stroke-width="2" stroke-linejoin="round"/></svg>
+<span>24</span>
+</div>
+</div>
+
+<div style="position: absolute; left: 69px; top: 136px; width: 1042px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 30px 26px">
+
+<a href="{{lk.Cocokkan.h}}" class="tap" onClick="{{say.g1}}" style="position: relative; display: block; height: 276px; border-radius: 40px; background: #FF7EB6; box-shadow: 0 12px 0 #E0528F, 0 22px 34px rgba(43,35,80,.14); overflow: hidden">
+<div aria-hidden="true" style="position: absolute; right: -50px; top: -60px; width: 190px; height: 190px; border-radius: 50%; background: rgba(255,255,255,.2)"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 330px; height: 180px">
+<svg viewBox="0 0 330 180" width="330" height="180" style="position: absolute; left: 0; top: 0"><path d="M132 92C158 46 176 132 200 88" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-dasharray="1 14" fill="none"/></svg>
+<div class="pmBob" style="position: absolute; left: 34px; top: 26px; width: 100px; height: 120px; border-radius: 26px; background: #FFFFFF; box-shadow: 0 6px 0 #E0528F; transform: rotate(-7deg); display: flex; align-items: center; justify-content: center"><img src="/_blob/c5b26a2b99c1d84e15e9b08ad81a2811" alt="" style="width: 84px; height: 84px"></div>
+<div class="pmBob" style="position: absolute; left: 198px; top: 30px; width: 100px; height: 120px; border-radius: 26px; background: #FFFFFF; box-shadow: 0 6px 0 #E0528F; transform: rotate(6deg); display: flex; align-items: center; justify-content: center; animation-delay: -1.2s"><img src="/_blob/c5b26a2b99c1d84e15e9b08ad81a2811" alt="" style="width: 84px; height: 84px"></div>
+</div>
+<div style="position: absolute; left: 14px; right: 14px; bottom: 14px; height: 70px; box-sizing: border-box; padding: 0 12px 0 18px; border-radius: 26px; background: #FFFFFF; display: flex; align-items: center; justify-content: space-between; gap: 8px">
+<div class="f" style="font-size: 24px; font-weight: 700; white-space: nowrap">{{g.g1}}</div>
+<div class="n" style="flex: none; padding: 6px 12px; border-radius: 999px; background: #F3EEFF; color: #5032B8; font-size: 15px; font-weight: 800">{{age.a2}}</div>
+</div>
+</a>
+
+<a href="{{lk.Memori.h}}" class="tap" onClick="{{say.g2}}" style="position: relative; display: block; height: 276px; border-radius: 40px; background: #4DA8FF; box-shadow: 0 12px 0 #2A84E0, 0 22px 34px rgba(43,35,80,.14); overflow: hidden">
+<div aria-hidden="true" style="position: absolute; right: -50px; top: -60px; width: 190px; height: 190px; border-radius: 50%; background: rgba(255,255,255,.2)"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 330px; height: 180px">
+<div style="position: absolute; left: 30px; top: 34px; width: 82px; height: 108px; border-radius: 20px; background: #22C1C3; box-shadow: 0 6px 0 #129A9C; border: 5px solid #FFFFFF; box-sizing: border-box; transform: rotate(-8deg); display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 40 40" width="40" height="40"><path d="M20 3l5.2 10.6 11.7 1.7-8.5 8.2 2 11.6L20 29.6 9.6 35.1l2-11.6-8.5-8.2 11.7-1.7z" fill="#FFFFFF"/></svg></div>
+<div class="pmBob" style="position: absolute; left: 124px; top: 22px; width: 82px; height: 108px; border-radius: 20px; background: #FFFFFF; box-shadow: 0 6px 0 #2A84E0; display: flex; align-items: center; justify-content: center"><img src="/_blob/6de067c8bd1b21524d7d6e6b6f4c199a" alt="" style="width: 72px; height: 72px"></div>
+<div style="position: absolute; left: 218px; top: 34px; width: 82px; height: 108px; border-radius: 20px; background: #22C1C3; box-shadow: 0 6px 0 #129A9C; border: 5px solid #FFFFFF; box-sizing: border-box; transform: rotate(8deg); display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 40 40" width="40" height="40"><path d="M20 3l5.2 10.6 11.7 1.7-8.5 8.2 2 11.6L20 29.6 9.6 35.1l2-11.6-8.5-8.2 11.7-1.7z" fill="#FFFFFF"/></svg></div>
+</div>
+<div style="position: absolute; left: 14px; right: 14px; bottom: 14px; height: 70px; box-sizing: border-box; padding: 0 12px 0 18px; border-radius: 26px; background: #FFFFFF; display: flex; align-items: center; justify-content: space-between; gap: 8px">
+<div class="f" style="font-size: 24px; font-weight: 700; white-space: nowrap">{{g.g2}}</div>
+<div class="n" style="flex: none; padding: 6px 12px; border-radius: 999px; background: #F3EEFF; color: #5032B8; font-size: 15px; font-weight: 800">{{age.a3}}</div>
+</div>
+</a>
+
+<a href="{{lk.Bayangan.h}}" class="tap" onClick="{{say.g3}}" style="position: relative; display: block; height: 276px; border-radius: 40px; background: #9775FA; box-shadow: 0 12px 0 #7048E8, 0 22px 34px rgba(43,35,80,.14); overflow: hidden; text-align: left">
+<div aria-hidden="true" style="position: absolute; right: -50px; top: -60px; width: 190px; height: 190px; border-radius: 50%; background: rgba(255,255,255,.2)"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 330px; height: 180px">
+<img src="/_blob/8cb65c6477727354f6b9ad662449edba" alt="" style="position: absolute; left: 182px; top: 18px; width: 136px; height: 136px; filter: brightness(0); opacity: .3">
+<img class="pmFloat" src="/_blob/8cb65c6477727354f6b9ad662449edba" alt="" style="position: absolute; left: 22px; top: 14px; width: 140px; height: 140px">
+<svg viewBox="0 0 60 30" width="50" height="26" style="position: absolute; left: 150px; top: 72px"><path d="M4 15H48M38 5l12 10-12 10" fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</div>
+<div style="position: absolute; left: 14px; right: 14px; bottom: 14px; height: 70px; box-sizing: border-box; padding: 0 12px 0 18px; border-radius: 26px; background: #FFFFFF; display: flex; align-items: center; justify-content: space-between; gap: 8px">
+<div class="f" style="font-size: 24px; font-weight: 700; white-space: nowrap">{{g.g3}}</div>
+<div class="n" style="flex: none; padding: 6px 12px; border-radius: 999px; background: #F3EEFF; color: #5032B8; font-size: 15px; font-weight: 800">{{age.a2}}</div>
+</div>
+</a>
+
+<a href="{{lk.Puzzle.h}}" class="tap" onClick="{{say.g4}}" style="position: relative; display: block; height: 276px; border-radius: 40px; background: #FFB020; box-shadow: 0 12px 0 #E0870B, 0 22px 34px rgba(43,35,80,.14); overflow: hidden; text-align: left">
+<div aria-hidden="true" style="position: absolute; right: -50px; top: -60px; width: 190px; height: 190px; border-radius: 50%; background: rgba(255,255,255,.25)"></div>
+<svg aria-hidden="true" viewBox="0 0 330 180" width="330" height="180" style="position: absolute; left: 0; top: 0">
+<g transform="translate(70 30) rotate(-8 50 60)"><path d="M10 30H34C34 16 56 16 56 30H80V54C94 54 94 76 80 76V100H10Z" fill="#FF6FA5" stroke="#FFFFFF" stroke-width="5" stroke-linejoin="round"/></g>
+<g transform="translate(160 40) rotate(10 50 60)"><path d="M10 30H34C34 16 56 16 56 30H80V54C94 54 94 76 80 76V100H10Z" fill="#22C1C3" stroke="#FFFFFF" stroke-width="5" stroke-linejoin="round"/></g>
+<circle cx="60" cy="140" r="7" fill="#FFFFFF" opacity=".7"/><circle cx="276" cy="36" r="6" fill="#FFFFFF" opacity=".7"/>
+</svg>
+<div style="position: absolute; left: 14px; right: 14px; bottom: 14px; height: 70px; box-sizing: border-box; padding: 0 12px 0 18px; border-radius: 26px; background: #FFFFFF; display: flex; align-items: center; justify-content: space-between; gap: 8px">
+<div class="f" style="font-size: 24px; font-weight: 700; white-space: nowrap">{{g.g4}}</div>
+<div class="n" style="flex: none; padding: 6px 12px; border-radius: 999px; background: #F3EEFF; color: #5032B8; font-size: 15px; font-weight: 800">{{age.a3}}</div>
+</div>
+</a>
+
+<a href="{{lk.Balon.h}}" class="tap" onClick="{{say.g5}}" style="position: relative; display: block; height: 276px; border-radius: 40px; background: #22C1C3; box-shadow: 0 12px 0 #129A9C, 0 22px 34px rgba(43,35,80,.14); overflow: hidden; text-align: left">
+<div aria-hidden="true" style="position: absolute; right: -50px; top: -60px; width: 190px; height: 190px; border-radius: 50%; background: rgba(255,255,255,.2)"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 330px; height: 180px">
+<svg class="pmFloat" viewBox="0 0 100 130" width="82" height="106" style="position: absolute; left: 44px; top: 30px"><path d="M50 8C74 8 90 28 90 52C90 78 70 98 50 100C30 98 10 78 10 52C10 28 26 8 50 8Z" fill="#FF4B4B"/><path d="M44 100L50 108L56 100Z" fill="#FF4B4B"/><path d="M50 108C46 116 56 120 50 128" stroke="#FFFFFF" stroke-width="2.5" fill="none"/><text x="50" y="68" text-anchor="middle" font-family="Fredoka, sans-serif" font-size="46" font-weight="700" fill="#FFFFFF">A</text></svg>
+<svg class="pmFloat" viewBox="0 0 100 130" width="92" height="120" style="position: absolute; left: 120px; top: 8px; animation-delay: -1.2s"><path d="M50 8C74 8 90 28 90 52C90 78 70 98 50 100C30 98 10 78 10 52C10 28 26 8 50 8Z" fill="#FFD43B"/><path d="M44 100L50 108L56 100Z" fill="#FFD43B"/><path d="M50 108C46 116 56 120 50 128" stroke="#FFFFFF" stroke-width="2.5" fill="none"/><text x="50" y="68" text-anchor="middle" font-family="Fredoka, sans-serif" font-size="46" font-weight="700" fill="#2B2350">B</text></svg>
+<svg class="pmFloat" viewBox="0 0 100 130" width="82" height="106" style="position: absolute; left: 206px; top: 34px; animation-delay: -2.2s"><path d="M50 8C74 8 90 28 90 52C90 78 70 98 50 100C30 98 10 78 10 52C10 28 26 8 50 8Z" fill="#7048E8"/><path d="M44 100L50 108L56 100Z" fill="#7048E8"/><path d="M50 108C46 116 56 120 50 128" stroke="#FFFFFF" stroke-width="2.5" fill="none"/><text x="50" y="68" text-anchor="middle" font-family="Fredoka, sans-serif" font-size="46" font-weight="700" fill="#FFFFFF">C</text></svg>
+</div>
+<div style="position: absolute; left: 14px; right: 14px; bottom: 14px; height: 70px; box-sizing: border-box; padding: 0 12px 0 18px; border-radius: 26px; background: #FFFFFF; display: flex; align-items: center; justify-content: space-between; gap: 8px">
+<div class="f" style="font-size: 24px; font-weight: 700; white-space: nowrap">{{g.g5}}</div>
+<div class="n" style="flex: none; padding: 6px 12px; border-radius: 999px; background: #F3EEFF; color: #5032B8; font-size: 15px; font-weight: 800">{{age.a4}}</div>
+</div>
+</a>
+
+<a href="{{lk.BesarKecil.h}}" class="tap" onClick="{{say.g6}}" style="position: relative; display: block; height: 276px; border-radius: 40px; background: #5FD068; box-shadow: 0 12px 0 #3BAA45, 0 22px 34px rgba(43,35,80,.14); overflow: hidden; text-align: left">
+<div aria-hidden="true" style="position: absolute; right: -50px; top: -60px; width: 190px; height: 190px; border-radius: 50%; background: rgba(255,255,255,.2)"></div>
+<div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 330px; height: 180px; display: flex; align-items: flex-end; justify-content: center; gap: 10px; padding-bottom: 26px; box-sizing: border-box">
+<img src="/_blob/f3ad85e8656c762498e18346c0834e64" alt="" style="width: 56px; height: 56px">
+<img src="/_blob/f3ad85e8656c762498e18346c0834e64" alt="" style="width: 84px; height: 84px">
+<img class="pmBob" src="/_blob/f3ad85e8656c762498e18346c0834e64" alt="" style="width: 118px; height: 118px">
+</div>
+<div style="position: absolute; left: 14px; right: 14px; bottom: 14px; height: 70px; box-sizing: border-box; padding: 0 12px 0 18px; border-radius: 26px; background: #FFFFFF; display: flex; align-items: center; justify-content: space-between; gap: 8px">
+<div class="f" style="font-size: 24px; font-weight: 700; white-space: nowrap">{{g.g6}}</div>
+<div class="n" style="flex: none; padding: 6px 12px; border-radius: 999px; background: #F3EEFF; color: #5032B8; font-size: 15px; font-weight: 800">{{age.a2}}</div>
+</div>
+</a>
+
+</div>
+
+<img class="pmPeek" src="/_blob/0b224341bbd230f2dd731c560e41d4cb" alt="" style="position: absolute; left: 1040px; top: 700px; width: 120px; height: 120px">
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"lang":{"editor":"enum","options":["auto","id","en"],"default":"auto","section":"Bahasa"},"app":{"editor":null},"$preview":{"width":1180,"height":820}}'>
+class Component extends DCLogic {
+  pref(k) {
+    var a = this.props.app;
+    if (a && a.prefs) return a.prefs[k] || '';
+    var st = this.state || {};
+    if (st['p_' + k] !== undefined) return st['p_' + k];
+    try { var v = window.localStorage.getItem('moci-' + k); if (v !== null) return v; } catch (e) {}
+    return '';
+  }
+  L() {
+    var p = this.props.lang;
+    if (p === 'id' || p === 'en') return p;
+    return this.pref('lang') === 'en' ? 'en' : 'id';
+  }
+  componentDidMount() {
+    this._onPref = (e) => { var d = e && e.detail; if (d && d.k) { var o = {}; o['p_' + d.k] = d.v; this.setState(o); } };
+    this._onStore = (e) => { if (e && e.key && e.key.indexOf('moci-') === 0) { var o = {}; o['p_' + e.key.slice(5)] = e.newValue || ''; this.setState(o); } };
+    try { window.addEventListener('moci-pref', this._onPref); window.addEventListener('storage', this._onStore); } catch (e) {}
+  }
+  componentWillUnmount() {
+    try { window.removeEventListener('moci-pref', this._onPref); window.removeEventListener('storage', this._onStore); } catch (e) {}
+  }
+  speak(t, lang) {
+    try {
+      var s = window.speechSynthesis;
+      if (!s || typeof SpeechSynthesisUtterance === 'undefined') return;
+      s.cancel();
+      var u = new SpeechSynthesisUtterance(t);
+      var en = (lang || this.L()) === 'en';
+      u.lang = en ? 'en-US' : 'id-ID'; u.rate = 0.9; u.pitch = 1.15;
+      var re = en ? /^en/i : /^id/i;
+      var vs = s.getVoices ? s.getVoices() : [];
+      for (var i = 0; i < vs.length; i++) { if (re.test(vs[i].lang)) { u.voice = vs[i]; break; } }
+      s.speak(u);
+    } catch (e) {}
+  }
+  lk(names) {
+    var o = {};
+    names.forEach((n) => {
+      o[n] = (this.props.app && this.props.app.nav) ? { h: '#', go: (e) => this.navTo(e, n) } : { h: n + '.dc.html', go: null };
+    });
+    return o;
+  }
+  navTo(e, to, params) {
+    var a = this.props.app;
+    if (!a || !a.nav) return false;
+    try { if (e && e.preventDefault) e.preventDefault(); } catch (x) {}
+    a.nav(to, params);
+    return true;
+  }
+  renderVals() {
+    var v = this.renderVals0();
+    v.lk = this.lk(['Balon', 'Bayangan', 'BesarKecil', 'Cocokkan', 'Main', 'Memori', 'Puzzle']);
+    return v;
+  }
+  renderVals0() {
+    var en = this.L() === 'en';
+    var G = en
+      ? { g1: 'Match Pictures', g2: 'Memory Cards', g3: 'Shadow Match', g4: 'Jigsaw Puzzle', g5: 'Letter Balloons', g6: 'Big & Small' }
+      : { g1: 'Cocokkan Gambar', g2: 'Kartu Memori', g3: 'Tebak Bayangan', g4: 'Puzzle', g5: 'Balon Huruf', g6: 'Besar & Kecil' };
+    var say = {};
+    var DEST = { g1: 'Cocokkan', g2: 'Memori', g3: 'Bayangan', g4: 'Puzzle', g5: 'Balon', g6: 'BesarKecil' };
+    Object.keys(G).forEach((k) => { say[k] = (e) => { this.speak(G[k]); if (DEST[k]) this.navTo(e, DEST[k]); }; });
+    return {
+      t: en ? { title: "Let's Play!", sub: 'Pick a game', back: 'Back to home' } : { title: 'Main Yuk!', sub: 'Pilih permainan', back: 'Kembali ke beranda' },
+      g: G,
+      say: say,
+      age: en ? { a2: 'Ages 2+', a3: 'Ages 3+', a4: 'Ages 4+' } : { a2: 'Usia 2+', a3: 'Usia 3+', a4: 'Usia 4+' }
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+<defs><clipPath id="b"><ellipse cx="100" cy="158" rx="50" ry="34"></ellipse></clipPath><clipPath id="h"><ellipse cx="100" cy="92" rx="50" ry="46"></ellipse></clipPath></defs>
+<ellipse cx="100" cy="158" rx="50" ry="34" fill="#FFFDF8" stroke="#E6DCCB" stroke-width="3"></ellipse>
+<g clip-path="url(#b)"><ellipse cx="72" cy="150" rx="18" ry="13" fill="#2B2350"></ellipse><ellipse cx="132" cy="172" rx="16" ry="11" fill="#2B2350"></ellipse><ellipse cx="112" cy="196" rx="70" ry="14" fill="#E9E2D6"></ellipse></g>
+<ellipse cx="78" cy="188" rx="12" ry="7" fill="#5C4A3D"></ellipse><ellipse cx="122" cy="188" rx="12" ry="7" fill="#5C4A3D"></ellipse>
+<path d="M70 58C60 42 64 28 74 24C74 36 78 46 84 52Z" fill="#FFD8A8"></path>
+<path d="M130 58C140 42 136 28 126 24C126 36 122 46 116 52Z" fill="#FFD8A8"></path>
+<ellipse cx="46" cy="80" rx="20" ry="10" transform="rotate(-20 46 80)" fill="#FFFDF8" stroke="#E6DCCB" stroke-width="3"></ellipse>
+<ellipse cx="48" cy="80" rx="12" ry="5" transform="rotate(-20 48 80)" fill="#FFB3C1"></ellipse>
+<ellipse cx="154" cy="80" rx="20" ry="10" transform="rotate(20 154 80)" fill="#FFFDF8" stroke="#E6DCCB" stroke-width="3"></ellipse>
+<ellipse cx="152" cy="80" rx="12" ry="5" transform="rotate(20 152 80)" fill="#FFB3C1"></ellipse>
+<ellipse cx="100" cy="92" rx="50" ry="46" fill="#FFFDF8" stroke="#E6DCCB" stroke-width="3"></ellipse>
+<g clip-path="url(#h)"><ellipse cx="70" cy="56" rx="22" ry="16" fill="#2B2350"></ellipse><ellipse cx="116" cy="146" rx="60" ry="16" fill="#E9E2D6"></ellipse></g>
+<ellipse cx="100" cy="118" rx="34" ry="21" fill="#FFB3C1"></ellipse>
+<ellipse cx="88" cy="118" rx="5" ry="7" fill="#E07A92"></ellipse><ellipse cx="112" cy="118" rx="5" ry="7" fill="#E07A92"></ellipse>
+<ellipse cx="78" cy="86" rx="8" ry="10" fill="#2B2350"></ellipse><ellipse cx="122" cy="86" rx="8" ry="10" fill="#2B2350"></ellipse>
+<circle cx="81" cy="82" r="3" fill="#FFFFFF"></circle><circle cx="125" cy="82" r="3" fill="#FFFFFF"></circle>
+<circle cx="100" cy="146" r="8" fill="#FFD43B" stroke="#F59F00" stroke-width="2"></circle>
+</svg>

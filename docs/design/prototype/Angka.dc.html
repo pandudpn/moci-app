@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Moci · Berhitung</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&amp;family=Nunito:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.f{font-family:'Fredoka',ui-rounded,'Arial Rounded MT Bold','Trebuchet MS',system-ui,sans-serif}
+.n{font-family:'Nunito',ui-rounded,system-ui,-apple-system,'Segoe UI',sans-serif}
+a{color:#2B2350;text-decoration:none}a:hover{color:#2B2350}
+button{font:inherit;color:inherit;border:0;padding:0;margin:0;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.tap{transition:transform .12s ease}.tap:active{transform:translateY(5px) scale(.97)}
+.agRing{animation:agRing 1.8s ease-out infinite}
+.agNumA{animation:agNum .5s cubic-bezier(.3,1.6,.5,1) 1}
+.agNumB{animation:agNum2 .5s cubic-bezier(.3,1.6,.5,1) 1}
+.agIn{animation:agIn .35s cubic-bezier(.3,1.5,.5,1) both}
+.agGot{animation:agGot .4s cubic-bezier(.3,1.6,.5,1) 1}
+.agRise{animation:agRise .45s cubic-bezier(.3,1.5,.5,1) both}
+@keyframes agRing{0%{transform:scale(1);opacity:.5}100%{transform:scale(1.6);opacity:0}}
+@keyframes agNum{0%{transform:scale(.6)}100%{transform:scale(1)}}
+@keyframes agNum2{0%{transform:scale(.6)}100%{transform:scale(1)}}
+@keyframes agIn{0%{transform:scale(0);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes agGot{0%{transform:scale(1)}40%{transform:scale(1.2)}100%{transform:scale(1)}}
+@keyframes agRise{0%{transform:translateY(30px);opacity:0}100%{transform:translateY(0);opacity:1}}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+</helmet>
+<div class="f" style="position: relative; width: 1180px; height: 820px; overflow: hidden; background-color: #E7F3FF; background-image: radial-gradient(#CBE4FF 3px, transparent 3px); background-size: 36px 36px; color: #2B2350">
+
+<div style="position: absolute; left: 32px; right: 32px; top: 22px; display: flex; align-items: center; gap: 18px">
+<a href="{{lk.Main.h}}" onClick="{{lk.Main.go}}" class="tap" aria-label="{{t.back}}" style="width: 76px; height: 76px; border-radius: 26px; background: #FFFFFF; box-shadow: 0 7px 0 #B7D7F7; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="#2B2350" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+</a>
+<h1 class="f" style="margin: 0; font-size: 46px; font-weight: 700">{{t.title}}</h1>
+<div style="flex: 1"></div>
+<nav aria-label="{{t.modes}}" style="display: flex; gap: 6px; padding: 6px; background: #FFFFFF; border-radius: 999px; box-shadow: 0 6px 0 #B7D7F7">
+<a href="{{lk.Angka.h}}" onClick="{{lk.Angka.go}}" aria-current="page" class="f" style="display: flex; align-items: center; gap: 8px; height: 56px; padding: 0 22px; border-radius: 999px; background: #1C7ED6; color: #FFFFFF; font-size: 24px; font-weight: 600">
+<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="7" cy="7" r="3"/><circle cx="17" cy="7" r="3"/><circle cx="7" cy="17" r="3"/><circle cx="17" cy="17" r="3"/></svg>
+<span>{{t.count}}</span>
+</a>
+<a href="{{lk.AngkaTulis.h}}" onClick="{{lk.AngkaTulis.go}}" class="f tap" style="display: flex; align-items: center; gap: 8px; height: 56px; padding: 0 22px; border-radius: 999px; color: #2B2350; font-size: 24px; font-weight: 600">
+<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l4-1 11-11-3-3L5 16z"/><path d="M14 6l3 3"/></svg>
+<span>{{t.write}}</span>
+</a>
+</nav>
+<div class="f" style="display: flex; align-items: center; gap: 8px; height: 64px; padding: 0 22px 0 14px; background: #FFFFFF; border-radius: 999px; box-shadow: 0 6px 0 #B7D7F7; font-size: 30px; font-weight: 700">
+<svg viewBox="0 0 40 40" width="40" height="40" aria-hidden="true"><path d="M20 3l5.2 10.6 11.7 1.7-8.5 8.2 2 11.6L20 29.6 9.6 35.1l2-11.6-8.5-8.2 11.7-1.7z" fill="#FFC21A" stroke="#F08C00" stroke-width="2" stroke-linejoin="round"/></svg>
+<span>24</span>
+</div>
+</div>
+
+<div style="position: absolute; left: 50px; top: 124px; width: 360px; height: 490px; border-radius: 44px; background: #FFFFFF; box-shadow: 0 14px 0 #B7D7F7, 0 26px 40px rgba(43,35,80,.12)">
+<button class="{{numClass}}" onClick="{{sayNum}}" aria-label="{{numLabel}}" style="position: absolute; left: 0; right: 0; top: 18px; height: 260px; display: flex; align-items: center; justify-content: center">
+<span class="f" style="font-size: {{numSize}}px; font-weight: 700; line-height: 1; color: #1C8CF0; text-shadow: 0 12px 0 #CFE6FF">{{n}}</span>
+</button>
+<div class="f" style="position: absolute; left: 14px; right: 14px; top: 286px; height: 100px; display: flex; align-items: center; justify-content: center; text-align: center; font-size: {{wordSize}}px; font-weight: 700; line-height: 1.1; color: #2B2350">{{nWordCap}}</div>
+<div aria-hidden="true" class="agRing" style="position: absolute; left: 132px; top: 392px; width: 96px; height: 96px; border-radius: 50%; background: #FFB020"></div>
+<button class="tap" onClick="{{sayNum}}" aria-label="{{t.listen}}" style="position: absolute; left: 132px; top: 392px; width: 96px; height: 96px; border-radius: 50%; background: #FFB020; box-shadow: 0 8px 0 #E0870B; display: flex; align-items: center; justify-content: center">
+<svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="#2B2350" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="#2B2350"/><path d="M15.5 9a4 4 0 0 1 0 6"/><path d="M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>
+</button>
+</div>
+
+<div style="position: absolute; left: 436px; top: 124px; width: 700px; height: 490px; border-radius: 44px; background: #FFFFFF; box-shadow: 0 14px 0 #B7D7F7, 0 26px 40px rgba(43,35,80,.12); overflow: hidden">
+<div aria-hidden="true" style="position: absolute; left: 0; right: 0; bottom: 0; height: 110px; background: #EAF6E4"></div>
+<div style="position: absolute; left: 28px; right: 28px; top: 22px; display: flex; align-items: center; gap: 12px">
+<div class="f" style="flex: 1; min-width: 0; font-size: 28px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{prompt}}</div>
+<button class="f tap" onClick="{{autoCount}}" style="height: 54px; padding: 0 16px; border-radius: 999px; background: #E7F3FF; box-shadow: 0 4px 0 #B7D7F7; font-size: 19px; font-weight: 600; color: #1265B5; display: flex; align-items: center; gap: 6px; white-space: nowrap">
+<svg viewBox="0 0 24 24" width="24" height="24" fill="#1265B5" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg>
+<span>{{t.auto}}</span>
+</button>
+<div class="f" role="status" style="display: flex; align-items: center; height: 54px; padding: 0 18px; border-radius: 999px; background: #1C7ED6; font-size: 28px; font-weight: 700; color: #FFFFFF; white-space: nowrap">{{count}} / {{n}}</div>
+</div>
+<div style="position: absolute; left: 24px; top: 96px; width: 652px; height: 370px; display: grid; grid-template-columns: repeat({{grid.cols}}, {{grid.size}}px); justify-content: center; align-content: center; gap: {{grid.gap}}px">
+<sc-for list="{{items}}" as="it" hint-placeholder-count="12">
+<button class="{{it.cls}}" onClick="{{it.tap}}" aria-label="{{it.label}}" style="position: relative; width: {{grid.size}}px; height: {{grid.size}}px; animation-delay: {{it.delay}}s">
+<img src="{{it.img}}" alt="" draggable="false" style="width: 100%; height: 100%; opacity: {{it.op}}">
+<sc-if value="{{it.counted}}" hint-placeholder-val="{{false}}">
+<span class="f" style="position: absolute; right: {{grid.bOff}}px; top: {{grid.bOff}}px; width: {{grid.badge}}px; height: {{grid.badge}}px; box-sizing: border-box; border-radius: 50%; background: #1C7ED6; border: 3px solid #FFFFFF; color: #FFFFFF; font-size: {{grid.bFs}}px; font-weight: 700; display: flex; align-items: center; justify-content: center">{{it.num}}</span>
+</sc-if>
+</button>
+</sc-for>
+</div>
+<sc-if value="{{done}}" hint-placeholder-val="{{false}}">
+<div class="agRise f" style="position: absolute; left: 50%; bottom: 20px; margin-left: -300px; width: 600px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; gap: 12px; height: 66px; padding: 0 22px; border-radius: 999px; background: #2B2350; color: #FFFFFF; font-size: 26px; font-weight: 600; white-space: nowrap">
+<svg viewBox="0 0 40 40" width="36" height="36" aria-hidden="true"><path d="M20 3l5.2 10.6 11.7 1.7-8.5 8.2 2 11.6L20 29.6 9.6 35.1l2-11.6-8.5-8.2 11.7-1.7z" fill="#FFC21A" stroke="#F08C00" stroke-width="2" stroke-linejoin="round"/></svg>
+<span style="overflow: hidden; text-overflow: ellipsis">{{doneText}}</span>
+</div>
+</sc-if>
+</div>
+
+<div role="group" aria-label="{{t.range}}" style="position: absolute; left: 50px; top: 640px; width: 1086px; display: flex; justify-content: center; gap: 10px">
+<sc-for list="{{ranges}}" as="r" hint-placeholder-count="5">
+<button class="f tap" onClick="{{r.pick}}" aria-pressed="{{r.on}}" style="height: 50px; padding: 0 20px; border-radius: 999px; background: {{r.bg}}; color: {{r.fg}}; box-shadow: 0 5px 0 {{r.sh}}; font-size: 21px; font-weight: 600">{{r.t}}</button>
+</sc-for>
+</div>
+<div role="group" aria-label="{{t.pick}}" style="position: absolute; left: 156px; top: 708px; width: 868px; display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 12px">
+<sc-for list="{{nums}}" as="nn" hint-placeholder-count="10">
+<button class="f tap" onClick="{{nn.pick}}" aria-label="{{nn.label}}" aria-pressed="{{nn.on}}" style="height: 76px; border-radius: 24px; background: {{nn.bg}}; color: {{nn.fg}}; box-shadow: 0 6px 0 {{nn.sh}}; font-size: 34px; font-weight: 700">{{nn.v}}</button>
+</sc-for>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"lang":{"editor":"enum","options":["auto","id","en"],"default":"auto","section":"Bahasa"},"app":{"editor":null},"$preview":{"width":1180,"height":820}}'>
+class Component extends DCLogic {
+  pref(k) {
+    var a = this.props.app;
+    if (a && a.prefs) return a.prefs[k] || '';
+    var st = this.state || {};
+    if (st['p_' + k] !== undefined) return st['p_' + k];
+    try { var v = window.localStorage.getItem('moci-' + k); if (v !== null) return v; } catch (e) {}
+    return '';
+  }
+  L() {
+    var p = this.props.lang;
+    if (p === 'id' || p === 'en') return p;
+    return this.pref('lang') === 'en' ? 'en' : 'id';
+  }
+  lk(names) {
+    var a = this.props.app, o = {};
+    names.forEach((n) => {
+      o[n] = (a && a.nav) ? { h: '#', go: (e) => { try { e.preventDefault(); } catch (x) {} a.nav(n); } } : { h: n + '.dc.html', go: null };
+    });
+    return o;
+  }
+  componentWillUnmount() { clearInterval(this._iv); }
+  speak(t, lang) {
+    try {
+      var s = window.speechSynthesis;
+      if (!s || typeof SpeechSynthesisUtterance === 'undefined') return;
+      s.cancel();
+      var u = new SpeechSynthesisUtterance(t);
+      var en = (lang || this.L()) === 'en';
+      u.lang = en ? 'en-US' : 'id-ID'; u.rate = 0.95; u.pitch = 1.15;
+      var re = en ? /^en/i : /^id/i;
+      var vs = s.getVoices ? s.getVoices() : [];
+      for (var i = 0; i < vs.length; i++) { if (re.test(vs[i].lang)) { u.voice = vs[i]; break; } }
+      s.speak(u);
+    } catch (e) {}
+  }
+  pool() {
+    if (!this._p) this._p = [["apel","Apel","Apple","f3ad85e8656c762498e18346c0834e64"],["jeruk","Jeruk","Orange","59fd969d55c43ab93330b9607a09797b"],["pisang","Pisang","Banana","c75dbf0ae357afaddcf97c42d58a1160"],["stroberi","Stroberi","Strawberry","09d4664bec1323b432b1b9c812474c22"],["bola","Bola","Ball","b6ba1bc1e8f26eb3aa05f31a41e7bb31"],["ikan","Ikan","Fish","ce8b6885ad970a4e66e036e133810b2b"],["bebek","Bebek","Duck","754f0bd7e0eb7cdaa2fd47f6f89b2df2"],["kupu","Kupu-kupu","Butterfly","dbdd2cc62f8a5bd8584cf371fac1c3b5"],["mobil","Mobil","Car","9a4b52d03d573cb2bb9e7fc33aa00ad6"],["balon","Balon","Balloons","92d5ae7160761db50ac2050b7ab1a4d5"],["bunga","Bunga","Flower","a09858b43e75375a000f2d1c491d9333"],["kuekecil","Kue Mangkuk","Cupcake","5175853037660fb2f7ad154418e040ec"]];
+    return this._p;
+  }
+  word(n, en) {
+    if (en) {
+      var s = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
+      if (n < 20) return s[n];
+      var tens = ['', '', 'twenty', 'thirty', 'forty', 'fifty'];
+      return tens[Math.floor(n / 10)] + (n % 10 ? '-' + s[n % 10] : '');
+    }
+    var d = ['nol', 'satu', 'dua', 'tiga', 'empat', 'lima', 'enam', 'tujuh', 'delapan', 'sembilan'];
+    if (n < 10) return d[n];
+    if (n === 10) return 'sepuluh';
+    if (n === 11) return 'sebelas';
+    if (n < 20) return d[n - 10] + ' belas';
+    return d[Math.floor(n / 10)] + ' puluh' + (n % 10 ? ' ' + d[n % 10] : '');
+  }
+  plural(name) {
+    var m = { Fish: 'fish', Strawberry: 'strawberries', Butterfly: 'butterflies', Balloons: 'balloons' };
+    return m[name] || (name.toLowerCase() + 's');
+  }
+  S() {
+    var st = this.state || {};
+    return { n: st.n || 23, count: st.count === undefined ? 12 : st.count, fresh: st.n === undefined };
+  }
+  grid(n) {
+    if (n <= 10) {
+      var cols = n <= 5 ? n : 5;
+      var size = n <= 3 ? 130 : (n <= 6 ? 110 : 96);
+      return { cols: cols, size: size, gap: 22, badge: 44, bOff: -6, bFs: 22 };
+    }
+    if (n <= 20) return { cols: 10, size: 54, gap: 10, badge: 26, bOff: -6, bFs: 13 };
+    return { cols: 10, size: 46, gap: 10, badge: 24, bOff: -6, bFs: 12 };
+  }
+  setN(n) {
+    clearInterval(this._iv);
+    var st = this.state || {};
+    this.setState({ n: n, count: 0, flip: !st.flip, autoOn: false });
+    var en = this.L() === 'en';
+    this.speak(String(n) === this.word(n, en) ? String(n) : this.word(n, en));
+  }
+  renderVals() {
+    var st = this.state || {};
+    var en = this.L() === 'en';
+    var T = en
+      ? { title: 'Numbers', back: 'Back to home', modes: 'Learning mode', count: 'Count', write: 'Write', listen: 'Hear the number', auto: 'Count for me', range: 'Number range', pick: 'Pick a number', number: 'Number ', count1: "Let's count the ", tapIt: 'Tap to count' }
+      : { title: 'Angka', back: 'Kembali ke beranda', modes: 'Mode belajar', count: 'Berhitung', write: 'Tulis', listen: 'Dengar angkanya', auto: 'Hitung bareng', range: 'Rentang angka', pick: 'Pilih angka', number: 'Angka ', count1: 'Ayo hitung ', tapIt: 'Ketuk untuk menghitung' };
+    var S = this.S();
+    var n = S.n, count = Math.min(S.count, n);
+    var P = this.pool();
+    var it = P[(n - 1) % P.length];
+    var nm = en ? it[2] : it[1];
+    var g = this.grid(n);
+    var w = this.word(n, en);
+    var cap = w.charAt(0).toUpperCase() + w.slice(1);
+    var done = count >= n;
+    var lo = Math.floor((n - 1) / 10) * 10 + 1;
+    var items = [];
+    for (var i = 0; i < n; i++) {
+      (function (self, i) {
+        var counted = i < count;
+        items.push({
+          img: '/_blob/' + it[3], counted: counted, num: String(i + 1), op: counted ? 0.55 : 1,
+          cls: S.fresh ? '' : (counted && i === count - 1 ? 'agGot' : 'agIn'), delay: S.fresh ? '0' : (counted ? '0' : Math.min(i * 0.02, 0.6).toFixed(2)),
+          label: counted ? String(i + 1) : T.tapIt,
+          tap: () => {
+            var S2 = self.S();
+            if (S2.count >= S2.n) return;
+            var c2 = S2.count + 1;
+            self.setState({ n: S2.n, count: c2 });
+            var w2 = self.word(c2, en);
+            if (c2 >= S2.n) self.speak(en ? (self.word(S2.n, en) + ' ' + self.plural(nm) + '! Great counting!') : ('Ada ' + self.word(S2.n, en) + ' ' + nm.toLowerCase() + '! Hebat!'));
+            else self.speak(w2);
+          }
+        });
+      })(this, i);
+    }
+    var ranges = [[1, 10], [11, 20], [21, 30], [31, 40], [41, 50]];
+    return {
+      t: T,
+      lk: this.lk(['Main', 'Angka', 'AngkaTulis']),
+      n: n,
+      numSize: n < 10 ? 240 : 200,
+      numClass: st.flip === undefined ? '' : (st.flip ? 'agNumA' : 'agNumB'),
+      numLabel: T.number + n,
+      nWordCap: cap,
+      wordSize: cap.length > 18 ? 34 : (cap.length > 11 ? 40 : 52),
+      count: count,
+      grid: g,
+      items: items,
+      prompt: en ? (T.count1 + this.plural(nm) + '!') : (T.count1 + nm.toLowerCase() + '!'),
+      done: done,
+      doneText: en ? (cap + ' ' + this.plural(nm) + '!') : ('Ada ' + w + ' ' + nm.toLowerCase() + '!'),
+      sayNum: () => { var s2 = this.state || {}; this.setState({ flip: !s2.flip }); this.speak(w); },
+      autoCount: () => {
+        clearInterval(this._iv);
+        var S2 = this.S();
+        var c = 0, total = S2.n;
+        this.setState({ n: total, count: 0 });
+        var step = total <= 10 ? 700 : (total <= 20 ? 450 : 260);
+        this._iv = setInterval(() => {
+          c++;
+          this.setState({ n: total, count: c });
+          if (total <= 20 || c % 10 === 0 || c === total) this.speak(this.word(c, en));
+          if (c >= total) clearInterval(this._iv);
+        }, step);
+      },
+      ranges: ranges.map((r) => {
+        var on = lo === r[0];
+        return { t: r[0] + '–' + r[1], on: on, bg: on ? '#1C7ED6' : '#FFFFFF', fg: on ? '#FFFFFF' : '#2B2350', sh: on ? '#1565B0' : '#B7D7F7', pick: () => this.setN(r[0]) };
+      }),
+      nums: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((k) => {
+        var v = lo + k;
+        var on = v === n;
+        return { v: v, on: on, label: T.number + v, bg: on ? '#1C7ED6' : '#FFFFFF', fg: on ? '#FFFFFF' : '#2B2350', sh: on ? '#1565B0' : '#B7D7F7', pick: () => this.setN(v) };
+      })
+    };
+  }
+}
+</script>
+</body>
+</html>
