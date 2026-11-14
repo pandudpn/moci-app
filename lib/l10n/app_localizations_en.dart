@@ -399,4 +399,173 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get stiker_payung => 'Umbrella';
+
+  @override
+  String get orangTuaTitle => 'Parents\' Corner';
+
+  @override
+  String get orangTuaBack => 'Lock and go back home';
+
+  @override
+  String get orangTuaLocks => 'Locks when you leave';
+
+  @override
+  String get orangTuaProfile => 'Child profile';
+
+  @override
+  String get orangTuaEditName => 'Change child\'s name';
+
+  @override
+  String get orangTuaChildFallback => 'Your child';
+
+  @override
+  String orangTuaSub(String age, String level) {
+    return 'Age $age · $level';
+  }
+
+  @override
+  String get orangTuaAgeLevel => 'Age level';
+
+  @override
+  String orangTuaAgeChip(String range) {
+    return '$range yrs';
+  }
+
+  @override
+  String get orangTuaLevelPemula => 'Starter';
+
+  @override
+  String get orangTuaLevelPenjelajah => 'Explorer';
+
+  @override
+  String get orangTuaLevelPembaca => 'Reader';
+
+  @override
+  String get orangTuaNameHint => 'Child\'s name';
+
+  @override
+  String get orangTuaSave => 'Save';
+
+  @override
+  String get orangTuaCancel => 'Cancel';
+
+  @override
+  String get orangTuaToday => 'Today';
+
+  @override
+  String get orangTuaPlayTime => 'Play time';
+
+  @override
+  String get orangTuaMin => 'min';
+
+  @override
+  String get orangTuaStars => 'stars';
+
+  @override
+  String get orangTuaStickers => 'sticker';
+
+  @override
+  String get orangTuaArt => 'artwork';
+
+  @override
+  String get orangTuaNoLimit => 'No daily limit set';
+
+  @override
+  String get orangTuaUnlimited => 'Unlimited';
+
+  @override
+  String orangTuaRingOf(int limit) {
+    return 'of $limit min today';
+  }
+
+  @override
+  String orangTuaLeft(int n) {
+    return '$n min left';
+  }
+
+  @override
+  String get orangTuaTimeUp => 'Time\'s up';
+
+  @override
+  String get orangTuaProgress => 'Progress';
+
+  @override
+  String get orangTuaWeek => 'This week';
+
+  @override
+  String orangTuaTip(String modul) {
+    return 'Tip: try $modul together this week.';
+  }
+
+  @override
+  String get orangTuaSettings => 'Settings';
+
+  @override
+  String get orangTuaLangLabel => 'Bahasa · Language';
+
+  @override
+  String get orangTuaLetters => 'How letters are read';
+
+  @override
+  String get orangTuaPhonics => 'Phonics';
+
+  @override
+  String get orangTuaNames => 'Letter names';
+
+  @override
+  String get orangTuaLettersHintPhonics => 'B says “buh”, then “Ball!”';
+
+  @override
+  String get orangTuaLettersHintNames => 'B is read “bee”, then “Ball!”';
+
+  @override
+  String get orangTuaLimit => 'Daily time limit';
+
+  @override
+  String orangTuaLimitMin(int n) {
+    return '$n min';
+  }
+
+  @override
+  String get orangTuaLimitOff => 'Off';
+
+  @override
+  String get orangTuaMusic => 'Background music';
+
+  @override
+  String get orangTuaSfx => 'Sound effects';
+
+  @override
+  String get orangTuaBreaks => 'Break reminders';
+
+  @override
+  String get orangTuaBadgeAds => 'No ads';
+
+  @override
+  String get orangTuaBadgePurchases => 'No in-app purchases';
+
+  @override
+  String get orangTuaBadgeOffline => 'Works offline';
+
+  @override
+  String get orangTuaBadgeData => 'Data stays on this device';
+
+  @override
+  String get orangTuaDelete => 'Delete all data';
+
+  @override
+  String get orangTuaDeleteTitle => 'Delete all data?';
+
+  @override
+  String get orangTuaDeleteBody =>
+      'The name, settings, stars, stickers and artwork on this device will be erased. This can\'t be undone.';
+
+  @override
+  String get orangTuaDeleteSure => 'Really delete?';
+
+  @override
+  String get orangTuaPrivacy => 'Privacy policy';
+
+  @override
+  String get orangTuaSupport => 'Contact us';
 }

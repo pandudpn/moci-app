@@ -283,5 +283,246 @@
   "stiker_kado": "Gift",
   "stiker_eskrim": "Ice Cream",
   "stiker_layang": "Kite",
-  "stiker_payung": "Umbrella"
+  "stiker_payung": "Umbrella",
+  "orangTuaTitle": "Parents' Corner",
+  "@orangTuaTitle": {
+    "description": "Judul Area Orang Tua"
+  },
+  "orangTuaBack": "Lock and go back home",
+  "@orangTuaBack": {
+    "description": "Tombol kunci dan kembali"
+  },
+  "orangTuaLocks": "Locks when you leave",
+  "@orangTuaLocks": {
+    "description": "Lencana kunci"
+  },
+  "orangTuaProfile": "Child profile",
+  "@orangTuaProfile": {
+    "description": "Label kartu profil"
+  },
+  "orangTuaEditName": "Change child's name",
+  "@orangTuaEditName": {
+    "description": "Tombol pensil dan judul dialog nama"
+  },
+  "orangTuaChildFallback": "Your child",
+  "@orangTuaChildFallback": {
+    "description": "Nama bila belum diisi"
+  },
+  "orangTuaSub": "Age {age} · {level}",
+  "@orangTuaSub": {
+    "description": "Subjudul profil",
+    "placeholders": {
+      "age": {
+        "type": "String"
+      },
+      "level": {
+        "type": "String"
+      }
+    }
+  },
+  "orangTuaAgeLevel": "Age level",
+  "@orangTuaAgeLevel": {
+    "description": "Label pil usia"
+  },
+  "orangTuaAgeChip": "{range} yrs",
+  "@orangTuaAgeChip": {
+    "description": "Pil usia",
+    "placeholders": {
+      "range": {
+        "type": "String"
+      }
+    }
+  },
+  "orangTuaLevelPemula": "Starter",
+  "@orangTuaLevelPemula": {
+    "description": "Level usia 2-3"
+  },
+  "orangTuaLevelPenjelajah": "Explorer",
+  "@orangTuaLevelPenjelajah": {
+    "description": "Level usia 4-5"
+  },
+  "orangTuaLevelPembaca": "Reader",
+  "@orangTuaLevelPembaca": {
+    "description": "Level usia 6-7"
+  },
+  "orangTuaNameHint": "Child's name",
+  "@orangTuaNameHint": {
+    "description": "Isian nama"
+  },
+  "orangTuaSave": "Save",
+  "@orangTuaSave": {
+    "description": "Simpan nama"
+  },
+  "orangTuaCancel": "Cancel",
+  "@orangTuaCancel": {
+    "description": "Tutup dialog"
+  },
+  "orangTuaToday": "Today",
+  "@orangTuaToday": {
+    "description": "Judul kartu hari ini"
+  },
+  "orangTuaPlayTime": "Play time",
+  "@orangTuaPlayTime": {
+    "description": "Label kartu hari ini"
+  },
+  "orangTuaMin": "min",
+  "@orangTuaMin": {
+    "description": "Satuan di tengah cincin"
+  },
+  "orangTuaStars": "stars",
+  "@orangTuaStars": {
+    "description": "Ubin bintang"
+  },
+  "orangTuaStickers": "sticker",
+  "@orangTuaStickers": {
+    "description": "Ubin stiker"
+  },
+  "orangTuaArt": "artwork",
+  "@orangTuaArt": {
+    "description": "Ubin karya"
+  },
+  "orangTuaNoLimit": "No daily limit set",
+  "@orangTuaNoLimit": {
+    "description": "Keterangan cincin tanpa batas"
+  },
+  "orangTuaUnlimited": "Unlimited",
+  "@orangTuaUnlimited": {
+    "description": "Chip tanpa batas"
+  },
+  "orangTuaRingOf": "of {limit} min today",
+  "@orangTuaRingOf": {
+    "description": "Keterangan cincin",
+    "placeholders": {
+      "limit": {
+        "type": "int"
+      }
+    }
+  },
+  "orangTuaLeft": "{n} min left",
+  "@orangTuaLeft": {
+    "description": "Chip sisa waktu",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "orangTuaTimeUp": "Time's up",
+  "@orangTuaTimeUp": {
+    "description": "Chip waktu habis"
+  },
+  "orangTuaProgress": "Progress",
+  "@orangTuaProgress": {
+    "description": "Judul kartu perkembangan"
+  },
+  "orangTuaWeek": "This week",
+  "@orangTuaWeek": {
+    "description": "Label kartu perkembangan"
+  },
+  "orangTuaTip": "Tip: try {modul} together this week.",
+  "@orangTuaTip": {
+    "description": "Saran modul dengan cakupan terendah (teks baru, perlu ditinjau)",
+    "placeholders": {
+      "modul": {
+        "type": "String"
+      }
+    }
+  },
+  "orangTuaSettings": "Settings",
+  "@orangTuaSettings": {
+    "description": "Judul kartu pengaturan"
+  },
+  "orangTuaLangLabel": "Bahasa · Language",
+  "@orangTuaLangLabel": {
+    "description": "Label pilihan bahasa"
+  },
+  "orangTuaLetters": "How letters are read",
+  "@orangTuaLetters": {
+    "description": "Label cara baca huruf"
+  },
+  "orangTuaPhonics": "Phonics",
+  "@orangTuaPhonics": {
+    "description": "Pilihan fonik"
+  },
+  "orangTuaNames": "Letter names",
+  "@orangTuaNames": {
+    "description": "Pilihan nama huruf"
+  },
+  "orangTuaLettersHintPhonics": "B says “buh”, then “Ball!”",
+  "@orangTuaLettersHintPhonics": {
+    "description": "Contoh fonik"
+  },
+  "orangTuaLettersHintNames": "B is read “bee”, then “Ball!”",
+  "@orangTuaLettersHintNames": {
+    "description": "Contoh nama huruf"
+  },
+  "orangTuaLimit": "Daily time limit",
+  "@orangTuaLimit": {
+    "description": "Label batas harian"
+  },
+  "orangTuaLimitMin": "{n} min",
+  "@orangTuaLimitMin": {
+    "description": "Pil batas harian",
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "orangTuaLimitOff": "Off",
+  "@orangTuaLimitOff": {
+    "description": "Pil tanpa batas"
+  },
+  "orangTuaMusic": "Background music",
+  "@orangTuaMusic": {
+    "description": "Saklar musik"
+  },
+  "orangTuaSfx": "Sound effects",
+  "@orangTuaSfx": {
+    "description": "Saklar efek suara"
+  },
+  "orangTuaBreaks": "Break reminders",
+  "@orangTuaBreaks": {
+    "description": "Saklar pengingat istirahat"
+  },
+  "orangTuaBadgeAds": "No ads",
+  "@orangTuaBadgeAds": {
+    "description": "Lencana"
+  },
+  "orangTuaBadgePurchases": "No in-app purchases",
+  "@orangTuaBadgePurchases": {
+    "description": "Lencana"
+  },
+  "orangTuaBadgeOffline": "Works offline",
+  "@orangTuaBadgeOffline": {
+    "description": "Lencana"
+  },
+  "orangTuaBadgeData": "Data stays on this device",
+  "@orangTuaBadgeData": {
+    "description": "Lencana"
+  },
+  "orangTuaDelete": "Delete all data",
+  "@orangTuaDelete": {
+    "description": "Pil dan tombol hapus semua data"
+  },
+  "orangTuaDeleteTitle": "Delete all data?",
+  "@orangTuaDeleteTitle": {
+    "description": "Judul dialog hapus"
+  },
+  "orangTuaDeleteBody": "The name, settings, stars, stickers and artwork on this device will be erased. This can't be undone.",
+  "@orangTuaDeleteBody": {
+    "description": "Isi dialog hapus"
+  },
+  "orangTuaDeleteSure": "Really delete?",
+  "@orangTuaDeleteSure": {
+    "description": "Tombol hapus tahap kedua"
+  },
+  "orangTuaPrivacy": "Privacy policy",
+  "@orangTuaPrivacy": {
+    "description": "Tautan kebijakan privasi"
+  },
+  "orangTuaSupport": "Contact us",
+  "@orangTuaSupport": {
+    "description": "Tautan surel dukungan"
+  }
 }

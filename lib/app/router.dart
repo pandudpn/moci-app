@@ -7,6 +7,7 @@ import '../features/beranda/beranda_screen.dart';
 import '../features/hadiah/hadiah_controller.dart';
 import '../features/hadiah/hebat_screen.dart';
 import '../features/orang_tua/gerbang_screen.dart';
+import '../features/orang_tua/orang_tua_screen.dart';
 import '../features/sambutan/sambutan_screen.dart';
 import '../features/istirahat/habis_screen.dart';
 import '../features/istirahat/istirahat_screen.dart';
@@ -72,7 +73,13 @@ final routerProvider = Provider<GoRouter>((ref) {
     prefsProvider.select((p) => p.onboarded),
     (_, _) => refresh.bump(),
   );
-  ref.listen(limitReachedProvider, (_, _) => refresh.bump());
+  // Refresh memproses ulang lokasi dasar dan menjatuhkan push imperatif. Saat
+  // Area Orang Tua terbuka (akses diberikan), mengubah batas harian di sana
+  // tidak boleh mengusir orang tua; keluarnya lewat `go`, yang menjalankan
+  // redirect dengan batas terbaru (ke Waktu Habis atau Beranda).
+  ref.listen(limitReachedProvider, (_, _) {
+    if (!ref.read(parentAccessProvider)) refresh.bump();
+  });
   // Akses orang tua sengaja tidak me-refresh router: refresh menjatuhkan push imperatif.
 
   final router = GoRouter(
@@ -146,7 +153,10 @@ final routerProvider = Provider<GoRouter>((ref) {
         builder: (context, state) =>
             GerbangScreen(lanjut: state.uri.queryParameters['lanjut']),
       ),
-      _soon(Routes.orangTua, MenuTheme.orangTua),
+      GoRoute(
+        path: Routes.orangTua,
+        builder: (context, state) => const OrangTuaScreen(),
+      ),
     ],
   );
 

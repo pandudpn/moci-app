@@ -400,4 +400,173 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get stiker_payung => 'Payung';
+
+  @override
+  String get orangTuaTitle => 'Area Orang Tua';
+
+  @override
+  String get orangTuaBack => 'Kunci dan kembali ke beranda';
+
+  @override
+  String get orangTuaLocks => 'Terkunci saat keluar';
+
+  @override
+  String get orangTuaProfile => 'Profil anak';
+
+  @override
+  String get orangTuaEditName => 'Ubah nama anak';
+
+  @override
+  String get orangTuaChildFallback => 'Si kecil';
+
+  @override
+  String orangTuaSub(String age, String level) {
+    return 'Usia $age tahun · $level';
+  }
+
+  @override
+  String get orangTuaAgeLevel => 'Level usia';
+
+  @override
+  String orangTuaAgeChip(String range) {
+    return '$range thn';
+  }
+
+  @override
+  String get orangTuaLevelPemula => 'Pemula';
+
+  @override
+  String get orangTuaLevelPenjelajah => 'Penjelajah';
+
+  @override
+  String get orangTuaLevelPembaca => 'Pembaca';
+
+  @override
+  String get orangTuaNameHint => 'Nama anak';
+
+  @override
+  String get orangTuaSave => 'Simpan';
+
+  @override
+  String get orangTuaCancel => 'Batal';
+
+  @override
+  String get orangTuaToday => 'Hari ini';
+
+  @override
+  String get orangTuaPlayTime => 'Waktu bermain';
+
+  @override
+  String get orangTuaMin => 'menit';
+
+  @override
+  String get orangTuaStars => 'bintang';
+
+  @override
+  String get orangTuaStickers => 'stiker';
+
+  @override
+  String get orangTuaArt => 'karya';
+
+  @override
+  String get orangTuaNoLimit => 'Tanpa batas harian';
+
+  @override
+  String get orangTuaUnlimited => 'Bebas';
+
+  @override
+  String orangTuaRingOf(int limit) {
+    return 'dari $limit menit hari ini';
+  }
+
+  @override
+  String orangTuaLeft(int n) {
+    return 'Sisa $n menit';
+  }
+
+  @override
+  String get orangTuaTimeUp => 'Waktu habis';
+
+  @override
+  String get orangTuaProgress => 'Perkembangan';
+
+  @override
+  String get orangTuaWeek => 'Minggu ini';
+
+  @override
+  String orangTuaTip(String modul) {
+    return 'Saran: coba $modul bersama minggu ini.';
+  }
+
+  @override
+  String get orangTuaSettings => 'Pengaturan';
+
+  @override
+  String get orangTuaLangLabel => 'Bahasa · Language';
+
+  @override
+  String get orangTuaLetters => 'Cara baca huruf';
+
+  @override
+  String get orangTuaPhonics => 'Bunyi (fonik)';
+
+  @override
+  String get orangTuaNames => 'Nama huruf';
+
+  @override
+  String get orangTuaLettersHintPhonics => 'B dibaca “beh”, lalu “Bola!”';
+
+  @override
+  String get orangTuaLettersHintNames => 'B dibaca “be”, lalu “Bola!”';
+
+  @override
+  String get orangTuaLimit => 'Batas waktu harian';
+
+  @override
+  String orangTuaLimitMin(int n) {
+    return '$n mnt';
+  }
+
+  @override
+  String get orangTuaLimitOff => 'Bebas';
+
+  @override
+  String get orangTuaMusic => 'Musik latar';
+
+  @override
+  String get orangTuaSfx => 'Efek suara';
+
+  @override
+  String get orangTuaBreaks => 'Pengingat istirahat';
+
+  @override
+  String get orangTuaBadgeAds => 'Tanpa iklan';
+
+  @override
+  String get orangTuaBadgePurchases => 'Tanpa pembelian dalam aplikasi';
+
+  @override
+  String get orangTuaBadgeOffline => 'Bisa offline';
+
+  @override
+  String get orangTuaBadgeData => 'Data hanya di perangkat ini';
+
+  @override
+  String get orangTuaDelete => 'Hapus semua data';
+
+  @override
+  String get orangTuaDeleteTitle => 'Hapus semua data?';
+
+  @override
+  String get orangTuaDeleteBody =>
+      'Nama, pengaturan, bintang, stiker, dan karya di perangkat ini akan dihapus. Ini tidak bisa dibatalkan.';
+
+  @override
+  String get orangTuaDeleteSure => 'Yakin hapus?';
+
+  @override
+  String get orangTuaPrivacy => 'Kebijakan privasi';
+
+  @override
+  String get orangTuaSupport => 'Hubungi kami';
 }

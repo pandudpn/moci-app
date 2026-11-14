@@ -823,6 +823,318 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Payung'**
   String get stiker_payung;
+
+  /// Judul Area Orang Tua
+  ///
+  /// In id, this message translates to:
+  /// **'Area Orang Tua'**
+  String get orangTuaTitle;
+
+  /// Tombol kunci dan kembali
+  ///
+  /// In id, this message translates to:
+  /// **'Kunci dan kembali ke beranda'**
+  String get orangTuaBack;
+
+  /// Lencana kunci
+  ///
+  /// In id, this message translates to:
+  /// **'Terkunci saat keluar'**
+  String get orangTuaLocks;
+
+  /// Label kartu profil
+  ///
+  /// In id, this message translates to:
+  /// **'Profil anak'**
+  String get orangTuaProfile;
+
+  /// Tombol pensil dan judul dialog nama
+  ///
+  /// In id, this message translates to:
+  /// **'Ubah nama anak'**
+  String get orangTuaEditName;
+
+  /// Nama bila belum diisi
+  ///
+  /// In id, this message translates to:
+  /// **'Si kecil'**
+  String get orangTuaChildFallback;
+
+  /// Subjudul profil
+  ///
+  /// In id, this message translates to:
+  /// **'Usia {age} tahun · {level}'**
+  String orangTuaSub(String age, String level);
+
+  /// Label pil usia
+  ///
+  /// In id, this message translates to:
+  /// **'Level usia'**
+  String get orangTuaAgeLevel;
+
+  /// Pil usia
+  ///
+  /// In id, this message translates to:
+  /// **'{range} thn'**
+  String orangTuaAgeChip(String range);
+
+  /// Level usia 2-3
+  ///
+  /// In id, this message translates to:
+  /// **'Pemula'**
+  String get orangTuaLevelPemula;
+
+  /// Level usia 4-5
+  ///
+  /// In id, this message translates to:
+  /// **'Penjelajah'**
+  String get orangTuaLevelPenjelajah;
+
+  /// Level usia 6-7
+  ///
+  /// In id, this message translates to:
+  /// **'Pembaca'**
+  String get orangTuaLevelPembaca;
+
+  /// Isian nama
+  ///
+  /// In id, this message translates to:
+  /// **'Nama anak'**
+  String get orangTuaNameHint;
+
+  /// Simpan nama
+  ///
+  /// In id, this message translates to:
+  /// **'Simpan'**
+  String get orangTuaSave;
+
+  /// Tutup dialog
+  ///
+  /// In id, this message translates to:
+  /// **'Batal'**
+  String get orangTuaCancel;
+
+  /// Judul kartu hari ini
+  ///
+  /// In id, this message translates to:
+  /// **'Hari ini'**
+  String get orangTuaToday;
+
+  /// Label kartu hari ini
+  ///
+  /// In id, this message translates to:
+  /// **'Waktu bermain'**
+  String get orangTuaPlayTime;
+
+  /// Satuan di tengah cincin
+  ///
+  /// In id, this message translates to:
+  /// **'menit'**
+  String get orangTuaMin;
+
+  /// Ubin bintang
+  ///
+  /// In id, this message translates to:
+  /// **'bintang'**
+  String get orangTuaStars;
+
+  /// Ubin stiker
+  ///
+  /// In id, this message translates to:
+  /// **'stiker'**
+  String get orangTuaStickers;
+
+  /// Ubin karya
+  ///
+  /// In id, this message translates to:
+  /// **'karya'**
+  String get orangTuaArt;
+
+  /// Keterangan cincin tanpa batas
+  ///
+  /// In id, this message translates to:
+  /// **'Tanpa batas harian'**
+  String get orangTuaNoLimit;
+
+  /// Chip tanpa batas
+  ///
+  /// In id, this message translates to:
+  /// **'Bebas'**
+  String get orangTuaUnlimited;
+
+  /// Keterangan cincin
+  ///
+  /// In id, this message translates to:
+  /// **'dari {limit} menit hari ini'**
+  String orangTuaRingOf(int limit);
+
+  /// Chip sisa waktu
+  ///
+  /// In id, this message translates to:
+  /// **'Sisa {n} menit'**
+  String orangTuaLeft(int n);
+
+  /// Chip waktu habis
+  ///
+  /// In id, this message translates to:
+  /// **'Waktu habis'**
+  String get orangTuaTimeUp;
+
+  /// Judul kartu perkembangan
+  ///
+  /// In id, this message translates to:
+  /// **'Perkembangan'**
+  String get orangTuaProgress;
+
+  /// Label kartu perkembangan
+  ///
+  /// In id, this message translates to:
+  /// **'Minggu ini'**
+  String get orangTuaWeek;
+
+  /// Saran modul dengan cakupan terendah (teks baru, perlu ditinjau)
+  ///
+  /// In id, this message translates to:
+  /// **'Saran: coba {modul} bersama minggu ini.'**
+  String orangTuaTip(String modul);
+
+  /// Judul kartu pengaturan
+  ///
+  /// In id, this message translates to:
+  /// **'Pengaturan'**
+  String get orangTuaSettings;
+
+  /// Label pilihan bahasa
+  ///
+  /// In id, this message translates to:
+  /// **'Bahasa · Language'**
+  String get orangTuaLangLabel;
+
+  /// Label cara baca huruf
+  ///
+  /// In id, this message translates to:
+  /// **'Cara baca huruf'**
+  String get orangTuaLetters;
+
+  /// Pilihan fonik
+  ///
+  /// In id, this message translates to:
+  /// **'Bunyi (fonik)'**
+  String get orangTuaPhonics;
+
+  /// Pilihan nama huruf
+  ///
+  /// In id, this message translates to:
+  /// **'Nama huruf'**
+  String get orangTuaNames;
+
+  /// Contoh fonik
+  ///
+  /// In id, this message translates to:
+  /// **'B dibaca “beh”, lalu “Bola!”'**
+  String get orangTuaLettersHintPhonics;
+
+  /// Contoh nama huruf
+  ///
+  /// In id, this message translates to:
+  /// **'B dibaca “be”, lalu “Bola!”'**
+  String get orangTuaLettersHintNames;
+
+  /// Label batas harian
+  ///
+  /// In id, this message translates to:
+  /// **'Batas waktu harian'**
+  String get orangTuaLimit;
+
+  /// Pil batas harian
+  ///
+  /// In id, this message translates to:
+  /// **'{n} mnt'**
+  String orangTuaLimitMin(int n);
+
+  /// Pil tanpa batas
+  ///
+  /// In id, this message translates to:
+  /// **'Bebas'**
+  String get orangTuaLimitOff;
+
+  /// Saklar musik
+  ///
+  /// In id, this message translates to:
+  /// **'Musik latar'**
+  String get orangTuaMusic;
+
+  /// Saklar efek suara
+  ///
+  /// In id, this message translates to:
+  /// **'Efek suara'**
+  String get orangTuaSfx;
+
+  /// Saklar pengingat istirahat
+  ///
+  /// In id, this message translates to:
+  /// **'Pengingat istirahat'**
+  String get orangTuaBreaks;
+
+  /// Lencana
+  ///
+  /// In id, this message translates to:
+  /// **'Tanpa iklan'**
+  String get orangTuaBadgeAds;
+
+  /// Lencana
+  ///
+  /// In id, this message translates to:
+  /// **'Tanpa pembelian dalam aplikasi'**
+  String get orangTuaBadgePurchases;
+
+  /// Lencana
+  ///
+  /// In id, this message translates to:
+  /// **'Bisa offline'**
+  String get orangTuaBadgeOffline;
+
+  /// Lencana
+  ///
+  /// In id, this message translates to:
+  /// **'Data hanya di perangkat ini'**
+  String get orangTuaBadgeData;
+
+  /// Pil dan tombol hapus semua data
+  ///
+  /// In id, this message translates to:
+  /// **'Hapus semua data'**
+  String get orangTuaDelete;
+
+  /// Judul dialog hapus
+  ///
+  /// In id, this message translates to:
+  /// **'Hapus semua data?'**
+  String get orangTuaDeleteTitle;
+
+  /// Isi dialog hapus
+  ///
+  /// In id, this message translates to:
+  /// **'Nama, pengaturan, bintang, stiker, dan karya di perangkat ini akan dihapus. Ini tidak bisa dibatalkan.'**
+  String get orangTuaDeleteBody;
+
+  /// Tombol hapus tahap kedua
+  ///
+  /// In id, this message translates to:
+  /// **'Yakin hapus?'**
+  String get orangTuaDeleteSure;
+
+  /// Tautan kebijakan privasi
+  ///
+  /// In id, this message translates to:
+  /// **'Kebijakan privasi'**
+  String get orangTuaPrivacy;
+
+  /// Tautan surel dukungan
+  ///
+  /// In id, this message translates to:
+  /// **'Hubungi kami'**
+  String get orangTuaSupport;
 }
 
 class _AppLocalizationsDelegate
