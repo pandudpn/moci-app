@@ -130,5 +130,34 @@
   "@menuMusikTitle": {
     "description": "narasi"
   },
-  "menuMusikSub": "Tap & listen"
+  "menuMusikSub": "Tap & listen",
+  "gerbangCancel": "Cancel",
+  "gerbangTitle": "For Grown-ups",
+  "gerbangSub": "Answer this to open settings and learning reports.",
+  "gerbangHint": "Tap the numbers on the right.",
+  "gerbangBad": "Not quite.",
+  "gerbangRetry": "Try this new one.",
+  "gerbangOk": "Correct! Come on in.",
+  "gerbangNewQ": "New question",
+  "gerbangEnter": "Enter",
+  "gerbangKeypad": "Number pad",
+  "gerbangDel": "Delete",
+  "gerbangHelp": "Ask a grown-up for help!",
+  "gerbangHelpSay": "This part is for grown-ups. Ask a grown-up for help!",
+  "@gerbangHelpSay": {
+    "description": "narasi"
+  },
+  "gerbangNote": "This gate keeps little ones out of settings and outside links.",
+  "gerbangTimes": "{a} times {b}",
+  "@gerbangTimes": {
+    "description": "Label semantik soal perkalian",
+    "placeholders": {
+      "a": {
+        "type": "int"
+      },
+      "b": {
+        "type": "int"
+      }
+    }
+  }
 }

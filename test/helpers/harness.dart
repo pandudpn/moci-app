@@ -60,6 +60,7 @@ final class TestEnv {
     this.progress = const Progress(),
     DateTime? now,
     this.assets = const {},
+    this.extraOverrides = const [],
   }) : _lang = lang,
        clock = FakeClock(now ?? DateTime(2026, 11, 14, 10)) {
     store
@@ -71,6 +72,9 @@ final class TestEnv {
   final AppLang _lang;
   final Progress progress;
   final Set<String> assets;
+
+  /// Override tambahan milik tes (misalnya sumber acak).
+  final List<Override> extraOverrides;
 
   final store = MemoryKeyValueStore();
   final json = MemoryJsonStore();
@@ -89,6 +93,7 @@ final class TestEnv {
     assetCatalogProvider.overrideWithValue(AssetCatalog(assets)),
     devTtsProvider.overrideWithValue(tts),
     audioSessionProvider.overrideWithValue(_NoopAudioSession()),
+    ...extraOverrides,
   ];
 }
 

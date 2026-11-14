@@ -409,6 +409,96 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Ketuk & dengar'**
   String get menuMusikSub;
+
+  /// No description provided for @gerbangCancel.
+  ///
+  /// In id, this message translates to:
+  /// **'Batal'**
+  String get gerbangCancel;
+
+  /// No description provided for @gerbangTitle.
+  ///
+  /// In id, this message translates to:
+  /// **'Khusus Orang Tua'**
+  String get gerbangTitle;
+
+  /// No description provided for @gerbangSub.
+  ///
+  /// In id, this message translates to:
+  /// **'Jawab soal ini untuk membuka pengaturan dan laporan belajar.'**
+  String get gerbangSub;
+
+  /// No description provided for @gerbangHint.
+  ///
+  /// In id, this message translates to:
+  /// **'Ketuk angka di sebelah kanan.'**
+  String get gerbangHint;
+
+  /// No description provided for @gerbangBad.
+  ///
+  /// In id, this message translates to:
+  /// **'Belum tepat.'**
+  String get gerbangBad;
+
+  /// No description provided for @gerbangRetry.
+  ///
+  /// In id, this message translates to:
+  /// **'Coba soal baru ini, ya.'**
+  String get gerbangRetry;
+
+  /// No description provided for @gerbangOk.
+  ///
+  /// In id, this message translates to:
+  /// **'Benar! Silakan masuk.'**
+  String get gerbangOk;
+
+  /// No description provided for @gerbangNewQ.
+  ///
+  /// In id, this message translates to:
+  /// **'Ganti soal'**
+  String get gerbangNewQ;
+
+  /// No description provided for @gerbangEnter.
+  ///
+  /// In id, this message translates to:
+  /// **'Masuk'**
+  String get gerbangEnter;
+
+  /// No description provided for @gerbangKeypad.
+  ///
+  /// In id, this message translates to:
+  /// **'Papan angka'**
+  String get gerbangKeypad;
+
+  /// No description provided for @gerbangDel.
+  ///
+  /// In id, this message translates to:
+  /// **'Hapus'**
+  String get gerbangDel;
+
+  /// No description provided for @gerbangHelp.
+  ///
+  /// In id, this message translates to:
+  /// **'Panggil Ayah atau Bunda, ya!'**
+  String get gerbangHelp;
+
+  /// narasi
+  ///
+  /// In id, this message translates to:
+  /// **'Ini khusus orang tua. Panggil Ayah atau Bunda, ya!'**
+  String get gerbangHelpSay;
+
+  /// No description provided for @gerbangNote.
+  ///
+  /// In id, this message translates to:
+  /// **'Gerbang ini menjaga si kecil agar tidak membuka pengaturan atau tautan keluar.'**
+  String get gerbangNote;
+
+  /// Label semantik soal perkalian
+  ///
+  /// In id, this message translates to:
+  /// **'{a} kali {b}'**
+  String gerbangTimes(int a, int b);
 }
 
 class _AppLocalizationsDelegate

@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../core/prefs/prefs_controller.dart';
 import '../features/beranda/beranda_screen.dart';
+import '../features/orang_tua/gerbang_screen.dart';
 import '../features/sambutan/sambutan_screen.dart';
 import '../features/segera/coming_soon_screen.dart';
 import 'redirect.dart';
@@ -124,7 +125,11 @@ final routerProvider = Provider<GoRouter>((ref) {
       _soon(Routes.hebat, MenuTheme.hebat),
       _soon(Routes.istirahat, MenuTheme.istirahat, lockBack: true),
       _soon(Routes.habis, MenuTheme.istirahat, lockBack: true),
-      _soon(Routes.gerbang, MenuTheme.gerbang),
+      GoRoute(
+        path: Routes.gerbang,
+        builder: (context, state) =>
+            GerbangScreen(lanjut: state.uri.queryParameters['lanjut']),
+      ),
       _soon(Routes.orangTua, MenuTheme.orangTua),
     ],
   );

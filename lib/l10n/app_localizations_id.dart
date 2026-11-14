@@ -175,4 +175,54 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get menuMusikSub => 'Ketuk & dengar';
+
+  @override
+  String get gerbangCancel => 'Batal';
+
+  @override
+  String get gerbangTitle => 'Khusus Orang Tua';
+
+  @override
+  String get gerbangSub =>
+      'Jawab soal ini untuk membuka pengaturan dan laporan belajar.';
+
+  @override
+  String get gerbangHint => 'Ketuk angka di sebelah kanan.';
+
+  @override
+  String get gerbangBad => 'Belum tepat.';
+
+  @override
+  String get gerbangRetry => 'Coba soal baru ini, ya.';
+
+  @override
+  String get gerbangOk => 'Benar! Silakan masuk.';
+
+  @override
+  String get gerbangNewQ => 'Ganti soal';
+
+  @override
+  String get gerbangEnter => 'Masuk';
+
+  @override
+  String get gerbangKeypad => 'Papan angka';
+
+  @override
+  String get gerbangDel => 'Hapus';
+
+  @override
+  String get gerbangHelp => 'Panggil Ayah atau Bunda, ya!';
+
+  @override
+  String get gerbangHelpSay =>
+      'Ini khusus orang tua. Panggil Ayah atau Bunda, ya!';
+
+  @override
+  String get gerbangNote =>
+      'Gerbang ini menjaga si kecil agar tidak membuka pengaturan atau tautan keluar.';
+
+  @override
+  String gerbangTimes(int a, int b) {
+    return '$a kali $b';
+  }
 }

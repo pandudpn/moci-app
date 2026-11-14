@@ -133,5 +133,34 @@
   "@menuMusikTitle": {
     "description": "narasi"
   },
-  "menuMusikSub": "Ketuk & dengar"
+  "menuMusikSub": "Ketuk & dengar",
+  "gerbangCancel": "Batal",
+  "gerbangTitle": "Khusus Orang Tua",
+  "gerbangSub": "Jawab soal ini untuk membuka pengaturan dan laporan belajar.",
+  "gerbangHint": "Ketuk angka di sebelah kanan.",
+  "gerbangBad": "Belum tepat.",
+  "gerbangRetry": "Coba soal baru ini, ya.",
+  "gerbangOk": "Benar! Silakan masuk.",
+  "gerbangNewQ": "Ganti soal",
+  "gerbangEnter": "Masuk",
+  "gerbangKeypad": "Papan angka",
+  "gerbangDel": "Hapus",
+  "gerbangHelp": "Panggil Ayah atau Bunda, ya!",
+  "gerbangHelpSay": "Ini khusus orang tua. Panggil Ayah atau Bunda, ya!",
+  "@gerbangHelpSay": {
+    "description": "narasi"
+  },
+  "gerbangNote": "Gerbang ini menjaga si kecil agar tidak membuka pengaturan atau tautan keluar.",
+  "gerbangTimes": "{a} kali {b}",
+  "@gerbangTimes": {
+    "description": "Label semantik soal perkalian",
+    "placeholders": {
+      "a": {
+        "type": "int"
+      },
+      "b": {
+        "type": "int"
+      }
+    }
+  }
 }

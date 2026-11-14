@@ -175,4 +175,53 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get menuMusikSub => 'Tap & listen';
+
+  @override
+  String get gerbangCancel => 'Cancel';
+
+  @override
+  String get gerbangTitle => 'For Grown-ups';
+
+  @override
+  String get gerbangSub => 'Answer this to open settings and learning reports.';
+
+  @override
+  String get gerbangHint => 'Tap the numbers on the right.';
+
+  @override
+  String get gerbangBad => 'Not quite.';
+
+  @override
+  String get gerbangRetry => 'Try this new one.';
+
+  @override
+  String get gerbangOk => 'Correct! Come on in.';
+
+  @override
+  String get gerbangNewQ => 'New question';
+
+  @override
+  String get gerbangEnter => 'Enter';
+
+  @override
+  String get gerbangKeypad => 'Number pad';
+
+  @override
+  String get gerbangDel => 'Delete';
+
+  @override
+  String get gerbangHelp => 'Ask a grown-up for help!';
+
+  @override
+  String get gerbangHelpSay =>
+      'This part is for grown-ups. Ask a grown-up for help!';
+
+  @override
+  String get gerbangNote =>
+      'This gate keeps little ones out of settings and outside links.';
+
+  @override
+  String gerbangTimes(int a, int b) {
+    return '$a times $b';
+  }
 }
