@@ -108,4 +108,49 @@ void main() {
     );
     expect(o.opacity, 0.5);
   });
+
+  testWidgets('dimatikan saat ditekan: tekanan ikut dilepas', (tester) async {
+    final enabled = ValueNotifier(true);
+    addTearDown(enabled.dispose);
+    await pumpScreen(
+      tester,
+      MenuThemeScope(
+        theme: MenuTheme.beranda,
+        child: Center(
+          child: ValueListenableBuilder<bool>(
+            valueListenable: enabled,
+            builder: (context, on, _) => MociPressable(
+              key: const Key('p'),
+              onTap: on ? () {} : null,
+              cooldown: const Duration(milliseconds: 400),
+              child: const SizedBox(width: 100, height: 100),
+            ),
+          ),
+        ),
+      ),
+    );
+    double dy() => tester
+        .widget<Transform>(
+          find.descendant(
+            of: find.byKey(const Key('p')),
+            matching: find.byType(Transform),
+          ),
+        )
+        .transform
+        .getTranslation()
+        .y;
+    final g = await tester.startGesture(
+      tester.getCenter(find.byKey(const Key('p'))),
+    );
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 120));
+    expect(dy(), closeTo(5, 0.01));
+    enabled.value = false;
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 120));
+    expect(dy(), closeTo(0, 0.01), reason: 'tidak boleh tertinggal tertekan');
+    await g.up();
+    await tester.pump(const Duration(milliseconds: 120));
+    expect(dy(), closeTo(0, 0.01));
+  });
 }
