@@ -1024,5 +1024,79 @@
         "type": "int"
       }
     }
+  },
+  "warnaPick": "Pilih warna",
+  "@warnaPick": {
+    "description": "Label kisi chip warna"
+  },
+  "warnaNewSet": "Gambar baru",
+  "@warnaNewSet": {
+    "description": "Tombol mengacak ulang kartu"
+  },
+  "warnaNextColor": "Warna lain",
+  "@warnaNextColor": {
+    "description": "Tombol lanjut ke warna berikutnya"
+  },
+  "warnaInstructionPre": "Sentuh semua yang",
+  "@warnaInstructionPre": {
+    "description": "Awal kalimat instruksi warna"
+  },
+  "warnaDone": "Semua yang {warna} ketemu!",
+  "@warnaDone": {
+    "description": "Teks bilah selesai",
+    "placeholders": {
+      "warna": {
+        "type": "String"
+      }
+    }
+  },
+  "warnaCounterLabel": "{found} dari {total} ketemu",
+  "@warnaCounterLabel": {
+    "description": "Label semantik hitungan warna",
+    "placeholders": {
+      "found": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "warnaChipLabel": "Warna {nama}",
+  "@warnaChipLabel": {
+    "description": "Label semantik chip warna",
+    "placeholders": {
+      "nama": {
+        "type": "String"
+      }
+    }
+  },
+  "warnaSentuh": "Sentuh semua yang berwarna",
+  "@warnaSentuh": {
+    "description": "narasi"
+  },
+  "warnaBetul": "Betul!",
+  "@warnaBetul": {
+    "description": "narasi"
+  },
+  "warnaBukan": "Bukan yang ini. Cari yang",
+  "@warnaBukan": {
+    "description": "narasi"
+  },
+  "warnaSemuaKetemu": "Semua gambarnya sudah ketemu!",
+  "@warnaSemuaKetemu": {
+    "description": "narasi"
+  },
+  "warnaBalon": "balon",
+  "@warnaBalon": {
+    "description": "Nama bentuk balon"
+  },
+  "warnaBintang": "bintang",
+  "@warnaBintang": {
+    "description": "Nama bentuk bintang"
+  },
+  "warnaHati": "hati",
+  "@warnaHati": {
+    "description": "Nama bentuk hati"
   }
 }

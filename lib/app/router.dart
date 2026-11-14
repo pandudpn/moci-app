@@ -17,6 +17,7 @@ import '../features/istirahat/habis_screen.dart';
 import '../features/istirahat/istirahat_screen.dart';
 import '../features/segera/coming_soon_screen.dart';
 import '../features/tulis/tulis_screen.dart';
+import '../features/warna/warna_screen.dart';
 import 'play_timer/play_timer_controller.dart';
 import 'redirect.dart';
 import 'splash/splash_screen.dart';
@@ -152,7 +153,11 @@ final routerProvider = Provider<GoRouter>((ref) {
           awal: state.uri.queryParameters['buah'],
         ),
       ),
-      _soon(Routes.warna, MenuTheme.warna),
+      GoRoute(
+        path: Routes.warna,
+        builder: (context, state) =>
+            WarnaScreen(awal: state.uri.queryParameters['warna']),
+      ),
       _soon(Routes.bentuk, MenuTheme.bentuk),
       _soon(Routes.musik, MenuTheme.musik),
       _soon(Routes.sukuKata, MenuTheme.membaca),

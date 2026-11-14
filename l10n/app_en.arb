@@ -1021,5 +1021,79 @@
         "type": "int"
       }
     }
+  },
+  "warnaPick": "Pick a color",
+  "@warnaPick": {
+    "description": "Color chip grid label"
+  },
+  "warnaNewSet": "New pictures",
+  "@warnaNewSet": {
+    "description": "Shuffle the cards button"
+  },
+  "warnaNextColor": "Next color",
+  "@warnaNextColor": {
+    "description": "Go to the next color button"
+  },
+  "warnaInstructionPre": "Tap everything",
+  "@warnaInstructionPre": {
+    "description": "Instruction sentence start"
+  },
+  "warnaDone": "You found all the {warna} things!",
+  "@warnaDone": {
+    "description": "Solved bar text",
+    "placeholders": {
+      "warna": {
+        "type": "String"
+      }
+    }
+  },
+  "warnaCounterLabel": "{found} of {total} found",
+  "@warnaCounterLabel": {
+    "description": "Color counter semantic label",
+    "placeholders": {
+      "found": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "warnaChipLabel": "Color {nama}",
+  "@warnaChipLabel": {
+    "description": "Color chip semantic label",
+    "placeholders": {
+      "nama": {
+        "type": "String"
+      }
+    }
+  },
+  "warnaSentuh": "Tap everything that is",
+  "@warnaSentuh": {
+    "description": "narasi"
+  },
+  "warnaBetul": "Yes!",
+  "@warnaBetul": {
+    "description": "narasi"
+  },
+  "warnaBukan": "Not this one. Find",
+  "@warnaBukan": {
+    "description": "narasi"
+  },
+  "warnaSemuaKetemu": "You found them all!",
+  "@warnaSemuaKetemu": {
+    "description": "narasi"
+  },
+  "warnaBalon": "balloon",
+  "@warnaBalon": {
+    "description": "Balloon shape name"
+  },
+  "warnaBintang": "star",
+  "@warnaBintang": {
+    "description": "Star shape name"
+  },
+  "warnaHati": "heart",
+  "@warnaHati": {
+    "description": "Heart shape name"
   }
 }
