@@ -66,7 +66,7 @@ Katalog JSON di `assets/content/` adalah sumber kebenaran. `docs/design/prototyp
 4. Untuk naskah narasi, jalankan `fvm dart run tool/validate_content.dart --naskah=build/naskah.csv`.
 5. Sebelum rilis, tambahkan `--rilis`. Mode ini gagal kalau narasi atau suara hewan belum lengkap.
 
-Aturan isi, format berkas, dan daftar aset dijelaskan di `docs/CONTENT-ASSETS.md`.
+Aturan isi, format berkas, dan daftar aset dijelaskan di [`docs/CONTENT-ASSETS.md`](docs/CONTENT-ASSETS.md).
 
 ## 7. Audio
 
