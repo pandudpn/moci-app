@@ -152,4 +152,68 @@ void main() {
     expect((a.id.gambar, a.en.gambar), ('apel', 'apel'));
     expect(k.huruf.firstWhere((e) => e.huruf == 'V').en.gambar, 'vas');
   });
+
+  test('ilustrasi: 110 berkas dan semua rujukan gambar ada', () {
+    expect(h.svgCount, 110);
+    final k = Katalog.fromJson(_baca(out, 'content/katalog.json'));
+    final ilustrasi = Directory('${out.path}/illustrations')
+        .listSync()
+        .whereType<File>()
+        .toList();
+    expect(ilustrasi.length, 110);
+    for (final item in k.item) {
+      expect(
+        File('${out.path}/${item.gambar}').existsSync(),
+        isTrue,
+        reason: item.gambar,
+      );
+    }
+    for (final huruf in k.huruf) {
+      for (final gambar in [huruf.id.gambar, huruf.en.gambar]) {
+        expect(
+          File('${out.path}/illustrations/$gambar.svg').existsSync(),
+          isTrue,
+          reason: '$gambar (huruf ${huruf.huruf})',
+        );
+      }
+    }
+    for (final id in ['moci', 'moci-senang', 'karyaku']) {
+      expect(File('${out.path}/illustrations/$id.svg').existsSync(), isTrue);
+    }
+  });
+
+  test('dadu memakai fill none pada kurva K10', () {
+    final isi = File('${out.path}/illustrations/dadu.svg').readAsStringSync();
+    expect(isi, contains('M56 54C62 48 70 46 80 46" fill="none"'));
+  });
+
+  test('salinan ilustrasi byte per byte dari snapshot', () {
+    final sumber = File(
+      'docs/design/prototype/assets/f3ad85e8656c762498e18346c0834e64.svg',
+    ).readAsBytesSync();
+    final hasil = File('${out.path}/illustrations/apel.svg').readAsBytesSync();
+    expect(hasil, sumber);
+  });
+
+  test('ilustrasi yang sudah ada di repo tidak berubah', () {
+    // `moci-tidur.svg` digambar dari SVG inline Istirahat.dc.html pada
+    // Rencana 01, jadi tidak berasal dari blob snapshot dan tidak diekspor.
+    final ada = Directory('assets/illustrations')
+        .listSync()
+        .whereType<File>()
+        .where((f) => f.uri.pathSegments.last != 'moci-tidur.svg')
+        .toList();
+    expect(ada.length, 110);
+    for (final berkas in ada) {
+      final id = berkas.uri.pathSegments.last;
+      final hasil = File('${out.path}/illustrations/$id');
+      expect(hasil.existsSync(), isTrue, reason: id);
+      expect(hasil.readAsBytesSync(), berkas.readAsBytesSync(), reason: id);
+    }
+    expect(
+      File('assets/illustrations/moci-tidur.svg').existsSync(),
+      isTrue,
+      reason: 'moci-tidur tetap ada di repo, tidak diekspor',
+    );
+  });
 }

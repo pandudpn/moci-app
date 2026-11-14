@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+<defs><clipPath id="h"><path d="M100 32C136 32 150 62 146 98C144 122 134 142 128 160C122 178 78 178 72 160C66 142 56 122 54 98C50 62 64 32 100 32Z"></path></clipPath></defs>
+<path d="M66 56L56 18L86 40Z" fill="#FFFFFF" stroke="#2B2350" stroke-width="5" stroke-linejoin="round"></path>
+<path d="M134 56L144 18L114 40Z" fill="#FFFFFF" stroke="#2B2350" stroke-width="5" stroke-linejoin="round"></path>
+<path d="M64 46L60 28L76 40Z" fill="#FFC9D6"></path>
+<path d="M136 46L140 28L124 40Z" fill="#FFC9D6"></path>
+<path d="M100 32C136 32 150 62 146 98C144 122 134 142 128 160C122 178 78 178 72 160C66 142 56 122 54 98C50 62 64 32 100 32Z" fill="#FFFFFF"></path>
+<g clip-path="url(#h)">
+<g stroke="#2B2350" stroke-width="10" stroke-linecap="round" fill="none"><path d="M42 64Q70 74 90 52"></path><path d="M158 64Q130 74 110 52"></path><path d="M40 96Q66 102 84 86"></path><path d="M160 96Q134 102 116 86"></path><path d="M48 126Q68 128 80 116"></path><path d="M152 126Q132 128 120 116"></path></g>
+<ellipse cx="100" cy="152" rx="34" ry="26" fill="#5C5577"></ellipse>
+</g>
+<path d="M100 32C136 32 150 62 146 98C144 122 134 142 128 160C122 178 78 178 72 160C66 142 56 122 54 98C50 62 64 32 100 32Z" fill="none" stroke="#2B2350" stroke-width="5"></path>
+<path d="M78 34C82 16 92 10 100 10C108 10 118 16 122 34Z" fill="#2B2350"></path>
+<circle cx="80" cy="96" r="11" fill="#FFFFFF"></circle><circle cx="120" cy="96" r="11" fill="#FFFFFF"></circle>
+<ellipse cx="80" cy="96" rx="7" ry="8.5" fill="#2B2350"></ellipse><ellipse cx="120" cy="96" rx="7" ry="8.5" fill="#2B2350"></ellipse>
+<circle cx="82.5" cy="92.5" r="2.6" fill="#FFFFFF"></circle><circle cx="122.5" cy="92.5" r="2.6" fill="#FFFFFF"></circle>
+<ellipse cx="90" cy="152" rx="4" ry="6" fill="#2B2350"></ellipse><ellipse cx="110" cy="152" rx="4" ry="6" fill="#2B2350"></ellipse>
+<ellipse cx="66" cy="122" rx="8" ry="5" fill="#FF8FA3" opacity=".75"></ellipse><ellipse cx="134" cy="122" rx="8" ry="5" fill="#FF8FA3" opacity=".75"></ellipse>
+</svg>

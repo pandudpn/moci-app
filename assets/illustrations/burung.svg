@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+<path d="M152 138L188 150L182 122Z" fill="#339AF0"></path>
+<path d="M92 56C90 42 100 36 104 46C108 36 118 42 112 58Z" fill="#339AF0"></path>
+<circle cx="100" cy="110" r="58" fill="#4DABF7"></circle>
+<ellipse cx="100" cy="128" rx="36" ry="32" fill="#D0EBFF"></ellipse>
+<ellipse cx="144" cy="116" rx="20" ry="30" fill="#339AF0" transform="rotate(-20 144 116)"></ellipse>
+<ellipse cx="56" cy="116" rx="20" ry="30" fill="#339AF0" transform="rotate(20 56 116)"></ellipse>
+<ellipse cx="84" cy="98" rx="6.5" ry="8" fill="#2B2350"></ellipse>
+<ellipse cx="116" cy="98" rx="6.5" ry="8" fill="#2B2350"></ellipse>
+<circle cx="86.6" cy="94.4" r="2.6" fill="#FFFFFF"></circle>
+<circle cx="118.6" cy="94.4" r="2.6" fill="#FFFFFF"></circle>
+<path d="M92 110L108 110L100 122Z" fill="#FFA94D" stroke="#FFA94D" stroke-width="3" stroke-linejoin="round"></path>
+<ellipse cx="72" cy="114" rx="8" ry="5" fill="#FF8FA3" opacity=".7"></ellipse>
+<ellipse cx="128" cy="114" rx="8" ry="5" fill="#FF8FA3" opacity=".7"></ellipse>
+<path d="M90 166V180M84 186L90 180L96 186" fill="none" stroke="#FFA94D" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M110 166V180M104 186L110 180L116 186" fill="none" stroke="#FFA94D" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>

@@ -32,6 +32,7 @@ final class EksporHasil {
     required this.regionCount,
     required this.cap,
     required this.krayon,
+    required this.svgCount,
   });
 
   final int item;
@@ -47,6 +48,7 @@ final class EksporHasil {
   final int regionCount;
   final int cap;
   final int krayon;
+  final int svgCount;
 }
 
 /// Urutan kategori di katalog: tema prototipe lalu `lain` (K4).
@@ -417,6 +419,26 @@ Future<EksporHasil> eksporPrototipe({
     );
   }
 
+  // Ilustrasi disalin byte per byte dari snapshot, kecuali perbaikan K10.
+  final idGambar = [
+    for (final entri in item) entri.id,
+    for (final id in _gambarLuar.keys) id,
+  ];
+  final folderIlustrasi = Directory('${keluaran.path}/illustrations')
+    ..createSync(recursive: true);
+  for (final id in idGambar) {
+    final asal = File('${prototipe.path}/assets/${indeks.blob(id)}.svg');
+    if (!asal.existsSync()) {
+      throw StateError('ilustrasi "$id" tidak ada di snapshot: ${asal.path}');
+    }
+    final tujuan = File('${folderIlustrasi.path}/$id.svg');
+    if (id == 'dadu') {
+      tujuan.writeAsStringSync(_perbaikiDadu(asal.readAsStringSync()));
+    } else {
+      tujuan.writeAsBytesSync(asal.readAsBytesSync());
+    }
+  }
+
   return EksporHasil(
     item: item.length,
     huruf: huruf.length,
@@ -433,6 +455,7 @@ Future<EksporHasil> eksporPrototipe({
     regionCount: halaman.fold(0, (n, p) => n + p.bagian.length),
     cap: cap.length,
     krayon: krayon.length,
+    svgCount: idGambar.length,
   );
 }
 
@@ -572,6 +595,7 @@ final class _Sumber {
 
 final class _Indeks {
   final Map<String, String> blobKeId = {};
+  final Map<String, String> idKeBlob = {};
 
   void tambah(String blob, String id) {
     if (blob.isEmpty || id.isEmpty) return;
@@ -580,6 +604,15 @@ final class _Indeks {
       throw StateError('blob $blob dipakai "$lama" dan "$id"');
     }
     blobKeId[blob] = id;
+    idKeBlob.putIfAbsent(id, () => blob);
+  }
+
+  String blob(String id) {
+    final hasil = idKeBlob[id];
+    if (hasil == null) {
+      throw StateError('id "$id" tidak punya blob di dataset prototipe');
+    }
+    return hasil;
   }
 
   String id(String blob) {
@@ -589,6 +622,15 @@ final class _Indeks {
     }
     return hasil;
   }
+}
+
+/// Kurva di `dadu.svg` yang tanpa `fill="none"` tertutup menjadi bidang (K10).
+String _perbaikiDadu(String isi) {
+  const kurva = 'd="M56 54C62 48 70 46 80 46"';
+  if (!isi.contains(kurva)) {
+    throw StateError('dadu.svg tidak memuat kurva K10 $kurva');
+  }
+  return isi.replaceFirst(kurva, '$kurva fill="none"');
 }
 
 String _s(Object? value) => value is String ? value : '';
