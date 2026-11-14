@@ -12,8 +12,10 @@ import 'package:moci/core/content/coloring.dart';
 import 'package:moci/core/content/katalog.dart';
 import 'package:moci/core/content/tracing.dart';
 
+import 'konten/validasi/audio.dart';
 import 'konten/validasi/coloring.dart';
 import 'konten/validasi/laporan.dart';
+import 'konten/validasi/narasi.dart';
 import 'konten/validasi/struktur.dart';
 import 'konten/validasi/svg.dart';
 import 'konten/validasi/tracing.dart';
@@ -111,8 +113,20 @@ Future<Laporan> validasiKonten({
   validasiTracing(laporan, huruf: hurufAman, angka: angkaAman);
   validasiColoring(laporan, pagesAman);
 
-  // Aturan narasi dan audio memakai `rilis`, `naskahKeluar`, dan
-  // `batasAudioByte`; tanda tangannya sudah tetap supaya pemanggil stabil.
+  validasiNarasi(
+    laporan,
+    root: root,
+    katalog: katalogAman,
+    rilis: rilis,
+    naskahKeluar: naskahKeluar,
+  );
+  validasiAudio(
+    laporan,
+    audio: Directory('${aset.path}/audio'),
+    katalog: katalogAman,
+    rilis: rilis,
+    batasByte: batasAudioByte,
+  );
   return laporan;
 }
 

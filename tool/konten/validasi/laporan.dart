@@ -42,3 +42,10 @@ final class Laporan {
     return baris.join('\n');
   }
 }
+
+/// Beberapa nama pertama, ditambah jumlah sisanya. Dipakai pesan aturan yang
+/// bisa menyentuh ratusan berkas supaya terminal tetap terbaca.
+String ringkas(List<String> nama, {int maks = 5}) {
+  if (nama.length <= maks) return nama.join(', ');
+  return '${nama.take(maks).join(', ')}, … (+${nama.length - maks} lagi)';
+}
