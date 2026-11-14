@@ -179,10 +179,15 @@ class _MociMascotState extends State<MociMascot> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    final art = SizedBox.square(dimension: widget.size, child: _body());
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: _handleTap,
-      child: SizedBox.square(dimension: widget.size, child: _body()),
+      // Pose `biasa` digambar ulang tiap frame, jadi ia butuh lapisan sendiri
+      // supaya layar di sekitarnya tidak ikut. Pose lain hanya menggeser
+      // ilustrasi diam di dalam Transform; lapisan di situ akan diraster dulu
+      // lalu diskalakan ulang (tepi ilustrasi jadi kabur).
+      child: widget.pose == MociPose.biasa ? RepaintBoundary(child: art) : art,
     );
   }
 }

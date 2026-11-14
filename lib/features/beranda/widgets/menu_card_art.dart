@@ -89,16 +89,19 @@ class _BobState extends State<_Bob> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: _c,
-      child: widget.child,
-      builder: (context, child) {
-        final t = _c.value < .5 ? _c.value * 2 : (1 - _c.value) * 2;
-        return Transform.translate(
-          offset: Offset(0, -8 * Curves.easeInOut.transform(t)),
-          child: child,
-        );
-      },
+    // Gerak hanya menggeser gambar: lapisan sendiri supaya sisa kartu diam.
+    return RepaintBoundary(
+      child: AnimatedBuilder(
+        animation: _c,
+        child: widget.child,
+        builder: (context, child) {
+          final t = _c.value < .5 ? _c.value * 2 : (1 - _c.value) * 2;
+          return Transform.translate(
+            offset: Offset(0, -8 * Curves.easeInOut.transform(t)),
+            child: child,
+          );
+        },
+      ),
     );
   }
 }
