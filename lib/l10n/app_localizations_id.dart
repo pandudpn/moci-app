@@ -569,4 +569,47 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get orangTuaSupport => 'Hubungi kami';
+
+  @override
+  String get mewarnaiFilter => 'Jenis gambar';
+
+  @override
+  String get mewarnaiTabSemua => 'Semua';
+
+  @override
+  String get mewarnaiTabHewan => 'Hewan';
+
+  @override
+  String get mewarnaiTabBenda => 'Benda & Alam';
+
+  @override
+  String get mewarnaiHintPick => 'Pilih gambar yang mau kamu warnai!';
+
+  @override
+  String mewarnaiOpenPage(String nama) {
+    return 'Warnai gambar: $nama';
+  }
+
+  @override
+  String get mewarnaiContinue => 'Lanjutkan';
+
+  @override
+  String get mewarnaiKaryaku => 'Karyaku';
+
+  @override
+  String mewarnaiKaryaCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count karya',
+      one: '1 karya',
+      zero: 'Belum ada karya',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String mewarnaiOpenKaryaku(int count) {
+    return 'Buka Karyaku, $count karya';
+  }
 }

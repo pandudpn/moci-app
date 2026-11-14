@@ -1135,6 +1135,66 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Hubungi kami'**
   String get orangTuaSupport;
+
+  /// Label semantik grup saring galeri
+  ///
+  /// In id, this message translates to:
+  /// **'Jenis gambar'**
+  String get mewarnaiFilter;
+
+  /// Pil saring semua gambar
+  ///
+  /// In id, this message translates to:
+  /// **'Semua'**
+  String get mewarnaiTabSemua;
+
+  /// Pil saring gambar hewan
+  ///
+  /// In id, this message translates to:
+  /// **'Hewan'**
+  String get mewarnaiTabHewan;
+
+  /// Pil saring gambar benda dan alam
+  ///
+  /// In id, this message translates to:
+  /// **'Benda & Alam'**
+  String get mewarnaiTabBenda;
+
+  /// Petunjuk di bawah galeri
+  ///
+  /// In id, this message translates to:
+  /// **'Pilih gambar yang mau kamu warnai!'**
+  String get mewarnaiHintPick;
+
+  /// Label semantik kartu halaman
+  ///
+  /// In id, this message translates to:
+  /// **'Warnai gambar: {nama}'**
+  String mewarnaiOpenPage(String nama);
+
+  /// Lencana halaman yang drafnya berisi
+  ///
+  /// In id, this message translates to:
+  /// **'Lanjutkan'**
+  String get mewarnaiContinue;
+
+  /// Nama kartu dan judul layar Karyaku
+  ///
+  /// In id, this message translates to:
+  /// **'Karyaku'**
+  String get mewarnaiKaryaku;
+
+  /// Jumlah karya di kartu Karyaku
+  ///
+  /// In id, this message translates to:
+  /// **'{count, plural, =0{Belum ada karya} =1{1 karya} other{{count} karya}}'**
+  String mewarnaiKaryaCount(int count);
+
+  /// Label semantik kartu Karyaku
+  ///
+  /// In id, this message translates to:
+  /// **'Buka Karyaku, {count} karya'**
+  String mewarnaiOpenKaryaku(int count);
 }
 
 class _AppLocalizationsDelegate

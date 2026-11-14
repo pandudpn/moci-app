@@ -8,19 +8,34 @@ import '../../core/providers.dart';
 import 'karya_repository.dart';
 import 'mewarnai_model.dart';
 
+/// Membaca aset tanpa cache lama.
+///
+/// `rootBundle` menyimpan Future hasil `loadString`, dan Future itu terikat ke
+/// zona tempat ia dibuat. Tanpa `evict`, pembacaan berikutnya (tes kedua dan
+/// seterusnya) menunggu Future yang zona-nya sudah mati.
+Future<T> _muatAset<T>(
+  String path,
+  Future<T> Function(AssetBundle bundle) baca,
+) {
+  rootBundle.evict(path);
+  return baca(rootBundle);
+}
+
 /// 14 halaman mewarnai dari bundel aset.
 final coloringProvider = FutureProvider<ColoringSet>(
-  (ref) => ContentRepository.loadColoring(rootBundle),
+  (ref) =>
+      _muatAset(ContentRepository.coloringPath, ContentRepository.loadColoring),
 );
 
 /// 16 krayon dari bundel aset.
 final krayonProvider = FutureProvider<List<Krayon>>(
-  (ref) => ContentRepository.loadKrayon(rootBundle),
+  (ref) =>
+      _muatAset(ContentRepository.krayonPath, ContentRepository.loadKrayon),
 );
 
 /// 8 stiker dari bundel aset.
 final capProvider = FutureProvider<List<Cap>>(
-  (ref) => ContentRepository.loadCap(rootBundle),
+  (ref) => _muatAset(ContentRepository.capPath, ContentRepository.loadCap),
 );
 
 /// Stiker yang sudah di-decode jadi gambar siap gambar di kanvas.

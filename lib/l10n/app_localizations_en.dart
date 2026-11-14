@@ -568,4 +568,47 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get orangTuaSupport => 'Contact us';
+
+  @override
+  String get mewarnaiFilter => 'Picture type';
+
+  @override
+  String get mewarnaiTabSemua => 'All';
+
+  @override
+  String get mewarnaiTabHewan => 'Animals';
+
+  @override
+  String get mewarnaiTabBenda => 'Things & Nature';
+
+  @override
+  String get mewarnaiHintPick => 'Pick a picture to color!';
+
+  @override
+  String mewarnaiOpenPage(String nama) {
+    return 'Color the picture: $nama';
+  }
+
+  @override
+  String get mewarnaiContinue => 'Continue';
+
+  @override
+  String get mewarnaiKaryaku => 'My Artwork';
+
+  @override
+  String mewarnaiKaryaCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count artworks',
+      one: '1 artwork',
+      zero: 'No artwork yet',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String mewarnaiOpenKaryaku(int count) {
+    return 'Open My Artwork, $count artworks';
+  }
 }

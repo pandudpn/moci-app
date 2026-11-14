@@ -527,5 +527,60 @@
   "orangTuaSupport": "Hubungi kami",
   "@orangTuaSupport": {
     "description": "Tautan surel dukungan"
+  },
+  "mewarnaiFilter": "Jenis gambar",
+  "@mewarnaiFilter": {
+    "description": "Label semantik grup saring galeri"
+  },
+  "mewarnaiTabSemua": "Semua",
+  "@mewarnaiTabSemua": {
+    "description": "Pil saring semua gambar"
+  },
+  "mewarnaiTabHewan": "Hewan",
+  "@mewarnaiTabHewan": {
+    "description": "Pil saring gambar hewan"
+  },
+  "mewarnaiTabBenda": "Benda & Alam",
+  "@mewarnaiTabBenda": {
+    "description": "Pil saring gambar benda dan alam"
+  },
+  "mewarnaiHintPick": "Pilih gambar yang mau kamu warnai!",
+  "@mewarnaiHintPick": {
+    "description": "Petunjuk di bawah galeri"
+  },
+  "mewarnaiOpenPage": "Warnai gambar: {nama}",
+  "@mewarnaiOpenPage": {
+    "description": "Label semantik kartu halaman",
+    "placeholders": {
+      "nama": {
+        "type": "String"
+      }
+    }
+  },
+  "mewarnaiContinue": "Lanjutkan",
+  "@mewarnaiContinue": {
+    "description": "Lencana halaman yang drafnya berisi"
+  },
+  "mewarnaiKaryaku": "Karyaku",
+  "@mewarnaiKaryaku": {
+    "description": "Nama kartu dan judul layar Karyaku"
+  },
+  "mewarnaiKaryaCount": "{count, plural, =0{Belum ada karya} =1{1 karya} other{{count} karya}}",
+  "@mewarnaiKaryaCount": {
+    "description": "Jumlah karya di kartu Karyaku",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "mewarnaiOpenKaryaku": "Buka Karyaku, {count} karya",
+  "@mewarnaiOpenKaryaku": {
+    "description": "Label semantik kartu Karyaku",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   }
 }
