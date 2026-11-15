@@ -42,17 +42,22 @@ class TracingBoard extends ConsumerStatefulWidget {
   final void Function(int goresan, int total)? onProgress;
 
   @override
-  ConsumerState<TracingBoard> createState() => _TracingBoardState();
+  TracingBoardState createState() => TracingBoardState();
 }
 
 typedef _GuideView = ({Offset pos, bool idle, int num, bool show});
 
-final class _TracingBoardState extends ConsumerState<TracingBoard>
+/// Keadaan papan menulis. [session] dibuka supaya tes bisa memeriksa tinta dan
+/// kemajuan tanpa golden.
+final class TracingBoardState extends ConsumerState<TracingBoard>
     with TickerProviderStateMixin {
   static const box = 520.0;
   static const mociSize = 86.0;
 
   late TracingSession _session;
+
+  TracingSession get session => _session;
+
   final _revisi = ValueNotifier<int>(0);
   final _guide = ValueNotifier<_GuideView>((
     pos: Offset.zero,
@@ -104,9 +109,9 @@ final class _TracingBoardState extends ConsumerState<TracingBoard>
   }
 
   @override
-  void didUpdateWidget(TracingBoard old) {
-    super.didUpdateWidget(old);
-    if (!listEquals(old.paths, widget.paths)) {
+  void didUpdateWidget(TracingBoard oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (!listEquals(oldWidget.paths, widget.paths)) {
       _session = TracingSession(TraceGuide.fromPaths(widget.paths));
       _drag = false;
       _burstAt = null;
@@ -396,7 +401,8 @@ final class _BoardPainter extends CustomPainter {
       ..strokeWidth = 60
       ..strokeCap = StrokeCap.round
       ..strokeJoin = StrokeJoin.round;
-    for (var i = 0; i < session.goresan && i < strokes.length; i++) {
+    final bertinta = math.min(session.goresanSelesai, strokes.length);
+    for (var i = 0; i < bertinta; i++) {
       final s = strokes[i];
       canvas.drawPath(_polyline(s.points), selesai);
       _bintangSepanjang(canvas, s.points);

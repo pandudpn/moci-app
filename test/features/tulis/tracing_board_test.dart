@@ -86,4 +86,50 @@ void main() {
     expect(progress.sublist(progress.length - 2), [0, 0]);
     expect(t.takeException(), isNull);
   });
+
+  testWidgets('tinta goresan terakhir tetap ada setelah selesai', (t) async {
+    var done = 0;
+    Widget board(List<String> paths) => Center(
+      child: SizedBox(
+        width: 520,
+        height: 520,
+        child: TracingBoard(
+          paths: paths,
+          ink: const Color(0xFFE8384F),
+          semanticLabel: 'Area menulis',
+          onDone: () => done++,
+        ),
+      ),
+    );
+    await pumpScreen(t, board(const ['M0 0L100 0']));
+    final sesi = t.state<TracingBoardState>(find.byType(TracingBoard)).session;
+    expect(sesi.goresanSelesai, 0);
+    await _trace(t, Offset.zero, const Offset(100, 0));
+    expect(done, 1);
+    expect(sesi.selesai, isTrue);
+    expect(sesi.goresanSelesai, 1);
+  });
+
+  testWidgets('semua goresan bertinta setelah huruf dua goresan', (t) async {
+    await pumpScreen(
+      t,
+      Center(
+        child: SizedBox(
+          width: 520,
+          height: 520,
+          child: TracingBoard(
+            paths: const ['M0 0L100 0', 'M0 100L100 100'],
+            ink: const Color(0xFFE8384F),
+            semanticLabel: 'Area menulis huruf L',
+          ),
+        ),
+      ),
+    );
+    final sesi = t.state<TracingBoardState>(find.byType(TracingBoard)).session;
+    await _trace(t, Offset.zero, const Offset(100, 0));
+    expect(sesi.goresanSelesai, 1);
+    await _trace(t, const Offset(0, 100), const Offset(100, 100));
+    expect(sesi.selesai, isTrue);
+    expect(sesi.goresanSelesai, 2);
+  });
 }

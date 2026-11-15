@@ -65,4 +65,28 @@ void main() {
     expect((sesi.goresan, sesi.titik, sesi.selesai), (0, 0, false));
     expect(sesi.mulai(const Offset(0, 0)), isTrue);
   });
+  test('goresanSelesai menghitung goresan terakhir yang bertinta', () {
+    final satu = TracingSession(TraceGuide.fromPaths(const ['M0 0L100 0']))
+      ..mulai(const Offset(0, 0));
+    for (var x = 20.0; x <= 100; x += 20) {
+      satu.gerak(Offset(x, 0));
+    }
+    expect(satu.selesai, isTrue);
+    expect(satu.goresanSelesai, 1);
+  });
+  test('semua goresan bertinta setelah huruf selesai', () {
+    final sesi = TracingSession(
+      TraceGuide.fromPaths(const ['M0 0L100 0', 'M0 100L100 100']),
+    )..mulai(const Offset(0, 0));
+    for (var x = 20.0; x <= 100; x += 20) {
+      sesi.gerak(Offset(x, 0));
+    }
+    expect(sesi.goresanSelesai, 1);
+    expect(sesi.mulai(const Offset(0, 100)), isTrue);
+    for (var x = 20.0; x <= 100; x += 20) {
+      sesi.gerak(Offset(x, 100));
+    }
+    expect(sesi.selesai, isTrue);
+    expect(sesi.goresanSelesai, 2);
+  });
 }

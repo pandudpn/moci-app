@@ -107,6 +107,10 @@ final class TracingSession {
   int get titik => _titik;
   bool get selesai => _selesai;
 
+  /// Goresan yang sudah bertinta penuh. Saat huruf selesai, goresan terakhir
+  /// ikut dihitung supaya tintanya tidak hilang.
+  int get goresanSelesai => _selesai ? guide.strokes.length : _goresan;
+
   /// 0 sampai 1 untuk goresan yang sedang dikerjakan.
   double get kemajuan {
     final s = _stroke;
