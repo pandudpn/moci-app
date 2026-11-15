@@ -6,6 +6,7 @@ import android.media.AudioFormat
 import android.media.AudioRecord
 import android.media.MediaRecorder
 import android.speech.tts.TextToSpeech
+import android.speech.tts.Voice
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.EventChannel
@@ -167,10 +168,18 @@ class MainActivity : FlutterActivity(), EventChannel.StreamHandler {
     private fun say(text: String, locale: Locale) {
         tts?.apply {
             setLanguage(locale)
-            setSpeechRate(0.9f)
+            setPitch(PITCH)
+            setSpeechRate(SPEECH_RATE)
+            bestVoice(locale)?.let { voice = it }
             speak(text, TextToSpeech.QUEUE_ADD, null, null)
         }
     }
+
+    /** Suara luring berderajat tertinggi untuk bahasa itu, kalau ada. */
+    private fun bestVoice(locale: Locale): Voice? =
+        tts?.voices
+            ?.filter { it.locale.language == locale.language && !it.isNetworkConnectionRequired }
+            ?.maxByOrNull { it.quality }
 
     override fun onDestroy() {
         stopLevel()
@@ -184,5 +193,9 @@ class MainActivity : FlutterActivity(), EventChannel.StreamHandler {
 
         /** 50 ms pada 16 kHz, sama dengan jeda level di Dart. */
         const val SAMPLES = 800
+
+        /** Suara anak: nada naik sedikit, tempo hampir normal. */
+        const val PITCH = 1.25f
+        const val SPEECH_RATE = 0.95f
     }
 }

@@ -8,6 +8,10 @@ class MociChannels: NSObject, FlutterPlugin {
   private static let synthesizer = AVSpeechSynthesizer()
   private static let micLevel = MicLevelHandler()
 
+  /// Suara anak: nada naik sedikit dan tempo percakapan bawaan.
+  private static let ttsPitch: Float = 1.25
+  private static let ttsRate: Float = AVSpeechUtteranceDefaultSpeechRate
+
   static func register(with registrar: FlutterPluginRegistrar) {
     registerAudioSession(registrar)
     registerTts(registrar)
@@ -69,8 +73,9 @@ class MociChannels: NSObject, FlutterPlugin {
           return
         }
         let utterance = AVSpeechUtterance(string: text)
-        utterance.voice = AVSpeechSynthesisVoice(language: lang == "id" ? "id-ID" : "en-US")
-        utterance.rate = 0.45
+        utterance.voice = bestVoice(lang == "id" ? "id-ID" : "en-US")
+        utterance.pitchMultiplier = ttsPitch
+        utterance.rate = ttsRate
         synthesizer.speak(utterance)
         result(nil)
       case "stop":
@@ -80,6 +85,24 @@ class MociChannels: NSObject, FlutterPlugin {
         result(FlutterMethodNotImplemented)
       }
     }
+  }
+
+  /// Suara terpasang dengan kualitas tertinggi untuk bahasa itu; pengguna bisa
+  /// mengunduh suara Enhanced di Pengaturan iOS dan app langsung memakainya.
+  private static func bestVoice(_ language: String) -> AVSpeechSynthesisVoice? {
+    let kode = language.prefix(2).lowercased()
+    // Suara lawak bawaan iOS (mis. "Bahh") memakai id lama; jangan dipilih.
+    let cocok = AVSpeechSynthesisVoice.speechVoices().filter {
+      $0.language.lowercased().hasPrefix(kode)
+        && !$0.identifier.contains("speech.synthesis.voice")
+    }
+    let urut = cocok.sorted {
+      if $0.quality.rawValue != $1.quality.rawValue {
+        return $0.quality.rawValue > $1.quality.rawValue
+      }
+      return $0.identifier < $1.identifier
+    }
+    return urut.first ?? AVSpeechSynthesisVoice(language: language)
   }
 
   /// Level mikrofon lewat tap `AVAudioEngine`; buffer dibuang setelah RMS.
