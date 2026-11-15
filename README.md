@@ -72,7 +72,7 @@ A newer APK installs over the old one and keeps the child's progress.
 
 ### iPad and iPhone
 
-The IPA is unsigned, so it needs a sideloading tool that signs it with your own Apple ID. A free Apple ID works.
+The IPA is unsigned, so iOS refuses it if you open it straight from Safari or the Files app on the iPad or iPhone. It has to go through a sideloading tool that signs it with your own Apple ID. A free Apple ID works.
 
 1. Download `moci-<version>.ipa` from the [latest release](https://github.com/pandudpn/moci-app/releases/latest) to a Mac or Windows PC.
 2. Install [Sideloadly](https://sideloadly.io) (or [AltStore](https://altstore.io)) and connect the iPad or iPhone by cable.
