@@ -363,8 +363,60 @@ void main() {
     addTearDown(t.platformDispatcher.clearTextScaleFactorTestValue);
     await _open(t);
     expect(find.text('Data hanya di perangkat ini'), findsOneWidget);
+    expect(find.text('Tentang suara'), findsOneWidget);
     expect(find.text('Hapus semua data'), findsOneWidget);
+    // Pil suara tidak boleh menempel atau menimpa tombol hapus.
+    expect(
+      t.getRect(find.text('Tentang suara')).right,
+      lessThan(t.getRect(find.text('Hapus semua data')).left),
+    );
     expect(t.takeException(), isNull);
+  });
+
+  testWidgets('keterangan suara: pil ada dan dialognya bisa ditutup', (
+    t,
+  ) async {
+    final env = TestEnv(progress: _progress());
+    await _open(t, env: env);
+    expect(find.text('Tentang suara'), findsOneWidget);
+    await _tap(t, env, find.text('Tentang suara'));
+    expect(find.text('Tentang suara di Moci'), findsOneWidget);
+    expect(find.textContaining('text-to-speech'), findsOneWidget);
+    expect(find.textContaining('Freesound.org'), findsOneWidget);
+    expect(find.textContaining('CC0 (domain publik)'), findsOneWidget);
+    expect(find.textContaining('LICENSES.csv'), findsOneWidget);
+    await t.ensureVisible(find.text('Tutup'));
+    await _pump(t);
+    await _tap(t, env, find.text('Tutup'));
+    expect(find.text('Tentang suara di Moci'), findsNothing);
+  });
+
+  testWidgets('English: pil suara dan dialognya', (t) async {
+    final env = TestEnv(lang: AppLang.en, progress: _progress());
+    await _open(t, env: env);
+    expect(find.text('About sounds'), findsOneWidget);
+    await _tap(t, env, find.text('About sounds'));
+    expect(find.text('About the sounds in Moci'), findsOneWidget);
+    expect(find.textContaining('text-to-speech'), findsOneWidget);
+    expect(find.textContaining('CC0 license'), findsOneWidget);
+    await t.ensureVisible(find.text('Close'));
+    await _pump(t);
+    await _tap(t, env, find.text('Close'));
+    expect(find.text('About the sounds in Moci'), findsNothing);
+  });
+
+  testWidgets('dialog suara muat di 1,3x tanpa luber', (t) async {
+    t.platformDispatcher.textScaleFactorTestValue = 1.3;
+    addTearDown(t.platformDispatcher.clearTextScaleFactorTestValue);
+    final env = TestEnv(progress: _progress());
+    await _open(t, env: env);
+    await _tap(t, env, find.text('Tentang suara'));
+    expect(find.text('Tentang suara di Moci'), findsOneWidget);
+    expect(t.takeException(), isNull);
+    await t.ensureVisible(find.text('Tutup'));
+    await _pump(t);
+    await _tap(t, env, find.text('Tutup'));
+    expect(find.text('Tentang suara di Moci'), findsNothing);
   });
 
   testWidgets('HP: tidak ada pengecualian', (t) async {

@@ -1151,7 +1151,7 @@ abstract class AppLocalizations {
   /// Lencana
   ///
   /// In id, this message translates to:
-  /// **'Tanpa pembelian dalam aplikasi'**
+  /// **'Tanpa pembelian'**
   String get orangTuaBadgePurchases;
 
   /// Lencana
@@ -1201,6 +1201,54 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Hubungi kami'**
   String get orangTuaSupport;
+
+  /// Pil keterangan suara
+  ///
+  /// In id, this message translates to:
+  /// **'Tentang suara'**
+  String get orangTuaSounds;
+
+  /// Judul dialog keterangan suara
+  ///
+  /// In id, this message translates to:
+  /// **'Tentang suara di Moci'**
+  String get orangTuaSoundsTitle;
+
+  /// Paragraf narasi TTS
+  ///
+  /// In id, this message translates to:
+  /// **'Narasi Moci dibacakan suara bawaan perangkat (text-to-speech), bukan rekaman. Logat dan nadanya mengikuti suara yang terpasang di iPad atau HP, jadi bisa berbeda di tiap perangkat.'**
+  String get orangTuaSoundsTts;
+
+  /// Paragraf tip memasang suara TTS
+  ///
+  /// In id, this message translates to:
+  /// **'Kalau ingin suara yang lebih jelas, pasang suara lain di pengaturan perangkat. Di iOS: Pengaturan, Aksesibilitas, Konten Lisan, Suara. Di Android: pengaturan suara di perangkat.'**
+  String get orangTuaSoundsTip;
+
+  /// Paragraf sumber Freesound
+  ///
+  /// In id, this message translates to:
+  /// **'Suara hewan dan efek suara diambil dari Freesound.org dengan lisensi CC0 (domain publik). Semuanya sudah dipotong dan volumenya disamakan untuk Moci.'**
+  String get orangTuaSoundsFreesound;
+
+  /// Paragraf suara pengganti
+  ///
+  /// In id, this message translates to:
+  /// **'Sebagian suara hewan adalah pengganti karena tidak ada rekaman CC0 yang cocok: orangutan memakai suara owa, dan beberapa hewan kecil memakai efek yang mirip.'**
+  String get orangTuaSoundsSwap;
+
+  /// Paragraf alat musik dan daftar lisensi
+  ///
+  /// In id, this message translates to:
+  /// **'Nada alat musik, yaitu xilofon dan drum, dibuat sendiri untuk Moci. Daftar lengkap sumber, pengunggah, dan tautannya ada di berkas LICENSES.csv pada folder assets/audio di repositori Moci.'**
+  String get orangTuaSoundsInstruments;
+
+  /// Tombol tutup dialog suara
+  ///
+  /// In id, this message translates to:
+  /// **'Tutup'**
+  String get orangTuaSoundsClose;
 
   /// Judul bilah atas layar huruf
   ///

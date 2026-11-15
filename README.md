@@ -32,6 +32,7 @@
 - [Dokumentasi](#dokumentasi)
 - [Brand & aset](#brand--aset)
 - [Roadmap](#roadmap)
+- [Suara](#suara)
 - [Lisensi](#lisensi)
 
 ---
@@ -208,7 +209,7 @@ Semua tangkapan layar diambil dari prototipe interaktif versi tablet (1180 × 82
 | Ilustrasi          | SVG, dirender `vector_graphics` dan dikompilasi saat build                                                           |
 | Tracing & mewarnai | Kanvas Flutter (`CustomPainter` + clip path). Coretan disimpan sebagai data, bukan foto                               |
 | Animasi            | Animasi bawaan Flutter, tanpa Lottie, Rive, atau video                                                               |
-| Suara              | `flutter_soloud`. TTS perangkat hanya untuk build debug dan profile                                                  |
+| Suara              | `flutter_soloud` untuk efek dan musik; narasi dibacakan TTS perangkat di semua build, termasuk rilis                 |
 | Teks               | gen-l10n dari `l10n/app_id.arb` dan `l10n/app_en.arb`                                                                |
 | Penyimpanan        | `shared_preferences` untuk pengaturan, berkas JSON di folder aplikasi untuk progres dan karya                        |
 | Jaringan           | Tidak ada di build rilis. Semua isi ikut di bundel                                                                    |
@@ -233,7 +234,7 @@ moci-app/
 │   ├── coloring/       # halaman mewarnai, stiker, krayon
 │   ├── illustrations/  # 111 SVG
 │   ├── fonts/          # Fredoka, Nunito, lisensi OFL
-│   └── audio/          # rekaman narasi, efek, musik, LICENSES.csv
+│   └── audio/          # suara hewan, instrumen, efek, LICENSES.csv
 ├── tool/               # validator isi, ekspor prototipe, build font
 ├── test/               # tes unit, widget, golden
 ├── integration_test/   # tiga skenario di perangkat
@@ -305,12 +306,21 @@ Semua aset brand final ada di [`docs/brand`](docs/brand), dalam format PNG dan S
 - [x] Ikon, logo, splash screen, dan aset GitHub
 - [ ] Tata letak versi HP untuk semua layar
 - [ ] Rekaman narasi Bahasa Indonesia & English
-- [ ] Suara hewan asli (CC0 dari Freesound atau rekaman sendiri)
+- [x] Suara hewan dari Freesound (47 berkas CC0; sebagian hewan memakai suara pengganti)
 - [ ] Pengenalan suara on-device untuk layar Ucapkan
 - [x] Aplikasi Flutter: shell, navigasi, penyimpanan lokal
 - [ ] Porting semua menu ke Flutter
 - [ ] Uji di perangkat (iPad, iPhone, HP dan tablet Android)
 - [x] Pemasangan langsung ke perangkat sendiri (`make install`); Moci tidak diterbitkan di App Store atau Play Store
+
+## Suara
+
+- **Narasi** dibacakan suara bawaan perangkat (text-to-speech), bukan rekaman. Logat dan nadanya mengikuti suara yang terpasang, jadi bisa berbeda antara iPad, iPhone, dan HP Android. Suara lain bisa dipasang di pengaturan perangkat: di iOS lewat Pengaturan, Aksesibilitas, Konten Lisan, Suara; di Android lewat pengaturan suara.
+- **Suara hewan dan efek suara** diambil dari [Freesound](https://freesound.org) dengan lisensi CC0 (domain publik), lalu dipotong dan volumenya disamakan. Sebagian hewan memakai suara pengganti karena tidak ada rekaman CC0 yang cocok: orangutan memakai suara owa, dan beberapa hewan kecil memakai efek yang mirip.
+- **Nada alat musik** (xilofon dan drum) dibuat sendiri untuk Moci lewat `tool/buat_instrumen.dart`.
+- **Sumber lengkap** tiap berkas, termasuk pengunggah dan tautannya, ada di [`assets/audio/LICENSES.csv`](assets/audio/LICENSES.csv): 47 berkas CC0 dari Freesound dan 12 nada alat musik milik sendiri.
+
+Rekaman narasi belum ada. Sampai rekaman Bahasa Indonesia dan English selesai, narasi tetap memakai TTS perangkat di semua build, termasuk rilis.
 
 ## Lisensi
 

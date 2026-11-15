@@ -206,6 +206,51 @@ class _OrangTuaScreenState extends ConsumerState<OrangTuaScreen> {
     }
   }
 
+  /// Keterangan suara: narasi TTS perangkat dan audio CC0 dari Freesound.
+  Future<void> _showSounds() {
+    final l10n = context.l10n;
+    return MociDialog.show<void>(
+      context,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(
+            l10n.orangTuaSoundsTitle,
+            style: MociText.title.copyWith(fontSize: 32, height: 1.1),
+          ),
+          const SizedBox(height: 12),
+          for (final paragraf in [
+            l10n.orangTuaSoundsTts,
+            l10n.orangTuaSoundsTip,
+            l10n.orangTuaSoundsFreesound,
+            l10n.orangTuaSoundsSwap,
+            l10n.orangTuaSoundsInstruments,
+          ])
+            Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: Text(
+                paragraf,
+                style: MociText.label.copyWith(
+                  fontSize: 19,
+                  height: 1.45,
+                  color: const Color(0xFF5B5480),
+                ),
+              ),
+            ),
+        ],
+      ),
+      actions: [
+        MociDialogButton(
+          label: l10n.orangTuaSoundsClose,
+          color: MociColors.white,
+          shadowColor: otShadow,
+          textColor: MociColors.ink,
+          onTap: _closeDialog,
+        ),
+      ],
+    );
+  }
+
   Future<void> _open(Uri uri) async {
     try {
       await launchUrl(uri, mode: LaunchMode.externalApplication);
@@ -388,6 +433,8 @@ class _OrangTuaScreenState extends ConsumerState<OrangTuaScreen> {
                       touch,
                     ),
                   ],
+                  const SizedBox(width: 12),
+                  _linkPill(l10n.orangTuaSounds, _showSounds, touch),
                 ],
               ),
             ),

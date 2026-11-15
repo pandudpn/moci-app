@@ -548,7 +548,7 @@
   "@orangTuaBadgeAds": {
     "description": "Lencana"
   },
-  "orangTuaBadgePurchases": "Tanpa pembelian dalam aplikasi",
+  "orangTuaBadgePurchases": "Tanpa pembelian",
   "@orangTuaBadgePurchases": {
     "description": "Lencana"
   },
@@ -583,6 +583,38 @@
   "orangTuaSupport": "Hubungi kami",
   "@orangTuaSupport": {
     "description": "Tautan surel dukungan"
+  },
+  "orangTuaSounds": "Tentang suara",
+  "@orangTuaSounds": {
+    "description": "Pil keterangan suara"
+  },
+  "orangTuaSoundsTitle": "Tentang suara di Moci",
+  "@orangTuaSoundsTitle": {
+    "description": "Judul dialog keterangan suara"
+  },
+  "orangTuaSoundsTts": "Narasi Moci dibacakan suara bawaan perangkat (text-to-speech), bukan rekaman. Logat dan nadanya mengikuti suara yang terpasang di iPad atau HP, jadi bisa berbeda di tiap perangkat.",
+  "@orangTuaSoundsTts": {
+    "description": "Paragraf narasi TTS"
+  },
+  "orangTuaSoundsTip": "Kalau ingin suara yang lebih jelas, pasang suara lain di pengaturan perangkat. Di iOS: Pengaturan, Aksesibilitas, Konten Lisan, Suara. Di Android: pengaturan suara di perangkat.",
+  "@orangTuaSoundsTip": {
+    "description": "Paragraf tip memasang suara TTS"
+  },
+  "orangTuaSoundsFreesound": "Suara hewan dan efek suara diambil dari Freesound.org dengan lisensi CC0 (domain publik). Semuanya sudah dipotong dan volumenya disamakan untuk Moci.",
+  "@orangTuaSoundsFreesound": {
+    "description": "Paragraf sumber Freesound"
+  },
+  "orangTuaSoundsSwap": "Sebagian suara hewan adalah pengganti karena tidak ada rekaman CC0 yang cocok: orangutan memakai suara owa, dan beberapa hewan kecil memakai efek yang mirip.",
+  "@orangTuaSoundsSwap": {
+    "description": "Paragraf suara pengganti"
+  },
+  "orangTuaSoundsInstruments": "Nada alat musik, yaitu xilofon dan drum, dibuat sendiri untuk Moci. Daftar lengkap sumber, pengunggah, dan tautannya ada di berkas LICENSES.csv pada folder assets/audio di repositori Moci.",
+  "@orangTuaSoundsInstruments": {
+    "description": "Paragraf alat musik dan daftar lisensi"
+  },
+  "orangTuaSoundsClose": "Tutup",
+  "@orangTuaSoundsClose": {
+    "description": "Tombol tutup dialog suara"
   },
   "hurufTitle": "Huruf",
   "@hurufTitle": {

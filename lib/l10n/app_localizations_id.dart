@@ -579,7 +579,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get orangTuaBadgeAds => 'Tanpa iklan';
 
   @override
-  String get orangTuaBadgePurchases => 'Tanpa pembelian dalam aplikasi';
+  String get orangTuaBadgePurchases => 'Tanpa pembelian';
 
   @override
   String get orangTuaBadgeOffline => 'Bisa offline';
@@ -605,6 +605,35 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get orangTuaSupport => 'Hubungi kami';
+
+  @override
+  String get orangTuaSounds => 'Tentang suara';
+
+  @override
+  String get orangTuaSoundsTitle => 'Tentang suara di Moci';
+
+  @override
+  String get orangTuaSoundsTts =>
+      'Narasi Moci dibacakan suara bawaan perangkat (text-to-speech), bukan rekaman. Logat dan nadanya mengikuti suara yang terpasang di iPad atau HP, jadi bisa berbeda di tiap perangkat.';
+
+  @override
+  String get orangTuaSoundsTip =>
+      'Kalau ingin suara yang lebih jelas, pasang suara lain di pengaturan perangkat. Di iOS: Pengaturan, Aksesibilitas, Konten Lisan, Suara. Di Android: pengaturan suara di perangkat.';
+
+  @override
+  String get orangTuaSoundsFreesound =>
+      'Suara hewan dan efek suara diambil dari Freesound.org dengan lisensi CC0 (domain publik). Semuanya sudah dipotong dan volumenya disamakan untuk Moci.';
+
+  @override
+  String get orangTuaSoundsSwap =>
+      'Sebagian suara hewan adalah pengganti karena tidak ada rekaman CC0 yang cocok: orangutan memakai suara owa, dan beberapa hewan kecil memakai efek yang mirip.';
+
+  @override
+  String get orangTuaSoundsInstruments =>
+      'Nada alat musik, yaitu xilofon dan drum, dibuat sendiri untuk Moci. Daftar lengkap sumber, pengunggah, dan tautannya ada di berkas LICENSES.csv pada folder assets/audio di repositori Moci.';
+
+  @override
+  String get orangTuaSoundsClose => 'Tutup';
 
   @override
   String get hurufTitle => 'Huruf';

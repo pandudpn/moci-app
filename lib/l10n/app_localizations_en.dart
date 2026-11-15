@@ -606,6 +606,35 @@ class AppLocalizationsEn extends AppLocalizations {
   String get orangTuaSupport => 'Contact us';
 
   @override
+  String get orangTuaSounds => 'About sounds';
+
+  @override
+  String get orangTuaSoundsTitle => 'About the sounds in Moci';
+
+  @override
+  String get orangTuaSoundsTts =>
+      'Moci talks with the device\'s built-in voice (text-to-speech), not with recordings. Accent and tone follow the voice installed on the iPad or phone, so they differ from device to device.';
+
+  @override
+  String get orangTuaSoundsTip =>
+      'For a clearer voice, install another one in the device settings. On iOS: Settings, Accessibility, Spoken Content, Voices. On Android: the device\'s voice settings.';
+
+  @override
+  String get orangTuaSoundsFreesound =>
+      'Animal sounds and sound effects come from Freesound.org under the CC0 license (public domain). All of them are trimmed and level-matched for Moci.';
+
+  @override
+  String get orangTuaSoundsSwap =>
+      'A few animal sounds are stand-ins because no matching CC0 recording exists: the orangutan uses a gibbon call, and some small animals use a similar effect.';
+
+  @override
+  String get orangTuaSoundsInstruments =>
+      'The instrument notes, namely xylophone and drums, are made for Moci. The full list of sources, uploaders and links is in the LICENSES.csv file in the assets/audio folder of the Moci repository.';
+
+  @override
+  String get orangTuaSoundsClose => 'Close';
+
+  @override
   String get hurufTitle => 'Letters';
 
   @override
