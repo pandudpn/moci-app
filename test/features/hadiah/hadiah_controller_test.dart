@@ -43,7 +43,7 @@ ProviderContainer _container({
   return container;
 }
 
-/// Tema yang diharapkan per stiker, dari tabel master inventaris-konten.md.
+/// Tema yang diharapkan per stiker, sesuai katalog prototipe.
 const _temaDiharapkan = {
   'kucing': 'hewan',
   'ikan': 'hewan',

@@ -62,6 +62,5 @@ Keputusan tambahan per 14 November 2026: Ucapkan v1 memakai mikrofon dengan peng
 | [DESIGN-SYSTEM.md](DESIGN-SYSTEM.md) | Warna, huruf, ukuran, gerak, komponen |
 | [CONTENT-ASSETS.md](CONTENT-ASSETS.md) | Ilustrasi, katalog JSON, narasi, suara, cara menambah isi |
 | [PRIVACY-RELEASE.md](PRIVACY-RELEASE.md) | Privasi, izin, kategori anak di toko aplikasi, alur rilis |
-| [superpowers/plans/](superpowers/plans/) | Rencana implementasi dan roadmap |
-| [design/](design/) | Snapshot prototipe interaktif dan inventaris konten |
+| [design/](design/) | Snapshot prototipe interaktif |
 | [audio/SUARA-HEWAN.md](audio/SUARA-HEWAN.md) | Panduan sumber dan lisensi suara hewan |

@@ -20,9 +20,7 @@ Moci adalah aplikasi belajar dan bermain untuk anak 2–7 tahun: offline penuh, 
 | `SYSTEM_DESIGN.md` | Data tersimpan, pengatur waktu, audio, mikrofon, pipeline konten, platform, CI |
 | `DESIGN.md` | Token, komponen, panggung tablet dan HP, gerak, aksesibilitas |
 | `CONTRIBUTING.md` | Alur kerja, gaya commit, checklist PR |
-| `docs/superpowers/plans/` | Rencana implementasi dan roadmap |
 | `docs/design/prototype/` | Snapshot beku prototipe interaktif |
-| `docs/design/notes/inventaris-konten.md` | Inventaris isi hasil ekspor prototipe |
 | `docs/audio/SUARA-HEWAN.md` | Sumber dan lisensi suara hewan |
 
 ## 3. Perintah

@@ -280,7 +280,6 @@ Tanpa `DEVICE`, perangkat fisik pertama dipakai, iOS lebih dulu. `DEVICE=<UDID s
 | [DESIGN.md](DESIGN.md) | Token, komponen, panggung tablet dan HP, gerak, aksesibilitas |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | Alur kerja, gaya commit, checklist PR |
 | [docs/README.md](docs/README.md) | Ringkasan proyek, keputusan, dan peta dokumentasi |
-| [docs/superpowers/plans/](docs/superpowers/plans/) | Rencana implementasi dan roadmap |
 
 Salinan spec ada di [`docs/PRD.md`](docs/PRD.md), [`docs/TECH-SPEC.md`](docs/TECH-SPEC.md), [`docs/DESIGN-SYSTEM.md`](docs/DESIGN-SYSTEM.md), [`docs/CONTENT-ASSETS.md`](docs/CONTENT-ASSETS.md), dan [`docs/PRIVACY-RELEASE.md`](docs/PRIVACY-RELEASE.md).
 

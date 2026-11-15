@@ -216,7 +216,7 @@ Snapshot ada di `docs/design/prototype/`: 40 artboard `*.dc.html` dan `canvas.js
 2. Teks diambil dari objek `T` di skrip artboard. Salin persis ke ARB, dalam ID dan EN, dengan kunci `<layar><KunciT>`.
 3. Warna latar dan bayangan dicocokkan ke `MenuTheme`. Kalau belum ada, tambah nilai enum, jangan menulis warna langsung di layar.
 4. Ukuran dan jarak diambil dari gaya elemen di artboard, lalu dibandingkan dengan `MociSize`. Angka yang berulang naik menjadi token.
-5. Data isi, bukan tata letak, diambil dari fungsi `data()` di artboard. Hasil ekspornya sudah ada di `assets/content/`, dan rincian per dataset ada di `docs/design/notes/inventaris-konten.md`.
+5. Data isi, bukan tata letak, diambil dari fungsi `data()` di artboard. Hasil ekspornya sudah ada di `assets/content/`, dan katalog JSON itulah sumber kebenaran isi.
 
 ## 8. Keputusan desain
 

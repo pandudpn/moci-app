@@ -61,6 +61,8 @@ android/key.properties
 
 # Catatan kerja lokal
 .superpowers/
+docs/superpowers/
+docs/design/notes/
 
 # FVM Version Cache
 .fvm/
