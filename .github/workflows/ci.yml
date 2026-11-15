@@ -16,7 +16,8 @@ jobs:
           channel: stable
           cache: true
       - name: Cek versi Flutter terkunci
-        run: grep -q '"flutter": "3.50.0"' .fvmrc
+        run: |
+          grep -q '"flutter": "3.50.0"' .fvmrc
       - run: flutter pub get
       - run: dart format --output=none --set-exit-if-changed lib test tool integration_test
       - run: flutter analyze
@@ -33,6 +34,7 @@ jobs:
           channel: stable
           cache: true
       - name: Cek versi Flutter terkunci
-        run: grep -q '"flutter": "3.50.0"' .fvmrc
+        run: |
+          grep -q '"flutter": "3.50.0"' .fvmrc
       - run: flutter pub get
       - run: flutter test --tags golden
