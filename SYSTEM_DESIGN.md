@@ -184,9 +184,9 @@ Ukuran sekarang: ilustrasi 452 KB, font 320 KB, dan audio 1,9 MB (42 suara hewan
 - `test` di Ubuntu: cek versi Flutter 3.50 di `.fvmrc`, `flutter pub get`, `dart format --output=none --set-exit-if-changed .`, `flutter analyze`, `dart run tool/validate_content.dart`, lalu `flutter test --exclude-tags golden`.
 - `golden` di macOS: `flutter pub get` dan `flutter test --tags golden`.
 
-`.github/workflows/release.yml` (nama Rilis) hanya jalan manual dari main lewat `workflow_dispatch`, dengan pilihan `patch`, `minor`, atau `major`. Tujuannya sideload, bukan toko: AAB dan APK bertanda tangan untuk Android, IPA tanpa tanda tangan untuk iOS. Empat job:
+`.github/workflows/release.yml` (nama Release) hanya jalan manual dari main lewat `workflow_dispatch`, dengan pilihan `patch`, `minor`, atau `major`. Tujuannya sideload, bukan toko: AAB dan APK bertanda tangan untuk Android, IPA tanpa tanda tangan untuk iOS. Empat job:
 
-- `versi`: analyze, tes tanpa golden, dan validator isi dijalankan dulu supaya main yang rusak tidak pernah dirilis. Setelah hijau, `tool/rilis/naikkan_versi.dart` menaikkan versi di `pubspec.yaml` (nomor build selalu naik satu), lalu commit `chore(rilis): v<x.y.z>` dan tag `v<x.y.z>` di-push. Workflow tidak terpicu oleh push, jadi tidak ada lingkaran.
+- `versi`: analyze, tes tanpa golden, dan validator isi dijalankan dulu supaya main yang rusak tidak pernah dirilis. Setelah hijau, `tool/rilis/naikkan_versi.dart` menaikkan versi di `pubspec.yaml` (nomor build selalu naik satu), lalu commit `chore(release): v<x.y.z>` dan tag `v<x.y.z>` di-push. Workflow tidak terpicu oleh push, jadi tidak ada lingkaran.
 - `android`: checkout di tag itu, JDK 17, lalu `flutter build appbundle --release` dan `flutter build apk --release` (satu APK universal). Berkas dinamai `moci-<versi>.aab` dan `moci-<versi>.apk`. `apksigner verify --print-certs` menggagalkan job kalau APK masih bertanda tangan debug.
 - `ios`: macOS, `flutter build ios --release --no-codesign`, lalu `Runner.app` di dalam `Payload/` di-zip menjadi `moci-<versi>.ipa`.
 - `rilis`: ketiga berkas diunggah ke GitHub Releases bersama catatan pemasangan singkat.

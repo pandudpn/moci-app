@@ -6,8 +6,8 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
-// Kunci rilis tinggal di android/key.properties (ditolak .gitignore). Tanpa berkas
-// itu, build memakai kunci debug supaya `make install` tetap jalan.
+// The release key lives in android/key.properties (gitignored). Without that
+// file the build falls back to the debug key so `make install` still works.
 val kunciRilis = Properties()
 val berkasKunciRilis = rootProject.file("key.properties")
 if (berkasKunciRilis.exists()) {

@@ -1,18 +1,18 @@
-# Rilis manual: naikkan versi, build AAB/APK bertanda tangan dan IPA tanpa
-# tanda tangan, lalu terbitkan sebagai GitHub Release.
+# Manual release: bump the version, build a signed AAB/APK and an unsigned
+# IPA, then publish them as a GitHub Release.
 #
-#   gh workflow run Rilis -f bump_type=patch
+#   gh workflow run Release -f bump_type=patch
 #
-# Hanya jalan dari main lewat workflow_dispatch, jadi push `chore(rilis)` yang
-# dihasilkan workflow ini tidak memicunya lagi. Sebelum versi dinaikkan, tes di
-# main dijalankan dulu supaya commit rusak tidak pernah dirilis.
-name: Rilis
+# It only runs from main through workflow_dispatch, so the `chore(release)`
+# push this workflow creates does not trigger it again. Tests on main run
+# first, before the version bump, so a broken commit is never released.
+name: Release
 
 on:
   workflow_dispatch:
     inputs:
       bump_type:
-        description: Jenis kenaikan versi
+        description: Version bump type
         required: true
         type: choice
         options:
@@ -30,7 +30,7 @@ permissions:
 
 jobs:
   versi:
-    name: Versi
+    name: Version
     if: github.ref_name == 'main'
     runs-on: ubuntu-latest
     outputs:
@@ -43,14 +43,14 @@ jobs:
           flutter-version: 3.50.0
           channel: stable
           cache: true
-      - name: Cek versi Flutter terkunci
+      - name: Check pinned Flutter version
         run: |
           grep -q '"flutter": "3.50.0"' .fvmrc
       - run: flutter pub get
       - run: flutter analyze
       - run: flutter test --exclude-tags golden
       - run: dart run tool/validate_content.dart
-      - name: Naikkan versi
+      - name: Bump version
         id: naik
         run: |
           set -euo pipefail
@@ -59,7 +59,7 @@ jobs:
           echo "versi=$versi" >> "$GITHUB_OUTPUT"
           echo "tag=$tag" >> "$GITHUB_OUTPUT"
           echo "$tag ($versi)"
-      - name: Commit dan tag
+      - name: Commit and tag
         env:
           VERSI: ${{ steps.naik.outputs.versi }}
           TAG: ${{ steps.naik.outputs.tag }}
@@ -68,7 +68,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add pubspec.yaml
-          git commit -m "chore(rilis): $TAG"
+          git commit -m "chore(release): $TAG"
           git tag "$TAG"
           git push origin HEAD:main
           git push origin "$TAG"
@@ -92,9 +92,9 @@ jobs:
           channel: stable
           cache: true
       - run: flutter pub get
-      # Rahasia hanya ditulis ke $RUNNER_TEMP dan android/key.properties, dua
-      # duanya di luar commit dan di luar artifact.
-      - name: Siapkan kunci rilis
+      # Secrets are only written to $RUNNER_TEMP and android/key.properties,
+      # both outside the commit and outside the artifact.
+      - name: Set up release key
         env:
           KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
           STORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
@@ -109,19 +109,19 @@ jobs:
             printf 'keyAlias=%s\n' "$KEY_ALIAS"
             printf 'storeFile=%s\n' "$RUNNER_TEMP/moci-release.jks"
           } > android/key.properties
-      - name: Build AAB dan APK
+      - name: Build AAB and APK
         env:
           VERSI: ${{ needs.versi.outputs.versi }}
         run: |
           set -euo pipefail
-          # Sisa integration test bisa mendaftarkan plugin tes di build release.
+          # Leftover integration tests can register test plugins in a release build.
           rm -f android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java
           flutter build appbundle --release
           flutter build apk --release
           mkdir -p dist
           cp build/app/outputs/bundle/release/app-release.aab "dist/moci-$VERSI.aab"
           cp build/app/outputs/flutter-apk/app-release.apk "dist/moci-$VERSI.apk"
-      - name: Pastikan APK bertanda tangan rilis
+      - name: Verify the APK is release-signed
         env:
           VERSI: ${{ needs.versi.outputs.versi }}
         run: |
@@ -129,7 +129,7 @@ jobs:
           apksigner="$(ls "$ANDROID_HOME"/build-tools/*/apksigner | sort -V | tail -1)"
           "$apksigner" verify --print-certs "dist/moci-$VERSI.apk" | tee certs.txt
           if grep -q 'Android Debug' certs.txt; then
-            echo "APK masih bertanda tangan debug" >&2
+            echo "APK is still debug-signed" >&2
             exit 1
           fi
       - uses: actions/upload-artifact@v4
@@ -153,7 +153,7 @@ jobs:
           channel: stable
           cache: true
       - run: flutter pub get
-      - name: Build IPA tanpa tanda tangan
+      - name: Build unsigned IPA
         env:
           VERSI: ${{ needs.versi.outputs.versi }}
         run: |
@@ -173,7 +173,7 @@ jobs:
           if-no-files-found: error
 
   rilis:
-    name: Rilis
+    name: Release
     needs: [versi, android, ios]
     if: github.ref_name == 'main'
     runs-on: ubuntu-latest
@@ -182,23 +182,23 @@ jobs:
         with:
           path: dist
           merge-multiple: true
-      - name: Terbitkan rilis
+      - name: Publish release
         env:
           GH_TOKEN: ${{ github.token }}
-          # Job ini tidak checkout, jadi repo harus disebut langsung.
+          # This job does not check out the repo, so GH_REPO has to be set.
           GH_REPO: ${{ github.repository }}
           VERSI: ${{ needs.versi.outputs.versi }}
           TAG: ${{ needs.versi.outputs.tag }}
         run: |
           set -euo pipefail
           cat > catatan.md <<EOF
-          Rilis Moci $TAG.
+          Release Moci $TAG.
 
-          - \`moci-$VERSI.apk\` untuk HP dan tablet Android. Pasang langsung, izinkan "instal dari sumber tidak dikenal" saat diminta.
-          - \`moci-$VERSI.ipa\` untuk iPad dan iPhone. Pasang lewat Sideloadly atau AltStore dengan Apple ID sendiri.
-          - \`moci-$VERSI.aab\` hanya untuk Google Play, tidak bisa dipasang langsung.
+          - \`moci-$VERSI.apk\` for Android phones and tablets. Install it directly, and allow "install from unknown sources" when asked.
+          - \`moci-$VERSI.ipa\` for iPhone and iPad. Install it through Sideloadly or AltStore with your own Apple ID.
+          - \`moci-$VERSI.aab\` is for Google Play only and cannot be installed directly.
 
-          IPA tidak bertanda tangan. Dengan akun Apple gratis, aplikasi berhenti terbuka setelah 7 hari dan perlu ditandatangani ulang; dengan Apple Developer Program, masa berlakunya 1 tahun.
+          The IPA is unsigned. With a free Apple account the app stops opening after 7 days and must be signed again; with an Apple Developer Program membership it stays valid for 1 year.
           EOF
           gh release create "$TAG" \
             "dist/moci-$VERSI.aab" \

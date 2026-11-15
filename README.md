@@ -214,7 +214,7 @@ Semua tangkapan layar diambil dari prototipe interaktif versi tablet (1180 × 82
 | Penyimpanan        | `shared_preferences` untuk pengaturan, berkas JSON di folder aplikasi untuk progres dan karya                        |
 | Jaringan           | Tidak ada di build rilis. Semua isi ikut di bundel                                                                    |
 | Pemeriksaan        | Analyze, cek format, validator isi, dan tes tanpa golden di Linux; golden di macOS. Semuanya lewat GitHub Actions      |
-| Build & rilis      | Workflow Rilis manual: naikkan versi, build AAB dan APK bertanda tangan serta IPA tanpa tanda tangan, lalu terbit di GitHub Releases |
+| Build & rilis      | Workflow Release manual: naikkan versi, build AAB dan APK bertanda tangan serta IPA tanpa tanda tangan, lalu terbit di GitHub Releases |
 
 Target: ukuran aplikasi di bawah 30 MB dan animasi 60 fps, termasuk di tablet Android kelas bawah.
 

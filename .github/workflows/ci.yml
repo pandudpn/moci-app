@@ -15,7 +15,7 @@ jobs:
           flutter-version: 3.50.0
           channel: stable
           cache: true
-      - name: Cek versi Flutter terkunci
+      - name: Check pinned Flutter version
         run: |
           grep -q '"flutter": "3.50.0"' .fvmrc
       - run: flutter pub get
@@ -33,7 +33,7 @@ jobs:
           flutter-version: 3.50.0
           channel: stable
           cache: true
-      - name: Cek versi Flutter terkunci
+      - name: Check pinned Flutter version
         run: |
           grep -q '"flutter": "3.50.0"' .fvmrc
       - run: flutter pub get

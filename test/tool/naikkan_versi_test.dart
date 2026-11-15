@@ -4,23 +4,23 @@ import '../../tool/rilis/naikkan_versi.dart';
 
 void main() {
   group('naikkanVersi', () {
-    test('patch menaikkan z dan nomor build', () {
+    test('patch raises z and bumps the build number', () {
       expect(naikkanVersi('1.2.3+7', Naik.patch), '1.2.4+8');
     });
 
-    test('minor menaikkan y, memulangkan z, dan nomor build', () {
+    test('minor raises y, resets z, bumps build number', () {
       expect(naikkanVersi('1.2.3+7', Naik.minor), '1.3.0+8');
     });
 
-    test('major menaikkan x, memulangkan y dan z, dan nomor build', () {
+    test('major raises x, resets y and z, bumps build number', () {
       expect(naikkanVersi('1.2.3+7', Naik.major), '2.0.0+8');
     });
 
-    test('versi tanpa nomor build mulai dari 1', () {
+    test('a version without a build number starts at 1', () {
       expect(naikkanVersi('3.4.5', Naik.patch), '3.4.6+1');
     });
 
-    test('versi cacat ditolak', () {
+    test('malformed versions are rejected', () {
       for (final cacat in ['1.2', 'a.b.c+1', '1.2.3.4', 'v1.2.3+1', '']) {
         expect(
           () => naikkanVersi(cacat, Naik.patch),
@@ -32,13 +32,13 @@ void main() {
   });
 
   group('Naik.dari', () {
-    test('mengenali ketiga jenis', () {
+    test('recognises all three types', () {
       expect(Naik.dari('patch'), Naik.patch);
       expect(Naik.dari('minor'), Naik.minor);
       expect(Naik.dari('major'), Naik.major);
     });
 
-    test('menolak nama lain', () {
+    test('rejects any other name', () {
       expect(() => Naik.dari('mayor'), throwsFormatException);
     });
   });
@@ -48,18 +48,18 @@ void main() {
 name: moci
 version: 1.0.0+1
 
-# version: komentar tidak diubah
+# version: this comment is not changed
 dependency_overrides:
 ''';
 
-    test('hanya mengganti baris version', () {
+    test('replaces only the version line', () {
       final hasil = gantiVersiPubspec(pubspec, '1.0.1+2');
       expect(hasil, contains('\nversion: 1.0.1+2\n'));
-      expect(hasil, contains('# version: komentar tidak diubah'));
+      expect(hasil, contains('# version: this comment is not changed'));
       expect(hasil, isNot(contains('version: 1.0.0+1')));
     });
 
-    test('pubspec tanpa baris version ditolak', () {
+    test('a pubspec without a version line is rejected', () {
       expect(
         () => gantiVersiPubspec('name: moci\n', '1.0.1+2'),
         throwsFormatException,
