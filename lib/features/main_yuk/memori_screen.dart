@@ -169,6 +169,7 @@ class _MemoriScreenState extends ConsumerState<MemoriScreen>
         setState(() {});
         _selesaikanRonde();
       case MemoriStep.salah:
+        ref.read(audioServiceProvider).playSfx(Sfx.salahLembut);
         _tutupTimer?.cancel();
         _tutupTimer = Timer(_tutupJeda, () {
           if (!mounted) return;

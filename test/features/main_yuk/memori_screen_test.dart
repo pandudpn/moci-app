@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:moci/app/moci_app.dart';
+import 'package:moci/core/audio/sfx.dart';
 import 'package:moci/core/progress/progress.dart';
 import 'package:moci/core/progress/progress_controller.dart';
 import 'package:moci/features/hadiah/hebat_screen.dart';
@@ -122,6 +123,17 @@ void main() {
     expect(_label(t, b), labelB);
 
     // Biarkan penutup otomatis selesai sebelum tes berakhir.
+    await t.pump(const Duration(milliseconds: 1000));
+  });
+
+  testWidgets('pasangan salah memutar bunyi oops', (t) async {
+    final env = TestEnv(assets: {for (final s in Sfx.values) s.asset});
+    await _buka(t, env: env);
+    await _pasanganSalah(t, env, 8);
+    expect(
+      env.audio.plays.where((p) => p.asset == Sfx.salahLembut.asset),
+      hasLength(1),
+    );
     await t.pump(const Duration(milliseconds: 1000));
   });
 
