@@ -541,7 +541,7 @@ class _WarnaScreenState extends ConsumerState<WarnaScreen>
             if (kartu.gambarId != null)
               MociIllustration(kartu.gambarId!, size: 120)
             else
-              _bentuk(kartu.bentuk!),
+              _bentuk(kartu),
             if (ketemu)
               Positioned(
                 right: -10,
@@ -580,10 +580,18 @@ class _WarnaScreenState extends ConsumerState<WarnaScreen>
     return isi;
   }
 
-  Widget _bentuk(WarnaBentuk bentuk) {
-    final fill = _hex(_entry.hex);
-    final line = _hex(_entry.garis);
-    return switch (bentuk) {
+  /// Warna milik kartu, bukan warna target: kartu pengecoh harus terlihat
+  /// sebagai warna lain supaya ketukan yang benar tidak dianggap salah.
+  WarnaEntry _warnaKartu(WarnaKartu kartu) => _katalog.warna.firstWhere(
+    (w) => w.id == kartu.warna,
+    orElse: () => _entry,
+  );
+
+  Widget _bentuk(WarnaKartu kartu) {
+    final warna = _warnaKartu(kartu);
+    final fill = _hex(warna.hex);
+    final line = _hex(warna.garis);
+    return switch (kartu.bentuk!) {
       WarnaBentuk.balon => SizedBox(
         width: 92,
         height: 120,
@@ -610,7 +618,7 @@ class _WarnaScreenState extends ConsumerState<WarnaScreen>
       WarnaBentuk.bintang => context.l10n.warnaBintang,
       WarnaBentuk.hati => context.l10n.warnaHati,
     };
-    return '$bentuk ${_nama.toLowerCase()}';
+    return '$bentuk ${_warnaKartu(kartu).nama.of(_lang).toLowerCase()}';
   }
 
   Widget _bilah(AppLocalizations l10n, String nama) {

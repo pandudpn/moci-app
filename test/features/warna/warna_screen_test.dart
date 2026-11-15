@@ -2,7 +2,10 @@ import 'dart:math';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:moci/app/moci_app.dart';
+import 'package:moci/core/audio/sfx.dart';
+import 'package:moci/core/content/katalog.dart';
 import 'package:moci/core/lang.dart';
 import 'package:moci/core/prefs/prefs_controller.dart';
 import 'package:moci/features/warna/warna_game.dart';
@@ -16,8 +19,10 @@ ProviderContainer _container(WidgetTester t) =>
 
 WarnaSet _setMerah() => buatWarnaSet(katalogUji(), 'merah', Random(7));
 
-TestEnv _env() =>
-    TestEnv(extraOverrides: [warnaRandomProvider.overrideWithValue(Random(7))]);
+TestEnv _env({bool suara = false}) => TestEnv(
+  assets: suara ? {for (final s in Sfx.values) s.asset} : const {},
+  extraOverrides: [warnaRandomProvider.overrideWithValue(Random(7))],
+);
 
 Future<void> _open(
   WidgetTester t, {
@@ -26,6 +31,31 @@ Future<void> _open(
 }) async {
   await pumpApp(t, env: env, initialLocation: lokasi);
   await t.pump(const Duration(milliseconds: 600));
+}
+
+Color _warnaHex(String hex) =>
+    Color(0xFF000000 | int.parse(hex.replaceFirst('#', ''), radix: 16));
+
+WarnaEntry _entriWarna(String id) =>
+    katalogUji().warna.firstWhere((w) => w.id == id);
+
+/// Warna isi kartu bentuk yang sedang dilukis; null untuk kartu gambar.
+Color? _lukisan(WidgetTester t, String id) {
+  final cat = find.descendant(
+    of: find.byKey(WarnaScreen.kartuKey(id)),
+    matching: find.byType(CustomPaint),
+  );
+  for (final lukis in t.widgetList<CustomPaint>(cat)) {
+    final painter = lukis.painter;
+    if (painter == null) continue;
+    try {
+      final fill = (painter as dynamic).fill;
+      if (fill is Color) return fill;
+    } on NoSuchMethodError {
+      continue;
+    }
+  }
+  return null;
 }
 
 void main() {
@@ -126,5 +156,58 @@ void main() {
     expect(find.text('RED'), findsWidgets);
     expect(find.text('Pick a color'), findsOneWidget);
     expect(find.byKey(WarnaScreen.chipKey('merah')), findsOneWidget);
+  });
+
+  testWidgets('kartu bentuk dilukis dengan warna kartunya sendiri', (t) async {
+    final set = _setMerah();
+    await _open(t, env: _env());
+    final bentuk = set.kartu.where((k) => k.bentuk != null).toList();
+    expect(bentuk, isNotEmpty);
+    for (final kartu in bentuk) {
+      expect(
+        _lukisan(t, kartu.id),
+        _warnaHex(_entriWarna(kartu.warna).hex),
+        reason: kartu.id,
+      );
+    }
+  });
+
+  testWidgets('kartu yang tampak merah tidak pernah dianggap salah', (t) async {
+    final set = _setMerah();
+    final env = _env(suara: true);
+    await _open(t, env: env);
+    final merah = _warnaHex(_entriWarna('merah').hex);
+    final tampakMerah = [
+      for (final kartu in set.kartu)
+        if (kartu.gambarId != null
+            ? kartu.warna == 'merah'
+            : _lukisan(t, kartu.id) == merah)
+          kartu.id,
+    ];
+    expect(tampakMerah.length, set.total);
+    for (final id in tampakMerah) {
+      await t.tap(find.byKey(WarnaScreen.kartuKey(id)));
+      await t.pump();
+      await t.pump(const Duration(milliseconds: 500));
+    }
+    expect(
+      env.audio.plays.where((p) => p.asset == Sfx.salahLembut.asset),
+      isEmpty,
+    );
+    expect(find.text('${set.total} / ${set.total}'), findsOneWidget);
+  });
+
+  testWidgets('kartu bukan merah memutar efek salah lembut', (t) async {
+    final set = _setMerah();
+    final env = _env(suara: true);
+    await _open(t, env: env);
+    final lain = set.kartu.firstWhere((k) => k.warna != 'merah');
+    expect(env.audio.preloaded, contains(Sfx.salahLembut.asset));
+    await t.tap(find.byKey(WarnaScreen.kartuKey(lain.id)));
+    await t.pump();
+    expect(
+      env.audio.plays.where((p) => p.asset == Sfx.salahLembut.asset).length,
+      1,
+    );
   });
 }
