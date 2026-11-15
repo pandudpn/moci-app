@@ -276,5 +276,11 @@ Future<GoRouter> pumpApp(
     await t.pump();
     await t.pump();
   }
+  // Aset isi dibaca lewat rootBundle. Beri satu putaran event loop nyata
+  // supaya FutureProvider-nya selesai sebelum tes memeriksa layar.
+  await t.runAsync(
+    () => Future<void>.delayed(const Duration(milliseconds: 20)),
+  );
+  await t.pump();
   return router;
 }

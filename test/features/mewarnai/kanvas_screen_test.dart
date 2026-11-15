@@ -17,8 +17,10 @@ Future<void> _buka(
   String halaman = 'kupu',
 }) async {
   await pumpApp(t, env: env, initialLocation: '/mewarnai/$halaman');
-  // pumpApp hanya memompa dua frame: halaman masih di tengah transisi masuk.
+  // pumpApp hanya memompa dua frame: halaman masih di tengah transisi masuk,
+  // dan aset mewarnai perlu satu frame lagi setelah dibaca.
   await t.pump(const Duration(milliseconds: 600));
+  await t.pump();
 }
 
 bool _bisaBatal(WidgetTester t) =>
@@ -56,6 +58,21 @@ void main() {
     expect((json!['isian'] as Map).values, contains('#FF4B4B'));
   });
 
+  testWidgets('halaman kota: isi satu bagian tidak mengubah bagian lain', (
+    t,
+  ) async {
+    final env = TestEnv();
+    await _buka(t, env: env, halaman: 'kota-gedung');
+    expect(find.text('Gedung Kota'), findsOneWidget);
+    await t.tap(find.byKey(KanvasScreen.toolKey(AlatMewarnai.isi)));
+    await t.pump();
+    // Titik tengah matahari; bagian lain di halaman ini tetap putih.
+    await t.tapAt(_kanvas(t, 700, 92));
+    await t.pump(const Duration(milliseconds: 700));
+    final json = await env.json.read('draf/kota-gedung.json');
+    final isian = (json!['isian'] as Map).cast<String, Object?>();
+    expect(isian, {'1': '#74C0FC'});
+  });
   testWidgets('batal mengembalikan isian dan mulai lagi bisa dibatalkan', (
     t,
   ) async {
