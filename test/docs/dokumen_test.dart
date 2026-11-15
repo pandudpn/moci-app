@@ -138,7 +138,7 @@ void main() {
   group('LICENSE', () {
     test('diawali pernyataan hak cipta pemilik', () {
       final s = File('LICENSE').readAsStringSync();
-      expect(s.startsWith('Hak cipta (c) 2026'), isTrue);
+      expect(s.startsWith('Copyright (c) 2026'), isTrue);
       expect(s, contains('Open Font License'));
     });
   });
@@ -197,7 +197,7 @@ void main() {
 
     test('mencantumkan status aplikasi Flutter sebagai selesai', () {
       final s = File('README.md').readAsStringSync();
-      expect(s, contains('- [x] Aplikasi Flutter: shell, navigasi'));
+      expect(s, contains('- [x] Flutter app: shell, navigation'));
     });
   });
 
