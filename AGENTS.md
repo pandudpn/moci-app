@@ -75,7 +75,7 @@ Semua perintah Flutter lewat FVM.
 ## 7. Git
 
 - Kerja di branch fitur, lalu buka PR ke `main`. Jangan push langsung ke `main`.
-- Satu commit per task, gaya `feat(area): ringkasan` atau `docs: ringkasan`.
+- Satu commit per task, gaya `feat(area): summary` atau `docs: summary`. Commit, komentar kode, dan teks workflow dalam Bahasa Inggris.
 - Sebelum commit: format, analyze, tes, dan validator.
 
 ## 8. Jangan

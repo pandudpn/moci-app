@@ -24,9 +24,9 @@ fvm flutter pub get
 
 ## 3. Gaya commit
 
-- Satu baris judul dengan bentuk `<jenis>(<area>): <ringkasan>`. Contoh: `feat(konten): daftar narasi dari katalog dan ARB`.
-- Jenis yang dipakai: `feat`, `fix`, `test`, `docs`, `chore`, `refactor`.
-- Ringkasan dalam Bahasa Indonesia, huruf kecil di awal, tanpa titik di akhir.
+- Satu baris judul dengan bentuk `<jenis>(<area>): <ringkasan>`. Contoh: `feat(content): build narration list from catalog and ARB`.
+- Jenis yang dipakai: `feat`, `fix`, `test`, `docs`, `chore`, `refactor`, `ci`, `build`.
+- Judul, isi commit, komentar kode, dan teks workflow CI ditulis dalam Bahasa Inggris, huruf kecil di awal judul, tanpa titik di akhir.
 - Satu commit berisi satu perubahan yang bisa dijelaskan sendiri.
 
 ## 4. TDD dan tes
