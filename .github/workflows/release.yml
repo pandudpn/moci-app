@@ -185,6 +185,8 @@ jobs:
       - name: Terbitkan rilis
         env:
           GH_TOKEN: ${{ github.token }}
+          # Job ini tidak checkout, jadi repo harus disebut langsung.
+          GH_REPO: ${{ github.repository }}
           VERSI: ${{ needs.versi.outputs.versi }}
           TAG: ${{ needs.versi.outputs.tag }}
         run: |
