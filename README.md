@@ -41,7 +41,7 @@
 
 Moci is a play and learning companion for early childhood. Its mascot, Moci, is a small round yellow creature with a leaf sprout on its head, and appears on every screen: it greets the child by name, gives hints by voice, and celebrates every success.
 
-Kids trace letters and numbers, count, read syllables and sentences, explore animals, fruit, colours, shapes and music, play six mini games, and colour pictures without ever going outside the lines. The design and the interactive prototype are done, the Flutter foundation is in place (shell, navigation, local storage, audio, two languages), the content pipeline is complete, and the menus are being built one at a time.
+Kids trace letters and numbers, count, read syllables and sentences, explore animals, fruit, colours, shapes and music, play six mini games, and colour pictures without ever going outside the lines. Every menu is playable, in Bahasa Indonesia and English.
 
 Principles that hold on every screen:
 
