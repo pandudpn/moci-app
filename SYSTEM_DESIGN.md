@@ -1,42 +1,42 @@
-# Sistem berjalan Moci
+# Moci running system
 
-Dokumen ini menjelaskan perilaku sistem saat aplikasi berjalan: batas privasi, data yang tersimpan, pengatur waktu, audio, mikrofon, pipeline konten, konfigurasi platform, anggaran, dan rilis. Rencana teknis lengkap ada di [TECH-SPEC](docs/TECH-SPEC.md), kewajiban store ada di [PRIVACY-RELEASE](docs/PRIVACY-RELEASE.md), dan aturan isi ada di [CONTENT-ASSETS](docs/CONTENT-ASSETS.md).
+This document explains how the system behaves while the app runs: privacy boundaries, stored data, the play timer, audio, the microphone, the content pipeline, platform configuration, budgets, and release. The full technical plan is in [TECH-SPEC](docs/TECH-SPEC.md), store obligations are in [PRIVACY-RELEASE](docs/PRIVACY-RELEASE.md), and content rules are in [CONTENT-ASSETS](docs/CONTENT-ASSETS.md).
 
-## 1. Batas privasi dan offline
+## 1. Privacy and offline boundaries
 
-- Tidak ada server, akun, iklan, analytics, atau crash reporting. Tidak ada satu pun paket yang mengirim data.
-- Manifest rilis Android hanya meminta `RECORD_AUDIO` untuk Ucapkan, dan tidak meminta INTERNET. Semua isi ikut di bundel: katalog, tracing, halaman mewarnai, ilustrasi, dan nanti audio.
-- Data anak hanya di folder aplikasi. `android:allowBackup="false"` mematikan cadangan Android, dan folder `<application support>/moci` ditandai `isExcludedFromBackup` di iOS lewat kanal `moci/backup`. Karena itu, data tidak pindah saat ganti perangkat.
-- Debug dan profile tetap memakai INTERNET untuk hot reload, jadi izin itu hanya ada di manifest debug dan profile.
-- Satu-satunya izin sistem adalah mikrofon untuk Ucapkan, ditambahkan di Rencana 03 bersama dua alasan izin di iOS. Rilis juga membawa satu izin milik aplikasi sendiri yang disuntikkan androidx.core, `id.pandudpn.moci.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION`. Rinciannya di bagian 5 dan 7.
+- No server, account, ads, analytics, or crash reporting. Not a single package sends data.
+- The Android release manifest only asks for `RECORD_AUDIO` for Say, and does not ask for INTERNET. All content ships in the bundle: catalog, tracing, coloring pages, illustrations, and later audio.
+- Child data lives only in the app folder. `android:allowBackup="false"` turns off Android backup, and the `<application support>/moci` folder is marked `isExcludedFromBackup` on iOS through the `moci/backup` channel. That way data does not move when the device changes.
+- Debug and profile builds still use INTERNET for hot reload, so that permission exists only in the debug and profile manifests.
+- The only system permission is the microphone for Say, added in Plan 03 together with the two permission reasons on iOS. The release also carries one app-owned permission injected by androidx.core, `id.pandudpn.moci.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION`. Details are in sections 5 and 7.
 
-## 2. Data yang tersimpan
+## 2. Stored data
 
-| Data | Tempat | Isi |
+| Data | Location | Contents |
 | --- | --- | --- |
-| Pengaturan | `shared_preferences` | Sepuluh kunci di bawah |
-| Kemajuan | `progress.json` | Bintang, stiker, kegiatan terakhir, waktu bermain, perkembangan, ringkasan harian |
-| Karya | `karya/<id>.json`, maksimal 12 berkas | Isi halaman, waktu simpan, dan `gambar` (PNG 300 × 225 base64) |
-| Draf mewarnai | `draf/<halaman>.json`, satu per halaman | Isi halaman, tanpa PNG |
+| Settings | `shared_preferences` | The ten keys below |
+| Progress | `progress.json` | Stars, stickers, last activity, play time, development, daily summary |
+| Artwork | `karya/<id>.json`, at most 12 files | Page fill, save time, and `gambar` (300 × 225 PNG as base64) |
+| Coloring draft | `draf/<halaman>.json`, one per page | Page fill, without the PNG |
 
-Kunci pengaturan, semuanya berawalan `moci.`:
+Settings keys, all prefixed with `moci.`:
 
-| Kunci | Nilai |
+| Key | Value |
 | --- | --- |
-| `moci.bahasa` | `id` atau `en`; bawaan mengikuti bahasa perangkat |
-| `moci.nama` | Nama panggilan, maksimal 20 karakter setelah dirapikan |
-| `moci.usia` | `2-3`, `4-5`, atau `6-7` |
-| `moci.caraBaca` | `fonik` atau `nama` |
-| `moci.panggilan` | `ayahBunda`, `bapakIbu`, `papiMami`, `daddyMommy`, atau `orangTua`; bawaan `ayahBunda` |
-| `moci.batasMenit` | `15`, `30`, `45`, atau `0` untuk tanpa batas; bawaan 30 |
-| `moci.musik` | `true` atau `false` |
-| `moci.efek` | `true` atau `false` |
-| `moci.istirahat` | `true` atau `false` |
-| `moci.sambutanSelesai` | `true` setelah Sambutan selesai |
+| `moci.bahasa` | `id` or `en`; the default follows the device language |
+| `moci.nama` | Nickname, at most 20 characters after trimming |
+| `moci.usia` | `2-3`, `4-5`, or `6-7` |
+| `moci.caraBaca` | `fonik` or `nama` |
+| `moci.panggilan` | `ayahBunda`, `bapakIbu`, `papiMami`, `daddyMommy`, or `orangTua`; default `ayahBunda` |
+| `moci.batasMenit` | `15`, `30`, `45`, or `0` for no limit; default 30 |
+| `moci.musik` | `true` or `false` |
+| `moci.efek` | `true` or `false` |
+| `moci.istirahat` | `true` or `false` |
+| `moci.sambutanSelesai` | `true` after Welcome finishes |
 
-Nilai yang tidak dikenal jatuh ke bawaan: bahasa dari perangkat, usia `pemula`, cara baca `fonik`, panggilan `ayahBunda`, batas 30 menit, dan sakelar menyala.
+Unknown values fall back to defaults: device language, age `pemula`, reading mode `fonik`, greeting `ayahBunda`, a 30-minute limit, and switches on.
 
-Bentuk `progress.json`:
+Shape of `progress.json`:
 
 ```json
 {
@@ -57,152 +57,152 @@ Bentuk `progress.json`:
 }
 ```
 
-Aturan penyimpanan:
+Storage rules:
 
-- Setiap berkas punya `versi`. `Progress.versi` sekarang 1, dan pembacaan bersifat toleran: field yang hilang atau salah tipe memakai nilai kosong, bukan melempar.
-- Penulisan atomik: `FileJsonStore.write` menulis `<berkas>.tmp` dengan flush, lalu mengganti nama.
-- Berkas yang tidak bisa dibaca dipindah ke `<berkas>.rusak-<milidetik>` dan dianggap kosong. `list` melewati `.tmp` dan `.rusak-`.
-- `waktuBermain` dan `harian` disimpan untuk 7 hari terakhir. Pemangkasan terjadi setiap kali progres berubah.
-- `perkembangan` tidak dipangkas; ini data jangka panjang yang dipakai ringkasan Area Orang Tua.
-- `karya/` dan `draf/` dibaca dan ditulis `KaryaRepository` lewat `JsonStore`, lalu dibagikan ke layar sebagai `karyaProvider`. Batasnya 12 karya (yang tertua dipangkas), satu draf per halaman, dan 200 KB per berkas. PNG pratinjau ikut di dalam JSON karya, bukan berkas terpisah, supaya satu karya tetap satu berkas atomik.
-- Simpan menulis karya lebih dulu, baru mencatat progres (`recordKarya`, `markItem('mewarnai', 'diwarnai', halaman)`). Draf tidak dihapus saat Simpan, dan menghapus karya tidak menghapus draf.
-- `perkembangan` hanya diisi `markItem` untuk modul `hewan` (42 isi) dan `buahSayur` (35 isi). Warna, Bentuk, dan Main Musik hanya mencatat `kegiatanTerakhir`, karena modulnya tidak ada di ringkasan Minggu ini.
-- Hapus semua data di Area Orang Tua menjalankan `jsonStore.deleteAll`, `progress.reset`, dan `prefs.resetAll`, membuang pengatur waktu dari memori, mencabut akses orang tua, lalu membuka Sambutan lagi.
+- Every file has `versi`. `Progress.versi` is 1 for now, and reading is tolerant: a missing field or a field of the wrong type becomes an empty value instead of throwing.
+- Atomic writes: `FileJsonStore.write` writes `<file>.tmp` with a flush, then renames it.
+- A file that cannot be read is moved to `<file>.rusak-<milliseconds>` and treated as empty. `list` skips `.tmp` and `.rusak-`.
+- `waktuBermain` and `harian` are kept for the last 7 days. Trimming happens every time progress changes.
+- `perkembangan` is never trimmed; it is long-term data used by the Parent Area summary.
+- `karya/` and `draf/` are read and written by `KaryaRepository` through `JsonStore`, then shared to screens as `karyaProvider`. The limits are 12 artworks (the oldest is trimmed), one draft per page, and 200 KB per file. The preview PNG lives inside the artwork JSON, not as a separate file, so one artwork stays one atomic file.
+- Save writes the artwork first, then records progress (`recordKarya`, `markItem('mewarnai', 'diwarnai', halaman)`). Save does not delete the draft, and deleting an artwork does not delete the draft.
+- `perkembangan` is only filled by `markItem` for the `hewan` module (42 items) and `buahSayur` (35 items). Colors, Shapes, and Music Play only record `kegiatanTerakhir`, because those modules are not in the This week summary.
+- Delete all data in the Parent Area runs `jsonStore.deleteAll`, `progress.reset`, and `prefs.resetAll`, drops the play timer from memory, revokes parent access, then opens Welcome again.
 
-### Fitur mewarnai (Rencana 07)
+### Coloring feature (Plan 07)
 
-| Berkas | Isi |
+| File | Contents |
 | --- | --- |
-| `lib/features/mewarnai/galeri_screen.dart` | 44 halaman dalam lima kategori, enam pil saring, kisi yang bisa digeser, lencana Lanjutkan, kartu Karyaku |
-| `tool/konten/halaman_mewarnai/` | generator halaman baru; `buat_halaman.dart` menambah 30 halaman ke `pages.json` |
-| `lib/features/mewarnai/kanvas_screen.dart` | alat, 16 krayon, 8 stiker, batal, draf otomatis, Simpan, pemilih gambar |
-| `lib/features/mewarnai/karyaku_screen.dart` | 12 karya, detail, hapus dua langkah, warnai lagi |
-| `lib/features/mewarnai/mewarnai_engine.dart` | isi, kuas, hapus, stiker, dan riwayat batal 30 langkah |
-| `lib/features/mewarnai/mewarnai_painter.dart` | painter halaman yang sama untuk layar dan ekspor PNG |
-| `lib/features/mewarnai/karya_repository.dart` | baca dan tulis `draf/` serta `karya/` lewat `JsonStore` |
+| `lib/features/mewarnai/galeri_screen.dart` | 44 pages in five categories, six filter pills, a scrollable grid, a Continue badge, the My Artwork card |
+| `tool/konten/halaman_mewarnai/` | generator for new pages; `buat_halaman.dart` adds 30 pages to `pages.json` |
+| `lib/features/mewarnai/kanvas_screen.dart` | tools, 16 crayons, 8 stickers, undo, draft autosave, Save, picture picker |
+| `lib/features/mewarnai/karyaku_screen.dart` | 12 artworks, detail, two-step delete, color again |
+| `lib/features/mewarnai/mewarnai_engine.dart` | fill, brush, erase, stickers, and a 30-step undo history |
+| `lib/features/mewarnai/mewarnai_painter.dart` | one page painter shared by the screen and the PNG export |
+| `lib/features/mewarnai/karya_repository.dart` | reads and writes `draf/` and `karya/` through `JsonStore` |
 
-## 3. Pengatur waktu bermain
+## 3. Play timer
 
-- Satu detak per detik dari `playTimerTicksProvider`. Tes menggantinya dengan aliran manual.
-- Waktu dihitung hanya saat aplikasi di depan (`AppLifecycleState.resumed`) dan rute saat ini rute bermain (D14). Splash, Sambutan, Gerbang, Area Orang Tua, Istirahat, dan Waktu Habis tidak dihitung.
-- Selisih antar detak dijepit ke 0 sampai 2 detik, lalu dibulatkan. Jam yang mundur, jam yang loncat, atau aplikasi yang ditangguhkan tanpa event pause tidak merusak hitungan.
-- Ganti tanggal tengah malam memuat detik tersimpan untuk tanggal baru dan mengulang hitungan sejak istirahat terakhir.
-- Detik disimpan ke `progress.json` setiap 30 detik terhitung, saat aplikasi ke latar, dan saat hari berganti. Istirahat selesai memakai `restTaken`, yang mengulang hitungan 20 menit.
-- Pengingat istirahat: `restDue` setelah 1.200 detik bermain sejak istirahat terakhir. `MociApp` membuka `/istirahat` sekali per `restDue` kalau rute sedang rute bermain dan batas belum tercapai. Setelah 20 detik, layar ditutup dan anak kembali ke layar tadi. Waktu Habis menang atas Istirahat.
-- Batas harian: `limitReached` saat detik hari ini mencapai batas dalam menit. `limitReachedProvider` menyegarkan router, jadi rute bermain dialihkan ke `/habis`. Menaikkan batas di Area Orang Tua langsung membuka blokir, tetapi Area Orang Tua tidak ikut tertutup karena router tidak disegarkan selama akses orang tua terbuka.
+- One tick per second from `playTimerTicksProvider`. Tests replace it with a manual stream.
+- Time is counted only while the app is in front (`AppLifecycleState.resumed`) and the current route is a play route (D14). Splash, Welcome, Gate, Parent Area, Rest, and Time's Up are not counted.
+- The gap between ticks is clamped to 0 through 2 seconds, then rounded. A clock that runs backwards, a clock that jumps, or an app suspended without a pause event does not break the count.
+- Crossing midnight loads the stored seconds for the new date and restarts the count since the last rest.
+- Seconds are saved to `progress.json` every 30 counted seconds, when the app goes to the background, and when the day changes. Finishing a rest uses `restTaken`, which restarts the 20-minute count.
+- Rest reminder: `restDue` after 1,200 seconds of play since the last rest. `MociApp` opens `/istirahat` once per `restDue` when the current route is a play route and the limit has not been reached. After 20 seconds the screen closes and the child returns to the previous screen. Time's Up wins over Rest.
+- Daily limit: `limitReached` when today's seconds reach the limit in minutes. `limitReachedProvider` refreshes the router, so a play route redirects to `/habis`. Raising the limit in the Parent Area unblocks immediately, but the Parent Area does not close because the router is not refreshed while parent access is open.
 
 ## 4. Audio
 
-Alur satu suara:
+Flow of one sound:
 
-1. `AssetCatalog` memuat daftar aset dari manifest bundel. Pemutaran apa pun dicek dulu ke katalog ini, jadi aset yang belum ada tidak menjadi galat.
-2. `AudioService` mengatur prioritas: narasi di atas efek, efek di atas musik. Volume narasi 1,0; efek 0,7; musik 0,25; musik turun ke 0,10 selama narasi berbunyi.
-3. `SoLoudAudioEngine` memuat aset sekali per path, memutar lewat `flutter_soloud`, dan memberi kabar selesai dari `AudioSource.soundEvents` saat `handleIsNoMoreValid`.
-4. `Narrator` menyusun path `assets/audio/vo/<bahasa>/<jenis>_<id>.m4a`. Kalau rekaman belum ada, teks dibacakan `DeviceTts` di semua mode build.
+1. `AssetCatalog` loads the asset list from the bundle manifest. Every playback is checked against this catalog first, so an asset that does not exist yet never becomes an error.
+2. `AudioService` sets priority: narration above effects, effects above music. Narration volume 1.0; effects 0.7; music 0.25; music drops to 0.10 while narration plays.
+3. `SoLoudAudioEngine` loads an asset once per path, plays it through `flutter_soloud`, and reports completion from `AudioSource.soundEvents` at `handleIsNoMoreValid`.
+4. `Narrator` builds the path `assets/audio/vo/<bahasa>/<jenis>_<id>.m4a`. If the recording does not exist yet, `DeviceTts` reads the text in every build mode.
 
-Aturan yang sudah berlaku di kode:
+Rules already in the code:
 
-- Satu narasi pada satu waktu. `Narrator.say` dan `sayAll` memakai nomor generasi, jadi narasi baru membatalkan yang lama, termasuk narasi yang masih dimuat.
-- `stopAll` dan `narrator.stop` dipanggil saat aplikasi disembunyikan atau dijeda. Saat kembali, sesi audio iOS diaktifkan lagi dan musik dinyalakan ulang kalau sakelarnya menyala.
-- Efek memakai enum `Sfx`: `klik`, `benar`, `salahLembut`, `sorak`, `bintang`, dengan path `assets/audio/sfx/<nama>.wav`.
-- Musik latar memakai `AudioService.musicAsset`: berkas OGG di `assets/audio/`, diputar berulang. Berkasnya belum ada, jadi pemutaran musik saat ini tidak menghasilkan suara.
-- Sesi iOS memakai kategori playback lewat kanal `moci/audio_session`, supaya suara tetap terdengar saat sakelar senyap menyala. Pelaksana native-nya ada di `ios/Runner/MociChannels.swift`.
-- TTS perangkat dipakai di semua mode build. Ia memakai kanal `moci/tts`, dan manifest utama menambahkan blok `<queries>` untuk `TTS_SERVICE` (Android 11+).
-- Alat musik Main Musik memakai 12 WAV mono 16-bit 24 kHz di `assets/audio/instrumen/`, dibuat `tool/buat_instrumen.dart` dan dicatat `Milik sendiri`. Tidak ada sintesis saat aplikasi berjalan; `MusikAudio` memuat semuanya sekali setelah frame pertama, lalu memutar nada langsung lewat `AudioEngine` dengan volume efek 0,7 dan mengikuti sakelar Efek suara. Latensi main di perangkat ditargetkan di bawah 50 ms.
-- Suara hewan memakai `assets/audio/hewan/<id>.m4a` (42 berkas CC0). Kalau aset tidak ada di `AssetCatalog`, "Dengar suara" membacakan tiruan bunyi dari katalog lewat TTS; layar tidak pernah memutar path yang tidak ada.
+- One narration at a time. `Narrator.say` and `sayAll` use a generation number, so a new narration cancels the old one, including a narration that is still loading.
+- `stopAll` and `narrator.stop` are called when the app is hidden or paused. On return, the iOS audio session is activated again and music starts again if its switch is on.
+- Effects use the `Sfx` enum: `klik`, `benar`, `salahLembut`, `sorak`, `bintang`, with path `assets/audio/sfx/<nama>.wav`.
+- Background music uses `AudioService.musicAsset`: an OGG file in `assets/audio/`, played on repeat. The file does not exist yet, so playing music currently produces no sound.
+- The iOS session uses the playback category through the `moci/audio_session` channel, so sound is still heard while the silent switch is on. Its native implementation is in `ios/Runner/MociChannels.swift`.
+- Device TTS is used in every build mode. It uses the `moci/tts` channel, and the main manifest adds a `<queries>` block for `TTS_SERVICE` (Android 11+).
+- Music Play instruments use 12 mono 16-bit 24 kHz WAVs in `assets/audio/instrumen/`, made by `tool/buat_instrumen.dart` and recorded as `Milik sendiri` (own work). There is no synthesis while the app runs; `MusikAudio` loads them all once after the first frame, then plays notes directly through `AudioEngine` at effect volume 0.7, following the Sound effects switch. Play latency on device is targeted below 50 ms.
+- Animal sounds use `assets/audio/hewan/<id>.m4a` (42 CC0 files). If the asset is not in `AssetCatalog`, "Dengar suara" (Hear the sound) reads the sound imitation from the catalog through TTS; the screen never plays a path that does not exist.
 
-## 5. Mikrofon (Rencana 03)
+## 5. Microphone (Plan 03)
 
-Pengenal, pengukur level suara, dan layar Ucapkan sudah terpasang. Aturan yang berlaku:
+The recognizer, the sound level meter, and the Say screen are already in place. The rules that apply:
 
-- `speech_to_text` dipakai dengan `onDevice: true` dan `contextualPhrases` berisi kata target. Tidak ada mode yang boleh memakai layanan jaringan.
-- Gerbang Orang Tua muncul sebelum dialog izin sistem. Kalau izin ditolak, Ucapkan berjalan dalam mode dengar dan tiru tanpa mikrofon.
-- Android hanya meminta `RECORD_AUDIO` dan blok `<queries>` untuk `android.speech.RecognitionService`. INTERNET dan Bluetooth tidak ditambahkan, dan Ucapkan diuji di mode pesawat.
-- iOS menambah `NSMicrophoneUsageDescription` dan `NSSpeechRecognitionUsageDescription` dengan teks untuk orang tua.
-- Suara tidak direkam ke berkas dan tidak dikirim. Setelah izin atau manifest berubah, `docs/PRIVACY-RELEASE.md` wajib diperbarui.
-- `MicLevelMeter` menjadi cadangan saat pengenalan luring tidak tersedia: kanal `moci/mic_level` mengalirkan level 0..1 tiap 50 ms dari `AudioRecord` (Android) atau tap `AVAudioEngine` 1024 frame (iOS). Suara dianggap ada kalau level di atas 0,12 selama 300 ms; buffer dibuang setelah RMS dihitung.
-- Layar Ucapkan memanggil `pauseForListening` sebelum mikrofon hidup dan `resumeAfterListening` di `finally`, jadi narasi dan musik tidak ikut terekam.
+- `speech_to_text` is used with `onDevice: true` and `contextualPhrases` holding the target word. No mode may use a network service.
+- The Parent Gate appears before the system permission dialog. If permission is denied, Say runs in listen and imitate mode without a microphone.
+- Android only asks for `RECORD_AUDIO` and a `<queries>` block for `android.speech.RecognitionService`. INTERNET and Bluetooth are not added, and Say is tested in airplane mode.
+- iOS adds `NSMicrophoneUsageDescription` and `NSSpeechRecognitionUsageDescription` with text written for parents.
+- Sound is not recorded to a file and is not sent anywhere. After a permission or manifest change, `docs/PRIVACY-RELEASE.md` must be updated.
+- `MicLevelMeter` is the fallback when offline recognition is unavailable: the `moci/mic_level` channel streams a 0..1 level every 50 ms from `AudioRecord` (Android) or a 1024-frame `AVAudioEngine` tap (iOS). Sound counts as present when the level is above 0.12 for 300 ms; the buffer is dropped after RMS is computed.
+- The Say screen calls `pauseForListening` before the microphone goes live and `resumeAfterListening` in `finally`, so narration and music are not recorded.
 
-## 6. Pipeline konten dan validator
+## 6. Content pipeline and validator
 
-| Tahap | Berkas | Cara kerja |
+| Stage | File | How it works |
 | --- | --- | --- |
-| Ekspor sekali | `tool/konten/ekspor_prototipe.dart` | Membaca snapshot `docs/design/prototype/`, menulis `assets/content/`, `assets/tracing/`, `assets/coloring/`, dan `assets/illustrations/` |
-| Parser | `tool/konten/js_literal.dart` | Membaca literal JavaScript prototipe: kutip tunggal, kunci tanpa kutip, koma akhir |
-| Validasi | `tool/konten/validasi/` | Aturan terpisah per bagian: struktur, SVG, tracing, mewarnai, narasi, audio |
-| Pintu masuk | `tool/validate_content.dart` | Menjalankan semua aturan, mencetak ringkasan, keluar dengan kode 1 kalau ada galat |
+| One-time export | `tool/konten/ekspor_prototipe.dart` | Reads the `docs/design/prototype/` snapshot, writes `assets/content/`, `assets/tracing/`, `assets/coloring/`, and `assets/illustrations/` |
+| Parser | `tool/konten/js_literal.dart` | Reads prototype JavaScript literals: single quotes, unquoted keys, trailing commas |
+| Validation | `tool/konten/validasi/` | Separate rules per area: structure, SVG, tracing, coloring, narration, audio |
+| Entry point | `tool/validate_content.dart` | Runs every rule, prints a summary, exits with code 1 if there is an error |
 
-Aturan yang ditegakkan:
+Rules enforced:
 
-- `json_valid`: keenam berkas JSON bisa dibaca dan bentuknya sesuai.
-- `id_unik`, `referensi_gambar_ada`, `referensi_warna_ada`, `nama_dua_bahasa`, `kata_utuh`: katalog konsisten dan setiap rujukan punya sasaran.
-- `svg_aturan`, `svg_tanpa_pemakai`, `anggaran_ilustrasi`: SVG sesuai aturan (viewBox 200 × 200, tanpa style, gradien, image, teks, filter, mask), tidak ada berkas yatim, total di bawah 4 MB.
-- `tracing_lengkap`, `tracing_perintah_didukung`: huruf dan angka punya jalur, dan hanya memakai perintah `M L H V C`.
-- `mewarnai_tertutup`, `mewarnai_contoh`: setiap bagian gambar tertutup, dan warna contoh dilaporkan sebagai peringatan selama belum lengkap.
-- `narasi_lengkap`: baris narasi yang diharapkan dibandingkan dengan rekaman. Mode pengembangan memberi peringatan, `--rilis` memberi galat.
-- `lisensi_audio_lengkap`: setiap berkas audio punya baris di `assets/audio/LICENSES.csv` dengan lisensi `CC0` atau `Milik sendiri`. Nilai lain selalu galat, juga di mode pengembangan.
-- `suara_hewan_lengkap`, `anggaran_audio`: suara hewan dan total audio diperiksa; `--rilis` menuntut kelengkapan.
+- `json_valid`: the six JSON files can be read and their shape matches.
+- `id_unik`, `referensi_gambar_ada`, `referensi_warna_ada`, `nama_dua_bahasa`, `kata_utuh`: the catalog is consistent and every reference has a target.
+- `svg_aturan`, `svg_tanpa_pemakai`, `anggaran_ilustrasi`: SVGs follow the rules (viewBox 200 × 200, no style, gradient, image, text, filter, mask), no file is orphaned, and the total is under 4 MB.
+- `tracing_lengkap`, `tracing_perintah_didukung`: letters and numbers have paths, and only the `M L H V C` commands are used.
+- `mewarnai_tertutup`, `mewarnai_contoh`: every part of a picture is closed, and an example color is reported as a warning while it is incomplete.
+- `narasi_lengkap`: expected narration lines are compared with the recordings. Development mode gives a warning, `--rilis` gives an error.
+- `lisensi_audio_lengkap`: every audio file has a row in `assets/audio/LICENSES.csv` with the license `CC0` or `Milik sendiri` (own work). Any other value is always an error, including in development mode.
+- `suara_hewan_lengkap`, `anggaran_audio`: animal sounds and total audio are checked; `--rilis` demands completeness.
 
-`--naskah=build/naskah.csv` menulis CSV berisi kolom `file`, `bahasa`, `teks`, dan `catatan` untuk semua baris yang belum direkam. Hanya bentuk `--naskah=<path>` yang dibaca.
+`--naskah=build/naskah.csv` writes a CSV with the columns `file`, `bahasa`, `teks`, and `catatan` for every line that is not recorded yet. Only the form `--naskah=<path>` is read.
 
-## 7. Konfigurasi platform
+## 7. Platform configuration
 
-| Hal | Nilai di repo |
+| Item | Value in the repo |
 | --- | --- |
-| Orientation | Landscape kiri dan kanan. `SystemChrome.setPreferredOrientations` di `lib/main.dart`, `UISupportedInterfaceOrientations` dan `UISupportedInterfaceOrientations~ipad` hanya landscape, `UIRequiresFullScreen` = true, `android:screenOrientation="sensorLandscape"` |
-| Resizable Android 16 | `<property android:name="android.window.PROPERTY_COMPAT_ALLOW_RESTRICTED_RESIZABILITY" android:value="true"/>` di `<application>` |
-| Nama aplikasi | `Moci` di `android:label` dan `CFBundleDisplayName` |
-| Bundle id | `id.pandudpn.moci` di iOS dan `applicationId` Android (D3) |
-| Versi OS | iOS 15.0, Android minimal API 24, target dan compile API 36 |
-| Versi aplikasi | `1.0.0+1` dari `pubspec.yaml` |
-| Bahasa | `CFBundleLocalizations` berisi `id` dan `en`; Android mengambil locale perangkat lewat plugin Flutter, lalu teks dari ARB |
-| Cadangan | `android:allowBackup="false"` dan `isExcludedFromBackup` untuk folder data iOS |
-| Izin rilis | `RECORD_AUDIO` untuk Ucapkan, ditambah satu izin milik aplikasi sendiri yang disuntikkan androidx.core, `id.pandudpn.moci.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION` (protectionLevel `signature`). `aapt2 dump permissions` pada APK arm64 rilis menunjukkan hanya keduanya: tanpa INTERNET dan tanpa Bluetooth |
-| Signing | APK dan AAB release ditandatangani kunci Moci kalau `android/key.properties` ada, dan kunci debug kalau tidak. Berkas kunci tinggal di luar repo; `.gitignore` menolak `android/key.properties` dan `*.jks` |
+| Orientation | Landscape left and right. `SystemChrome.setPreferredOrientations` in `lib/main.dart`, `UISupportedInterfaceOrientations` and `UISupportedInterfaceOrientations~ipad` landscape only, `UIRequiresFullScreen` = true, `android:screenOrientation="sensorLandscape"` |
+| Android 16 resizable | `<property android:name="android.window.PROPERTY_COMPAT_ALLOW_RESTRICTED_RESIZABILITY" android:value="true"/>` in `<application>` |
+| App name | `Moci` in `android:label` and `CFBundleDisplayName` |
+| Bundle id | `id.pandudpn.moci` on iOS and the Android `applicationId` (D3) |
+| OS versions | iOS 15.0, Android minimum API 24, target and compile API 36 |
+| App version | `1.0.0+1` from `pubspec.yaml` |
+| Languages | `CFBundleLocalizations` holds `id` and `en`; Android takes the device locale through the Flutter plugin, then text from the ARB files |
+| Backup | `android:allowBackup="false"` and `isExcludedFromBackup` for the iOS data folder |
+| Release permissions | `RECORD_AUDIO` for Say, plus one app-owned permission injected by androidx.core, `id.pandudpn.moci.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION` (protectionLevel `signature`). `aapt2 dump permissions` on the release arm64 APK shows only those two: no INTERNET and no Bluetooth |
+| Signing | Release APK and AAB are signed with the Moci key if `android/key.properties` exists, and with the debug key if not. The key files live outside the repo; `.gitignore` rejects `android/key.properties` and `*.jks` |
 
-Kalau sistem mengabaikan kunci orientasi, panggung tetap aman karena isi selalu diskalakan ke area aman oleh `fitStage`.
+If the system ignores the orientation lock, the stage stays safe because content is always scaled into the safe area by `fitStage`.
 
-## 8. Anggaran performa dan ukuran
+## 8. Performance and size budgets
 
-| Hal | Target | Cara memeriksa |
+| Item | Target | How to check |
 | --- | --- | --- |
-| Unduhan | Di bawah 30 MB | Ukuran bundel rilis di Rencana 10 |
-| Ilustrasi | Di bawah 4 MB | `anggaran_ilustrasi` di validator |
-| Audio | Di bawah 12 MB | `anggaran_audio` di validator |
-| Font | Di bawah 1 MB untuk delapan berkas | `test/app/theme/font_budget_test.dart` |
-| Kecepatan | 60 fps, ketukan dijawab di bawah 100 ms | Uji perangkat |
-| Buka aplikasi | Splash bergerak di bawah 1,5 detik | Uji perangkat |
-| Memori | Di bawah 200 MB | Uji perangkat |
-| Kontras | Teks minimal 4,5 : 1 | `test/app/theme/contrast_test.dart` |
+| Download | Under 30 MB | Release bundle size in Plan 10 |
+| Illustrations | Under 4 MB | `anggaran_ilustrasi` in the validator |
+| Audio | Under 12 MB | `anggaran_audio` in the validator |
+| Fonts | Under 1 MB for eight files | `test/app/theme/font_budget_test.dart` |
+| Speed | 60 fps, taps answered under 100 ms | Device test |
+| App open | Splash animation under 1.5 seconds | Device test |
+| Memory | Under 200 MB | Device test |
+| Contrast | Text at least 4.5 : 1 | `test/app/theme/contrast_test.dart` |
 
-Ukuran sekarang: ilustrasi 452 KB, font 320 KB, dan audio 1,9 MB (42 suara hewan CC0 dan 12 instrumen `Milik sendiri`).
+Current sizes: illustrations 452 KB, fonts 320 KB, and audio 1.9 MB (42 CC0 animal sounds and 12 `Milik sendiri` instruments).
 
-## 9. CI dan rilis
+## 9. CI and release
 
-`.github/workflows/ci.yml` menjalankan dua job:
+`.github/workflows/ci.yml` runs two jobs:
 
-- `test` di Ubuntu: cek versi Flutter 3.50 di `.fvmrc`, `flutter pub get`, `dart format --output=none --set-exit-if-changed .`, `flutter analyze`, `dart run tool/validate_content.dart`, lalu `flutter test --exclude-tags golden`.
-- `golden` di macOS: `flutter pub get` dan `flutter test --tags golden`.
+- `test` on Ubuntu: checks the Flutter 3.50 version in `.fvmrc`, `flutter pub get`, `dart format --output=none --set-exit-if-changed .`, `flutter analyze`, `dart run tool/validate_content.dart`, then `flutter test --exclude-tags golden`.
+- `golden` on macOS: `flutter pub get` and `flutter test --tags golden`.
 
-`.github/workflows/release.yml` (nama Release) berjalan dari dua pemicu: push tag `v*`, atau `workflow_dispatch` dari `main` dengan pilihan `none`, `patch`, `minor`, `major`, atau versi eksplisit. Tujuannya sideload, bukan toko: AAB dan APK bertanda tangan untuk Android, IPA tanpa tanda tangan untuk iOS. Enam job:
+`.github/workflows/release.yml` (named Release) runs from two triggers: pushing a `v*` tag, or `workflow_dispatch` from `main` with the choice `none`, `patch`, `minor`, `major`, or an explicit version. The goal is sideloading, not the stores: signed AAB and APK for Android, unsigned IPA for iOS. Six jobs:
 
-- `prepare`: menolak tag yang tidak cocok dengan `x.y.z` di `pubspec.yaml`, menolak dispatch yang basi atau yang `HEAD`-nya sudah bertag, menyalin `SUMMARY.md`, lalu men-stage commit `chore(release): v<x.y.z>` dan tag beranotasi di dalam runner tanpa push. Commit itu, isi ringkasan, dan bundle git-nya dikirim ke job lain sebagai artifact.
-- `verify`: checkout di tag hasil stage lewat `.github/actions/release-checkout` (composite action yang mengambil bundle artifact), lalu cek format, analyze, validator isi, tes tanpa golden, dan cek tag terhadap `pubspec.yaml`.
+- `prepare`: rejects a tag that does not match `x.y.z` in `pubspec.yaml`, rejects a stale dispatch or one whose `HEAD` is already tagged, copies `SUMMARY.md`, then stages a `chore(release): v<x.y.z>` commit and an annotated tag inside the runner without pushing. That commit, the summary contents, and the git bundle are sent to other jobs as artifacts.
+- `verify`: checks out at the staged tag through `.github/actions/release-checkout` (a composite action that fetches the bundle artifact), then checks format, analyze, the content validator, tests without golden, and the tag against `pubspec.yaml`.
 - `golden`: macOS, `flutter test --tags golden`.
-- `android`: JDK 21, keystore dari secret ke `$RUNNER_TEMP`, `flutter build appbundle --release` dan `flutter build apk --release` (satu APK universal). Berkas dinamai `moci-<versi>.aab` dan `moci-<versi>.apk`. `apksigner verify --print-certs` menggagalkan job kalau APK masih bertanda tangan debug.
-- `ios`: macOS, `flutter build ios --release --no-codesign`, lalu `Runner.app` di dalam `Payload/` di-zip menjadi `moci-<versi>.ipa`.
-- `publish`: push atomik commit bump dan tag dengan `GITHUB_TOKEN` hanya kalau run ini yang membuatnya, menyusun catatan dengan `tool/rilis/catatan_rilis.dart`, menerbitkan atau menyunting release berjudul `Moci <x.y.z>`, lalu mengunggah AAB, APK, IPA, dan `SHA256SUMS`. Versi dengan `-` menjadi prerelease.
+- `android`: JDK 21, the keystore from secrets to `$RUNNER_TEMP`, `flutter build appbundle --release` and `flutter build apk --release` (one universal APK). Files are named `moci-<versi>.aab` and `moci-<versi>.apk`. `apksigner verify --print-certs` fails the job if the APK is still signed with the debug key.
+- `ios`: macOS, `flutter build ios --release --no-codesign`, then `Runner.app` inside `Payload/` is zipped into `moci-<versi>.ipa`.
+- `publish`: pushes the bump commit and tag atomically with `GITHUB_TOKEN` only if this run created them, assembles the notes with `tool/rilis/catatan_rilis.dart`, publishes or edits a release titled `Moci <x.y.z>`, then uploads the AAB, APK, IPA, and `SHA256SUMS`. A version with `-` becomes a prerelease.
 
-Catatan rilis disusun dari jalur utama, bukan dari `--generate-notes`: pull request yang digabung menjadi satu entri yang menaut pull request-nya dengan commit di dalamnya dilipat, commit langsung menaut commit pendeknya, dan penulis disebut lewat login GitHub. Commit `chore(release)`/`chore(rilis)` dan revert-nya serta commit bot tidak ikut. `SUMMARY.md` yang di-commit tampil di atas entri, lalu bagian Install yang tetap. `.github/release.yml` hanya dipakai `--generate-notes`, yang tidak dipanggil workflow; judul kelompoknya disamakan supaya dua-duanya terbaca sama. Push tag oleh `GITHUB_TOKEN` tidak memicu run kedua, jadi run yang sama yang menerbitkan, dan dispatch `bump=none` menerbitkan ulang tag yang release-nya belum ada.
+Release notes are assembled from the mainline, not from `--generate-notes`: a merged pull request becomes one entry that links its pull request with the commits inside it folded in, a direct commit links its short commit, and authors are named by their GitHub login. `chore(release)`/`chore(rilis)` commits, their reverts, and bot commits are left out. The committed `SUMMARY.md` appears above the entries, then the fixed Install section. `.github/release.yml` is only used by `--generate-notes`, which the workflow never calls; its group titles are kept the same so both read the same. A tag push by `GITHUB_TOKEN` does not trigger a second run, so the same run publishes, and a `bump=none` dispatch republishes a tag whose release does not exist yet.
 
-Tanda tangan Android memakai empat secret repo; hanya namanya dicatat di sini: `ANDROID_KEYSTORE_BASE64`, `ANDROID_KEYSTORE_PASSWORD`, `ANDROID_KEY_PASSWORD`, dan `ANDROID_KEY_ALIAS`. Workflow menulis keystore ke `$RUNNER_TEMP` dan `android/key.properties` di runner, tidak pernah ke repo. Di mesin lokal, `android/key.properties` berisi `storePassword`, `keyPassword`, `keyAlias`, dan `storeFile` absolut ke keystore di luar repo.
+Android signing uses four repo secrets; only their names are recorded here: `ANDROID_KEYSTORE_BASE64`, `ANDROID_KEYSTORE_PASSWORD`, `ANDROID_KEY_PASSWORD`, and `ANDROID_KEY_ALIAS`. The workflow writes the keystore to `$RUNNER_TEMP` and `android/key.properties` on the runner, never to the repo. On a local machine, `android/key.properties` holds `storePassword`, `keyPassword`, `keyAlias`, and an absolute `storeFile` pointing at the keystore outside the repo.
 
-IPA tidak bertanda tangan karena akun Apple yang dipakai gratis. Pemasangan lewat Sideloadly atau AltStore dengan Apple ID sendiri, dan aplikasi berhenti terbuka setelah 7 hari.
+The IPA is unsigned because the Apple account in use is free. Installation is through Sideloadly or AltStore with your own Apple ID, and the app stops opening after 7 days.
 
-Sisa Rencana 10: build TestFlight dan Play internal testing, kebijakan privasi publik, serta pengisian `AppConfig.privacyPolicyUrl` dan `AppConfig.supportEmail`. Selama keduanya `null`, tautan terkait tidak tampil di Area Orang Tua.
+What remains in Plan 10: a TestFlight and Play internal testing build, a public privacy policy, and filling in `AppConfig.privacyPolicyUrl` and `AppConfig.supportEmail`. While both are `null`, the related links do not show in the Parent Area.
 
-## 10. Menu dan permainan berakhir
+## 10. Menus and games that end
 
-- Setiap menu Rencana 04 menerima parameter awal dari query (`hewan`, `buah` dan `mode`, `warna`, `bentuk` dan `mode`, `alat` dan `lagu`), mencatat `setLastActivity` saat dibuka dan saat pilihan berganti, dan mengabaikan nilai yang tidak dikenal.
-- Hanya Bentuk Cari yang berakhir. Ronde keenam memanggil `finishGame(gameId: 'bentuk', roundId: '<seed>/6')` lalu membuka `/hebat` dengan `HebatArgs`; `roundId` memakai seed per main, jadi "Ambil hadiah" dua kali tetap satu hadiah dan main berikutnya tetap bisa mendapat hadiah.
-- Buah Tebak, Warna, dan Main Musik berputar tanpa akhir. Main Musik tidak memberi bintang atau stiker: satu lagu selesai ditandai pil dan narasi "Hebat! Kamu memainkan satu lagu!", lalu kembali ke keadaan bebas.
+- Every Plan 04 menu takes starting parameters from the query (`hewan`, `buah` and `mode`, `warna`, `bentuk` and `mode`, `alat` and `lagu`), records `setLastActivity` when it opens and when the choice changes, and ignores unknown values.
+- Only Shapes Find ends. The sixth round calls `finishGame(gameId: 'bentuk', roundId: '<seed>/6')` then opens `/hebat` with `HebatArgs`; `roundId` uses a per-play seed, so "Ambil hadiah" twice is still one reward and the next play can still earn a reward.
+- Fruits Guess, Colors, and Music Play loop without end. Music Play gives no stars or stickers: a finished song is marked by a pill and the narration "Hebat! Kamu memainkan satu lagu!" ("Great! You played one song!"), then the screen returns to the free state.

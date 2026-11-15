@@ -1,66 +1,66 @@
-> Salinan dari Claude Docs "Dokumentasi Moci", tab Ringkasan, per 2026-11-14. Sumber kebenaran: https://claude.ai/artifact/VKF6SyozUj7ZBBCFEQ9e8H.
+> Copy of Claude Docs "Dokumentasi Moci", Summary tab, as of 2026-11-14. Source of truth: https://claude.ai/artifact/VKF6SyozUj7ZBBCFEQ9e8H.
 
-# Dokumentasi Moci
+# Moci documentation
 
 14 November 2026 · Pandu
 
-## Ringkasan
+## Summary
 
-Moci adalah aplikasi belajar dan bermain untuk anak usia 2–7 tahun: tanpa iklan, bisa offline, dalam Bahasa Indonesia dan English, untuk iPad, iPhone, serta HP dan tablet Android. Desain dan prototipe interaktif semua menu versi tablet sudah selesai. Versi HP baru ada untuk Beranda, dan kode Flutter belum dimulai.
+Moci is a learning and play app for children aged 2–7: no ads, works offline, in Indonesian and English, for iPad, iPhone, and Android phones and tablets. The design and the interactive prototype for every tablet menu are done. A phone version exists only for Home, and the Flutter code has not started.
 
-### Isi dokumentasi
+### Documentation contents
 
-Setiap dokumen berdiri sendiri. Sumber aslinya ada di Claude Docs "Dokumentasi Moci"; kalau dokumen itu diubah, export ulang tab yang berubah ke file di bawah.
+Each document stands on its own. The original source is in Claude Docs "Dokumentasi Moci"; if a document there changes, re-export the changed tab to the file below.
 
-| Tab | Isi | Nama file di repo |
+| Tab | Contents | File name in the repo |
 | --- | --- | --- |
-| [PRD](PRD.md) | Apa yang dibangun untuk v1: pengguna, prinsip, alur, fitur per menu, kriteria selesai | `docs/PRD.md` |
-| [Spesifikasi Teknis](TECH-SPEC.md) | Cara membangunnya dengan Flutter: arsitektur, data, audio, performa, pengujian | `docs/TECH-SPEC.md` |
-| [Sistem Desain](DESIGN-SYSTEM.md) | Warna, huruf, ukuran sentuh, komponen, animasi, dan suara | `docs/DESIGN-SYSTEM.md` |
-| [Konten & Aset](CONTENT-ASSETS.md) | Ilustrasi, katalog isi, narasi, suara, aset brand, cara menambah isi | `docs/CONTENT-ASSETS.md` |
-| [Privasi & Rilis](PRIVACY-RELEASE.md) | Kebijakan privasi, syarat App Store dan Google Play, checklist rilis | `docs/PRIVACY-RELEASE.md` |
+| [PRD](PRD.md) | What is built for v1: users, principles, flows, features per menu, done criteria | `docs/PRD.md` |
+| [Technical Specification](TECH-SPEC.md) | How to build it with Flutter: architecture, data, audio, performance, testing | `docs/TECH-SPEC.md` |
+| [Design System](DESIGN-SYSTEM.md) | Colors, fonts, touch sizes, components, animation, and sound | `docs/DESIGN-SYSTEM.md` |
+| [Content & Assets](CONTENT-ASSETS.md) | Illustrations, content catalog, narration, sounds, brand assets, how to add content | `docs/CONTENT-ASSETS.md` |
+| [Privacy & Release](PRIVACY-RELEASE.md) | Privacy policy, App Store and Google Play requirements, release checklist | `docs/PRIVACY-RELEASE.md` |
 
-### Keputusan dan rekomendasi
+### Decisions and recommendations
 
-Kolom Status bisa diubah langsung. Kalau sebuah rekomendasi disetujui, ganti statusnya jadi Diputuskan.
+The Status column can be edited directly. When a recommendation is approved, change its status to Decided.
 
-| Hal | Pilihan | Status |
+| Item | Option | Status |
 | --- | --- | --- |
-| Platform | iPad, iPhone, HP Android, tablet Android | Diputuskan |
-| Usia | 2–7 tahun, dalam 3 level: 2–3, 4–5, 6–7 | Diputuskan |
-| Bahasa | Bahasa Indonesia dan English, bisa diganti kapan saja | Rekomendasi |
-| Iklan | Tidak ada | Diputuskan |
-| Pembelian dalam aplikasi | Tidak ada | Rekomendasi |
-| Data anak | Hanya di perangkat, tanpa akun, server, atau analytics | Rekomendasi |
-| Ikon aplikasi | A. Wajah Moci | Diputuskan |
-| Warna latar ikon | Biru langit | Rekomendasi |
-| Logo | Bertumpuk atau mendatar, sesuai ruang yang tersedia | Diputuskan |
-| Splash screen | Versi terang | Diputuskan |
-| Teknologi | Flutter, satu kode untuk iOS dan Android | Rekomendasi |
-| Nama repo | moci-app | Rekomendasi |
+| Platform | iPad, iPhone, Android phones, Android tablets | Decided |
+| Age | 2–7 years, in 3 levels: 2–3, 4–5, 6–7 | Decided |
+| Language | Indonesian and English, switchable at any time | Recommendation |
+| Ads | None | Decided |
+| In-app purchases | None | Recommendation |
+| Child data | On device only, with no account, server, or analytics | Recommendation |
+| App icon | A. Moci's face | Decided |
+| Icon background color | Sky blue | Recommendation |
+| Logo | Stacked or horizontal, depending on the space available | Decided |
+| Splash screen | Light version | Decided |
+| Technology | Flutter, one codebase for iOS and Android | Recommendation |
+| Repo name | moci-app | Recommendation |
 
-Keputusan tambahan per 14 November 2026: Ucapkan v1 memakai mikrofon dengan pengenalan ucapan di perangkat, dan semua layar dikunci di orientasi landscape.
+Additional decisions as of 14 November 2026: Say v1 uses the microphone with on-device speech recognition, and every screen is locked to landscape orientation.
 
-### Pertanyaan terbuka
+### Open questions
 
-- [ ] Lisensi repo: apakah kode dan aset gambar boleh dipakai orang lain.
-- [ ] Harga di store: gratis atau berbayar sekali beli.
-- [ ] Akun developer Apple dan Google: atas nama pribadi atau badan usaha.
-- [ ] Siapa yang merekam narasi Bahasa Indonesia dan English.
-- [ ] Sumber suara hewan asli.
-- [ ] Ketersediaan nama "Moci" di App Store, Play Store, dan pangkalan data merek DJKI.
-- [ ] Email dukungan dan alamat web untuk kebijakan privasi.
-- [ ] Rentang usia di kategori Kids App Store: 5 tahun ke bawah atau 6–8.
-- [ ] Penilaian mandiri PP Tunas: perlu diajukan atau tidak (batas Komdigi 31 Desember 2026).
+- [ ] Repo license: whether the code and image assets may be used by others.
+- [ ] Store price: free or a one-time purchase.
+- [ ] Apple and Google developer accounts: under a personal name or a business entity.
+- [ ] Who records the Indonesian and English narration.
+- [ ] Source of the real animal sounds.
+- [ ] Availability of the name "Moci" in the App Store, Play Store, and the DJKI trademark database.
+- [ ] Support email and web address for the privacy policy.
+- [ ] Age range in the App Store Kids category: 5 and under, or 6–8.
+- [ ] PP Tunas self-assessment: whether it needs to be submitted (Komdigi deadline 31 December 2026).
 
-## Peta dokumentasi
+## Documentation map
 
-| Dokumen | Isi |
+| Document | Contents |
 | --- | --- |
-| [PRD.md](PRD.md) | Tujuan v1, menu, alur aplikasi, prinsip produk |
-| [TECH-SPEC.md](TECH-SPEC.md) | Teknologi, arsitektur, penyimpanan, audio, pengujian |
-| [DESIGN-SYSTEM.md](DESIGN-SYSTEM.md) | Warna, huruf, ukuran, gerak, komponen |
-| [CONTENT-ASSETS.md](CONTENT-ASSETS.md) | Ilustrasi, katalog JSON, narasi, suara, cara menambah isi |
-| [PRIVACY-RELEASE.md](PRIVACY-RELEASE.md) | Privasi, izin, kategori anak di toko aplikasi, alur rilis |
-| [design/](design/) | Snapshot prototipe interaktif |
-| [audio/SUARA-HEWAN.md](audio/SUARA-HEWAN.md) | Panduan sumber dan lisensi suara hewan |
+| [PRD.md](PRD.md) | v1 goals, menus, app flows, product principles |
+| [TECH-SPEC.md](TECH-SPEC.md) | Technology, architecture, storage, audio, testing |
+| [DESIGN-SYSTEM.md](DESIGN-SYSTEM.md) | Colors, fonts, sizes, motion, components |
+| [CONTENT-ASSETS.md](CONTENT-ASSETS.md) | Illustrations, JSON catalog, narration, sounds, how to add content |
+| [PRIVACY-RELEASE.md](PRIVACY-RELEASE.md) | Privacy, permissions, the kids category in the app stores, release flow |
+| [design/](design/) | Interactive prototype snapshot |
+| [audio/SUARA-HEWAN.md](audio/SUARA-HEWAN.md) | Guide to animal sound sources and licenses |
