@@ -43,6 +43,17 @@ void main() {
     }
   });
 
+  test('balon multiwarna tidak pernah jadi kartu', () {
+    for (final warna in katalog.warna) {
+      final set = buatWarnaSet(katalog, warna.id, Random(3));
+      expect(
+        set.kartu.where((k) => k.gambarId == 'balon'),
+        isEmpty,
+        reason: warna.id,
+      );
+    }
+  });
+
   test('nama kartu mengikuti bahasa', () {
     final set = buatWarnaSet(katalog, 'merah', Random(9));
     final kartuGambar = set.kartu.firstWhere((k) => k.gambarId != null);
