@@ -1005,6 +1005,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get mewarnaiTabHewan => 'Animals';
 
   @override
+  String get mewarnaiTabLaut => 'Sea';
+
+  @override
+  String get mewarnaiTabBuah => 'Fruit & Veg';
+
+  @override
+  String get mewarnaiTabKota => 'City';
+
+  @override
   String get mewarnaiTabBenda => 'Things & Nature';
 
   @override

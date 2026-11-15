@@ -21,7 +21,7 @@ Future<T> _muatAset<T>(
   return baca(rootBundle);
 }
 
-/// 14 halaman mewarnai dari bundel aset.
+/// Halaman mewarnai dari bundel aset.
 final coloringProvider = FutureProvider<ColoringSet>(
   (ref) =>
       _muatAset(ContentRepository.coloringPath, ContentRepository.loadColoring),
