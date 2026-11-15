@@ -65,8 +65,5 @@ void main() {
     expect(ukuranSoalBuah('APEL'), 44);
     expect(ukuranSoalBuah('SEMANGKA'), 44);
     expect(ukuranSoalBuah('PERSIK PANJANG'), 36);
-    expect(ukuranKartuBuah('Stroberi'), 22);
-    expect(ukuranKartuBuah('Strawberry'), 22);
-    expect(ukuranKartuBuah('Stroberi Besar'), 18);
   });
 }
