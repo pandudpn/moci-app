@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'dart:math';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/misc.dart' show Override;
@@ -27,6 +28,9 @@ import 'package:moci/core/speech/method_channel_mic_level_meter.dart';
 import 'package:moci/core/speech/speech_to_text_engine.dart';
 import 'package:moci/core/storage/json_store.dart';
 import 'package:moci/core/storage/key_value_store.dart';
+import 'package:moci/features/bentuk/bentuk_screen.dart';
+import 'package:moci/features/buah_sayur/buah_screen.dart';
+import 'package:moci/features/main_yuk/main_yuk_game.dart';
 import 'package:moci/l10n/l10n.dart';
 
 import 'fake_audio.dart';
@@ -212,6 +216,11 @@ final class TestEnv {
     speechEngineProvider.overrideWithValue(speech),
     micLevelMeterProvider.overrideWithValue(meter),
     playTimerTicksProvider.overrideWithValue(ticks.stream),
+    // Pengacakan permainan diberi seed supaya tes deterministik; tes yang
+    // butuh urutan lain memakai `extraOverrides` untuk provider lain.
+    gameRandomProvider.overrideWithValue(Random(1)),
+    bentukRandomProvider.overrideWithValue(Random(1)),
+    buahRandomProvider.overrideWithValue(Random(1)),
     ...extraOverrides,
   ];
 }
