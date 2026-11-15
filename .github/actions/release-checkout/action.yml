@@ -19,6 +19,11 @@ runs:
         TAG: ${{ inputs.tag }}
       run: |
         set -euo pipefail
+        # The release tools come from the workflow's own commit: an older tag
+        # may carry an older tool that lacks the subcommands this file calls.
+        rm -rf "$RUNNER_TEMP/rilis-tool"
+        cp -R tool/rilis "$RUNNER_TEMP/rilis-tool"
+        echo "RILIS=$RUNNER_TEMP/rilis-tool" >> "$GITHUB_ENV"
         git fetch --quiet --force "$RUNNER_TEMP/release-ref/release.bundle" "refs/tags/${TAG}:refs/tags/${TAG}"
         git checkout --quiet --detach "refs/tags/${TAG}"
         echo "checked out ${TAG} at $(git rev-parse HEAD)"

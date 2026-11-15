@@ -66,6 +66,13 @@ jobs:
           set -euo pipefail
           grep -q '"flutter": "3.50.0"' .fvmrc
       - run: flutter pub get
+      - name: Keep this commit's release tools
+        # An older tag may carry an older tool; the steps below always run the
+        # one that matches this workflow file.
+        run: |
+          set -euo pipefail
+          cp -R tool/rilis "$RUNNER_TEMP/rilis-tool"
+          echo "RILIS=$RUNNER_TEMP/rilis-tool" >> "$GITHUB_ENV"
 
       - name: Refuse a release from outside main
         if: github.event_name == 'workflow_dispatch' && github.ref_name != 'main'
@@ -77,7 +84,7 @@ jobs:
         if: github.event_name == 'push'
         run: |
           set -euo pipefail
-          dart run tool/rilis/naikkan_versi.dart check "${GITHUB_REF_NAME}"
+          dart run "$RILIS/naikkan_versi.dart" check "${GITHUB_REF_NAME}"
 
       - name: Refuse a dispatch that is stale or has nothing to release
         # Runs in the release concurrency group queue one after another, and a
@@ -119,9 +126,9 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           if [ -n "$WANTED" ]; then
-            version=$(dart run tool/rilis/naikkan_versi.dart bump "$WANTED")
+            version=$(dart run "$RILIS/naikkan_versi.dart" bump "$WANTED")
           else
-            version=$(dart run tool/rilis/naikkan_versi.dart bump "$KIND")
+            version=$(dart run "$RILIS/naikkan_versi.dart" bump "$KIND")
           fi
           # The tag names x.y.z; the build number after + stays in the file.
           tag="v${version%%+*}"
@@ -159,7 +166,7 @@ jobs:
               # Dispatch with no bump: release the tag the files already
               # declare, so a version bumped and tagged by hand is publishable.
               # The tag is what ships, even when main moved on since.
-              declared=$(dart run tool/rilis/naikkan_versi.dart show)
+              declared=$(dart run "$RILIS/naikkan_versi.dart" show)
               declared="${declared%%+*}"
               if git rev-parse -q --verify "refs/tags/v${declared}" >/dev/null 2>&1; then
                 tag="v${declared}"
@@ -171,8 +178,8 @@ jobs:
             echo "::error::nothing to release. Push a vX.Y.Z tag, or dispatch with a bump."
             exit 1
           fi
-          version=$(dart run tool/rilis/naikkan_versi.dart show)
-          dart run tool/rilis/naikkan_versi.dart check "$tag" >/dev/null
+          version=$(dart run "$RILIS/naikkan_versi.dart" show)
+          dart run "$RILIS/naikkan_versi.dart" check "$tag" >/dev/null
           number="${tag#v}"
           case "$number" in *-*) prerelease=true ;; *) prerelease=false ;; esac
           commit=$(git rev-parse "${tag}^{commit}")
@@ -247,7 +254,7 @@ jobs:
           TAG: ${{ needs.prepare.outputs.tag }}
         run: |
           set -euo pipefail
-          dart run tool/rilis/naikkan_versi.dart check "$TAG"
+          dart run "$RILIS/naikkan_versi.dart" check "$TAG"
 
   golden:
     name: Golden screens
@@ -462,7 +469,7 @@ jobs:
           # linked to it, a commit on main links the commit, and the authors are
           # credited by GitHub login. The summary is the snapshot Prepare took
           # before the tagged bump cleared the file; it never rides on the tag.
-          dart run tool/rilis/catatan_rilis.dart --to "$TAG" \
+          dart run "$RILIS/catatan_rilis.dart" --to "$TAG" \
             --summary "$RUNNER_TEMP/release-summary.md" --write RELEASE_NOTES.md
           flags=(--title "Moci ${NUMBER}" --notes-file RELEASE_NOTES.md)
           if [ "$PRERELEASE" = "true" ]; then
