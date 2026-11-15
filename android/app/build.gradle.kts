@@ -1,7 +1,17 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
+}
+
+// Kunci rilis tinggal di android/key.properties (ditolak .gitignore). Tanpa berkas
+// itu, build memakai kunci debug supaya `make install` tetap jalan.
+val kunciRilis = Properties()
+val berkasKunciRilis = rootProject.file("key.properties")
+if (berkasKunciRilis.exists()) {
+    berkasKunciRilis.inputStream().use { kunciRilis.load(it) }
 }
 
 android {
@@ -29,11 +39,25 @@ android {
         versionName = flutter.versionName
     }
 
+    signingConfigs {
+        if (berkasKunciRilis.exists()) {
+            create("release") {
+                keyAlias = kunciRilis.getProperty("keyAlias")
+                keyPassword = kunciRilis.getProperty("keyPassword")
+                storeFile = file(kunciRilis.getProperty("storeFile"))
+                storePassword = kunciRilis.getProperty("storePassword")
+            }
+        }
+    }
+
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("debug")
+            signingConfig =
+                if (berkasKunciRilis.exists()) {
+                    signingConfigs.getByName("release")
+                } else {
+                    signingConfigs.getByName("debug")
+                }
         }
     }
 }
