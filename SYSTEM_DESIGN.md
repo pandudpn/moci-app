@@ -73,7 +73,8 @@ Aturan penyimpanan:
 
 | Berkas | Isi |
 | --- | --- |
-| `lib/features/mewarnai/galeri_screen.dart` | 14 halaman, saring jenis gambar, lencana Lanjutkan, kartu Karyaku |
+| `lib/features/mewarnai/galeri_screen.dart` | 44 halaman dalam lima kategori, enam pil saring, kisi yang bisa digeser, lencana Lanjutkan, kartu Karyaku |
+| `tool/konten/halaman_mewarnai/` | generator halaman baru; `buat_halaman.dart` menambah 30 halaman ke `pages.json` |
 | `lib/features/mewarnai/kanvas_screen.dart` | alat, 16 krayon, 8 stiker, batal, draf otomatis, Simpan, pemilih gambar |
 | `lib/features/mewarnai/karyaku_screen.dart` | 12 karya, detail, hapus dua langkah, warnai lagi |
 | `lib/features/mewarnai/mewarnai_engine.dart` | isi, kuas, hapus, stiker, dan riwayat batal 30 langkah |

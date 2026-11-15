@@ -31,7 +31,8 @@ Saat ini ada 116 file SVG ilustrasi dengan total hanya 147 KB, atau rata-rata 1,
 - Kanvas 800 × 600. Setiap bagian yang bisa diwarnai adalah satu path tertutup.
 - Garis detail seperti mata dan motif disimpan terpisah, lalu digambar di atas semua warna.
 - Bagian terkecil sebaiknya minimal 24 unit lebarnya, supaya masih bisa disentuh jari anak.
-- Setiap halaman punya warna contoh untuk thumbnail di Galeri. Saat ini 14 halaman memakai total 27 KB data.
+- Setiap halaman baru punya warna contoh untuk thumbnail di Galeri. Saat ini 44 halaman memakai total 203 KB data; sepuluh halaman prototipe awal belum punya contoh warna.
+- Halaman baru ditulis di `tool/konten/halaman_mewarnai/` (bentuk dasar di `bentuk.dart`, per kategori di `kota.dart`, `laut.dart`, `hewan.dart`, `buah.dart`, `benda.dart`). Jalankan `fvm dart run tool/konten/halaman_mewarnai/buat_halaman.dart` untuk menambahkannya ke `pages.json`.
 
 ## Format katalog isi
 
@@ -67,7 +68,7 @@ Bagian katalog yang lain:
 | `kata` | Kata, pecahan suku kata, id gambar | 71 Bahasa Indonesia, 33 English |
 | `kalimat` | Kalimat dua bahasa dan id gambar | 18 |
 | `tracing/*.json` | Daftar goresan sebagai path SVG di kotak 520 × 520 | 26 huruf, 10 angka |
-| `coloring/pages.json` | Bagian, garis detail, warna contoh, kategori | 14 halaman |
+| `coloring/pages.json` | Bagian, garis detail, warna contoh, kategori | 44 halaman (862 bagian) |
 
 Semua data awal ini (nama, kelompok hewan, fakta, kata, kalimat, jalur goresan, dan halaman mewarnai) sudah ada di prototipe. Jadi katalog v1 tinggal diekspor ke format di atas.
 
@@ -170,4 +171,4 @@ Contoh menambah satu hewan:
 6. Jalankan validasi lagi sampai bersih, lalu cek tampilannya di tablet dan HP.
 7. Buka pull request. CI menjalankan validasi yang sama sebelum perubahan digabung.
 
-Halaman mewarnai baru dibuat di aplikasi gambar vektor, dengan satu path tertutup untuk setiap bagian yang bisa diwarnai, lalu dikonversi ke format `pages.json`. Jalur goresan huruf dan angka sudah lengkap, jadi tidak perlu ditambah.
+Halaman mewarnai baru ditulis sebagai bentuk di `tool/konten/halaman_mewarnai/`, lalu `buat_halaman.dart` menambahkannya ke `pages.json`: satu path tertutup untuk setiap bagian yang bisa diwarnai, garis detail terpisah, dan warna contoh untuk thumbnail. Jalur goresan huruf dan angka sudah lengkap, jadi tidak perlu ditambah.

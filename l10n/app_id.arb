@@ -1227,6 +1227,18 @@
   "@mewarnaiTabHewan": {
     "description": "Pil saring gambar hewan"
   },
+  "mewarnaiTabLaut": "Laut",
+  "@mewarnaiTabLaut": {
+    "description": "Pil saring gambar laut"
+  },
+  "mewarnaiTabBuah": "Buah & Sayur",
+  "@mewarnaiTabBuah": {
+    "description": "Pil saring gambar buah dan sayur"
+  },
+  "mewarnaiTabKota": "Kota",
+  "@mewarnaiTabKota": {
+    "description": "Pil saring gambar kota"
+  },
   "mewarnaiTabBenda": "Benda & Alam",
   "@mewarnaiTabBenda": {
     "description": "Pil saring gambar benda dan alam"

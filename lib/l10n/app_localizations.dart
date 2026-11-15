@@ -1976,6 +1976,24 @@ abstract class AppLocalizations {
   /// **'Hewan'**
   String get mewarnaiTabHewan;
 
+  /// Pil saring gambar laut
+  ///
+  /// In id, this message translates to:
+  /// **'Laut'**
+  String get mewarnaiTabLaut;
+
+  /// Pil saring gambar buah dan sayur
+  ///
+  /// In id, this message translates to:
+  /// **'Buah & Sayur'**
+  String get mewarnaiTabBuah;
+
+  /// Pil saring gambar kota
+  ///
+  /// In id, this message translates to:
+  /// **'Kota'**
+  String get mewarnaiTabKota;
+
   /// Pil saring gambar benda dan alam
   ///
   /// In id, this message translates to:

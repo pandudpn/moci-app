@@ -61,7 +61,7 @@ Prinsip yang dipegang di semua layar:
 | **Main Musik**      | Xilofon 8 nada dengan lagu untuk diikuti, serta drum dengan 4 bunyi dan contoh irama.                                                                                |
 | **Ayo Membaca**     | Suku kata (ba-bi-bu-be-bo), menyusun kata dari suku kata, dan membaca kalimat dengan kata yang menyala satu per satu.                                                |
 | **Main Yuk!**       | 6 mini game: Cocokkan Gambar, Kartu Memori, Tebak Bayangan, Puzzle, Balon Huruf, Besar & Kecil.                                                                      |
-| **Mewarnai**        | 14 gambar. Warna tidak bisa keluar garis. Ada kuas, isi warna, penghapus, stiker, dan Karyaku untuk menyimpan hasil.                                                 |
+| **Mewarnai**        | 44 gambar: hewan, laut, buah & sayur, kota, dan benda. Warna tidak bisa keluar garis. Ada kuas, isi warna, penghapus, stiker, dan Karyaku untuk menyimpan hasil. |
 | **Hadiah**          | Bintang dan stiker setiap kali anak menyelesaikan permainan.                                                                                                         |
 | **Untuk orang tua** | Gerbang orang tua, profil anak, ringkasan perkembangan, cara baca huruf, batas waktu harian, dan pengingat istirahat.                                                |
 
@@ -158,7 +158,7 @@ Semua tangkapan layar diambil dari prototipe interaktif versi tablet (1180 × 82
 
 <table>
 <tr>
-<td width="50%"><img src="docs/screenshots/24-galeri-mewarnai.png" alt="Galeri mewarnai"><br><b>Pilih Gambar.</b> 14 gambar hewan, benda, dan alam, plus Karyaku.</td>
+<td width="50%"><img src="docs/screenshots/24-galeri-mewarnai.png" alt="Galeri mewarnai"><br><b>Pilih Gambar.</b> 44 gambar dalam lima kategori, plus Karyaku.</td>
 <td width="50%"><img src="docs/screenshots/25-mewarnai.png" alt="Kanvas mewarnai"><br><b>Kanvas.</b> Warna tidak bisa keluar garis. Coretan terkunci di bagian gambar tempat jari mulai menyentuh. Ada kuas 3 ukuran, isi warna, penghapus, stiker, batal, dan 16 krayon.</td>
 </tr>
 <tr>

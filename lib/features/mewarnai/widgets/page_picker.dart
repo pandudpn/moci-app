@@ -13,7 +13,7 @@ import 'page_thumbnail.dart';
 
 const _aktif = Color(0xFFFFF1D6);
 
-/// Pemilih gambar: 14 halaman dalam kisi 5 kolom, halaman aktif ditandai.
+/// Pemilih gambar: kisi 5 kolom, halaman aktif ditandai.
 class PagePickerDialog extends ConsumerWidget {
   const PagePickerDialog({
     super.key,

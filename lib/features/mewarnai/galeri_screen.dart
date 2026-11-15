@@ -39,7 +39,7 @@ const _ungu = Color(0xFF7048E8);
 const _petunjuk = Color(0xFF6B5F99);
 const _bayanganKaryaku = Color(0xFFE0A100);
 
-/// Galeri 14 halaman mewarnai dan kartu Karyaku.
+/// Galeri halaman mewarnai dan kartu Karyaku.
 class GaleriScreen extends ConsumerStatefulWidget {
   const GaleriScreen({super.key});
 
@@ -80,14 +80,20 @@ class _GaleriScreenState extends ConsumerState<GaleriScreen> {
               Semantics(
                 label: l10n.mewarnaiFilter,
                 container: true,
-                child: Row(
-                  children: [
-                    _pil('semua', l10n.mewarnaiTabSemua),
-                    const SizedBox(width: 10),
-                    _pil('hewan', l10n.mewarnaiTabHewan),
-                    const SizedBox(width: 10),
-                    _pil('benda', l10n.mewarnaiTabBenda),
-                  ],
+                child: SizedBox(
+                  width: 646,
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    physics: const ClampingScrollPhysics(),
+                    child: Row(
+                      children: [
+                        for (final (i, saring) in _saringan(l10n).indexed) ...[
+                          if (i > 0) const SizedBox(width: 10),
+                          _pil(saring.$1, saring.$2),
+                        ],
+                      ],
+                    ),
+                  ),
                 ),
               ),
               StarCounter(semanticLabelOf: l10n.berandaStarsLabel),
@@ -135,11 +141,11 @@ class _GaleriScreenState extends ConsumerState<GaleriScreen> {
       child: SizedBox(
         height: 56,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 12),
           child: Center(
             child: Text(
               label,
-              style: MociText.button.copyWith(fontSize: 20),
+              style: MociText.button.copyWith(fontSize: 18),
               maxLines: 1,
             ),
           ),
@@ -160,7 +166,7 @@ class _GaleriScreenState extends ConsumerState<GaleriScreen> {
     ];
     return GridView.builder(
       padding: EdgeInsets.zero,
-      physics: const NeverScrollableScrollPhysics(),
+      primary: false,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 5,
         crossAxisSpacing: 26,
@@ -174,6 +180,16 @@ class _GaleriScreenState extends ConsumerState<GaleriScreen> {
       },
     );
   }
+
+  /// Urutan pil saring: semua, lalu tiap kategori.
+  List<(String, String)> _saringan(AppLocalizations l10n) => [
+    ('semua', l10n.mewarnaiTabSemua),
+    ('hewan', l10n.mewarnaiTabHewan),
+    ('laut', l10n.mewarnaiTabLaut),
+    ('buah', l10n.mewarnaiTabBuah),
+    ('kota', l10n.mewarnaiTabKota),
+    ('benda', l10n.mewarnaiTabBenda),
+  ];
 
   Widget _kartuHalaman(
     ColoringPage page,

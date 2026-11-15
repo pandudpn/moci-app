@@ -1044,6 +1044,15 @@ class AppLocalizationsId extends AppLocalizations {
   String get mewarnaiTabHewan => 'Hewan';
 
   @override
+  String get mewarnaiTabLaut => 'Laut';
+
+  @override
+  String get mewarnaiTabBuah => 'Buah & Sayur';
+
+  @override
+  String get mewarnaiTabKota => 'Kota';
+
+  @override
   String get mewarnaiTabBenda => 'Benda & Alam';
 
   @override
