@@ -14,6 +14,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Flutter-iOS%20%7C%20Android-1C8CF0" alt="Flutter for iOS and Android">
   <img src="https://img.shields.io/badge/usia-2%E2%80%937%20tahun-26A03B" alt="Ages 2–7">
+  <a href="https://github.com/pandudpn/moci-app/releases/latest"><img src="https://img.shields.io/github/v/release/pandudpn/moci-app?label=download" alt="Latest release"></a>
 </p>
 
 ---
@@ -21,6 +22,7 @@
 ## Table of contents
 
 - [About Moci](#about-moci)
+- [Install](#install)
 - [Features](#features)
 - [App screens](#app-screens)
 - [For parents: privacy and safety](#for-parents-privacy-and-safety)
@@ -48,6 +50,45 @@ Principles that hold on every screen:
 - **Works offline.** All content ships inside the app.
 - **Two languages.** Text and voice are available in Bahasa Indonesia and English, and can be switched at any time.
 - **Friendly to small children.** Big buttons, little text, lots of voice and animation, positive feedback, and difficulty levels that follow age (2–3, 4–5, 6–7).
+
+## Install
+
+Moci is not on the App Store or Play Store. Ready-to-install builds are on the [latest release page](https://github.com/pandudpn/moci-app/releases/latest), under **Assets**.
+
+| File | For | How |
+| --- | --- | --- |
+| `moci-<version>.apk` | Android phone or tablet (Android 7.0 or newer) | Install directly |
+| `moci-<version>.ipa` | iPad or iPhone | Install with Sideloadly or AltStore |
+| `moci-<version>.aab` | Google Play only | Cannot be installed directly |
+| `SHA256SUMS` | Checking the downloads | Optional |
+
+### Android
+
+1. Open the [latest release](https://github.com/pandudpn/moci-app/releases/latest) on the phone or tablet and tap `moci-<version>.apk`.
+2. Open the downloaded file. When Android asks, allow your browser or file manager to install unknown apps.
+3. Tap **Install**, then open Moci.
+
+A newer APK installs over the old one and keeps the child's progress.
+
+### iPad and iPhone
+
+The IPA is unsigned, so it needs a sideloading tool that signs it with your own Apple ID. A free Apple ID works.
+
+1. Download `moci-<version>.ipa` from the [latest release](https://github.com/pandudpn/moci-app/releases/latest) to a Mac or Windows PC.
+2. Install [Sideloadly](https://sideloadly.io) (or [AltStore](https://altstore.io)) and connect the iPad or iPhone by cable.
+3. Drag the IPA into Sideloadly, enter your Apple ID, and start.
+4. On the device, trust your Apple ID in **Settings > General > VPN & Device Management**. On iOS 16 or newer, turn on **Settings > Privacy & Security > Developer Mode** when asked.
+5. Open Moci.
+
+With a free Apple ID the app stops opening after 7 days. Run Sideloadly again to re-sign it; the child's progress stays. With the Apple Developer Program, the signature lasts 1 year.
+
+### Checking a download
+
+```bash
+shasum -a 256 -c SHA256SUMS --ignore-missing
+```
+
+To build and install from source instead, see [Running the app](#running-the-app).
 
 ## Features
 
@@ -254,16 +295,6 @@ fvm flutter run -d <device>
 ```
 
 Device IDs are listed with `fvm flutter devices` or `make devices`. The check commands, golden tests, content validator, and integration tests are in [AGENTS.md](AGENTS.md) and [CONTRIBUTING.md](CONTRIBUTING.md).
-
-### Download from Releases
-
-Each release publishes three files to [Releases](https://github.com/pandudpn/moci-app/releases). How to publish them is in [CONTRIBUTING.md](CONTRIBUTING.md) under Releases and in [SYSTEM_DESIGN.md](SYSTEM_DESIGN.md) under CI and release.
-
-- **Android:** download `moci-<version>.apk` and install it on a phone or tablet. Allow "install from unknown sources" when asked.
-- **iPad/iPhone:** download `moci-<version>.ipa` and install it with [Sideloadly](https://sideloadly.io) or [AltStore](https://altstore.io) using your own Apple ID. The file is unsigned, so the app is re-signed by that tool.
-- **AAB:** for Google Play only, it cannot be installed directly.
-
-With a free Apple account, the app stops opening after 7 days and needs re-signing; with the Apple Developer Program, it lasts 1 year.
 
 ### Installing from a Mac
 
