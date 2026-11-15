@@ -104,6 +104,11 @@ Kolom "Jenis" menunjukkan apakah hewan memakai rekaman suara asli atau efek buat
 
 Beberapa hewan liar mungkin sulit ditemukan dalam CC0, misalnya komodo, orangutan, zebra, badak, dan flamingo. Kalau belum ada yang cocok, coba kata kunci lain (misalnya "lizard" untuk komodo, "goose honk" untuk flamingo), atau buat efek sendiri yang cocok dengan tiruan bunyinya.
 
+Dua hewan sudah diputuskan setelah pencarian ulang pada 15 November 2026:
+
+- **Zebra.** Hanya ada satu rekaman zebra CC0 di Freesound, [Zebras - Grant's Zebra Braying](https://freesound.org/s/850661/). Rekamannya jauh, jadi yang diambil hanya bray paling jelas (1,4 detik). Jangan ganti dengan suara kuda: zebra menggonggong pendek, bukan meringkik.
+- **Orangutan.** Tidak ada rekaman orangutan CC0. Sesuai aturan di atas, dipakai hoot gibbon (owa) yang masih satu keluarga kera, [G12-23-Gibbons Hooting](https://freesound.org/s/437955/), dan dicatat di kolom catatan `LICENSES.csv`.
+
 ## Setelah semua terkumpul
 
 Satu hewan dianggap selesai kalau file hasil proses `assets/audio/hewan/<id>.m4a` sudah ada dan barisnya di `assets/audio/LICENSES.csv` lengkap dengan lisensi `CC0` atau `Milik sendiri`. Validator konten (`dart run tool/validate_content.dart`) memeriksa keduanya untuk 42 hewan sebelum build rilis.
