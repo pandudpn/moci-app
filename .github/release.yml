@@ -1,0 +1,21 @@
+# Categories for GitHub's own release notes, used only by `--generate-notes`.
+# The release workflow does not call it: tool/rilis/catatan_rilis.dart builds
+# the body from the main line, so commits made straight on main appear next to
+# merged pull requests. Keep the headings in step so the two read the same.
+changelog:
+  exclude:
+    labels: [skip-changelog, dependencies]
+    authors: ["github-actions[bot]"]
+  categories:
+    - title: Breaking changes
+      labels: [breaking]
+    - title: Features
+      labels: [enhancement, feature]
+    - title: Fixes
+      labels: [bug, fix]
+    - title: Documentation
+      labels: [documentation, docs]
+    - title: Build and CI
+      labels: [ci, build, dependencies]
+    - title: Other changes
+      labels: ["*"]

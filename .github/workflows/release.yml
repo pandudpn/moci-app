@@ -1,43 +1,61 @@
-# Manual release: bump the version, build a signed AAB/APK and an unsigned
-# IPA, then publish them as a GitHub Release.
-#
-#   gh workflow run Release -f bump_type=patch
-#
-# It only runs from main through workflow_dispatch, so the `chore(release)`
-# push this workflow creates does not trigger it again. Tests on main run
-# first, before the version bump, so a broken commit is never released.
 name: Release
 
+# A release starts either from a tag someone pushed, or from the Actions button
+# that computes the version. Both paths run the same gates, in the same run: a
+# tag pushed by GITHUB_TOKEN does not trigger a second workflow, so a workflow
+# that relied on that would leave a bumped version with no release behind it.
+#
+# The button stages the bump commit and its tag inside the runner and pushes
+# nothing until every gate has passed on that exact commit. A failed test or
+# build leaves main and the tags untouched. The publish job makes one atomic
+# push of the branch and the tag, so a half-published release cannot happen.
+#
+# The version is decided in one place, tool/rilis/naikkan_versi.dart, which
+# writes the only `version:` line in pubspec.yaml. A tag that disagrees with it
+# is refused before anything is built.
 on:
+  push:
+    tags: ["v*"]
   workflow_dispatch:
     inputs:
-      bump_type:
-        description: Version bump type
-        required: true
+      bump:
+        description: "Bump the version and tag it"
+        required: false
         type: choice
-        options:
-          - patch
-          - minor
-          - major
-        default: patch
-
-concurrency:
-  group: rilis
-  cancel-in-progress: false
+        default: none
+        options: [none, patch, minor, major]
+      version:
+        description: "Explicit version instead of a bump (for example 2.0.0-rc.1)"
+        required: false
+        type: string
 
 permissions:
-  contents: write
+  contents: read
+
+concurrency:
+  group: release
+  cancel-in-progress: false
 
 jobs:
-  versi:
-    name: Version
-    if: github.ref_name == 'main'
+  prepare:
+    name: Resolve the version
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     outputs:
-      versi: ${{ steps.naik.outputs.versi }}
-      tag: ${{ steps.naik.outputs.tag }}
+      tag: ${{ steps.resolve.outputs.tag }}
+      version: ${{ steps.resolve.outputs.version }}
+      number: ${{ steps.resolve.outputs.number }}
+      prerelease: ${{ steps.resolve.outputs.prerelease }}
+      # true when this run created the bump commit or the tag, which then exist
+      # only in the release-ref artifact until publish pushes them
+      push: ${{ steps.resolve.outputs.push }}
     steps:
+      # No stored credentials: nothing in this job pushes.
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: 3.50.0
@@ -45,47 +63,238 @@ jobs:
           cache: true
       - name: Check pinned Flutter version
         run: |
+          set -euo pipefail
           grep -q '"flutter": "3.50.0"' .fvmrc
       - run: flutter pub get
-      - run: flutter analyze
-      - run: flutter test --exclude-tags golden
-      - run: dart run tool/validate_content.dart
-      - name: Bump version
-        id: naik
+
+      - name: Refuse a release from outside main
+        if: github.event_name == 'workflow_dispatch' && github.ref_name != 'main'
+        run: |
+          echo "::error::dispatch this workflow on main, not ${GITHUB_REF_NAME}."
+          exit 1
+
+      - name: Refuse a tag that disagrees with pubspec.yaml
+        if: github.event_name == 'push'
         run: |
           set -euo pipefail
-          versi="$(dart run tool/rilis/naikkan_versi.dart "${{ inputs.bump_type }}")"
-          tag="v${versi%%+*}"
-          echo "versi=$versi" >> "$GITHUB_OUTPUT"
-          echo "tag=$tag" >> "$GITHUB_OUTPUT"
-          echo "$tag ($versi)"
-      - name: Commit and tag
+          dart run tool/rilis/naikkan_versi.dart check "${GITHUB_REF_NAME}"
+
+      - name: Refuse a dispatch that is stale or has nothing to release
+        # Runs in the release concurrency group queue one after another, and a
+        # queued run still holds the commit that existed when its button was
+        # pressed. Without this, a second press bumps again on top of the first
+        # release.
+        if: github.event_name == 'workflow_dispatch' && (inputs.version != '' || inputs.bump != 'none')
+        run: |
+          set -euo pipefail
+          tip=$(git rev-parse "refs/remotes/origin/${GITHUB_REF_NAME}")
+          if [ "$tip" != "$GITHUB_SHA" ]; then
+            echo "::error::${GITHUB_REF_NAME} moved since this run was dispatched (now ${tip}). Dispatch again."
+            exit 1
+          fi
+          if released=$(git describe --tags --exact-match HEAD 2>/dev/null); then
+            echo "::error::HEAD is already released as ${released}; nothing new to release."
+            exit 1
+          fi
+
+      - name: Snapshot the release summary
+        # Every path to a release runs this. The file may not exist (no
+        # narrative this time) but the artifact must, because Publish downloads
+        # it unconditionally. The tagged bump clears SUMMARY.md, so the tag
+        # itself never carries the words.
+        run: |
+          set -euo pipefail
+          if [ -f SUMMARY.md ]; then
+            cp SUMMARY.md "$RUNNER_TEMP/release-summary.md"
+          fi
+          touch "$RUNNER_TEMP/release-summary.md"
+
+      - name: Stage the bump commit and the tag, without pushing
+        if: github.event_name == 'workflow_dispatch' && (inputs.version != '' || inputs.bump != 'none')
         env:
-          VERSI: ${{ steps.naik.outputs.versi }}
-          TAG: ${{ steps.naik.outputs.tag }}
+          WANTED: ${{ inputs.version }}
+          KIND: ${{ inputs.bump }}
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ -n "$WANTED" ]; then
+            version=$(dart run tool/rilis/naikkan_versi.dart bump "$WANTED")
+          else
+            version=$(dart run tool/rilis/naikkan_versi.dart bump "$KIND")
+          fi
+          # The tag names x.y.z; the build number after + stays in the file.
+          tag="v${version%%+*}"
+          if git rev-parse -q --verify "refs/tags/${tag}" >/dev/null; then
+            echo "::error::tag ${tag} already exists; dispatch with bump=none to re-release it."
+            exit 1
+          fi
           git add pubspec.yaml
-          git commit -m "chore(release): $TAG"
-          git tag "$TAG"
-          git push origin HEAD:main
-          git push origin "$TAG"
+          # The summary speaks for one release only; the bump clears the
+          # previous one so a release pushed later cannot inherit words that
+          # were never written for it.
+          git rm -q --ignore-unmatch SUMMARY.md
+          if git diff --cached --quiet; then
+            echo "pubspec.yaml already says ${version}, no bump commit needed"
+          else
+            git commit -m "chore(release): ${tag}"
+          fi
+          git tag -a "${tag}" -m "Moci ${tag#v}"
+          {
+            echo "TAG=${tag}"
+            echo "PUSH=true"
+          } >> "$GITHUB_ENV"
 
-  android:
-    name: Android
-    needs: versi
-    if: github.ref_name == 'main'
+      - name: Report what this run releases
+        id: resolve
+        env:
+          EVENT: ${{ github.event_name }}
+        run: |
+          set -euo pipefail
+          if [ "$EVENT" = "push" ]; then
+            tag="${GITHUB_REF_NAME}"
+          else
+            tag="${TAG:-}"
+            if [ -z "$tag" ]; then
+              # Dispatch with no bump: release the tag the files already
+              # declare, so a version bumped and tagged by hand is publishable.
+              # The tag is what ships, even when main moved on since.
+              declared=$(dart run tool/rilis/naikkan_versi.dart show)
+              declared="${declared%%+*}"
+              if git rev-parse -q --verify "refs/tags/v${declared}" >/dev/null 2>&1; then
+                tag="v${declared}"
+                git checkout --quiet --detach "refs/tags/${tag}"
+              fi
+            fi
+          fi
+          if [ -z "$tag" ]; then
+            echo "::error::nothing to release. Push a vX.Y.Z tag, or dispatch with a bump."
+            exit 1
+          fi
+          version=$(dart run tool/rilis/naikkan_versi.dart show)
+          dart run tool/rilis/naikkan_versi.dart check "$tag" >/dev/null
+          number="${tag#v}"
+          case "$number" in *-*) prerelease=true ;; *) prerelease=false ;; esac
+          commit=$(git rev-parse "${tag}^{commit}")
+          {
+            echo "tag=$tag"
+            echo "version=$version"
+            echo "number=$number"
+            echo "prerelease=$prerelease"
+            echo "push=${PUSH:-false}"
+          } >> "$GITHUB_OUTPUT"
+          echo "releasing ${tag} at ${commit} (version=${version}, prerelease=${prerelease}, push=${PUSH:-false})"
+
+      - name: Bundle the release commit for the other jobs
+        # The staged commit and tag live only in this runner, so later jobs
+        # receive them as a bundle instead of fetching a ref that is not on
+        # GitHub yet. An existing tag is bundled too, so every job checks out
+        # the same commit.
+        env:
+          TAG: ${{ steps.resolve.outputs.tag }}
+        run: |
+          set -euo pipefail
+          git bundle create "$RUNNER_TEMP/release.bundle" "refs/tags/${TAG}"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-ref
+          path: ${{ runner.temp }}/release.bundle
+          if-no-files-found: error
+          retention-days: 7
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-summary
+          path: ${{ runner.temp }}/release-summary.md
+          if-no-files-found: error
+          retention-days: 1
+
+  verify:
+    name: Tests and lint
+    needs: prepare
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ needs.versi.outputs.tag }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: ./.github/actions/release-checkout
+        with:
+          tag: ${{ needs.prepare.outputs.tag }}
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 3.50.0
+          channel: stable
+          cache: true
+      - name: Check pinned Flutter version
+        run: |
+          set -euo pipefail
+          grep -q '"flutter": "3.50.0"' .fvmrc
+      - run: flutter pub get
+      - name: Format
+        run: dart format --output=none --set-exit-if-changed lib test tool integration_test
+      - run: flutter analyze
+      - name: Validate the content
+        run: dart run tool/validate_content.dart
+      - name: Tests
+        run: flutter test --exclude-tags golden
+      - name: The tag still matches the file it ships
+        # Through the environment, never interpolated into the script: an
+        # expression inside a run block is text the shell will execute, and a
+        # tag is a name someone else can push.
+        env:
+          TAG: ${{ needs.prepare.outputs.tag }}
+        run: |
+          set -euo pipefail
+          dart run tool/rilis/naikkan_versi.dart check "$TAG"
+
+  golden:
+    name: Golden screens
+    needs: prepare
+    runs-on: macos-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: ./.github/actions/release-checkout
+        with:
+          tag: ${{ needs.prepare.outputs.tag }}
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 3.50.0
+          channel: stable
+          cache: true
+      - name: Check pinned Flutter version
+        run: |
+          set -euo pipefail
+          grep -q '"flutter": "3.50.0"' .fvmrc
+      - run: flutter pub get
+      - run: flutter test --tags golden
+
+  android:
+    name: Android
+    needs: [prepare, verify]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: ./.github/actions/release-checkout
+        with:
+          tag: ${{ needs.prepare.outputs.tag }}
+      # AGP's release lint crashes on JDK 17 (`List.removeLast` in lintVital);
+      # 21 is the toolchain the build is checked against, and lint stays on.
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: '17'
+          java-version: '21'
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: 3.50.0
@@ -111,7 +320,7 @@ jobs:
           } > android/key.properties
       - name: Build AAB and APK
         env:
-          VERSI: ${{ needs.versi.outputs.versi }}
+          VERSION: ${{ needs.prepare.outputs.version }}
         run: |
           set -euo pipefail
           # Leftover integration tests can register test plugins in a release build.
@@ -119,15 +328,15 @@ jobs:
           flutter build appbundle --release
           flutter build apk --release
           mkdir -p dist
-          cp build/app/outputs/bundle/release/app-release.aab "dist/moci-$VERSI.aab"
-          cp build/app/outputs/flutter-apk/app-release.apk "dist/moci-$VERSI.apk"
+          cp build/app/outputs/bundle/release/app-release.aab "dist/moci-$VERSION.aab"
+          cp build/app/outputs/flutter-apk/app-release.apk "dist/moci-$VERSION.apk"
       - name: Verify the APK is release-signed
         env:
-          VERSI: ${{ needs.versi.outputs.versi }}
+          VERSION: ${{ needs.prepare.outputs.version }}
         run: |
           set -euo pipefail
           apksigner="$(ls "$ANDROID_HOME"/build-tools/*/apksigner | sort -V | tail -1)"
-          "$apksigner" verify --print-certs "dist/moci-$VERSI.apk" | tee certs.txt
+          "$apksigner" verify --print-certs "dist/moci-$VERSION.apk" | tee certs.txt
           if grep -q 'Android Debug' certs.txt; then
             echo "APK is still debug-signed" >&2
             exit 1
@@ -140,13 +349,18 @@ jobs:
 
   ios:
     name: iOS
-    needs: versi
-    if: github.ref_name == 'main'
+    needs: [prepare, verify]
     runs-on: macos-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ needs.versi.outputs.tag }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: ./.github/actions/release-checkout
+        with:
+          tag: ${{ needs.prepare.outputs.tag }}
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: 3.50.0
@@ -155,7 +369,7 @@ jobs:
       - run: flutter pub get
       - name: Build unsigned IPA
         env:
-          VERSI: ${{ needs.versi.outputs.versi }}
+          VERSION: ${{ needs.prepare.outputs.version }}
         run: |
           set -euo pipefail
           flutter build ios --release --no-codesign
@@ -163,48 +377,102 @@ jobs:
           mkdir -p build/ios/ipa/Payload
           cp -R build/ios/iphoneos/Runner.app build/ios/ipa/Payload/Runner.app
           cd build/ios/ipa
-          zip -qry "moci-$VERSI.ipa" Payload
+          zip -qry "moci-$VERSION.ipa" Payload
           mkdir -p ../../../dist
-          mv "moci-$VERSI.ipa" ../../../dist/
+          mv "moci-$VERSION.ipa" ../../../dist/
       - uses: actions/upload-artifact@v4
         with:
           name: ios
           path: dist/*
           if-no-files-found: error
 
-  rilis:
-    name: Release
-    needs: [versi, android, ios]
-    if: github.ref_name == 'main'
+  publish:
+    name: Publish
+    needs: [prepare, verify, golden, android, ios]
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: ./.github/actions/release-checkout
+        with:
+          tag: ${{ needs.prepare.outputs.tag }}
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 3.50.0
+          channel: stable
+          cache: true
+      - run: flutter pub get
+      # Named downloads, because an unnamed one takes every artifact in the
+      # run: the release bundle and the summary would land in the release.
       - uses: actions/download-artifact@v4
         with:
+          name: android
           path: dist
           merge-multiple: true
-      - name: Publish release
-        env:
-          GH_TOKEN: ${{ github.token }}
-          # This job does not check out the repo, so GH_REPO has to be set.
-          GH_REPO: ${{ github.repository }}
-          VERSI: ${{ needs.versi.outputs.versi }}
-          TAG: ${{ needs.versi.outputs.tag }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: ios
+          path: dist
+          merge-multiple: true
+      - uses: actions/download-artifact@v4
+        with:
+          name: release-summary
+          path: ${{ runner.temp }}
+      - name: Checksums
         run: |
           set -euo pipefail
-          cat > catatan.md <<EOF
-          Release Moci $TAG.
+          cd dist
+          sha256sum moci-*.aab moci-*.apk moci-*.ipa > SHA256SUMS
+          cat SHA256SUMS
 
-          - \`moci-$VERSI.apk\` for Android phones and tablets. Install it directly, and allow "install from unknown sources" when asked.
-          - \`moci-$VERSI.ipa\` for iPhone and iPad. Install it through Sideloadly or AltStore with your own Apple ID.
-          - \`moci-$VERSI.aab\` is for Google Play only and cannot be installed directly.
+      - name: Push the bump commit and the tag
+        # The first write this workflow makes, after every gate passed on this
+        # exact commit. Atomic: if main moved and the commit no longer
+        # fast-forwards it, neither the branch nor the tag is updated and the
+        # run fails with nothing half-published. main is not protected, so the
+        # workflow token is enough; no deploy key is involved.
+        if: needs.prepare.outputs.push == 'true'
+        env:
+          TAG: ${{ needs.prepare.outputs.tag }}
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          git push --atomic \
+            "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git" \
+            "refs/tags/${TAG}^{commit}:refs/heads/${GITHUB_REF_NAME}" \
+            "refs/tags/${TAG}"
 
-          The IPA is unsigned. With a free Apple account the app stops opening after 7 days and must be signed again; with an Apple Developer Program membership it stays valid for 1 year.
-          EOF
-          gh release create "$TAG" \
-            "dist/moci-$VERSI.aab" \
-            "dist/moci-$VERSI.apk" \
-            "dist/moci-$VERSI.ipa" \
-            --title "Moci $TAG" \
-            --notes-file catatan.md \
-            --generate-notes \
-            --verify-tag
+      - name: Create or update the release
+        # The tool writes every entry, link, and credit; a hand-written
+        # SUMMARY.md may speak above them, and nothing else is ever edited by
+        # hand. Re-running replaces the assets instead of failing.
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          TAG: ${{ needs.prepare.outputs.tag }}
+          NUMBER: ${{ needs.prepare.outputs.number }}
+          PRERELEASE: ${{ needs.prepare.outputs.prerelease }}
+        run: |
+          set -euo pipefail
+          # Notes come from the main line: a merged pull request is one entry
+          # linked to it, a commit on main links the commit, and the authors are
+          # credited by GitHub login. The summary is the snapshot Prepare took
+          # before the tagged bump cleared the file; it never rides on the tag.
+          dart run tool/rilis/catatan_rilis.dart --to "$TAG" \
+            --summary "$RUNNER_TEMP/release-summary.md" --write RELEASE_NOTES.md
+          flags=(--title "Moci ${NUMBER}" --notes-file RELEASE_NOTES.md)
+          if [ "$PRERELEASE" = "true" ]; then
+            flags+=(--prerelease)
+          fi
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release edit "$TAG" "${flags[@]}"
+          else
+            gh release create "$TAG" "${flags[@]}"
+          fi
+          gh release upload "$TAG" dist/* --clobber
+          gh release view "$TAG" --json url,isPrerelease,assets \
+            --jq '"\(.url)  prerelease=\(.isPrerelease)  assets=\([.assets[].name] | join(", "))"'

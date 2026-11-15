@@ -1,0 +1,24 @@
+name: Check out the release commit
+description: >
+  Fetch the commit and tag the prepare job staged, from its bundle, and check
+  the tag out. A dispatched release has not pushed them yet, so they cannot be
+  fetched from GitHub.
+inputs:
+  tag:
+    description: The release tag, for example v1.1.0
+    required: true
+runs:
+  using: composite
+  steps:
+    - uses: actions/download-artifact@v4
+      with:
+        name: release-ref
+        path: ${{ runner.temp }}/release-ref
+    - shell: bash
+      env:
+        TAG: ${{ inputs.tag }}
+      run: |
+        set -euo pipefail
+        git fetch --quiet --force "$RUNNER_TEMP/release-ref/release.bundle" "refs/tags/${TAG}:refs/tags/${TAG}"
+        git checkout --quiet --detach "refs/tags/${TAG}"
+        echo "checked out ${TAG} at $(git rev-parse HEAD)"
