@@ -214,7 +214,7 @@ Semua tangkapan layar diambil dari prototipe interaktif versi tablet (1180 × 82
 | Penyimpanan        | `shared_preferences` untuk pengaturan, berkas JSON di folder aplikasi untuk progres dan karya                        |
 | Jaringan           | Tidak ada di build rilis. Semua isi ikut di bundel                                                                    |
 | Pemeriksaan        | Analyze, cek format, validator isi, dan tes tanpa golden di Linux; golden di macOS. Semuanya lewat GitHub Actions      |
-| Build & rilis      | Xcode untuk iOS, Gradle untuk Android. TestFlight dan Play internal testing direncanakan                             |
+| Build & rilis      | Workflow Rilis manual: naikkan versi, build AAB dan APK bertanda tangan serta IPA tanpa tanda tangan, lalu terbit di GitHub Releases |
 
 Target: ukuran aplikasi di bawah 30 MB dan animasi 60 fps, termasuk di tablet Android kelas bawah.
 
@@ -255,9 +255,19 @@ fvm flutter run -d <perangkat>
 
 Id perangkat dilihat dengan `fvm flutter devices` atau `make devices`. Perintah pemeriksaan, tes golden, validator isi, dan integration test ada di [AGENTS.md](AGENTS.md) dan [CONTRIBUTING.md](CONTRIBUTING.md).
 
-### Memasang ke iPad atau HP sendiri
+### Unduh dari Releases
 
-Moci tidak diterbitkan di App Store atau Play Store. Untuk memakainya, pasang build release langsung dari Mac ke perangkat yang tersambung kabel:
+Setiap rilis manual menerbitkan tiga berkas di [Releases](https://github.com/pandudpn/moci-app/releases). Cara menerbitkannya ada di [SYSTEM_DESIGN.md](SYSTEM_DESIGN.md) bagian CI dan rilis.
+
+- **Android:** unduh `moci-<versi>.apk` lalu pasang di HP atau tablet. Izinkan "instal dari sumber tidak dikenal" saat diminta.
+- **iPad/iPhone:** unduh `moci-<versi>.ipa` lalu pasang dengan [Sideloadly](https://sideloadly.io) atau [AltStore](https://altstore.io) memakai Apple ID sendiri. Berkasnya tidak bertanda tangan, jadi aplikasi ditandatangani ulang oleh alat itu.
+- **AAB:** hanya untuk Google Play, tidak bisa dipasang langsung.
+
+Dengan akun Apple gratis, aplikasi berhenti terbuka setelah 7 hari dan perlu ditandatangani ulang; dengan Apple Developer Program, masa berlakunya 1 tahun.
+
+### Memasang dari Mac
+
+Moci tidak diterbitkan di App Store atau Play Store. Untuk build sendiri, pasang build release langsung dari Mac ke perangkat yang tersambung kabel:
 
 ```bash
 make devices                      # lihat perangkat yang terhubung
@@ -269,7 +279,7 @@ make run                          # mode debug dengan hot reload
 Tanpa `DEVICE`, perangkat fisik pertama dipakai, iOS lebih dulu. `DEVICE=<UDID simulator>` (lihat `xcrun simctl list devices`) memasang build debug ke simulator iOS. Semua target ada di [scripts/moci.sh](scripts/moci.sh).
 
 - **iPad/iPhone:** perangkat perlu Developer Mode aktif, dan Xcode perlu masuk ke akun Apple tim pengembang (Xcode > Settings > Accounts). Pertama kali, buka `ios/Runner.xcworkspace` sekali dan pilih tim di Signing & Capabilities. Dengan akun Apple gratis, aplikasi berhenti terbuka setelah 7 hari dan perlu dipasang ulang; dengan Apple Developer Program, masa berlakunya 1 tahun.
-- **Android:** aktifkan USB debugging. APK release ditandatangani dengan kunci debug, jadi cukup untuk pemasangan sendiri.
+- **Android:** aktifkan USB debugging. APK release ditandatangani dengan kunci rilis kalau `android/key.properties` ada, dan dengan kunci debug kalau tidak. Dua-duanya cukup untuk pemasangan sendiri.
 
 ## Dokumentasi
 

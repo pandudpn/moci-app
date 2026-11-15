@@ -158,7 +158,7 @@ Aturan yang ditegakkan:
 | Bahasa | `CFBundleLocalizations` berisi `id` dan `en`; Android mengambil locale perangkat lewat plugin Flutter, lalu teks dari ARB |
 | Cadangan | `android:allowBackup="false"` dan `isExcludedFromBackup` untuk folder data iOS |
 | Izin rilis | `RECORD_AUDIO` untuk Ucapkan, ditambah satu izin milik aplikasi sendiri yang disuntikkan androidx.core, `id.pandudpn.moci.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION` (protectionLevel `signature`). `aapt2 dump permissions` pada APK arm64 rilis menunjukkan hanya keduanya: tanpa INTERNET dan tanpa Bluetooth |
-| Signing | Belum ada. `android/app/build.gradle.kts` masih memakai kunci debug, dan `android/key.properties` beserta berkas kunci ditolak `.gitignore` |
+| Signing | APK dan AAB release ditandatangani kunci Moci kalau `android/key.properties` ada, dan kunci debug kalau tidak. Berkas kunci tinggal di luar repo; `.gitignore` menolak `android/key.properties` dan `*.jks` |
 
 Kalau sistem mengabaikan kunci orientasi, panggung tetap aman karena isi selalu diskalakan ke area aman oleh `fitStage`.
 
@@ -184,7 +184,18 @@ Ukuran sekarang: ilustrasi 452 KB, font 320 KB, dan audio 1,9 MB (42 suara hewan
 - `test` di Ubuntu: cek versi Flutter 3.50 di `.fvmrc`, `flutter pub get`, `dart format --output=none --set-exit-if-changed .`, `flutter analyze`, `dart run tool/validate_content.dart`, lalu `flutter test --exclude-tags golden`.
 - `golden` di macOS: `flutter pub get` dan `flutter test --tags golden`.
 
-Belum ada workflow tag rilis. Rencana 10 menambahkan build TestFlight dan Play internal testing, signing, kebijakan privasi publik, serta pengisian `AppConfig.privacyPolicyUrl` dan `AppConfig.supportEmail`. Selama keduanya `null`, tautan terkait tidak tampil di Area Orang Tua.
+`.github/workflows/release.yml` (nama Rilis) hanya jalan manual dari main lewat `workflow_dispatch`, dengan pilihan `patch`, `minor`, atau `major`. Tujuannya sideload, bukan toko: AAB dan APK bertanda tangan untuk Android, IPA tanpa tanda tangan untuk iOS. Empat job:
+
+- `versi`: analyze, tes tanpa golden, dan validator isi dijalankan dulu supaya main yang rusak tidak pernah dirilis. Setelah hijau, `tool/rilis/naikkan_versi.dart` menaikkan versi di `pubspec.yaml` (nomor build selalu naik satu), lalu commit `chore(rilis): v<x.y.z>` dan tag `v<x.y.z>` di-push. Workflow tidak terpicu oleh push, jadi tidak ada lingkaran.
+- `android`: checkout di tag itu, JDK 17, lalu `flutter build appbundle --release` dan `flutter build apk --release` (satu APK universal). Berkas dinamai `moci-<versi>.aab` dan `moci-<versi>.apk`. `apksigner verify --print-certs` menggagalkan job kalau APK masih bertanda tangan debug.
+- `ios`: macOS, `flutter build ios --release --no-codesign`, lalu `Runner.app` di dalam `Payload/` di-zip menjadi `moci-<versi>.ipa`.
+- `rilis`: ketiga berkas diunggah ke GitHub Releases bersama catatan pemasangan singkat.
+
+Tanda tangan Android memakai empat secret repo; hanya namanya dicatat di sini: `ANDROID_KEYSTORE_BASE64`, `ANDROID_KEYSTORE_PASSWORD`, `ANDROID_KEY_PASSWORD`, dan `ANDROID_KEY_ALIAS`. Workflow menulis keystore ke `$RUNNER_TEMP` dan `android/key.properties` di runner, tidak pernah ke repo. Di mesin lokal, `android/key.properties` berisi `storePassword`, `keyPassword`, `keyAlias`, dan `storeFile` absolut ke keystore di luar repo.
+
+IPA tidak bertanda tangan karena akun Apple yang dipakai gratis. Pemasangan lewat Sideloadly atau AltStore dengan Apple ID sendiri, dan aplikasi berhenti terbuka setelah 7 hari.
+
+Sisa Rencana 10: build TestFlight dan Play internal testing, kebijakan privasi publik, serta pengisian `AppConfig.privacyPolicyUrl` dan `AppConfig.supportEmail`. Selama keduanya `null`, tautan terkait tidak tampil di Area Orang Tua.
 
 ## 10. Menu dan permainan berakhir
 
