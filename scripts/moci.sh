@@ -113,12 +113,17 @@ cmd_install() {
     ios)
       build_ios
       info "memasang ke $DEVICE_ID"
-      # Percobaan pertama kadang gagal saat iPad terkunci atau masih
-      # menyiapkan disk image pengembang; coba sekali lagi.
-      xcrun devicectl device install app --device "$DEVICE_ID" build/ios/iphoneos/Runner.app ||
-        { info "pemasangan gagal, mencoba sekali lagi (buka kunci iPad)"; sleep 5;
-          xcrun devicectl device install app --device "$DEVICE_ID" build/ios/iphoneos/Runner.app; } ||
-        die "gagal memasang. Buka kunci iPad. Kalau galatnya 'Developer mode is not enabled', nyalakan di iPad: Pengaturan > Privasi & Keamanan > Mode Pengembang, restart, pilih Nyalakan, lalu ulangi make install."
+      # Percobaan pertama setelah build sering gagal verifikasi profil
+      # (iPad terkunci atau belum siap); beberapa detik kemudian berhasil.
+      local coba=1
+      until xcrun devicectl device install app --device "$DEVICE_ID" build/ios/iphoneos/Runner.app; do
+        if ((coba >= 3)); then
+          die "gagal memasang setelah 3 kali. Buka kunci iPad dan biarkan layar menyala. Kalau galatnya 'Developer mode is not enabled', nyalakan di iPad: Pengaturan > Privasi & Keamanan > Mode Pengembang, restart, pilih Nyalakan, lalu ulangi make install."
+        fi
+        info "pemasangan gagal, mencoba lagi dalam 10 detik (buka kunci iPad)"
+        sleep 10
+        coba=$((coba + 1))
+      done
       info "membuka aplikasi"
       xcrun devicectl device process launch --device "$DEVICE_ID" "$BUNDLE_ID" ||
         echo "Aplikasi terpasang. Kalau iPad menolak membukanya, percayai sertifikat pengembang di Pengaturan > Umum > VPN & Manajemen Perangkat."
