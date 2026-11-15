@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:moci/core/audio/asset_catalog.dart';
 import 'package:moci/core/audio/audio_service.dart';
@@ -290,5 +291,12 @@ void main() {
       await service.resumeAfterListening();
       expect(engine.live, isEmpty);
     });
+  });
+
+  testWidgets('kelima efek suara ikut di bundel', (t) async {
+    final assets = await AssetCatalog.load(rootBundle);
+    for (final s in Sfx.values) {
+      expect(assets.has(s.asset), isTrue, reason: s.asset);
+    }
   });
 }

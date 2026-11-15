@@ -98,6 +98,7 @@ flutter:
     - assets/coloring/
     - assets/audio/hewan/
     - assets/audio/instrumen/
+    - assets/audio/sfx/
     # Rekaman narasi; folder diisi belakangan tanpa ubah pubspec.
     - assets/audio/vo/
 
