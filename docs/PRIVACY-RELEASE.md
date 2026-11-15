@@ -1,28 +1,28 @@
-> Salinan dari Claude Docs "Dokumentasi Moci", tab Privasi & Rilis, per 2026-11-14. Sumber kebenaran: https://claude.ai/artifact/VKF6SyozUj7ZBBCFEQ9e8H.
+> Copy of the Claude Docs "Moci Documentation", Privacy & Release tab, as of 2026-11-14. Source of truth: https://claude.ai/artifact/VKF6SyozUj7ZBBCFEQ9e8H.
 
-# Privasi & Rilis Moci
+# Moci Privacy & Release
 
-Moci tidak mengumpulkan data apa pun. Karena itu, jalur ke kategori anak di App Store dan Google Play jadi paling sederhana: tidak ada data yang perlu dilaporkan, dimintakan izin, atau dihapus dari server. Tab ini bukan nasihat hukum. Bagian regulasi sebaiknya dikonfirmasi ke ahli hukum sebelum rilis.
+Moci collects no data at all. Because of that, the path to the Kids category on the App Store and Google Play is as simple as it gets: there is no data to report, no consent to request, and nothing to delete from a server. This tab is not legal advice. The regulation section should be confirmed with a lawyer before release.
 
-## Prinsip privasi
+## Privacy principles
 
-- Tidak ada akun, server, analytics, iklan, atau SDK pihak ketiga yang mengirim data.
-- Satu-satunya izin perangkat adalah mikrofon untuk menu Ucapkan. Izin ini diminta lewat orang tua, dan suara anak dikenali di perangkat tanpa disimpan atau dikirim. Tidak ada izin kamera, lokasi, kontak, maupun internet.
-- Semua tautan keluar, seperti kebijakan privasi, email dukungan, dan halaman store, ada di balik Gerbang Orang Tua.
-- Orang tua bisa menghapus semua data lewat Hapus semua data di Area Orang Tua, atau dengan menghapus aplikasi.
+- No accounts, servers, analytics, ads, or third party SDKs that send data.
+- The only device permission is the microphone for the Say It (Ucapkan) menu. This permission is requested through a parent, and the child's voice is recognized on the device without being stored or sent. There is no camera, location, contacts, or internet permission.
+- Every outbound link, such as the privacy policy, the support email, and the store page, sits behind the Parental Gate (Gerbang Orang Tua).
+- Parents can delete all data through Delete all data in the Parents' Area, or by uninstalling the app.
 
-| Data | Diisi oleh | Disimpan di | Dikirim keluar |
+| Data | Filled in by | Stored on | Sent out |
 | --- | --- | --- | --- |
-| Nama panggilan anak (boleh kosong) | Orang tua, di Sambutan | Perangkat | Tidak |
-| Level usia | Orang tua | Perangkat | Tidak |
-| Pengaturan | Orang tua | Perangkat | Tidak |
-| Kemajuan, bintang, waktu bermain | Aplikasi | Perangkat | Tidak |
-| Karya mewarnai | Anak | Perangkat | Tidak |
-| Suara anak di menu Ucapkan | Anak, setelah orang tua memberi izin mikrofon | Tidak disimpan, hanya dikenali sesaat di perangkat | Tidak |
+| Child's nickname (may be empty) | Parent, in Welcome | Device | No |
+| Age level | Parent | Device | No |
+| Settings | Parent | Device | No |
+| Progress, stars, play time | App | Device | No |
+| Coloring artwork | Child | Device | No |
+| Child's voice in the Say It menu | Child, after the parent grants microphone permission | Not stored, only recognized briefly on the device | No |
 
-## Draf kebijakan privasi
+## Privacy policy draft
 
-Kedua store mewajibkan URL kebijakan privasi yang bisa dibuka publik. Draf di bawah siap disalin ke `PRIVACY.md` di repo, lalu dipasang di GitHub Pages kalau repo-nya publik. Isi bagian dalam kurung siku sebelum dipasang.
+Both stores require a privacy policy URL the public can open. The draft below is ready to copy into `PRIVACY.md` in the repo, then hosted on GitHub Pages if the repo is public. Fill in the bracketed parts before publishing.
 
 ```markdown
 # Kebijakan Privasi Moci
@@ -116,115 +116,115 @@ Privacy questions: [support email]
 
 ## App Store
 
-Moci didaftarkan di kategori Kids, jadi wajib mengikuti [pedoman 1.3 dan 5.1.4](https://developer.apple.com/app-store/review/guidelines/). Hampir semua syaratnya sudah terpenuhi oleh desain Moci. Satu hal yang masih perlu diputuskan adalah rentang usia.
+Moci is registered in the Kids category, so it must follow [guideline 1.3 and 5.1.4](https://developer.apple.com/app-store/review/guidelines/). Almost every requirement is already met by Moci's design. One thing still needs a decision: the age band.
 
-| Syarat | Status Moci |
+| Requirement | Moci status |
 | --- | --- |
-| Tidak ada tautan keluar, pembelian, atau gangguan bagi anak, kecuali di area yang dilindungi gerbang orang tua (1.3) | Sesuai. Semuanya ada di balik Gerbang Orang Tua. |
-| Tidak mengirim data pribadi atau informasi perangkat ke pihak ketiga (1.3) | Sesuai. Tidak ada data yang keluar. |
-| Tidak memakai analytics atau iklan pihak ketiga (1.3 dan 5.1.4) | Sesuai |
-| Izin mikrofon dan pengenalan ucapan butuh teks alasan di Info.plist (`NSMicrophoneUsageDescription` dan `NSSpeechRecognitionUsageDescription`) | Teks ditujukan untuk orang tua. Dialog izin baru muncul setelah Gerbang Orang Tua. |
-| Gerbang orang tua berupa tugas tingkat dewasa. Untuk anak yang belum bisa membaca, Apple menyarankan suara yang mengajak anak memanggil orang tuanya ([Kids apps](https://developer.apple.com/app-store/kids-apps/)). | Soal perkalian sudah ada. Tambahkan narasi "Panggil ayah atau ibu, ya!" saat gerbang dibuka. |
-| Pilih satu rentang usia: 5 tahun ke bawah, 6–8, atau 9–11 | Perlu diputuskan, karena Moci untuk usia 2–7 tahun |
-| Setelah masuk kategori Kids, aturannya tetap berlaku walau kategori itu dilepas di update berikutnya (1.3) | Catatan untuk masa depan |
-| Rating usia memakai sistem baru 4+, 9+, 13+, 16+, dan 18+, dengan kuesioner yang wajib dijawab ([syarat terbaru](https://developer.apple.com/news/upcoming-requirements/)) | Isi Moci tidak mengandung materi yang tidak pantas, jadi diperkirakan mendapat 4+ |
-| Label privasi di halaman produk | Pilih bahwa aplikasi tidak mengumpulkan data, sehingga labelnya Data Not Collected. Suara di Ucapkan tidak dihitung, karena data yang hanya diproses di perangkat bukan data yang dikumpulkan ([App Privacy Details](https://developer.apple.com/app-store/app-privacy-details/)). |
-| Sejak 28 April 2026, build harus dibuat dengan Xcode 26 dan SDK iOS 26 | CI memakai Xcode 26 atau lebih baru |
-| Mulai iOS 27, launch screen wajib ada untuk dikirim ke App Store ([TN3192](https://developer.apple.com/documentation/technotes/tn3192-migrating-your-app-from-the-deprecated-uirequiresfullscreen-key)) | Template iOS Flutter sudah menyertakan launch screen |
+| No outbound links, purchases, or interruptions for the child, except in areas protected by a parental gate (1.3) | Compliant. Everything is behind the Parental Gate. |
+| Does not send personal data or device information to third parties (1.3) | Compliant. No data leaves. |
+| No third party analytics or ads (1.3 and 5.1.4) | Compliant |
+| Microphone and speech recognition permissions need reason text in Info.plist (`NSMicrophoneUsageDescription` and `NSSpeechRecognitionUsageDescription`) | The text is aimed at parents. The permission dialog only appears after the Parental Gate. |
+| The parental gate must be an adult level task. For children who cannot read yet, Apple suggests a voice that asks the child to call a parent ([Kids apps](https://developer.apple.com/app-store/kids-apps/)). | The multiplication question is already there. Add the narration "Panggil ayah atau ibu, ya!" ("Call dad or mom, okay!") when the gate opens. |
+| Pick one age band: 5 and under, 6–8, or 9–11 | Needs a decision, because Moci is for ages 2–7 |
+| Once in the Kids category, the rules still apply even if the category is dropped in a later update (1.3) | A note for the future |
+| The age rating uses the new 4+, 9+, 13+, 16+, and 18+ system, with a questionnaire that must be answered ([latest requirements](https://developer.apple.com/news/upcoming-requirements/)) | Moci content has nothing inappropriate, so it is expected to get 4+ |
+| Privacy label on the product page | Choose that the app collects no data, so the label is Data Not Collected. The voice in Say It does not count, because data processed only on the device is not collected data ([App Privacy Details](https://developer.apple.com/app-store/app-privacy-details/)). |
+| Since 28 April 2026, builds must be made with Xcode 26 and the iOS 26 SDK | CI uses Xcode 26 or newer |
+| Starting iOS 27, a launch screen is required to submit to the App Store ([TN3192](https://developer.apple.com/documentation/technotes/tn3192-migrating-your-app-from-the-deprecated-uirequiresfullscreen-key)) | The Flutter iOS template already includes a launch screen |
 
-Akun Apple Developer Program berbiaya 99 USD per tahun. Kalau mendaftar sebagai individu, nama asli pemilik akun tampil sebagai penjual di App Store. Kalau sebagai organisasi, dibutuhkan badan hukum dan nomor D-U-N-S ([syarat pendaftaran](https://developer.apple.com/support/enrollment/)).
+An Apple Developer Program account costs 99 USD per year. If you enroll as an individual, the account holder's real name appears as the seller on the App Store. If you enroll as an organization, a legal entity and a D-U-N-S number are required ([enrollment requirements](https://developer.apple.com/support/enrollment/)).
 
 ## Google Play
 
-Karena target pengguna Moci anak-anak, aplikasi ini wajib mengikuti [Families Policy](https://support.google.com/googleplay/android-developer/answer/9893335). Hambatan terbesarnya bukan aturan privasi, tetapi uji tertutup 14 hari untuk akun pribadi baru.
+Because Moci's target users are children, the app must follow the [Families Policy](https://support.google.com/googleplay/android-developer/answer/9893335). The biggest obstacle is not the privacy rules, but the 14 day closed test for new personal accounts.
 
-| Syarat | Status Moci |
+| Requirement | Moci status |
 | --- | --- |
-| Deklarasikan kelompok usia target di Play Console. Pilih beberapa kelompok hanya kalau aplikasi memang dirancang untuk semuanya. | Usia 2–7 tahun mencakup dua kelompok, jadi keduanya dipilih |
-| Kebijakan privasi harus akurat menggambarkan data yang dikumpulkan | Draf di atas |
-| Tidak mengirim ID perangkat (AAID, IMEI, dan sejenisnya) dan tidak meminta izin lokasi | Sesuai. Satu-satunya izin adalah mikrofon (`RECORD_AUDIO`) untuk Ucapkan. |
-| Tidak meminta izin AD\_ID untuk aplikasi khusus anak yang menargetkan API 33 ke atas | Sesuai |
-| Hanya memakai SDK yang disetujui untuk layanan anak | Sesuai. Tidak ada SDK pengumpul data. |
-| Isi harus pantas untuk anak | Sesuai |
-| Formulir Data safety dan kuesioner rating konten diisi | Data safety: tidak ada data yang dikumpulkan atau dibagikan. Suara di Ucapkan tidak perlu dilaporkan, karena data yang hanya diproses di perangkat tidak dihitung sebagai data yang dikumpulkan ([Data safety](https://support.google.com/googleplay/android-developer/answer/10787469)). |
-| Sejak 31 Agustus 2026, aplikasi baru wajib menargetkan Android 16 (API 36) ([syarat target API](https://developer.android.com/google/play/requirements/target-sdk)) | Sudah ada di [Spesifikasi Teknis](TECH-SPEC.md) |
-| Akun pribadi yang dibuat setelah 13 November 2023 wajib menjalankan uji tertutup dengan minimal 12 penguji yang ikut terus-menerus selama 14 hari sebelum boleh rilis produksi ([syarat pengujian](https://support.google.com/googleplay/android-developer/answer/14151465)) | Siapkan 12 penguji, misalnya keluarga dan teman yang punya akun Google dan perangkat Android |
-| Verifikasi developer Android berlaku di Indonesia sejak 30 September 2026. Developer yang hanya merilis di Google Play cukup memakai akun Play Console ([panduan verifikasi](https://developer.android.com/developer-verification/guides)). | Cek status verifikasi di Play Console |
+| Declare the target age groups in Play Console. Pick several groups only if the app is really designed for all of them. | Ages 2–7 covers two groups, so both are selected |
+| The privacy policy must accurately describe the data collected | The draft above |
+| Does not send device IDs (AAID, IMEI, and similar) and does not request location permission | Compliant. The only permission is the microphone (`RECORD_AUDIO`) for Say It. |
+| Does not request the AD\_ID permission for child-only apps that target API 33 and above | Compliant |
+| Uses only SDKs approved for children's services | Compliant. There is no data collecting SDK. |
+| Content must be suitable for children | Compliant |
+| The Data safety form and the content rating questionnaire are filled in | Data safety: no data collected or shared. The voice in Say It does not need to be reported, because data processed only on the device is not counted as collected data ([Data safety](https://support.google.com/googleplay/android-developer/answer/10787469)). |
+| Since 31 August 2026, new apps must target Android 16 (API 36) ([target API requirement](https://developer.android.com/google/play/requirements/target-sdk)) | Already covered in the [Technical Specification](TECH-SPEC.md) |
+| Personal accounts created after 13 November 2023 must run a closed test with at least 12 testers who stay engaged for 14 days before a production release ([testing requirements](https://support.google.com/googleplay/android-developer/answer/14151465)) | Prepare 12 testers, for example family and friends with a Google account and an Android device |
+| Android developer verification applies in Indonesia since 30 September 2026. Developers who publish only on Google Play just need a Play Console account ([verification guide](https://developer.android.com/developer-verification/guides)) | Check the verification status in Play Console |
 
-Biaya pendaftaran Google Play Console adalah 25 USD sekali bayar ([biaya pendaftaran](https://support.google.com/googleplay/android-developer/answer/6112435)).
+The Google Play Console registration fee is 25 USD, paid once ([registration fee](https://support.google.com/googleplay/android-developer/answer/6112435)).
 
-## Regulasi
+## Regulation
 
-Karena Moci tidak mengumpulkan data, sebagian besar kewajiban privasi anak tidak terpicu. Yang tetap perlu dicek adalah PP Tunas, karena Moci memang dirancang untuk anak.
+Because Moci collects no data, most child privacy obligations are not triggered. What still needs checking is PP Tunas, since Moci is indeed designed for children.
 
-| Aturan | Isi singkat | Dampak ke Moci |
+| Rule | Summary | Effect on Moci |
 | --- | --- | --- |
-| UU 27/2022 tentang Pelindungan Data Pribadi, Pasal 25 ([teks](https://pasal.id/peraturan/uu/uu-no-27-tahun-2022)) | Pemrosesan data pribadi anak wajib mendapat persetujuan orang tua atau wali | Moci tidak memproses data anak di luar perangkat. Nama diisi sendiri oleh orang tua dan tidak pernah sampai ke pengembang. |
-| PP 17/2025 tentang pelindungan anak dalam sistem elektronik (PP Tunas), berlaku penuh sejak 28 Maret 2026 setelah transisi satu tahun ([berita](https://investortrust.id/national/98247/meutya-hafid-beberkan-aturan-lengkap-pp-tunas-yang-resmi-berlaku-hari-ini)) | Semua penyelenggara sistem elektronik wajib mematuhinya dan menyampaikan penilaian mandiri profil risiko layanannya ke Komdigi ([Antara](https://jogja.antaranews.com/berita/829868/kemkomdigi-menegaskan-semua-pse-di-indonesia-wajib-mematuhi-pp-tunas)). Komdigi memberi batas penilaian mandiri sampai 31 Desember 2026, dengan aturan pelaksana Permen Komdigi 9/2026 ([Selular](https://selular.id/2026/10/simak-22-platform-digital-berisiko-tinggi-bagi-anak-ada-youtube-hingga-telegram/)). Kewajiban lain mencakup fitur persetujuan orang tua, informasi yang mudah dipahami anak, pelindungan data anak, batasan usia, dan edukasi ([ringkasan](https://siplawfirm.id/resources/implementasi-pelindungan-anak-yang-mengakses-sistem-elektronik-berdasarkan-peraturan-pemerintah-nomor-17-tahun-2025)). | Kemungkinan besar Moci masuk cakupan. Sebagian besar kewajiban sudah terpenuhi lewat Gerbang Orang Tua dan tanpa pengumpulan data, tetapi penilaian mandiri perlu disiapkan sebelum rilis. |
-| Aturan negara lain, seperti COPPA di Amerika Serikat dan GDPR di Eropa | Families Policy Google mewajibkan kepatuhan pada aturan seperti ini | Tanpa pengumpulan data, tidak ada persetujuan orang tua yang perlu diminta. Kebijakan privasi tetap menjelaskannya. |
+| UU 27/2022 on Personal Data Protection, Article 25 ([text](https://pasal.id/peraturan/uu/uu-no-27-tahun-2022)) | Processing children's personal data requires consent from a parent or guardian | Moci does not process child data off the device. The name is entered by the parent and never reaches the developer. |
+| PP 17/2025 on child protection in electronic systems (PP Tunas), fully in force since 28 March 2026 after a one year transition ([news](https://investortrust.id/national/98247/meutya-hafid-beberkan-aturan-lengkap-pp-tunas-yang-resmi-berlaku-hari-ini)) | Every electronic system operator must comply and submit a self-assessment of its service risk profile to Komdigi ([Antara](https://jogja.antaranews.com/berita/829868/kemkomdigi-menegaskan-semua-pse-di-indonesia-wajib-mematuhi-pp-tunas)). Komdigi set the self-assessment deadline at 31 December 2026, with implementing rules in Permen Komdigi 9/2026 ([Selular](https://selular.id/2026/10/simak-22-platform-digital-berisiko-tinggi-bagi-anak-ada-youtube-hingga-telegram/)). Other obligations include parental consent features, information that children can easily understand, child data protection, age limits, and education ([summary](https://siplawfirm.id/resources/implementasi-pelindungan-anak-yang-mengakses-sistem-elektronik-berdasarkan-peraturan-pemerintah-nomor-17-tahun-2025)). | Moci most likely falls in scope. Most obligations are already met through the Parental Gate and the absence of data collection, but the self-assessment needs to be prepared before release. |
+| Rules in other countries, such as COPPA in the United States and GDPR in Europe | Google's Families Policy requires compliance with rules like these | With no data collection, there is no parental consent to request. The privacy policy still explains it. |
 
-Sebelum rilis, sebaiknya status Moci terhadap PP Tunas dan kewajiban sebagai penyelenggara sistem elektronik dikonfirmasi ke konsultan hukum atau Komdigi.
+Before release, Moci's status against PP Tunas and its obligations as an electronic system operator should be confirmed with a legal consultant or Komdigi.
 
-## Alur rilis
+## Release flow
 
-![Alur rilis v1: iOS 4 langkah, Android 5 langkah](images/alur-rilis.png)
+![v1 release flow: iOS 4 steps, Android 5 steps](images/alur-rilis.png)
 
-Kedua jalur bisa berjalan bersamaan. Uji tertutup Android sebaiknya dimulai paling awal, karena 14 harinya tidak bisa dipercepat, sementara iOS bisa menyusul setelah TestFlight beres.
+Both tracks can run in parallel. The Android closed test should start as early as possible, because its 14 days cannot be sped up, while iOS can follow once TestFlight is done.
 
-## Aset listing store
+## Store listing assets
 
-Screenshot README (1180 × 820) tidak bisa langsung dipakai, karena ukurannya tidak cocok dengan ukuran wajib store. Screenshot listing diambil ulang dari aplikasi Flutter di simulator dan emulator, dalam posisi landscape.
+The README screenshots (1180 × 820) cannot be used as they are, because their size does not match the sizes the stores require. Listing screenshots are taken again from the Flutter app on a simulator and emulator, in landscape.
 
-| Aset | App Store ([spesifikasi](https://developer.apple.com/help/app-store-connect/reference/screenshot-specifications/)) | Google Play ([spesifikasi](https://support.google.com/googleplay/android-developer/answer/9866151)) |
+| Asset | App Store ([specifications](https://developer.apple.com/help/app-store-connect/reference/screenshot-specifications/)) | Google Play ([specifications](https://support.google.com/googleplay/android-developer/answer/9866151)) |
 | --- | --- | --- |
-| Ikon | Dari asset catalog Xcode (`moci-icon-1024.png`) | 512 × 512 PNG 32-bit, maksimal 1 MB (`play-store-512.png`) |
-| Grafis utama | Tidak ada | Feature graphic 1024 × 500, JPEG atau PNG tanpa transparansi |
-| Screenshot HP | iPhone 6,5 inci landscape 2688 × 1242 atau 2778 × 1284, wajib kalau tidak ada versi 6,9 inci. Versi 6,9 inci (2868 × 1320) opsional. | Minimal 2 screenshot, sisi 320–3840 px, sisi panjang maksimal 2 kali sisi pendek. Untuk masuk rekomendasi: minimal 4 screenshot 16:9 dengan lebar minimal 1920 px. |
-| Screenshot tablet | iPad 13 inci landscape 2752 × 2064 atau 2732 × 2048, wajib karena Moci jalan di iPad | Minimal 4 screenshot 16:9, sisi 1080–7680 px |
-| Jumlah dan format | 1–10 per ukuran, JPEG atau PNG tanpa transparansi | Maksimal 8 per jenis perangkat |
+| Icon | From the Xcode asset catalog (`moci-icon-1024.png`) | 512 × 512 PNG 32-bit, at most 1 MB (`play-store-512.png`) |
+| Feature graphic | None | Feature graphic 1024 × 500, JPEG or PNG without transparency |
+| Phone screenshots | iPhone 6.5 inch landscape 2688 × 1242 or 2778 × 1284, required when there is no 6.9 inch version. The 6.9 inch version (2868 × 1320) is optional. | At least 2 screenshots, sides 320–3840 px, the long side at most 2 times the short side. To be eligible for featuring: at least 4 screenshots at 16:9 with a width of at least 1920 px. |
+| Tablet screenshots | iPad 13 inch landscape 2752 × 2064 or 2732 × 2048, required because Moci runs on iPad | At least 4 screenshots at 16:9, sides 1080–7680 px |
+| Count and format | 1–10 per size, JPEG or PNG without transparency | At most 8 per device type |
 
-Teks listing (nama, deskripsi pendek, deskripsi panjang) disiapkan dalam Bahasa Indonesia dan English. Pakai brand dan screenshot yang sama di kedua store supaya tampil konsisten.
+Listing text (name, short description, long description) is prepared in Indonesian and English. Use the same brand and screenshots on both stores so they look consistent.
 
-## Checklist rilis
+## Release checklist
 
-Centang setiap butir saat selesai. Urutan di dalam tiap kelompok mengikuti urutan pengerjaan.
+Tick each item when it is done. The order inside each group follows the order of work.
 
-### Sebelum build rilis
+### Before the release build
 
-- [ ] Putuskan rentang usia Kids Category di App Store
-- [ ] Buat email dukungan khusus Moci
-- [ ] Pasang kebijakan privasi Bahasa Indonesia dan English di URL publik
-- [ ] Cek ketersediaan nama Moci di kedua store dan di pangkalan data merek DJKI
-- [ ] Daftar Apple Developer Program dan Google Play Console
-- [ ] Siapkan penilaian mandiri PP Tunas, atau konfirmasi ke ahli hukum bahwa tidak diperlukan
-- [ ] Lengkapi narasi dua bahasa sampai validasi konten bersih
-- [ ] Pastikan Hapus semua data berfungsi
-- [ ] Pastikan manifest Android hasil gabungan hanya meminta izin RECORD\_AUDIO, tanpa INTERNET dan Bluetooth, dan Info.plist hanya berisi alasan izin mikrofon dan pengenalan ucapan
-- [ ] Uji Ucapkan dalam mode pesawat di kedua bahasa, termasuk saat izin mikrofon ditolak
+- [ ] Decide the Kids Category age band on the App Store
+- [ ] Create a dedicated Moci support email
+- [ ] Publish the Indonesian and English privacy policy at a public URL
+- [ ] Check Moci name availability on both stores and in the DJKI trademark database
+- [ ] Enroll in the Apple Developer Program and Google Play Console
+- [ ] Prepare the PP Tunas self-assessment, or confirm with a lawyer that it is not required
+- [ ] Complete the narration in both languages until content validation is clean
+- [ ] Make sure Delete all data works
+- [ ] Make sure the merged Android manifest only requests the RECORD\_AUDIO permission, without INTERNET and Bluetooth, and that Info.plist only holds the microphone and speech recognition reason strings
+- [ ] Test Say It in airplane mode in both languages, including with microphone permission denied
 
 ### iOS
 
-- [ ] Build dengan Xcode 26 atau lebih baru
-- [ ] Jawab kuesioner rating usia
-- [ ] Isi label privasi: aplikasi tidak mengumpulkan data
-- [ ] Pilih kategori Kids dan rentang usianya
-- [ ] Unggah screenshot iPhone dan iPad 13 inci
-- [ ] Uji lewat TestFlight di perangkat keluarga, lalu kirim untuk review
+- [ ] Build with Xcode 26 or newer
+- [ ] Answer the age rating questionnaire
+- [ ] Fill in the privacy label: the app collects no data
+- [ ] Pick the Kids category and its age band
+- [ ] Upload iPhone and 13 inch iPad screenshots
+- [ ] Test through TestFlight on family devices, then submit for review
 
 ### Android
 
 - [ ] Target API 36
-- [ ] Isi target audience dan konten: dua kelompok usia yang mencakup 2–7 tahun
-- [ ] Isi Data safety: tidak ada data yang dikumpulkan atau dibagikan
-- [ ] Isi kuesioner rating konten
-- [ ] Jalankan uji tertutup dengan 12 penguji selama 14 hari berturut-turut (akun pribadi)
-- [ ] Cek status verifikasi developer di Play Console
-- [ ] Unggah feature graphic, screenshot HP, dan screenshot tablet
-- [ ] Ajukan akses produksi, lalu rilis bertahap
+- [ ] Fill in target audience and content: the two age groups covering ages 2–7
+- [ ] Fill in Data safety: no data collected or shared
+- [ ] Fill in the content rating questionnaire
+- [ ] Run the closed test with 12 testers for 14 consecutive days (personal account)
+- [ ] Check the developer verification status in Play Console
+- [ ] Upload the feature graphic, phone screenshots, and tablet screenshots
+- [ ] Apply for production access, then do a staged rollout
 
-## Sumber
+## Sources
 
-Dicek pada 14 November 2026.
+Checked on 14 November 2026.
 
 - [Apple: App Review Guidelines](https://developer.apple.com/app-store/review/guidelines/)
 - [Apple: Kids apps](https://developer.apple.com/app-store/kids-apps/)
@@ -238,10 +238,10 @@ Dicek pada 14 November 2026.
 - [Google Play: Preview assets](https://support.google.com/googleplay/android-developer/answer/9866151)
 - [Google Play: Registration fee](https://support.google.com/googleplay/android-developer/answer/6112435)
 - [Android developer verification](https://developer.android.com/developer-verification/guides)
-- [UU 27/2022 di Pasal.id](https://pasal.id/peraturan/uu/uu-no-27-tahun-2022)
-- [Investortrust: PP Tunas resmi berlaku](https://investortrust.id/national/98247/meutya-hafid-beberkan-aturan-lengkap-pp-tunas-yang-resmi-berlaku-hari-ini)
-- [Antara: Semua PSE wajib mematuhi PP Tunas](https://jogja.antaranews.com/berita/829868/kemkomdigi-menegaskan-semua-pse-di-indonesia-wajib-mematuhi-pp-tunas)
-- [Selular: Batas penilaian mandiri PP Tunas](https://selular.id/2026/10/simak-22-platform-digital-berisiko-tinggi-bagi-anak-ada-youtube-hingga-telegram/)
-- [SIP Law Firm: Kewajiban PSE dalam PP 17/2025](https://siplawfirm.id/resources/implementasi-pelindungan-anak-yang-mengakses-sistem-elektronik-berdasarkan-peraturan-pemerintah-nomor-17-tahun-2025)
+- [UU 27/2022 on Pasal.id](https://pasal.id/peraturan/uu/uu-no-27-tahun-2022)
+- [Investortrust: PP Tunas officially in force](https://investortrust.id/national/98247/meutya-hafid-beberkan-aturan-lengkap-pp-tunas-yang-resmi-berlaku-hari-ini)
+- [Antara: Every PSE must comply with PP Tunas](https://jogja.antaranews.com/berita/829868/kemkomdigi-menegaskan-semua-pse-di-indonesia-wajib-mematuhi-pp-tunas)
+- [Selular: PP Tunas self-assessment deadline](https://selular.id/2026/10/simak-22-platform-digital-berisiko-tinggi-bagi-anak-ada-youtube-hingga-telegram/)
+- [SIP Law Firm: PSE obligations in PP 17/2025](https://siplawfirm.id/resources/implementasi-pelindungan-anak-yang-mengakses-sistem-elektronik-berdasarkan-peraturan-pemerintah-nomor-17-tahun-2025)
 - [Apple: App Privacy Details](https://developer.apple.com/app-store/app-privacy-details/)
 - [Google Play: Data safety](https://support.google.com/googleplay/android-developer/answer/10787469)

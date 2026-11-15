@@ -1,156 +1,156 @@
-> Salinan dari Claude Docs "Dokumentasi Moci", tab Sistem Desain, per 2026-11-14. Sumber kebenaran: https://claude.ai/artifact/VKF6SyozUj7ZBBCFEQ9e8H.
+> Copy of the Claude Docs "Moci Documentation", Design System tab, as of 2026-11-14. Source of truth: https://claude.ai/artifact/VKF6SyozUj7ZBBCFEQ9e8H.
 
-# Sistem Desain Moci
+# Moci Design System
 
-Sistem desain Moci diambil langsung dari prototipe: latar lembut berbeda untuk tiap menu, teks ungu tua, huruf bulat, dan tombol tebal dengan bayangan padat yang terasa seperti mainan. Semua nilai di sini menjadi token di tema Flutter (`lib/app/theme`).
+Moci's design system comes straight from the prototype: a different soft background for each menu, dark purple text, rounded letters, and thick buttons with solid shadows that feel like a toy. Every value here becomes a token in the Flutter theme (`lib/app/theme`).
 
-## Warna
+## Colors
 
-### Warna inti
+### Core colors
 
-| Peran | Hex | Dipakai untuk |
+| Role | Hex | Used for |
 | --- | --- | --- |
-| Tinta | `#2B2350` | Semua teks utama dan ikon garis |
-| Tinta lembut | `#6B5F99` | Teks pendukung dan label kecil |
-| Kuning Moci | `#FFD43B` | Badan maskot, bintang, sorotan |
-| Biru langit | `#74C4FF` | Latar ikon aplikasi dan langit Beranda |
-| Benar | `#26A03B`, bayangan `#1E8A31` | Umpan balik benar dan tombol lanjut |
-| Salah | `#E8384F` | Penanda salah yang muncul sekejap |
-| Huruf logo | `#F03E7C`, `#FF9F1C`, `#1C8CF0`, `#26A03B` | Huruf M-o-c-i dan aksen hiasan |
-| Putih | `#FFFFFF` | Kartu dan tombol |
+| Ink | `#2B2350` | All primary text and line icons |
+| Soft ink | `#6B5F99` | Supporting text and small labels |
+| Moci yellow | `#FFD43B` | Mascot body, stars, highlights |
+| Sky blue | `#74C4FF` | App icon background and the Home sky |
+| Correct | `#26A03B`, shadow `#1E8A31` | Correct feedback and the next button |
+| Wrong | `#E8384F` | The wrong marker that appears for a moment |
+| Logo letters | `#F03E7C`, `#FF9F1C`, `#1C8CF0`, `#26A03B` | The M-o-c-i letters and decorative accents |
+| White | `#FFFFFF` | Cards and buttons |
 
-### Latar per menu
+### Background per menu
 
-Setiap menu punya satu latar lembut. Bayangan tombol di menu itu memakai versi lebih gelap dari warna yang sama, misalnya `#F3C2B3` di Kenal Huruf.
+Every menu has one soft background. Button shadows in that menu use a darker version of the same color, for example `#F3C2B3` in Letters (Kenal Huruf).
 
-| Layar | Latar |
+| Screen | Background |
 | --- | --- |
-| Beranda | Gradasi `#74C4FF` ke `#B5E2FF` ke `#DDF3FF` |
-| Sambutan | `#DDF3FF` |
-| Kenal Huruf dan Ucapkan | `#FFEDE6` |
-| Berhitung | `#E7F3FF` |
-| Dunia Hewan | Gradasi `#BFEBFF` ke `#E3F7FF` |
-| Buah & Sayur | `#FFEAF3` |
-| Warna | `#F3EEFF` |
-| Bentuk | `#EEF1FF` |
-| Main Musik | `#FFF0F6` |
-| Ayo Membaca | `#FFF1E6` |
-| Main Yuk! | `#E3FAFA` dengan pola titik |
-| Cocokkan Gambar | `#FDF0F6` |
-| Kartu Memori | `#EAF2FF` |
-| Tebak Bayangan | `#F3F0FF` |
+| Home (Beranda) | Gradient `#74C4FF` to `#B5E2FF` to `#DDF3FF` |
+| Welcome (Sambutan) | `#DDF3FF` |
+| Letters (Kenal Huruf) and Say It (Ucapkan) | `#FFEDE6` |
+| Counting (Berhitung) | `#E7F3FF` |
+| Animal World (Dunia Hewan) | Gradient `#BFEBFF` to `#E3F7FF` |
+| Fruits & Vegetables (Buah & Sayur) | `#FFEAF3` |
+| Colors (Warna) | `#F3EEFF` |
+| Shapes (Bentuk) | `#EEF1FF` |
+| Music Play (Main Musik) | `#FFF0F6` |
+| Let's Read (Ayo Membaca) | `#FFF1E6` |
+| Let's Play (Main Yuk!) | `#E3FAFA` with a dot pattern |
+| Picture Match (Cocokkan Gambar) | `#FDF0F6` |
+| Memory Cards (Kartu Memori) | `#EAF2FF` |
+| Guess the Shadow (Tebak Bayangan) | `#F3F0FF` |
 | Puzzle | `#FFF4E0` |
-| Balon Huruf | Gradasi `#8FD3FF` ke `#EAF6FF` |
-| Besar & Kecil | `#EBFBEE` |
-| Mewarnai dan Galeri | `#FFF8E1` |
-| Karyaku | `#FFF7E0` |
-| Hebat | `#FFE58F` |
-| Istirahat | Gradasi malam `#241D4A` ke `#7C6BD6` |
-| Gerbang Orang Tua | `#3B3170` |
-| Area Orang Tua | `#F1EEF9` |
+| Letter Balloons (Balon Huruf) | Gradient `#8FD3FF` to `#EAF6FF` |
+| Big & Small (Besar & Kecil) | `#EBFBEE` |
+| Coloring (Mewarnai) and Gallery (Galeri) | `#FFF8E1` |
+| My Artwork (Karyaku) | `#FFF7E0` |
+| Great Job (Hebat) | `#FFE58F` |
+| Break (Istirahat) | Night gradient `#241D4A` to `#7C6BD6` |
+| Parental Gate (Gerbang Orang Tua) | `#3B3170` |
+| Parents' Area (Area Orang Tua) | `#F1EEF9` |
 
-Warna tidak pernah jadi satu-satunya penanda. Jawaban benar dan salah selalu juga punya suara dan gerakan.
+Color is never the only marker. Correct and wrong answers always have sound and motion too.
 
-## Tipografi
+## Typography
 
-Moci memakai dua font berlisensi SIL Open Font License 1.1: Fredoka untuk judul dan huruf besar, dan Nunito untuk teks biasa. Fredoka memakai bentuk a dan g satu tingkat, yang mirip tulisan tangan anak, jadi cocok untuk Kenal Huruf.
+Moci uses two fonts under the SIL Open Font License 1.1: Fredoka for headings and big letters, and Nunito for body text. Fredoka uses single storey a and g shapes, which resemble a child's handwriting, so it suits Letters.
 
-Ukuran di bawah ini dalam pt (logical pixel Flutter) pada ukuran dasar tablet 1180 × 820, sama dengan px di prototipe. Layout HP punya skala sendiri, dengan Beranda HP sebagai patokan.
+The sizes below are in pt (Flutter logical pixels) at the tablet base size of 1180 × 820, the same as px in the prototype. The phone layout has its own scale, with the phone Home as the reference.
 
-| Peran | Font | Ukuran |
+| Role | Font | Size |
 | --- | --- | --- |
-| Judul layar | Fredoka 700 | 44–46 |
-| Angka besar di Berhitung | Fredoka 700 | 200–240 |
-| Teks tombol utama | Fredoka 600–700 | 24–30 |
-| Teks isi | Nunito 700–800 | 22–24 |
-| Label kecil | Nunito 800 | 15–18 |
+| Screen title | Fredoka 700 | 44–46 |
+| Big numbers in Counting | Fredoka 700 | 200–240 |
+| Primary button text | Fredoka 600–700 | 24–30 |
+| Body text | Nunito 700–800 | 22–24 |
+| Small labels | Nunito 800 | 15–18 |
 
-Aturan:
+Rules:
 
-- Font dibundel di `assets/fonts` dan tidak diunduh saat aplikasi berjalan. Jangan memakai paket `google_fonts` dengan mode unduh.
-- Hanya subset huruf Latin yang dibundel, supaya ukuran font tetap di bawah 1 MB.
-- Teks di bawah 18 pt hanya dipakai untuk label yang juga dibacakan, atau yang tidak penting bagi anak.
+- Fonts are bundled in `assets/fonts` and are not downloaded while the app runs. Do not use the `google_fonts` package in download mode.
+- Only the Latin glyph subset is bundled, so the font size stays under 1 MB.
+- Text below 18 pt is only used for labels that are also read aloud, or that do not matter to the child.
 
-## Ukuran sentuh, jarak, sudut, dan bayangan
+## Touch sizes, spacing, corners, and shadows
 
-Target sentuh minimal 64 pt di tablet dan 56 pt di HP. Angka ini jauh di atas batas umum 44 pt, karena jari anak kecil belum tepat sasaran.
+The minimum touch target is 64 pt on tablet and 56 pt on phone. That is well above the usual 44 pt limit, because small children's fingers do not aim precisely yet.
 
-| Elemen | Ukuran tablet (pt) | Sudut (pt) | Bayangan |
+| Element | Tablet size (pt) | Corner (pt) | Shadow |
 | --- | --- | --- | --- |
-| Tombol kembali | 76 × 76 | 26 | Turun 7 pt |
-| Kartu menu Beranda | 236 × 214 (HP: 156 × 142) | 34 (HP: 26) | Turun 10–12 pt |
-| Tombol kecil di bilah atas | 62 × 62 | 18 | Turun 6 pt |
-| Tombol papan angka Gerbang | 88 × 88 | 28 | Turun 6 pt |
-| Pil mode dan level | Tinggi 50 | Penuh | Turun 5 pt |
-| Krayon | Area sentuh setinggi 96 | Tidak ada | Krayon terpilih naik sedikit |
-| Panel isi besar | Mengikuti layar | 40–44 | Turun 12 pt |
+| Back button | 76 × 76 | 26 | Down 7 pt |
+| Home menu card | 236 × 214 (phone: 156 × 142) | 34 (phone: 26) | Down 10–12 pt |
+| Small button in the top bar | 62 × 62 | 18 | Down 6 pt |
+| Gate number pad button | 88 × 88 | 28 | Down 6 pt |
+| Mode and level pill | Height 50 | Full | Down 5 pt |
+| Crayon | Touch area 96 tall | None | The selected crayon lifts slightly |
+| Large content panel | Follows the screen | 40–44 | Down 12 pt |
 
-Aturan:
+Rules:
 
-- Bayangan selalu padat tanpa blur, bergeser lurus ke bawah. Warnanya versi gelap dari warna elemen atau latar menu.
-- Saat ditekan, tombol turun 5 pt dan mengecil ke 97% selama 120 ms, seolah bayangannya tertekan.
-- Jarak antar target sentuh minimal 16 pt. Margin tepi layar 32 pt di tablet.
-- Sudut membulat di mana-mana. Tidak ada sudut tajam, kecuali pada bentuk yang memang diajarkan di menu Bentuk.
+- Shadows are always solid with no blur, offset straight down. The color is a darker version of the element color or the menu background.
+- When pressed, a button drops 5 pt and shrinks to 97% for 120 ms, as if the shadow were pressed.
+- Spacing between touch targets is at least 16 pt. Screen edge margin is 32 pt on tablet.
+- Corners are rounded everywhere. There are no sharp corners, except on the shapes actually taught in the Shapes menu.
 
-## Komponen utama
+## Main components
 
-Sebelas komponen ini dipakai berulang di semua menu dan menjadi widget bersama di `lib/widgets`. Layar baru sebaiknya dirakit dari komponen ini dulu sebelum membuat yang baru.
+These eleven components are reused across every menu and live as shared widgets in `lib/widgets`. New screens should be assembled from these components first before making new ones.
 
-| Komponen | Isi | Perilaku |
+| Component | Contents | Behavior |
 | --- | --- | --- |
-| Tombol utama | Kotak membulat, teks Fredoka, bayangan padat | Turun 5 pt saat ditekan dan berbunyi klik halus. Tombol bergambar membacakan labelnya. |
-| Tombol kembali | Kotak putih 76 pt dengan panah | Selalu di kiri atas, kembali satu layar |
-| Kartu menu | Gambar besar, nama, dan subjudul pendek | Moci menyebut nama menu, lalu menu terbuka |
-| Pil mode dan level | Deretan pilihan berbentuk pil | Pilihan aktif ditandai warna dan dibacakan |
-| Maskot Moci | SVG pose biasa dan pose senang | Mengintip dan bergoyang pelan. Menyapa saat diketuk. |
-| Kotak instruksi | Kalimat pendek dan tombol Dengar | Dibacakan otomatis saat layar dibuka, dan bisa diulang |
-| Tombol mikrofon | Lingkaran besar dengan ikon mikrofon, hanya di Ucapkan | Berdenyut selama mendengar, paling lama 4 detik. Berubah hijau kalau ucapan cocok. |
-| Kartu jawaban | Kartu putih besar berisi gambar | Benar: membesar, hijau, dan bersuara. Salah: bergoyang dan merah sekejap. |
-| Penanda kemajuan | Titik-titik di bagian atas | Titik aktif memanjang. Titik selesai berubah hijau. |
-| Dialog | Panel di tengah dengan latar diredupkan | Dipakai untuk detail karya dan konfirmasi hapus dua langkah |
-| Papan angka | Tombol angka 88 pt | Hanya di Gerbang Orang Tua |
+| Primary button | Rounded box, Fredoka text, solid shadow | Drops 5 pt when pressed and plays a soft click. Picture buttons read their label aloud. |
+| Back button | White 76 pt box with an arrow | Always top left, goes back one screen |
+| Menu card | Large picture, name, and a short subtitle | Moci says the menu name, then the menu opens |
+| Mode and level pill | A row of pill shaped choices | The active choice is marked with color and read aloud |
+| Moci mascot | SVG in a normal pose and a happy pose | Peeking and swaying gently. Says hello when tapped. |
+| Instruction box | A short sentence and a Listen button | Read aloud automatically when the screen opens, and can be repeated |
+| Microphone button | Large circle with a microphone icon, only in Say It | Pulses while listening, at most 4 seconds. Turns green when the speech matches. |
+| Answer card | Large white card holding a picture | Correct: grows, turns green, and makes a sound. Wrong: shakes and flashes red. |
+| Progress marker | Dots along the top | The active dot stretches. Finished dots turn green. |
+| Dialog | Panel in the middle over a dimmed background | Used for artwork details and the two step delete confirmation |
+| Number pad | 88 pt number buttons | Only in the Parental Gate |
 
-## Layout tablet dan HP
+## Tablet and phone layout
 
-Setiap layar punya dua desain dasar, tablet 1180 × 820 pt dan HP 844 × 390 pt, keduanya landscape. Layar lain diskalakan proporsional dari salah satunya, dan sisa ruang diisi warna latar menu.
+Every screen has two base designs, tablet 1180 × 820 pt and phone 844 × 390 pt, both landscape. The other screens scale proportionally from one of them, and leftover space is filled with the menu background color.
 
-Pola tablet, diambil dari prototipe:
+Tablet pattern, taken from the prototype:
 
-- Bilah atas berisi tombol kembali di kiri, judul layar, lalu pil mode atau level di kanan.
-- Area isi ada di bawah bilah atas, dengan margin tepi 32 pt.
-- Kotak instruksi dan tombol Dengar selalu di posisi yang sama dalam satu menu.
+- The top bar holds the back button on the left, the screen title, then the mode or level pill on the right.
+- The content area sits below the top bar, with a 32 pt edge margin.
+- The instruction box and Listen button are always in the same position within a menu.
 
-Pola HP:
+Phone pattern:
 
-- Baru Beranda yang punya desain HP. Layar lain mengikuti polanya: bilah atas lebih tipis, kartu menu 156 × 142 pt, dan tombol kecil 62 pt.
-- Area aman di kiri dan kanan (notch, Dynamic Island, kamera berlubang) selalu dikosongkan.
-- Kartu jawaban maksimal 4 per baris supaya tetap mudah disentuh.
+- Only Home has a phone design so far. The other screens follow its pattern: a thinner top bar, 156 × 142 pt menu cards, and 62 pt small buttons.
+- Safe areas on the left and right (notch, Dynamic Island, punch hole camera) are always kept clear.
+- At most 4 answer cards per row, so they stay easy to touch.
 
-Contoh penyesuaian di ukuran lain:
+Examples of how it adjusts at other sizes:
 
-| Layar | Rasio | Hasil |
+| Screen | Ratio | Result |
 | --- | --- | --- |
-| iPad 11 inci (1180 × 820) | 1,44 | Pas dengan desain dasar |
-| iPad 4:3 (1024 × 768, 1366 × 1024) | 1,33 | Ada sisa ruang tipis di atas dan bawah |
-| Tablet Android 16:10 (1280 × 800) | 1,60 | Ada sisa ruang di kiri dan kanan |
-| Posisi potret di tablet | Di bawah 1 | Tidak terjadi, karena orientasi dikunci landscape. Kalau OS mengabaikan kunci, layout landscape diperkecil. |
+| iPad 11 inch (1180 × 820) | 1.44 | Fits the base design |
+| iPad 4:3 (1024 × 768, 1366 × 1024) | 1.33 | A thin strip of leftover space at the top and bottom |
+| Android tablet 16:10 (1280 × 800) | 1.60 | Leftover space on the left and right |
+| Portrait position on a tablet | Below 1 | Does not happen, because orientation is locked to landscape. If the OS ignores the lock, the landscape layout is scaled down. |
 
-## Animasi dan suara umpan balik
+## Animation and feedback sound
 
-Gerak di Moci pendek dan memantul. Setiap ketukan dijawab dalam waktu kurang dari 100 ms dengan gerak, suara, atau keduanya, supaya anak tahu sentuhannya terbaca.
+Motion in Moci is short and bouncy. Every tap is answered within 100 ms with motion, sound, or both, so the child knows the touch registered.
 
-| Kejadian | Gerak | Suara |
+| Event | Motion | Sound |
 | --- | --- | --- |
-| Tombol ditekan | Turun 5 pt dan mengecil ke 97%, 120 ms | Klik halus |
-| Elemen muncul | Membesar dengan pantulan, 400–550 ms, kurva `cubic-bezier(.3, 1.6, .5, 1)` | Tidak ada |
-| Jawaban benar | Kartu membesar dengan garis hijau, Moci senang | "Betul!" ditambah nama bendanya, lalu denting |
-| Jawaban salah | Kartu bergoyang 450 ms dan merah sekejap | "Bukan yang itu. Coba lagi!" dengan nada lembut |
-| Permainan selesai | Layar Hebat: bintang muncul satu per satu, lalu stiker baru | "Hebat!" dan sorakan pendek |
-| Maskot diam | Mengintip dan bergoyang pelan, satu putaran 2,4–3 detik | Tidak ada |
-| Splash | Moci jatuh lalu memantul, huruf M-o-c-i muncul berselang 0,1 detik | Tidak ada |
+| Button pressed | Drops 5 pt and shrinks to 97%, 120 ms | Soft click |
+| Element appears | Grows with a bounce, 400–550 ms, curve `cubic-bezier(.3, 1.6, .5, 1)` | None |
+| Correct answer | Card grows with a green outline, Moci is happy | "Betul!" ("Right!") plus the object name, then a chime |
+| Wrong answer | Card shakes for 450 ms and flashes red | "Bukan yang itu. Coba lagi!" ("Not that one. Try again!") in a gentle tone |
+| Game finished | Great Job screen: stars appear one by one, then the new sticker | "Hebat!" ("Great!") and a short cheer |
+| Mascot idle | Peeking and swaying gently, one cycle every 2.4–3 seconds | None |
+| Splash | Moci falls and bounces, the M-o-c-i letters appear 0.1 seconds apart | None |
 
-Aturan:
+Rules:
 
-- Tidak ada bunyi gagal yang keras, sedih, atau berupa buzzer.
-- Efek suara paling lama 0,6 detik, supaya tidak menumpuk dengan narasi.
-- Kalau perangkat meminta animasi dikurangi, semua animasi hiasan (mengintip, bergoyang, awan, bintang berkelip) dimatikan. Umpan balik benar dan salah tetap muncul, tetapi tanpa pantulan.
+- There is no loud, sad, or buzzer-like failure sound.
+- Sound effects last at most 0.6 seconds, so they do not pile up under the narration.
+- If the device asks for reduced motion, every decorative animation (peeking, swaying, clouds, twinkling stars) is turned off. Correct and wrong feedback still appear, but without the bounce.

@@ -1,119 +1,119 @@
-> Salinan dari Claude Docs "Dokumentasi Moci", tab PRD, per 2026-11-14. Sumber kebenaran: https://claude.ai/artifact/VKF6SyozUj7ZBBCFEQ9e8H.
+> Copy of the Claude Docs "Moci Documentation", PRD tab, as of 2026-11-14. Source of truth: https://claude.ai/artifact/VKF6SyozUj7ZBBCFEQ9e8H.
 
-# PRD Moci
+# Moci PRD
 
-Moci v1 berisi 10 menu di Beranda, termasuk 6 mini game di Main Yuk!, ditambah Area Orang Tua. Semuanya berjalan offline dalam Bahasa Indonesia dan English, di tablet maupun HP.
+Moci v1 has 10 menus on Home (Beranda), including 6 mini games in Let's Play (Main Yuk!), plus a Parents' Area (Area Orang Tua). Everything runs offline in Indonesian and English, on tablets and phones.
 
-## Tujuan v1
+## v1 goals
 
-1. Anak 2–7 tahun belajar huruf, angka, membaca awal, dan mengenal dunia sekitar lewat bermain, tanpa perlu bisa membaca instruksi.
-2. Orang tua merasa tenang. Tidak ada iklan, pembelian, tautan keluar, atau data yang dikirim ke luar perangkat, dan waktu bermain bisa dibatasi.
-3. Aplikasi ringan dan lancar di iPad, iPhone, serta HP dan tablet Android kelas menengah ke bawah.
+1. Children aged 2–7 learn letters, numbers, early reading, and the world around them by playing, without needing to read instructions.
+2. Parents feel at ease. There are no ads, purchases, outbound links, or data sent off the device, and play time can be limited.
+3. The app stays light and smooth on iPad, iPhone, and low to mid range Android phones and tablets.
 
-## Ukuran keberhasilan
+## Success measures
 
-Moci tidak memakai analytics. Keberhasilan v1 diukur lewat uji langsung bersama anak, laporan bawaan App Store Connect dan Play Console, serta ulasan di store.
+Moci uses no analytics. v1 success is measured through direct testing with children, the built-in reports in App Store Connect and Play Console, and store reviews.
 
-| Ukuran | Target v1 | Cara mengukur |
+| Measure | v1 target | How to measure |
 | --- | --- | --- |
-| Anak bermain sendiri | Setiap anak uji menyelesaikan satu permainan tanpa dibantu | Sesi uji 15 menit per anak, minimal satu anak per level usia |
-| Tidak ada titik macet | Tidak ada layar tempat anak bingung lebih dari 30 detik | Pengamatan saat sesi uji |
-| Stabil | Minimal 99,5% sesi tanpa crash | Xcode Organizer dan Android vitals, tanpa SDK tambahan |
-| Ringan | Ukuran unduhan di bawah 30 MB, animasi 60 fps di perangkat uji termurah | Laporan ukuran di App Store Connect dan Play Console, Flutter DevTools |
-| Dipercaya orang tua | Rating rata-rata minimal 4,5 | Ulasan di App Store dan Play Store |
+| Child plays alone | Every test child finishes one game unaided | 15 minute test session per child, at least one child per age level |
+| No stuck points | No screen where a child is confused for more than 30 seconds | Observation during test sessions |
+| Stable | At least 99.5% of sessions without a crash | Xcode Organizer and Android vitals, no extra SDK |
+| Light | Download size under 30 MB, 60 fps animation on the cheapest test device | Size reports in App Store Connect and Play Console, Flutter DevTools |
+| Parents trust it | Average rating of at least 4.5 | App Store and Play Store reviews |
 
-## Pengguna
+## Users
 
-Moci punya dua pengguna: anak yang bermain dan orang tua yang mengatur. Usia anak dipilih orang tua saat pertama membuka aplikasi, dan level usia itu yang menentukan tingkat kesulitan permainan.
+Moci has two users: the child who plays and the parent who sets things up. The parent picks the child's age the first time the app opens, and that age level sets the difficulty of every game.
 
-| Pengguna | Kondisi | Kebutuhan | Yang disediakan Moci |
+| User | Situation | Needs | What Moci provides |
 | --- | --- | --- | --- |
-| Anak 2–3 tahun (level Pemula) | Belum bisa membaca, gerakan jari masih kasar, cepat bosan | Instruksi lewat suara, tombol besar, sedikit pilihan | 3 pilihan jawaban, puzzle 4 keping, 5 bentuk dasar, Balon Huruf dengan 9 huruf |
-| Anak 4–5 tahun (level Penjelajah) | Mulai kenal huruf dan angka, suka tantangan kecil | Variasi soal, umpan balik yang jelas | Puzzle 6 keping, 8 bentuk, Balon Huruf dengan 23 huruf |
-| Anak 6–7 tahun (level Pembaca) | Mulai membaca suku kata dan kalimat pendek | Tantangan membaca, pilihan lebih banyak | Puzzle 9 keping, 10 bentuk, 4 pilihan di Tebak Bayangan dan Besar & Kecil |
-| Orang tua | Ingin aplikasi yang aman, ingin tahu perkembangan anak, ingin membatasi waktu layar | Kontrol yang tidak bisa dibuka anak, ringkasan yang cepat dibaca | Gerbang Orang Tua, Area Orang Tua, batas waktu harian, pengingat istirahat |
+| Child aged 2–3 (Beginner level) | Cannot read yet, finger movement still coarse, gets bored quickly | Spoken instructions, big buttons, few choices | 3 answer choices, 4 piece puzzles, 5 basic shapes, Letter Balloons (Balon Huruf) with 9 letters |
+| Child aged 4–5 (Explorer level) | Starting to know letters and numbers, enjoys small challenges | Varied questions, clear feedback | 6 piece puzzles, 8 shapes, Letter Balloons with 23 letters |
+| Child aged 6–7 (Reader level) | Starting to read syllables and short sentences | Reading challenges, more choices | 9 piece puzzles, 10 shapes, 4 choices in Guess the Shadow (Tebak Bayangan) and Big & Small (Besar & Kecil) |
+| Parent | Wants a safe app, wants to follow the child's progress, wants to limit screen time | Controls the child cannot open, a summary that reads fast | Parental Gate (Gerbang Orang Tua), Parents' Area, daily time limit, break reminders |
 
-## Prinsip produk
+## Product principles
 
-Delapan prinsip ini berlaku di semua layar. Kalau ada fitur baru yang melanggar salah satunya, fitur itu harus dirancang ulang.
+These eight principles apply to every screen. If a new feature breaks one of them, the feature has to be designed again.
 
-1. **Suara dulu, teks kedua.** Setiap instruksi dibacakan, dan setiap gambar bisa diketuk untuk didengar. Anak tidak perlu bisa membaca untuk bermain.
-2. **Salah tidak dihukum.** Jawaban salah dibalas dengan suara lembut dan ajakan mencoba lagi. Tidak ada nyawa, hitungan mundur, atau skor yang berkurang.
-3. **Gerakan sederhana.** Cukup ketuk satu jari atau geser satu jari. Tidak ada ketuk dua kali, tekan lama, atau gerakan dua jari.
-4. **Selalu bisa kembali.** Tombol kembali selalu ada di pojok kiri atas, dengan ukuran dan posisi yang sama di setiap layar.
-5. **Urusan orang dewasa di balik gerbang.** Pengaturan, tautan keluar, penghapusan data, dan permintaan izin mikrofon hanya bisa dibuka lewat Gerbang Orang Tua.
-6. **Offline dan tanpa data keluar.** Semua isi ikut terpasang. Aplikasi tidak butuh internet dan tidak mengirim data apa pun.
-7. **Dua bahasa setara.** Semua teks dan suara tersedia dalam Bahasa Indonesia dan English, dan bisa diganti kapan saja.
-8. **Kesulitan mengikuti usia.** Jumlah pilihan, keping, dan huruf menyesuaikan level usia di profil anak.
+1. **Sound first, text second.** Every instruction is read aloud, and every picture can be tapped to be heard. A child does not need to read to play.
+2. **Mistakes are not punished.** A wrong answer gets a gentle voice and an invitation to try again. There are no lives, countdowns, or scores that go down.
+3. **Simple gestures.** One finger tap or one finger drag is enough. No double taps, long presses, or two finger gestures.
+4. **Always a way back.** The back button is always in the top left corner, with the same size and position on every screen.
+5. **Grown-up matters behind a gate.** Settings, outbound links, data deletion, and microphone permission requests only open through the Parental Gate.
+6. **Offline, with no data going out.** All content ships with the app. The app needs no internet and sends no data.
+7. **Two equal languages.** All text and voice are available in Indonesian and English, and can be switched at any time.
+8. **Difficulty follows age.** The number of choices, pieces, and letters follows the age level in the child's profile.
 
-## Alur aplikasi
+## App flow
 
-![Alur aplikasi v1: 11 layar, 1 percabangan](images/alur-aplikasi.png)
+![v1 app flow: 11 screens, 1 branch](images/alur-aplikasi.png)
 
-Anak selalu kembali ke Beranda. Pengaturan dan layar Waktu Habis hanya bisa dilewati lewat Gerbang Orang Tua, sedangkan layar istirahat kembali ke permainan setelah 20 detik.
+Children always return to Home. Settings and the Time's Up (Waktu Habis) screen can only be reached through the Parental Gate, while the break screen returns to the game after 20 seconds.
 
-## Fitur per menu
+## Features per menu
 
-Semua mekanik di tabel ini sudah ada di prototipe. Kolom terakhir berisi syarat khusus sebelum menu itu dianggap siap rilis.
+Every mechanic in this table already exists in the prototype. The last column holds the specific requirement before that menu counts as release ready.
 
-| Menu | Cara main | Menyesuaikan usia | Syarat siap rilis |
+| Menu | How to play | Adapts to age | Release ready requirement |
 | --- | --- | --- | --- |
-| Kenal Huruf | 26 huruf A–Z dengan gambar dan contoh kata. Ketuk untuk mendengar bunyi huruf (fonik) atau nama huruf, sesuai pengaturan orang tua. | Tidak | 26 huruf punya gambar, contoh kata, serta narasi bunyi dan nama dalam dua bahasa |
-| Tulis Huruf | Anak menggeser Moci mengikuti panah kuning, goresan demi goresan, sampai ke bintang. | Tidak | 26 huruf punya jalur goresan dengan urutan dan arah yang benar |
-| Ucapkan | Dengar contoh kata yang dipecah per suku kata, lalu anak mengucapkannya ke mikrofon dan Moci mendengarkan. | Tidak | Pengenalan ucapan di perangkat untuk semua kata Ucapkan dalam dua bahasa (penjelasan di bawah tabel) |
-| Berhitung | Angka 1–50 dalam 5 rentang. "Hitung bareng" menghitung benda satu per satu, atau anak mengetuk benda untuk menghitung sendiri. | Rentang dipilih anak | Narasi angka 1–50 dalam dua bahasa |
-| Tulis Angka | Tracing angka 0–9 dengan panduan yang sama seperti huruf. | Tidak | 10 angka punya jalur goresan yang benar |
-| Dunia Hewan | 42 hewan dalam 5 kelompok, dengan tombol dengar nama, dengar suara, dan fakta "Tahukah kamu?". | Tidak | Suara asli berlisensi untuk 42 hewan |
-| Buah & Sayur | 21 buah dan 14 sayur. Mode Kenali untuk mengenal nama, mode Tebak dengan 3 pilihan gambar. | Tidak | 35 gambar dengan narasi nama dalam dua bahasa |
-| Warna | "Sentuh semua yang berwarna merah!" Penghitung menunjukkan berapa yang sudah ketemu. | Tidak | 11 warna, dan 81 gambar sudah ditandai warnanya |
-| Bentuk | 10 bentuk berwajah. Mode Kenali menghitung sudut dan sisi. Mode Cari berisi 6 ronde dengan warna yang diacak. | 2–3: 5 bentuk, 3 pilihan. 4–5: 8 bentuk, 4 pilihan. 6–7: 10 bentuk, 6 pilihan | Narasi nama, jumlah sudut, dan jumlah sisi untuk 10 bentuk |
-| Main Musik | Xilofon 8 nada dengan mode Dengar dan Ikuti untuk 2 lagu. Drum dengan 4 bunyi dan contoh irama. | Tidak | Bunyi keluar kurang dari 50 ms setelah disentuh |
-| Suku Kata | Pilih konsonan untuk membentuk ba-bi-bu-be-bo, ketuk untuk mendengar, lalu lihat contoh katanya. | Tidak | Narasi 90 suku kata (18 konsonan × 5 vokal) |
-| Susun Kata | Dengarkan kata, lalu ketuk suku katanya secara berurutan. | Level 2 atau 3 suku kata | 71 kata Bahasa Indonesia dan 33 kata English dengan narasi per suku kata |
-| Kalimat | "Baca bersama" menyalakan kata satu per satu seperti karaoke. Ada juga mode Tebak gambar dengan 3 pilihan. | Tidak | 18 kalimat dengan narasi yang selaras per kata |
-| Cocokkan Gambar | Hubungkan gambar yang sama dengan mengetuk keduanya atau menarik garis. | 3 sampai 5 pasang, dengan pilihan tema | Garis mengikuti jari tanpa tersendat |
-| Kartu Memori | Buka dua kartu dan temukan pasangannya. Jumlah langkah dicatat. | 4, 6, atau 8 pasang | Maksimal dua kartu terbuka bersamaan |
-| Tebak Bayangan | "Bayangan siapa ini?" Pilih gambar yang cocok, lalu bayangan berubah jadi berwarna. 6 ronde. | 3 pilihan, atau 4 untuk 6–7 tahun | Bayangan dibuat dari gambar yang sama, tanpa file tambahan |
-| Puzzle | Ketuk keping, lalu ketuk tempatnya. | 4, 6, atau 9 keping | Keping dipotong dari ilustrasi yang sudah ada |
-| Balon Huruf | Moci menyebut satu huruf, lalu anak memecahkan balon yang cocok. 5 ronde. | 9 huruf untuk 2–3 tahun, 23 huruf untuk usia lain | Balon cukup besar untuk jari anak 2 tahun |
-| Besar & Kecil | "Mana yang paling besar?" dan "paling kecil?" bergantian. 6 ronde. | 3 ukuran, atau 4 untuk 6–7 tahun | Selisih ukuran mudah dibedakan |
-| Mewarnai | 14 gambar (6 hewan, 8 benda dan alam). Warna tidak bisa keluar garis. Ada kuas 3 ukuran, isi, hapus, stiker, batal, mulai lagi, simpan, dan 16 krayon. | Tidak | Karya tersimpan saat keluar dan bisa dilanjutkan; Karyaku menyimpan 12 karya terakhir |
+| Letters (Kenal Huruf) | 26 letters A–Z with a picture and a sample word. Tap to hear the letter sound (phonics) or the letter name, depending on the parent setting. | No | All 26 letters have a picture, a sample word, and sound and name narration in both languages |
+| Letter Tracing (Tulis Huruf) | The child drags Moci along the yellow arrows, stroke by stroke, until the star. | No | All 26 letters have a stroke path with the correct order and direction |
+| Say It (Ucapkan) | Hear a sample word split into syllables, then the child says it into the microphone and Moci listens. | No | On-device speech recognition for every Say It word in both languages (details below the table) |
+| Counting (Berhitung) | Numbers 1–50 in 5 ranges. "Hitung bareng" ("Count along") counts objects one by one, or the child taps objects to count them alone. | Child picks the range | Number narration 1–50 in both languages |
+| Number Tracing (Tulis Angka) | Tracing numbers 0–9 with the same guidance as letters. | No | All 10 numbers have a correct stroke path |
+| Animal World (Dunia Hewan) | 42 animals in 5 groups, with buttons to hear the name, hear the sound, and a "Tahukah kamu?" ("Did you know?") fact. | No | Licensed real sounds for 42 animals |
+| Fruits & Vegetables (Buah & Sayur) | 21 fruits and 14 vegetables. Recognize mode to learn the names, Guess mode with 3 picture choices. | No | 35 pictures with name narration in both languages |
+| Colors (Warna) | "Sentuh semua yang berwarna merah!" ("Touch everything red!") A counter shows how many have been found. | No | 11 colors, and 81 pictures already tagged with their color |
+| Shapes (Bentuk) | 10 shapes with faces. Recognize mode counts corners and sides. Find mode has 6 rounds with shuffled colors. | 2–3: 5 shapes, 3 choices. 4–5: 8 shapes, 4 choices. 6–7: 10 shapes, 6 choices | Narration of the name, corner count, and side count for 10 shapes |
+| Music Play (Main Musik) | An 8 note xylophone with Listen and Follow modes for 2 songs. A drum with 4 sounds and sample rhythms. | No | Sound comes out less than 50 ms after a touch |
+| Syllables (Suku Kata) | Pick a consonant to build ba-bi-bu-be-bo, tap to hear it, then see a sample word. | No | Narration for 90 syllables (18 consonants × 5 vowels) |
+| Word Builder (Susun Kata) | Hear a word, then tap its syllables in order. | Level of 2 or 3 syllables | 71 Indonesian words and 33 English words with narration per syllable |
+| Sentences (Kalimat) | "Baca bersama" ("Read together") lights up one word at a time like karaoke. There is also a picture guess mode with 3 choices. | No | 18 sentences with narration aligned per word |
+| Picture Match (Cocokkan Gambar) | Connect matching pictures by tapping both of them or by dragging a line. | 3 to 5 pairs, with theme choices | The line follows the finger without stalling |
+| Memory Cards (Kartu Memori) | Turn over two cards and find the pair. The number of moves is recorded. | 4, 6, or 8 pairs | At most two cards open at the same time |
+| Guess the Shadow (Tebak Bayangan) | "Bayangan siapa ini?" ("Whose shadow is this?") Pick the matching picture, then the shadow fills with color. 6 rounds. | 3 choices, or 4 for ages 6–7 | Shadows are made from the same picture, with no extra files |
+| Puzzle | Tap a piece, then tap where it goes. | 4, 6, or 9 pieces | Pieces are cut from illustrations that already exist |
+| Letter Balloons (Balon Huruf) | Moci says a letter, then the child pops the matching balloon. 5 rounds. | 9 letters for ages 2–3, 23 letters for other ages | Balloons are big enough for a 2 year old's finger |
+| Big & Small (Besar & Kecil) | "Mana yang paling besar?" ("Which is biggest?") and "paling kecil?" ("which is smallest?") alternate. 6 rounds. | 3 sizes, or 4 for ages 6–7 | The size difference is easy to tell apart |
+| Coloring (Mewarnai) | 14 pictures (6 animals, 8 objects and nature). Color cannot leave the lines. There are 3 brush sizes, fill, erase, stickers, undo, start over, save, and 16 crayons. | No | Artwork is saved on exit and can be continued; My Artwork (Karyaku) keeps the last 12 pieces |
 
-**Ucapkan di v1 memakai mikrofon.** Izin mikrofon diminta lewat orang tua saat menu ini pertama dibuka. Suara anak dikenali langsung di perangkat, tidak disimpan, dan tidak dikirim ke mana pun. Kalau ucapannya cocok, Moci memuji. Kalau belum, Moci memutar contoh lagi dan mengajak mencoba, paling banyak dua kali, lalu tetap memuji usahanya. Kalau perangkat belum bisa mengenali ucapan secara offline dalam bahasa itu, Moci cukup memastikan anak sudah bersuara. Kalau izin ditolak, Ucapkan tetap bisa dimainkan tanpa mikrofon.
+**Say It in v1 uses the microphone.** Microphone permission is requested through a parent the first time this menu opens. The child's voice is recognized right on the device, is not stored, and is not sent anywhere. If the pronunciation matches, Moci praises. If not, Moci plays the sample again and invites another try, at most twice, then still praises the effort. If the device cannot recognize speech offline in that language, Moci only checks that the child has spoken. If permission is denied, Say It stays playable without the microphone.
 
-Syarat yang berlaku untuk semua menu:
+Requirements that apply to every menu:
 
-- Berjalan tanpa internet.
-- Semua teks dan narasi tersedia dalam dua bahasa.
-- Punya layout tablet dan HP. Desain HP saat ini baru ada untuk Beranda, jadi layar lain didesain dulu sebelum dibangun.
-- Permainan yang punya akhir (mode Cari di Bentuk dan 6 mini game) ditutup dengan layar Hebat.
+- Runs without internet.
+- All text and narration available in both languages.
+- Has a tablet layout and a phone layout. A phone design currently exists only for Home, so the other screens get designed before they are built.
+- Games with an ending (Find mode in Shapes and the 6 mini games) close with the Great Job (Hebat) screen.
 
-## Fitur pendukung
+## Supporting features
 
-Fitur-fitur ini menjaga anak tetap aman dan memberi orang tua kendali. Semuanya sudah ada di prototipe, kecuali Hapus semua data yang baru ditambahkan untuk v1.
+These features keep the child safe and give the parent control. All of them exist in the prototype, except Delete all data (Hapus semua data), which is new for v1.
 
-| Fitur | Cara kerja |
+| Feature | How it works |
 | --- | --- |
-| Sambutan | Muncul sekali saat aplikasi pertama dibuka. Orang tua memilih bahasa, mengisi nama panggilan anak, dan memilih usia. Kalau nama dikosongkan, anak disapa "Adik". |
-| Splash | Moci jatuh lalu memantul, huruf M-o-c-i muncul satu per satu, lalu aplikasi lanjut sendiri setelah 3,6 detik. Sekali ketuk untuk melewati. |
-| Beranda | Sapaan "Hai, nama anak!", 10 menu, tombol Lanjutkan ke kegiatan terakhir, jumlah bintang, pengganti bahasa ID/EN, dan pintu ke Area Orang Tua. |
-| Hadiah | Setiap permainan yang selesai memberi 3 bintang dan satu stiker baru untuk Album stiker. |
-| Batas waktu harian | Pilihan 15, 30, atau 45 menit, atau tanpa batas. Bawaannya 30 menit. Hitungan direset setiap tengah malam waktu perangkat. Saat habis, muncul layar Waktu Habis yang hanya bisa dibuka orang tua. |
-| Pengingat istirahat | Kalau aktif, muncul setiap 20 menit bermain. Layar istirahat 20 detik mengajak anak melihat jauh ke luar jendela, berkedip 10 kali, dan merentangkan tangan. |
-| Gerbang Orang Tua | Soal perkalian (angka pertama 6–9, angka kedua 3–9) dijawab lewat papan angka. Gerbang ini melindungi pengaturan, semua tautan keluar, dan permintaan izin mikrofon. |
-| Area Orang Tua | Profil anak (nama dan level usia), ringkasan hari ini (waktu bermain, bintang, stiker, karya), perkembangan minggu ini beserta saran latihan, dan pengaturan: bahasa, cara baca huruf, batas waktu, musik latar, efek suara, dan pengingat istirahat. |
-| Hapus semua data | Baru untuk v1. Tombol di Area Orang Tua yang menghapus nama, kemajuan, dan karya, lalu membuka Sambutan lagi. |
+| Welcome (Sambutan) | Appears once when the app first opens. The parent picks the language, fills in the child's nickname, and picks the age. If the name is left empty, the child is greeted as "Adik" (little one). |
+| Splash | Moci falls and bounces, the letters M-o-c-i appear one at a time, then the app moves on by itself after 3.6 seconds. One tap skips it. |
+| Home | The greeting "Hai, nama anak!" ("Hi, child's name!"), 10 menus, a Continue (Lanjutkan) button to the last activity, the star count, the ID/EN language switch, and the door to the Parents' Area. |
+| Rewards | Every finished game gives 3 stars and one new sticker for the Sticker Album (Album stiker). |
+| Daily time limit | Options of 15, 30, or 45 minutes, or no limit. The default is 30 minutes. The count resets every midnight in device time. When it runs out, the Time's Up screen appears and only a parent can open it. |
+| Break reminder | If enabled, it appears every 20 minutes of play. The 20 second break screen invites the child to look far out the window, blink 10 times, and stretch their arms. |
+| Parental Gate | A multiplication question (first number 6–9, second number 3–9) answered on a number pad. This gate protects settings, every outbound link, and microphone permission requests. |
+| Parents' Area | Child profile (name and age level), today's summary (play time, stars, stickers, artwork), this week's progress with practice suggestions, and settings: language, how letters are read, time limit, background music, sound effects, and break reminder. |
+| Delete all data | New for v1. A button in the Parents' Area that deletes the name, progress, and artwork, then opens Welcome again. |
 
-## Di luar cakupan v1
+## Out of scope for v1
 
-Hal-hal berikut sengaja tidak masuk v1, supaya rilis pertama tetap kecil dan bisa selesai.
+The following are deliberately left out of v1, so the first release stays small and can be finished.
 
-- Akun, login, sinkronisasi antarperangkat, dan cadangan ke cloud.
-- Lebih dari satu profil anak dalam satu perangkat.
-- Iklan, pembelian dalam aplikasi, dan langganan.
-- Isi tambahan yang diunduh dari internet.
-- Orientasi potret. Semua layar dikunci di landscape (detailnya di [Spesifikasi Teknis](TECH-SPEC.md)).
-- Bahasa selain Bahasa Indonesia dan English.
-- Versi web.
+- Accounts, login, cross-device sync, and cloud backup.
+- More than one child profile per device.
+- Ads, in-app purchases, and subscriptions.
+- Extra content downloaded from the internet.
+- Portrait orientation. Every screen is locked to landscape (details in [Technical Specification](TECH-SPEC.md)).
+- Languages other than Indonesian and English.
+- A web version.
 
-Kandidat terkuat untuk versi sesudah v1 adalah profil kedua untuk kakak-adik.
+The strongest candidate for a version after v1 is a second profile for siblings.
