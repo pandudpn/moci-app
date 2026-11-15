@@ -26,6 +26,9 @@ class TracingBoard extends ConsumerStatefulWidget {
   });
 
   static const surfaceKey = ValueKey('tracing-surface');
+  static const staticLayerKey = ValueKey('tracing-static-layer');
+  static const hintLayerKey = ValueKey('tracing-hint-layer');
+  static const inkLayerKey = ValueKey('tracing-ink-layer');
 
   final List<String> paths;
   final Color ink;
@@ -56,9 +59,11 @@ final class TracingBoardState extends ConsumerState<TracingBoard>
 
   late TracingSession _session;
 
-  TracingSession get session => _session;
+  /// Lapisan statis hanya berubah saat ada goresan yang selesai.
+  final _statis = ValueNotifier<int>(0);
 
-  final _revisi = ValueNotifier<int>(0);
+  /// Lapisan tinta berubah tiap gerakan jari.
+  final _tinta = ValueNotifier<int>(0);
   final _guide = ValueNotifier<_GuideView>((
     pos: Offset.zero,
     idle: true,
@@ -78,7 +83,15 @@ final class TracingBoardState extends ConsumerState<TracingBoard>
     vsync: this,
     duration: MociMotion.shake,
   );
-  late final Listenable _repaint = Listenable.merge([_revisi, _flow, _burst]);
+  late final Listenable _lukisStatis = _statis;
+  late final Listenable _lukisIsyarat = Listenable.merge([
+    _flow,
+    _statis,
+    _tinta,
+  ]);
+  late final Listenable _lukisTinta = Listenable.merge([_tinta, _burst]);
+
+  TracingSession get session => _session;
 
   Offset? _burstAt;
   bool _drag = false;
@@ -116,7 +129,8 @@ final class TracingBoardState extends ConsumerState<TracingBoard>
       _drag = false;
       _burstAt = null;
       _syncGuide();
-      _revisi.value++;
+      _statis.value++;
+      _tinta.value++;
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (mounted) _laporProgres();
       });
@@ -125,7 +139,8 @@ final class TracingBoardState extends ConsumerState<TracingBoard>
 
   @override
   void dispose() {
-    _revisi.dispose();
+    _statis.dispose();
+    _tinta.dispose();
     _guide.dispose();
     _flow.dispose();
     _burst.dispose();
@@ -137,9 +152,11 @@ final class TracingBoardState extends ConsumerState<TracingBoard>
     widget.onProgress?.call(_session.goresan, _session.guide.strokes.length);
   }
 
+  /// Moci mengikuti ujung tinta saat jari menempel, selain itu menunggu di
+  /// titik pandu.
   void _syncGuide() {
     _guide.value = (
-      pos: _session.pandu,
+      pos: _drag ? _session.ujungTinta : _session.pandu,
       idle: !_drag && _session.titik == 0,
       num: _session.goresan + 1,
       show: !_session.selesai && !_session.guide.kosong,
@@ -161,13 +178,16 @@ final class TracingBoardState extends ConsumerState<TracingBoard>
 
   void _move(PointerMoveEvent e) {
     if (!_drag) return;
+    final sebelum = (_session.jarakTinta, _session.goresan, _session.selesai);
     final langkah = _session.gerak(e.localPosition);
+    final sesudah = (_session.jarakTinta, _session.goresan, _session.selesai);
+    // Tinta mengikuti jari walau belum ada sampel baru yang diterima.
+    if (sesudah != sebelum) _tinta.value++;
     _syncGuide();
     switch (langkah) {
       case TraceStep.tetap:
-        break;
       case TraceStep.maju:
-        _revisi.value++;
+        break;
       case TraceStep.goresanSelesai:
         _selesaiGoresan(_session.goresan - 1);
         _laporProgres();
@@ -182,7 +202,8 @@ final class TracingBoardState extends ConsumerState<TracingBoard>
   }
 
   void _selesaiGoresan(int index) {
-    _revisi.value++;
+    _statis.value++;
+    _tinta.value++;
     ref.read(audioServiceProvider).playSfx(Sfx.benar);
     widget.onStrokeDone?.call(index);
     if (_session.selesai) {
@@ -209,25 +230,61 @@ final class TracingBoardState extends ConsumerState<TracingBoard>
           clipBehavior: Clip.none,
           children: [
             Positioned.fill(
-              child: RepaintBoundary(
-                child: Listener(
-                  key: TracingBoard.surfaceKey,
-                  behavior: HitTestBehavior.opaque,
-                  onPointerDown: _down,
-                  onPointerMove: _move,
-                  onPointerUp: (_) => _up(),
-                  onPointerCancel: (_) => _up(),
-                  child: CustomPaint(
-                    painter: _BoardPainter(
-                      session: _session,
-                      ink: widget.ink,
-                      burstAt: _burstAt,
-                      burst: _burst,
-                      flow: _flow,
-                      reduced: reduced,
-                      repaint: _repaint,
+              child: Listener(
+                key: TracingBoard.surfaceKey,
+                behavior: HitTestBehavior.opaque,
+                onPointerDown: _down,
+                onPointerMove: _move,
+                onPointerUp: (_) => _up(),
+                onPointerCancel: (_) => _up(),
+                child: Stack(
+                  children: [
+                    // Kertas, bayangan, dan tinta goresan selesai: hanya
+                    // dilukis ulang saat ada goresan yang selesai.
+                    Positioned.fill(
+                      child: RepaintBoundary(
+                        child: CustomPaint(
+                          key: TracingBoard.staticLayerKey,
+                          painter: TracingPainter(
+                            session: _session,
+                            ink: widget.ink,
+                            repaint: _lukisStatis,
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
+                    // Jalur pandu bergerak: hanya lapisan ini yang dilukis
+                    // tiap frame.
+                    Positioned.fill(
+                      child: RepaintBoundary(
+                        child: CustomPaint(
+                          key: TracingBoard.hintLayerKey,
+                          painter: _HintPainter(
+                            session: _session,
+                            flow: _flow,
+                            reduced: reduced,
+                            repaint: _lukisIsyarat,
+                          ),
+                        ),
+                      ),
+                    ),
+                    // Tinta goresan aktif dan ledakan bintang.
+                    Positioned.fill(
+                      child: RepaintBoundary(
+                        child: CustomPaint(
+                          key: TracingBoard.inkLayerKey,
+                          painter: _InkPainter(
+                            session: _session,
+                            ink: widget.ink,
+                            burstAt: _burstAt,
+                            burst: _burst,
+                            reduced: reduced,
+                            repaint: _lukisTinta,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -324,158 +381,343 @@ final class _NumBadge extends StatelessWidget {
   }
 }
 
-final class _BoardPainter extends CustomPainter {
-  _BoardPainter({
-    required this.session,
-    required this.ink,
-    required this.burstAt,
-    required this.burst,
-    required this.flow,
-    required this.reduced,
-    required Listenable repaint,
-  }) : super(repaint: repaint);
+/// Warna dan kuas papan yang dipakai ketiga lapisan.
+abstract final class _BoardStyle {
+  static const box = 520.0;
+  static const paper = Color(0xFFFFFDFB);
+  static const line = Color(0xFFCFE3FF);
+  static const mid = Color(0xFFFFC9BD);
+  static const shadow = Color(0xFFECE7F8);
+  static const active = Color(0xFF4C3F86);
+  static const badge = Color(0xFFB9AEE0);
+  static const yellow = Color(0xFFFFD43B);
 
-  static const _box = 520.0;
-  static const _paper = Color(0xFFFFFDFB);
-  static const _line = Color(0xFFCFE3FF);
-  static const _mid = Color(0xFFFFC9BD);
-  static const _shadow = Color(0xFFECE7F8);
-  static const _active = Color(0xFF4C3F86);
-  static const _yellow = Color(0xFFFFD43B);
+  static final kertas = Paint()..color = paper;
+  static final garis = Paint()
+    ..color = line
+    ..strokeWidth = 3;
+  static final tengah = Paint()
+    ..color = mid
+    ..strokeWidth = 3;
+  static final bayangan = Paint()
+    ..color = shadow
+    ..style = PaintingStyle.stroke
+    ..strokeWidth = 66
+    ..strokeCap = StrokeCap.round
+    ..strokeJoin = StrokeJoin.round;
+  static final jalurAktif = Paint()
+    ..color = active
+    ..style = PaintingStyle.stroke
+    ..strokeWidth = 66
+    ..strokeCap = StrokeCap.round
+    ..strokeJoin = StrokeJoin.round;
+  static final kuning = Paint()
+    ..color = yellow
+    ..style = PaintingStyle.stroke
+    ..strokeWidth = 7
+    ..strokeCap = StrokeCap.round;
+  static final bintangPutih = Paint()
+    ..color = MociColors.white.withValues(alpha: 0.55);
+  static final bintangPutihGaris = Paint()
+    ..color = MociColors.white.withValues(alpha: 0.55)
+    ..style = PaintingStyle.stroke
+    ..strokeWidth = 2
+    ..strokeJoin = StrokeJoin.round;
+  static final tujuanIsi = Paint()..color = yellow;
+  static final bintangIsi = Paint()..color = MociColors.starFill;
+  static final bintangGaris = Paint()
+    ..color = MociColors.starStroke
+    ..style = PaintingStyle.stroke
+    ..strokeWidth = 2
+    ..strokeJoin = StrokeJoin.round;
+  static final nomorIsi = Paint()..color = MociColors.white;
+  static final nomorGaris = Paint()
+    ..color = badge
+    ..style = PaintingStyle.stroke
+    ..strokeWidth = 3;
+  static final panahLuar = Paint()
+    ..color = MociColors.ink.withValues(alpha: 0.45)
+    ..style = PaintingStyle.stroke
+    ..strokeWidth = 10
+    ..strokeCap = StrokeCap.round
+    ..strokeJoin = StrokeJoin.round;
+  static final panahDalam = Paint()
+    ..color = yellow
+    ..style = PaintingStyle.stroke
+    ..strokeWidth = 6
+    ..strokeCap = StrokeCap.round
+    ..strokeJoin = StrokeJoin.round;
 
-  final TracingSession session;
-  final Color ink;
-  final Offset? burstAt;
-  final Animation<double> burst;
-  final Animation<double> flow;
-  final bool reduced;
-
-  @override
-  void paint(Canvas canvas, Size size) {
+  /// Klip sudut bulat papan; selalu dipasangkan dengan `canvas.restore()`.
+  static void potong(Canvas canvas) {
     final rrect = RRect.fromRectAndRadius(
-      const Rect.fromLTWH(0, 0, _box, _box),
+      const Rect.fromLTWH(0, 0, box, box),
       const Radius.circular(20),
     );
     canvas
       ..save()
-      ..clipRRect(rrect)
-      ..drawRRect(rrect, Paint()..color = _paper);
+      ..clipRRect(rrect);
+  }
 
-    final garis = Paint()
-      ..color = _line
-      ..strokeWidth = 3;
+  static void kertasDasar(Canvas canvas) {
+    final rrect = RRect.fromRectAndRadius(
+      const Rect.fromLTWH(0, 0, box, box),
+      const Radius.circular(20),
+    );
+    canvas.drawRRect(rrect, kertas);
+  }
+}
+
+/// Geometri papan: polilin jalur, bintang, potongan garis putus-putus, panah,
+/// dan teks nomor. Dihitung sekali per panduan, bukan tiap lukis atau frame.
+final class _BoardArtwork {
+  _BoardArtwork._(this.guide);
+
+  factory _BoardArtwork.of(TraceGuide guide) =>
+      _cache[guide] ??= _BoardArtwork._(guide);
+
+  static final _cache = Expando<_BoardArtwork>();
+  static final panah = Path()
+    ..moveTo(-7, -12)
+    ..lineTo(6, 0)
+    ..lineTo(-7, 12);
+
+  final TraceGuide guide;
+
+  List<TraceStroke> get strokes => guide.strokes;
+
+  List<Path>? _jalur;
+  List<List<({double jarak, Path bentuk})>>? _bintang;
+  List<List<({double awal, double akhir})>>? _dash;
+  List<TextPainter>? _nomor;
+  List<Offset>? _mulai;
+  List<Offset>? _tujuan;
+
+  List<Path> get jalur =>
+      _jalur ??= [for (final s in strokes) _polilin(s.points)];
+
+  List<List<({double jarak, Path bentuk})>> get bintang =>
+      _bintang ??= [for (final s in strokes) _bintangSepanjang(s.points)];
+
+  List<List<({double awal, double akhir})>> get dash => _dash ??= [
+    for (final s in strokes)
+      [
+        for (var d = 0.0; d < s.length; d += 30)
+          (awal: d, akhir: math.min(s.length, d + 14)),
+      ],
+  ];
+
+  List<TextPainter> get nomor =>
+      _nomor ??= [for (var i = 0; i < strokes.length; i++) _teks('${i + 1}')];
+
+  List<Offset> get mulai => _mulai ??= [
+    for (final s in strokes)
+      s.points.isEmpty ? Offset.zero : s.points.first.offset,
+  ];
+
+  List<Offset> get tujuan => _tujuan ??= [
+    for (final s in strokes)
+      s.points.isEmpty ? Offset.zero : s.points.last.offset,
+  ];
+
+  List<Path>? _tujuanBintang;
+
+  List<Path> get tujuanBintang =>
+      _tujuanBintang ??= [for (final p in tujuan) bintangBentuk(p, 33)];
+
+  static Path _polilin(List<TracePoint> pts) {
+    final path = Path();
+    if (pts.isEmpty) return path;
+    path.moveTo(pts.first.x, pts.first.y);
+    for (var i = 1; i < pts.length; i++) {
+      path.lineTo(pts[i].x, pts[i].y);
+    }
+    return path;
+  }
+
+  static List<({double jarak, Path bentuk})> _bintangSepanjang(
+    List<TracePoint> pts,
+  ) => [
+    for (var i = 0; i < pts.length; i += 8)
+      (jarak: pts[i].jarak, bentuk: bintangBentuk(pts[i].offset, 7)),
+  ];
+
+  static TextPainter _teks(String teks) => TextPainter(
+    text: TextSpan(
+      text: teks,
+      style: const TextStyle(
+        fontFamily: 'Fredoka',
+        fontSize: 19,
+        fontWeight: FontWeight.w700,
+        color: _BoardStyle.active,
+      ),
+    ),
+    textDirection: TextDirection.ltr,
+  )..layout();
+
+  /// Bentuk bintang lima sudut berpusat di [p].
+  static Path bintangBentuk(Offset p, double r) {
+    final path = Path();
+    for (var i = 0; i < 5; i++) {
+      final luar = -math.pi / 2 + i * 2 * math.pi / 5;
+      final dalam = luar + math.pi / 5;
+      final a = p + Offset(math.cos(luar), math.sin(luar)) * r;
+      final b = p + Offset(math.cos(dalam), math.sin(dalam)) * (r * 0.42);
+      if (i == 0) {
+        path.moveTo(a.dx, a.dy);
+      } else {
+        path.lineTo(a.dx, a.dy);
+      }
+      path.lineTo(b.dx, b.dy);
+    }
+    return path..close();
+  }
+}
+
+/// Jalur dari awal goresan sampai jarak [sampai].
+Path _jalurSampai(List<TracePoint> pts, double sampai) {
+  final path = Path();
+  if (pts.isEmpty) return path;
+  path.moveTo(pts.first.x, pts.first.y);
+  for (var i = 1; i < pts.length; i++) {
+    if (pts[i].jarak <= sampai) {
+      path.lineTo(pts[i].x, pts[i].y);
+      continue;
+    }
+    final akhir = titikPadaJalur(pts, sampai);
+    path.lineTo(akhir.dx, akhir.dy);
+    break;
+  }
+  return path;
+}
+
+/// Lapisan diam: kertas, garis bantu, bayangan jalur, dan tinta goresan yang
+/// sudah selesai.
+final class TracingPainter extends CustomPainter {
+  TracingPainter({required this.session, required this.ink, super.repaint})
+    : _artwork = _BoardArtwork.of(session.guide),
+      _tinta = Paint()
+        ..color = ink
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 60
+        ..strokeCap = StrokeCap.round
+        ..strokeJoin = StrokeJoin.round;
+
+  final TracingSession session;
+  final Color ink;
+  final _BoardArtwork _artwork;
+  final Paint _tinta;
+
+  /// Goresan yang dilukis sebagai tinta selesai, termasuk goresan terakhir
+  /// setelah huruf selesai.
+  int get goresanBertinta => session.goresanSelesai;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    _BoardStyle.potong(canvas);
+    _BoardStyle.kertasDasar(canvas);
     canvas
-      ..drawLine(const Offset(20, 70), const Offset(500, 70), garis)
-      ..drawLine(const Offset(20, 450), const Offset(500, 450), garis);
-    final tengah = Paint()
-      ..color = _mid
-      ..strokeWidth = 3;
+      ..drawLine(const Offset(20, 70), const Offset(500, 70), _BoardStyle.garis)
+      ..drawLine(
+        const Offset(20, 450),
+        const Offset(500, 450),
+        _BoardStyle.garis,
+      );
     for (var x = 20.0; x < 500; x += 24) {
       canvas.drawLine(
         Offset(x, 260),
         Offset(math.min(x + 12, 500), 260),
-        tengah,
+        _BoardStyle.tengah,
       );
     }
 
-    final strokes = session.guide.strokes;
+    final strokes = _artwork.strokes;
     if (strokes.isEmpty) {
       canvas.restore();
       return;
     }
-
-    // Jalur bayangan semua goresan.
-    final bayangan = Paint()
-      ..color = _shadow
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 66
-      ..strokeCap = StrokeCap.round
-      ..strokeJoin = StrokeJoin.round;
-    for (final s in strokes) {
-      canvas.drawPath(_polyline(s.points), bayangan);
+    for (final jalur in _artwork.jalur) {
+      canvas.drawPath(jalur, _BoardStyle.bayangan);
     }
-
-    final selesai = Paint()
-      ..color = ink
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 60
-      ..strokeCap = StrokeCap.round
-      ..strokeJoin = StrokeJoin.round;
-    final bertinta = math.min(session.goresanSelesai, strokes.length);
+    final bertinta = math.min(goresanBertinta, strokes.length);
     for (var i = 0; i < bertinta; i++) {
-      final s = strokes[i];
-      canvas.drawPath(_polyline(s.points), selesai);
-      _bintangSepanjang(canvas, s.points);
-    }
-
-    if (!session.selesai && session.goresan < strokes.length) {
-      final aktif = strokes[session.goresan];
-      final penuh = _polyline(aktif.points);
-      canvas.drawPath(
-        penuh,
-        Paint()
-          ..color = _active
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = 66
-          ..strokeCap = StrokeCap.round
-          ..strokeJoin = StrokeJoin.round,
-      );
-      final sampai = aktif.points[session.titik].jarak;
-      final jalan = _slice(aktif.points, 0, sampai);
-      canvas.drawPath(jalan, selesai);
-      _bintangSepanjang(canvas, _potong(aktif.points, sampai));
-      _dashKuning(canvas, aktif);
-      _nomorBerikut(canvas, strokes);
-      _panahKuning(canvas, aktif);
-      _bintangTujuan(canvas, aktif.points.last.offset);
-    }
-
-    if (burstAt != null && !reduced) {
-      _ledakan(canvas, burstAt!);
+      canvas.drawPath(_artwork.jalur[i], _tinta);
+      for (final b in _artwork.bintang[i]) {
+        canvas
+          ..drawPath(b.bentuk, _BoardStyle.bintangPutih)
+          ..drawPath(b.bentuk, _BoardStyle.bintangPutihGaris);
+      }
     }
     canvas.restore();
   }
 
-  void _dashKuning(Canvas canvas, TraceStroke stroke) {
-    final total = stroke.length;
-    if (total <= 0) return;
+  @override
+  bool shouldRepaint(TracingPainter old) =>
+      old.session != session || old.ink != ink;
+}
+
+/// Lapisan isyarat: jalur pandu, garis putus-putus bergerak, nomor goresan
+/// berikutnya, panah, dan bintang tujuan.
+final class _HintPainter extends CustomPainter {
+  _HintPainter({
+    required this.session,
+    required this.flow,
+    required this.reduced,
+    required Listenable repaint,
+  }) : _artwork = _BoardArtwork.of(session.guide),
+       super(repaint: repaint);
+
+  final TracingSession session;
+  final Animation<double> flow;
+  final bool reduced;
+  final _BoardArtwork _artwork;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final strokes = _artwork.strokes;
+    final i = session.goresan;
+    if (strokes.isEmpty || session.selesai || i >= strokes.length) return;
+    _BoardStyle.potong(canvas);
+    final stroke = strokes[i];
+    canvas.drawPath(_artwork.jalur[i], _BoardStyle.jalurAktif);
+    _dash(canvas, i, stroke);
+    _nomor(canvas, i);
+    _panah(canvas, stroke);
+    _tujuan(canvas, i);
+    canvas.restore();
+  }
+
+  /// Tiap potongan garis putus-putus dilukis sebagai satu garis lurus pendek
+  /// di sepanjang jalur, jadi tidak ada Path yang dibangun per frame.
+  void _dash(Canvas canvas, int i, TraceStroke stroke) {
+    if (stroke.length <= 0) return;
     final fase = reduced ? 0.0 : flow.value * 30;
-    final paint = Paint()
-      ..color = _yellow
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 7
-      ..strokeCap = StrokeCap.round;
-    for (var d = -fase; d < total; d += 30) {
-      final a = math.max(0.0, d);
-      final b = math.min(total, d + 14);
+    for (final potong in _artwork.dash[i]) {
+      final a = math.max(0.0, potong.awal - fase);
+      final b = math.min(stroke.length, potong.akhir - fase);
       if (b <= a) continue;
-      canvas.drawPath(_slice(stroke.points, a, b), paint);
-    }
-  }
-
-  void _nomorBerikut(Canvas canvas, List<TraceStroke> strokes) {
-    final aktif = strokes[session.goresan];
-    final awal = aktif.points.isEmpty ? Offset.zero : aktif.points.first.offset;
-    for (var i = session.goresan + 1; i < strokes.length; i++) {
-      final s = strokes[i];
-      if (s.points.isEmpty) continue;
-      final p = s.points.first.offset;
-      if ((p - awal).distance < 2) continue;
-      final pusat = p;
-      canvas.drawCircle(pusat, 19, Paint()..color = MociColors.white);
-      canvas.drawCircle(
-        pusat,
-        19,
-        Paint()
-          ..color = const Color(0xFFB9AEE0)
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = 3,
+      canvas.drawLine(
+        titikPadaJalur(stroke.points, a),
+        titikPadaJalur(stroke.points, b),
+        _BoardStyle.kuning,
       );
-      _teks(canvas, '${i + 1}', pusat, const Color(0xFF4C3F86));
     }
   }
 
-  void _panahKuning(Canvas canvas, TraceStroke stroke) {
+  void _nomor(Canvas canvas, int aktif) {
+    final awal = _artwork.mulai[aktif];
+    for (var i = aktif + 1; i < _artwork.strokes.length; i++) {
+      final p = _artwork.mulai[i];
+      if ((p - awal).distance < 2) continue;
+      canvas
+        ..drawCircle(p, 19, _BoardStyle.nomorIsi)
+        ..drawCircle(p, 19, _BoardStyle.nomorGaris);
+      final teks = _artwork.nomor[i];
+      teks.paint(canvas, p - Offset(teks.width / 2, teks.height / 2));
+    }
+  }
+
+  void _panah(Canvas canvas, TraceStroke stroke) {
     final pts = stroke.points;
     if (pts.length < 5) return;
     var k = 1;
@@ -490,37 +732,87 @@ final class _BoardPainter extends CustomPainter {
       canvas
         ..save()
         ..translate(pts[k].x, pts[k].y)
-        ..rotate(sudut);
-      final panah = Path()
-        ..moveTo(-7, -12)
-        ..lineTo(6, 0)
-        ..lineTo(-7, 12);
-      canvas
-        ..drawPath(
-          panah,
-          Paint()
-            ..color = MociColors.ink.withValues(alpha: 0.45)
-            ..style = PaintingStyle.stroke
-            ..strokeWidth = 10
-            ..strokeCap = StrokeCap.round
-            ..strokeJoin = StrokeJoin.round,
-        )
-        ..drawPath(
-          panah,
-          Paint()
-            ..color = _yellow
-            ..style = PaintingStyle.stroke
-            ..strokeWidth = 6
-            ..strokeCap = StrokeCap.round
-            ..strokeJoin = StrokeJoin.round,
-        )
+        ..rotate(sudut)
+        ..drawPath(_BoardArtwork.panah, _BoardStyle.panahLuar)
+        ..drawPath(_BoardArtwork.panah, _BoardStyle.panahDalam)
         ..restore();
     }
   }
 
-  void _bintangTujuan(Canvas canvas, Offset p) {
-    canvas.drawCircle(p, 34, Paint()..color = _yellow);
-    _bintang(canvas, p, 33, MociColors.starFill, MociColors.starStroke);
+  void _tujuan(Canvas canvas, int i) {
+    if (_artwork.strokes[i].points.isEmpty) return;
+    final bintang = _artwork.tujuanBintang[i];
+    canvas
+      ..drawCircle(_artwork.tujuan[i], 34, _BoardStyle.tujuanIsi)
+      ..drawPath(bintang, _BoardStyle.bintangIsi)
+      ..drawPath(bintang, _BoardStyle.bintangGaris);
+  }
+
+  @override
+  bool shouldRepaint(_HintPainter old) =>
+      old.session != session || old.reduced != reduced;
+}
+
+/// Lapisan tinta goresan aktif: ujungnya mengikuti jari, plus ledakan bintang
+/// saat goresan selesai.
+final class _InkPainter extends CustomPainter {
+  _InkPainter({
+    required this.session,
+    required this.ink,
+    required this.burstAt,
+    required this.burst,
+    required this.reduced,
+    required Listenable repaint,
+  }) : _artwork = _BoardArtwork.of(session.guide),
+       _tinta = Paint()
+         ..color = ink
+         ..style = PaintingStyle.stroke
+         ..strokeWidth = 60
+         ..strokeCap = StrokeCap.round
+         ..strokeJoin = StrokeJoin.round,
+       super(repaint: repaint);
+
+  final TracingSession session;
+  final Color ink;
+  final Offset? burstAt;
+  final Animation<double> burst;
+  final bool reduced;
+  final _BoardArtwork _artwork;
+  final Paint _tinta;
+
+  Path? _jalur;
+  int _jalurGoresan = -1;
+  double _jalurJarak = -1;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    _BoardStyle.potong(canvas);
+    final i = session.goresan;
+    final sampai = session.jarakTinta;
+    final adaGoresan = i < _artwork.strokes.length && !session.selesai;
+    if (adaGoresan && _artwork.strokes.isNotEmpty) {
+      canvas.drawPath(_tintaJalur(i, sampai), _tinta);
+      for (final b in _artwork.bintang[i]) {
+        if (b.jarak > sampai) break;
+        canvas
+          ..drawPath(b.bentuk, _BoardStyle.bintangPutih)
+          ..drawPath(b.bentuk, _BoardStyle.bintangPutihGaris);
+      }
+    }
+    if (burstAt != null && !reduced) _ledakan(canvas, burstAt!);
+    canvas.restore();
+  }
+
+  /// Potongan tinta hanya dibangun ulang saat ujungnya berubah, jadi ledakan
+  /// bintang tetap ringan tiap frame.
+  Path _tintaJalur(int goresan, double sampai) {
+    if (_jalur != null && _jalurGoresan == goresan && _jalurJarak == sampai) {
+      return _jalur!;
+    }
+    _jalur = _jalurSampai(_artwork.strokes[goresan].points, sampai);
+    _jalurGoresan = goresan;
+    _jalurJarak = sampai;
+    return _jalur!;
   }
 
   void _ledakan(Canvas canvas, Offset p) {
@@ -531,140 +823,28 @@ final class _BoardPainter extends CustomPainter {
       p,
       50 + 40 * t,
       Paint()
-        ..color = _yellow.withValues(alpha: pudar)
+        ..color = _BoardStyle.yellow.withValues(alpha: pudar)
         ..style = PaintingStyle.stroke
         ..strokeWidth = 7,
     );
-    _bintang(
-      canvas,
-      p,
-      30 + 20 * t,
-      MociColors.starFill,
-      MociColors.starStroke,
-      alpha: pudar,
-    );
-  }
-
-  void _bintangSepanjang(Canvas canvas, List<TracePoint> pts) {
-    for (var i = 0; i < pts.length; i += 8) {
-      _bintang(
-        canvas,
-        pts[i].offset,
-        7,
-        MociColors.white,
-        MociColors.white,
-        alpha: 0.55,
-      );
-    }
-  }
-
-  void _bintang(
-    Canvas canvas,
-    Offset p,
-    double r,
-    Color isi,
-    Color garis, {
-    double alpha = 1,
-  }) {
-    final path = Path();
-    for (var i = 0; i < 5; i++) {
-      final luar = -math.pi / 2 + i * 2 * math.pi / 5;
-      final dalam = luar + math.pi / 5;
-      final a = p + Offset(math.cos(luar), math.sin(luar)) * r;
-      final b = p + Offset(math.cos(dalam), math.sin(dalam)) * (r * 0.42);
-      if (i == 0) {
-        path.moveTo(a.dx, a.dy);
-      } else {
-        path.lineTo(a.dx, a.dy);
-      }
-      path.lineTo(b.dx, b.dy);
-    }
-    path.close();
+    final bintang = _BoardArtwork.bintangBentuk(p, 30 + 20 * t);
     canvas
       ..drawPath(
-        path,
-        Paint()
-          ..color = isi.withValues(alpha: alpha)
-          ..style = PaintingStyle.fill,
+        bintang,
+        Paint()..color = MociColors.starFill.withValues(alpha: pudar),
       )
       ..drawPath(
-        path,
+        bintang,
         Paint()
-          ..color = garis.withValues(alpha: alpha)
+          ..color = MociColors.starStroke.withValues(alpha: pudar)
           ..style = PaintingStyle.stroke
           ..strokeWidth = 2
           ..strokeJoin = StrokeJoin.round,
       );
   }
 
-  void _teks(Canvas canvas, String teks, Offset pusat, Color warna) {
-    final painter = TextPainter(
-      text: TextSpan(
-        text: teks,
-        style: TextStyle(
-          fontFamily: 'Fredoka',
-          fontSize: 19,
-          fontWeight: FontWeight.w700,
-          color: warna,
-        ),
-      ),
-      textDirection: TextDirection.ltr,
-    )..layout();
-    painter.paint(
-      canvas,
-      pusat - Offset(painter.width / 2, painter.height / 2),
-    );
-  }
-
-  Path _polyline(List<TracePoint> pts) {
-    final path = Path();
-    if (pts.isEmpty) return path;
-    path.moveTo(pts.first.x, pts.first.y);
-    for (var i = 1; i < pts.length; i++) {
-      path.lineTo(pts[i].x, pts[i].y);
-    }
-    return path;
-  }
-
-  /// Potongan jalur antara jarak [a] dan [b].
-  Path _slice(List<TracePoint> pts, double a, double b) {
-    final path = Path();
-    if (pts.length < 2 || b <= a) return path;
-    final mulai = _titikPada(pts, a);
-    path.moveTo(mulai.dx, mulai.dy);
-    for (var i = 1; i < pts.length; i++) {
-      if (pts[i].jarak <= a) continue;
-      if (pts[i].jarak >= b) {
-        final akhir = _titikPada(pts, b);
-        path.lineTo(akhir.dx, akhir.dy);
-        break;
-      }
-      path.lineTo(pts[i].x, pts[i].y);
-    }
-    return path;
-  }
-
-  List<TracePoint> _potong(List<TracePoint> pts, double sampai) => [
-    for (final p in pts)
-      if (p.jarak <= sampai) p,
-  ];
-
-  Offset _titikPada(List<TracePoint> pts, double jarak) {
-    if (jarak <= 0) return pts.first.offset;
-    for (var i = 1; i < pts.length; i++) {
-      final b = pts[i];
-      if (b.jarak < jarak) continue;
-      final a = pts[i - 1];
-      final span = b.jarak - a.jarak;
-      if (span <= 0) return b.offset;
-      final t = (jarak - a.jarak) / span;
-      return Offset(a.x + (b.x - a.x) * t, a.y + (b.y - a.y) * t);
-    }
-    return pts.last.offset;
-  }
-
   @override
-  bool shouldRepaint(_BoardPainter old) =>
+  bool shouldRepaint(_InkPainter old) =>
       old.session != session ||
       old.ink != ink ||
       old.burstAt != burstAt ||

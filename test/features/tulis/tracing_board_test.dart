@@ -1,6 +1,8 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:moci/features/tulis/tracing_board.dart';
+import 'package:moci/features/tulis/tracing_engine.dart';
+import 'package:moci/widgets/moci_mascot.dart';
 
 import '../../helpers/harness.dart';
 
@@ -16,6 +18,19 @@ Future<void> _trace(WidgetTester t, Offset a, Offset b) async {
   await g.up();
   await t.pump(const Duration(milliseconds: 100));
 }
+
+Offset Function(Offset) _papan(WidgetTester t) {
+  final r = t.getRect(find.byKey(TracingBoard.surfaceKey));
+  return (v) =>
+      Offset(r.left + v.dx * r.width / 520, r.top + v.dy * r.height / 520);
+}
+
+TracingBoardState _keadaan(WidgetTester t) =>
+    t.state<TracingBoardState>(find.byType(TracingBoard));
+
+TracingPainter _tintaStatis(WidgetTester t) =>
+    t.widget<CustomPaint>(find.byKey(TracingBoard.staticLayerKey)).painter!
+        as TracingPainter;
 
 void main() {
   testWidgets('mengikuti jalur menyelesaikan goresan', (t) async {
@@ -86,28 +101,29 @@ void main() {
     expect(progress.sublist(progress.length - 2), [0, 0]);
     expect(t.takeException(), isNull);
   });
-
   testWidgets('tinta goresan terakhir tetap ada setelah selesai', (t) async {
     var done = 0;
-    Widget board(List<String> paths) => Center(
-      child: SizedBox(
-        width: 520,
-        height: 520,
-        child: TracingBoard(
-          paths: paths,
-          ink: const Color(0xFFE8384F),
-          semanticLabel: 'Area menulis',
-          onDone: () => done++,
+    await pumpScreen(
+      t,
+      Center(
+        child: SizedBox(
+          width: 520,
+          height: 520,
+          child: TracingBoard(
+            paths: const ['M0 0L100 0'],
+            ink: const Color(0xFFE8384F),
+            semanticLabel: 'Area menulis huruf O',
+            onDone: () => done++,
+          ),
         ),
       ),
     );
-    await pumpScreen(t, board(const ['M0 0L100 0']));
-    final sesi = t.state<TracingBoardState>(find.byType(TracingBoard)).session;
-    expect(sesi.goresanSelesai, 0);
+    expect(_tintaStatis(t).goresanBertinta, 0);
     await _trace(t, Offset.zero, const Offset(100, 0));
     expect(done, 1);
-    expect(sesi.selesai, isTrue);
-    expect(sesi.goresanSelesai, 1);
+    expect(_keadaan(t).session.selesai, isTrue);
+    expect(_keadaan(t).session.goresanSelesai, 1);
+    expect(_tintaStatis(t).goresanBertinta, 1);
   });
 
   testWidgets('semua goresan bertinta setelah huruf dua goresan', (t) async {
@@ -125,11 +141,74 @@ void main() {
         ),
       ),
     );
-    final sesi = t.state<TracingBoardState>(find.byType(TracingBoard)).session;
     await _trace(t, Offset.zero, const Offset(100, 0));
-    expect(sesi.goresanSelesai, 1);
+    expect(_tintaStatis(t).goresanBertinta, 1);
     await _trace(t, const Offset(0, 100), const Offset(100, 100));
-    expect(sesi.selesai, isTrue);
-    expect(sesi.goresanSelesai, 2);
+    expect(_keadaan(t).session.selesai, isTrue);
+    expect(_tintaStatis(t).goresanBertinta, 2);
+  });
+
+  testWidgets('sapuan cepat tiga gerakan sampai ujung', (t) async {
+    var done = 0;
+    await pumpScreen(
+      t,
+      Center(
+        child: SizedBox(
+          width: 520,
+          height: 520,
+          child: TracingBoard(
+            paths: const ['M260 70L260 450'],
+            ink: const Color(0xFFE8384F),
+            semanticLabel: 'Area menulis angka 1',
+            onDone: () => done++,
+          ),
+        ),
+      ),
+    );
+    final p = _papan(t);
+    final g = await t.startGesture(p(const Offset(260, 70)));
+    for (final y in [200.0, 330.0, 450.0]) {
+      await g.moveTo(p(Offset(260, y)));
+      await t.pump(const Duration(milliseconds: 16));
+    }
+    await g.up();
+    await t.pump(const Duration(milliseconds: 100));
+    expect(done, 1);
+  });
+
+  testWidgets('enam puluh gerakan naik terus tanpa lompat', (t) async {
+    await pumpScreen(
+      t,
+      Center(
+        child: SizedBox(
+          width: 520,
+          height: 520,
+          child: TracingBoard(
+            paths: const ['M260 70L260 450'],
+            ink: const Color(0xFFE8384F),
+            semanticLabel: 'Area menulis angka 1',
+          ),
+        ),
+      ),
+    );
+    final p = _papan(t);
+    final g = await t.startGesture(p(const Offset(260, 70)));
+    var goresan = _keadaan(t).session.goresan;
+    var sebelumnya = _keadaan(t).session.jarakTinta;
+    for (var i = 1; i <= 55; i++) {
+      await g.moveTo(p(Offset(260, 70 + 380 * i / 60)));
+      await t.pump(const Duration(milliseconds: 16));
+      final sesi = _keadaan(t).session;
+      expect(sesi.goresan, goresan);
+      expect(sesi.jarakTinta, greaterThanOrEqualTo(sebelumnya));
+      expect(sesi.jarakTinta - sebelumnya, lessThanOrEqualTo(lompatanMaju));
+      sebelumnya = sesi.jarakTinta;
+    }
+    expect(sebelumnya, greaterThan(300));
+    // Moci mengikuti ujung tinta saat jari menempel.
+    final moci = t.getRect(find.byType(MociMascot));
+    expect(moci.center.dy, closeTo(p(Offset(260, 70)).dy + sebelumnya, 2));
+    await g.up();
+    await t.pump(const Duration(milliseconds: 100));
   });
 }

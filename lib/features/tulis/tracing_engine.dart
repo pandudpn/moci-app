@@ -102,6 +102,8 @@ final class TracingSession {
   int _titik = 0;
   bool _selesai = false;
   bool _aktif = false;
+  double? _jarakTinta;
+  Offset? _jari;
 
   int get goresan => _goresan;
   int get titik => _titik;
@@ -118,6 +120,20 @@ final class TracingSession {
     return s.points[_titik].jarak / s.length;
   }
 
+  /// Ujung tinta di sepanjang goresan aktif; mengikuti jari, bukan sampel.
+  double get jarakTinta {
+    final s = _stroke;
+    if (s == null || s.points.isEmpty) return 0;
+    return (_jarakTinta ?? s.points[_titik].jarak).clamp(0, s.length);
+  }
+
+  /// Titik ujung tinta di jalur pandu.
+  Offset get ujungTinta {
+    final s = _stroke;
+    if (s == null || s.points.isEmpty) return Offset.zero;
+    return titikPadaJalur(s.points, jarakTinta);
+  }
+
   /// Titik pandu yang sedang dituju jari.
   Offset get pandu => _stroke?.points[_titik].offset ?? Offset.zero;
 
@@ -128,6 +144,7 @@ final class TracingSession {
     final s = _stroke;
     if (s == null || s.points.isEmpty || _selesai) return false;
     _aktif = (pandu - p).distance <= radiusMulai;
+    _jari = _aktif ? p : null;
     return _aktif;
   }
 
@@ -136,39 +153,115 @@ final class TracingSession {
     if (s == null || !_aktif || _selesai || s.points.isEmpty) {
       return TraceStep.tetap;
     }
-    // Titik terdekat ke jari harus benar-benar di depan titik sekarang,
-    // jadi menggeser ke belakang atau ke samping tidak memajukan goresan.
-    var dekat = _titik;
-    var dekatJarak = double.infinity;
-    for (var i = 0; i <= s.terakhir; i++) {
-      final d = (s.points[i].offset - p).distance;
-      if (d < dekatJarak) {
-        dekatJarak = d;
-        dekat = i;
+    // Titik tujuan yang jauh dari jalur membatalkan seluruh gerakan, jadi
+    // melompat ke sembarang tempat tidak bisa menembus sampel di tengah.
+    if (_proyeksi(s, p).jauh > toleransiJalur) return TraceStep.tetap;
+
+    final dari = _jari ?? s.points[_titik].offset;
+    final vektor = p - dari;
+    // Satu gerakan tidak boleh memajukan jalur lebih jauh daripada jarak
+    // yang ditempuh jari; ini yang menahan potong sudut.
+    final plafon = s.points[_titik].jarak + vektor.distance + toleransiJalur;
+    final langkah = (vektor.distance / jarakSampelBawaan).ceil();
+    var hasil = TraceStep.tetap;
+    // Jari dipecah tiap [jarakSampelBawaan] supaya sapuan cepat tetap
+    // dihitung bertahap dan tidak melompati koridor.
+    for (var i = 1; i <= langkah; i++) {
+      final maju = _coba(dari + vektor * (i / langkah), plafon);
+      if (maju != TraceStep.tetap) hasil = maju;
+      if (maju == TraceStep.goresanSelesai || maju == TraceStep.selesai) {
+        break;
       }
     }
-    if (dekat <= _titik) return TraceStep.tetap;
+    _jari = p;
+    // Tinta tetap mengikuti jari walau belum ada sampel baru yang diterima,
+    // tapi tidak pernah melewati batas gerakan ini.
+    _perbaruiTinta(p, plafon);
+    return hasil;
+  }
 
-    final batas = s.points[_titik].jarak + lompatanMaju;
-    var pilih = -1;
-    for (var i = _titik + 1; i <= s.terakhir; i++) {
-      final titik = s.points[i];
-      if (titik.jarak > batas) break;
-      if ((titik.offset - p).distance <= toleransiJalur) pilih = i;
+  /// Satu titik jari: maju sampai sampel yang sudah dilewati proyeksi jari.
+  TraceStep _coba(Offset p, double plafon) {
+    final s = _stroke;
+    if (s == null) return TraceStep.tetap;
+    final r = _proyeksi(s, p);
+    if (r.jauh > toleransiJalur) return TraceStep.tetap;
+
+    final dasar = s.points[_titik].jarak;
+    var sampai = r.jarak;
+    if (sampai > dasar + lompatanMaju) sampai = dasar + lompatanMaju;
+    if (sampai > plafon) sampai = plafon;
+    var pilih = _titik;
+    while (pilih < s.terakhir && s.points[pilih + 1].jarak <= sampai + 0.01) {
+      pilih++;
     }
-    if (pilih < 0) return TraceStep.tetap;
+    if (pilih == _titik) return TraceStep.tetap;
 
     _titik = pilih;
     if (kemajuan < selesaiPada) return TraceStep.maju;
     if (_goresan >= guide.strokes.length - 1) {
       _selesai = true;
       _aktif = false;
+      _jarakTinta = null;
+      _jari = null;
       return TraceStep.selesai;
     }
     _goresan++;
     _titik = 0;
     _aktif = false;
+    _jarakTinta = null;
+    _jari = null;
     return TraceStep.goresanSelesai;
+  }
+
+  /// Tinta mengikuti proyeksi jari, dibatasi kemajuan sekarang sampai batas
+  /// penerimaan berikutnya.
+  void _perbaruiTinta(Offset p, double plafon) {
+    final s = _stroke;
+    // Goresan berikutnya belum boleh bertinta sebelum jari mulai di titiknya.
+    if (!_aktif || s == null || s.points.length < 2) return;
+    final r = _proyeksi(s, p);
+    if (r.jauh > toleransiJalur) return;
+    final dasar = s.points[_titik].jarak;
+    var batas = dasar + lompatanMaju < s.length
+        ? dasar + lompatanMaju
+        : s.length;
+    if (batas > plafon) batas = plafon;
+    if (batas < dasar) batas = dasar;
+    _jarakTinta = r.jarak.clamp(dasar, batas).toDouble();
+  }
+
+  /// Proyeksi [p] ke jalur: jarak sepanjang jalur dan jarak lurus ke jalur.
+  ({double jarak, double jauh}) _proyeksi(TraceStroke s, Offset p) {
+    var dekat = 0;
+    var jauh = double.infinity;
+    for (var i = 0; i <= s.terakhir; i++) {
+      final d = (s.points[i].offset - p).distance;
+      if (d < jauh) {
+        jauh = d;
+        dekat = i;
+      }
+    }
+    var jarak = s.points[dekat].jarak;
+    for (var i = dekat - 1; i <= dekat; i++) {
+      if (i < 0 || i + 1 > s.terakhir) continue;
+      final a = s.points[i];
+      final b = s.points[i + 1];
+      final seg = b.offset - a.offset;
+      final panjang2 = seg.dx * seg.dx + seg.dy * seg.dy;
+      if (panjang2 <= 0) continue;
+      final v = p - a.offset;
+      final t = ((v.dx * seg.dx + v.dy * seg.dy) / panjang2)
+          .clamp(0.0, 1.0)
+          .toDouble();
+      final kaki = a.offset + seg * t;
+      final d = (p - kaki).distance;
+      if (d < jauh) {
+        jauh = d;
+        jarak = a.jarak + (b.jarak - a.jarak) * t;
+      }
+    }
+    return (jarak: jarak, jauh: jauh);
   }
 
   void ulang() {
@@ -176,7 +269,32 @@ final class TracingSession {
     _titik = 0;
     _selesai = false;
     _aktif = false;
+    _jarakTinta = null;
+    _jari = null;
   }
+}
+
+/// Titik di jalur sampel pada jarak [jarak] dari awal goresan.
+Offset titikPadaJalur(List<TracePoint> pts, double jarak) {
+  if (pts.isEmpty) return Offset.zero;
+  if (jarak <= 0 || pts.length == 1) return pts.first.offset;
+  var rendah = 0;
+  var tinggi = pts.length - 1;
+  while (rendah < tinggi) {
+    final tengah = (rendah + tinggi) ~/ 2;
+    if (pts[tengah].jarak < jarak) {
+      rendah = tengah + 1;
+    } else {
+      tinggi = tengah;
+    }
+  }
+  final b = pts[rendah];
+  if (rendah == 0) return b.offset;
+  final a = pts[rendah - 1];
+  final span = b.jarak - a.jarak;
+  if (span <= 0) return b.offset;
+  final t = (jarak - a.jarak) / span;
+  return Offset(a.x + (b.x - a.x) * t, a.y + (b.y - a.y) * t);
 }
 
 /// Membaca perintah path absolut `M L H V C` tanpa Flutter.

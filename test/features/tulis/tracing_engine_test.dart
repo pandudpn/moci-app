@@ -30,12 +30,12 @@ void main() {
     expect(sesi.gerak(const Offset(500, 200)), TraceStep.tetap);
     expect(sesi.titik, 0);
   });
-  test('kemajuan mengikuti jari tapi tidak melewati 40 unit', () {
+  test('kemajuan mengikuti jari tanpa melewati ujungnya', () {
     final sesi = TracingSession(TraceGuide.fromPaths(const ['M0 0L100 0']))
       ..mulai(const Offset(0, 0));
     expect(sesi.gerak(const Offset(60, 0)), TraceStep.maju);
-    expect(sesi.titik, 10);
-    expect(sesi.kemajuan, closeTo(0.4, 0.001));
+    expect(sesi.titik, 15);
+    expect(sesi.kemajuan, closeTo(0.6, 0.001));
   });
   test('goresan selesai di 97% lalu pindah ke goresan berikutnya', () {
     final sesi = TracingSession(
@@ -65,6 +65,51 @@ void main() {
     expect((sesi.goresan, sesi.titik, sesi.selesai), (0, 0, false));
     expect(sesi.mulai(const Offset(0, 0)), isTrue);
   });
+  test('sapuan cepat tiga lompatan besar sampai ujung', () {
+    final sesi = TracingSession(TraceGuide.fromPaths(const ['M0 0L400 0']))
+      ..mulai(const Offset(0, 0));
+    var step = TraceStep.tetap;
+    for (final x in [133.0, 266.0, 400.0]) {
+      final s = sesi.gerak(Offset(x, 0));
+      if (s != TraceStep.tetap) step = s;
+    }
+    expect(step, TraceStep.selesai);
+    expect(sesi.selesai, isTrue);
+  });
+  test('sapuan yang keluar koridor tidak memajukan goresan', () {
+    final sesi = TracingSession(TraceGuide.fromPaths(const ['M0 0L400 0']))
+      ..mulai(const Offset(0, 0))
+      ..gerak(const Offset(32, 0));
+    expect(sesi.titik, 8);
+    expect(sesi.gerak(const Offset(60, 90)), TraceStep.tetap);
+    expect(sesi.titik, 8);
+    expect(sesi.jarakTinta, closeTo(32, 0.001));
+  });
+  test('sapuan menyilang tidak menyelesaikan jalur bersudut', () {
+    final sesi =
+        TracingSession(TraceGuide.fromPaths(const ['M0 0L100 0L100 100']))
+          ..mulai(const Offset(0, 0))
+          ..gerak(const Offset(40, 0));
+    sesi.gerak(const Offset(100, 90));
+    // Jari hanya menempuh 108 unit, jadi jalur 200 unit tidak boleh selesai
+    // dan kemajuannya tidak boleh melebihi jarak jari plus koridor.
+    expect(sesi.selesai, isFalse);
+    expect(
+      sesi.titik * jarakSampelBawaan - 40,
+      lessThanOrEqualTo(108 + toleransiJalur),
+    );
+  });
+  test('ujung tinta mengikuti jari di antara sampel', () {
+    final sesi = TracingSession(TraceGuide.fromPaths(const ['M0 0L100 0']))
+      ..mulai(const Offset(0, 0))
+      ..gerak(const Offset(60, 0));
+    expect(sesi.jarakTinta, closeTo(60, 0.001));
+    expect(sesi.ujungTinta.dx, closeTo(60, 0.01));
+    expect(sesi.ujungTinta.dy, closeTo(0, 0.01));
+    sesi.gerak(const Offset(62, 0));
+    expect(sesi.jarakTinta, closeTo(62, 0.001));
+    expect(sesi.ujungTinta.dx, closeTo(62, 0.01));
+  });
   test('goresanSelesai menghitung goresan terakhir yang bertinta', () {
     final satu = TracingSession(TraceGuide.fromPaths(const ['M0 0L100 0']))
       ..mulai(const Offset(0, 0));
@@ -88,5 +133,15 @@ void main() {
     }
     expect(sesi.selesai, isTrue);
     expect(sesi.goresanSelesai, 2);
+  });
+  test('goresan berikutnya belum bertinta sebelum jari mulai', () {
+    final sesi = TracingSession(
+      TraceGuide.fromPaths(const ['M0 0L100 0', 'M60 20L200 20']),
+    )..mulai(const Offset(0, 0));
+    for (var x = 20.0; x <= 100; x += 20) {
+      sesi.gerak(Offset(x, 0));
+    }
+    expect(sesi.goresan, 1);
+    expect(sesi.jarakTinta, 0);
   });
 }
