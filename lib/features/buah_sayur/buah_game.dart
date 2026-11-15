@@ -59,6 +59,3 @@ String namaBuah(Item item, AppLang lang) => item.nama.of(lang);
 
 /// Nama panjang di kotak pertanyaan menyusut satu tingkat.
 double ukuranSoalBuah(String nama) => nama.length > 10 ? 36 : 44;
-
-/// Nama panjang di kartu Kenali menyusut satu tingkat.
-double ukuranKartuBuah(String nama) => nama.length > 11 ? 18 : 22;

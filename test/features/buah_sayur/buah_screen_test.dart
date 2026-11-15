@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:moci/app/moci_app.dart';
@@ -39,7 +40,11 @@ void main() {
     await _open(t, env: env, lokasi: '/buah-sayur?buah=apel&mode=tebak');
     expect(find.text('Buah & Sayur'), findsOneWidget);
     expect(find.byType(AnswerCard), findsNWidgets(3));
-    expect(find.text('Apel'), findsOneWidget);
+    expect(find.text('APEL'), findsOneWidget);
+    expect(
+      t.widgetList<AnswerCard>(find.byType(AnswerCard)).map((c) => c.text),
+      everyElement(isNull),
+    );
     expect(find.byKey(BuahScreen.questionKey(1)), findsOneWidget);
     expect(env.tts.spoken.map((e) => e.$1), ['Mana yang', 'Apel']);
   });
@@ -49,7 +54,7 @@ void main() {
     await _open(t, env: env, lokasi: '/buah-sayur?buah=apel&mode=tebak');
     final salah = t
         .widgetList<AnswerCard>(find.byType(AnswerCard))
-        .firstWhere((c) => c.text != 'Apel');
+        .firstWhere((c) => c.key != BuahScreen.optionKey('apel'));
     await t.tap(find.byWidget(salah));
     await t.pump();
     expect(find.byKey(BuahScreen.questionKey(1)), findsOneWidget);
@@ -94,6 +99,7 @@ void main() {
     expect(find.byType(AnswerCard), findsNothing);
     expect(find.byKey(BuahScreen.cardKey('apel')), findsOneWidget);
     expect(find.byKey(BuahScreen.cardKey('wortel')), findsOneWidget);
+    expect(find.text('Apel'), findsNothing);
     expect(find.text('BUAH'), findsWidgets);
     expect(find.text('SAYUR'), findsWidgets);
     await t.tap(find.byKey(BuahScreen.cardKey('apel')));
@@ -115,10 +121,10 @@ void main() {
       for (final item in katalogUji().item)
         if (item.kategori == 'sayur') item.nama.of(AppLang.id),
     };
-    expect(
-      find.byWidgetPredicate((w) => w is AnswerCard && sayur.contains(w.text)),
-      findsNWidgets(3),
-    );
+    final kartu = t.widgetList<AnswerCard>(find.byType(AnswerCard));
+    expect(kartu, hasLength(3));
+    expect(kartu.every((c) => sayur.contains(c.semanticLabel)), isTrue);
+    expect(kartu.map((c) => c.text), everyElement(isNull));
   });
 
   testWidgets('ganti bahasa mengganti pertanyaan dan tag', (t) async {
@@ -126,7 +132,7 @@ void main() {
     await _open(t, env: env, lokasi: '/buah-sayur?buah=apel&mode=tebak');
     _container(t).read(prefsProvider.notifier).setLang(AppLang.en);
     await _geser(t);
-    expect(find.text('Apple'), findsOneWidget);
+    expect(find.text('Apple'), findsNothing);
     expect(find.text('APPLE'), findsOneWidget);
     expect(find.text('Fruits & Veggies'), findsOneWidget);
     await t.tap(find.text('Learn'));
@@ -146,7 +152,30 @@ void main() {
 
   testWidgets('lanjutkan membuka buah dan mode terakhir', (t) async {
     await _open(t, lokasi: '/buah-sayur?buah=wortel&mode=kenali');
-    expect(find.text('Wortel'), findsOneWidget);
+    expect(find.text('Wortel'), findsNothing);
     expect(find.byKey(BuahScreen.cardKey('wortel')), findsOneWidget);
+  });
+
+  testWidgets('kartu hanya gambar, nama tetap di label dan narasi', (t) async {
+    final env = TestEnv();
+    await _open(t, env: env, lokasi: '/buah-sayur?buah=apel&mode=tebak');
+    final kartu = t.widgetList<AnswerCard>(find.byType(AnswerCard));
+    expect(kartu.map((c) => c.text), everyElement(isNull));
+    expect(kartu.map((c) => c.semanticLabel), contains('Apel'));
+    await t.tap(find.byKey(BuahScreen.optionKey('apel')));
+    await t.pump();
+    expect(env.tts.spoken.map((e) => e.$1), contains('Apel'));
+
+    await t.tap(find.text('Kenali'));
+    await _geser(t);
+    final nama = {
+      for (final item in katalogUji().item)
+        if (item.kategori == 'buah' || item.kategori == 'sayur')
+          item.nama.of(AppLang.id),
+    };
+    expect(
+      find.byWidgetPredicate((w) => w is Text && nama.contains(w.data)),
+      findsNothing,
+    );
   });
 }

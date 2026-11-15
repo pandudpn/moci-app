@@ -399,7 +399,6 @@ class _BuahScreenState extends ConsumerState<BuahScreen> {
                 key: BuahScreen.optionKey(item.id),
                 semanticLabel: namaBuah(item, _lang),
                 illustration: item.id,
-                text: namaBuah(item, _lang),
                 state: state,
                 accent: const Color(0xFFF5BCD3),
                 onTap: () => _jawab(item),
@@ -608,11 +607,8 @@ class _BuahScreenState extends ConsumerState<BuahScreen> {
         ),
         child: Stack(
           children: [
-            Positioned(
-              left: 0,
-              right: 0,
-              top: 14,
-              child: Center(child: MociIllustration(item.id, size: 124)),
+            Positioned.fill(
+              child: Center(child: MociIllustration(item.id, size: 134)),
             ),
             Positioned(
               left: 12,
@@ -634,23 +630,6 @@ class _BuahScreenState extends ConsumerState<BuahScreen> {
                     fontSize: 12,
                     color: MociColors.white,
                   ),
-                ),
-              ),
-            ),
-            Positioned(
-              left: 6,
-              right: 6,
-              bottom: 14,
-              child: Text(
-                nama,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontFamily: MociFonts.fredoka,
-                  fontWeight: FontWeight.w700,
-                  fontSize: ukuranKartuBuah(nama),
-                  color: MociColors.ink,
                 ),
               ),
             ),
