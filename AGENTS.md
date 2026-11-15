@@ -1,85 +1,86 @@
-# Instruksi agen Moci
+# Moci agent instructions
 
-Dokumen ini satu-satunya sumber instruksi untuk agen. `CLAUDE.md` hanya merujuk ke sini.
+This document is the only source of instructions for agents. `CLAUDE.md` only points here.
 
-## 1. Ringkasan proyek
+## 1. Project summary
 
-Moci adalah aplikasi belajar dan bermain untuk anak 2–7 tahun: offline penuh, dua bahasa (Indonesia dan English), untuk iPad, iPhone, HP Android, dan tablet Android. Kodenya Flutter 3.50 yang dikunci FVM di `.fvmrc`.
+Moci is a learning and play app for children aged 2–7: fully offline, two languages (Indonesian and English), for iPad, iPhone, Android phones, and Android tablets. The code is Flutter 3.50 pinned by FVM in `.fvmrc`.
 
-## 2. Peta dokumentasi
+## 2. Documentation map
 
-| Dokumen | Isi |
+| Document | Contents |
 | --- | --- |
-| `docs/README.md` | Ringkasan, keputusan, pertanyaan terbuka, peta dokumentasi |
-| `docs/PRD.md` | Apa yang dibangun untuk v1: pengguna, prinsip, alur, fitur |
-| `docs/TECH-SPEC.md` | Arsitektur, data, audio, performa, pengujian |
-| `docs/DESIGN-SYSTEM.md` | Warna, huruf, ukuran, gerak, komponen |
-| `docs/CONTENT-ASSETS.md` | Ilustrasi, katalog JSON, narasi, audio, cara menambah isi |
-| `docs/PRIVACY-RELEASE.md` | Privasi, izin, syarat store, checklist rilis |
-| `ARCHITECTURE.md` | Lapisan kode, peta folder, provider, rute, aliran state, harness tes |
-| `SYSTEM_DESIGN.md` | Data tersimpan, pengatur waktu, audio, mikrofon, pipeline konten, platform, CI |
-| `DESIGN.md` | Token, komponen, panggung tablet dan HP, gerak, aksesibilitas |
-| `CONTRIBUTING.md` | Alur kerja, gaya commit, checklist PR |
-| `docs/design/prototype/` | Snapshot beku prototipe interaktif |
-| `docs/audio/SUARA-HEWAN.md` | Sumber dan lisensi suara hewan |
+| `docs/README.md` | Summary, decisions, open questions, documentation map |
+| `docs/PRD.md` | What v1 builds: users, principles, flows, features |
+| `docs/TECH-SPEC.md` | Architecture, data, audio, performance, testing |
+| `docs/DESIGN-SYSTEM.md` | Colours, type, sizes, motion, components |
+| `docs/CONTENT-ASSETS.md` | Illustrations, JSON catalog, narration, audio, how to add content |
+| `docs/PRIVACY-RELEASE.md` | Privacy, permissions, store requirements, release checklist |
+| `ARCHITECTURE.md` | Code layers, folder map, providers, routes, state flow, test harness |
+| `SYSTEM_DESIGN.md` | Stored data, timers, audio, microphone, content pipeline, platforms, CI |
+| `DESIGN.md` | Tokens, components, tablet and phone stages, motion, accessibility |
+| `CONTRIBUTING.md` | Workflow, commit style, PR checklist |
+| `docs/design/prototype/` | Frozen snapshot of the interactive prototype |
+| `docs/audio/SUARA-HEWAN.md` | Sources and licences for the animal sounds |
 
-## 3. Perintah
+## 3. Commands
 
-Semua perintah Flutter lewat FVM.
+Every Flutter command goes through FVM.
 
-| Keperluan | Perintah |
+| Need | Command |
 | --- | --- |
-| Ambil paket | `fvm flutter pub get` |
+| Fetch packages | `fvm flutter pub get` |
 | Analyze | `fvm flutter analyze` |
-| Cek format | `fvm dart format --output=none --set-exit-if-changed lib test tool integration_test` |
-| Tes tanpa golden | `fvm flutter test --exclude-tags golden` |
-| Tes golden (macOS) | `fvm flutter test --tags golden` |
-| Perbarui golden (macOS) | `fvm flutter test --tags golden --update-goldens` |
-| Validator isi | `fvm dart run tool/validate_content.dart` |
-| Naskah narasi | `fvm dart run tool/validate_content.dart --naskah=build/naskah.csv` |
-| Validator mode rilis | `fvm dart run tool/validate_content.dart --rilis` |
-| Integration test | `fvm flutter test integration_test -d <perangkat>` |
-| Jalankan aplikasi | `fvm flutter run -d <perangkat>` |
-| Pasang ke perangkat sendiri | `make install` (atau `scripts/moci.sh install`; pilih dengan `DEVICE=<id>`) |
-| Pemeriksaan sebelum commit | `make check` |
+| Format check | `fvm dart format --output=none --set-exit-if-changed lib test tool integration_test` |
+| Tests without golden | `fvm flutter test --exclude-tags golden` |
+| Golden tests (macOS) | `fvm flutter test --tags golden` |
+| Update golden (macOS) | `fvm flutter test --tags golden --update-goldens` |
+| Content validator | `fvm dart run tool/validate_content.dart` |
+| Narration script | `fvm dart run tool/validate_content.dart --naskah=build/naskah.csv` |
+| Validator in release mode | `fvm dart run tool/validate_content.dart --rilis` |
+| Integration test | `fvm flutter test integration_test -d <device>` |
+| Run the app | `fvm flutter run -d <device>` |
+| Install to your own device | `make install` (or `scripts/moci.sh install`; pick with `DEVICE=<id>`) |
+| Checks before commit | `make check` |
 
-- `--naskah` hanya terbaca dalam bentuk `--naskah=<path>`; bentuk terpisah diabaikan tanpa pesan.
-- `--rilis` keluar dengan kode 1 selama belum ada rekaman narasi. Itu keadaan yang diharapkan, bukan bug. Validator menyebut setiap baris yang belum direkam.
-- Format memakai daftar folder, bukan titik: `fvm dart format .` ikut memindai `build/test/listener_0.dart` setelah integration test berjalan.
-- Golden hanya untuk Beranda, Hebat, dan Area Orang Tua, dan hanya dijalankan atau diperbarui di macOS.
+- `--naskah` is only read in the form `--naskah=<path>`; the separate form is ignored without a message.
+- `--rilis` exits with code 1 as long as no narration recording exists. That is the expected state, not a bug. The validator names every line that has not been recorded.
+- Format takes a folder list, not a dot: `fvm dart format .` also scans `build/test/listener_0.dart` once the integration test has run.
+- Golden tests cover only Beranda (Home), Hebat (Great), and Area Orang Tua (Parent Area), and are only run or updated on macOS.
 
-## 4. Aturan kode
+## 4. Code rules
 
-- Import Material dari `package:material_ui/material_ui.dart`, bukan `package:flutter/material.dart` yang deprecated di Flutter 3.50. Kode yang cukup dengan lapisan widget memakai `package:flutter/widgets.dart`.
-- Paket yang diizinkan: `go_router`, `flutter_riverpod`, `shared_preferences`, `flutter_soloud`, `vector_graphics`, `vector_graphics_compiler`, `path_provider`, `url_launcher`, `flutter_localizations`, `intl`, dan `speech_to_text` untuk Rencana 03. Paket baru hanya boleh kalau tidak mengirim data, tidak menambah izin, dan masih dirawat. Tidak ada `google_fonts`, SDK analytics, atau crash reporting.
-- Tidak ada jaringan, izin tambahan, atau telemetri. Manifest rilis Android tidak berisi izin apa pun.
-- Setiap layar dibungkus `MociStage` dari `lib/app/layout/moci_stage.dart`, dengan satu `MenuTheme`.
-- Aturan permainan ditulis di `*_game.dart` sebagai Dart murni, tanpa widget, dengan `Random` yang bisa diberi seed lewat provider.
-- Teks UI diambil dari ARB `l10n/app_id.arb` dan `l10n/app_en.arb`, dengan kunci `<layar><KunciT>`, dan disalin persis dari prototipe.
-- Kalimat yang dibacakan ditandai `"description": "narasi"` di ARB. Rekaman narasi ada di `assets/audio/vo/<bahasa>/<jenis>_<id>.m4a`; foldernya sudah dideklarasikan di `pubspec.yaml` (Flutter tidak menurunkan folder, jadi folder audio baru harus ditambahkan sendiri).
+- Import Material from `package:material_ui/material_ui.dart`, not `package:flutter/material.dart`, which is deprecated in Flutter 3.50. Code that only needs the widget layer uses `package:flutter/widgets.dart`.
+- Allowed packages: `go_router`, `flutter_riverpod`, `shared_preferences`, `flutter_soloud`, `vector_graphics`, `vector_graphics_compiler`, `path_provider`, `url_launcher`, `flutter_localizations`, `intl`, and `speech_to_text` for Plan 03. A new package is only allowed if it sends no data, adds no permission, and is still maintained. No `google_fonts`, no analytics SDK, no crash reporting.
+- No network, extra permissions, or telemetry. The Android release manifest contains no permission at all.
+- Every screen is wrapped in `MociStage` from `lib/app/layout/moci_stage.dart`, with one `MenuTheme`.
+- Game rules live in `*_game.dart` as pure Dart, without widgets, with a `Random` that can be seeded through a provider.
+- UI text comes from the ARB files `l10n/app_id.arb` and `l10n/app_en.arb`, with keys `<screen><Key>`, copied exactly from the prototype.
+- Sentences that are read aloud are marked `"description": "narasi"` in ARB. Narration recordings live in `assets/audio/vo/<language>/<kind>_<id>.m4a`; the folders are already declared in `pubspec.yaml` (Flutter does not walk folders, so a new audio folder has to be added by hand).
 
-## 5. Aturan tes
+## 5. Test rules
 
-- TDD: tulis tes yang gagal dulu, lalu kode sampai lulus.
-- Fake dan helper ada di `test/helpers/`: `TestEnv`, `pumpScreen`, dan `pumpApp`. `testWidgets` tidak boleh menyentuh berkas atau jaringan sungguhan.
-- Golden hanya untuk Beranda, Hebat, dan Area Orang Tua, dijalankan di macOS.
-- Integration test memakai `runMoci(overrides:)` dan tidak memakai `pumpAndSettle`, karena maskot beranimasi terus.
+- TDD: write the failing test first, then the code until it passes.
+- Fakes and helpers are in `test/helpers/`: `TestEnv`, `pumpScreen`, and `pumpApp`. `testWidgets` must not touch real files or the network.
+- Golden tests cover only Beranda (Home), Hebat (Great), and Area Orang Tua (Parent Area), and run on macOS.
+- Integration tests use `runMoci(overrides:)` and do not use `pumpAndSettle`, because the mascot animates all the time.
 
-## 6. Konten
+## 6. Content
 
-- Katalog JSON di `assets/content/katalog.json` adalah sumber kebenaran. Ekspor dari `docs/design/prototype/` hanya sekali, lalu JSON diedit langsung.
-- Cara menambah isi, aturan SVG, tracing, dan halaman mewarnai ada di `docs/CONTENT-ASSETS.md`.
-- Audio hanya dari Freesound CC0 atau rekaman sendiri (`Milik sendiri`), dicatat di `assets/audio/LICENSES.csv`. Pixabay dan CC BY tidak dipakai. Aturan ini lebih ketat daripada `docs/CONTENT-ASSETS.md`, yang masih menyebut Pixabay dan CC BY; aturan ketat yang berlaku. Validator menegakkannya lewat `lisensi_audio_lengkap`.
-- Setiap teks narasi baru wajib masuk naskah. `--rilis` gagal selama masih ada teks tanpa rekaman.
+- The JSON catalog in `assets/content/katalog.json` is the source of truth. Export from `docs/design/prototype/` once, then edit the JSON directly.
+- How to add content, the SVG rules, tracing, and colouring pages are in `docs/CONTENT-ASSETS.md`.
+- Audio comes only from Freesound CC0 or your own recordings (`Milik sendiri`, "own work"), recorded in `assets/audio/LICENSES.csv`. Pixabay and CC BY are not used. This rule is stricter than `docs/CONTENT-ASSETS.md`, which still mentions Pixabay and CC BY; the strict rule wins. The validator enforces it through `lisensi_audio_lengkap`.
+- Every new narration line has to go into the script. `--rilis` fails while any text has no recording.
 
 ## 7. Git
 
-- Kerja di branch fitur, lalu buka PR ke `main`. Jangan push langsung ke `main`.
-- Satu commit per task, gaya `feat(area): summary` atau `docs: summary`. Commit, komentar kode, dan teks workflow dalam Bahasa Inggris.
-- Sebelum commit: format, analyze, tes, dan validator.
+- Work on a feature branch, then open a PR to `main`. Never push straight to `main`.
+- One commit per task, in the style `feat(area): summary` or `docs: summary`. Commits, code comments, and workflow text are written in English.
+- Documentation is written in English too: `README.md`, `AGENTS.md`, `CONTRIBUTING.md`, and every document under `docs/`. Only in-app UI strings stay bilingual, Indonesian and English, in the ARB files `l10n/app_id.arb` and `l10n/app_en.arb`.
+- Before commit: format, analyze, tests, and validator.
 
-## 8. Jangan
+## 8. Don't
 
-- Menyentuh `docs/design/prototype/`. Itu snapshot beku.
-- Meng-commit audio non-CC0, berkas rahasia signing, atau `.env`. `.gitignore` menolaknya.
-- Menambah izin Android atau iOS tanpa memperbarui `docs/PRIVACY-RELEASE.md`.
+- Touch `docs/design/prototype/`. It is a frozen snapshot.
+- Commit non-CC0 audio, signing secrets, or `.env`. `.gitignore` rejects them.
+- Add an Android or iOS permission without updating `docs/PRIVACY-RELEASE.md`.

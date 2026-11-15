@@ -1,13 +1,13 @@
-Hak cipta (c) 2026 Pandu dwi Putra. Seluruh hak dilindungi.
+Copyright (c) 2026 Pandu dwi Putra. All rights reserved.
 
-Kode, ilustrasi, suara, teks, dan aset brand Moci tidak boleh dipakai, disalin, diubah, atau disebarkan, sebagian maupun seluruhnya, tanpa izin tertulis dari pemilik hak cipta. Repo ini terbuka untuk dilihat dan dinilai, bukan untuk dipakai ulang.
+The code, illustrations, sound, text, and brand assets of Moci may not be used, copied, modified, or distributed, in whole or in part, without written permission from the copyright holder. This repo is open to be viewed and reviewed, not to be reused.
 
-## Komponen pihak ketiga
+## Third-party components
 
-Karya pihak ketiga di repo ini memakai lisensinya sendiri. Lisensi itu berlaku di atas pernyataan di atas.
+Third-party work in this repo uses its own licence. That licence applies on top of the statement above.
 
-- **Font.** Fredoka dan Nunito dipakai di bawah SIL Open Font License 1.1. Salinan lisensinya ada di `assets/fonts/OFL-Fredoka.txt` dan `assets/fonts/OFL-Nunito.txt`.
-- **Audio.** Setiap berkas suara memakai lisensi yang tercatat di `assets/audio/LICENSES.csv`. Sumbernya Freesound dengan lisensi CC0, atau rekaman sendiri yang ditandai `Milik sendiri`.
-- **Paket Dart dan Flutter.** Setiap paket di `pubspec.yaml`, termasuk paket bawaan Flutter, memakai lisensinya masing-masing. Daftarnya bisa dibuka dengan `fvm flutter pub deps`.
+- **Fonts.** Fredoka and Nunito are used under the SIL Open Font License 1.1. Copies of the licence are in `assets/fonts/OFL-Fredoka.txt` and `assets/fonts/OFL-Nunito.txt`.
+- **Audio.** Every sound file uses the licence recorded in `assets/audio/LICENSES.csv`. The source is Freesound under the CC0 licence, or your own recording marked `Milik sendiri` ("own work").
+- **Dart and Flutter packages.** Every package in `pubspec.yaml`, including the packages that ship with Flutter, uses its own licence. The list can be opened with `fvm flutter pub deps`.
 
-Pertanyaan soal izin pemakaian dikirim ke pemilik repo.
+Questions about permission to use are sent to the repo owner.

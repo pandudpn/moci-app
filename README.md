@@ -1,339 +1,339 @@
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="docs/brand/github/banner-dark.png">
-    <img src="docs/brand/github/banner-light.png" alt="Moci — Main & Belajar" width="100%">
+    <img src="docs/brand/github/banner-light.png" alt="Moci — Main &amp; Belajar" width="100%">
   </picture>
 </p>
 
 <p align="center">
-  <b>Aplikasi belajar dan bermain untuk anak usia 2–7 tahun.</b><br>
-  Tanpa iklan · Tanpa pembelian dalam aplikasi · Bisa offline · Bahasa Indonesia &amp; English<br>
-  iPad · iPhone · Android (HP &amp; tablet)
+  <b>A learning and play app for children aged 2–7.</b><br>
+  No ads · No in-app purchases · Works offline · Bahasa Indonesia &amp; English<br>
+  iPad · iPhone · Android (phone &amp; tablet)
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Flutter-iOS%20%7C%20Android-1C8CF0" alt="Flutter untuk iOS dan Android">
-  <img src="https://img.shields.io/badge/usia-2%E2%80%937%20tahun-26A03B" alt="Usia 2–7 tahun">
+  <img src="https://img.shields.io/badge/Flutter-iOS%20%7C%20Android-1C8CF0" alt="Flutter for iOS and Android">
+  <img src="https://img.shields.io/badge/usia-2%E2%80%937%20tahun-26A03B" alt="Ages 2–7">
 </p>
 
-> **English summary:** Moci is an ad-free, offline-first learning and play app for children aged 2–7, available in Bahasa Indonesia and English. Kids trace letters and numbers, count, read syllables and sentences, explore animals, fruit, colours, shapes and music, play six mini games, and colour pictures without ever going outside the lines. Everything stays on the device. The design, the interactive prototype, and the Flutter foundation (shell, navigation, local storage, audio, two languages) are done. The content pipeline is complete, and the menus are being built one at a time.
-
 ---
 
-## Daftar isi
+## Table of contents
 
-- [Tentang Moci](#tentang-moci)
-- [Fitur](#fitur)
-- [Tampilan aplikasi](#tampilan-aplikasi)
-- [Untuk orang tua: privasi & keamanan](#untuk-orang-tua-privasi--keamanan)
-- [Teknologi](#teknologi)
-- [Struktur repo](#struktur-repo)
-- [Menjalankan aplikasi](#menjalankan-aplikasi)
-- [Dokumentasi](#dokumentasi)
-- [Brand & aset](#brand--aset)
+- [About Moci](#about-moci)
+- [Features](#features)
+- [App screens](#app-screens)
+- [For parents: privacy and safety](#for-parents-privacy-and-safety)
+- [Tech stack](#tech-stack)
+- [Repo layout](#repo-layout)
+- [Running the app](#running-the-app)
+- [Documentation](#documentation)
+- [Brand and assets](#brand-and-assets)
 - [Roadmap](#roadmap)
-- [Suara](#suara)
-- [Lisensi](#lisensi)
+- [Audio](#audio)
+- [License](#license)
 
 ---
 
-## Tentang Moci
+## About Moci
 
-Moci adalah teman main dan belajar untuk anak usia dini. Maskotnya, Moci, makhluk kecil kuning berbentuk bulat dengan tunas daun di kepala, menemani anak di setiap layar: menyapa dengan nama anak, memberi petunjuk lewat suara, dan merayakan setiap keberhasilan.
+Moci is a play and learning companion for early childhood. Its mascot, Moci, is a small round yellow creature with a leaf sprout on its head, and appears on every screen: it greets the child by name, gives hints by voice, and celebrates every success.
 
-Prinsip yang dipegang di semua layar:
+Kids trace letters and numbers, count, read syllables and sentences, explore animals, fruit, colours, shapes and music, play six mini games, and colour pictures without ever going outside the lines. The design and the interactive prototype are done, the Flutter foundation is in place (shell, navigation, local storage, audio, two languages), the content pipeline is complete, and the menus are being built one at a time.
 
-- **Tanpa iklan, tanpa pembelian, tanpa akun.** Anak tidak pernah diarahkan keluar dari aplikasi.
-- **Data hanya di perangkat.** Nama anak, pengaturan, dan karya tersimpan lokal. Tidak ada server dan tidak ada analytics pihak ketiga.
-- **Bisa offline.** Semua konten ikut terpasang di aplikasi.
-- **Dua bahasa.** Teks dan suara tersedia dalam Bahasa Indonesia dan English, dan bisa diganti kapan saja.
-- **Ramah anak kecil.** Tombol besar, sedikit teks, banyak suara dan animasi, umpan balik positif, dan tingkat kesulitan yang menyesuaikan usia (2–3, 4–5, 6–7 tahun).
+Principles that hold on every screen:
 
-## Fitur
+- **No ads, no purchases, no accounts.** The child is never sent out of the app.
+- **Data stays on the device.** The child's name, settings, and artwork are stored locally. There is no server and no third-party analytics.
+- **Works offline.** All content ships inside the app.
+- **Two languages.** Text and voice are available in Bahasa Indonesia and English, and can be switched at any time.
+- **Friendly to small children.** Big buttons, little text, lots of voice and animation, positive feedback, and difficulty levels that follow age (2–3, 4–5, 6–7).
 
-| Menu                | Isi                                                                                                                                                                  |
+## Features
+
+| Menu                | Contents                                                                                                                                                             |
 | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Kenal Huruf**     | 26 huruf A–Z dengan gambar dan contoh kata, bisa dibaca sebagai bunyi (fonik) atau nama huruf, latihan menulis (tracing) dengan panah arah, dan latihan mengucapkan. |
-| **Berhitung**       | Angka 1–50 dengan benda untuk dihitung bersama, serta latihan menulis angka 0–9.                                                                                     |
-| **Dunia Hewan**     | 42 hewan dalam 5 kelompok, lengkap dengan nama, tiruan suara, dan fakta singkat.                                                                                     |
-| **Buah & Sayur**    | 21 buah dan 14 sayur, dengan mode Kenali dan mode Tebak.                                                                                                             |
-| **Warna**           | 11 warna. Anak menyentuh semua benda yang warnanya diminta.                                                                                                          |
-| **Bentuk**          | 10 bentuk, termasuk menghitung sisi dan sudutnya, plus mode Cari.                                                                                                    |
-| **Main Musik**      | Xilofon 8 nada dengan lagu untuk diikuti, serta drum dengan 4 bunyi dan contoh irama.                                                                                |
-| **Ayo Membaca**     | Suku kata (ba-bi-bu-be-bo), menyusun kata dari suku kata, dan membaca kalimat dengan kata yang menyala satu per satu.                                                |
-| **Main Yuk!**       | 6 mini game: Cocokkan Gambar, Kartu Memori, Tebak Bayangan, Puzzle, Balon Huruf, Besar & Kecil.                                                                      |
-| **Mewarnai**        | 44 gambar: hewan, laut, buah & sayur, kota, dan benda. Warna tidak bisa keluar garis. Ada kuas, isi warna, penghapus, stiker, dan Karyaku untuk menyimpan hasil. |
-| **Hadiah**          | Bintang dan stiker setiap kali anak menyelesaikan permainan.                                                                                                         |
-| **Untuk orang tua** | Gerbang orang tua, profil anak, ringkasan perkembangan, cara baca huruf, batas waktu harian, dan pengingat istirahat.                                                |
+| **Letters (Kenal Huruf)**     | 26 letters A–Z with pictures and example words, readable as a sound (phonics) or a letter name, writing practice (tracing) with direction arrows, and pronunciation practice. |
+| **Counting (Berhitung)**      | Numbers 1–50 with objects to count together, plus writing practice for the digits 0–9.                                                                                |
+| **Animal World (Dunia Hewan)**     | 42 animals in 5 groups, each with its name, a sound imitation, and a short fact.                                                                                     |
+| **Fruit & Veg (Buah & Sayur)**    | 21 fruits and 14 vegetables, with a Learn mode and a Guess mode.                                                                                                     |
+| **Colours (Warna)**           | 11 colours. The child taps every object in the colour asked for.                                                                                                      |
+| **Shapes (Bentuk)**          | 10 shapes, including counting sides and corners, plus a Find mode.                                                                                                    |
+| **Music (Main Musik)**      | An 8-note xylophone with songs to follow along, plus drums with 4 sounds and example rhythms.                                                                         |
+| **Let's Read (Ayo Membaca)**     | Syllables (ba-bi-bu-be-bo), building words from syllables, and reading sentences with the words lighting up one at a time.                                            |
+| **Let's Play (Main Yuk!)**       | 6 mini games: Match the Picture (Cocokkan Gambar), Memory Cards (Kartu Memori), Guess the Shadow (Tebak Bayangan), Puzzle, Letter Balloons (Balon Huruf), Big & Small (Besar & Kecil). |
+| **Colouring (Mewarnai)**        | 44 pictures: animals, sea, fruit & veg, city, and objects. Colour cannot leave the lines. There are brushes, fill, eraser, stickers, and Karyaku (My Work) to save the results. |
+| **Rewards (Hadiah)**          | Stars and stickers each time the child finishes a game.                                                                                                              |
+| **For parents (Untuk orang tua)** | Parent gate, child profile, progress summary, how to read letters, daily time limit, and break reminders.                                                            |
 
-## Tampilan aplikasi
+## App screens
 
-Semua tangkapan layar diambil dari prototipe interaktif versi tablet (1180 × 820), bukan dari aplikasi Flutter yang sedang dibangun.
+All screenshots are taken from the interactive prototype in its tablet version (1180 × 820), not from the Flutter app being built.
 
-### Mulai
+### Start
 
 <table>
 <tr>
-<td width="50%"><img src="docs/screenshots/01-splash.png" alt="Splash screen"><br><b>Splash.</b> Moci jatuh dari atas lalu memantul, huruf M-o-c-i muncul satu per satu, lalu tagline "Main &amp; Belajar".</td>
-<td width="50%"><img src="docs/screenshots/02-sambutan.png" alt="Sambutan"><br><b>Sambutan.</b> Orang tua memilih bahasa, mengisi nama panggilan anak, dan memilih usia. Data hanya tersimpan di perangkat.</td>
+<td width="50%"><img src="docs/screenshots/01-splash.png" alt="Splash screen"><br><b>Splash.</b> Moci falls from the top and bounces, the letters M-o-c-i appear one by one, then the tagline "Main &amp; Belajar" (Play &amp; Learn).</td>
+<td width="50%"><img src="docs/screenshots/02-sambutan.png" alt="Welcome"><br><b>Sambutan (Welcome).</b> Parents pick a language, enter the child's nickname, and pick an age. The data is stored on the device only.</td>
 </tr>
 <tr>
-<td width="50%"><img src="docs/screenshots/03-beranda.png" alt="Beranda"><br><b>Beranda.</b> Moci menyapa "Hai, &lt;nama anak&gt;!". Ada 10 menu bergambar, tombol lanjutkan, pengganti bahasa ID/EN, jumlah bintang, dan pintu ke Area Orang Tua.</td>
-<td width="50%"><img src="docs/screenshots/31-beranda-hp.png" alt="Beranda versi HP"><br><b>Beranda versi HP.</b> Tata letak landscape untuk iPhone dan HP Android.</td>
+<td width="50%"><img src="docs/screenshots/03-beranda.png" alt="Home"><br><b>Beranda (Home).</b> Moci greets with "Hai, &lt;nama anak&gt;!" (Hi, &lt;child name&gt;!). There are 10 picture menus, a continue button, an ID/EN language switch, the star count, and a door into the Parent Area.</td>
+<td width="50%"><img src="docs/screenshots/31-beranda-hp.png" alt="Home on a phone"><br><b>Beranda (Home) on a phone.</b> Landscape layout for the iPhone and Android phones.</td>
 </tr>
 </table>
 
-### Huruf & Angka
+### Letters & numbers
 
 <table>
 <tr>
-<td width="50%"><img src="docs/screenshots/04-huruf.png" alt="Kenal huruf"><br><b>Kenal Huruf.</b> Huruf besar dan kecil, gambar, dan contoh kata. Ketuk untuk mendengar bunyi huruf (fonik) atau nama hurufnya.</td>
-<td width="50%"><img src="docs/screenshots/05-tulis-huruf.png" alt="Tulis huruf"><br><b>Tulis Huruf (tracing).</b> 26 huruf. Anak menggeser Moci mengikuti panah kuning, garis demi garis, sampai ke bintang.</td>
+<td width="50%"><img src="docs/screenshots/04-huruf.png" alt="Letters"><br><b>Kenal Huruf (Letters).</b> Upper and lower case, a picture, and an example word. Tap to hear the letter sound (phonics) or its name.</td>
+<td width="50%"><img src="docs/screenshots/05-tulis-huruf.png" alt="Letter writing"><br><b>Tulis Huruf (Letter writing).</b> 26 letters. The child drags Moci along the yellow arrows, line by line, until the star.</td>
 </tr>
 <tr>
-<td width="50%"><img src="docs/screenshots/06-ucapkan.png" alt="Ucapkan"><br><b>Ucapkan.</b> Dengar contoh, lalu anak mengucapkan kata. Untuk sementara mikrofonnya masih simulasi.</td>
-<td width="50%"><img src="docs/screenshots/07-berhitung.png" alt="Berhitung"><br><b>Berhitung.</b> Angka 1–50 dengan nama angkanya. Tombol "Hitung bareng" menghitung benda satu per satu.</td>
+<td width="50%"><img src="docs/screenshots/06-ucapkan.png" alt="Say it"><br><b>Ucapkan (Say it).</b> Hear the example, then the child says the word. For now the microphone is still simulated.</td>
+<td width="50%"><img src="docs/screenshots/07-berhitung.png" alt="Counting"><br><b>Berhitung (Counting).</b> Numbers 1–50 with their names. The "Hitung bareng" (count together) button counts objects one at a time.</td>
 </tr>
 <tr>
-<td width="50%"><img src="docs/screenshots/08-tulis-angka.png" alt="Tulis angka"><br><b>Tulis Angka.</b> Tracing angka 0–9 dengan panduan arah yang sama seperti huruf.</td>
+<td width="50%"><img src="docs/screenshots/08-tulis-angka.png" alt="Number writing"><br><b>Tulis Angka (Number writing).</b> Tracing the digits 0–9 with the same direction guides as letters.</td>
 <td width="50%"></td>
 </tr>
 </table>
 
-### Dunia Sekitar
+### The world around
 
 <table>
 <tr>
-<td width="50%"><img src="docs/screenshots/09-hewan.png" alt="Dunia hewan"><br><b>Dunia Hewan.</b> 42 hewan dalam 5 kelompok: peliharaan &amp; ternak, hutan &amp; savana, reptil &amp; katak, laut &amp; air, serta burung &amp; serangga. Ada tombol dengar nama, dengar suara, dan fakta singkat.</td>
-<td width="50%"><img src="docs/screenshots/10-buah-sayur.png" alt="Buah dan sayur"><br><b>Buah &amp; Sayur.</b> Mode Kenali untuk mengenal nama, dan mode Tebak dengan tiga pilihan gambar.</td>
+<td width="50%"><img src="docs/screenshots/09-hewan.png" alt="Animal world"><br><b>Dunia Hewan (Animal World).</b> 42 animals in 5 groups: pets &amp; farm, forest &amp; savanna, reptiles &amp; frogs, sea &amp; water, and birds &amp; insects. There are buttons to hear the name, hear the sound, and read a short fact.</td>
+<td width="50%"><img src="docs/screenshots/10-buah-sayur.png" alt="Fruit and veg"><br><b>Buah &amp; Sayur (Fruit &amp; Veg).</b> A Learn mode to get to know the names, and a Guess mode with three picture choices.</td>
 </tr>
 <tr>
-<td width="50%"><img src="docs/screenshots/11-warna.png" alt="Warna"><br><b>Warna.</b> Anak menyentuh semua benda yang warnanya diminta. Ada 11 warna, dan tombol "Gambar baru" mengacak isi layar.</td>
-<td width="50%"><img src="docs/screenshots/12-bentuk.png" alt="Bentuk"><br><b>Bentuk.</b> 10 bentuk berwajah lucu. Tombol "Hitung sudut" menandai sudut satu per satu sambil menyebut angkanya.</td>
+<td width="50%"><img src="docs/screenshots/11-warna.png" alt="Colours"><br><b>Warna (Colours).</b> The child taps every object in the colour asked for. There are 11 colours, and the "Gambar baru" (new picture) button shuffles the screen.</td>
+<td width="50%"><img src="docs/screenshots/12-bentuk.png" alt="Shapes"><br><b>Bentuk (Shapes).</b> 10 shapes with funny faces. The "Hitung sudut" (count corners) button marks the corners one by one while saying the number.</td>
 </tr>
 <tr>
-<td width="50%"><img src="docs/screenshots/12b-bentuk-cari.png" alt="Bentuk mode cari"><br><b>Bentuk: Cari.</b> "Mana segitiga?" Warna sengaja diacak, jadi anak mengenali bentuk, bukan warna. Jumlah pilihan menyesuaikan usia.</td>
-<td width="50%"><img src="docs/screenshots/13-musik-xilofon.png" alt="Xilofon"><br><b>Main Musik: Xilofon.</b> 8 nada do–do. Mode "Ikuti" menunjukkan balok berikutnya untuk memainkan lagu Twinkle Twinkle atau Mary Had a Little Lamb.</td>
+<td width="50%"><img src="docs/screenshots/12b-bentuk-cari.png" alt="Shapes in find mode"><br><b>Bentuk: Cari (Shapes: Find).</b> "Mana segitiga?" (Where is the triangle?) Colours are deliberately shuffled, so the child recognises the shape, not the colour. The number of choices follows age.</td>
+<td width="50%"><img src="docs/screenshots/13-musik-xilofon.png" alt="Xylophone"><br><b>Main Musik: Xilofon (Music: Xylophone).</b> 8 notes, do to do. The "Ikuti" (follow) mode shows the next bar for playing Twinkle Twinkle or Mary Had a Little Lamb.</td>
 </tr>
 <tr>
-<td width="50%"><img src="docs/screenshots/13b-musik-drum.png" alt="Drum"><br><b>Main Musik: Drum.</b> Ada drum, tepuk, simbal, dan kerincing, plus contoh irama untuk diikuti.</td>
+<td width="50%"><img src="docs/screenshots/13b-musik-drum.png" alt="Drum"><br><b>Main Musik: Drum.</b> Drum, clap, cymbal, and shaker, plus example rhythms to follow.</td>
 <td width="50%"></td>
 </tr>
 </table>
 
-### Ayo Membaca
+### Let's read
 
 <table>
 <tr>
-<td width="50%"><img src="docs/screenshots/14-suku-kata.png" alt="Suku kata"><br><b>Suku Kata.</b> Pilih konsonan untuk membentuk ba-bi-bu-be-bo. Ketuk suku kata untuk mendengarnya, lalu lihat contoh katanya.</td>
-<td width="50%"><img src="docs/screenshots/15-susun-kata.png" alt="Susun kata"><br><b>Susun Kata.</b> Dengarkan kata, lalu ketuk suku katanya secara berurutan. Ada level 2 dan 3 suku kata.</td>
+<td width="50%"><img src="docs/screenshots/14-suku-kata.png" alt="Syllables"><br><b>Suku Kata (Syllables).</b> Pick a consonant to form ba-bi-bu-be-bo. Tap a syllable to hear it, then see an example word.</td>
+<td width="50%"><img src="docs/screenshots/15-susun-kata.png" alt="Build the word"><br><b>Susun Kata (Build the word).</b> Listen to the word, then tap its syllables in order. There are 2 and 3 syllable levels.</td>
 </tr>
 <tr>
-<td width="50%"><img src="docs/screenshots/16-kalimat.png" alt="Kalimat"><br><b>Kalimat.</b> "Baca bersama" menyalakan kata satu per satu seperti karaoke. Ada juga mode Tebak Gambar.</td>
+<td width="50%"><img src="docs/screenshots/16-kalimat.png" alt="Sentences"><br><b>Kalimat (Sentences).</b> "Baca bersama" (read together) lights up the words one at a time like karaoke. There is also a Guess the Picture mode.</td>
 <td width="50%"></td>
 </tr>
 </table>
 
-### Main Yuk!
+### Let's play
 
 <table>
 <tr>
-<td width="50%"><img src="docs/screenshots/17-main-yuk.png" alt="Main Yuk"><br><b>Main Yuk!</b> Enam mini game dengan label usia.</td>
-<td width="50%"><img src="docs/screenshots/18-cocokkan.png" alt="Cocokkan"><br><b>Cocokkan Gambar.</b> Hubungkan gambar yang sama dengan ketuk-ketuk atau tarik garis. Temanya acak: buah, hewan, sayur, kendaraan, benda.</td>
+<td width="50%"><img src="docs/screenshots/17-main-yuk.png" alt="Let's Play"><br><b>Main Yuk! (Let's Play).</b> Six mini games with age labels.</td>
+<td width="50%"><img src="docs/screenshots/18-cocokkan.png" alt="Match the picture"><br><b>Cocokkan Gambar (Match the Picture).</b> Connect identical pictures by tapping them or drawing a line. The theme is random: fruit, animals, vegetables, vehicles, objects.</td>
 </tr>
 <tr>
-<td width="50%"><img src="docs/screenshots/19-kartu-memori.png" alt="Kartu memori"><br><b>Kartu Memori.</b> Buka dua kartu dan temukan pasangannya. Tersedia 4, 6, atau 8 pasang.</td>
-<td width="50%"><img src="docs/screenshots/20-tebak-bayangan.png" alt="Tebak bayangan"><br><b>Tebak Bayangan.</b> "Bayangan siapa ini?" Pilih gambar yang cocok, dan bayangannya berubah jadi berwarna.</td>
+<td width="50%"><img src="docs/screenshots/19-kartu-memori.png" alt="Memory cards"><br><b>Kartu Memori (Memory Cards).</b> Open two cards and find the pair. There are 4, 6, or 8 pairs.</td>
+<td width="50%"><img src="docs/screenshots/20-tebak-bayangan.png" alt="Guess the shadow"><br><b>Tebak Bayangan (Guess the Shadow).</b> "Bayangan siapa ini?" (Whose shadow is this?) Pick the matching picture, and the shadow turns to colour.</td>
 </tr>
 <tr>
-<td width="50%"><img src="docs/screenshots/21-puzzle.png" alt="Puzzle"><br><b>Puzzle.</b> Ketuk potongan, lalu ketuk tempatnya. Ada 4, 6, atau 9 potongan sesuai usia.</td>
-<td width="50%"><img src="docs/screenshots/22-balon-huruf.png" alt="Balon huruf"><br><b>Balon Huruf.</b> Moci menyebut satu huruf, lalu anak memecahkan balon yang hurufnya cocok. Ada 5 ronde.</td>
+<td width="50%"><img src="docs/screenshots/21-puzzle.png" alt="Puzzle"><br><b>Puzzle.</b> Tap a piece, then tap its place. There are 4, 6, or 9 pieces depending on age.</td>
+<td width="50%"><img src="docs/screenshots/22-balon-huruf.png" alt="Letter balloons"><br><b>Balon Huruf (Letter Balloons).</b> Moci says a letter, then the child pops the balloon with the matching letter. There are 5 rounds.</td>
 </tr>
 <tr>
-<td width="50%"><img src="docs/screenshots/23-besar-kecil.png" alt="Besar dan kecil"><br><b>Besar &amp; Kecil.</b> "Mana yang paling besar?" atau "paling kecil?". Benda yang sama ditampilkan dalam beberapa ukuran.</td>
+<td width="50%"><img src="docs/screenshots/23-besar-kecil.png" alt="Big and small"><br><b>Besar &amp; Kecil (Big &amp; Small).</b> "Mana yang paling besar?" (which is biggest?) or "paling kecil?" (smallest?). The same object is shown at several sizes.</td>
 <td width="50%"></td>
 </tr>
 </table>
 
-### Mewarnai
+### Colouring
 
 <table>
 <tr>
-<td width="50%"><img src="docs/screenshots/24-galeri-mewarnai.png" alt="Galeri mewarnai"><br><b>Pilih Gambar.</b> 44 gambar dalam lima kategori, plus Karyaku.</td>
-<td width="50%"><img src="docs/screenshots/25-mewarnai.png" alt="Kanvas mewarnai"><br><b>Kanvas.</b> Warna tidak bisa keluar garis. Coretan terkunci di bagian gambar tempat jari mulai menyentuh. Ada kuas 3 ukuran, isi warna, penghapus, stiker, batal, dan 16 krayon.</td>
+<td width="50%"><img src="docs/screenshots/24-galeri-mewarnai.png" alt="Colouring gallery"><br><b>Pilih Gambar (Choose a picture).</b> 44 pictures in five categories, plus Karyaku (My Work).</td>
+<td width="50%"><img src="docs/screenshots/25-mewarnai.png" alt="Colouring canvas"><br><b>Kanvas (Canvas).</b> Colour cannot leave the lines. A stroke stays locked to the part of the picture where the finger first touched. There are 3 brush sizes, fill, eraser, stickers, undo, and 16 crayons.</td>
 </tr>
 <tr>
-<td width="50%"><img src="docs/screenshots/26-karyaku.png" alt="Karyaku"><br><b>Karyaku.</b> Semua hasil yang disimpan. Ketuk untuk melihat lebih besar, mewarnai lagi, atau menghapus.</td>
+<td width="50%"><img src="docs/screenshots/26-karyaku.png" alt="My Work"><br><b>Karyaku (My Work).</b> Everything that was saved. Tap to see it bigger, colour it again, or delete it.</td>
 <td width="50%"></td>
 </tr>
 </table>
 
-### Hadiah & Istirahat
+### Rewards & breaks
 
 <table>
 <tr>
-<td width="50%"><img src="docs/screenshots/27-hadiah.png" alt="Hadiah"><br><b>Hadiah.</b> Bintang dan stiker baru setiap kali anak menyelesaikan permainan.</td>
-<td width="50%"><img src="docs/screenshots/28-istirahat.png" alt="Istirahat"><br><b>Waktunya Istirahat.</b> Muncul setiap 20 menit bermain jika pengingat aktif. Ada hitungan mundur dengan tiga gerakan sederhana.</td>
+<td width="50%"><img src="docs/screenshots/27-hadiah.png" alt="Rewards"><br><b>Hadiah (Rewards).</b> New stars and stickers each time the child finishes a game.</td>
+<td width="50%"><img src="docs/screenshots/28-istirahat.png" alt="Break"><br><b>Waktunya Istirahat (Time for a break).</b> Appears every 20 minutes of play when the reminder is on. There is a countdown with three simple movements.</td>
 </tr>
 <tr>
-<td width="50%"><img src="docs/screenshots/28b-waktu-habis.png" alt="Waktu habis"><br><b>Waktu Habis.</b> Muncul saat batas waktu harian tercapai. Hanya orang tua yang bisa membuka lagi.</td>
+<td width="50%"><img src="docs/screenshots/28b-waktu-habis.png" alt="Time is up"><br><b>Waktu Habis (Time is up).</b> Appears when the daily limit is reached. Only a parent can open it again.</td>
 <td width="50%"></td>
 </tr>
 </table>
 
-### Orang tua
+### Parents
 
 <table>
 <tr>
-<td width="50%"><img src="docs/screenshots/29-gerbang-orang-tua.png" alt="Gerbang orang tua"><br><b>Gerbang Orang Tua.</b> Soal perkalian sederhana supaya anak tidak membuka pengaturan atau tautan keluar.</td>
-<td width="50%"><img src="docs/screenshots/30-area-orang-tua.png" alt="Area orang tua"><br><b>Area Orang Tua.</b> Profil anak, waktu bermain hari ini, perkembangan minggu ini, bahasa, cara baca huruf, batas waktu harian, musik, efek suara, dan pengingat istirahat.</td>
+<td width="50%"><img src="docs/screenshots/29-gerbang-orang-tua.png" alt="Parent gate"><br><b>Gerbang Orang Tua (Parent gate).</b> A simple multiplication question so the child cannot open settings or outbound links.</td>
+<td width="50%"><img src="docs/screenshots/30-area-orang-tua.png" alt="Parent area"><br><b>Area Orang Tua (Parent area).</b> Child profile, play time today, this week's progress, language, how to read letters, daily time limit, music, sound effects, and break reminders.</td>
 </tr>
 </table>
 
-## Untuk orang tua: privasi & keamanan
+## For parents: privacy and safety
 
-- Tidak ada iklan, tidak ada pembelian dalam aplikasi, dan tidak perlu akun.
-- Tidak ada server. Nama anak, pengaturan, perkembangan, dan karya disimpan di perangkat saja.
-- Tidak ada analytics atau SDK pihak ketiga yang melacak anak.
-- Pengaturan dan tautan apa pun berada di balik Gerbang Orang Tua.
-- Batas waktu harian (15, 30, atau 45 menit, atau tanpa batas) dan pengingat istirahat bisa diatur orang tua.
+- No ads, no in-app purchases, and no account needed.
+- No server. The child's name, settings, progress, and artwork are stored on the device only.
+- No analytics or third-party SDK tracking the child.
+- Settings and any link sit behind the Parent Gate.
+- The daily time limit (15, 30, or 45 minutes, or no limit) and break reminders are set by parents.
 
-## Teknologi
+## Tech stack
 
-| Bagian             | Pilihan                                                                                                              |
+| Part               | Choice                                                                                                               |
 | ------------------ | -------------------------------------------------------------------------------------------------------------------- |
-| Framework          | Flutter 3.50 dengan FVM, satu kode untuk iPad, iPhone, HP Android, dan tablet Android                                |
-| Material           | `material_ui`, karena `package:flutter/material.dart` deprecated di Flutter 3.50                                     |
-| Navigasi           | `go_router`, dengan redirect terpusat untuk Sambutan, Gerbang, dan batas waktu                                       |
+| Framework          | Flutter 3.50 with FVM, one codebase for iPad, iPhone, Android phones, and Android tablets                             |
+| Material           | `material_ui`, because `package:flutter/material.dart` is deprecated in Flutter 3.50                                 |
+| Navigation         | `go_router`, with centralised redirects for Welcome, the Gate, and the time limit                                    |
 | State              | `flutter_riverpod`                                                                                                   |
-| Ilustrasi          | SVG, dirender `vector_graphics` dan dikompilasi saat build                                                           |
-| Tracing & mewarnai | Kanvas Flutter (`CustomPainter` + clip path). Coretan disimpan sebagai data, bukan foto                               |
-| Animasi            | Animasi bawaan Flutter, tanpa Lottie, Rive, atau video                                                               |
-| Suara              | `flutter_soloud` untuk efek dan musik; narasi dibacakan TTS perangkat di semua build, termasuk rilis                 |
-| Teks               | gen-l10n dari `l10n/app_id.arb` dan `l10n/app_en.arb`                                                                |
-| Penyimpanan        | `shared_preferences` untuk pengaturan, berkas JSON di folder aplikasi untuk progres dan karya                        |
-| Jaringan           | Tidak ada di build rilis. Semua isi ikut di bundel                                                                    |
-| Pemeriksaan        | Analyze, cek format, validator isi, dan tes tanpa golden di Linux; golden di macOS. Semuanya lewat GitHub Actions      |
-| Build & rilis      | Workflow Release dari tag `v*` atau tombol Actions: bump versi di `pubspec.yaml`, build AAB dan APK bertanda tangan serta IPA tanpa tanda tangan, catatan rilis dari commit, lalu terbit di GitHub Releases |
+| Illustrations      | SVG, rendered by `vector_graphics` and compiled at build time                                                        |
+| Tracing & colouring | Flutter canvas (`CustomPainter` + clip path). Strokes are saved as data, not as pictures                            |
+| Animation          | Flutter's built-in animation, with no Lottie, Rive, or video                                                         |
+| Audio              | `flutter_soloud` for effects and music; narration is read by the device TTS in every build, including releases       |
+| Text               | gen-l10n from `l10n/app_id.arb` and `l10n/app_en.arb`                                                                |
+| Storage            | `shared_preferences` for settings, JSON files in the app folder for progress and artwork                             |
+| Network            | None in release builds. All content ships in the bundle                                                              |
+| Checks             | Analyze, format check, content validator, and tests without golden on Linux; golden on macOS. All through GitHub Actions |
+| Build & release    | The Release workflow from a `v*` tag or the Actions button: bump the version in `pubspec.yaml`, build a signed AAB and APK plus an unsigned IPA, release notes from commits, then publish to GitHub Releases |
 
-Target: ukuran aplikasi di bawah 30 MB dan animasi 60 fps, termasuk di tablet Android kelas bawah.
+Target: app size under 30 MB and 60 fps animation, including on low-end Android tablets.
 
-Struktur repo saat ini:
+Repo layout today:
 
 ```
 moci-app/
 ├── lib/
-│   ├── app/            # shell, router, tema, panggung layout, pengatur waktu
-│   ├── core/           # model isi, penyimpanan, audio, pengaturan, progres
-│   ├── features/       # layar per menu
-│   ├── l10n/           # keluaran gen-l10n
-│   └── widgets/        # komponen bersama: tombol, maskot, dialog, papan angka
+│   ├── app/            # shell, router, theme, layout stage, timers
+│   ├── core/           # content models, storage, audio, settings, progress
+│   ├── features/       # screens per menu
+│   ├── l10n/           # gen-l10n output
+│   └── widgets/        # shared widgets: buttons, mascot, dialogs, number board
 ├── assets/
-│   ├── content/        # katalog isi
-│   ├── tracing/        # jalur huruf & angka
-│   ├── coloring/       # halaman mewarnai, stiker, krayon
+│   ├── content/        # content catalog
+│   ├── tracing/        # letter & number paths
+│   ├── coloring/       # colouring pages, stickers, crayons
 │   ├── illustrations/  # 111 SVG
-│   ├── fonts/          # Fredoka, Nunito, lisensi OFL
-│   └── audio/          # suara hewan, instrumen, efek, LICENSES.csv
-├── tool/               # validator isi, ekspor prototipe, build font
-├── test/               # tes unit, widget, golden
-├── integration_test/   # tiga skenario di perangkat
+│   ├── fonts/          # Fredoka, Nunito, OFL licences
+│   └── audio/          # animal sounds, instruments, effects, LICENSES.csv
+├── tool/               # content validator, prototype export, font build
+├── test/               # unit, widget, golden tests
+├── integration_test/   # three on-device scenarios
 ├── l10n/               # app_id.arb, app_en.arb
-├── docs/               # salinan spec, rencana, prototipe, brand, tangkapan layar
-└── AGENTS.md           # instruksi kerja untuk manusia dan agen
+├── docs/               # spec copies, plans, prototype, brand, screenshots
+└── AGENTS.md           # working instructions for humans and agents
 ```
 
-## Menjalankan aplikasi
+## Running the app
 
-Versi Flutter dikunci di `.fvmrc`, jadi semua perintah memakai FVM:
+The Flutter version is pinned in `.fvmrc`, so every command uses FVM:
 
 ```bash
 fvm install
 fvm flutter pub get
-fvm flutter run -d <perangkat>
+fvm flutter run -d <device>
 ```
 
-Id perangkat dilihat dengan `fvm flutter devices` atau `make devices`. Perintah pemeriksaan, tes golden, validator isi, dan integration test ada di [AGENTS.md](AGENTS.md) dan [CONTRIBUTING.md](CONTRIBUTING.md).
+Device IDs are listed with `fvm flutter devices` or `make devices`. The check commands, golden tests, content validator, and integration tests are in [AGENTS.md](AGENTS.md) and [CONTRIBUTING.md](CONTRIBUTING.md).
 
-### Unduh dari Releases
+### Download from Releases
 
-Setiap rilis menerbitkan tiga berkas di [Releases](https://github.com/pandudpn/moci-app/releases). Cara menerbitkannya ada di [CONTRIBUTING.md](CONTRIBUTING.md) bagian Rilis dan di [SYSTEM_DESIGN.md](SYSTEM_DESIGN.md) bagian CI dan rilis.
+Each release publishes three files to [Releases](https://github.com/pandudpn/moci-app/releases). How to publish them is in [CONTRIBUTING.md](CONTRIBUTING.md) under Releases and in [SYSTEM_DESIGN.md](SYSTEM_DESIGN.md) under CI and releases.
 
-- **Android:** unduh `moci-<versi>.apk` lalu pasang di HP atau tablet. Izinkan "instal dari sumber tidak dikenal" saat diminta.
-- **iPad/iPhone:** unduh `moci-<versi>.ipa` lalu pasang dengan [Sideloadly](https://sideloadly.io) atau [AltStore](https://altstore.io) memakai Apple ID sendiri. Berkasnya tidak bertanda tangan, jadi aplikasi ditandatangani ulang oleh alat itu.
-- **AAB:** hanya untuk Google Play, tidak bisa dipasang langsung.
+- **Android:** download `moci-<version>.apk` and install it on a phone or tablet. Allow "install from unknown sources" when asked.
+- **iPad/iPhone:** download `moci-<version>.ipa` and install it with [Sideloadly](https://sideloadly.io) or [AltStore](https://altstore.io) using your own Apple ID. The file is unsigned, so the app is re-signed by that tool.
+- **AAB:** for Google Play only, it cannot be installed directly.
 
-Dengan akun Apple gratis, aplikasi berhenti terbuka setelah 7 hari dan perlu ditandatangani ulang; dengan Apple Developer Program, masa berlakunya 1 tahun.
+With a free Apple account, the app stops opening after 7 days and needs re-signing; with the Apple Developer Program, it lasts 1 year.
 
-### Memasang dari Mac
+### Installing from a Mac
 
-Moci tidak diterbitkan di App Store atau Play Store. Untuk build sendiri, pasang build release langsung dari Mac ke perangkat yang tersambung kabel:
+Moci is not published on the App Store or Play Store. For your own build, install a release build straight from the Mac to a device connected by cable:
 
 ```bash
-make devices                      # lihat perangkat yang terhubung
-make install                      # build release, pasang, lalu buka aplikasinya
-make install DEVICE=<id>          # pilih perangkat tertentu
-make run                          # mode debug dengan hot reload
+make devices                      # list connected devices
+make install                      # build release, install, then open the app
+make install DEVICE=<id>          # pick a specific device
+make run                          # debug mode with hot reload
 ```
 
-Tanpa `DEVICE`, perangkat fisik pertama dipakai, iOS lebih dulu. `DEVICE=<UDID simulator>` (lihat `xcrun simctl list devices`) memasang build debug ke simulator iOS. Semua target ada di [scripts/moci.sh](scripts/moci.sh).
+Without `DEVICE`, the first physical device is used, iOS first. `DEVICE=<simulator-UDID>` (see `xcrun simctl list devices`) installs a debug build on the iOS simulator. All targets are in [scripts/moci.sh](scripts/moci.sh).
 
-- **iPad/iPhone:** perangkat perlu Developer Mode aktif, dan Xcode perlu masuk ke akun Apple tim pengembang (Xcode > Settings > Accounts). Pertama kali, buka `ios/Runner.xcworkspace` sekali dan pilih tim di Signing & Capabilities. Dengan akun Apple gratis, aplikasi berhenti terbuka setelah 7 hari dan perlu dipasang ulang; dengan Apple Developer Program, masa berlakunya 1 tahun.
-- **Android:** aktifkan USB debugging. APK release ditandatangani dengan kunci rilis kalau `android/key.properties` ada, dan dengan kunci debug kalau tidak. Dua-duanya cukup untuk pemasangan sendiri.
+- **iPad/iPhone:** the device needs Developer Mode on, and Xcode needs to be signed in to the team's Apple account (Xcode > Settings > Accounts). The first time, open `ios/Runner.xcworkspace` once and pick the team in Signing & Capabilities. With a free Apple account, the app stops opening after 7 days and needs reinstalling; with the Apple Developer Program, it lasts 1 year.
+- **Android:** turn on USB debugging. The release APK is signed with the release key if `android/key.properties` exists, and with the debug key if not. Either is enough for installing your own build.
 
-## Dokumentasi
+## Documentation
 
-| Dokumen | Isi |
+| Document | Contents |
 | --- | --- |
-| [AGENTS.md](AGENTS.md) | Instruksi kerja untuk manusia dan agen: perintah, aturan kode, aturan tes |
-| [ARCHITECTURE.md](ARCHITECTURE.md) | Lapisan kode, provider, rute, aliran state, harness tes |
-| [SYSTEM_DESIGN.md](SYSTEM_DESIGN.md) | Data tersimpan, pengatur waktu, audio, pipeline konten, platform, CI |
-| [DESIGN.md](DESIGN.md) | Token, komponen, panggung tablet dan HP, gerak, aksesibilitas |
-| [CONTRIBUTING.md](CONTRIBUTING.md) | Alur kerja, gaya commit, checklist PR |
-| [docs/README.md](docs/README.md) | Ringkasan proyek, keputusan, dan peta dokumentasi |
+| [AGENTS.md](AGENTS.md) | Working instructions for humans and agents: commands, code rules, test rules |
+| [ARCHITECTURE.md](ARCHITECTURE.md) | Code layers, providers, routes, state flow, test harness |
+| [SYSTEM_DESIGN.md](SYSTEM_DESIGN.md) | Stored data, timers, audio, content pipeline, platforms, CI |
+| [DESIGN.md](DESIGN.md) | Tokens, components, tablet and phone stages, motion, accessibility |
+| [CONTRIBUTING.md](CONTRIBUTING.md) | Workflow, commit style, PR checklist |
+| [docs/README.md](docs/README.md) | Project summary, decisions, and documentation map |
 
-Salinan spec ada di [`docs/PRD.md`](docs/PRD.md), [`docs/TECH-SPEC.md`](docs/TECH-SPEC.md), [`docs/DESIGN-SYSTEM.md`](docs/DESIGN-SYSTEM.md), [`docs/CONTENT-ASSETS.md`](docs/CONTENT-ASSETS.md), dan [`docs/PRIVACY-RELEASE.md`](docs/PRIVACY-RELEASE.md).
+Spec copies are in [`docs/PRD.md`](docs/PRD.md), [`docs/TECH-SPEC.md`](docs/TECH-SPEC.md), [`docs/DESIGN-SYSTEM.md`](docs/DESIGN-SYSTEM.md), [`docs/CONTENT-ASSETS.md`](docs/CONTENT-ASSETS.md), and [`docs/PRIVACY-RELEASE.md`](docs/PRIVACY-RELEASE.md).
 
-## Brand & aset
+## Brand and assets
 
-Semua aset brand final ada di [`docs/brand`](docs/brand), dalam format PNG dan SVG.
+All final brand assets are in [`docs/brand`](docs/brand), in PNG and SVG format.
 
-| Folder                    | Isi                                                                                             |
+| Folder                    | Contents                                                                                        |
 | ------------------------- | ----------------------------------------------------------------------------------------------- |
-| `docs/brand/icon/ios`     | Ikon 1024 px versi terang, gelap, dan tinted                                                    |
-| `docs/brand/icon/android` | Layer adaptive icon (foreground, background, monochrome), ikon Play Store 512 px, dan ikon lama |
-| `docs/brand/logo`         | Logo bertumpuk dan mendatar (warna, hitam, putih, untuk latar gelap), tulisan Moci, dan maskot  |
-| `docs/brand/splash`       | Logo untuk splash screen dan ikon splash Android 12+                                            |
-| `docs/brand/github`       | Social preview 1280 × 640, banner README terang & gelap, avatar                                 |
+| `docs/brand/icon/ios`     | 1024 px icons in light, dark, and tinted versions                                               |
+| `docs/brand/icon/android` | Adaptive icon layers (foreground, background, monochrome), a 512 px Play Store icon, and the old icon |
+| `docs/brand/logo`         | Stacked and horizontal logos (colour, black, white, for dark backgrounds), the Moci wordmark, and the mascot |
+| `docs/brand/splash`       | Logo for the splash screen and the Android 12+ splash icon                                      |
+| `docs/brand/github`       | 1280 × 640 social preview, light & dark README banners, avatar                                  |
 
-- **Ilustrasi** digambar khusus untuk Moci, bukan diambil dari situs lain.
-- **Font:** [Fredoka](https://fonts.google.com/specimen/Fredoka) dan [Nunito](https://fonts.google.com/specimen/Nunito), keduanya berlisensi SIL Open Font License 1.1.
-- **Warna utama:** biru langit `#74C4FF`, kuning Moci `#FFD43B`, navy `#2B2350`. Huruf logo: pink `#F03E7C`, oranye `#FF9F1C`, biru `#1C8CF0`, hijau `#26A03B`.
+- **Illustrations** are drawn specifically for Moci, not taken from other sites.
+- **Fonts:** [Fredoka](https://fonts.google.com/specimen/Fredoka) and [Nunito](https://fonts.google.com/specimen/Nunito), both under the SIL Open Font License 1.1.
+- **Main colours:** sky blue `#74C4FF`, Moci yellow `#FFD43B`, navy `#2B2350`. Logo letters: pink `#F03E7C`, orange `#FF9F1C`, blue `#1C8CF0`, green `#26A03B`.
 
 ## Roadmap
 
-- [x] Desain dan prototipe interaktif semua menu (versi tablet)
-- [x] Ikon, logo, splash screen, dan aset GitHub
-- [ ] Tata letak versi HP untuk semua layar
-- [ ] Rekaman narasi Bahasa Indonesia & English
-- [x] Suara hewan dari Freesound (47 berkas CC0; sebagian hewan memakai suara pengganti)
-- [ ] Pengenalan suara on-device untuk layar Ucapkan
-- [x] Aplikasi Flutter: shell, navigasi, penyimpanan lokal
-- [ ] Porting semua menu ke Flutter
-- [ ] Uji di perangkat (iPad, iPhone, HP dan tablet Android)
-- [x] Pemasangan langsung ke perangkat sendiri (`make install`); Moci tidak diterbitkan di App Store atau Play Store
+- [x] Design and interactive prototype for every menu (tablet version)
+- [x] Icons, logo, splash screen, and GitHub assets
+- [ ] Phone layout for every screen
+- [ ] Bahasa Indonesia & English narration recordings
+- [x] Animal sounds from Freesound (47 CC0 files; some animals use a substitute sound)
+- [ ] On-device speech recognition for the Say it screen
+- [x] Flutter app: shell, navigation, local storage
+- [ ] Port every menu to Flutter
+- [ ] Test on devices (iPad, iPhone, Android phones and tablets)
+- [x] Direct install to your own device (`make install`); Moci is not published on the App Store or Play Store
 
-## Suara
+## Audio
 
-- **Narasi** dibacakan suara bawaan perangkat (text-to-speech), bukan rekaman. Logat dan nadanya mengikuti suara yang terpasang, jadi bisa berbeda antara iPad, iPhone, dan HP Android. Suara lain bisa dipasang di pengaturan perangkat: di iOS lewat Pengaturan, Aksesibilitas, Konten Lisan, Suara; di Android lewat pengaturan suara.
-- **Suara hewan dan efek suara** diambil dari [Freesound](https://freesound.org) dengan lisensi CC0 (domain publik), lalu dipotong dan volumenya disamakan. Sebagian hewan memakai suara pengganti karena tidak ada rekaman CC0 yang cocok: orangutan memakai suara owa, dan beberapa hewan kecil memakai efek yang mirip.
-- **Nada alat musik** (xilofon dan drum) dibuat sendiri untuk Moci lewat `tool/buat_instrumen.dart`.
-- **Sumber lengkap** tiap berkas, termasuk pengunggah dan tautannya, ada di [`assets/audio/LICENSES.csv`](assets/audio/LICENSES.csv): 47 berkas CC0 dari Freesound dan 12 nada alat musik milik sendiri.
+- **Narration** is read by the device's built-in voice (text-to-speech), not a recording. Accent and tone follow the voice that is installed, so they can differ between iPad, iPhone, and Android phones. Other voices can be installed in the device settings: on iOS through Settings, Accessibility, Spoken Content, Voices; on Android through the sound settings.
+- **Animal sounds and sound effects** come from [Freesound](https://freesound.org) under the CC0 licence (public domain), then cut and levelled. Some animals use a substitute sound because no suitable CC0 recording exists: the orangutan uses a gibbon call, and a few small animals use a similar effect.
+- **Instrument notes** (xylophone and drums) were made for Moci through `tool/buat_instrumen.dart`.
+- **Full sources** for every file, including the uploader and the link, are in [`assets/audio/LICENSES.csv`](assets/audio/LICENSES.csv): 47 CC0 files from Freesound and 12 instrument notes owned by the project.
 
-Rekaman narasi belum ada. Sampai rekaman Bahasa Indonesia dan English selesai, narasi tetap memakai TTS perangkat di semua build, termasuk rilis.
+Narration recordings do not exist yet. Until the Bahasa Indonesia and English recordings are done, narration keeps using the device TTS in every build, including releases.
 
-## Lisensi
+## License
 
-Seluruh kode, ilustrasi, suara, teks, dan aset brand Moci dilindungi hak cipta pemilik. Teks lengkapnya ada di [`LICENSE`](LICENSE).
+All Moci code, illustrations, sound, text, and brand assets are copyrighted by the owner. The full text is in [`LICENSE`](LICENSE).
 
-Lisensi pihak ketiga berlaku di atasnya: font Fredoka dan Nunito memakai SIL Open Font License 1.1, audio memakai CC0 atau ditandai `Milik sendiri` di `assets/audio/LICENSES.csv`, dan setiap paket Dart atau Flutter memakai lisensinya masing-masing.
+Third-party licences apply on top of that: the Fredoka and Nunito fonts use the SIL Open Font License 1.1, audio uses CC0 or is marked `Milik sendiri` ("own work") in `assets/audio/LICENSES.csv`, and every Dart or Flutter package uses its own licence.
