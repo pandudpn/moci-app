@@ -22,7 +22,7 @@ Moci collects no data at all. Because of that, the path to the Kids category on 
 
 ## Privacy policy draft
 
-Both stores require a privacy policy URL the public can open. The draft below is ready to copy into `PRIVACY.md` in the repo, then hosted on GitHub Pages if the repo is public. Fill in the bracketed parts before publishing.
+Both stores require a privacy policy URL the public can open. The drafts below are ready to copy into `PRIVACY.md` in the repo, then hosted on GitHub Pages if the repo is public. The app ships in Bahasa Indonesia and English, so the published policy carries both versions: the Indonesian text first, then the English one. Fill in the bracketed parts before publishing.
 
 ```markdown
 # Kebijakan Privasi Moci
