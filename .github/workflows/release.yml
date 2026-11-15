@@ -1,0 +1,208 @@
+# Rilis manual: naikkan versi, build AAB/APK bertanda tangan dan IPA tanpa
+# tanda tangan, lalu terbitkan sebagai GitHub Release.
+#
+#   gh workflow run Rilis -f bump_type=patch
+#
+# Hanya jalan dari main lewat workflow_dispatch, jadi push `chore(rilis)` yang
+# dihasilkan workflow ini tidak memicunya lagi. Sebelum versi dinaikkan, tes di
+# main dijalankan dulu supaya commit rusak tidak pernah dirilis.
+name: Rilis
+
+on:
+  workflow_dispatch:
+    inputs:
+      bump_type:
+        description: Jenis kenaikan versi
+        required: true
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+        default: patch
+
+concurrency:
+  group: rilis
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  versi:
+    name: Versi
+    if: github.ref_name == 'main'
+    runs-on: ubuntu-latest
+    outputs:
+      versi: ${{ steps.naik.outputs.versi }}
+      tag: ${{ steps.naik.outputs.tag }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 3.50.0
+          channel: stable
+          cache: true
+      - name: Cek versi Flutter terkunci
+        run: |
+          grep -q '"flutter": "3.50.0"' .fvmrc
+      - run: flutter pub get
+      - run: flutter analyze
+      - run: flutter test --exclude-tags golden
+      - run: dart run tool/validate_content.dart
+      - name: Naikkan versi
+        id: naik
+        run: |
+          set -euo pipefail
+          versi="$(dart run tool/rilis/naikkan_versi.dart "${{ inputs.bump_type }}")"
+          tag="v${versi%%+*}"
+          echo "versi=$versi" >> "$GITHUB_OUTPUT"
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          echo "$tag ($versi)"
+      - name: Commit dan tag
+        env:
+          VERSI: ${{ steps.naik.outputs.versi }}
+          TAG: ${{ steps.naik.outputs.tag }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add pubspec.yaml
+          git commit -m "chore(rilis): $TAG"
+          git tag "$TAG"
+          git push origin HEAD:main
+          git push origin "$TAG"
+
+  android:
+    name: Android
+    needs: versi
+    if: github.ref_name == 'main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.versi.outputs.tag }}
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 3.50.0
+          channel: stable
+          cache: true
+      - run: flutter pub get
+      # Rahasia hanya ditulis ke $RUNNER_TEMP dan android/key.properties, dua
+      # duanya di luar commit dan di luar artifact.
+      - name: Siapkan kunci rilis
+        env:
+          KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          STORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+        run: |
+          set -euo pipefail
+          printf '%s' "$KEYSTORE_BASE64" | base64 --decode > "$RUNNER_TEMP/moci-release.jks"
+          {
+            printf 'storePassword=%s\n' "$STORE_PASSWORD"
+            printf 'keyPassword=%s\n' "$KEY_PASSWORD"
+            printf 'keyAlias=%s\n' "$KEY_ALIAS"
+            printf 'storeFile=%s\n' "$RUNNER_TEMP/moci-release.jks"
+          } > android/key.properties
+      - name: Build AAB dan APK
+        env:
+          VERSI: ${{ needs.versi.outputs.versi }}
+        run: |
+          set -euo pipefail
+          # Sisa integration test bisa mendaftarkan plugin tes di build release.
+          rm -f android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java
+          flutter build appbundle --release
+          flutter build apk --release
+          mkdir -p dist
+          cp build/app/outputs/bundle/release/app-release.aab "dist/moci-$VERSI.aab"
+          cp build/app/outputs/flutter-apk/app-release.apk "dist/moci-$VERSI.apk"
+      - name: Pastikan APK bertanda tangan rilis
+        env:
+          VERSI: ${{ needs.versi.outputs.versi }}
+        run: |
+          set -euo pipefail
+          apksigner="$(ls "$ANDROID_HOME"/build-tools/*/apksigner | sort -V | tail -1)"
+          "$apksigner" verify --print-certs "dist/moci-$VERSI.apk" | tee certs.txt
+          if grep -q 'Android Debug' certs.txt; then
+            echo "APK masih bertanda tangan debug" >&2
+            exit 1
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: android
+          path: dist/*
+          if-no-files-found: error
+
+  ios:
+    name: iOS
+    needs: versi
+    if: github.ref_name == 'main'
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.versi.outputs.tag }}
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 3.50.0
+          channel: stable
+          cache: true
+      - run: flutter pub get
+      - name: Build IPA tanpa tanda tangan
+        env:
+          VERSI: ${{ needs.versi.outputs.versi }}
+        run: |
+          set -euo pipefail
+          flutter build ios --release --no-codesign
+          rm -rf build/ios/ipa
+          mkdir -p build/ios/ipa/Payload
+          cp -R build/ios/iphoneos/Runner.app build/ios/ipa/Payload/Runner.app
+          cd build/ios/ipa
+          zip -qry "moci-$VERSI.ipa" Payload
+          mkdir -p ../../../dist
+          mv "moci-$VERSI.ipa" ../../../dist/
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ios
+          path: dist/*
+          if-no-files-found: error
+
+  rilis:
+    name: Rilis
+    needs: [versi, android, ios]
+    if: github.ref_name == 'main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+      - name: Terbitkan rilis
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSI: ${{ needs.versi.outputs.versi }}
+          TAG: ${{ needs.versi.outputs.tag }}
+        run: |
+          set -euo pipefail
+          cat > catatan.md <<EOF
+          Rilis Moci $TAG.
+
+          - \`moci-$VERSI.apk\` untuk HP dan tablet Android. Pasang langsung, izinkan "instal dari sumber tidak dikenal" saat diminta.
+          - \`moci-$VERSI.ipa\` untuk iPad dan iPhone. Pasang lewat Sideloadly atau AltStore dengan Apple ID sendiri.
+          - \`moci-$VERSI.aab\` hanya untuk Google Play, tidak bisa dipasang langsung.
+
+          IPA tidak bertanda tangan. Dengan akun Apple gratis, aplikasi berhenti terbuka setelah 7 hari dan perlu ditandatangani ulang; dengan Apple Developer Program, masa berlakunya 1 tahun.
+          EOF
+          gh release create "$TAG" \
+            "dist/moci-$VERSI.aab" \
+            "dist/moci-$VERSI.apk" \
+            "dist/moci-$VERSI.ipa" \
+            --title "Moci $TAG" \
+            --notes-file catatan.md \
+            --generate-notes \
+            --verify-tag
