@@ -26,8 +26,7 @@ fvm flutter pub get
 
 - One title line in the form `<type>(<area>): <summary>`. Example: `feat(content): build narration list from catalog and ARB`.
 - Types used: `feat`, `fix`, `test`, `docs`, `chore`, `refactor`, `ci`, `build`.
-- Titles, commit bodies, code comments, and CI workflow text are written in English, lowercase at the start of the title, with no trailing period.
-- Documentation is written in English as well: `README.md`, `AGENTS.md`, `CONTRIBUTING.md`, and every file under `docs/`. Only in-app UI strings stay bilingual, Indonesian and English, in `l10n/app_id.arb` and `l10n/app_en.arb`.
+- Titles, commit bodies, code comments, CI workflow text, and documentation are written in English, lowercase at the start of the title, with no trailing period. Documentation covers `README.md`, `AGENTS.md`, `CONTRIBUTING.md`, and every file under `docs/`; only in-app UI strings stay bilingual, Indonesian and English, in `l10n/app_id.arb` and `l10n/app_en.arb`.
 - One commit holds one change that can be explained on its own.
 
 ## 4. TDD and tests

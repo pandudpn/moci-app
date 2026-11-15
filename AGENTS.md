@@ -75,8 +75,8 @@ Every Flutter command goes through FVM.
 ## 7. Git
 
 - Work on a feature branch, then open a PR to `main`. Never push straight to `main`.
-- One commit per task, in the style `feat(area): summary` or `docs: summary`. Commits, code comments, and workflow text are written in English.
-- Documentation is written in English too: `README.md`, `AGENTS.md`, `CONTRIBUTING.md`, and every document under `docs/`. Only in-app UI strings stay bilingual, Indonesian and English, in the ARB files `l10n/app_id.arb` and `l10n/app_en.arb`.
+- One commit per task, in the style `feat(area): summary` or `docs: summary`.
+- Commits, code comments, workflow text, and documentation are written in English. Documentation covers `README.md`, `AGENTS.md`, `CONTRIBUTING.md`, and every document under `docs/`. Only in-app UI strings stay bilingual, Indonesian and English, in the ARB files `l10n/app_id.arb` and `l10n/app_en.arb`.
 - Before commit: format, analyze, tests, and validator.
 
 ## 8. Don't

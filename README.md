@@ -257,7 +257,7 @@ Device IDs are listed with `fvm flutter devices` or `make devices`. The check co
 
 ### Download from Releases
 
-Each release publishes three files to [Releases](https://github.com/pandudpn/moci-app/releases). How to publish them is in [CONTRIBUTING.md](CONTRIBUTING.md) under Releases and in [SYSTEM_DESIGN.md](SYSTEM_DESIGN.md) under CI and releases.
+Each release publishes three files to [Releases](https://github.com/pandudpn/moci-app/releases). How to publish them is in [CONTRIBUTING.md](CONTRIBUTING.md) under Releases and in [SYSTEM_DESIGN.md](SYSTEM_DESIGN.md) under CI and release.
 
 - **Android:** download `moci-<version>.apk` and install it on a phone or tablet. Allow "install from unknown sources" when asked.
 - **iPad/iPhone:** download `moci-<version>.ipa` and install it with [Sideloadly](https://sideloadly.io) or [AltStore](https://altstore.io) using your own Apple ID. The file is unsigned, so the app is re-signed by that tool.
