@@ -20,6 +20,7 @@ const _kLang = 'moci.bahasa';
 const _kName = 'moci.nama';
 const _kAge = 'moci.usia';
 const _kLetter = 'moci.caraBaca';
+const _kPanggilan = 'moci.panggilan';
 const _kLimit = 'moci.batasMenit';
 const _kMusic = 'moci.musik';
 const _kSfx = 'moci.efek';
@@ -54,6 +55,9 @@ final class PrefsController extends Notifier<AppPrefs> {
     final letter =
         LetterMode.values.asNameMap()[store.getString(_kLetter)] ??
         LetterMode.fonik;
+    final panggilan =
+        PanggilanOrtu.values.asNameMap()[store.getString(_kPanggilan)] ??
+        PanggilanOrtu.ayahBunda;
     final storedLimit = store.getInt(_kLimit);
     final int? limit = storedLimit == null
         ? 30
@@ -66,6 +70,7 @@ final class PrefsController extends Notifier<AppPrefs> {
       childName: _trimName(store.getString(_kName) ?? ''),
       ageLevel: age,
       letterMode: letter,
+      panggilan: panggilan,
       dailyLimitMinutes: limit,
       music: store.getBool(_kMusic) ?? true,
       sfx: store.getBool(_kSfx) ?? true,
@@ -103,6 +108,11 @@ final class PrefsController extends Notifier<AppPrefs> {
   Future<void> setLetterMode(LetterMode mode) {
     state = state.copyWith(letterMode: mode);
     return _store.setString(_kLetter, mode.name);
+  }
+
+  Future<void> setPanggilan(PanggilanOrtu panggilan) {
+    state = state.copyWith(panggilan: panggilan);
+    return _store.setString(_kPanggilan, panggilan.name);
   }
 
   Future<void> setDailyLimit(int? minutes) {

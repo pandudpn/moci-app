@@ -479,14 +479,14 @@ abstract class AppLocalizations {
   /// No description provided for @gerbangHelp.
   ///
   /// In id, this message translates to:
-  /// **'Panggil Ayah atau Bunda, ya!'**
-  String get gerbangHelp;
+  /// **'Panggil {panggilan}, ya!'**
+  String gerbangHelp(String panggilan);
 
   /// narasi
   ///
   /// In id, this message translates to:
-  /// **'Ini khusus orang tua. Panggil Ayah atau Bunda, ya!'**
-  String get gerbangHelpSay;
+  /// **'Ini khusus orang tua. Panggil {panggilan}, ya!'**
+  String gerbangHelpSay(String panggilan);
 
   /// No description provided for @gerbangNote.
   ///
@@ -1009,6 +1009,72 @@ abstract class AppLocalizations {
   /// In id, this message translates to:
   /// **'Bahasa · Language'**
   String get orangTuaLangLabel;
+
+  /// Label pilihan sebutan orang tua
+  ///
+  /// In id, this message translates to:
+  /// **'Panggilan untuk orang tua'**
+  String get orangTuaPanggilan;
+
+  /// Pilihan panggilan ayah dan bunda
+  ///
+  /// In id, this message translates to:
+  /// **'Ayah / Bunda'**
+  String get orangTuaPanggilanAyahBunda;
+
+  /// Pilihan panggilan bapak dan ibu
+  ///
+  /// In id, this message translates to:
+  /// **'Bapak / Ibu'**
+  String get orangTuaPanggilanBapakIbu;
+
+  /// Pilihan panggilan papi dan mami
+  ///
+  /// In id, this message translates to:
+  /// **'Papi / Mami'**
+  String get orangTuaPanggilanPapiMami;
+
+  /// Pilihan panggilan daddy dan mommy
+  ///
+  /// In id, this message translates to:
+  /// **'Daddy / Mommy'**
+  String get orangTuaPanggilanDaddyMommy;
+
+  /// Pilihan panggilan orang tua
+  ///
+  /// In id, this message translates to:
+  /// **'Orang tua'**
+  String get orangTuaPanggilanOrangTua;
+
+  /// Frasa panggilan di dalam kalimat
+  ///
+  /// In id, this message translates to:
+  /// **'Ayah atau Bunda'**
+  String get panggilanAyahBunda;
+
+  /// Frasa panggilan di dalam kalimat
+  ///
+  /// In id, this message translates to:
+  /// **'Bapak atau Ibu'**
+  String get panggilanBapakIbu;
+
+  /// Frasa panggilan di dalam kalimat
+  ///
+  /// In id, this message translates to:
+  /// **'Papi atau Mami'**
+  String get panggilanPapiMami;
+
+  /// Frasa panggilan di dalam kalimat
+  ///
+  /// In id, this message translates to:
+  /// **'Daddy atau Mommy'**
+  String get panggilanDaddyMommy;
+
+  /// Frasa panggilan di dalam kalimat
+  ///
+  /// In id, this message translates to:
+  /// **'orang tua'**
+  String get panggilanOrangTua;
 
   /// Label cara baca huruf
   ///
@@ -1613,8 +1679,8 @@ abstract class AppLocalizations {
   /// Judul dialog gerbang mikrofon
   ///
   /// In id, this message translates to:
-  /// **'Panggil Ayah atau Bunda'**
-  String get ucapkanMicAskTitle;
+  /// **'Panggil {panggilan}'**
+  String ucapkanMicAskTitle(String panggilan);
 
   /// Isi dialog gerbang mikrofon
   ///

@@ -210,11 +210,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get gerbangDel => 'Delete';
 
   @override
-  String get gerbangHelp => 'Ask a grown-up for help!';
+  String gerbangHelp(String panggilan) {
+    return 'Ask $panggilan for help!';
+  }
 
   @override
-  String get gerbangHelpSay =>
-      'This part is for grown-ups. Ask a grown-up for help!';
+  String gerbangHelpSay(String panggilan) {
+    return 'This part is for grown-ups. Ask $panggilan for help!';
+  }
 
   @override
   String get gerbangNote =>
@@ -502,6 +505,39 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get orangTuaLangLabel => 'Bahasa · Language';
+
+  @override
+  String get orangTuaPanggilan => 'What the child calls you';
+
+  @override
+  String get orangTuaPanggilanAyahBunda => 'Mom or Dad';
+
+  @override
+  String get orangTuaPanggilanBapakIbu => 'Mom or Dad';
+
+  @override
+  String get orangTuaPanggilanPapiMami => 'Papi or Mami';
+
+  @override
+  String get orangTuaPanggilanDaddyMommy => 'Daddy or Mommy';
+
+  @override
+  String get orangTuaPanggilanOrangTua => 'A grown-up';
+
+  @override
+  String get panggilanAyahBunda => 'Mom or Dad';
+
+  @override
+  String get panggilanBapakIbu => 'Mom or Dad';
+
+  @override
+  String get panggilanPapiMami => 'Papi or Mami';
+
+  @override
+  String get panggilanDaddyMommy => 'Daddy or Mommy';
+
+  @override
+  String get panggilanOrangTua => 'a grown-up';
 
   @override
   String get orangTuaLetters => 'How letters are read';
@@ -837,7 +873,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get ucapkanDoneSay => 'Great job! You can say';
 
   @override
-  String get ucapkanMicAskTitle => 'Call Mom or Dad';
+  String ucapkanMicAskTitle(String panggilan) {
+    return 'Call $panggilan';
+  }
 
   @override
   String get ucapkanMicAskBody =>

@@ -5,6 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:moci/core/content/katalog.dart';
 import 'package:moci/core/content/narasi.dart';
 import 'package:moci/core/lang.dart';
+import 'package:moci/core/prefs/app_prefs.dart';
 
 Katalog _katalog() => Katalog.fromJson(
   jsonDecode(File('assets/content/katalog.json').readAsStringSync()),
@@ -100,6 +101,52 @@ void main() {
     );
     expect(baris.teks, 'Halo! Aku Moci.');
     expect(baris.path, 'assets/audio/vo/id/ui_sambutanHalo.m4a');
+  });
+
+  test('narasi panggilan: bawaan tetap, pilihan lain diberi akhiran', () {
+    final narasi = _narasi();
+    final dasar = _satu(
+      narasi,
+      bahasa: AppLang.id,
+      jenis: 'ui',
+      id: 'gerbangHelpSay',
+    );
+    expect(dasar.teks, 'Ini khusus orang tua. Panggil Ayah atau Bunda, ya!');
+    final papi = _satu(
+      narasi,
+      bahasa: AppLang.id,
+      jenis: 'ui',
+      id: 'gerbangHelpSay_papiMami',
+    );
+    expect(papi.teks, 'Ini khusus orang tua. Panggil Papi atau Mami, ya!');
+    final en = _satu(
+      narasi,
+      bahasa: AppLang.en,
+      jenis: 'ui',
+      id: 'gerbangHelpSay_daddyMommy',
+    );
+    expect(en.teks, 'This part is for grown-ups. Ask Daddy or Mommy for help!');
+  });
+
+  test('tidak ada narasi yang menyisakan placeholder', () {
+    final narasi = _narasi();
+    final sisa = [
+      for (final b in narasi)
+        if (b.teks.contains('{panggilan}')) b.namaBerkas,
+    ];
+    expect(sisa, isEmpty);
+  });
+
+  test('setiap pilihan panggilan punya frasa di kedua ARB', () {
+    final arbId = _arb('id') as Map<String, Object?>;
+    final arbEn = _arb('en') as Map<String, Object?>;
+    expect(frasaPanggilan.keys, [
+      for (final pilihan in PanggilanOrtu.values) pilihan.name,
+    ]);
+    for (final kunci in frasaPanggilan.values) {
+      expect(arbId[kunci], isA<String>(), reason: kunci);
+      expect(arbEn[kunci], isA<String>(), reason: kunci);
+    }
   });
 
   test('suku kata unik huruf kecil dari kisi, kata, dan ucapkan', () {

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
+import 'package:moci/core/lang.dart';
 import 'package:moci/core/speech/speech_engine.dart';
 import 'package:moci/features/ucapkan/ucapkan_screen.dart';
 
@@ -37,6 +38,26 @@ void main() {
     await t.pump();
     await t.pump();
     expect(env.speech.prepareCount, 1);
+  });
+
+  testWidgets('judul gerbang mikrofon mengikuti panggilan tersimpan', (
+    t,
+  ) async {
+    final env = TestEnv();
+    await env.store.setString('moci.panggilan', 'papiMami');
+    await _open(t, env: env);
+    await t.tap(find.byKey(UcapkanScreen.micKey));
+    await t.pump();
+    expect(find.text('Panggil Papi atau Mami'), findsOneWidget);
+  });
+
+  testWidgets('English memakai panggilan pilihan', (t) async {
+    final env = TestEnv(lang: AppLang.en);
+    await env.store.setString('moci.panggilan', 'daddyMommy');
+    await _open(t, env: env);
+    await t.tap(find.byKey(UcapkanScreen.micKey));
+    await t.pump();
+    expect(find.text('Call Daddy or Mommy'), findsOneWidget);
   });
 
   testWidgets('kata cocok: pujian, bintang, dan kata berikutnya', (t) async {

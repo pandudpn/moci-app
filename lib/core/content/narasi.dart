@@ -51,34 +51,57 @@ const catatanSuku = 'baca sebagai satu suku kata';
 const catatanKalimat =
     'tempo pelan; waktu mulai tiap kata dicatat untuk karaoke';
 
-/// Peta teks dan daftar kunci ARB yang bertanda `"description": "narasi"`.
+/// Pilihan panggilan orang tua yang bawaan. Narasinya memakai id lama tanpa
+/// akhiran supaya rekaman yang sudah ada tetap terpakai.
+const panggilanBawaan = 'ayahBunda';
+
+/// Kunci ARB frasa kalimat tiap pilihan panggilan, pengisi `{panggilan}`.
 ///
-/// Kunci yang isinya bukan teks dilewati, jadi ARB rusak tidak membuat
-/// validator melempar.
+/// Urutannya sama dengan enum `PanggilanOrtu`.
+const frasaPanggilan = <String, String>{
+  'ayahBunda': 'panggilanAyahBunda',
+  'bapakIbu': 'panggilanBapakIbu',
+  'papiMami': 'panggilanPapiMami',
+  'daddyMommy': 'panggilanDaddyMommy',
+  'orangTua': 'panggilanOrangTua',
+};
+
+/// Id rekaman narasi untuk satu pilihan panggilan. Pilihan bawaan memakai
+/// [kunci] apa adanya, pilihan lain diberi akhiran nama pilihannya.
+String idNarasiPanggilan(String kunci, String pilihan) =>
+    pilihan == panggilanBawaan ? kunci : '${kunci}_$pilihan';
+
+/// Daftar kunci ARB bertanda `"description": "narasi"` beserta semua teks ARB.
+///
+/// Seluruh teks ikut dibaca supaya frasa pengisi `{panggilan}` bisa diambil
+/// dari kunci yang bukan narasi. Kunci yang isinya bukan teks dilewati, jadi
+/// ARB rusak tidak membuat validator melempar.
 ({Map<String, String> teks, Set<String> kunci}) bacaArbNarasi(Object? isi) {
   if (isi is! Map) return (teks: const {}, kunci: const {});
   final teks = <String, String>{};
   final kunci = <String>{};
   for (final entri in isi.entries) {
     final nama = entri.key;
-    if (nama is! String || !nama.startsWith('@') || nama.startsWith('@@')) {
+    if (nama is! String) continue;
+    if (!nama.startsWith('@')) {
+      final nilai = entri.value;
+      if (nilai is String) teks[nama] = nilai;
       continue;
     }
+    if (nama.startsWith('@@')) continue;
     final meta = entri.value;
     if (meta is! Map || meta['description'] != 'narasi') continue;
     final kunciArb = nama.substring(1);
-    final nilai = isi[kunciArb];
-    if (nilai is! String) continue;
-    kunci.add(kunciArb);
-    teks[kunciArb] = nilai;
+    if (isi[kunciArb] is String) kunci.add(kunciArb);
   }
   return (teks: teks, kunci: kunci);
 }
 
 /// Semua baris narasi yang diharapkan, urut per bahasa lalu per jenis.
 ///
-/// [arbId] dan [arbEn] berisi teks ARB; [kunciNarasi] berisi kunci ARB yang
-/// harus dibacakan. Baris untuk kunci yang teksnya tidak ada dilewati.
+/// [arbId] dan [arbEn] berisi seluruh teks ARB (frasa `{panggilan}` diambil
+/// dari situ); [kunciNarasi] berisi kunci yang harus dibacakan. Baris untuk
+/// kunci yang teksnya tidak ada dilewati.
 List<BarisNarasi> narasiDiharapkan(
   Katalog katalog, {
   required Map<String, String> arbId,
@@ -147,10 +170,32 @@ List<BarisNarasi> narasiDiharapkan(
     }
     for (final kunci in kunciArb) {
       final teks = arb[kunci];
-      if (teks != null) tambah('ui', kunci, teks);
+      if (teks == null) continue;
+      for (final (id, isi) in _pecahPanggilan(kunci, teks, arb)) {
+        tambah('ui', id, isi);
+      }
     }
   }
   return hasil;
+}
+
+/// Satu kunci narasi bisa berisi `{panggilan}`, jadi barisnya dipecah per
+/// pilihan panggilan orang tua dengan id rekaman masing-masing.
+List<(String, String)> _pecahPanggilan(
+  String kunci,
+  String teks,
+  Map<String, String> arb,
+) {
+  if (!teks.contains('{panggilan}')) return [(kunci, teks)];
+  return [
+    for (final MapEntry(key: pilihan, value: kunciFrasa)
+        in frasaPanggilan.entries)
+      if (arb[kunciFrasa] case final frasa?)
+        (
+          idNarasiPanggilan(kunci, pilihan),
+          teks.replaceAll('{panggilan}', frasa),
+        ),
+  ];
 }
 
 List<KataEntry> _kata(Katalog katalog, AppLang bahasa) =>

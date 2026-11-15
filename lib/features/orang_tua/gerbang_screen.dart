@@ -14,6 +14,7 @@ import '../../app/theme/moci_motion.dart';
 import '../../app/theme/moci_text.dart';
 import '../../core/audio/audio_providers.dart';
 import '../../core/audio/narrator.dart';
+import '../../core/content/narasi.dart';
 import '../../core/prefs/prefs_controller.dart';
 import '../../l10n/l10n.dart';
 import '../../widgets/moci_illustration.dart';
@@ -101,15 +102,17 @@ class _GerbangScreenState extends ConsumerState<GerbangScreen>
   }
 
   void _sayHelp() {
+    final l10n = context.l10n;
+    final prefs = ref.read(prefsProvider);
     ref
         .read(narratorProvider)
         .say(
           NarrationLine(
             jenis: 'ui',
-            id: 'gerbangHelpSay',
-            text: context.l10n.gerbangHelpSay,
+            id: idNarasiPanggilan('gerbangHelpSay', prefs.panggilan.name),
+            text: l10n.gerbangHelpSay(panggilanTeks(prefs.panggilan, l10n)),
           ),
-          ref.read(prefsProvider).lang,
+          prefs.lang,
         );
   }
 
@@ -205,6 +208,10 @@ class _GerbangScreenState extends ConsumerState<GerbangScreen>
   Widget _stage(BuildContext context) {
     final l10n = context.l10n;
     final touch = _touch(context);
+    final panggilan = panggilanTeks(
+      ref.watch(prefsProvider.select((p) => p.panggilan)),
+      l10n,
+    );
     return Material(
       type: MaterialType.transparency,
       child: SizedBox(
@@ -232,7 +239,7 @@ class _GerbangScreenState extends ConsumerState<GerbangScreen>
               left: 22,
               bottom: 40,
               width: 262,
-              child: _help(l10n, touch),
+              child: _help(l10n, touch, panggilan),
             ),
             Positioned(
               left: 300,
@@ -316,7 +323,7 @@ class _GerbangScreenState extends ConsumerState<GerbangScreen>
     );
   }
 
-  Widget _help(AppLocalizations l10n, double touch) {
+  Widget _help(AppLocalizations l10n, double touch, String panggilan) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -326,7 +333,7 @@ class _GerbangScreenState extends ConsumerState<GerbangScreen>
             depth: 6,
             minTouch: touch,
             borderRadius: BorderRadius.circular(24),
-            semanticLabel: l10n.gerbangHelp,
+            semanticLabel: l10n.gerbangHelp(panggilan),
             onTap: _sayHelp,
             child: Stack(
               clipBehavior: Clip.none,
@@ -347,7 +354,7 @@ class _GerbangScreenState extends ConsumerState<GerbangScreen>
                         const SizedBox(width: 10),
                         Flexible(
                           child: Text(
-                            l10n.gerbangHelp,
+                            l10n.gerbangHelp(panggilan),
                             style: MociText.button.copyWith(
                               fontSize: 22,
                               height: 1.15,

@@ -142,10 +142,22 @@
   "gerbangEnter": "Enter",
   "gerbangKeypad": "Number pad",
   "gerbangDel": "Delete",
-  "gerbangHelp": "Ask a grown-up for help!",
-  "gerbangHelpSay": "This part is for grown-ups. Ask a grown-up for help!",
+  "gerbangHelp": "Ask {panggilan} for help!",
+  "@gerbangHelp": {
+    "placeholders": {
+      "panggilan": {
+        "type": "String"
+      }
+    }
+  },
+  "gerbangHelpSay": "This part is for grown-ups. Ask {panggilan} for help!",
   "@gerbangHelpSay": {
-    "description": "narasi"
+    "description": "narasi",
+    "placeholders": {
+      "panggilan": {
+        "type": "String"
+      }
+    }
   },
   "gerbangNote": "This gate keeps little ones out of settings and outside links.",
   "gerbangTimes": "{a} times {b}",
@@ -435,6 +447,50 @@
   "orangTuaLangLabel": "Bahasa · Language",
   "@orangTuaLangLabel": {
     "description": "Label pilihan bahasa"
+  },
+  "orangTuaPanggilan": "What the child calls you",
+  "@orangTuaPanggilan": {
+    "description": "Label pilihan sebutan orang tua"
+  },
+  "orangTuaPanggilanAyahBunda": "Mom or Dad",
+  "@orangTuaPanggilanAyahBunda": {
+    "description": "Pilihan panggilan ayah dan bunda"
+  },
+  "orangTuaPanggilanBapakIbu": "Mom or Dad",
+  "@orangTuaPanggilanBapakIbu": {
+    "description": "Pilihan panggilan bapak dan ibu"
+  },
+  "orangTuaPanggilanPapiMami": "Papi or Mami",
+  "@orangTuaPanggilanPapiMami": {
+    "description": "Pilihan panggilan papi dan mami"
+  },
+  "orangTuaPanggilanDaddyMommy": "Daddy or Mommy",
+  "@orangTuaPanggilanDaddyMommy": {
+    "description": "Pilihan panggilan daddy dan mommy"
+  },
+  "orangTuaPanggilanOrangTua": "A grown-up",
+  "@orangTuaPanggilanOrangTua": {
+    "description": "Pilihan panggilan orang tua"
+  },
+  "panggilanAyahBunda": "Mom or Dad",
+  "@panggilanAyahBunda": {
+    "description": "Frasa panggilan di dalam kalimat"
+  },
+  "panggilanBapakIbu": "Mom or Dad",
+  "@panggilanBapakIbu": {
+    "description": "Frasa panggilan di dalam kalimat"
+  },
+  "panggilanPapiMami": "Papi or Mami",
+  "@panggilanPapiMami": {
+    "description": "Frasa panggilan di dalam kalimat"
+  },
+  "panggilanDaddyMommy": "Daddy or Mommy",
+  "@panggilanDaddyMommy": {
+    "description": "Frasa panggilan di dalam kalimat"
+  },
+  "panggilanOrangTua": "a grown-up",
+  "@panggilanOrangTua": {
+    "description": "Frasa panggilan di dalam kalimat"
   },
   "orangTuaLetters": "How letters are read",
   "@orangTuaLetters": {
@@ -928,9 +984,14 @@
   "@ucapkanDoneSay": {
     "description": "narasi"
   },
-  "ucapkanMicAskTitle": "Call Mom or Dad",
+  "ucapkanMicAskTitle": "Call {panggilan}",
   "@ucapkanMicAskTitle": {
-    "description": "Microphone gate dialog title"
+    "description": "Microphone gate dialog title",
+    "placeholders": {
+      "panggilan": {
+        "type": "String"
+      }
+    }
   },
   "ucapkanMicAskBody": "Only a grown-up turns on the microphone. Your voice is recognized on this device only; it is not saved or sent.",
   "@ucapkanMicAskBody": {

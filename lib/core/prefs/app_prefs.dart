@@ -10,6 +10,10 @@ enum AgeLevel { pemula, penjelajah, pembaca }
 /// Cara huruf dibacakan: bunyi (fonik) atau nama huruf.
 enum LetterMode { fonik, nama }
 
+/// Sebutan untuk orang tua di kalimat dan narasi. `ayahBunda` mempertahankan
+/// teks yang sudah ada sejak awal.
+enum PanggilanOrtu { ayahBunda, bapakIbu, papiMami, daddyMommy, orangTua }
+
 AppLang defaultLangFor(Locale device) =>
     device.languageCode == 'id' ? AppLang.id : AppLang.en;
 
@@ -20,6 +24,7 @@ final class AppPrefs {
     this.childName = '',
     this.ageLevel = AgeLevel.pemula,
     this.letterMode = LetterMode.fonik,
+    this.panggilan = PanggilanOrtu.ayahBunda,
     this.dailyLimitMinutes = 30,
     this.music = true,
     this.sfx = true,
@@ -31,6 +36,7 @@ final class AppPrefs {
   final String childName;
   final AgeLevel ageLevel;
   final LetterMode letterMode;
+  final PanggilanOrtu panggilan;
 
   /// `null` berarti tanpa batas.
   final int? dailyLimitMinutes;
@@ -46,6 +52,7 @@ final class AppPrefs {
     String? childName,
     AgeLevel? ageLevel,
     LetterMode? letterMode,
+    PanggilanOrtu? panggilan,
     Object? dailyLimitMinutes = _keep,
     bool? music,
     bool? sfx,
@@ -56,6 +63,7 @@ final class AppPrefs {
     childName: childName ?? this.childName,
     ageLevel: ageLevel ?? this.ageLevel,
     letterMode: letterMode ?? this.letterMode,
+    panggilan: panggilan ?? this.panggilan,
     dailyLimitMinutes: identical(dailyLimitMinutes, _keep)
         ? this.dailyLimitMinutes
         : dailyLimitMinutes as int?,
@@ -72,6 +80,7 @@ final class AppPrefs {
       other.childName == childName &&
       other.ageLevel == ageLevel &&
       other.letterMode == letterMode &&
+      other.panggilan == panggilan &&
       other.dailyLimitMinutes == dailyLimitMinutes &&
       other.music == music &&
       other.sfx == sfx &&
@@ -84,6 +93,7 @@ final class AppPrefs {
     childName,
     ageLevel,
     letterMode,
+    panggilan,
     dailyLimitMinutes,
     music,
     sfx,

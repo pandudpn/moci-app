@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:moci/app/router.dart';
+import 'package:moci/core/lang.dart';
 import 'package:moci/features/orang_tua/gerbang_game.dart';
 import 'package:moci/features/orang_tua/gerbang_screen.dart';
 import 'package:moci/widgets/number_keypad.dart';
@@ -77,6 +78,31 @@ void main() {
     expect(
       env.tts.spoken.first.$1,
       'Ini khusus orang tua. Panggil Ayah atau Bunda, ya!',
+    );
+  });
+
+  testWidgets('panggilan pilihan mengubah teks dan narasi gerbang', (t) async {
+    final env = _env();
+    await env.store.setString('moci.panggilan', 'papiMami');
+    await _open(t, env: env);
+    expect(find.text('Panggil Papi atau Mami, ya!'), findsOneWidget);
+    expect(
+      env.tts.spoken.first.$1,
+      'Ini khusus orang tua. Panggil Papi atau Mami, ya!',
+    );
+  });
+
+  testWidgets('English memakai sebutan orang tua pilihan', (t) async {
+    final env = TestEnv(
+      lang: AppLang.en,
+      extraOverrides: [gateRandomProvider.overrideWithValue(Random(_seed))],
+    );
+    await env.store.setString('moci.panggilan', 'orangTua');
+    await _open(t, env: env);
+    expect(find.text('Ask a grown-up for help!'), findsOneWidget);
+    expect(
+      env.tts.spoken.first.$1,
+      'This part is for grown-ups. Ask a grown-up for help!',
     );
   });
 

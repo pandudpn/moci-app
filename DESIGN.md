@@ -138,13 +138,17 @@ Bayangan selalu padat tanpa blur, bergeser lurus ke bawah, dan tidak memakan tem
 
 `prefs.letterMode` (`LetterMode.fonik` atau `LetterMode.nama`) menentukan apa yang dibacakan ketukan huruf besar, tombol sebelumnya/berikutnya, dan "Dengarkan" di Kenal Huruf. Kedua pil "Bunyi /b/" dan "Nama: be" selalu tampil dan tetap bisa diketuk; pil yang tidak mengikuti pengaturan hanya tidak ditandai aktif.
 
+### Cara memanggil orang tua
+
+`prefs.panggilan` (`PanggilanOrtu`) mengisi `{panggilan}` di kalimat gerbang, narasi gerbang, dan judul dialog mikrofon: `ayahBunda` (bawaan, teks Indonesia lama), `bapakIbu`, `papiMami`, `daddyMommy`, atau `orangTua`. Pilihan tampil sebagai pil di kartu Pengaturan Area Orang Tua; rekaman narasi bawaan tetap memakai id `gerbangHelpSay`, pilihan lain memakai `gerbangHelpSay_<nama pilihan>`.
+
 ### Konstanta tracing
 
 `lib/features/tulis/tracing_engine.dart` bekerja pada sampel 4 unit di kotak 520 × 520: koridor jari 44 unit, lompatan maju maksimal 40 unit, radius mulai 74 unit, dan goresan selesai di 97% panjang path. Kemajuan hanya maju, jadi gerak mundur atau lompatan jauh ditolak. Papan menggambar satu `CustomPainter` di dalam `RepaintBoundary`; jari yang bergerak hanya memberi kabar lewat `ValueNotifier`, bukan membangun ulang widget.
 
 ### Alur izin Ucapkan
 
-1. Ketukan mikrofon pertama membuka dialog "Panggil Ayah atau Bunda". Tombol "Buka Gerbang" mendorong `/gerbang`, dan hasil `true` baru memanggil `SpeechEngine.prepare`. Gerbang selalu mendahului permintaan izin sistem.
+1. Ketukan mikrofon pertama membuka dialog "Panggil <panggilan>" yang mengikuti `prefs.panggilan`. Tombol "Buka Gerbang" mendorong `/gerbang`, dan hasil `true` baru memanggil `SpeechEngine.prepare`. Gerbang selalu mendahului permintaan izin sistem.
 2. Izin ditolak: layar masuk mode dengar dan tiru, tombol mikrofon diganti `MociButton` "Dengar dan tiru", kata tetap bisa didengar, dan "Kata berikutnya" selalu ada.
 3. Pengenalan luring tidak tersedia: layar tetap mencoba `listen`; kalau jawabannya `null`, `MicLevelMeter` menentukan ada suara (0,12 selama 300 ms). Kalau meter juga tidak tersedia, layar masuk mode dengar dan tiru. Pengenalan daring tidak pernah dipakai.
 4. Selama mendengar, `AudioService.pauseForListening` menghentikan narasi dan musik; `resumeAfterListening` memulihkan musik kalau sakelarnya menyala, dan sesi iOS kembali ke kategori playback.

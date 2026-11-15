@@ -211,11 +211,14 @@ class AppLocalizationsId extends AppLocalizations {
   String get gerbangDel => 'Hapus';
 
   @override
-  String get gerbangHelp => 'Panggil Ayah atau Bunda, ya!';
+  String gerbangHelp(String panggilan) {
+    return 'Panggil $panggilan, ya!';
+  }
 
   @override
-  String get gerbangHelpSay =>
-      'Ini khusus orang tua. Panggil Ayah atau Bunda, ya!';
+  String gerbangHelpSay(String panggilan) {
+    return 'Ini khusus orang tua. Panggil $panggilan, ya!';
+  }
 
   @override
   String get gerbangNote =>
@@ -503,6 +506,39 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get orangTuaLangLabel => 'Bahasa · Language';
+
+  @override
+  String get orangTuaPanggilan => 'Panggilan untuk orang tua';
+
+  @override
+  String get orangTuaPanggilanAyahBunda => 'Ayah / Bunda';
+
+  @override
+  String get orangTuaPanggilanBapakIbu => 'Bapak / Ibu';
+
+  @override
+  String get orangTuaPanggilanPapiMami => 'Papi / Mami';
+
+  @override
+  String get orangTuaPanggilanDaddyMommy => 'Daddy / Mommy';
+
+  @override
+  String get orangTuaPanggilanOrangTua => 'Orang tua';
+
+  @override
+  String get panggilanAyahBunda => 'Ayah atau Bunda';
+
+  @override
+  String get panggilanBapakIbu => 'Bapak atau Ibu';
+
+  @override
+  String get panggilanPapiMami => 'Papi atau Mami';
+
+  @override
+  String get panggilanDaddyMommy => 'Daddy atau Mommy';
+
+  @override
+  String get panggilanOrangTua => 'orang tua';
 
   @override
   String get orangTuaLetters => 'Cara baca huruf';
@@ -838,7 +874,9 @@ class AppLocalizationsId extends AppLocalizations {
   String get ucapkanDoneSay => 'Hebat! Kamu bisa bilang';
 
   @override
-  String get ucapkanMicAskTitle => 'Panggil Ayah atau Bunda';
+  String ucapkanMicAskTitle(String panggilan) {
+    return 'Panggil $panggilan';
+  }
 
   @override
   String get ucapkanMicAskBody =>

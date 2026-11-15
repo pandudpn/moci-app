@@ -65,6 +65,12 @@ Future<GoRouter> _open(
   return router;
 }
 
+/// Kartu Pengaturan bergulir; kontrol paling bawah harus digulir dulu.
+Future<void> _reveal(WidgetTester t, Finder f) async {
+  await t.ensureVisible(f);
+  await t.pump();
+}
+
 /// Ketukan berikutnya pada pressable yang sama harus melewati cooldown 400 ms.
 Future<void> _tap(WidgetTester t, TestEnv env, Finder f) async {
   env.clock.advance(const Duration(seconds: 1));
@@ -122,10 +128,13 @@ void main() {
     final clicksBefore = env.audio.toString();
     await _tap(t, env, find.text('Musik latar'));
     expect(_prefs(t).music, false);
+    await _reveal(t, find.text('Efek suara'));
     await _tap(t, env, find.text('Efek suara'));
     expect(_prefs(t).sfx, false);
+    await _reveal(t, find.text('Pengingat istirahat'));
     await _tap(t, env, find.text('Pengingat istirahat'));
     expect(_prefs(t).restReminder, false);
+    await _reveal(t, find.text('Musik latar'));
     await _tap(t, env, find.text('Musik latar'));
     expect(_prefs(t).music, true);
     expect(env.audio.toString(), clicksBefore);
@@ -145,6 +154,47 @@ void main() {
     expect(find.text("Parents' Corner"), findsOneWidget);
     expect(find.text('Age 6–7 · Reader'), findsOneWidget);
     expect(find.text('Delete all data'), findsOneWidget);
+  });
+
+  testWidgets('panggilan pilihan tersimpan dan mengubah gerbang', (t) async {
+    final env = TestEnv(progress: _progress());
+    final router = await _open(t, env: env);
+    await _tap(t, env, find.text('Papi / Mami'));
+    expect(_prefs(t).panggilan, PanggilanOrtu.papiMami);
+    expect(env.store.getString('moci.panggilan'), 'papiMami');
+    router.go(Routes.beranda);
+    await _pump(t, 600);
+    router.push(Routes.gerbang);
+    await _pump(t, 600);
+    expect(find.text('Panggil Papi atau Mami, ya!'), findsOneWidget);
+    expect(
+      env.tts.spoken.last.$1,
+      'Ini khusus orang tua. Panggil Papi atau Mami, ya!',
+    );
+  });
+
+  testWidgets('panggilan bertahan di penyimpanan yang sama', (t) async {
+    final env = TestEnv(progress: _progress());
+    await _open(t, env: env);
+    await _tap(t, env, find.text('Daddy / Mommy'));
+    expect(_prefs(t).panggilan, PanggilanOrtu.daddyMommy);
+    await pumpApp(
+      t,
+      env: TestEnv(store: env.store, progress: _progress()),
+      initialLocation: '/',
+    );
+    await _pump(t, 600);
+    expect(_prefs(t).panggilan, PanggilanOrtu.daddyMommy);
+  });
+
+  testWidgets('English: pilihan panggilan tampil dalam bahasa Inggris', (
+    t,
+  ) async {
+    final env = TestEnv(lang: AppLang.en, progress: _progress());
+    await _open(t, env: env);
+    expect(find.text('What the child calls you'), findsOneWidget);
+    await _tap(t, env, find.text('Daddy or Mommy'));
+    expect(_prefs(t).panggilan, PanggilanOrtu.daddyMommy);
   });
 
   testWidgets('ubah nama lewat dialog, maksimal 20 huruf', (t) async {

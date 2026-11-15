@@ -145,10 +145,22 @@
   "gerbangEnter": "Masuk",
   "gerbangKeypad": "Papan angka",
   "gerbangDel": "Hapus",
-  "gerbangHelp": "Panggil Ayah atau Bunda, ya!",
-  "gerbangHelpSay": "Ini khusus orang tua. Panggil Ayah atau Bunda, ya!",
+  "gerbangHelp": "Panggil {panggilan}, ya!",
+  "@gerbangHelp": {
+    "placeholders": {
+      "panggilan": {
+        "type": "String"
+      }
+    }
+  },
+  "gerbangHelpSay": "Ini khusus orang tua. Panggil {panggilan}, ya!",
   "@gerbangHelpSay": {
-    "description": "narasi"
+    "description": "narasi",
+    "placeholders": {
+      "panggilan": {
+        "type": "String"
+      }
+    }
   },
   "gerbangNote": "Gerbang ini menjaga si kecil agar tidak membuka pengaturan atau tautan keluar.",
   "gerbangTimes": "{a} kali {b}",
@@ -438,6 +450,50 @@
   "orangTuaLangLabel": "Bahasa · Language",
   "@orangTuaLangLabel": {
     "description": "Label pilihan bahasa"
+  },
+  "orangTuaPanggilan": "Panggilan untuk orang tua",
+  "@orangTuaPanggilan": {
+    "description": "Label pilihan sebutan orang tua"
+  },
+  "orangTuaPanggilanAyahBunda": "Ayah / Bunda",
+  "@orangTuaPanggilanAyahBunda": {
+    "description": "Pilihan panggilan ayah dan bunda"
+  },
+  "orangTuaPanggilanBapakIbu": "Bapak / Ibu",
+  "@orangTuaPanggilanBapakIbu": {
+    "description": "Pilihan panggilan bapak dan ibu"
+  },
+  "orangTuaPanggilanPapiMami": "Papi / Mami",
+  "@orangTuaPanggilanPapiMami": {
+    "description": "Pilihan panggilan papi dan mami"
+  },
+  "orangTuaPanggilanDaddyMommy": "Daddy / Mommy",
+  "@orangTuaPanggilanDaddyMommy": {
+    "description": "Pilihan panggilan daddy dan mommy"
+  },
+  "orangTuaPanggilanOrangTua": "Orang tua",
+  "@orangTuaPanggilanOrangTua": {
+    "description": "Pilihan panggilan orang tua"
+  },
+  "panggilanAyahBunda": "Ayah atau Bunda",
+  "@panggilanAyahBunda": {
+    "description": "Frasa panggilan di dalam kalimat"
+  },
+  "panggilanBapakIbu": "Bapak atau Ibu",
+  "@panggilanBapakIbu": {
+    "description": "Frasa panggilan di dalam kalimat"
+  },
+  "panggilanPapiMami": "Papi atau Mami",
+  "@panggilanPapiMami": {
+    "description": "Frasa panggilan di dalam kalimat"
+  },
+  "panggilanDaddyMommy": "Daddy atau Mommy",
+  "@panggilanDaddyMommy": {
+    "description": "Frasa panggilan di dalam kalimat"
+  },
+  "panggilanOrangTua": "orang tua",
+  "@panggilanOrangTua": {
+    "description": "Frasa panggilan di dalam kalimat"
   },
   "orangTuaLetters": "Cara baca huruf",
   "@orangTuaLetters": {
@@ -931,9 +987,14 @@
   "@ucapkanDoneSay": {
     "description": "narasi"
   },
-  "ucapkanMicAskTitle": "Panggil Ayah atau Bunda",
+  "ucapkanMicAskTitle": "Panggil {panggilan}",
   "@ucapkanMicAskTitle": {
-    "description": "Judul dialog gerbang mikrofon"
+    "description": "Judul dialog gerbang mikrofon",
+    "placeholders": {
+      "panggilan": {
+        "type": "String"
+      }
+    }
   },
   "ucapkanMicAskBody": "Mikrofon hanya dinyalakan oleh orang tua. Suara Adik dikenali di perangkat ini saja, tidak disimpan dan tidak dikirim.",
   "@ucapkanMicAskBody": {

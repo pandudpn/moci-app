@@ -161,13 +161,14 @@ class _UcapkanScreenState extends ConsumerState<UcapkanScreen> {
   /// Gerbang Orang Tua selalu mendahului permintaan izin mikrofon.
   Future<bool> _mintaGerbang() async {
     final l10n = context.l10n;
+    final panggilan = panggilanTeks(ref.read(prefsProvider).panggilan, l10n);
     final buka = await MociDialog.show<bool>(
       context,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Text(
-            l10n.ucapkanMicAskTitle,
+            l10n.ucapkanMicAskTitle(panggilan),
             style: MociText.title.copyWith(fontSize: 32, height: 1.1),
           ),
           const SizedBox(height: 12),

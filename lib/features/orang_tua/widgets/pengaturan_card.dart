@@ -42,6 +42,19 @@ class PengaturanCard extends ConsumerWidget {
         children: [
           Text(l10n.orangTuaSettings, style: otHeading()),
           gap,
+          Text(l10n.orangTuaPanggilan, style: otLabel()),
+          OptionPills<PanggilanOrtu>(
+            perRow: 3,
+            fontSize: 16,
+            gap: 6,
+            options: [
+              for (final p in PanggilanOrtu.values)
+                (p, panggilanLabel(p, l10n)),
+            ],
+            selected: prefs.panggilan,
+            onSelected: ctrl.setPanggilan,
+          ),
+          gap,
           Text(l10n.orangTuaLangLabel, style: otLabel()),
           OptionPills<AppLang>(
             options: const [(AppLang.id, 'Indonesia'), (AppLang.en, 'English')],

@@ -14,7 +14,7 @@ Dokumen ini menjelaskan perilaku sistem saat aplikasi berjalan: batas privasi, d
 
 | Data | Tempat | Isi |
 | --- | --- | --- |
-| Pengaturan | `shared_preferences` | Sembilan kunci di bawah |
+| Pengaturan | `shared_preferences` | Sepuluh kunci di bawah |
 | Kemajuan | `progress.json` | Bintang, stiker, kegiatan terakhir, waktu bermain, perkembangan, ringkasan harian |
 | Karya | `karya/<id>.json`, maksimal 12 berkas | Isi halaman, waktu simpan, dan `gambar` (PNG 300 × 225 base64) |
 | Draf mewarnai | `draf/<halaman>.json`, satu per halaman | Isi halaman, tanpa PNG |
@@ -27,13 +27,14 @@ Kunci pengaturan, semuanya berawalan `moci.`:
 | `moci.nama` | Nama panggilan, maksimal 20 karakter setelah dirapikan |
 | `moci.usia` | `2-3`, `4-5`, atau `6-7` |
 | `moci.caraBaca` | `fonik` atau `nama` |
+| `moci.panggilan` | `ayahBunda`, `bapakIbu`, `papiMami`, `daddyMommy`, atau `orangTua`; bawaan `ayahBunda` |
 | `moci.batasMenit` | `15`, `30`, `45`, atau `0` untuk tanpa batas; bawaan 30 |
 | `moci.musik` | `true` atau `false` |
 | `moci.efek` | `true` atau `false` |
 | `moci.istirahat` | `true` atau `false` |
 | `moci.sambutanSelesai` | `true` setelah Sambutan selesai |
 
-Nilai yang tidak dikenal jatuh ke bawaan: bahasa dari perangkat, usia `pemula`, cara baca `fonik`, batas 30 menit, dan sakelar menyala.
+Nilai yang tidak dikenal jatuh ke bawaan: bahasa dari perangkat, usia `pemula`, cara baca `fonik`, panggilan `ayahBunda`, batas 30 menit, dan sakelar menyala.
 
 Bentuk `progress.json`:
 

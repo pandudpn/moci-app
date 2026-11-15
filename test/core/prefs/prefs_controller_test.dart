@@ -134,11 +134,13 @@ void main() {
     s.setString('moci.usia', 'x');
     s.setString('moci.caraBaca', 'z');
     s.setString('moci.bahasa', 'fr');
+    s.setString('moci.panggilan', 'zzz');
     s.setInt('moci.batasMenit', 20);
     final p = make(s, const Locale('id')).read(prefsProvider);
     expect(p.ageLevel, AgeLevel.pemula);
     expect(p.letterMode, LetterMode.fonik);
     expect(p.lang, AppLang.id);
+    expect(p.panggilan, PanggilanOrtu.ayahBunda);
     expect(p.dailyLimitMinutes, 30);
   });
   test('setter lain tersimpan', () async {
@@ -148,6 +150,7 @@ void main() {
     await n.setLang(AppLang.en);
     await n.setAgeLevel(AgeLevel.penjelajah);
     await n.setLetterMode(LetterMode.nama);
+    await n.setPanggilan(PanggilanOrtu.papiMami);
     await n.setMusic(false);
     await n.setSfx(false);
     await n.setRestReminder(false);
@@ -156,9 +159,11 @@ void main() {
     expect(p.lang, AppLang.en);
     expect(p.ageLevel, AgeLevel.penjelajah);
     expect(p.letterMode, LetterMode.nama);
+    expect(p.panggilan, PanggilanOrtu.papiMami);
     expect([p.music, p.sfx, p.restReminder], [false, false, false]);
     expect(p.dailyLimitMinutes, 45);
     expect(s.getString('moci.usia'), '4-5');
+    expect(s.getString('moci.panggilan'), 'papiMami');
   });
 
   test('nama hanya spasi jadi kosong', () async {
@@ -191,6 +196,7 @@ void main() {
     await n.setRestReminder(false);
     await n.setDailyLimit(45);
     await n.setLetterMode(LetterMode.nama);
+    await n.setPanggilan(PanggilanOrtu.bapakIbu);
 
     await n.resetAll();
 
@@ -198,6 +204,7 @@ void main() {
     expect(p.lang, AppLang.en); // bawaan perangkat
     expect(p.ageLevel, AgeLevel.pemula);
     expect(p.letterMode, LetterMode.fonik);
+    expect(p.panggilan, PanggilanOrtu.ayahBunda);
     expect(p.dailyLimitMinutes, 30);
     expect(
       [p.music, p.sfx, p.restReminder, p.onboarded],
@@ -206,5 +213,6 @@ void main() {
     expect(p.childName, '');
     expect(s.getBool('moci.musik'), isNull);
     expect(s.getInt('moci.batasMenit'), isNull);
+    expect(s.getString('moci.panggilan'), isNull);
   });
 }
