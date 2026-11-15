@@ -214,7 +214,7 @@ Semua tangkapan layar diambil dari prototipe interaktif versi tablet (1180 × 82
 | Penyimpanan        | `shared_preferences` untuk pengaturan, berkas JSON di folder aplikasi untuk progres dan karya                        |
 | Jaringan           | Tidak ada di build rilis. Semua isi ikut di bundel                                                                    |
 | Pemeriksaan        | Analyze, cek format, validator isi, dan tes tanpa golden di Linux; golden di macOS. Semuanya lewat GitHub Actions      |
-| Build & rilis      | Workflow Release manual: naikkan versi, build AAB dan APK bertanda tangan serta IPA tanpa tanda tangan, lalu terbit di GitHub Releases |
+| Build & rilis      | Workflow Release dari tag `v*` atau tombol Actions: bump versi di `pubspec.yaml`, build AAB dan APK bertanda tangan serta IPA tanpa tanda tangan, catatan rilis dari commit, lalu terbit di GitHub Releases |
 
 Target: ukuran aplikasi di bawah 30 MB dan animasi 60 fps, termasuk di tablet Android kelas bawah.
 
@@ -257,7 +257,7 @@ Id perangkat dilihat dengan `fvm flutter devices` atau `make devices`. Perintah 
 
 ### Unduh dari Releases
 
-Setiap rilis manual menerbitkan tiga berkas di [Releases](https://github.com/pandudpn/moci-app/releases). Cara menerbitkannya ada di [SYSTEM_DESIGN.md](SYSTEM_DESIGN.md) bagian CI dan rilis.
+Setiap rilis menerbitkan tiga berkas di [Releases](https://github.com/pandudpn/moci-app/releases). Cara menerbitkannya ada di [CONTRIBUTING.md](CONTRIBUTING.md) bagian Rilis dan di [SYSTEM_DESIGN.md](SYSTEM_DESIGN.md) bagian CI dan rilis.
 
 - **Android:** unduh `moci-<versi>.apk` lalu pasang di HP atau tablet. Izinkan "instal dari sumber tidak dikenal" saat diminta.
 - **iPad/iPhone:** unduh `moci-<versi>.ipa` lalu pasang dengan [Sideloadly](https://sideloadly.io) atau [AltStore](https://altstore.io) memakai Apple ID sendiri. Berkasnya tidak bertanda tangan, jadi aplikasi ditandatangani ulang oleh alat itu.

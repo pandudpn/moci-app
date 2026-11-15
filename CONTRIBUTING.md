@@ -75,7 +75,44 @@ Aturan isi, format berkas, dan daftar aset dijelaskan di [`docs/CONTENT-ASSETS.m
 - Validator menolak berkas audio yang tidak punya baris lisensi.
 - Panduan memilih suara per hewan, termasuk link Freesound, ada di [`docs/audio/SUARA-HEWAN.md`](docs/audio/SUARA-HEWAN.md).
 
-## 8. Checklist PR
+## 8. Rilis
+
+Nomor versi tidak diketik di tiga tempat. `tool/rilis/naikkan_versi.dart` adalah satu-satunya yang menulisnya, di baris `version:` pada `pubspec.yaml`:
+
+```bash
+fvm dart run tool/rilis/naikkan_versi.dart show          # versi di berkas, misalnya 1.0.2+3
+fvm dart run tool/rilis/naikkan_versi.dart bump patch     # tulis 1.0.2+3; nomor build selalu naik
+fvm dart run tool/rilis/naikkan_versi.dart bump 2.0.0-rc.1
+fvm dart run tool/rilis/naikkan_versi.dart check v1.0.2   # penjaga yang dijalankan workflow
+```
+
+Dua jalan merilis, keduanya menjalankan pemeriksaan yang sama di satu run:
+
+```bash
+# 1. tombol yang menghitung tag
+gh workflow run Release -f bump=patch
+
+# 2. atau tag sendiri setelah menaikkan versi
+fvm dart run tool/rilis/naikkan_versi.dart bump patch
+git commit -am "chore(release): v1.0.2"
+git tag -a v1.0.2 -m "Moci 1.0.2" && git push origin v1.0.2
+```
+
+Isi halaman rilis juga tidak diketik tangan. `tool/rilis/catatan_rilis.dart` menyusuri jalur utama antara tag sebelumnya dan tag ini. Pull request yang digabung menjadi satu entri yang menaut pull request-nya, dengan commit di dalamnya dilipat; commit langsung di `main` menaut commit pendeknya. Setiap entri menyebut penulisnya lewat login GitHub kalau `gh` tersedia, dan lewat nama git tanpa `@` kalau tidak. Subjek dibaca sebagai conventional commit lalu dikelompokkan menjadi Breaking changes, Features, Fixes, Documentation, Build and CI, dan Other changes. Ada bagian Contributors, bagian Install yang tetap, dan tautan changelog penuh. Commit `chore(release)` dan `chore(rilis)`, revert-nya, serta commit bot tidak ikut. Tulis subjek commit yang layak dibaca, karena itulah isi halaman rilis:
+
+```bash
+fvm dart run tool/rilis/catatan_rilis.dart --to v1.0.2   # pratinjau sebelum menandai tag
+```
+
+`SUMMARY.md` boleh berisi judul dan ringkasan singkat rilis. Workflow menyalinnya sebelum bump, dan commit bump menghapusnya, jadi kata untuk satu rilis tidak terbawa ke rilis berikutnya.
+
+Satu run workflow melakukan sisanya: menolak tag yang tidak cocok dengan `pubspec.yaml`, menjalankan cek format, analyze, validator isi, tes tanpa golden, dan golden di macOS, membangun AAB dan APK bertanda tangan serta IPA tanpa tanda tangan, lalu menerbitkan GitHub Release beserta ketiga berkas dan `SHA256SUMS`.
+
+Versi dengan akhiran (`v2.0.0-rc.1`) diterbitkan sebagai prerelease. `gh workflow run Release -f bump=patch` membangun commit bump dan tag di dalam runner dan tidak push apa pun pada awalnya. Job lain menguji dan membangun commit itu dari artifact bundle. Hanya job publish yang push, setelah semua gerbang lulus, dengan satu `git push --atomic` untuk branch dan tag. Gerbang yang gagal meninggalkan `main` dan tag seperti semula, dan push tag oleh `GITHUB_TOKEN` tidak memicu run kedua.
+
+Dispatch hanya jalan dari `main`, dan ditolak sebelum ada yang di-stage kalau `main` sudah bergerak sejak tombol ditekan atau `HEAD` sudah bertag rilis. Menekan tombol dua kali berarti merilis sekali. Merilis ulang tag yang sudah ada, misalnya saat release-nya belum sempat dibuat, adalah dispatch dengan `bump=none`.
+
+## 9. Checklist PR
 
 - [ ] `fvm flutter analyze` bersih.
 - [ ] `fvm dart format --output=none --set-exit-if-changed lib test tool integration_test` bersih.
